@@ -1,0 +1,678 @@
+// qyh created in 2024-07-10
+// 以每周循环的时间表为基础尝试构建循环时间模板
+{
+    name: "星期单循环模板", 
+    scene_desc: "单人在一个周期时间内进行的动作，比如一周计划表中的动作。特点是周而复始。", 
+    slots: ["A", "B", "C", "D", "E", "F", "G", ], 
+    entit_desc: "无",
+    prompt: "参考(周一做A，周二做B，周三做C，周四做D，周五做E，周六做F，周日做G)",
+    // 命题模板
+    templates: {
+    // 每天做什么
+        template_周一X: {
+            text: "周一(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_周二X: {
+            text: "周二(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_周三X: {
+            text: "周三(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_周四X: {
+            text: "周四(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_周五X: {
+            text: "周五(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_周六X: {
+            text: "周六(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_周日X: {
+            text: "周日(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+    // 每天做什么的非确定性命题
+        template_工作日X: {
+            text: "工作日(X)",
+            precise: null,
+            symmetric: null,
+            question: true,
+        }, 
+        template_周末X: {
+            text: "周末(X)",
+            precise: null,
+            symmetric: null,
+            question: true,
+        }, 
+    // 事件的先后-精确
+        template_X的一天前要Y: {
+            text: "(X)的一天前要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的一天后要Y: {
+            text: "(X)的一天后要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的两天前要Y: {
+            text: "(X)的两天前要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的两天后要Y: {
+            text: "(X)的两天后要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的三天前要Y: {
+            text: "(X)的三天前要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的三天后要Y: {
+            text: "(X)的三天后要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的四天前要Y: {
+            text: "(X)的四天前要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的四天后要Y: {
+            text: "(X)的四天后要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的五天前要Y: {
+            text: "(X)的五天前要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的五天后要Y: {
+            text: "(X)的五天后要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的六天前要Y: {
+            text: "(X)的六天前要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的六天后要Y: {
+            text: "(X)的六天后要(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+    // 事件的先后-模糊
+        template_X后两天内要Y: {
+            text: "(X)后两天内要(Y)",
+            precise: false,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X后三天内要Y: {
+            text: "(X)后三天内要(Y)",
+            precise: false,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X后四天内要Y: {
+            text: "(X)后四天内要(Y)",
+            precise: false,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X后五天内要Y: {
+            text: "(X)后五天内要(Y)",
+            precise: false,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X后六天内要Y: {
+            text: "(X)后六天内要(Y)",
+            precise: false,
+            symmetric: null,
+            question: true,
+        }, 
+    // 强烈期待什么时候出三个实体间关系的命题
+    },
+    // 命题间关系
+    templates_logic: [
+    // 等价规则（A天前==B天后）
+        ["等价", "template_X的一天前要Y", "template_X的六天后要Y"], 
+        ["等价", "template_X的两天前要Y", "template_X的五天后要Y"], 
+        ["等价", "template_X的三天前要Y", "template_X的四天后要Y"], 
+        ["等价", "template_X的四天前要Y", "template_X的三天后要Y"], 
+        ["等价", "template_X的五天前要Y", "template_X的两天后要Y"], 
+        ["等价", "template_X的六天前要Y", "template_X的一天后要Y"], 
+
+    // 冲突规则（周几不同）
+        ["冲突", "template_周一X", "template_周二X"], 
+        ["冲突", "template_周一X", "template_周三X"], 
+        ["冲突", "template_周一X", "template_周四X"], 
+        ["冲突", "template_周一X", "template_周五X"], 
+        ["冲突", "template_周一X", "template_周六X"], 
+        ["冲突", "template_周一X", "template_周日X"], 
+        ["冲突", "template_周二X", "template_周三X"], 
+        ["冲突", "template_周二X", "template_周四X"], 
+        ["冲突", "template_周二X", "template_周五X"], 
+        ["冲突", "template_周二X", "template_周六X"], 
+        ["冲突", "template_周二X", "template_周日X"],
+        ["冲突", "template_周三X", "template_周四X"], 
+        ["冲突", "template_周三X", "template_周五X"], 
+        ["冲突", "template_周三X", "template_周六X"], 
+        ["冲突", "template_周三X", "template_周日X"], 
+        ["冲突", "template_周四X", "template_周五X"], 
+        ["冲突", "template_周四X", "template_周六X"], 
+        ["冲突", "template_周四X", "template_周日X"], 
+        ["冲突", "template_周五X", "template_周六X"], 
+        ["冲突", "template_周五X", "template_周日X"], 
+        ["冲突", "template_周六X", "template_周日X"], 
+
+    // 冲突规则（周中与周末）
+        ["冲突", "template_工作日X", "template_周末X"], 
+
+    // 冲突规则（事件的先后-精确）
+        ["冲突", "template_X的一天前要Y", "template_X的两天前要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X的三天前要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X的四天前要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X的五天前要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X的六天前要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的三天前要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的四天前要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的五天前要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的六天前要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X的四天前要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X的五天前要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X的六天前要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X的五天前要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X的六天前要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X的六天前要Y"], 
+
+        ["冲突", "template_X的一天后要Y", "template_X的两天后要Y"], 
+        ["冲突", "template_X的一天后要Y", "template_X的三天后要Y"], 
+        ["冲突", "template_X的一天后要Y", "template_X的四天后要Y"], 
+        ["冲突", "template_X的一天后要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的一天后要Y", "template_X的六天后要Y"], 
+        ["冲突", "template_X的两天后要Y", "template_X的三天后要Y"], 
+        ["冲突", "template_X的两天后要Y", "template_X的四天后要Y"], 
+        ["冲突", "template_X的两天后要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的两天后要Y", "template_X的六天后要Y"], 
+        ["冲突", "template_X的三天后要Y", "template_X的四天后要Y"], 
+        ["冲突", "template_X的三天后要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的三天后要Y", "template_X的六天后要Y"], 
+        ["冲突", "template_X的四天后要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的四天后要Y", "template_X的六天后要Y"], 
+        ["冲突", "template_X的五天后要Y", "template_X的六天后要Y"], 
+
+        ["冲突", "template_X的一天前要Y", "template_X的一天后要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X的两天后要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X的三天后要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X的四天后要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的一天后要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的两天后要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的三天后要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的四天后要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X的六天后要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X的一天后要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X的两天后要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X的三天后要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X的六天后要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X的一天后要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X的两天后要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X的四天后要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X的六天后要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X的一天后要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X的三天后要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X的四天后要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X的六天后要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X的两天后要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X的三天后要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X的四天后要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X的五天后要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X的六天后要Y"], 
+
+    // 冲突规则（精确vs模糊）
+        ["冲突", "template_X的一天前要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X后四天内要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X后五天内要Y"], 
+        ["冲突", "template_X的一天前要Y", "template_X后六天内要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X后四天内要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X后五天内要Y"], 
+        ["冲突", "template_X的两天前要Y", "template_X后六天内要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X后四天内要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X后五天内要Y"], 
+        ["冲突", "template_X的三天前要Y", "template_X后六天内要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X后四天内要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X后五天内要Y"], 
+        ["冲突", "template_X的四天前要Y", "template_X后六天内要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X后四天内要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X后五天内要Y"], 
+        ["冲突", "template_X的五天前要Y", "template_X后六天内要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X后四天内要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X后五天内要Y"], 
+        ["冲突", "template_X的六天前要Y", "template_X后六天内要Y"], 
+
+        ["冲突", "template_X的三天后要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的四天后要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的五天后要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的六天后要Y", "template_X后两天内要Y"], 
+        ["冲突", "template_X的四天后要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的五天后要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的六天后要Y", "template_X后三天内要Y"], 
+        ["冲突", "template_X的五天后要Y", "template_X后四天内要Y"], 
+        ["冲突", "template_X的六天后要Y", "template_X后四天内要Y"], 
+        ["冲突", "template_X的六天后要Y", "template_X后五天内要Y"], 
+
+    // 蕴含规则（工作日与周末）
+        ["蕴含", "template_周一X", "template_工作日X"], 
+        ["蕴含", "template_周二X", "template_工作日X"], 
+        ["蕴含", "template_周三X", "template_工作日X"], 
+        ["蕴含", "template_周四X", "template_工作日X"], 
+        ["蕴含", "template_周五X", "template_工作日X"], 
+        ["蕴含", "template_周六X", "template_周末X"], 
+        ["蕴含", "template_周日X", "template_周末X"], 
+
+    // 蕴含规则（精确蕴含模糊）
+        ["蕴含", "template_X的一天后要Y", "template_X后两天内要Y"],
+        ["蕴含", "template_X的两天后要Y", "template_X后两天内要Y"],
+        ["蕴含", "template_X的一天后要Y", "template_X后三天内要Y"],
+        ["蕴含", "template_X的两天后要Y", "template_X后三天内要Y"],
+        ["蕴含", "template_X的三天后要Y", "template_X后三天内要Y"],
+        ["蕴含", "template_X的一天后要Y", "template_X后四天内要Y"],
+        ["蕴含", "template_X的两天后要Y", "template_X后四天内要Y"],
+        ["蕴含", "template_X的三天后要Y", "template_X后四天内要Y"],
+        ["蕴含", "template_X的四天后要Y", "template_X后四天内要Y"],
+        ["蕴含", "template_X的一天后要Y", "template_X后五天内要Y"],
+        ["蕴含", "template_X的两天后要Y", "template_X后五天内要Y"],
+        ["蕴含", "template_X的三天后要Y", "template_X后五天内要Y"],
+        ["蕴含", "template_X的四天后要Y", "template_X后五天内要Y"],
+        ["蕴含", "template_X的五天后要Y", "template_X后五天内要Y"],
+        ["蕴含", "template_X的一天后要Y", "template_X后六天内要Y"],
+        ["蕴含", "template_X的两天后要Y", "template_X后六天内要Y"],
+        ["蕴含", "template_X的三天后要Y", "template_X后六天内要Y"],
+        ["蕴含", "template_X的四天后要Y", "template_X后六天内要Y"],
+        ["蕴含", "template_X的五天后要Y", "template_X后六天内要Y"],
+        ["蕴含", "template_X的六天后要Y", "template_X后六天内要Y"],
+    
+    // 蕴含规则（事件的先后-模糊）
+        ["蕴含", "template_X后两天内要Y", "template_X后三天内要Y"],
+        ["蕴含", "template_X后两天内要Y", "template_X后四天内要Y"],
+        ["蕴含", "template_X后两天内要Y", "template_X后五天内要Y"],
+        ["蕴含", "template_X后两天内要Y", "template_X后六天内要Y"],
+        ["蕴含", "template_X后三天内要Y", "template_X后四天内要Y"],
+        ["蕴含", "template_X后三天内要Y", "template_X后五天内要Y"],
+        ["蕴含", "template_X后三天内要Y", "template_X后六天内要Y"],
+        ["蕴含", "template_X后四天内要Y", "template_X后五天内要Y"],
+        ["蕴含", "template_X后四天内要Y", "template_X后六天内要Y"],
+        ["蕴含", "template_X后五天内要Y", "template_X后六天内要Y"],
+
+    ],
+    // 推理规则
+    inference_rules: {
+    // 先后反转
+        flip1_1: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的一天前要Y"],
+        }, 
+        flip1_2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的一天前要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的一天后要Y"],
+        }, 
+        flip2_1: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的两天前要Y"],
+        }, 
+        flip2_2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的两天前要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的两天后要Y"],
+        }, 
+        flip3_1: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的三天前要Y"],
+        }, 
+        flip3_2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的三天前要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的三天后要Y"],
+        }, 
+        flip4_1: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的四天前要Y"],
+        }, 
+        flip4_2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的四天前要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的四天后要Y"],
+        }, 
+        flip5_1: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的五天前要Y"],
+        }, 
+        flip5_2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的五天前要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的五天后要Y"],
+        }, 
+        flip6_1: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的六天前要Y"],
+        }, 
+        flip6_2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的六天前要Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的六天后要Y"],
+        }, 
+    // 日期差计算
+        mon_tue: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周一X"], 
+                ["K", "empty", "template_周二X"], 
+            ], 
+            conclusions: ["J", "K", "template_X的一天后要Y"],
+        }, 
+        tue_wed: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周二X"], 
+                ["K", "empty", "template_周三X"], 
+            ], 
+            conclusions: ["J", "K", "template_X的一天后要Y"],
+        }, 
+        wed_thr: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周三X"], 
+                ["K", "empty", "template_周四X"], 
+            ], 
+            conclusions: ["J", "K", "template_X的一天后要Y"],
+        }, 
+        thr_fri: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周四X"], 
+                ["K", "empty", "template_周五X"], 
+            ], 
+            conclusions: ["J", "K", "template_X的一天后要Y"],
+        }, 
+        fri_sat: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周五X"], 
+                ["K", "empty", "template_周六X"], 
+            ], 
+            conclusions: ["J", "K", "template_X的一天后要Y"],
+        }, 
+        sat_sun: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周六X"], 
+                ["K", "empty", "template_周日X"], 
+            ], 
+            conclusions: ["J", "K", "template_X的一天后要Y"],
+        }, 
+        sun_mon: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周日X"], 
+                ["K", "empty", "template_周一X"], 
+            ], 
+            conclusions: ["J", "K", "template_X的一天后要Y"],
+        }, 
+    // 差值-差值计算
+        after_one_one: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的一天后要Y"], 
+                ["K", "L", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的两天后要Y"],
+        },
+        after_one_two: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的一天后要Y"], 
+                ["K", "L", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的三天后要Y"],
+        },
+        after_one_three: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的一天后要Y"], 
+                ["K", "L", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的四天后要Y"],
+        },
+        after_one_four: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的一天后要Y"], 
+                ["K", "L", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的五天后要Y"],
+        },
+        after_one_five: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的一天后要Y"], 
+                ["K", "L", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的六天后要Y"],
+        },
+        after_two_two: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的两天后要Y"], 
+                ["K", "L", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的四天后要Y"],
+        },
+        after_two_three: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的两天后要Y"], 
+                ["K", "L", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的五天后要Y"],
+        },
+        after_two_four: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的两天后要Y"], 
+                ["K", "L", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的六天后要Y"],
+        },
+        after_two_six: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的两天后要Y"], 
+                ["K", "L", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的一天后要Y"],
+        },
+        after_three_three: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的三天后要Y"], 
+                ["K", "L", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的六天后要Y"],
+        },
+        after_three_five: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的三天后要Y"], 
+                ["K", "L", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的一天后要Y"],
+        },
+        after_three_six: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的三天后要Y"], 
+                ["K", "L", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的两天后要Y"],
+        },
+        after_four_four: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的四天后要Y"], 
+                ["K", "L", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的一天后要Y"],
+        },
+        after_four_five: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的四天后要Y"], 
+                ["K", "L", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的两天后要Y"],
+        },
+        after_four_six: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的四天后要Y"], 
+                ["K", "L", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的三天后要Y"],
+        },
+        after_five_five: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的五天后要Y"], 
+                ["K", "L", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的三天后要Y"],
+        }, 
+        after_five_six: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的五天后要Y"], 
+                ["K", "L", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X的四天后要Y"],
+        }
+    }, 
+    // 初始命题
+    initial_props: [
+        ["A", "empty", "template_周一X"], 
+        ["B", "empty", "template_周二X"], 
+        ["C", "empty", "template_周三X"], 
+        ["D", "empty", "template_周四X"], 
+        ["E", "empty", "template_周五X"], 
+        ["F", "empty", "template_周六X"],
+        ["G", "empty", "template_周日X"],
+    ], 
+    replacement_entities: {
+        // 位点名称
+        target_slots: ["A", "B", "C", "D", "E", "F", "G",], 
+        // 具体实例化信息
+        question_content: [
+            {
+                context: "小明是一名生活规律的大学生，他按照一张日程表安排他每周的课余生活。我们可以从他的日程表中得到这些信息：", 
+                entities: [
+                    "开组会", 
+                    "看电影", 
+                    "打羽毛球", 
+                    "读小说", 
+                    "和女朋友约会", 
+                    "看论文", 
+                    "练习书法", 
+                    "打扫卫生", 
+                    "跑步", 
+                    "整理资料", 
+                    "学第二外语", 
+                    "打电脑游戏", 
+                    "和家人视频", 
+                    "绘画", 
+                ], 
+            }
+        ]
+    }
+}

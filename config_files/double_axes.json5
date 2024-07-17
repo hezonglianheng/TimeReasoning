@@ -1,0 +1,289 @@
+{
+    "name": "双时间轴模板", 
+    "scene_desc": "双人同时并行的一系列动作。", 
+    "slots": ["A", "B", "C", "D", "E", "F"], 
+    "entit_desc": "无",
+    "prompt": "参考([entity1]做A，再做B，然后做C。[entity2]做D，再做E，然后做F)",
+    "templates": {
+        "template_X的时候，在Y": {
+            "text": "当[entity1](X)的时候，[entity2]在(Y)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_X的同时，在Y": {
+            "text": "在[entity1](X)的同时，[entity2]在(Y)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        },
+        "template_1做的第一件事X": {
+            "text": "[entity1]做的第一件事情是(X)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_1做的第二件事X": {
+            "text": "[entity1]做的第二件事情是(X)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_1做的最后一件事X": {
+            "text": "[entity1]做的最后一件事情是(X)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_2做的第一件事X": {
+            "text": "[entity2]做的第一件事情是(X)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_2做的第二件事X": {
+            "text": "[entity2]做的第二件事情是(X)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_2做的最后一件事X": {
+            "text": "[entity2]做的最后一件事情是(X)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_1X之后就Y": {
+            "text": "[entity1](X)之后就(Y)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_2X之后就Y": {
+            "text": "[entity2](X)之后就(Y)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_1X之前就Y": {
+            "text": "[entity1](X)之后就(Y)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_2X之前就Y": {
+            "text": "[entity2](X)之后就(Y)",
+            "precise": true,
+            "symmetric": null,
+            "question": true
+        }, 
+        "template_X在Y之前": {
+            "text": "(X)在(Y)之前",
+            "precise": null,
+            "symmetric": null,
+            "question": false
+        }, 
+        "template_X在Y之后": {
+            "text": "(X)在(Y)之后",
+            "precise": null,
+            "symmetric": null,
+            "question": false
+        }, 
+        "template_X需要在Y之前完成": {
+            "text": "(X)需要在(Y)之前完成",
+            "precise": null,
+            "symmetric": null,
+            "question": false
+        }, 
+        "template_X需要在Y之后完成": {
+            "text": "(X)需要在(Y)之后完成",
+            "precise": null,
+            "symmetric": null,
+            "question": false
+        }
+    },
+    "templates_logic": [
+        ["等价", "template_X的时候，在Y", "template_X的同时，在Y"]
+    ],
+    "inference_rules": {
+        "rule_exact_symmetry1": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                 ["J", "K", "template_1X之后就Y"]
+            ], 
+            "conclusions": ["K", "J", "template_1X之前就Y"]
+        }, 
+        "rule_exact_symmetry2": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                ["J", "K", "template_2X之后就Y"]
+            ], 
+            "conclusions": ["K", "J", "template_2X之前就Y"]
+        }, 
+        "rule_1_1TO2": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                ["J", "empty", "template_1做的第一件事X"], 
+                ["K", "empty", "template_1做的第二件事X"]
+            ], 
+            "conclusions": ["J", "K", "template_1X之后就Y"]
+        }, 
+        "rule_2_1TO2": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                ["J", "empty", "template_2做的第一件事X"], 
+                ["K", "empty", "template_2做的第二件事X"]
+            ], 
+            "conclusions": ["J", "K", "template_2X之后就Y"]
+        }, 
+        "rule_1_2TO3": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                ["J", "empty", "template_1做的第二件事X"], 
+                ["K", "empty", "template_1做的最后一件事X"]
+            ], 
+            "conclusions": ["J", "K", "template_1X之后就Y"]
+        }, 
+        "rule_2_2TO3": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                ["J", "empty", "template_2做的第二件事X"], 
+                ["K", "empty", "template_2做的最后一件事X"]
+            ], 
+            "conclusions": ["J", "K", "template_2X之后就Y"]
+        }, 
+        "rule_1eq1": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                ["J", "empty", "template_1做的第一件事X"], 
+                ["K", "empty", "template_2做的第一件事X"]
+            ], 
+            "conclusions": ["J", "K", "template_X的同时，在Y"]
+        }, 
+        "rule_1eq2": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                ["J", "empty", "template_1做的第二件事X"], 
+                ["K", "empty", "template_2做的第二件事X"]
+            ], 
+            "conclusions": ["J", "K", "template_X的同时，在Y"]
+        }, 
+        "rule_1eq3": {
+            "labels": ["J", "K"], 
+            "conditions": [
+                ["J", "empty", "template_1做的最后一件事X"], 
+                ["K", "empty", "template_2做的最后一件事X"]
+            ], 
+            "conclusions": ["J", "K", "template_X的同时，在Y"]
+        },
+        "rule_1_1forward": {
+            "labels": ["J", "K", "L"], 
+            "conditions": [
+                ["J", "K", "template_1X之后就Y"], 
+                ["K", "L", "template_1X之后就Y"]
+            ], 
+            "conclusions": ["J", "empty", "template_1做的第一件事X"]
+        },
+        "rule_1_2forward": {
+            "labels": ["J", "K", "L"], 
+            "conditions": [
+                ["J", "K", "template_1X之后就Y"], 
+                ["K", "L", "template_1X之后就Y"]
+            ], 
+            "conclusions": ["K", "empty", "template_1做的第二件事X"]
+        },
+        "rule_1_3forward": {
+            "labels": ["J", "K", "L"], 
+            "conditions": [
+                ["J", "K", "template_1X之后就Y"], 
+                ["K", "L", "template_1X之后就Y"]
+            ], 
+            "conclusions": ["L", "empty", "template_1做的最后一件事X"]
+        },
+        "rule_2_1forward": {
+            "labels": ["J", "K", "L"], 
+            "conditions": [
+                ["J", "K", "template_2X之后就Y"], 
+                ["K", "L", "template_2X之后就Y"]
+            ], 
+            "conclusions": ["J", "empty", "template_2做的第一件事X"]
+        },
+        "rule_2_2forward": {
+            "labels": ["J", "K", "L"], 
+            "conditions": [
+                ["J", "K", "template_2X之后就Y"], 
+                ["K", "L", "template_2X之后就Y"]
+            ], 
+            "conclusions": ["K", "empty", "template_2做的第二件事X"]
+        },
+        "rule_2_3forward": {
+            "labels": ["J", "K", "L"], 
+            "conditions": [
+                ["J", "K", "template_2X之后就Y"], 
+                ["K", "L", "template_2X之后就Y"]
+            ], 
+            "conclusions": ["L", "empty", "template_2做的最后一件事X"]
+        },
+        "rule_1_comb1to2": {
+            "labels": ["J", "K",], 
+            "conditions": [
+                ["J", "empty", "template_1做的第一件事X"], 
+                ["J", "K", "template_1X之后就Y"]
+            ], 
+            "conclusions": ["K", "empty", "template_1做的第二件事X"]
+        },
+        "rule_1_comb2to3": {
+            "labels": ["J", "K", "L"], 
+            "conditions": [
+                ["J", "empty", "template_1做的第二件事X"], 
+                ["J", "K", "template_1X之后就Y"]
+            ], 
+            "conclusions": ["K", "empty", "template_1做的最后一件事X"]
+        },
+        "rule_2_comb1to2": {
+            "labels": ["J", "K",], 
+            "conditions": [
+                ["J", "empty", "template_2做的第一件事X"], 
+                ["J", "K", "template_2X之后就Y"]
+            ], 
+            "conclusions": ["K", "empty", "template_2做的第二件事X"]
+        },
+        "rule_2_comb2to3": {
+            "labels": ["J", "K", "L"], 
+            "conditions": [
+                ["J", "empty", "template_2做的第二件事X"], 
+                ["J", "K", "template_2X之后就Y"]
+            ], 
+            "conclusions": ["K", "empty", "template_2做的最后一件事X"]
+        },
+        
+        
+    }, 
+    "initial_props": [
+        ["A", "empty", "template_1做的第一件事X"], 
+        ["B", "empty", "template_1做的第二件事X"], 
+        ["C", "empty", "template_1做的最后一件事X"], 
+        ["D", "empty", "template_2做的第一件事X"], 
+        ["E", "empty", "template_2做的第二件事X"], 
+        ["F", "empty", "template_2做的最后一件事X"]
+    ], 
+    "replacement_entities": {
+        "target_slots": ["A", "B", "C", "D", "E", "F"], 
+        "question_content": [
+            {
+                "context": "是拼模型需要完成的六件事。小明和小红协作，两人同时进行依次完成三个步骤：", 
+                "entities": [
+                    "组装模型头部", 
+                    "清点零件", 
+                    "组装模型身体", 
+                    "组装模型的手", 
+                    "组装模型的脚", 
+                    "涂胶水", 
+                    "给零件上色", 
+                    "查看说明书", 
+                    "拼接零件"
+                ]
+            }
+        ]
+    }
+}

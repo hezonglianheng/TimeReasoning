@@ -1,0 +1,39 @@
+{
+    name: "", 
+    scene_desc: "", 
+    slots: [], 
+    entit_desc: "无",
+    prompt: "",
+    // 命题模板
+    templates: {
+        template_X后立即Y: {
+            text: "(X)在西侧",
+            precise: null,
+            symmetric: null,
+            question: true,
+        }
+    },
+    // 命题间关系
+    templates_logic: {
+        // todo
+    },
+    // 推理规则
+    inference_rules: {
+        // todo
+    }, 
+    // 初始命题
+    initial_props: [
+        // todo
+    ], 
+    replacement_entities: {
+        // 位点名称
+        target_slots: [], 
+        // 具体实例化信息
+        question_content: [
+            {
+                context: "", 
+                entities: [], 
+            }
+        ]
+    }
+}

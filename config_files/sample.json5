@@ -1,0 +1,4579 @@
+{
+  name: "三层两列布局配置",
+  scene_desc: "如三层货架上，每层左右各有一类商品；三层居民楼，每层左右各住一户。从下到上编号顺序是一、二、三层",
+  slots: [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+  ],
+  entit_desc: "无",
+  prompt: "参考(底层AB，中间层CD，顶层EF)",
+
+  chosen_question_templates:{
+
+/*
+     template_X在中间层东侧: 0.04,
+     template_X在Y下方且二者隔了一层:0.04,
+     template_Y在X正下方且二者不隔层:0.04,
+     template_X在Y右上方且二者不隔层:0.04,
+     template_X在Y左下方且二者不隔层:0.04,
+
+     template_西侧有X: 0.04, // 此条以下是非精确位置模板
+     template_X在东侧: 0.04,
+     template_X在Y斜上方: 0.04,
+     template_X在Y左上方: 0.04,
+     template_X所在层和Y所在层相邻: 0.04,
+*/
+  },
+
+  templates: {
+
+// 东、西模板 begin
+    template_X在东侧: {
+      text: "(X)在东侧",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在西侧: {
+      text: "(X)在西侧",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_东侧有X: {
+      text: "东侧有(X)",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_西侧有X: {
+      text: "西侧有(X)",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+
+    template_X在底层西侧: {
+      text: "(X)在底层西侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },   
+    template_X在底层东侧: {
+      text: "(X)在底层东侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    }, 
+    template_X在顶层西侧: {
+      text: "(X)在顶层西侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },   
+    template_X在顶层东侧: {
+      text: "(X)在顶层东侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },  
+    template_X在中间层西侧: {
+      text: "(X)在中间层西侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },   
+    template_X在中间层东侧: {
+      text: "(X)在中间层东侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },     
+            
+    template_X在一层西侧: {
+      text: "(X)在一层西侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在一层东侧: {
+      text: "(X)在一层东侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在二层西侧: {
+      text: "(X)在二层西侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在二层东侧: {
+      text: "(X)在二层东侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在三层西侧: {
+      text: "(X)在三层西侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在三层东侧: {
+      text: "(X)在三层东侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_一层西侧是X: {
+      text: "一层西侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_一层东侧是X: {
+      text: "一层东侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_二层西侧是X: {
+      text: "二层西侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_二层东侧是X: {
+      text: "二层东侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_三层西侧是X: {
+      text: "三层西侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_三层东侧是X: {
+      text: "三层东侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+
+    template_底层西侧是X: {
+      text: "底层西侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_底层东侧是X: {
+      text: "底层东侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_中间层西侧是X: {
+      text: "中间层西侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_中间层东侧是X: {
+      text: "中间层东侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_顶层西侧是X: {
+      text: "顶层西侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_顶层东侧是X: {
+      text: "顶层东侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+
+// 东、西模板 end
+
+// 上下左右相对位置模板 begin
+
+    template_X在一层: {
+      text: "(X)在一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在二层: {
+      text: "(X)在二层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在三层: {
+      text: "(X)在三层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在第一层: {
+      text: "(X)在第一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在底层: {
+      text: "(X)在底层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在第二层: {
+      text: "(X)在第二层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在中间层: {
+      text: "(X)在中间层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+   template_X在第三层: {
+      text: "(X)在第三层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+   template_X在顶层: {
+      text: "(X)在顶层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y上方: {
+      text: "(X)在(Y)上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y上方且二者隔了一层: {
+      text: "(X)在(Y)上方且二者隔了一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y上方且二者不隔层: {
+      text: "(X)在(Y)上方且二者不隔层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y正上方: {
+      text: "(X)在(Y)正上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y正上方且二者隔了一层: {
+      text: "(X)在(Y)正上方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y正上方且二者不隔层: {
+      text: "(X)在(Y)正上方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y下方: {
+      text: "(X)在(Y)下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y下方且二者隔了一层: {
+      text: "(X)在(Y)下方且二者隔了一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y下方且二者不隔层: {
+      text: "(X)在(Y)下方且二者不隔层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y正下方: {
+      text: "(X)在(Y)正下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y正下方且二者隔了一层: {
+      text: "(X)在(Y)正下方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y正下方且二者不隔层: {
+      text: "(X)在(Y)正下方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X上方: {
+      text: "(Y)在(X)上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X上方且二者隔了一层: {
+      text: "(Y)在(X)上方且二者隔了一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X上方且二者不隔层: {
+      text: "(Y)在(X)上方且二者不隔层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X正上方: {
+      text: "(Y)在(X)正上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X正上方且二者隔了一层: {
+      text: "(Y)在(X)正上方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X正上方且二者不隔层: {
+      text: "(Y)在(X)正上方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+   template_Y在X下方: {
+      text: "(Y)在(X)下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X下方且二者隔了一层: {
+      text: "(Y)在(X)下方且二者隔了一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X下方且二者不隔层: {
+      text: "(Y)在(X)下方且二者不隔层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X正下方: {
+      text: "(Y)在(X)正下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X正下方且二者隔了一层: {
+      text: "(Y)在(X)正下方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X正下方且二者不隔层: {
+      text: "(Y)在(X)正下方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y上一层: {
+      text: "(X)在(Y)上一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y下一层: {
+      text: "(X)在(Y)下一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X上一层: {
+      text: "(Y)在(X)上一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X下一层: {
+      text: "(Y)在(X)下一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y左边: {
+      text: "(X)在(Y)左边",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y左边且二者同层: {
+      text: "(X)在(Y)左边且二者同层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y右边: {
+      text: "(X)在(Y)右边",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y右边且二者同层: {
+      text: "(X)在(Y)右边且二者同层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X左边: {
+      text: "(Y)在(X)左边",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X左边且二者同层: {
+      text: "(Y)在(X)左边且二者同层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X右边: {
+      text: "(Y)在(X)右边",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X右边且二者同层: {
+      text: "(Y)在(X)右边且二者同层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X和Y在同一层: {
+      text: "(X)和(Y)在同一层",
+      precise: true,
+      symmetric: true,
+      question: true,
+    },
+    template_X与Y同层: {
+      text: "(X)与(Y)同层",
+      precise: true,
+      symmetric: true,
+      question: true,
+    },
+    template_X和Y不在同一层: {
+      text: "(X)和(Y)不在同一层",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_X和Y不同层: {
+      text: "(X)和(Y)不同层",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_X和Y隔了一层: {
+      text: "(X)和(Y)隔了一层",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_Y和X隔了一层: {
+      text: "(Y)和(X)隔了一层",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_X和Y隔着一层: {
+      text: "(X)和(Y)隔着一层",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_Y和X隔着一层: {
+      text: "(Y)和(X)隔着一层",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_X所在层和Y所在层相邻: {
+      text: "(X)所在层和(Y)所在层相邻",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_Y所在层和X所在层相邻: {
+      text: "(Y)所在层和(X)所在层相邻",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_X和Y上下相邻: {
+      text: "(X)和(Y)上下相邻",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_Y和X上下相邻: {
+      text: "(Y)和(X)上下相邻",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_X和Y左右相邻: {
+      text: "(X)和(Y)左右相邻",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_Y和X左右相邻: {
+      text: "(Y)和(X)左右相邻",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_X在Y斜上方: {
+      text: "(X)在(Y)斜上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y斜上方且二者隔了一层: {
+      text: "(X)在(Y)斜上方且二者隔了一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y斜上方且二者不隔层: {
+      text: "(X)在(Y)斜上方且二者不隔层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y斜下方: {
+      text: "(X)在(Y)斜下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y斜下方且二者隔了一层: {
+      text: "(X)在(Y)斜下方且二者隔了一层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y斜下方且二者不隔层: {
+      text: "(X)在(Y)斜下方且二者不隔层",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y左上方: {
+      text: "(X)在(Y)左上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y左上方且二者隔了一层: {
+      text: "(X)在(Y)左上方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y左上方且二者不隔层: {
+      text: "(X)在(Y)左上方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y右上方: {
+      text: "(X)在(Y)右上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y右上方且二者隔了一层: {
+      text: "(X)在(Y)右上方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y右上方且二者不隔层: {
+      text: "(X)在(Y)右上方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y左下方: {
+      text: "(X)在(Y)左下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y左下方且二者隔了一层: {
+      text: "(X)在(Y)左下方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y左下方且二者不隔层: {
+      text: "(X)在(Y)左下方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X左下方且二者隔了一层: {
+      text: "(Y)在(X)左下方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X左下方且二者不隔层: {
+      text: "(Y)在(X)左下方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },  
+    template_Y在X右下方且二者隔了一层: {
+      text: "(Y)在(X)右下方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X右下方且二者不隔层: {
+      text: "(Y)在(X)右下方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },    
+    template_X在Y右下方: {
+      text: "(X)在(Y)右下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y右下方且二者隔了一层: {
+      text: "(X)在(Y)右下方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y右下方且二者不隔层: {
+      text: "(X)在(Y)右下方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X斜上方: {
+      text: "(Y)在(X)斜上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X斜下方: {
+      text: "(Y)在(X)斜下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X左上方: {
+      text: "(Y)在(X)左上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X右上方: {
+      text: "(Y)在(X)右上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X左下方: {
+      text: "(Y)在(X)左下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+   template_Y在X右下方: {
+      text: "(Y)在(X)右下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在Y旁边: {
+      text: "(X)在(Y)旁边",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+
+//zwd 2024-04-06 add
+
+    template_X在左侧: {
+      text: "(X)在左侧",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X在右侧: {
+      text: "(X)在右侧",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_左侧有X: {
+      text: "左侧有(X)",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_右侧有X: {
+      text: "右侧有(X):",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+
+    template_X在一层右侧: {
+      text: "(X)在一层右侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在一层左侧: {
+      text: "(X)在一层左侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在二层右侧: {
+      text: "(X)在二层右侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在二层左侧: {
+      text: "(X)在二层左侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在三层右侧: {
+      text: "(X)在三层右侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X在三层左侧: {
+      text: "(X)在三层左侧",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+ 
+    template_一层右侧是X: {
+      text: "一层右侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_一层左侧是X: {
+      text: "一层左侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_二层右侧是X: {
+      text: "二层右侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_二层左侧是X: {
+      text: "二层左侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_三层右侧是X: {
+      text: "三层右侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_三层左侧是X: {
+      text: "三层左侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+
+    template_底层右侧是X: {
+      text: "底层右侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_底层左侧是X: {
+      text: "底层左侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_中间层右侧是X: {
+      text: "中间层右侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_中间层左侧是X: {
+      text: "中间层左侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_顶层右侧是X: {
+      text: "顶层右侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_顶层左侧是X: {
+      text: "顶层左侧是(X)",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+
+    template_X与Y同侧: {
+      text: "(X)与(Y)同侧",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+    template_X与Y不同侧: {
+      text: "(X)与(Y)不同侧",
+      precise: null,
+      symmetric: true,
+      question: true,
+    },
+
+//zwd 2024-04-06 add
+
+//zwd 2024-04-12 add 复杂关系模板
+
+    template_X是Y的左邻: {
+      text: "(X)是(Y)的左邻",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X是Y的右邻: {
+      text: "(X)是(Y)的右邻",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+
+    template_Y是X的左邻: {
+      text: "(Y)是(X)的左邻",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y是X的右邻: {
+      text: "(Y)是(X)的右邻",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+
+    template_X的左邻在Y的正下方: {
+      text: "(X)的左邻在(Y)的正下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X的右邻在Y的正下方: {
+      text: "(X)的右邻在(Y)的正下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X的左邻在Y的左下方: {
+      text: "(X)的左邻在(Y)的左下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X的右邻在Y的右下方: {
+      text: "(X)的右邻在(Y)的右下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X的左邻在Y的正上方: {
+      text: "(X)的左邻在(Y)的正上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X的右邻在Y的正上方: {
+      text: "(X)的右邻在(Y)的正上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X的左邻在Y的左上方: {
+      text: "(X)的左邻在(Y)的左上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_X的右邻在Y的右上方: {
+      text: "(X)的右邻在(Y)的右上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+
+    template_Y的左邻在X的正下方: {
+      text: "(Y)的左邻在(X)的正下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y的右邻在X的正下方: {
+      text: "(Y)的右邻在(X)的正下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y的左邻在X的左下方: {
+      text: "(Y)的左邻在(X)的左下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y的右邻在X的右下方: {
+      text: "(Y)的右邻在(X)的右下方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y的左邻在X的正上方: {
+      text: "(Y)的左邻在(X)的正上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y的右邻在X的正上方: {
+      text: "(Y)的右邻在(X)的正上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y的左邻在X的左上方: {
+      text: "(Y)的左邻在(X)的左上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+    template_Y的右邻在X的右上方: {
+      text: "(Y)的右邻在(X)的右上方",
+      precise: null,
+      symmetric: null,
+      question: true,
+    },
+
+//zwd 2024-04-12 add 复杂关系模板
+
+//zwd 2024-04-13 add 复杂关系模板 
+
+    template_X的正上方是Y的正下方: {
+      text: "(X)的正上方是(Y)的正下方",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X的正下方是Y的正上方: {
+      text: "(X)的正下方是(Y)的正上方",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X的正上方是Y的左下方: {
+      text: "(X)的正上方是(Y)的左下方",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X的正上方是Y的右下方: {
+      text: "(X)的正上方是(Y)的右下方",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X的左上方是Y的左下方: {
+      text: "(X)的左上方是(Y)的左下方",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X的右上方是Y的右下方: {
+      text: "(X)的右上方是(Y)的右下方",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X的左下方是Y的左上方: {
+      text: "(X)的左下方是(Y)的左上方",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_X的右下方是Y的右上方: {
+      text: "(X)的右下方是(Y)的右上方",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+
+//zwd 2024-04-13 add 复杂关系模板 
+
+//zwd 2024-04-13 add 缺失对称关系模板
+
+    template_Y在X右上方且二者隔了一层: {
+      text: "(Y)在(X)右上方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X右上方且二者不隔层: {
+      text: "(Y)在(X)右上方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },  
+    template_Y在X左上方且二者隔了一层: {
+      text: "(Y)在(X)左上方且二者隔了一层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },
+    template_Y在X左上方且二者不隔层: {
+      text: "(Y)在(X)左上方且二者不隔层",
+      precise: true,
+      symmetric: null,
+      question: true,
+    },  
+
+//zwd 2024-04-13 add 缺失对称关系模板
+  },
+
+// 上下左右相对位置模板 end
+
+  templates_logic: [
+
+// 2024-04-12 add logic
+    ["等价","template_X是Y的左邻","template_Y是X的右邻"],
+    ["等价","template_X是Y的右邻","template_Y是X的左邻"],
+
+    ["等价","template_X在Y左边","template_X是Y的左邻"],
+    ["等价","template_X在Y右边","template_X是Y的右邻"],
+
+    ["等价","template_Y在X右边","template_Y是X的右邻"],
+    ["等价","template_Y在X左边","template_Y是X的左邻"],
+
+    ["等价","template_X的左邻在Y的正下方","template_X在Y右下方"],
+    ["等价","template_X的右邻在Y的正下方","template_X在Y左下方"],
+
+    ["等价","template_X的左邻在Y的正上方","template_X在Y右上方"],
+    ["等价","template_X的右邻在Y的正上方","template_X在Y左上方"],
+
+    ["等价","template_X的左邻在Y的正下方","template_Y的右邻在X的正上方"],
+    ["等价","template_X的右邻在Y的正下方","template_Y的左邻在X的正上方"],
+
+    ["等价","template_X的左邻在Y的左下方","template_Y的左邻在X的左上方"],
+    ["等价","template_X的右邻在Y的右下方","template_Y的右邻在X的右上方"],
+
+    ["等价","template_X的左邻在Y的正上方","template_Y的右邻在X的正下方"],
+    ["等价","template_X的右邻在Y的正上方","template_Y的左邻在X的正下方"],
+
+    ["等价","template_X的左邻在Y的左上方","template_Y的左邻在X的左下方"],
+    ["等价","template_X的右邻在Y的右上方","template_Y的右邻在X的右下方"],
+
+    ["蕴含","template_X的左邻在Y的左下方","template_X在Y正下方"],
+    ["蕴含","template_X的右邻在Y的右下方","template_X在Y正下方"],
+
+    ["蕴含","template_X的左邻在Y的左上方","template_X在Y正上方"],
+    ["蕴含","template_X的右邻在Y的右上方","template_X在Y正上方"],
+
+    ["蕴含","template_X的左邻在Y的左上方","template_X与Y同侧"],
+    ["蕴含","template_X的右邻在Y的右上方","template_X与Y同侧"],
+    ["蕴含","template_X的左邻在Y的左下方","template_X与Y同侧"],
+    ["蕴含","template_X的右邻在Y的右下方","template_X与Y同侧"],
+    ["蕴含","template_X的左邻在Y的正上方","template_X与Y不同侧"],
+    ["蕴含","template_X的右邻在Y的正上方","template_X与Y不同侧"],
+    ["蕴含","template_X的左邻在Y的正下方","template_X与Y不同侧"],
+    ["蕴含","template_X的右邻在Y的正下方","template_X与Y不同侧"],
+
+// 2024-04-12 add logic
+
+    ["等价","template_X在第一层","template_X在底层"],
+    ["等价","template_X在第二层","template_X在中间层"],
+    ["等价","template_X在第三层","template_X在顶层"],
+    ["等价","template_X在第一层","template_X在一层"],
+    ["等价","template_X在第二层","template_X在二层"],
+    ["等价","template_X在第三层","template_X在三层"],
+
+    ["等价","template_X和Y在同一层","template_X与Y同层"],
+    ["等价","template_X和Y不在同一层","template_X和Y不同层"],
+
+    ["等价","template_X和Y隔了一层","template_Y和X隔了一层"],
+    ["等价","template_X和Y隔了一层","template_X和Y隔着一层"],
+    ["等价","template_Y和X隔了一层","template_Y和X隔着一层"],
+
+    ["等价","template_X所在层和Y所在层相邻","template_Y所在层和X所在层相邻"],
+    ["等价","template_X和Y上下相邻","template_Y和X上下相邻"],
+    ["等价","template_X和Y左右相邻","template_Y和X左右相邻"],
+    ["等价","template_X和Y在同一层","template_X和Y左右相邻"],
+
+    ["等价","template_X在Y右上方且二者隔了一层","template_Y在X左下方且二者隔了一层"],
+    ["等价","template_X在Y右上方且二者不隔层","template_Y在X左下方且二者不隔层"],
+    ["等价","template_X在Y左上方且二者隔了一层","template_Y在X右下方且二者隔了一层"],
+    ["等价","template_X在Y左上方且二者不隔层","template_Y在X右下方且二者不隔层"],
+
+    ["等价","template_X在Y上方","template_Y在X下方"],
+    ["等价","template_X在Y正上方","template_Y在X正下方"],
+    ["等价","template_X在Y下方","template_Y在X上方"],
+    ["等价","template_X在Y正下方","template_Y在X正上方"],
+    ["等价","template_X在Y斜上方","template_Y在X斜下方"],
+    ["等价","template_X在Y斜下方","template_Y在X斜上方"],
+    ["等价","template_X在Y左上方","template_Y在X右下方"],
+    ["等价","template_X在Y左下方","template_Y在X右上方"],
+    ["等价","template_X在Y右上方","template_Y在X左下方"],
+    ["等价","template_X在Y右下方","template_Y在X左上方"],
+  
+    ["等价","template_X在Y下一层","template_Y在X上一层"],
+    ["等价","template_X在Y上一层","template_Y在X下一层"],
+
+    ["等价","template_X在Y左边","template_Y在X右边"],
+    ["等价","template_X在Y右边","template_Y在X左边"],
+
+    ["等价","template_X在Y左边","template_X在Y左边且二者同层"],
+    ["等价","template_Y在X左边","template_Y在X左边且二者同层"],
+    ["等价","template_X在Y右边","template_X在Y右边且二者同层"],
+    ["等价","template_Y在X右边","template_Y在X右边且二者同层"],
+
+    ["等价","template_Y在X右边且二者同层","template_X在Y左边且二者同层"],
+    ["等价","template_Y在X左边且二者同层","template_X在Y右边且二者同层"],
+
+    ["等价","template_X在东侧","template_东侧有X"],
+    ["等价","template_X在西侧","template_西侧有X"],
+    ["等价","template_X在东侧","template_X在左侧"],
+    ["等价","template_X在西侧","template_X在右侧"],
+    ["等价","template_左侧有X","template_X在左侧"],
+    ["等价","template_右侧有X","template_X在右侧"],
+
+    ["等价","template_X在一层东侧","template_一层东侧是X"],
+    ["等价","template_X在一层西侧","template_一层西侧是X"],
+    ["等价","template_X在二层东侧","template_二层东侧是X"],
+    ["等价","template_X在二层西侧","template_二层西侧是X"],    
+    ["等价","template_X在三层东侧","template_三层东侧是X"],
+    ["等价","template_X在三层西侧","template_三层西侧是X"],
+
+    ["等价","template_X在一层东侧","template_X在底层东侧"],
+    ["等价","template_X在一层西侧","template_X在底层西侧"],
+    ["等价","template_X在二层东侧","template_X在中间层东侧"],
+    ["等价","template_X在二层西侧","template_X在中间层西侧"],    
+    ["等价","template_X在三层东侧","template_X在顶层东侧"],
+    ["等价","template_X在三层西侧","template_X在顶层西侧"],
+        
+    ["等价","template_X在一层东侧","template_一层左侧是X"],
+    ["等价","template_X在一层西侧","template_一层右侧是X"],
+    ["等价","template_X在二层东侧","template_二层左侧是X"],
+    ["等价","template_X在二层西侧","template_二层右侧是X"],    
+    ["等价","template_X在三层东侧","template_三层左侧是X"],
+    ["等价","template_X在三层西侧","template_三层右侧是X"],
+
+    ["等价","template_X在一层左侧","template_一层左侧是X"],
+    ["等价","template_X在一层右侧","template_一层右侧是X"],
+    ["等价","template_X在二层左侧","template_二层左侧是X"],
+    ["等价","template_X在二层右侧","template_二层右侧是X"],    
+    ["等价","template_X在三层左侧","template_三层左侧是X"],
+    ["等价","template_X在三层右侧","template_三层右侧是X"],
+
+    ["包括","template_X与Y同层","template_X在Y左边"],
+    ["包括","template_X与Y同层","template_X在Y右边"],
+    
+    ["包括","template_X与Y同侧","template_X在Y正上方"],    
+    ["包括","template_X与Y同侧","template_X在Y正下方"],    
+    
+    ["包括","template_X与Y不同侧","template_X在Y斜上方"],    
+    ["包括","template_X与Y不同侧","template_X在Y斜下方"],  
+    ["包括","template_X与Y不同侧","template_X与Y同层"],  
+        
+    ["包括","template_左侧有X","template_一层左侧是X"],
+    ["包括","template_左侧有X","template_二层左侧是X"],
+    ["包括","template_左侧有X","template_三层左侧是X"],
+    ["包括","template_右侧有X","template_一层右侧是X"],
+    ["包括","template_右侧有X","template_二层右侧是X"],
+    ["包括","template_右侧有X","template_三层右侧是X"],
+
+    ["包括","template_左侧有X","template_X在一层左侧"],
+    ["包括","template_左侧有X","template_X在二层左侧"],
+    ["包括","template_左侧有X","template_X在三层左侧"],
+    ["包括","template_右侧有X","template_X在一层右侧"],
+    ["包括","template_右侧有X","template_X在二层右侧"],
+    ["包括","template_右侧有X","template_X在三层右侧"],
+
+    ["包括","template_X在一层","template_X在一层东侧"],
+    ["包括","template_X在一层","template_X在一层西侧"],
+    ["包括","template_X在二层","template_X在二层东侧"],
+    ["包括","template_X在二层","template_X在二层西侧"],
+    ["包括","template_X在三层","template_X在三层东侧"],
+    ["包括","template_X在三层","template_X在三层西侧"],
+
+    ["包括","template_X在底层","template_X在底层东侧"],
+    ["包括","template_X在底层","template_X在底层西侧"],    
+    ["包括","template_X在中间层","template_X在中间层东侧"],
+    ["包括","template_X在中间层","template_X在中间层西侧"],
+    ["包括","template_X在顶层","template_X在顶层东侧"],
+    ["包括","template_X在顶层","template_X在顶层西侧"],  
+
+    ["包括","template_X在东侧","template_X在一层东侧"],
+    ["包括","template_X在西侧","template_X在一层西侧"],
+    ["包括","template_X在东侧","template_X在二层东侧"],
+    ["包括","template_X在西侧","template_X在二层西侧"],
+    ["包括","template_X在东侧","template_X在三层东侧"],
+    ["包括","template_X在西侧","template_X在三层西侧"],
+
+    ["包括","template_X在东侧","template_一层东侧是X"],
+    ["包括","template_X在西侧","template_一层西侧是X"],
+    ["包括","template_X在东侧","template_二层东侧是X"],
+    ["包括","template_X在西侧","template_二层西侧是X"],
+    ["包括","template_X在东侧","template_三层东侧是X"],
+    ["包括","template_X在西侧","template_三层西侧是X"],
+    
+    ["包括","template_X在Y上方","template_X在Y正上方"],
+    ["包括","template_X在Y上方","template_X在Y斜上方"],
+    ["包括","template_X在Y上方","template_X在Y左上方"],
+    ["包括","template_X在Y上方","template_X在Y右上方"],
+
+    ["包括","template_X在Y下方","template_X在Y正下方"],
+    ["包括","template_X在Y下方","template_X在Y斜下方"],
+    ["包括","template_X在Y下方","template_X在Y左下方"],
+    ["包括","template_X在Y下方","template_X在Y右下方"],
+
+    ["包括","template_Y在X上方","template_Y在X正上方"],
+    ["包括","template_Y在X上方","template_Y在X斜上方"],
+    ["包括","template_Y在X上方","template_Y在X左上方"],
+    ["包括","template_Y在X上方","template_Y在X右上方"],
+
+    ["包括","template_Y在X下方","template_Y在X正下方"],
+    ["包括","template_Y在X下方","template_Y在X斜下方"],
+    ["包括","template_Y在X下方","template_Y在X左下方"],
+    ["包括","template_Y在X下方","template_Y在X右下方"],
+
+    ["包括","template_X和Y在同一层","template_X在Y左边"],
+    ["包括","template_X和Y在同一层","template_X在Y右边"],
+    ["包括","template_X和Y在同一层","template_Y在X左边"],
+    ["包括","template_X和Y在同一层","template_Y在X右边"],
+
+    ["包括","template_X在Y上一层","template_X在Y正上方且二者不隔层"],
+    ["包括","template_X在Y上一层","template_X在Y左上方且二者不隔层"],
+    ["包括","template_X在Y上一层","template_X在Y右上方且二者不隔层"],
+
+    ["包括","template_X在Y下一层","template_X在Y正下方且二者不隔层"],
+    ["包括","template_X在Y下一层","template_X在Y左下方且二者不隔层"],
+    ["包括","template_X在Y下一层","template_X在Y右下方且二者不隔层"],
+
+    ["包括","template_X在Y正上方","template_X在Y正上方且二者隔了一层"],
+    ["包括","template_X在Y正上方","template_X在Y正上方且二者不隔层"],
+    ["包括","template_X在Y正下方","template_X在Y正下方且二者隔了一层"],
+    ["包括","template_X在Y正下方","template_X在Y正下方且二者不隔层"],
+    ["包括","template_Y在X正上方","template_Y在X正上方且二者隔了一层"],
+    ["包括","template_Y在X正上方","template_Y在X正上方且二者不隔层"],
+    ["包括","template_Y在X正下方","template_Y在X正下方且二者隔了一层"],
+    ["包括","template_Y在X正下方","template_Y在X正下方且二者不隔层"],
+
+    ["包括","template_X在Y左下方","template_X在Y左下方且二者隔了一层"],
+    ["包括","template_X在Y左下方","template_X在Y左下方且二者不隔层"],
+    ["包括","template_X在Y右下方","template_X在Y右下方且二者隔了一层"],
+    ["包括","template_X在Y右下方","template_X在Y右下方且二者不隔层"],
+
+    ["包括","template_X在Y左上方","template_X在Y左上方且二者隔了一层"],
+    ["包括","template_X在Y左上方","template_X在Y左上方且二者不隔层"],
+    ["包括","template_X在Y右上方","template_X在Y右上方且二者隔了一层"],
+    ["包括","template_X在Y右上方","template_X在Y右上方且二者不隔层"],
+
+    ["包括","template_X所在层和Y所在层相邻","template_X和Y上下相邻"],
+
+    ["包括","template_X和Y上下相邻","template_X在Y正下方且二者不隔层"],
+    ["包括","template_X和Y上下相邻","template_X在Y正上方且二者不隔层"],
+    ["包括","template_X和Y上下相邻","template_Y在X正下方且二者不隔层"],
+    ["包括","template_X和Y上下相邻","template_Y在X正上方且二者不隔层"],
+
+    ["包括","template_X在Y斜上方","template_X在Y左上方"],
+    ["包括","template_X在Y斜上方","template_X在Y右上方"],
+    ["包括","template_X在Y斜下方","template_X在Y左下方"],
+    ["包括","template_X在Y斜下方","template_X在Y右下方"],
+    ["包括","template_Y在X斜上方","template_Y在X左上方"],
+    ["包括","template_Y在X斜上方","template_Y在X右上方"],
+    ["包括","template_Y在X斜下方","template_Y在X左下方"],
+    ["包括","template_Y在X斜下方","template_Y在X右下方"],
+
+    ["蕴含","template_X在Y上一层","template_X在Y上方"],
+    ["蕴含","template_X在Y左上方","template_X在Y上方"],
+    ["蕴含","template_X在Y右上方","template_X在Y上方"],
+    ["蕴含","template_X在Y斜上方","template_X在Y上方"],
+    ["蕴含","template_X在Y正上方","template_X在Y上方"],
+
+    ["蕴含","template_X在Y下一层","template_X在Y下方"],
+    ["蕴含","template_X在Y左下方","template_X在Y下方"],
+    ["蕴含","template_X在Y右下方","template_X在Y下方"],
+    ["蕴含","template_X在Y斜下方","template_X在Y下方"],
+    ["蕴含","template_X在Y正下方","template_X在Y下方"],
+
+    ["蕴含","template_X在Y左边","template_X在Y旁边"],
+    ["蕴含","template_X在Y右边","template_X在Y旁边"],
+
+    ["蕴含","template_X在一层东侧","template_X在一层"],
+    ["蕴含","template_X在一层西侧","template_X在一层"],
+    ["蕴含","template_X在二层东侧","template_X在二层"],
+    ["蕴含","template_X在二层西侧","template_X在二层"],
+    ["蕴含","template_X在三层东侧","template_X在三层"],
+    ["蕴含","template_X在三层西侧","template_X在三层"],
+
+    ["蕴含","template_X在一层东侧","template_X在东侧"],
+    ["蕴含","template_X在一层西侧","template_X在西侧"],
+    ["蕴含","template_X在二层东侧","template_X在东侧"],
+    ["蕴含","template_X在二层西侧","template_X在西侧"],
+    ["蕴含","template_X在三层东侧","template_X在东侧"],
+    ["蕴含","template_X在三层西侧","template_X在西侧"],    
+
+    ["冲突","template_X和Y隔了一层","template_Y所在层和X所在层相邻"],
+    ["冲突","template_X与Y同层","template_Y所在层和X所在层相邻"],
+    ["冲突","template_X和Y隔了一层","template_X所在层和Y所在层相邻"],
+    ["冲突","template_X与Y同层","template_X所在层和Y所在层相邻"],
+    ["冲突","template_X与Y同层","template_X和Y隔了一层"],
+
+/* 单位点模板跟双位点模板之间的逻辑关系描述需再考虑
+
+    ["冲突","template_X在一层东侧","template_X在Y右边"],
+    ["冲突","template_X在一层东侧","template_X在Y上方"],
+    ["冲突","template_X在二层东侧","template_X在Y右边"],
+    ["冲突","template_X在三层东侧","template_X在Y右边"],
+    ["冲突","template_X在三层东侧","template_X在Y下方"],
+
+    ["冲突","template_X在一层西侧","template_X在Y左边"],
+    ["冲突","template_X在一层西侧","template_X在Y上方"],
+    ["冲突","template_X在二层西侧","template_X在Y左边"],
+    ["冲突","template_X在三层西侧","template_X在Y左边"],
+    ["冲突","template_X在三层西侧","template_X在Y下方"],
+*/
+
+    ["冲突","template_X在Y上方","template_X与Y同层"],
+    ["冲突","template_X在Y下方","template_X与Y同层"],
+
+    ["冲突","template_X在Y上方","template_X在Y下方"],
+    ["冲突","template_X在Y正上方","template_X在Y正下方"],
+    ["冲突","template_Y在X上方","template_Y在X下方"],
+    ["冲突","template_Y在X正上方","template_Y在X正下方"],
+    ["冲突","template_X在Y左边","template_X在Y右边"],
+    ["冲突","template_Y在X左边","template_Y在X右边"],
+
+    ["冲突","template_X和Y在同一层","template_X在Y上方"],
+    ["冲突","template_X和Y在同一层","template_X在Y下方"],
+    ["冲突","template_X和Y在同一层","template_Y在X上方"],
+    ["冲突","template_X和Y在同一层","template_Y在X下方"],
+    ["冲突","template_X和Y在同一层","template_X在Y下一层"],
+    ["冲突","template_X和Y在同一层","template_X在Y上一层"],
+
+    ["冲突","template_X在Y斜上方","template_X在Y斜下方"],
+    ["冲突","template_Y在X斜上方","template_Y在X斜下方"],
+    ["冲突","template_X在Y左上方","template_X在Y右上方"],
+    ["冲突","template_X在Y左上方","template_X在Y右下方"],
+    ["冲突","template_X在Y左上方","template_X在Y左下方"],
+    ["冲突","template_X在Y左下方","template_X在Y右上方"],
+    ["冲突","template_X在Y左下方","template_X在Y右下方"],
+    ["冲突","template_X在Y右上方","template_X在Y右下方"],
+
+    ["互反","template_X与Y同侧","template_X与Y不同侧"],
+    ["互反","template_X与Y同层","template_X和Y不同层"],
+
+// add 2024-04-13
+
+
+    ["包括","template_X和Y隔了一层","template_X在Y正上方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_X在Y正下方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_Y在X正上方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_Y在X正下方且二者隔了一层"],
+
+    ["包括","template_X和Y隔了一层","template_X在Y左上方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_X在Y左下方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_X在Y右上方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_X在Y右下方且二者隔了一层"],
+
+    ["包括","template_X和Y隔了一层","template_Y在X左上方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_Y在X左下方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_Y在X右上方且二者隔了一层"],
+    ["包括","template_X和Y隔了一层","template_Y在X右下方且二者隔了一层"],
+
+    ["包括","template_X所在层和Y所在层相邻","template_X在Y左下方且二者不隔层"],
+    ["包括","template_X所在层和Y所在层相邻","template_X在Y右下方且二者不隔层"],
+    ["包括","template_X所在层和Y所在层相邻","template_X在Y左上方且二者不隔层"],
+    ["包括","template_X所在层和Y所在层相邻","template_X在Y右上方且二者不隔层"],
+
+    ["蕴含","template_X在Y左边","template_X和Y左右相邻"],
+    ["蕴含","template_X在Y右边","template_X和Y左右相邻"],
+
+    ["冲突","template_X和Y上下相邻","template_X和Y左右相邻"],
+    ["冲突","template_X和Y上下相邻","template_X和Y在同一层"],
+    ["冲突","template_X和Y上下相邻","template_X和Y隔了一层"],
+
+    ["等价","template_X在一层东侧","template_底层东侧是X"],
+    ["等价","template_X在一层西侧","template_底层西侧是X"],
+    ["等价","template_X在二层东侧","template_中间层东侧是X"],
+    ["等价","template_X在二层西侧","template_中间层西侧是X"],
+    ["等价","template_X在三层东侧","template_顶层东侧是X"],
+    ["等价","template_X在三层西侧","template_顶层西侧是X"],
+
+    ["等价","template_底层左侧是X","template_一层左侧是X"],
+    ["等价","template_底层右侧是X","template_一层右侧是X"],
+    ["等价","template_中间层左侧是X","template_二层左侧是X"],
+    ["等价","template_中间层右侧是X","template_二层右侧是X"],    
+    ["等价","template_顶层左侧是X","template_三层左侧是X"],
+    ["等价","template_顶层右侧是X","template_三层右侧是X"],
+
+    ["等价","template_底层左侧是X","template_底层东侧是X"],
+    ["等价","template_底层右侧是X","template_底层西侧是X"],
+    ["等价","template_中间层左侧是X","template_中间层东侧是X"],
+    ["等价","template_中间层右侧是X","template_中间层西侧是X"],    
+    ["等价","template_顶层左侧是X","template_顶层东侧是X"],
+    ["等价","template_顶层右侧是X","template_顶层西侧是X"],
+
+    ["等价","template_X在Y右下方且二者隔了一层","template_Y在X左上方且二者隔了一层"],
+    ["等价","template_X在Y右下方且二者不隔层","template_Y在X左上方且二者不隔层"],
+    ["等价","template_X在Y左下方且二者隔了一层","template_Y在X右上方且二者隔了一层"],
+    ["等价","template_X在Y左下方且二者不隔层","template_Y在X右上方且二者不隔层"],
+
+     ["等价","template_X的正上方是Y的正下方","template_X在Y正下方且二者隔了一层"],
+     ["等价","template_X的正下方是Y的正上方","template_X在Y正上方且二者隔了一层"],
+     ["等价","template_X的正上方是Y的左下方","template_X在Y左下方且二者隔了一层"],
+     ["等价","template_X的正上方是Y的右下方","template_X在Y右下方且二者隔了一层"],
+
+     ["蕴含","template_X的左上方是Y的左下方","template_X在Y正下方且二者隔了一层"],
+     ["蕴含","template_X的右上方是Y的右下方","template_X在Y正下方且二者隔了一层"],
+     ["蕴含","template_X的左下方是Y的左上方","template_X在Y正上方且二者隔了一层"],
+     ["蕴含","template_X的右下方是Y的右上方","template_X在Y正上方且二者隔了一层"],
+
+// add 2024-04-13
+  ],
+  
+  
+  inference_rules: {
+  
+// add rules 2024-04-13
+
+    rule_左右上下推东西侧1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的左上方"],
+      ],
+      conclusions: ["J","empty","template_X在西侧"]
+    }, 
+    rule_左右上下推东西侧1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的左上方"],
+      ],
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+    rule_左右上下推东西侧1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的右上方"],
+      ],
+      conclusions: ["J","empty","template_X在东侧"]
+    }, 
+    rule_左右上下推东西侧1d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的右上方"],
+      ],
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+    rule_左右上下推东西侧1e: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的左下方"],
+      ],
+      conclusions: ["J","empty","template_X在西侧"]
+    }, 
+    rule_左右上下推东西侧1f: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的左下方"],
+      ],
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+    rule_左右上下推东西侧1g: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的右下方"],
+      ],
+      conclusions: ["J","empty","template_X在东侧"]
+    }, 
+    rule_左右上下推东西侧1h: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的右下方"],
+      ],
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+
+    rule_左右上下推东西侧2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的正上方"],
+      ],
+      conclusions: ["J","empty","template_X在西侧"]
+    }, 
+    rule_左右上下推东西侧2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的正上方"],
+      ],
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+    rule_左右上下推东西侧2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的正上方"],
+      ],
+      conclusions: ["J","empty","template_X在东侧"]
+    }, 
+    rule_左右上下推东西侧2d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的正上方"],
+      ],
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+    rule_左右上下推东西侧2e: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的正下方"],
+      ],
+      conclusions: ["J","empty","template_X在西侧"]
+    }, 
+    rule_左右上下推东西侧2f: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的正下方"],
+      ],
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+    rule_左右上下推东西侧2g: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的正下方"],
+      ],
+      conclusions: ["J","empty","template_X在东侧"]
+    }, 
+    rule_左右上下推东西侧2h: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的正下方"],
+      ],
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+
+// add rules 2024-04-13
+
+// add rules 2024-04-12
+
+    rule_东西侧推左右上下1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的正下方"]
+    }, 
+    rule_东西侧推左右上下1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的正下方"]
+    }, 
+    rule_东西侧推左右上下1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的正下方"]
+    }, 
+    rule_东西侧推左右上下1d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的正下方"]
+    }, 
+
+    rule_东西侧推左右上下2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的正下方"]
+    }, 
+    rule_东西侧推左右上下2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的正下方"]
+    }, 
+    rule_东西侧推左右上下2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的正上方"]
+    }, 
+    rule_东西侧推左右上下2d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的正上方"]
+    }, 
+
+    rule_东西侧推左右上下3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的正上方"]
+    }, 
+    rule_东西侧推左右上下3b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的正上方"]
+    }, 
+    rule_东西侧推左右上下3c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的正上方"]
+    }, 
+    rule_东西侧推左右上下3d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的正上方"]
+    }, 
+
+// add rules 2024-04-12
+
+// add rules 2024-04-13
+
+    rule_东西侧推左右上下4a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的左上方"]
+    }, 
+    rule_东西侧推左右上下4b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的左上方"]
+    }, 
+    rule_东西侧推左右上下4c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的右上方"]
+    }, 
+    rule_东西侧推左右上下4d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的右上方"]
+    }, 
+
+    rule_东西侧推左右上下5a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的右上方"]
+    }, 
+    rule_东西侧推左右上下5b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的左上方"]
+    }, 
+    rule_东西侧推左右上下5c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的右下方"]
+    }, 
+    rule_东西侧推左右上下5d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的左下方"]
+    }, 
+
+    rule_东西侧推左右上下6a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的右下方"]
+    }, 
+    rule_东西侧推左右上下6b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的左下方"]
+    }, 
+    rule_东西侧推左右上下6c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X的右邻在Y的右下方"]
+    }, 
+    rule_东西侧推左右上下6d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X的左邻在Y的左下方"]
+    }, 
+
+// add rules 2024-04-13
+
+// add rules begin zwd 2024-03-25
+
+/* 从一套初始命题开始推导各实体精确位置 */
+
+    rule_东西侧推左右1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左边"]
+    }, 
+    rule_东西侧推左右1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右边"]
+    }, 
+
+    rule_东西侧推左右2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左边"]
+    }, 
+    rule_东西侧推左右2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右边"]
+    }, 
+
+    rule_东西侧推左右3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左边"]
+    },   
+    rule_东西侧推左右3b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右边"]
+    },  
+
+
+    rule_左右推东西1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左边"],
+      ],
+      conclusions: ["J","empty","template_X在东侧"]
+    }, 
+    rule_左右推东西1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左边"],
+      ],
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+
+    rule_左右推东西2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右边"],
+      ],
+      conclusions: ["J","empty","template_X在西侧"]
+    }, 
+    rule_左右推东西2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右边"],
+      ],
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+
+    rule_左右推东西3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右上方"],
+      ],
+      conclusions: ["J","empty","template_X在西侧"]
+    }, 
+    rule_左右推东西3b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右上方"],
+      ],
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+    rule_左右推东西3c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左上方"],
+      ],
+      conclusions: ["J","empty","template_X在东侧"]
+    }, 
+    rule_左右推东西3d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左上方"],
+      ],
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+
+    rule_左右推东西4a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右下方"],
+      ],
+      conclusions: ["J","empty","template_X在西侧"]
+    }, 
+    rule_左右推东西4b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右下方"],
+      ],
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+    rule_左右推东西4c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左下方"],
+      ],
+      conclusions: ["J","empty","template_X在东侧"]
+    }, 
+    rule_左右推东西4d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左下方"],
+      ],
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+
+    rule_东西侧推同侧1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在东侧"],
+        ["K","empty","template_X在东侧"],
+      ],
+      conclusions: ["J","K","template_X与Y同侧"]
+    }, 
+    rule_东西侧推同侧2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在西侧"],
+        ["K","empty","template_X在西侧"],
+      ],
+      conclusions: ["J","K","template_X与Y同侧"]
+    }, 
+        
+   rule_东西侧推不同侧: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在西侧"],
+        ["K","empty","template_X在东侧"],
+      ],
+      conclusions: ["J","K","template_X与Y不同侧"]
+    },       
+    
+    rule_东侧加同层推西侧0a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在一层西侧"]
+    },  
+    rule_东侧加同层推西侧0b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    }, 
+    rule_东侧加同层推西侧0c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在三层西侧"]
+    },  
+
+   rule_西侧加同层推东侧1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","J","template_X在Y左边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在一层东侧"]
+    },  
+    rule_西侧加同层推东侧1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","J","template_X在Y左边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在二层东侧"]
+    }, 
+    rule_西侧加同层推东侧1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","J","template_X在Y左边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在三层东侧"]
+    },        
+
+    rule_东西加同层推东西1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["J","K","template_X和Y在同一层"],
+      ],
+      conclusions: ["K","empty","template_X在一层东侧"]
+    },  
+    rule_东西加同层推东西2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["J","K","template_X和Y在同一层"],
+      ],
+      conclusions: ["K","empty","template_X在二层东侧"]
+    },     
+    rule_东西加同层推东西3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["J","K","template_X和Y在同一层"],
+      ],
+      conclusions: ["K","empty","template_X在三层东侧"]
+    },  
+    
+    rule_东西加同层推东西1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["J","K","template_X和Y在同一层"],
+      ],
+      conclusions: ["K","empty","template_X在一层西侧"]
+    },  
+    rule_东西加同层推东西2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["J","K","template_X和Y在同一层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    },  
+    rule_东西加同层推东西3b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["J","K","template_X和Y在同一层"],
+      ],
+      conclusions: ["K","empty","template_X在三层西侧"]
+    },  
+    
+
+/* 隔层关系作为条件 推导在第几层 */
+    rule_隔层条件1a: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y上方"],
+        ["J","L","template_X和Y隔了一层"],
+      ],
+      conclusions: ["J","empty","template_X在顶层"]
+    }, 
+    rule_隔层条件1b: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左上方"],
+        ["J","L","template_X和Y隔了一层"],
+      ],
+      conclusions: ["J","empty","template_X在顶层东侧"]
+    }, 
+    rule_隔层条件1c: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右上方"],
+        ["J","L","template_X和Y隔了一层"],
+      ],
+      conclusions: ["J","empty","template_X在顶层西侧"]
+    }, 
+             
+    rule_隔层条件2a: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y下方"],
+        ["J","L","template_X和Y隔了一层"],
+      ],
+      conclusions: ["J","empty","template_X在底层"]
+    }, 
+    rule_隔层条件2b: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左下方"],
+        ["J","L","template_X和Y隔了一层"],
+      ],
+      conclusions: ["J","empty","template_X在底层东侧"]
+    }, 
+    rule_隔层条件2c: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右下方"],
+        ["J","L","template_X和Y隔了一层"],
+      ],
+      conclusions: ["J","empty","template_X在底层西侧"]
+    },           
+
+    rule_中间层1a: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y上方"],
+        ["J","L","template_X在Y下方"],
+        ["K","L","template_X和Y不同层"],     
+      ],
+      conclusions: ["J","empty","template_X在中间层"]
+    },
+    rule_中间层1b: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左上方"],
+        ["J","L","template_X在Y左下方"],
+        ["K","L","template_X和Y不同层"],     
+      ],
+      conclusions: ["J","empty","template_X在中间层东侧"]
+    }, 
+    rule_中间层1c: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右上方"],
+        ["J","L","template_X在Y右下方"],
+        ["K","L","template_X和Y不同层"],     
+      ],
+      conclusions: ["J","empty","template_X在中间层西侧"]
+    },      
+         
+
+/* 从东西关系推导左右关系 */
+    rule_方位推同层1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右边且二者同层"]
+    },  
+    rule_方位推同层2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右边且二者同层"]
+    },  
+    rule_方位推同层3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右边且二者同层"]
+    },  
+    
+    rule_方位推同层4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左边且二者同层"]
+    },  
+    rule_方位推同层5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左边且二者同层"]
+    },  
+    rule_方位推同层6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左边且二者同层"]
+    },  
+
+/* 从东西关系推导上下关系 */    
+
+    rule_异层推方位1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["J","K","template_X和Y不在同一层"],
+      ],
+      conclusions: ["K","J","template_X在Y上方"]
+    },  
+    rule_异层推方位1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["J","K","template_X和Y不在同一层"],
+      ],
+      conclusions: ["K","J","template_X在Y上方"]
+    }, 
+        
+    rule_异层推方位2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["J","K","template_X和Y不在同一层"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },   
+    rule_异层推方位2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["J","K","template_X和Y不在同一层"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },     
+
+   rule_邻层方位推下方1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方且二者不隔层"]
+    },     
+   rule_邻层方位推下方1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方"]
+    }, 
+   rule_邻层方位推下方1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    }, 
+   rule_邻层方位推下方1d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    },
+    
+   
+   rule_邻层方位推下方2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方且二者不隔层"]
+    },
+   rule_邻层方位推下方2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方"]
+    },  
+   rule_邻层方位推下方2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },         
+   rule_邻层方位推下方2d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    },      
+
+   rule_邻层方位推下方3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方且二者不隔层"]
+    },  
+   rule_邻层方位推下方3b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方"]
+    }, 
+   rule_邻层方位推下方3c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },           
+   rule_邻层方位推下方3d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    },      
+
+   rule_邻层方位推下方4a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方且二者不隔层"]
+    },     
+   rule_邻层方位推下方4b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方"]
+    },      
+   rule_邻层方位推下方4c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    }, 
+   rule_邻层方位推下方4d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    },      
+    
+   rule_邻层方位推上方1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方且二者不隔层"]
+    },     
+   rule_邻层方位推上方1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方"]
+    },  
+   rule_邻层方位推上方1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    },
+   rule_邻层方位推上方1d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上一层"]
+    }, 
+    
+   rule_邻层方位推上方2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方且二者不隔层"]
+    }, 
+   rule_邻层方位推上方2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方"]
+    },     
+   rule_邻层方位推上方2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_邻层方位推上方2d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上一层"]
+    },       
+    
+   rule_邻层方位推上方3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方且二者不隔层"]
+    },     
+   rule_邻层方位推上方3b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方"]
+    },  
+   rule_邻层方位推上方3c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    },
+   rule_邻层方位推上方3d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上一层"]
+    },    
+    
+    
+   rule_邻层方位推上方4a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方且二者不隔层"]
+    }, 
+   rule_邻层方位推上方4b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方"]
+    },     
+   rule_邻层方位推上方4c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_邻层方位推上方4d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上一层"]
+    },            
+
+   rule_邻层方位加东西推上方1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_邻层方位加东西推上方1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右上方"]
+    },  
+   rule_邻层方位加东西推上方1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右上方且二者不隔层"]
+    },      
+   rule_邻层方位加东西推上方1d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上一层"]
+    },     
+        
+   rule_邻层方位加东西推上方2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    },  
+   rule_邻层方位加东西推上方2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左上方"]
+    },     
+   rule_邻层方位加东西推上方2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左上方且二者不隔层"]
+    },  
+   rule_邻层方位加东西推上方2d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上一层"]
+    },      
+
+   rule_邻层方位加东西推上方3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_邻层方位加东西推上方8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右上方"]
+    },  
+   rule_邻层方位加东西推上方9: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右上方且二者不隔层"]
+    },     
+   rule_邻层方位加东西推上方3d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上一层"]
+    },     
+    
+         
+   rule_邻层方位加东西推上方4a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    },  
+   rule_邻层方位加东西推上方4b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左上方"]
+    },     
+   rule_邻层方位加东西推上方4c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左上方且二者不隔层"]
+    },          
+   rule_邻层方位加东西推上方4d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上一层"]
+    }, 
+    
+   rule_邻层方位加东西推下方1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },  
+   rule_邻层方位加东西推下方1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右下方"]
+    },  
+   rule_邻层方位加东西推下方1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右下方且二者不隔层"]
+    }, 
+   rule_邻层方位加东西推下方1d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    }, 
+               
+   rule_邻层方位加东西推下方2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    }, 
+   rule_邻层方位加东西推下方2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y左下方"]
+    }, 
+   rule_邻层方位加东西推下方2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y左下方且二者不隔层"]
+    },  
+   rule_邻层方位加东西推下方2d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    },     
+     
+   rule_邻层方位加东西推下方3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },     
+   rule_邻层方位加东西推下方3b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右下方"]
+    },  
+   rule_邻层方位加东西推下方3c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右下方且二者不隔层"]
+    }, 
+   rule_邻层方位加东西推下方3a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    },     
+    
+                 
+   rule_邻层方位加东西推下方4a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },  
+   rule_邻层方位加东西推下方4b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y左下方"]
+    }, 
+   rule_邻层方位加东西推下方4c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y左下方且二者不隔层"]
+    },  
+   rule_邻层方位加东西推下方4d: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    }, 
+    
+   rule_隔层方位推下方1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方且二者隔了一层"]
+    },  
+   rule_隔层方位推下方1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方"]
+    },  
+   rule_隔层方位推下方1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    }, 
+    
+   rule_隔层方位推下方2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方且二者隔了一层"]
+    },  
+   rule_隔层方位推下方2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y正下方"]
+    },  
+   rule_隔层方位推下方2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },     
+ 
+       
+   rule_隔层方位推上方1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方且二者隔了一层"]
+    },      
+   rule_隔层方位推上方1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方"]
+    },  
+   rule_隔层方位推上方1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+    
+   rule_隔层方位推上方2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方且二者隔了一层"]
+    }, 
+   rule_隔层方位推上方2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y正上方"]
+    },  
+   rule_隔层方位推上方2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    },     
+     
+   rule_隔层方位加东西推上方1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    },  
+   rule_隔层方位加东西推上方1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右上方"]
+    },  
+   rule_隔层方位加东西推上方1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y右上方且二者隔了一层"]
+    }, 
+        
+   rule_隔层方位加东西推上方2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    },     
+   rule_隔层方位加东西推上方2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左上方"]
+    },  
+   rule_隔层方位加东西推上方2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y左上方且二者隔了一层"]
+    },      
+
+    
+   rule_隔层方位加东西推下方1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右下方且二者隔了一层"]
+    },  
+   rule_隔层方位加东西推下方1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y右下方"]
+    },  
+   rule_隔层方位加东西推下方1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },   
+    
+   rule_隔层方位加东西推下方2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y左下方且二者隔了一层"]
+    },  
+   rule_隔层方位加东西推下方2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y左下方"]
+    }, 
+   rule_隔层方位加东西推下方2c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["K","J","template_X在Y下方"]
+    },           
+
+/* 隔层推东西 */    
+   rule_三层推一层东西1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","J","template_X在Y左下方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在一层东侧"]
+    }, 
+   rule_三层推一层东西2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","J","template_X在Y左下方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在一层东侧"]
+    }, 
+   rule_三层推一层东西3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","J","template_X在Y右下方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在一层西侧"]
+    }, 
+   rule_三层推一层东西4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","J","template_X在Y右下方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在一层西侧"]
+    },   
+   rule_三层推一层东西5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","J","template_X在Y正下方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在一层西侧"]
+    }, 
+   rule_三层推一层东西6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","J","template_X在Y正下方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在一层东侧"]
+    },  
+   rule_三层推一层东西7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["J","K","template_X和Y隔了一层"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","empty","template_X在一层西侧"]
+    }, 
+   rule_三层推一层东西8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["J","K","template_X和Y隔了一层"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","empty","template_X在一层东侧"]
+    },     
+
+   rule_三层推二层东西1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","J","template_X在Y右下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    }, 
+   rule_三层推二层东西2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","J","template_X在Y右下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    },     
+   rule_三层推二层东西3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","J","template_X在Y左下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层东侧"]
+    },   
+   rule_三层推二层东西4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","J","template_X在Y左下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层东侧"]
+    },               
+   rule_三层推二层东西5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","J","template_X在Y正下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    }, 
+   rule_三层推二层东西6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","J","template_X在Y正下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层东侧"]
+    },
+   rule_三层推二层东西7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","empty","template_X在二层东侧"]
+    }, 
+   rule_三层推二层东西8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","empty","template_X在二层西侧"]
+    },    
+         
+   rule_二层推一层东西1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","J","template_X在Y左下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在一层东侧"]
+    }, 
+   rule_二层推一层东西2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","J","template_X在Y左下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在一层东侧"]
+    }, 
+   rule_二层推一层东西3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","J","template_X在Y右下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在一层西侧"]
+    },  
+   rule_二层推一层东西4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","J","template_X在Y右下方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在一层西侧"]
+    },
+   rule_二层推一层东西5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","empty","template_X在一层东侧"]
+    }, 
+
+   rule_二层推一层东西6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","empty","template_X在一层东侧"]
+    }, 
+   rule_二层推一层东西7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","empty","template_X在一层西侧"]
+    }, 
+   rule_二层推一层东西8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","empty","template_X在一层西侧"]
+    },  
+    
+   rule_二层推三层东西1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","J","template_X在Y左上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在三层东侧"]
+    }, 
+   rule_二层推三层东西2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","J","template_X在Y左上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在三层东侧"]
+    },   
+
+   rule_二层推三层东西3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","J","template_X在Y右上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在三层西侧"]
+    }, 
+   rule_二层推三层东西4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","J","template_X在Y右上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在三层西侧"]
+    },
+     
+   rule_二层推三层东西5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","empty","template_X在三层东侧"]
+    }, 
+   rule_二层推三层东西6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","empty","template_X在三层西侧"]
+    }, 
+    
+    rule_二层推三层东西7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","empty","template_X在三层东侧"]
+    }, 
+    rule_二层推三层东西8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","empty","template_X在三层西侧"]
+    },     
+
+   rule_一层推二层东西1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","J","template_X在Y正上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层东侧"]
+    }, 
+   rule_一层推二层东西2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","J","template_X在Y正上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    },  
+   rule_一层推二层东西3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","empty","template_X在二层东侧"]
+    }, 
+   rule_一层推二层东西4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","empty","template_X在二层西侧"]
+    },          
+   rule_一层推二层东西5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","J","template_X在Y左上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层东侧"]
+    },        
+   rule_一层推二层东西6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","J","template_X在Y左上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层东侧"]
+    }, 
+   rule_一层推二层东西7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","J","template_X在Y右上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    },        
+   rule_一层推二层东西8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","J","template_X在Y右上方且二者不隔层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    },     
+
+   
+   rule_一层推三层东西1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","J","template_X在Y正上方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在三层东侧"]
+    },  
+   rule_一层推三层东西2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","J","template_X在Y正上方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在三层西侧"]
+    }, 
+   rule_一层推三层东西3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","J","template_X在Y左上方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在三层东侧"]
+    },
+   rule_一层推三层东西4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","J","template_X在Y左上方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在三层东侧"]
+    },     
+   rule_一层推三层东西5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","J","template_X在Y右上方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在三层西侧"]
+    },      
+   rule_一层推三层东西6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","J","template_X在Y右上方且二者隔了一层"],
+      ],
+      conclusions: ["K","empty","template_X在三层西侧"]
+    },  
+   rule_一层推三层东西7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["J","K","template_X和Y隔了一层"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","empty","template_X在三层东侧"]
+    }, 
+   rule_一层推三层东西8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["J","K","template_X和Y隔了一层"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","empty","template_X在三层西侧"]
+    }, 
+
+ /* 左右推同层东西 */
+   rule_左右推同层东西1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在一层西侧"]
+    }, 
+   rule_左右推同层东西2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["J","empty","template_X在一层东侧"]
+    }, 
+         
+   rule_左右推同层东西3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在二层西侧"]
+    }, 
+   rule_左右推同层东西4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["J","empty","template_X在二层东侧"]
+    }, 
+           
+   rule_左右推同层东西5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["K","empty","template_X在三层西侧"]
+    },    
+   rule_左右推同层东西6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","J","template_X在Y右边且二者同层"],
+      ],
+      conclusions: ["J","empty","template_X在三层东侧"]
+    },   
+    
+   rule_一层加相邻推二层: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y上方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在一层"],
+      ],
+      conclusions: ["J","empty","template_X在二层"]
+    }, 
+   rule_一层加隔层推三层: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X和Y隔了一层"],
+        ["K","empty","template_X在一层"],
+      ],
+      conclusions: ["J","empty","template_X在三层"]
+    }, 
+
+   rule_二层加相邻推一层: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y下方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在二层"],
+      ],
+      conclusions: ["J","empty","template_X在一层"]
+    }, 
+   rule_二层加相邻推三层: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y上方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在二层"],
+      ],
+      conclusions: ["J","empty","template_X在三层"]
+    }, 
+
+   rule_三层加相邻推二层: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y下方"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+        ["K","empty","template_X在三层"],
+      ],
+      conclusions: ["J","empty","template_X在二层"]
+    }, 
+   rule_三层加隔层推一层: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X和Y隔了一层"],
+        ["K","empty","template_X在三层"],
+      ],
+      conclusions: ["J","empty","template_X在一层"]
+    }, 
+
+   rule_层数推上方关系1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","empty","template_X在一层"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","empty","template_X在一层"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","empty","template_X在二层"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_上层数推上方关系6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在二层"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系9: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在二层"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系10: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+   rule_层数推上方关系11: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层"],
+      ],
+      conclusions: ["J","K","template_X在Y上方"]
+    }, 
+
+   rule_层数推下方关系1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","empty","template_X在二层"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","empty","template_X在三层"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","empty","template_X在三层"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","empty","template_X在二层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","empty","template_X在二层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在三层"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系9: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在三层"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系10: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在三层"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+   rule_层数推下方关系11: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在三层"],
+      ],
+      conclusions: ["J","K","template_X在Y下方"]
+    }, 
+
+   rule_层数推相邻楼层关系1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","empty","template_X在二层"],
+      ],  
+      conclusions: ["J","K","template_X所在层和Y所在层相邻"]
+    }, 
+   rule_层数推相邻楼层关系1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","empty","template_X在二层"],
+      ],  
+      conclusions: ["K","J","template_X在Y上一层"]
+    },     
+
+   rule_层数推相邻楼层关系2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","empty","template_X在三层"],
+      ],  
+      conclusions: ["J","K","template_X所在层和Y所在层相邻"]
+    }, 
+   rule_层数推相邻楼层关系2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层"],
+        ["K","empty","template_X在三层"],
+      ],  
+      conclusions: ["K","J","template_X在Y上一层"]
+    },  
+
+   rule_层数推上下相邻关系1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在二层东侧"],
+      ],  
+      conclusions: ["J","K","template_X和Y上下相邻"]
+    }, 
+   rule_层数推上下相邻关系2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在二层西侧"],
+      ],  
+      conclusions: ["J","K","template_X和Y上下相邻"]
+    }, 
+   rule_层数推上下相邻关系4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层东侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],  
+      conclusions: ["J","K","template_X和Y上下相邻"]
+    }, 
+   rule_层数推上下相邻关系4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在二层西侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],  
+      conclusions: ["J","K","template_X和Y上下相邻"]
+    }, 
+   
+    
+   rule_层数推隔层关系: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["K","empty","template_X在三层"],
+      ],  
+      conclusions: ["J","K","template_X和Y隔了一层"]
+    }, 
+
+   rule_隔层推层数1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["J","K","template_X和Y隔了一层"],
+      ],  
+      conclusions: ["K","empty","template_X在三层"]
+    }, 
+   rule_隔层推层数2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["J","K","template_X和Y隔了一层"],
+      ],  
+      conclusions: ["K","empty","template_X在一层"]
+    }, 
+    
+   rule_相邻推层数1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+      ],  
+      conclusions: ["K","empty","template_X在二层"]
+    }, 
+   rule_相邻推层数2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层"],
+        ["J","K","template_X所在层和Y所在层相邻"],
+      ],  
+      conclusions: ["K","empty","template_X在二层"]
+    }, 
+
+// add rules end zwd 2024-03-25
+
+// add rules 东侧-西侧互推 begin zwd 2024-04-03
+
+   rule_东侧推西侧1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在东侧"],
+        ["K","J","template_X在Y右边"],
+      ],  
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+   rule_东侧推西侧2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在东侧"],
+        ["K","J","template_X与Y同层"],
+      ],  
+      conclusions: ["K","empty","template_X在西侧"]
+    },
+   rule_东侧推西侧3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在东侧"],
+        ["K","J","template_X在Y右上方"],
+      ],  
+      conclusions: ["K","empty","template_X在西侧"]
+    },     
+   rule_东侧推西侧4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在东侧"],
+        ["K","J","template_X在Y右下方"],
+      ],  
+      conclusions: ["K","empty","template_X在西侧"]
+    }, 
+   rule_东侧推西侧5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在东侧"],
+        ["K","J","template_X在Y斜上方"],
+      ],  
+      conclusions: ["K","empty","template_X在西侧"]
+    },     
+   rule_东侧推西侧6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在东侧"],
+        ["K","J","template_X在Y斜下方"],
+      ],  
+      conclusions: ["K","empty","template_X在西侧"]
+    },     
+
+   rule_西侧推东侧1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在西侧"],
+        ["K","J","template_X在Y左边"],
+      ],  
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+   rule_西侧推东侧2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在西侧"],
+        ["K","J","template_X与Y同层"],
+      ],  
+      conclusions: ["K","empty","template_X在东侧"]
+    },    
+   rule_西侧推东侧3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在西侧"],
+        ["K","J","template_X在Y左上方"],
+      ],  
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+   rule_西侧推东侧4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在西侧"],
+        ["K","J","template_X在Y左下方"],
+      ],  
+      conclusions: ["K","empty","template_X在东侧"]
+    }, 
+   rule_西侧推东侧5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在西侧"],
+        ["K","J","template_X在Y斜上方"],
+      ],  
+      conclusions: ["K","empty","template_X在东侧"]
+    },  
+   rule_西侧推东侧6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在西侧"],
+        ["K","J","template_X在Y斜下方"],
+      ],  
+      conclusions: ["K","empty","template_X在东侧"]
+    },        
+    
+// add rules 东侧-西侧互推 end zwd 2024-04-03
+
+// 上下左右相关规则 begin
+
+    rule_1: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y上方"],
+        ["K","L","template_X在Y上方"],
+      ],
+      conclusions: ["J","L","template_X在Y上方"]
+    },
+    rule_2: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y下方"],
+        ["K","L","template_X在Y下方"],
+      ],
+      conclusions: ["J","L","template_X在Y下方"]
+    },
+    rule_3: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["K","L","template_X在Y正上方"],
+      ],
+      conclusions: ["J","L","template_X在Y正上方"]
+    },
+    rule_4: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["K","L","template_X在Y正下方"],
+      ],
+      conclusions: ["J","L","template_X在Y正下方"]
+    },
+    rule_5: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左边"],
+        ["K","L","template_X在Y正上方"],
+      ],
+      conclusions: ["J","L","template_X在Y左上方"]
+    },
+    rule_6: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["K","L","template_X在Y左边"],
+      ],
+      conclusions: ["J","L","template_X在Y左上方"]
+    },
+    rule_7: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左边"],
+        ["K","L","template_X在Y正下方"],
+      ],
+      conclusions: ["J","L","template_X在Y左下方"]
+    },
+    rule_8: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["K","L","template_X在Y左边"],
+      ],
+      conclusions: ["J","L","template_X在Y左下方"]
+    },
+    rule_9: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右边"],
+        ["K","L","template_X在Y正上方"],
+      ],
+      conclusions: ["J","L","template_X在Y右上方"]
+    },
+    rule_10: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["K","L","template_X在Y右边"],
+      ],
+      conclusions: ["J","L","template_X在Y右上方"]
+    },
+    rule_11: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右边"],
+        ["K","L","template_X在Y正下方"],
+      ],
+      conclusions: ["J","L","template_X在Y右下方"]
+    },
+    rule_12: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y正下方"],
+        ["K","L","template_X在Y右边"],
+      ],
+      conclusions: ["J","L","template_X在Y右下方"]
+    },
+    rule_13: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左边"],
+        ["K","L","template_X在Y右上方"],
+      ],
+      conclusions: ["J","L","template_X在Y正上方"]
+    },
+    rule_14: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右边"],
+        ["K","L","template_X在Y左上方"],
+      ],
+      conclusions: ["J","L","template_X在Y正上方"]
+    },
+    rule_15: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左边"],
+        ["K","L","template_X在Y右下方"],
+      ],
+      conclusions: ["J","L","template_X在Y正下方"]
+    },
+    rule_16: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右边"],
+        ["K","L","template_X在Y左下方"],
+      ],
+      conclusions: ["J","L","template_X在Y正下方"]
+    },
+    rule_17: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左上方"],
+        ["K","L","template_X在Y右边"],
+      ],
+      conclusions: ["J","L","template_X在Y正上方"]
+    },
+    rule_18: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右上方"],
+        ["K","L","template_X在Y左边"],
+      ],
+      conclusions: ["J","L","template_X在Y正上方"]
+    },
+    rule_19: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y左下方"],
+        ["K","L","template_X在Y右边"],
+      ],
+      conclusions: ["J","L","template_X在Y正下方"]
+    },
+    rule_20: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y右下方"],
+        ["K","L","template_X在Y左边"],
+      ],
+      conclusions: ["J","L","template_X在Y正下方"]
+    },
+    rule_21: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y正上方"],
+        ["K","L","template_X在Y正上方"],
+      ],
+      conclusions: ["J","L","template_X在Y正上方"]
+    },
+    rule_22a: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y上一层"],
+        ["K","L","template_X在Y上一层"],
+      ],
+      conclusions: ["J","empty","template_X在第三层"]
+    },
+    rule_22b: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y上一层"],
+        ["K","L","template_X在Y上一层"],
+      ],
+      conclusions: ["K","empty","template_X在第二层"]
+    },   
+    rule_22c: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y上一层"],
+        ["K","L","template_X在Y上一层"],
+      ],
+      conclusions: ["L","empty","template_X在第一层"]
+    },  
+    rule_22d: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y上一层"],
+        ["K","L","template_X在Y上一层"],
+      ],
+      conclusions: ["J","L","template_X和Y隔了一层"]
+    },          
+    rule_23: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y上一层"],
+        ["L","K","template_X在Y上一层"],
+      ],
+      conclusions: ["J","L","template_X和Y在同一层"]
+    },
+    rule_24: {
+      labels: ["J","K","L"],
+      conditions: [
+        ["J","K","template_X在Y下一层"],
+        ["L","K","template_X在Y下一层"],
+      ],
+      conclusions: ["J","L","template_X和Y在同一层"]
+    },
+
+// 上下左右相关规则 end
+
+// 对称关系规则 begin
+
+    rule_对称关系规则1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X所在层和Y所在层相邻"],
+      ],
+      conclusions: ["K","J","template_X所在层和Y所在层相邻"]
+    },
+    rule_对称关系规则1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X和Y上下相邻"],
+      ],
+      conclusions: ["K","J","template_X和Y上下相邻"]
+    },
+    rule_对称关系规则1c: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X和Y左右相邻"],
+      ],
+      conclusions: ["K","J","template_X和Y左右相邻"]
+    },
+    rule_对称关系规则2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X和Y隔了一层"],
+      ],
+      conclusions: ["K","J","template_X和Y隔了一层"]
+    },
+    rule_对称关系规则3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X和Y隔了一层"],
+      ],
+      conclusions: ["K","J","template_X和Y隔了一层"]
+    },
+    rule_对称关系规则4a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右上方且二者隔了一层"],
+      ],
+      conclusions: ["J","K","template_Y在X左下方且二者隔了一层"]
+    },
+    rule_对称关系规则4b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_Y在X左下方且二者隔了一层"],
+      ],
+      conclusions: ["J","K","template_X在Y右上方且二者隔了一层"]
+    },
+    rule_对称关系规则5a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右上方且二者不隔层"],
+      ],
+      conclusions: ["J","K","template_Y在X左下方且二者不隔层"]
+    },
+    rule_对称关系规则5b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_Y在X左下方且二者不隔层"],
+      ],
+      conclusions: ["J","K","template_X在Y右上方且二者不隔层"]
+    },
+    rule_对称关系规则6a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左上方且二者隔了一层"],
+      ],
+      conclusions: ["J","K","template_Y在X右下方且二者隔了一层"]
+    },
+    rule_对称关系规则6b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_Y在X右下方且二者隔了一层"],
+      ],
+      conclusions: ["J","K","template_X在Y左上方且二者隔了一层"]
+    },
+    rule_对称关系规则7a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左上方且二者不隔层"],
+      ],
+      conclusions: ["J","K","template_Y在X右下方且二者不隔层"]
+    },
+    rule_对称关系规则7b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_Y在X右下方且二者不隔层"],
+      ],
+      conclusions: ["J","K","template_X在Y左上方且二者不隔层"]
+    },
+    rule_对称关系规则8a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y下一层"],
+      ],
+      conclusions: ["K","J","template_X在Y上一层"]
+    },
+    rule_对称关系规则8b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y上一层"],
+      ],
+      conclusions: ["K","J","template_X在Y下一层"]
+    },
+    rule_对称关系规则9a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左边"],
+      ],
+      conclusions: ["K","J","template_X在Y右边"]
+    },
+    rule_对称关系规则9b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右边"],
+      ],
+      conclusions: ["K","J","template_X在Y左边"]
+    },
+
+// 2024-04-12 add rules
+
+    rule_对称关系规则LR0: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X是Y的左邻"],
+      ],
+      conclusions: ["K","J","template_X是Y的右邻"]
+    },
+    rule_对称关系规则LR1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X是Y的右邻"],
+      ],
+      conclusions: ["K","J","template_X是Y的左邻"]
+    },
+
+    rule_对称关系规则LR1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的正下方"],
+      ],
+      conclusions: ["J","K","template_Y的右邻在X的正上方"]
+    },
+    rule_对称关系规则LR2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的正下方"],
+      ],
+      conclusions: ["J","K","template_Y的左邻在X的正上方"]
+    },
+    rule_对称关系规则LR3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的左下方"],
+      ],
+      conclusions: ["J","K","template_Y的左邻在X的左上方"]
+    },
+    rule_对称关系规则LR4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的右下方"],
+      ],
+      conclusions: ["J","K","template_Y的右邻在X的右上方"]
+    },
+    rule_对称关系规则LR5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的正上方"],
+      ],
+      conclusions: ["J","K","template_Y的右邻在X的正下方"]
+    },
+    rule_对称关系规则LR6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的正上方"],
+      ],
+      conclusions: ["J","K","template_Y的左邻在X的正下方"]
+    },
+    rule_对称关系规则LR7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的左邻在Y的左上方"],
+      ],
+      conclusions: ["J","K","template_Y的左邻在X的左下方"]
+    },
+    rule_对称关系规则LR8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X的右邻在Y的右上方"],
+      ],
+      conclusions: ["J","K","template_Y的右邻在X的右下方"]
+    },
+
+// 2024-04-12 add rules
+
+// 2024-04-13 add rules
+
+    rule_对称关系规则UD1: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右上方且二者隔了一层"],
+      ],
+      conclusions: ["J","K","template_Y在X左下方且二者隔了一层"]
+    },
+    rule_对称关系规则UD2: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左上方且二者隔了一层"],
+      ],
+      conclusions: ["J","K","template_Y在X右下方且二者隔了一层"]
+    },
+    rule_对称关系规则UD3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右下方且二者隔了一层"],
+      ],
+      conclusions: ["J","K","template_Y在X左上方且二者隔了一层"]
+    },
+    rule_对称关系规则UD4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左下方且二者隔了一层"],
+      ],
+      conclusions: ["J","K","template_Y在X右上方且二者隔了一层"]
+    },
+    rule_对称关系规则UD5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右上方且二者不隔层"],
+      ],
+      conclusions: ["J","K","template_Y在X左下方且二者不隔层"]
+    },
+    rule_对称关系规则UD6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左上方且二者不隔层"],
+      ],
+      conclusions: ["J","K","template_Y在X右下方且二者不隔层"]
+    },
+    rule_对称关系规则UD7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y右下方且二者不隔层"],
+      ],
+      conclusions: ["J","K","template_Y在X左上方且二者不隔层"]
+    },
+    rule_对称关系规则UD8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","K","template_X在Y左下方且二者不隔层"],
+      ],
+      conclusions: ["J","K","template_Y在X右上方且二者不隔层"]
+    },
+
+// 2024-04-13 add rules
+
+// 对称关系规则 end
+
+// 2024-04-13 add rules 左右上下组合关系
+
+    rule_东西侧推左右上下组合关系1a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X的正上方是Y的正下方"]
+    }, 
+    rule_东西侧推左右上下组合关系1b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X的正上方是Y的正下方"]
+    }, 
+
+    rule_东西侧推左右上下组合关系2a: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X的正下方是Y的正上方"]
+    }, 
+    rule_东西侧推左右上下组合关系2b: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X的正下方是Y的正上方"]
+    }, 
+
+    rule_东西侧推左右上下组合关系3: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X的正上方是Y的左下方"]
+    }, 
+    rule_东西侧推左右上下组合关系4: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X的正上方是Y的右下方"]
+    }, 
+    rule_东西侧推左右上下组合关系5: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层西侧"],
+        ["K","empty","template_X在三层西侧"],
+      ],
+      conclusions: ["J","K","template_X的左上方是Y的左下方"]
+    }, 
+    rule_东西侧推左右上下组合关系6: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在一层东侧"],
+        ["K","empty","template_X在三层东侧"],
+      ],
+      conclusions: ["J","K","template_X的右上方是Y的右下方"]
+    }, 
+    rule_东西侧推左右上下组合关系7: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层西侧"],
+        ["K","empty","template_X在一层西侧"],
+      ],
+      conclusions: ["J","K","template_X的左下方是Y的左上方"]
+    }, 
+    rule_东西侧推左右上下组合关系8: {
+      labels: ["J","K"],
+      conditions: [
+        ["J","empty","template_X在三层东侧"],
+        ["K","empty","template_X在一层东侧"],
+      ],
+      conclusions: ["J","K","template_X的右下方是Y的右上方"]
+    }, 
+
+
+// 2024-04-13 add rules 左右上下组合关系
+
+  },
+
+  initial_props: [
+/* 当前使用的初始命题  */
+        ['A', 'empty', 'template_X在一层东侧'],
+        ['B', 'empty', 'template_X在一层西侧'],
+        ['C', 'empty', 'template_X在二层东侧'],
+        ['D', 'empty', 'template_X在二层西侧'],
+        ['E', 'empty', 'template_X在三层东侧'],
+        ['F', 'empty', 'template_X在三层西侧'],
+
+/* 初始命题候选集
+        ['A', 'empty', 'template_X在一层左侧'],
+        ['B', 'A', 'template_X在Y右边且二者同层'],
+        ['D', 'B', 'template_X在Y正上方且二者不隔层'],
+        ['C', 'D', 'template_X和Y在同一层'],
+        ['E', 'C', 'template_X在Y正上方'],
+        ['F', 'E', 'template_X在Y右边且二者同层'],
+*/
+  ],
+
+  replacement_entities: {
+    target_slots: [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+    ],
+    question_content: [
+      {
+        context: "六家居住的蓬莱阁分三层，每层两户。一户在东，一户在西。阁楼门朝北开。画师站在阁楼门前，面对阁楼支起画架，为阁楼画像，在描述各家方位关系时，约定以画师自身左右方位为参照，即东侧住户为左，西侧住户为右。东侧住户在西侧住户左边，西侧住户在东侧住户右边。已知：",
+        entities: [
+          "王重阳家",
+          "谭处端家",
+          "刘处玄家",
+          "丘处机家",
+          "王处一家",
+          "郝大通家",
+          "孙不二家",
+          "柯镇恶家",
+          "周伯通家",
+          "尹志平家",
+          "赵志敬家",
+        ],
+      },
+
+      {
+        context: "六盆花放置在三层花架上呈列，花架紧靠大厅南墙放置，每层两格，各放一盆花，一在东，一在西。画师站在花架前，面对花架支起画架，为花架中六盆花画素描。在描述各花的方位关系时，约定以画师自身左右方位为参照，即东侧花盆为左，西侧花盆为右。东侧花盘在西侧花盘左边，西侧花盆在东侧花盆右边。已知：",
+        entities: [
+          "牡丹",
+          "月季",
+          "茶花",
+          "茉莉",
+          "百合",
+          "郁金香",
+          "水仙",
+          "君子兰",
+          "天竺葵",
+          "波斯菊",
+        ],
+      },
+      {
+        context: "六件法宝放置在三层展示柜上展示，展示柜紧靠展厅南墙放置，每层两件物品，一在东，一在西。摄影师站在展示柜前，为展示柜中六件物品拍照。在描述物品方位关系时，约定以摄影师自身左右方位为参照，即东侧物品为左，西侧物品为右。东侧物品在西侧物品左边，西侧物品在东侧物品右边。已知：",
+        entities: [
+          "混天绫",
+          "风火轮",
+          "捆仙绳",
+          "玲珑塔",
+          "番天印",
+          "打神鞭",
+          "乾坤圈",
+          "倚天剑",
+          "屠龙刀",
+          "金箍棒",
+        ],
+      },
+/*
+      {
+        context: "六个神像放置在三层神龛上供奉，神龛紧靠大殿南墙放置，每层两尊神像，一在东，一在西。画师站在神龛前，面对神龛支起画架，为神龛中六位尊神画像。在描述诸神方位关系时，约定以画师自身左右方位为参照，即东侧神像为左，西侧神像为右。东侧神像在西侧神像左边，西侧神像在东侧神像右边。已知：",
+        entities: [
+          "铁拐李",
+          "张果老",
+          "蓝采和",
+          "韩湘子",
+          "吕洞宾",
+          "何仙姑",
+          "汉钟离",
+          "曹国舅",
+          "姜子牙",
+          "张天师",
+        ],
+      },
+*/
+    ],
+  },
+}

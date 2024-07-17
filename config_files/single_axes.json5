@@ -1,0 +1,403 @@
+// qyh created in 2024-05-21
+{
+    name: "单时间轴模板", 
+    scene_desc: "单人依次进行的动作，比如放学回家后进行的一系列行动等", 
+    slots: ["A", "B", "C", "D", "E", "F",], 
+    entit_desc: "无",
+    prompt: "参考(先做A，再做B，然后做C，之后做D，再之后做E，最后做F)",
+// 命题模板
+    templates: {
+    // 精确模板，单个事件类，与位点数量相同
+        template_首先X: {
+            text: "首先(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_第一件事情是X: {
+            text: "第一件事情是(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        },
+        template_第二件事情是X: {
+            text: "第二件事情是(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_第三件事情是X: {
+            text: "第三件事情是(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_第四件事情是X: {
+            text: "第四件事情是(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        },
+        template_第五件事情是X: {
+            text: "第五件事情是(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_第六件事情是X: {
+            text: "第六件事情是(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        },
+        template_最后X: {
+            text: "最后做(X)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        },
+
+    // 精确模板，两事件关系类
+        template_X之后就Y: {
+            text: "(X)之后就(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        }, 
+        template_X的上一件事情是Y: {
+            text: "(X)的上一件事情是(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        },
+        template_X的前一件事情是Y: {
+            text: "(X)的前一件事情是(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        },
+        template_X的后一件事情是Y: {
+            text: "(X)的后一件事情是(Y)",
+            precise: true,
+            symmetric: null,
+            question: true,
+        },
+
+    // 非精确模板，两事件关系类
+        template_X在Y之前: {
+            text: "(X)在(Y)之前",
+            precise: null,
+            symmetric: null,
+            question: false,
+        }, 
+        template_X在Y之后: {
+            text: "(X)在(Y)之后",
+            precise: null,
+            symmetric: null,
+            question: false,
+        }, 
+        template_X需要在Y之前完成: {
+            text: "(X)需要在(Y)之前完成",
+            precise: null,
+            symmetric: null,
+            question: false,
+        }, 
+        template_X需要在Y之后完成: {
+            text: "(X)需要在(Y)之后完成",
+            precise: null,
+            symmetric: null,
+            question: false,
+        },
+    },
+// 命题间关系
+    templates_logic: [
+    // 等价规则
+        ["等价", "template_首先X", "template_第一件事情是X"], 
+        ["等价", "template_第六件事情是X", "template_最后X"], 
+        ["等价", "template_X之后就Y", "template_X的后一件事情是Y"],
+        ["等价", "template_X的上一件事情是Y", "template_X的前一件事情是Y"], 
+        ["等价", "template_X在Y之前", "template_X需要在Y之前完成"], 
+        ["等价", "template_X在Y之后", "template_X需要在Y之后完成"], 
+
+    // 冲突规则（单个事件规则）
+        ["冲突", "template_第一件事情是X", "template_第二件事情是X"], 
+        ["冲突", "template_第一件事情是X", "template_第三件事情是X"], 
+        ["冲突", "template_第一件事情是X", "template_第四件事情是X"], 
+        ["冲突", "template_第一件事情是X", "template_第五件事情是X"], 
+        ["冲突", "template_第一件事情是X", "template_第六件事情是X"],
+        ["冲突", "template_第二件事情是X", "template_第三件事情是X"], 
+        ["冲突", "template_第二件事情是X", "template_第四件事情是X"], 
+        ["冲突", "template_第二件事情是X", "template_第五件事情是X"], 
+        ["冲突", "template_第二件事情是X", "template_第六件事情是X"],
+        ["冲突", "template_第三件事情是X", "template_第四件事情是X"], 
+        ["冲突", "template_第三件事情是X", "template_第五件事情是X"], 
+        ["冲突", "template_第三件事情是X", "template_第六件事情是X"],
+        ["冲突", "template_第四件事情是X", "template_第五件事情是X"], 
+        ["冲突", "template_第四件事情是X", "template_第六件事情是X"],
+        ["冲突", "template_第五件事情是X", "template_第六件事情是X"],
+        
+    // 冲突规则（两事件关系类）
+        ["冲突", "template_X之后就Y", "template_X在Y之后"], 
+        ["冲突", "template_X的上一件事情是Y", "template_X在Y之前"], 
+
+    // 互反规则
+        ["互反", "template_X之后就Y", "template_X的上一件事情是Y"], 
+        ["互反", "template_X的前一件事情是Y", "template_X的后一件事情是Y"], 
+        ["互反", "template_X在Y之前", "template_X在Y之后"], 
+        ["互反", "template_X需要在Y之前完成", "template_X需要在Y之后完成"], 
+        
+    // 蕴含规则
+        ["蕴含", "template_X之后就Y", "template_X在Y之前"], 
+        ["蕴含", "template_X的上一件事情是Y", "template_X在Y之后"], 
+    ],
+// 推理规则
+    inference_rules: {
+    // 精确规则对称性
+        rule_exact_symmetry1: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X之后就Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的上一件事情是Y"],
+        }, 
+        rule_exact_symmetry2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的上一件事情是Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X之后就Y"],
+        }, 
+        rule_exact_symmetry3: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的前一件事情是Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的后一件事情是Y"],
+        }, 
+        rule_exact_symmetry4: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X的后一件事情是Y"], 
+            ], 
+            conclusions: ["K", "J", "template_X的前一件事情是Y"],
+        }, 
+    // 非精确规则对称性
+        rule_fuzzy_symmetry1: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X在Y之前"], 
+            ], 
+            conclusions: ["K", "J", "template_X在Y之后"],
+        }, 
+        rule_fuzzy_symmetry2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X在Y之后"], 
+            ], 
+            conclusions: ["K", "J", "template_X在Y之前"],
+        }, 
+        rule_fuzzy_symmetry3: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X需要在Y之前完成"], 
+            ], 
+            conclusions: ["K", "J", "template_X需要在Y之后完成"],
+        }, 
+        rule_fuzzy_symmetry4: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "K", "template_X需要在Y之后完成"], 
+            ], 
+            conclusions: ["K", "J", "template_X需要在Y之前完成"],
+        },
+    // 规则传递性
+        rule_transitivity1a: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X之后就Y"], 
+                ["K", "L", "template_X之后就Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X在Y之前"],
+        }, 
+        rule_transitivity1b: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X在Y之前"], 
+                ["K", "L", "template_X在Y之前"], 
+            ], 
+            conclusions: ["J", "L", "template_X在Y之前"],
+        },
+        rule_transitivity2a: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X的上一件事情是Y"], 
+                ["K", "L", "template_X的上一件事情是Y"], 
+            ], 
+            conclusions: ["J", "L", "template_X在Y之后"],
+        }, 
+        rule_transitivity2b: {
+            labels: ["J", "K", "L"], 
+            conditions: [
+                ["J", "K", "template_X在Y之后"], 
+                ["K", "L", "template_X在Y之后"], 
+            ], 
+            conclusions: ["J", "L", "template_X在Y之后"],
+        },
+
+    // 事件顺序推理规则（条件等价规则）
+        rule_1to2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第一件事情是X"],
+                ["K", "empty", "template_第二件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X之后就Y"],
+        },
+        rule_2to3: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第二件事情是X"],
+                ["K", "empty", "template_第三件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X之后就Y"],
+        },
+        rule_3to4: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第三件事情是X"],
+                ["K", "empty", "template_第四件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X之后就Y"],
+        },
+        rule_4to5: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第四件事情是X"],
+                ["K", "empty", "template_第五件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X之后就Y"],
+        },
+        rule_5to6: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第五件事情是X"],
+                ["K", "empty", "template_第六件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X之后就Y"],
+        },
+
+    // 事件先后推理规则（条件蕴含规则）
+        rule_1to3: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第一件事情是X"],
+                ["K", "empty", "template_第三件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_1to4: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第一件事情是X"],
+                ["K", "empty", "template_第四件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_1to5: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第一件事情是X"],
+                ["K", "empty", "template_第五件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_1to6: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第一件事情是X"],
+                ["K", "empty", "template_第六件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_2to4: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第二件事情是X"],
+                ["K", "empty", "template_第四件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_2to5: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第二件事情是X"],
+                ["K", "empty", "template_第五件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_2to6: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第二件事情是X"],
+                ["K", "empty", "template_第六件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_3to5: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第三件事情是X"],
+                ["K", "empty", "template_第五件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_3to6: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第三件事情是X"],
+                ["K", "empty", "template_第六件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+        rule_4to6: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第四件事情是X"],
+                ["K", "empty", "template_第六件事情是X"], 
+            ], 
+            conclusions: ["J", "K", "template_X在Y之前"],
+        },
+    }, 
+// 初始命题
+    initial_props: [
+    // 当前初始命题
+        ["A", "empty", "template_第一件事情是X"], 
+        ["B", "empty", "template_第二件事情是X"], 
+        ["C", "empty", "template_第三件事情是X"], 
+        ["D", "empty", "template_第四件事情是X"], 
+        ["E", "empty", "template_第五件事情是X"], 
+        ["F", "empty", "template_第六件事情是X"],
+    ], 
+    replacement_entities: {
+    // 位点名称
+        target_slots: ["A", "B", "C", "D", "E", "F",], 
+    // 具体实例化信息
+        question_content: [
+            {
+                context: "小明是一位手机重度使用者，每天放学回家后，他会浏览手机软件打发时间。已知：", 
+                entities: [
+                    "上微信", 
+                    "上QQ", 
+                    "上微博", 
+                    "上知乎", 
+                    "上B站", 
+                    "上抖音", 
+                    "上小红书", 
+                    "上淘宝", 
+                    "上京东", 
+                    "上拼多多", 
+                ], 
+            },
+        ]
+    },
+}
