@@ -367,6 +367,48 @@
             ], 
             conclusions: ["J", "K", "template_X在Y之前"],
         },
+
+    // 事件顺序反向推理规则
+        rule_1get2: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第一件事情是X"],
+                ["J", "K", "template_X之后就Y"], 
+            ],
+            conclusions: ["K", "empty", "template_第二件事情是X"],
+        }, 
+        rule_2get3: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第二件事情是X"],
+                ["J", "K", "template_X之后就Y"], 
+            ],
+            conclusions: ["K", "empty", "template_第三件事情是X"],
+        }, 
+        rule_3get4: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第三件事情是X"],
+                ["J", "K", "template_X之后就Y"], 
+            ],
+            conclusions: ["K", "empty", "template_第四件事情是X"],
+        }, 
+        rule_4get5: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第四件事情是X"],
+                ["J", "K", "template_X之后就Y"], 
+            ],
+            conclusions: ["K", "empty", "template_第五件事情是X"],
+        }, 
+        rule_5get6: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_第五件事情是X"],
+                ["J", "K", "template_X之后就Y"], 
+            ],
+            conclusions: ["K", "empty", "template_第六件事情是X"],
+        }, 
     }, 
 // 初始命题
     initial_props: [
@@ -384,7 +426,7 @@
     // 具体实例化信息
         question_content: [
             {
-                context: "小明是一位手机重度使用者，每天放学回家后，他会浏览手机软件打发时间。已知：", 
+                context: "是小明放学回家后在手机上为了打发时间做的一些事情。已知：", 
                 entities: [
                     "上微信", 
                     "上QQ", 

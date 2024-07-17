@@ -637,7 +637,345 @@
                 ["K", "L", "template_X的六天后要Y"], 
             ], 
             conclusions: ["J", "L", "template_X的四天后要Y"],
-        }
+        },
+
+    // 差值反向推理规则
+        mon_get_tue: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周一X"], 
+                ["J", "K", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周二X"],
+        },
+        mon_get_wed: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周一X"], 
+                ["J", "K", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周三X"],
+        },
+        mon_get_thr: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周一X"], 
+                ["J", "K", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周四X"],
+        },
+        mon_get_fri: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周一X"], 
+                ["J", "K", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周五X"],
+        },
+        mon_get_sat: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周一X"], 
+                ["J", "K", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周六X"],
+        },
+        mon_get_sun: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周一X"], 
+                ["J", "K", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周日X"],
+        },
+        tue_get_wed: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周二X"], 
+                ["J", "K", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周三X"],
+        },
+        tue_get_thr: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周二X"], 
+                ["J", "K", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周四X"],
+        },
+        tue_get_fri: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周二X"], 
+                ["J", "K", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周五X"],
+        },
+        tue_get_sat: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周二X"], 
+                ["J", "K", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周六X"],
+        },
+        tue_get_sun: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周二X"], 
+                ["J", "K", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周日X"],
+        },
+        tue_get_mon: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周二X"], 
+                ["J", "K", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周一X"],
+        },
+        wed_get_thr: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周三X"], 
+                ["J", "K", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周四X"],
+        },
+        wed_get_fri: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周三X"], 
+                ["J", "K", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周五X"],
+        },
+        wed_get_sat: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周三X"], 
+                ["J", "K", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周六X"],
+        },
+        wed_get_sun: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周三X"], 
+                ["J", "K", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周日X"],
+        },
+        wed_get_mon: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周三X"], 
+                ["J", "K", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周一X"],
+        },
+        wed_get_tue: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周三X"], 
+                ["J", "K", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周二X"],
+        },
+        thr_get_fri: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周四X"], 
+                ["J", "K", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周五X"],
+        },
+        thr_get_sat: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周四X"], 
+                ["J", "K", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周六X"],
+        },
+        thr_get_sun: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周四X"], 
+                ["J", "K", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周日X"],
+        },
+        thr_get_mon: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周四X"], 
+                ["J", "K", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周一X"],
+        },
+        thr_get_tue: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周四X"], 
+                ["J", "K", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周二X"],
+        },
+        thr_get_wed: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周四X"], 
+                ["J", "K", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周三X"],
+        },
+        fri_get_sat: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周五X"], 
+                ["J", "K", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周六X"],
+        },
+        fri_get_sun: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周五X"], 
+                ["J", "K", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周日X"],
+        },
+        fri_get_mon: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周五X"], 
+                ["J", "K", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周一X"],
+        },
+        fri_get_tue: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周五X"], 
+                ["J", "K", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周二X"],
+        },
+        fri_get_wed: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周五X"], 
+                ["J", "K", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周三X"],
+        },
+        fri_get_thr: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周五X"], 
+                ["J", "K", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周四X"],
+        },
+        sat_get_sun: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周六X"], 
+                ["J", "K", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周日X"],
+        },
+        sat_get_mon: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周六X"], 
+                ["J", "K", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周一X"],
+        },
+        sat_get_tue: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周六X"], 
+                ["J", "K", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周二X"],
+        },
+        sat_get_wed: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周六X"], 
+                ["J", "K", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周三X"],
+        },
+        sat_get_thr: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周六X"], 
+                ["J", "K", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周四X"],
+        },
+        sat_get_fri: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周六X"], 
+                ["J", "K", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周五X"],
+        },
+        sun_get_mon: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周日X"], 
+                ["J", "K", "template_X的一天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周一X"],
+        },
+        sun_get_tue: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周日X"], 
+                ["J", "K", "template_X的两天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周二X"],
+        },
+        sun_get_wed: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周日X"], 
+                ["J", "K", "template_X的三天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周三X"],
+        },
+        sun_get_thr: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周日X"], 
+                ["J", "K", "template_X的四天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周四X"],
+        },
+        sun_get_fri: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周日X"], 
+                ["J", "K", "template_X的五天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周五X"],
+        },
+        sun_get_sat: {
+            labels: ["J", "K"], 
+            conditions: [
+                ["J", "empty", "template_周日X"], 
+                ["J", "K", "template_X的六天后要Y"], 
+            ], 
+            conclusions: ["K", "empty", "template_周六X"],
+        },
     }, 
     // 初始命题
     initial_props: [
@@ -655,7 +993,7 @@
         // 具体实例化信息
         question_content: [
             {
-                context: "小明是一名生活规律的大学生，他按照一张日程表安排他每周的课余生活。我们可以从他的日程表中得到这些信息：", 
+                context: "是小明日程表上的一些课外活动。我们可以从他的日程表中得到这些信息：", 
                 entities: [
                     "开组会", 
                     "看电影", 
