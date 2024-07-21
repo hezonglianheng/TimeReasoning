@@ -8,12 +8,13 @@
 // 命题模板
     templates: {
     // 精确模板，单个事件类，与位点数量相同
-        template_首先X: {
+    // 07-21更新：去除“首先”“最后”命题
+        /* template_首先X: {
             text: "首先(X)",
             precise: true,
             symmetric: null,
             question: true,
-        }, 
+        }, */
         template_第一件事情是X: {
             text: "第一件事情是(X)",
             precise: true,
@@ -50,12 +51,12 @@
             symmetric: null,
             question: true,
         },
-        template_最后X: {
+        /* template_最后X: {
             text: "最后做(X)",
             precise: true,
             symmetric: null,
             question: true,
-        },
+        }, */
 
     // 精确模板，两事件关系类
         template_X之后就Y: {
@@ -112,8 +113,8 @@
 // 命题间关系
     templates_logic: [
     // 等价规则
-        ["等价", "template_首先X", "template_第一件事情是X"], 
-        ["等价", "template_第六件事情是X", "template_最后X"], 
+        // ["等价", "template_首先X", "template_第一件事情是X"], 
+        // ["等价", "template_第六件事情是X", "template_最后X"], 
         ["等价", "template_X之后就Y", "template_X的后一件事情是Y"],
         ["等价", "template_X的上一件事情是Y", "template_X的前一件事情是Y"], 
         ["等价", "template_X在Y之前", "template_X需要在Y之前完成"], 
