@@ -25,9 +25,11 @@ SCALE_FILES = {
     TimeScale.Year: "year.json5", 
 } # 时间尺度对应的文件名
 
+TEMPLATES: dict[str, Any] = {} # 出题模板
+
 class Event:
     """事件类，用于描述时间轴上的事件"""
-    def __init__(self, text: str) -> None:
+    def __init__(self, text: str) -> Self:
         """初始化事件
 
         Args:
@@ -43,6 +45,20 @@ class Event:
         """
         return self.text
 
+    def statement(self, question_mode: bool = False) -> str:
+        """生成事件的描述或问题
+
+        Args:
+            question_mode (bool, optional): 是否是问题模式，默认为False
+
+        Raises:
+            NotImplementedError: statement方法未实现
+
+        Returns:
+            str: 事件的描述或问题
+        """
+        raise NotImplementedError("statement方法未实现")
+
 class PointEvent(Event):
     """点事件，即发生在某一时刻的事件，是事件的一种特例"""
     def __init__(self, text: str, time: int) -> Self:
@@ -57,7 +73,13 @@ class PointEvent(Event):
         """
         super().__init__(text)
         self.time = time
-        # return self
+
+    def statement(self, question_mode: bool = False) -> str:
+        use_statement: str = random.choice(TEMPLATES["point"])
+        use_statement = use_statement.replace("[event]", self.text)
+        time: str = random.choice(TEMPLATES["question_words"]) if question_mode else str(self.time)
+        use_statement = use_statement.replace("[time]", time)
+        return use_statement
 
 class DurationEvent(Event):
     """持续事件，即发生在某一时间段内的事件，是事件的一种特例"""
@@ -78,7 +100,6 @@ class DurationEvent(Event):
         self.end_time = end_time
         self.start_event: PointEvent = PointEvent(f"开始{text}", start_time)
         self.end_event: PointEvent = PointEvent(f"{text}结束", end_time)
-        # return self
     
     @property
     def duration(self) -> int:
@@ -104,7 +125,109 @@ class DurationEvent(Event):
             text (str): 结束事件的文字描述
         """
         self.end_event = PointEvent(text, self.end_time)
+
+    def statement(self, question_mode: bool = False) -> str:
+        if question_mode:
+            output_attr = random.choice(["start_time", "end_time", "duration"])
+            if output_attr == "start_time":
+                return self.start_event.statement(question_mode)
+            elif output_attr == "end_time":
+                return self.end_event.statement(question_mode)
+            elif output_attr == "duration":
+                use_statement: str = random.choice(TEMPLATES["length"])
+                use_statment = use_statement.replace("[event]", self.text)
+                word: str = random.choice(TEMPLATES["question_words"])
+                return use_statement.replace("[duration]", word)
+        else:
+            use_statement: str = random.choice(TEMPLATES["duration"])
+            use_statement = use_statement.replace("[event]", self.text).replace("[start_time]", str(self.start_time)).replace("[end_time]", str(self.end_time)).replace("[duration]", str(self.duration))
+            return use_statement
     
+class PointEventRelation(Event):
+    """点事件关系，即两个点事件之间的关系"""
+    def __init__(self, event1: PointEvent, event2: PointEvent) -> Self:
+        """初始化点事件关系并返回
+
+        Args:
+            event1 (PointEvent): 点事件1
+            event2 (PointEvent): 点事件2
+
+        Returns:
+            Self: 点事件关系对象
+        """
+        super().__init__("")
+        self.event1 = event1
+        self.event2 = event2
+
+    def statement(self, question_mode: bool = False) -> str:
+        """生成事件关系的描述或问题
+
+        Args:
+            question_mode (bool, optional): 是否是问题模式，默认为False
+
+        Returns:
+            str: 事件关系的描述或问题
+        """
+        if question_mode:
+            if self.event1.time == self.event2.time:
+                return None
+            elif self.event1.time < self.event2.time:
+                use_statement = random.choice(TEMPLATES["point2point"]["before"])
+            else:
+                use_statement = random.choice(TEMPLATES["point2point"]["after"])
+            use_statement = use_statement.replace("[event1]", self.event1.text).replace("[event2]", self.event2.text)
+            word: str = random.choice(TEMPLATES["question_words"])
+            return use_statement.replace("[diff]", word)
+        else:
+            if self.event1.time == self.event2.time:
+                use_statement: str = random.choice(TEMPLATES["point2point"]["same"])
+            elif self.event1.time < self.event2.time:
+                use_statement: str = random.choice(TEMPLATES["point2point"]["before"])
+            else:
+                use_statement: str = random.choice(TEMPLATES["point2point"]["after"])
+            use_statement = use_statement.replace("[event1]", self.event1.text).replace("[event2]", self.event2.text).replace("[diff]", str(abs(self.event1.time - self.event2.time)))
+            return use_statement
+
+class PointDurationRelation(Event):
+    def __init__(self, event1: PointEvent, event2: DurationEvent) -> Self:
+        super().__init__("")
+        self.event1 = event1
+        self.event2 = event2
+
+    def statement(self, question_mode: bool = False) -> str:
+        if question_mode:
+            set_event = random.choice([self.event2.start_event, self.event2.end_event])
+            return PointEventRelation(self.event1, set_event).statement(question_mode)
+        else:
+            output_attrs = random.choices(["start_time", "end_time", "duration"], k=2)
+            outputs = []
+            for attr in output_attrs:
+                if attr == "start_time":
+                    outputs.append(PointEventRelation(self.event1, self.event2.start_event).statement())
+                elif attr == "end_time":
+                    outputs.append(PointEventRelation(self.event1, self.event2.end_event).statement())
+                elif attr == "duration":
+                    pass
+
+class DurationPointRelation(Event):
+    def __init__(self, event1: DurationEvent, event2: PointEvent) -> Self:
+        super().__init__("")
+        self.event1 = event1
+        self.event2 = event2
+
+    def statement(self, question_mode: bool = False) -> str:
+        set_event = random.choice([self.event1.start_event, self.event1.end_event])
+        return PointEventRelation(set_event, self.event2).statement(question_mode)
+
+class DurationEventRelation(Event):
+    def __init__(self, event1: DurationEvent, event2: DurationEvent) -> Self:
+        super().__init__("")
+        self.event1 = event1
+        self.event2 = event2
+
+    def statement(self, question_mode: bool = False) -> str:
+        pass
+
 class TimeLine:
     """时间轴类，用于记录时间轴上的事件"""
     def __init__(self, name: str, scale: TimeScale = TimeScale.Order) -> Self:
@@ -120,9 +243,8 @@ class TimeLine:
         self.name = name
         self.scale = scale
         self.events: list[Event] = []
-        self._templates: dict[str, dict[str, list[str]]] = {} # 出题使用的模板
+        self._templates: dict[str, Any] = {} # 出题使用的模板
         self._statements: list[str] = [] # 生成的命题
-        # return self
 
     def add_event(self, *events: Event) -> None:
         """向事件序列添加一个或多个事件
@@ -179,15 +301,52 @@ class TimeLine:
         assert "[" not in use_statement, f"未替换的参数：{re.findall(r"\[(.*?)\]", use_statement)}" # 检查是否有未替换的参数
         return use_statement
     
+    def _single_point(self, event: PointEvent, question_mode: bool = False) -> str:
+        """单个点事件的描述
+
+        Args:
+            event (PointEvent): 点事件
+            question_mode (bool): 是否是问题模式，默认为False
+
+        Returns:
+            str: 对于单个点事件的描述
+        """
+        return self._choose_statement(self._templates["single_point"], event=event, time=event.time)
+    
+    def _single_length(self, event: DurationEvent, question_mode: bool = False) -> str:
+        """对单个持续事件长度的描述
+
+        Args:
+            event (DurationEvent): 持续事件
+            question_mode (bool): 是否是问题模式，默认为False
+
+        Returns:
+            str: 对于单个持续事件的描述
+        """
+        return self._choose_statement(self._templates["single_duration"], event=event, length=event.duration)
+    
+    def _single_duration(self, event: DurationEvent, question_mode: bool = False) -> str:
+        """对单个持续事件的描述
+
+        Args:
+            event (DurationEvent): 持续事件
+            question_mode (bool): 是否是问题模式，默认为False
+
+        Returns:
+            str: 对于单个持续事件的描述
+        """
+        choose_num = 1 if question_mode else 2 # 问题模式只选择一个属性描述持续事件的性质
+        output_attrs = random.choices(["start_time", "end_time", "duration"], k=choose_num) # 随机选择2个属性描述持续事件的性质
+    
     def _point2point(self, curr_event: PointEvent, new_event: PointEvent) -> str:
-        """点事件到点事件的推理
+        """点事件到点事件关系的描述
 
         Args:
             curr_event (PointEvent): 已知的点事件
             new_event (PointEvent): 新的点事件
 
         Returns:
-            str: 命题，即推理结果
+            str: 对于点事件到点事件关系的描述
         """
         template_subtype: str = "point2point" # 模板子类型
         if curr_event.time < new_event.time: # 点事件1在点事件2之前
@@ -197,6 +356,18 @@ class TimeLine:
         else: # 点事件1和点事件2同时发生
             return self._choose_statement(self._templates[template_subtype]["same"], event1=curr_event, event2=new_event)
 
+    def _length2length(self, curr_event: DurationEvent, new_event: DurationEvent) -> str:
+        """持续事件到持续事件关系的描述
+
+        Args:
+            curr_event (DurationEvent): 已知的持续事件
+            new_event (DurationEvent): 新的持续事件
+
+        Returns:
+            str: 对于持续事件到持续事件关系的描述
+        """
+        pass
+    
     def _point2duration(self, curr_event: PointEvent, new_event: DurationEvent) -> str:
         """点事件到持续事件的推理
 
@@ -267,12 +438,12 @@ class TimeLine:
                 raise ValueError(f"不支持的描述属性：{attr}")
         return "，并且".join(outputs)
     
-    def _event2event(self, curr_event: Event, new_event: Event) -> str:
+    def _event2event(self, new_event: Event, curr_event: Optional[Event] = None,) -> str:
         """根据当前事件和新事件推理出命题
         
         Args:
-            curr_event (Event): 当前事件
             new_event (Event): 新事件
+            curr_event (Optional[Event]): 当前事件，默认为None
             
         Returns:
             str: 命题，即推理结果
