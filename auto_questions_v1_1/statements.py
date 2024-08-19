@@ -15,7 +15,7 @@ import enum
 _STATEMENT = "statement"
 _PROCESS = "process"
 _QUESTION = "question"
-_ANSWER = "answer"
+_QUESTION_TYPE = "question_type"
 
 @enum.unique
 class TimeScale(enum.Enum):
@@ -64,11 +64,12 @@ class Statement(metaclass=abc.ABCMeta):
             question_mode (bool, optional): 是否是问题模式. 默认为False.
 
         Returns:
-            dict[str, str]: statement的自然文本陈述或对应的问题及回答
+            dict[str, str]: statement的自然文本陈述或对应的问题及类型
         """
         pass
 
-    def _replacement(self, template: str, replacements: dict[str, str]) -> str:
+    @staticmethod
+    def _replacement(template: str, replacements: dict[str, str]) -> str:
         """替换模板中的占位符
 
         Args:
@@ -82,6 +83,19 @@ class Statement(metaclass=abc.ABCMeta):
             template = template.replace(f"[{key}]", value)
         return template
 
+    @staticmethod
+    def _check_template(template: str, *args: str) -> bool:
+        """检查模板是否含有特定的占位符
+
+        Args:
+            template (str): 模板字符串
+            *args (str): 占位符列表
+
+        Returns:
+            bool: 模板是否含有特定的占位符
+        """
+        return all([f"[{arg}]" in template for arg in args])
+    
     def __str__(self) -> str:
         return ""
 
@@ -178,7 +192,8 @@ def verbose(func: Callable[[Statement, bool], dict[str, str]]) -> Callable[[Stat
                 elif isinstance(self, Relation):
                     print(f"生成事件关系描述：{self.prev_statement} -> {self.next_statement}")
             else: # 生成问题和回答
-                pass
+                if isinstance(self, Event):
+                    print(f"生成问题：{self.event}，问题类型：{result[_QUESTION_TYPE]}")
         # 放弃使用这个装饰器进行输出到最终结果
         """
         elif VERBOSE >= 2: # 输出到最终结果
@@ -210,8 +225,15 @@ class TemporalEvent(Event):
     @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         if question_mode: # 生成一个问题和回答
-            # TODO: 生成一个问题和回答
-            pass
+            arg_list: list[str] = ["event", "time"] # 占位符列表
+            temp_list: list[str] = [i for i in TEMPLATES["temporal_event"] if self._check_template(i, *arg_list)] # 合适的模板列表
+            assert temp_list, "模板中没有合适的占位符，请检查模板"
+            temp: str = random.choice(temp_list) # 随机选择一个模板
+            rp_dict: dict[str, str] = {"verb": self.verb, "object": self.object, "event": str(self.event), "time": str(self.time)} # 替换字典
+            q_arg: str = random.choice(arg_list) # 选择一个问题的占位符
+            rp_dict |= {q_arg: "____"} # 将问题的占位符替换为"____"
+            question = self._replacement(temp, rp_dict) # 生成问题
+            return {_QUESTION: question, _QUESTION_TYPE: q_arg}
         else: # 生成一个陈述
             temp: str = random.choice(TEMPLATES["temporal_event"])
             state = self._replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "time": str(self.time)})
@@ -258,11 +280,14 @@ class LastingEvent(Event):
     
     @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
+        style_decide = random.choice(["whole", "separate"])
         if question_mode: # 生成一个问题和回答
             # TODO: 生成一个问题和回答
-            pass
+            if style_decide == "whole":
+                pass
+            elif style_decide == "separate":
+                pass
         else: # 生成一个陈述
-            style_decide = random.choice(["whole", "separate"])
             if style_decide == "whole":
                 temp: str = random.choice(TEMPLATES["lasting_event"])
                 state = self._replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "start": str(self.time), "end": str(self.endtime), "duration": str(self.duration)})

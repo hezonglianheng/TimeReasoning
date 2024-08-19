@@ -47,8 +47,8 @@ class TimeLine:
         """
         self.guide = guide
     
-    def run(self, random_seed: int | float | None = None, verbose: int = 0) -> dict[str, str]:
-        """运行时间线，生成对于时间轴的描述和相关问题
+    def run_stmt(self, verbose: int = 0) -> dict[str, str]:
+        """生成对于时间轴的描述和相关问题
 
         Args:
             random_seed (int | float | None, optional): 随机种子. 默认为None.
@@ -58,10 +58,10 @@ class TimeLine:
             ValueError: 时间轴上少于两个事件时抛出异常
 
         Returns:
-            dict[str, str]: 运行结果，包括引导语、描述、问题、选项、答案、详细信息等
+            dict[str, str]: 运行结果，包括引导语、描述、详细信息等
         """
         assert len(self.events) > 1, "时间轴上至少需要两个事件，请通过add_events方法添加事件"
-        random.seed(random_seed) # 设置随机种子
+        # random.seed(random_seed) # 设置随机种子
         stmt.get_templates(self.scale) # 获取时间轴的模板
         stmt.VERBOSE = verbose # 设置输出强度
         start_event = random.choice(self.events) # 随机选择一个事件作为起始事件
@@ -96,5 +96,29 @@ class TimeLine:
                     self.__processes_texts.append(f"生成事件关系描述：{prev_event} -> {curr_event}")
             self.__stmts.append(curr_statement[stmt._STATEMENT])
             self.__described_events.append(curr_event) # 记录已经表述过的事件
-        # TODO: 生成问题、选项、答案
-        return {GUIDE: self.guide, STATEMENTS: "\n".join(self.__stmts), PROCESS: "\n".join(self.__processes_texts), QUESTION: "", OPTIONS: [], ANSWERS: []}
+        return {GUIDE: self.guide, STATEMENTS: "\n".join(self.__stmts), PROCESS: "\n".join(self.__processes_texts)}
+    
+    def run_question(self, verbose: int = 0) -> dict[str, str|list[str]|dict[str, str]]:
+        """生成时间轴的问题
+
+        Args:
+            verbose (int, optional): 详细信息输出强度，0为不输出，1为输出到控制台，2为输出到最终结果. 默认为0.
+
+        Returns:
+            dict[str, str|list[str]|dict[str, str]]: 问题，包括问题描述、选项、答案等
+        """
+        assert self.__described_events, "请先执行run_stmt方法生成时间轴描述"
+        return {QUESTION: "", OPTIONS: {}, ANSWERS: []}
+    
+    def run(self, random_seed: int | float | None = None, verbose: int = 0) -> dict[str, str]:
+        """运行时间线，生成对于时间轴的描述和相关问题
+
+        Args:
+            random_seed (int | float | None, optional): 随机种子. 默认为None.
+            verbose (int, optional): 详细信息输出强度，0为不输出，1为输出到控制台，2为输出到最终结果. 默认为0.
+
+        Returns:
+            dict[str, str]: 运行结果，包括引导语、描述、问题、选项、答案、详细信息等
+        """
+        random.seed(random_seed) # 设置随机种子
+        part_stmt = self.run_stmt(verbose)
