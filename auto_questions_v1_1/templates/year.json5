@@ -1,0 +1,105 @@
+{
+    // 对瞬时事件的表述
+    "temporal_event": [
+        "他[event]，那是在[time]年",
+        "在[time]年，他[event]",
+        "在[time]年，他曾经[event]",
+        "他在[time]年[event]",
+        "他[event]的时候是在[time]年",
+    ],
+    // 对事件的持续时间的表述
+    "duration": [
+        "他[event]的时间长达[duration]年",
+        "他[event]有[duration]年之久",
+        "他[event]的时间已经长达[duration]年",
+        "他[event]的时间达到了[duration]年",
+        "他[event]整整[duration]年",
+    ],
+    // 对持续事件的表述
+    "lasting_event": [
+        // 描述起点和终点
+        "从[start]年到[end]年，他[event]",
+        "他自[start]年起[event]，直到[end]年结束",
+        "他从[start]年开始[event]，一直持续到[end]年",
+        "他自[start]年起到[end]年止[event]",
+        "[start]年至[end]年，他曾[event]",
+        // 描述起点和持续时间
+        "从[start]年开始的[duration]年间，他[event]",
+        "自[start]年起，他一直[event]，直到[duration]年后",
+        "从[start]年开始，他[event]，时间长达[duration]年",
+        // 描述终点和持续时间
+        "他在[end]年之前的[duration]年里一直[event]",
+        "直至[end]年，他已连续[duration]年[event]",
+        "他在[end]年之前[event][duration]年",
+    ],
+    // 两个瞬时事件之间的关系的表述
+    "temporal_relation": {
+        // 事件1在事件2之前
+        "before": [
+            "[event1]的时间比[event2]早了[diff]年", 
+            "在[event2]之前的[diff]年，他[event1]", 
+            "他[event2]的[diff]年之前[event1]", 
+            "[event1]是在[event2]的[diff]年前发生的", 
+            "[event2]是在[event1]的[diff]年后", 
+            "[event1]是在[event2]之前的第[diff]年发生的",
+        ],
+        // 事件1在事件2之后
+        "after": [
+            "[event1]的时间比[event2]晚了[diff]年",
+            "在[event2]之后的[diff]年，他曾[event1]",
+            "他[event2]的[diff]年之后，曾经[event1]",
+            "[event1]是在[event2]的[diff]年后发生的",
+            "[event2]是在[event1]的[diff]年前",
+            "[event1]是在[event2]之后的第[diff]年发生的",
+        ],
+        // 事件1与事件2同时发生
+        "simultaneous": [
+            "在[event1]的那一年，他也[event2]",
+            "那一年，他不仅[event1]，还[event2]",
+            "在[event1]的那一年，他还[event2]",
+            "他在[event1]的同一年，也[event2]",
+            "那一年，他既[event1]，也[event2]",
+        ],
+    },
+    // 两个持续事件的持续时间关系的自然文本描述
+    "duration_relation": {
+        // 事件1的持续时间比事件2的持续时间短
+        "shorter": [
+            "他[event1]的时间比他[event2]的时间少了[diff]年",
+            "他[event1]的时间比他[event2]的时间短了[diff]年"
+        ],
+        // 事件1的持续时间比事件2的持续时间长
+        "longer": [
+            "他[event1]的时间比[event2]的时间长了[diff]年",
+            "他[event1]的总时长比[event2]的总时长多了[diff]年", 
+        ],
+        // 事件1的持续时间与事件2的持续时间相等
+        "equal": [
+            "他[event1]的年数和他[event2]的年数一样",
+            "他[event1]的时间和他[event2]的时间一样长",
+            "他[event1]的时间与他[event2]所花的时间相同",
+            "他[event1]花费的时间和他[event2]花费的时间相等",
+            "他[event1]的时间与他[event2]的时间一致",
+        ],
+        // 事件1的持续时间与事件2的持续时间之间有倍数关系
+        "times": [
+            "他[event2]的时光为[event1]时间的[times]倍",
+            "他的[event2]时长是[event1]的[times]倍",
+            "相比之下，他[event2]的时间是[event1]时间的[times]倍"
+        ],
+        // 事件1的持续时间与事件2的持续时间之间有比例关系
+        "ratio": [
+            "他[event2]的时光为[event1]时间的[ratio]",
+            "他的[event2]时长是[event1]的[ratio]",
+            "相比之下，他[event2]的时间是[event1]时间的[ratio]"
+        ],
+    },
+    // 用于连接两个事件的表述的语言片段
+    "link": [
+        "，且", 
+        "，而且",
+        "，并且",
+        "，此外", 
+        "，另外",
+    ],
+}
