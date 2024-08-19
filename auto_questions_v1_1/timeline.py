@@ -1,7 +1,7 @@
 # encoding: utf8
 # version: 1.1
 # date: 2024-08-18
-# authors: Qin Yuhang
+# author: Qin Yuhang
 
 import statements as stmt
 import random
@@ -9,6 +9,7 @@ import random
 # 结果的键
 GUIDE = "guide"
 STATEMENTS = "statements"
+PROCESS = "process"
 QUESTION = "question"
 OPTIONS = "options"
 ANSWERS = "answers"
@@ -28,6 +29,7 @@ class TimeLine:
         # 运行中间结果
         self.__stmts: list[str] = [] # 时间轴的命题
         self.__described_events: list[stmt.Event] = [] # 已经表述过的事件
+        self.__processes_texts: list[str] = [] # 时间轴的过程描述
 
     def add_events(self, *events: stmt.Event) -> None:
         """添加事件到时间轴中
@@ -50,7 +52,7 @@ class TimeLine:
 
         Args:
             random_seed (int | float | None, optional): 随机种子. 默认为None.
-            verbose (int, optional): 详细信息输出强度，0为不输出，1为输出到最终结果，2为输出到控制台. 默认为0.
+            verbose (int, optional): 详细信息输出强度，0为不输出，1为输出到控制台，2为输出到最终结果. 默认为0.
 
         Raises:
             ValueError: 时间轴上少于两个事件时抛出异常
@@ -61,6 +63,7 @@ class TimeLine:
         assert len(self.events) > 1, "时间轴上至少需要两个事件，请通过add_events方法添加事件"
         random.seed(random_seed) # 设置随机种子
         stmt.get_templates(self.scale) # 获取时间轴的模板
+        stmt.VERBOSE = verbose # 设置输出强度
         start_event = random.choice(self.events) # 随机选择一个事件作为起始事件
         self.__stmts.append(start_event.statement()[stmt._STATEMENT]) # 添加起始事件的描述
         self.__described_events.append(start_event) # 记录已经表述过的事件
@@ -71,7 +74,9 @@ class TimeLine:
             # 随机选择生成事件描述或事件关系描述
             method: str = random.choice(["event", "relation"])
             if method == "event": # 生成单个事件描述
-                self.__stmts.append(curr_event.statement()[stmt._STATEMENT])
+                curr_statement = curr_event.statement()
+                if verbose >= 2: # 记录生成过程
+                    self.__processes_texts.append(f"生成事件描述：{curr_event}")
             else: # 生成事件关系描述
                 prev_event = random.choice(self.__described_events) # 随机选择一个已经表述过的事件
                 # 根据prev_event和curr_event类型生成事件关系
@@ -86,7 +91,10 @@ class TimeLine:
                     relation = stmt.LastingRelation(prev_event, curr_event)
                 else:
                     raise ValueError("事件类型错误")
-                self.__stmts.append(relation.statement()[stmt._STATEMENT])
+                curr_statement = relation.statement()
+                if verbose >= 2:
+                    self.__processes_texts.append(f"生成事件关系描述：{prev_event} -> {curr_event}")
+            self.__stmts.append(curr_statement[stmt._STATEMENT])
             self.__described_events.append(curr_event) # 记录已经表述过的事件
         # TODO: 生成问题、选项、答案
-        return {GUIDE: self.guide, STATEMENTS: "\n".join(self.__stmts), QUESTION: "", OPTIONS: [], ANSWERS: []}
+        return {GUIDE: self.guide, STATEMENTS: "\n".join(self.__stmts), PROCESS: "\n".join(self.__processes_texts), QUESTION: "", OPTIONS: [], ANSWERS: []}

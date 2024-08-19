@@ -7,12 +7,13 @@ import json5
 import random
 import abc
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 from fractions import Fraction
 import enum
 
 # statement()函数返回字典的键
 _STATEMENT = "statement"
+_PROCESS = "process"
 _QUESTION = "question"
 _ANSWER = "answer"
 
@@ -31,7 +32,8 @@ TEMPLATE_FILES = {
 # 模板字典
 TEMPLATES: dict[str, Any] = {}
 
-# TODO: 定义可视化装饰器
+# 详细信息输出强度
+VERBOSE = 0
 
 def get_templates(time_scale: TimeScale) -> dict[str, Any]:
     """获取指定时间尺度的模板字典
@@ -83,6 +85,17 @@ class Statement(metaclass=abc.ABCMeta):
     def __str__(self) -> str:
         return ""
 
+    @abc.abstractmethod
+    def __eq__(self, value: object) -> bool:
+        """判断两个陈述是否等价的函数，需要在子类中实现
+        
+        Args:
+            value (object): 另一个陈述
+            
+        Returns:
+            bool: 两个陈述是否等价"""
+        return False
+
 class Event(Statement):
     """事件类，作为一种特殊的陈述类"""
     def __init__(self, verb: str, object: str, time: int):
@@ -100,11 +113,25 @@ class Event(Statement):
         """
         return f"{self.verb}{self.object}"
     
+    @abc.abstractmethod
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         pass
-
+   
     def __str__(self) -> str:
         return self.event
+
+    def __eq__(self, value: object) -> bool:
+        """判断两个事件是否等价
+
+        Args:
+            value (object): 另一个事件
+
+        Returns:
+            bool: 两个事件是否等价
+        """
+        if isinstance(value, Event):
+            return self.verb == value.verb and self.object == value.object and self.time == value.time
+        return False
 
 class Relation(Statement):
     """关系类，作为一种特殊的陈述类"""
@@ -113,8 +140,60 @@ class Relation(Statement):
         self.prev_statement = prev_statement
         self.next_statement = next_statement
 
+    @abc.abstractmethod
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         pass
+
+    def __eq__(self, value: object) -> bool:
+        """判断两个关系是否等价
+
+        Args:
+            value (object): 另一个关系
+
+        Returns:
+            bool: 两个关系是否等价
+        """
+        if isinstance(value, Relation):
+            return self.prev_statement == value.prev_statement and self.next_statement == value.next_statement
+        return False
+
+PROCESS_LIST: list[str] = [] # 过程描述列表
+
+def verbose(func: Callable[[Statement, bool], dict[str, str]]) -> Callable[[Statement, bool], dict[str, str]]:
+    """详细信息输出装饰器
+
+    Args:
+        func (Callable[[Statement, bool], dict[str, str]): 陈述类的statement方法
+
+    Returns:
+        Callable[[Statement, bool], dict[str, str]: 陈述类的statement方法
+    """
+    global PROCESS_LIST
+    def wrapper(self: Statement, question_mode: bool = False) -> dict[str, str]:
+        result = func(self, question_mode)
+        if VERBOSE >= 1: # 输出到控制台
+            if not question_mode: # 生成陈述
+                if isinstance(self, Event):
+                    print(f"生成事件描述：{self.event}")
+                elif isinstance(self, Relation):
+                    print(f"生成事件关系描述：{self.prev_statement} -> {self.next_statement}")
+            else: # 生成问题和回答
+                pass
+        # 放弃使用这个装饰器进行输出到最终结果
+        """
+        elif VERBOSE >= 2: # 输出到最终结果
+            if not question_mode:
+                if isinstance(self, Event):
+                    PROCESS_LIST.append(f"生成事件描述：{self.event}")
+                    # result |= {_PROCESS: f"生成事件描述：{self.event}"}
+                elif isinstance(self, Relation):
+                    PROCESS_LIST.append(f"生成事件关系描述：{self.prev_statement} -> {self.next_statement}")
+                    # result |= {_PROCESS: f"生成事件关系描述：{self.prev_statement} -> {self.next_statement}"}
+            else:
+                pass
+        """
+        return result
+    return wrapper
 
 class TemporalEvent(Event):
     """瞬时事件类，表示一个瞬时事件"""
@@ -128,6 +207,7 @@ class TemporalEvent(Event):
         """
         super().__init__(verb, object, time)
 
+    @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         if question_mode: # 生成一个问题和回答
             # TODO: 生成一个问题和回答
@@ -176,6 +256,7 @@ class LastingEvent(Event):
         temp = self._replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "duration": str(self.duration)})
         return temp
     
+    @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         if question_mode: # 生成一个问题和回答
             # TODO: 生成一个问题和回答
@@ -233,6 +314,7 @@ class TempRelation(Relation):
         """两个事件之间的时间差"""
         return abs(self.next_statement.time - self.prev_statement.time)
     
+    @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         if question_mode:
             # TODO: 生成一个问题和回答
@@ -269,6 +351,7 @@ class TempLastingRelation(Relation):
         """
         super().__init__(prev_statement, next_statement)
 
+    @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         if question_mode:
             pass
@@ -296,6 +379,7 @@ class LastingTempRelation(Relation):
         """
         super().__init__(prev_statement, next_statement)
 
+    @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         prev_temporal: TemporalEvent = random.choice([self.prev_statement.start_event, self.prev_statement.end_event])
         return TempRelation(prev_temporal, self.next_statement).statement(question_mode)
@@ -355,6 +439,7 @@ class LastingRelation(Relation):
         temp: str = random.choice(TEMPLATES[DURATION_RELATION][typ])
         return self._replacement(temp, curr_dict)
     
+    @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         if question_mode:
             pass

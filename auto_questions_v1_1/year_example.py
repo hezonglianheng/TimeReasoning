@@ -28,5 +28,5 @@ daughter_life.set_end_event("女儿去世", "")
 line.add_events(life, childhood, middle_school, meet_wife, love, daughter_life)
 
 # 运行时间线
-result = line.run()
+result = line.run(verbose=2)
 print(result)
