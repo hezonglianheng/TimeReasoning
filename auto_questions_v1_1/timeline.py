@@ -121,4 +121,6 @@ class TimeLine:
             dict[str, str]: 运行结果，包括引导语、描述、问题、选项、答案、详细信息等
         """
         random.seed(random_seed) # 设置随机种子
-        part_stmt = self.run_stmt(verbose)
+        part_stmt = self.run_stmt(verbose) # 生成时间轴描述
+        part_question = self.run_question(verbose) # 生成时间轴问题
+        return part_stmt | part_question # 合并描述和问题
