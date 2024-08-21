@@ -4,6 +4,8 @@
 
 import timeline
 import statements as stmt
+from pathlib import Path
+import json
 
 # 创建一个时间线对象
 line = timeline.TimeLine(stmt.TimeScale.Year)
@@ -27,6 +29,11 @@ daughter_life.set_end_event("女儿去世", "")
 # 将事件添加到时间线中
 line.add_events(life, childhood, middle_school, meet_wife, love, daughter_life)
 
-# 运行时间线
-result = line.run(verbose=2)
-print(result)
+# 运行时间线并存入output文件中
+if __name__ == "__main__":
+    path = Path(__file__).parent / "outputs" / "year.json"
+    result_list: list[dict] = []
+    for i in range(10):
+        result_list.append(line.run(verbose=2))
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(result_list, f, ensure_ascii=False, indent=4)

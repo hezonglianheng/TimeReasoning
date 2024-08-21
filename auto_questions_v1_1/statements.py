@@ -462,7 +462,8 @@ class TempRelation(Relation):
                     break
                 else:
                     arg_list.remove(q_arg)
-                    assert arg_list, f"无法为关系({self.prev_statement} -> {self.next_statement})选择问题生成模板，请检查模板文件"
+                    # 这里可能出现预料外的问题，所以需要断言，后续需要修改
+                    assert len(arg_list) > 0, f"无法为关系({self.prev_statement} -> {self.next_statement})选择问题生成模板，请检查模板文件"
             temp = random.choice(temp_list)
             if q_arg == "event1":
                 self.question_event = self.next_statement

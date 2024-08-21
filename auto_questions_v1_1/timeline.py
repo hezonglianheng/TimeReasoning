@@ -160,8 +160,9 @@ class TimeLine:
             random.shuffle(options_list) # 打乱选项顺序
             options = {chr(ord("A")+i): options_list[i] for i in range(MUITIPLE_CHOICE_NUM)} # 生成选项
             answers = [k for k, v in options.items() if v in correct_answers] # 生成答案
+            last = chr(ord("A") + MUITIPLE_CHOICE_NUM - 1) # 最后一个选项
             # 若最后一个选项是错误答案，则以一个小概率将其替换为“以上选项均不正确”
-            if (last := chr(ord("A")+MUITIPLE_CHOICE_NUM-1)) and random.random() < ALL_WRONG_PROB:
+            if last not in answers and random.random() < ALL_WRONG_PROB:
                 options[last] = "以上选项均不正确"
             # 若只有最后一个选项是正确答案，则以一个小概率将其替换为“以上选项均不正确”
             if len(answers) == 1 and last in answers and random.random() < ALL_WRONG_PROB:
@@ -181,7 +182,7 @@ class TimeLine:
             curr_event = random.choice(avaliable_events)
             question_info = curr_event.statement(question_mode=True)
             if (qtype := question_info[stmt._QUESTION_TYPE]) == "time":
-                answer_info = options_and_answers(question_info[stmt._ANSWER], [str(i) for i in self.timeline_range])
+                answer_info = options_and_answers(question_info[stmt._ANSWER], [str(i) for i in range(self.timeline_range[0], self.timeline_range[1]+1)])
             elif qtype == "event":
                 # 生成所有事件的描述
                 all_events = [event for event in self.sorted_temporal_events] + [event for event in self.events if isinstance(event, stmt.LastingEvent)]
@@ -192,7 +193,7 @@ class TimeLine:
                     candidate_list = [e.event for e in all_events if e not in correct_list] # 生成干扰项
                 elif isinstance(question_event, stmt.LastingEvent):
                     all_events.remove(question_event)
-                    correct_list = [e.event for e in all_events if isinstance(e, stmt.LastingEvent) and e.start_time == question_event.start_time and e.end_time == question_event.end_time] # 生成正确选项
+                    correct_list = [e.event for e in all_events if isinstance(e, stmt.LastingEvent) and e.time == question_event.time and e.endtime == question_event.endtime] # 生成正确选项
                     candidate_list = [e.event for e in all_events if e not in correct_list] # 生成干扰项
                 answer_info = options_and_answers([question_info[stmt._ANSWER]] + correct_list, candidate_list)
             elif qtype == "duration":
@@ -245,8 +246,16 @@ class TimeLine:
         end_time = time.time()
         if verbose >= 1: # 在控制台输出结束提示信息
             print(f"描述和问题生成完毕！用时: {end_time - start_time}\n")
+        self.clear() # 清空时间轴的描述和问题
         return part_stmt | part_question # 合并描述和问题
 
+    def clear(self):
+        """清空时间轴的描述和问题"""
+        self.__stmts.clear()
+        self.__described_events.clear()
+        self.__described_statements.clear()
+        self.__processes_texts.clear()
+    
     def run_multiple(self, times: int = 1, random_seed: int | float | None = None, verbose: int = 0) -> list[dict[str, str]]:
         """运行时间线多次，生成对于时间轴的描述和相关问题
 
