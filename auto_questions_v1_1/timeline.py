@@ -246,3 +246,16 @@ class TimeLine:
         if verbose >= 1: # 在控制台输出结束提示信息
             print(f"描述和问题生成完毕！用时: {end_time - start_time}\n")
         return part_stmt | part_question # 合并描述和问题
+
+    def run_multiple(self, times: int = 1, random_seed: int | float | None = None, verbose: int = 0) -> list[dict[str, str]]:
+        """运行时间线多次，生成对于时间轴的描述和相关问题
+
+        Args:
+            times (int): 运行次数，默认为1
+            random_seed (int | float | None, optional): 随机种子. 默认为None.
+            verbose (int, optional): 详细信息输出强度，0为不输出，1为输出到控制台，2为输出到最终结果. 默认为0.
+
+        Returns:
+            list[dict[str, str]]: 运行结果列表，包括引导语、描述、问题、选项、答案、详细信息等
+        """
+        return [self.run(random_seed, verbose) for _ in range(times)]
