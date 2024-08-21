@@ -7,7 +7,7 @@ import json5
 import random
 import abc
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Self
 from fractions import Fraction
 import enum
 
@@ -16,6 +16,10 @@ _STATEMENT = "statement"
 _PROCESS = "process"
 _QUESTION = "question"
 _QUESTION_TYPE = "question_type"
+_ANSWER = "answer"
+
+# 其他常量
+UNDERLINE = "____"
 
 @enum.unique
 class TimeScale(enum.Enum):
@@ -54,11 +58,11 @@ class Statement(metaclass=abc.ABCMeta):
     """陈述类的抽象基类"""
     @abc.abstractmethod
     def __init__(self):
-        pass
+        self.question_event = self # 用于提出问题的事件
 
     @abc.abstractmethod
     def statement(self, question_mode: bool = False) -> dict[str, str]:
-        """输出statement的自然文本陈述或对应的问题及回答
+        """输出statement的自然文本陈述或对应的问题、类型、回答
 
         Args:
             question_mode (bool, optional): 是否是问题模式. 默认为False.
@@ -83,6 +87,22 @@ class Statement(metaclass=abc.ABCMeta):
             template = template.replace(f"[{key}]", value)
         return template
 
+    @staticmethod
+    def _question_replacement(template: str, replacements: dict[str, str], question_type: str) -> str:
+        """替换模板中的占位符，同时将问题的占位符替换为"____"
+
+        Args:
+            template (str): 模板字符串
+            replacements (dict[str, str]): 替换字典，键是占位符（不含方括号），值是替换后的字符串
+            question_type (str): 问题的占位符（不含方括号）
+
+        Returns:
+            str: 替换后的字符串
+        """
+        replacements |= {question_type: UNDERLINE}
+        template = Statement._replacement(template, replacements)
+        return template
+    
     @staticmethod
     def _check_template(template: str, *args: str) -> bool:
         """检查模板是否含有特定的占位符
@@ -158,6 +178,20 @@ class Relation(Statement):
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         pass
 
+    def get_stmt_and_event(self, relation: Self, question_mode: bool = False) -> dict[str, str]:
+        """获取关系的陈述和提问事件的信息
+
+        Args:
+            relation (Self): 被提问的关系
+            question_mode (bool, optional): 是否是问题模式. 默认为False.
+
+        Returns:
+            dict[str, str]: 关系的陈述和提问事件的信息
+        """
+        info = relation.statement(question_mode)
+        self.question_event = relation.question_event
+        return info
+    
     def __eq__(self, value: object) -> bool:
         """判断两个关系是否等价
 
@@ -194,6 +228,8 @@ def verbose(func: Callable[[Statement, bool], dict[str, str]]) -> Callable[[Stat
             else: # 生成问题和回答
                 if isinstance(self, Event):
                     print(f"生成问题：{self.event}，问题类型：{result[_QUESTION_TYPE]}")
+                elif isinstance(self, Relation):
+                    print(f"生成问题：{self.prev_statement} -> {self.next_statement}，问题类型：{result[_QUESTION_TYPE]}")
         # 放弃使用这个装饰器进行输出到最终结果
         """
         elif VERBOSE >= 2: # 输出到最终结果
@@ -224,19 +260,32 @@ class TemporalEvent(Event):
 
     @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
+        """输出对瞬时事件的自然文本陈述或对应的问题、类型、答案
+
+        Args:
+            question_mode (bool, optional): 是否是问题模式. 默认为False.
+
+        Returns:
+            dict[str, str]: 对瞬时事件的自然文本陈述或对应的问题、类型、答案
+        """        
+        rp_dict: dict[str, str] = {"verb": self.verb, "object": self.object, "event": str(self.event), "time": str(self.time)} # 替换字典
         if question_mode: # 生成一个问题和回答
             arg_list: list[str] = ["event", "time"] # 占位符列表
-            temp_list: list[str] = [i for i in TEMPLATES["temporal_event"] if self._check_template(i, *arg_list)] # 合适的模板列表
-            assert temp_list, "模板中没有合适的占位符，请检查模板"
+            while arg_list:
+                q_arg: str = random.choice(arg_list) # 选择一个问题的占位符
+                temp_list: list[str] = [i for i in TEMPLATES["temporal_event"] if self._check_template(i, q_arg)] # 合适的模板列表
+                if temp_list: # 能够得到备选命题
+                    break
+                else: # 未能得到备选命题
+                    arg_list.remove(q_arg)
+                    assert arg_list, f"无法为事件({self.event})表述选择问题生成模板，请检查模板文件"
             temp: str = random.choice(temp_list) # 随机选择一个模板
-            rp_dict: dict[str, str] = {"verb": self.verb, "object": self.object, "event": str(self.event), "time": str(self.time)} # 替换字典
-            q_arg: str = random.choice(arg_list) # 选择一个问题的占位符
-            rp_dict |= {q_arg: "____"} # 将问题的占位符替换为"____"
-            question = self._replacement(temp, rp_dict) # 生成问题
-            return {_QUESTION: question, _QUESTION_TYPE: q_arg}
+            standard_answer = rp_dict[q_arg] # 标准答案
+            question = self._question_replacement(temp, rp_dict, q_arg) # 生成问题
+            return {_QUESTION: question, _QUESTION_TYPE: q_arg, _ANSWER: standard_answer}
         else: # 生成一个陈述
             temp: str = random.choice(TEMPLATES["temporal_event"])
-            state = self._replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "time": str(self.time)})
+            state = self._replacement(temp, rp_dict)
             return {_STATEMENT: state}
 
 class LastingEvent(Event):
@@ -268,32 +317,71 @@ class LastingEvent(Event):
         assert self.endtime >= self.time, "结束时间必须大于等于开始时间"
         return self.endtime - self.time
 
-    def duration_statement(self) -> str:
-        """返回事件的持续时间的自然文本描述
+    def duration_statement(self, question_mode: bool = False) -> str:
+        """返回事件的持续时间的自然文本描述或问题
+
+        Args:
+            question_mode (bool): 是否是问题模式，默认为False
 
         Returns:
             str: 事件的持续时间的自然文本描述
         """
-        temp: str = random.choice(TEMPLATES["duration"])
-        temp = self._replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "duration": str(self.duration)})
-        return temp
+        if not question_mode:
+            temp: str = random.choice(TEMPLATES["duration"])
+            temp = self._replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "duration": str(self.duration)})
+            return temp
+        else:
+            # TODO: 生成"他____的时间长达5年"类型的问题，目前没有做到
+            temp: str = random.choice(TEMPLATES["duration"])
+            temp = self._question_replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "duration": UNDERLINE}, "duration")
+            return temp
     
     @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
+        """输出对持续事件的自然文本陈述或对应的问题、类型、答案
+
+        Args:
+            question_mode (bool, optional): 是否是问题模式. 默认为False.
+
+        Returns:
+            dict[str, str]: 对持续事件的自然文本陈述或对应的问题、类型、答案
+        """        
         style_decide = random.choice(["whole", "separate"])
+        rp_dict: dict[str, str] = {"verb": self.verb, "object": self.object, "event": str(self.event), "start": str(self.time), "end": str(self.endtime), "duration": str(self.duration)} # 替换字典
         if question_mode: # 生成一个问题和回答
-            # TODO: 生成一个问题和回答
             if style_decide == "whole":
-                pass
+                arg_list: list[str] = ["start", "end", "duration", "event"]
+                while arg_list:
+                    q_arg = random.choice(arg_list)
+                    temp_list = [i for i in TEMPLATES["lasting_event"] if self._check_template(i, q_arg)]
+                    if temp_list:
+                        break
+                    else:
+                        arg_list.remove(q_arg)
+                        assert arg_list, f"无法为事件({self.event})选择问题生成模板，请检查模板文件"
+                temp = random.choice(temp_list)
+                standard_answer = rp_dict[q_arg] # 标准答案
+                question = self._question_replacement(temp, rp_dict, q_arg) # 生成问题
+                q_type = "time" if (q_arg == "start" or q_arg == "end") else q_arg # 问题类型，如果是时间，统一为"time"
+                return {_QUESTION: question, _QUESTION_TYPE: q_type, _ANSWER: standard_answer}
             elif style_decide == "separate":
-                pass
+                output_attr = random.choice(["start_event", "end_event", "duration"])
+                if output_attr == "start_event":
+                    self.question_event = self.start_event
+                    return self.start_event.statement(question_mode)
+                elif output_attr == "end_event":
+                    self.question_event = self.end_event
+                    return self.end_event.statement(question_mode)
+                elif output_attr == "duration":
+                    question = self.duration_statement(question_mode)
+                    return {_QUESTION: question, _QUESTION_TYPE: "duration", _ANSWER: str(self.duration)}
         else: # 生成一个陈述
             if style_decide == "whole":
                 temp: str = random.choice(TEMPLATES["lasting_event"])
-                state = self._replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "start": str(self.time), "end": str(self.endtime), "duration": str(self.duration)})
+                state = self._replacement(temp, rp_dict)
                 return {_STATEMENT: state}
             elif style_decide == "separate":
-                output_attrs = random.choices(["start_event", "end_event", "duration"], k=2)
+                output_attrs = random.sample(["start_event", "end_event", "duration"], k=2)
                 outputs: list[str] = []
                 for attr in output_attrs:
                     if attr == "start_event":
@@ -341,27 +429,51 @@ class TempRelation(Relation):
     
     @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
-        if question_mode:
-            # TODO: 生成一个问题和回答
-            pass
+        """输出对两个瞬时事件之间的关系的自然文本陈述或对应的问题、类型、答案
+
+        Args:
+            question_mode (bool, optional): 是否是问题模式. 默认为False.
+
+        Returns:
+            dict[str, str]: 对两个瞬时事件之间的关系的自然文本陈述或对应的问题、类型、答案
+        """
+        TEMPORAL_RELATION: str = "temporal_relation"
+        if self.next_statement.time > self.prev_statement.time:
+            temp_list = TEMPLATES[TEMPORAL_RELATION]["after"]
+        elif self.next_statement.time < self.prev_statement.time:
+            temp_list = TEMPLATES[TEMPORAL_RELATION]["before"]
         else:
-            temp: str # 选择的模板
-            TEMPORAL_RELATION: str = "temporal_relation"
-            if self.next_statement.time > self.prev_statement.time:
-                temp = random.choice(TEMPLATES[TEMPORAL_RELATION]["after"])
-            elif self.next_statement.time < self.prev_statement.time:
-                temp = random.choice(TEMPLATES[TEMPORAL_RELATION]["before"])
-            else:
-                temp = random.choice(TEMPLATES[TEMPORAL_RELATION]["simultaneous"])
-            replace_dict: dict[str, str] = {
-                "verb1": self.next_statement.verb,
-                "object1": self.next_statement.object,
-                "event1": str(self.next_statement.event),
-                "verb2": self.prev_statement.verb,
-                "object2": self.prev_statement.object,
-                "event2": str(self.prev_statement.event),
-                "diff": str(self.diff)
-            } # 替换字典
+            temp_list = TEMPLATES[TEMPORAL_RELATION]["simultaneous"]
+        replace_dict: dict[str, str] = {
+            "verb1": self.next_statement.verb,
+            "object1": self.next_statement.object,
+            "event1": str(self.next_statement.event),
+            "verb2": self.prev_statement.verb,
+            "object2": self.prev_statement.object,
+            "event2": str(self.prev_statement.event),
+            "diff": str(self.diff)
+        } # 替换字典
+        if question_mode:
+            arg_list = ["event1", "event2", "diff"]
+            while arg_list:
+                q_arg = random.choice(arg_list)
+                temp_list = [i for i in temp_list if self._check_template(i, q_arg)]
+                if temp_list:
+                    break
+                else:
+                    arg_list.remove(q_arg)
+                    # 这里可能出现预料外的问题，所以需要断言，后续需要修改
+                    assert len(arg_list) > 0, f"无法为关系({self.prev_statement} -> {self.next_statement})选择问题生成模板，请检查模板文件"
+            temp = random.choice(temp_list)
+            if q_arg == "event1":
+                self.question_event = self.next_statement
+            elif q_arg == "event2":
+                self.question_event = self.prev_statement
+            standard_answer = replace_dict[q_arg] # 标准答案
+            question = self._question_replacement(temp, replace_dict, q_arg)
+            return {_QUESTION: question, _QUESTION_TYPE: q_arg, _ANSWER: standard_answer}
+        else:
+            temp = random.choice(temp_list)
             state = self._replacement(temp, replace_dict)
             return {_STATEMENT: state}
 
@@ -378,10 +490,24 @@ class TempLastingRelation(Relation):
 
     @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
+        """输出对一个瞬时事件和一个持续事件之间的关系的自然文本陈述或对应的问题、类型、答案
+
+        Args:
+            question_mode (bool, optional): 是否是问题模式. 默认为False.
+
+        Returns:
+            dict[str, str]: 对一个瞬时事件和一个持续事件之间的关系的自然文本陈述或对应的问题、类型、答案
+        """        
         if question_mode:
-            pass
+            output_attr = random.choice(["start_event", "end_event",]) # 随机选择一个事件建立关系
+            if output_attr == "start_event":
+                relation = TempRelation(self.prev_statement, self.next_statement.start_event)
+            elif output_attr == "end_event":
+                relation = TempRelation(self.prev_statement, self.next_statement.end_event)
+            question_info = self.get_stmt_and_event(relation, question_mode)
+            return question_info
         else:
-            output_attrs = random.choices(["start_event", "end_event", "duration"], k=2)
+            output_attrs = random.sample(["start_event", "end_event", "duration"], k=2)
             outputs: list[str] = []
             for attr in output_attrs:
                 if attr == "start_event":
@@ -406,8 +532,18 @@ class LastingTempRelation(Relation):
 
     @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
+        """输出对一个持续事件和一个瞬时事件之间的关系的自然文本陈述或对应的问题、类型、答案
+
+        Args:
+            question_mode (bool, optional): 是否是问题模式. 默认为False.
+
+        Returns:
+            dict[str, str]: 对一个持续事件和一个瞬时事件之间的关系的自然文本陈述或对应的问题、类型、答案
+        """
         prev_temporal: TemporalEvent = random.choice([self.prev_statement.start_event, self.prev_statement.end_event])
-        return TempRelation(prev_temporal, self.next_statement).statement(question_mode)
+        relation = TempRelation(prev_temporal, self.next_statement)
+        info = self.get_stmt_and_event(relation, question_mode)
+        return info
 
 class LastingRelation(Relation):
     """段对段关系类，表示两个持续事件之间的关系"""
@@ -425,14 +561,17 @@ class LastingRelation(Relation):
         """两个持续事件之间的持续时间差"""
         return abs(self.next_statement.duration - self.prev_statement.duration)
     
-    def duration_relation(self) -> str:
-        """返回两个持续事件的持续时间关系的自然文本描述
+    def duration_relation(self, question_mode: bool = False) -> dict[str, str]:
+        """返回两个持续事件的持续时间关系的自然文本描述或问题
+
+        Args:
+            question_mode (bool): 是否是问题模式，默认为False
 
         Raises:
             ValueError: 内部参数出现错误时抛出异常
 
         Returns:
-            str: 两个持续事件的持续时间关系的自然文本描述
+            dict[str, str]: 两个持续事件的持续时间关系的自然文本描述或问题
         """
         DURATION_RELATION: str = "duration_relation"
         init_dict: dict[str, str] = {
@@ -461,15 +600,43 @@ class LastingRelation(Relation):
                     curr_dict = init_dict | {"ratio": str(fraction)}
             else:
                 raise ValueError(f"mode参数{mode}错误")
-        temp: str = random.choice(TEMPLATES[DURATION_RELATION][typ])
-        return self._replacement(temp, curr_dict)
+        # 根据question_mode选择输出模式
+        if not question_mode: # 输出描述
+            temp: str = random.choice(TEMPLATES[DURATION_RELATION][typ])
+            return {_STATEMENT: self._replacement(temp, curr_dict)}
+        else: # 输出问题
+            arg_list: list[str] = ["event1", "event2", "diff", "times", "ratio"]
+            while arg_list:
+                q_arg = random.choice(arg_list)
+                temp_list = [i for i in TEMPLATES[DURATION_RELATION][typ] if self._check_template(i, q_arg)]
+                if temp_list:
+                    break
+                else:
+                    arg_list.remove(q_arg)
+                    assert arg_list, f"无法为关系({self.prev_statement} -> {self.next_statement})选择问题生成模板，请检查模板文件"
+            temp = random.choice(temp_list)
+            standard_answer = curr_dict[q_arg] # 标准答案
+            question = self._question_replacement(temp, curr_dict, q_arg)
+            return {_QUESTION: question, _QUESTION_TYPE: q_arg, _ANSWER: standard_answer}
     
     @verbose
     def statement(self, question_mode: bool = False) -> dict[str, str]:
         if question_mode:
-            pass
+            output_attr = random.choice(["start_event", "end_event", "duration"])
+            if output_attr == "start_event":
+                prev_temporal: TemporalEvent = random.choice([self.prev_statement.start_event, self.prev_statement.end_event]) # 随机选择一个持续事件的时间点
+                relation = TempRelation(prev_temporal, self.next_statement.start_event)
+                question_info = self.get_stmt_and_event(relation, question_mode)
+                return question_info
+            elif output_attr == "end_event":
+                prev_temporal: TemporalEvent = random.choice([self.prev_statement.start_event, self.prev_statement.end_event])
+                relation = TempRelation(prev_temporal, self.next_statement.end_event)
+                question_info = self.get_stmt_and_event(relation, question_mode)
+                return question_info
+            elif output_attr == "duration":
+                return self.duration_relation(question_mode)
         else:
-            output_attrs = random.choices(["start_event", "end_event", "duration"], k=2)
+            output_attrs = random.sample(["start_event", "end_event", "duration"], k=2)
             outputs: list[str] = []
             for attr in output_attrs:
                 prev_temporal: TemporalEvent = random.choice([self.prev_statement.start_event, self.prev_statement.end_event])
@@ -478,6 +645,27 @@ class LastingRelation(Relation):
                 elif attr == "end_event":
                     outputs.append(TempRelation(prev_temporal, self.next_statement.end_event).statement()[_STATEMENT])
                 elif attr == "duration":
-                    outputs.append(self.duration_relation())
+                    outputs.append(self.duration_relation()[_STATEMENT])
             link: str = random.choice(TEMPLATES["link"])
             return {_STATEMENT: link.join(outputs)}
+        
+def events2relation(prev_event: Event, next_event: Event) -> Relation:
+    """根据两个事件的类型，返回两个事件之间的关系
+
+    Args:
+        prev_event (Event): 前一个事件
+        next_event (Event): 后一个事件
+
+    Returns:
+        Relation: 两个事件之间的关系
+    """
+    if isinstance(prev_event, TemporalEvent) and isinstance(next_event, TemporalEvent):
+        return TempRelation(prev_event, next_event)
+    elif isinstance(prev_event, TemporalEvent) and isinstance(next_event, LastingEvent):
+        return TempLastingRelation(prev_event, next_event)
+    elif isinstance(prev_event, LastingEvent) and isinstance(next_event, TemporalEvent):
+        return LastingTempRelation(prev_event, next_event)
+    elif isinstance(prev_event, LastingEvent) and isinstance(next_event, LastingEvent):
+        return LastingRelation(prev_event, next_event)
+    else:
+        raise ValueError(f"事件类型({prev_event}, {next_event})不支持")
