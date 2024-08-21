@@ -617,3 +617,24 @@ class LastingRelation(Relation):
                     outputs.append(self.duration_relation()[_STATEMENT])
             link: str = random.choice(TEMPLATES["link"])
             return {_STATEMENT: link.join(outputs)}
+        
+def events2relation(prev_event: Event, next_event: Event) -> Relation:
+    """根据两个事件的类型，返回两个事件之间的关系
+
+    Args:
+        prev_event (Event): 前一个事件
+        next_event (Event): 后一个事件
+
+    Returns:
+        Relation: 两个事件之间的关系
+    """
+    if isinstance(prev_event, TemporalEvent) and isinstance(next_event, TemporalEvent):
+        return TempRelation(prev_event, next_event)
+    elif isinstance(prev_event, TemporalEvent) and isinstance(next_event, LastingEvent):
+        return TempLastingRelation(prev_event, next_event)
+    elif isinstance(prev_event, LastingEvent) and isinstance(next_event, TemporalEvent):
+        return LastingTempRelation(prev_event, next_event)
+    elif isinstance(prev_event, LastingEvent) and isinstance(next_event, LastingEvent):
+        return LastingRelation(prev_event, next_event)
+    else:
+        raise ValueError(f"事件类型({prev_event}, {next_event})不支持")
