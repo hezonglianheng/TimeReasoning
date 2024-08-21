@@ -214,6 +214,8 @@ def verbose(func: Callable[[Statement, bool], dict[str, str]]) -> Callable[[Stat
             else: # 生成问题和回答
                 if isinstance(self, Event):
                     print(f"生成问题：{self.event}，问题类型：{result[_QUESTION_TYPE]}")
+                elif isinstance(self, Relation):
+                    print(f"生成问题：{self.prev_statement} -> {self.next_statement}，问题类型：{result[_QUESTION_TYPE]}")
         # 放弃使用这个装饰器进行输出到最终结果
         """
         elif VERBOSE >= 2: # 输出到最终结果
@@ -360,7 +362,7 @@ class LastingEvent(Event):
                 state = self._replacement(temp, rp_dict)
                 return {_STATEMENT: state}
             elif style_decide == "separate":
-                output_attrs = random.choices(["start_event", "end_event", "duration"], k=2)
+                output_attrs = random.sample(["start_event", "end_event", "duration"], k=2)
                 outputs: list[str] = []
                 for attr in output_attrs:
                     if attr == "start_event":
@@ -481,7 +483,7 @@ class TempLastingRelation(Relation):
                 question: str = self.next_statement.duration_statement()
                 return {_QUESTION: question, _QUESTION_TYPE: "duration", _ANSWER: str(self.next_statement.duration)}
         else:
-            output_attrs = random.choices(["start_event", "end_event", "duration"], k=2)
+            output_attrs = random.sample(["start_event", "end_event", "duration"], k=2)
             outputs: list[str] = []
             for attr in output_attrs:
                 if attr == "start_event":
@@ -603,7 +605,7 @@ class LastingRelation(Relation):
             elif output_attr == "duration":
                 return self.duration_relation(question_mode)
         else:
-            output_attrs = random.choices(["start_event", "end_event", "duration"], k=2)
+            output_attrs = random.sample(["start_event", "end_event", "duration"], k=2)
             outputs: list[str] = []
             for attr in output_attrs:
                 prev_temporal: TemporalEvent = random.choice([self.prev_statement.start_event, self.prev_statement.end_event])
