@@ -6,6 +6,7 @@
 import statements as stmt
 import random
 from fractions import Fraction
+import time # 引入计时功能
 
 # 结果的键
 GUIDE = "guide"
@@ -237,7 +238,11 @@ class TimeLine:
         Returns:
             dict[str, str]: 运行结果，包括引导语、描述、问题、选项、答案、详细信息等
         """
+        start_time = time.time()
         random.seed(random_seed) # 设置随机种子
         part_stmt = self.run_stmt(verbose) # 生成时间轴描述
         part_question = self.run_question(verbose) # 生成时间轴问题
+        end_time = time.time()
+        if verbose >= 1: # 在控制台输出结束提示信息
+            print(f"描述和问题生成完毕！用时: {end_time - start_time}\n")
         return part_stmt | part_question # 合并描述和问题
