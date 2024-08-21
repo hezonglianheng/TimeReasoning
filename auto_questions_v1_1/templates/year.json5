@@ -46,19 +46,19 @@
         // 事件1在事件2之后
         "after": [
             "[event1]的时间比[event2]晚了[diff]年",
-            "在[event2]之后的[diff]年，他曾[event1]",
-            "他[event2]的[diff]年之后，曾经[event1]",
+            "在[event2]之后的[diff]年，他[event1]",
+            "他[event2]的[diff]年之后，[event1]",
             "[event1]是在[event2]的[diff]年后发生的",
             "[event2]是在[event1]的[diff]年前",
             "[event1]是在[event2]之后的第[diff]年发生的",
         ],
         // 事件1与事件2同时发生
         "simultaneous": [
-            "在[event1]的那一年，他也[event2]",
-            "那一年，他不仅[event1]，还[event2]",
-            "在[event1]的那一年，他还[event2]",
-            "他在[event1]的同一年，也[event2]",
-            "那一年，他既[event1]，也[event2]",
+            "在[event2]的那一年，他也[event1]",
+            "那一年，他不仅[event2]，还[event1]",
+            "在[event2]的那一年，他还[event1]",
+            "他在[event2]的同一年，也[event1]",
+            "那一年，他既[event2]，也[event1]",
         ],
     },
     // 两个持续事件的持续时间关系的自然文本描述
@@ -83,15 +83,15 @@
         ],
         // 事件1的持续时间与事件2的持续时间之间有倍数关系
         "times": [
-            "他[event2]的时光为[event1]时间的[times]倍",
-            "他的[event2]时长是[event1]的[times]倍",
-            "相比之下，他[event2]的时间是[event1]时间的[times]倍"
+            "他[event1]的时光为[event2]时间的[times]倍",
+            "他的[event1]时长是[event2]的[times]倍",
+            "相比之下，他[event1]的时间是[event2]时间的[times]倍"
         ],
         // 事件1的持续时间与事件2的持续时间之间有比例关系
         "ratio": [
-            "他[event2]的时光为[event1]时间的[ratio]",
-            "他的[event2]时长是[event1]的[ratio]",
-            "相比之下，他[event2]的时间是[event1]时间的[ratio]"
+            "他[event1]的时光为[event2]时间的[ratio]",
+            "他的[event1]时长是[event2]的[ratio]",
+            "相比之下，他[event1]的时间是[event2]时间的[ratio]"
         ],
     },
     // 用于连接两个事件的表述的语言片段
