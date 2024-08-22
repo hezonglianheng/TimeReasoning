@@ -155,7 +155,11 @@ class TimeLine:
             if isinstance(correct_answers, str): # 将正确答案转换为列表
                 correct_answers = [correct_answers]
             distractors = [i for i in candidates if i not in correct_answers] # 生成干扰项
-            distractors = random.sample(distractors, MUITIPLE_CHOICE_NUM - len(correct_answers)) # 随机选择干扰项
+            if len(correct_answers) < MUITIPLE_CHOICE_NUM: # 若正确答案数量小于选项数量，则从干扰项中补充
+                distractors = random.sample(distractors, MUITIPLE_CHOICE_NUM - len(correct_answers)) # 随机选择干扰项
+            else: # 若干扰项数量足够，则不需要补充
+                distractors = [] # 若干扰项数量足够，则不需要补充
+                correct_answers = random.sample(correct_answers, MUITIPLE_CHOICE_NUM) # 随机选择正确答案
             options_list = correct_answers + distractors # 生成选项列表
             random.shuffle(options_list) # 打乱选项顺序
             options = {chr(ord("A")+i): options_list[i] for i in range(MUITIPLE_CHOICE_NUM)} # 生成选项
