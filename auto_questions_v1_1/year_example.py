@@ -2,13 +2,14 @@
 # date: 2024-08-18
 # 年份问题示例
 
+import timescale as scale
 import timeline
 import statements as stmt
 from pathlib import Path
 import json
 
 # 创建一个时间线对象
-line = timeline.TimeLine(stmt.TimeScale.Year)
+line = timeline.TimeLine(scale.TimeScale.Year)
 # 设置引导语。引导语也可以在创建时间线对象时设置
 line.add_guide("你来到一座坟墓面前。这座坟墓的主人的生活经历如下：")
 # 设置事件

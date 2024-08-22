@@ -3,6 +3,7 @@
 # date: 2024-08-18
 # author: Qin Yuhang
 
+import timescale as scale
 import statements as stmt
 import random
 from fractions import Fraction
@@ -22,7 +23,7 @@ ALL_WRONG_PROB = 0.1 # 全部选项均不正确的概率
 
 class TimeLine:
     """时间轴类，用于描述一个时间轴及其上的事件关系"""
-    def __init__(self, scale: stmt.TimeScale, guide: str = "") -> None:
+    def __init__(self, scale: scale.TimeScale, guide: str = "") -> None:
         """时间轴类，用于描述一个时间轴及其上的事件关系
 
         Args:

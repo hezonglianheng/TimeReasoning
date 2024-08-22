@@ -3,6 +3,7 @@
 # author: Qin Yuhang
 # date: 2024-08-16
 
+import timescale as scale
 import json5
 import random
 import abc
@@ -21,16 +22,10 @@ _ANSWER = "answer"
 # 其他常量
 UNDERLINE = "____"
 
-@enum.unique
-class TimeScale(enum.Enum):
-    """时间尺度枚举类"""
-    Order = 0
-    Year = 1
-
 # 模板文件路径
 TEMPLATE_FILES = {
-    TimeScale.Order: Path("templates/order.json5"),
-    TimeScale.Year: Path("templates/year.json5"),
+    scale.TimeScale.Order: Path("templates/order.json5"),
+    scale.TimeScale.Year: Path("templates/year.json5"),
 }
 
 # 模板字典
@@ -39,7 +34,7 @@ TEMPLATES: dict[str, Any] = {}
 # 详细信息输出强度
 VERBOSE = 0
 
-def get_templates(time_scale: TimeScale) -> dict[str, Any]:
+def get_templates(time_scale: scale.TimeScale) -> dict[str, Any]:
     """获取指定时间尺度的模板字典
 
     Args:
