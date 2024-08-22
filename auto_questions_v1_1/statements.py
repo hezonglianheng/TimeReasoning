@@ -457,14 +457,14 @@ class TempRelation(Relation):
             arg_list = ["event1", "event2", "diff"]
             while arg_list:
                 q_arg = random.choice(arg_list)
-                temp_list = [i for i in temp_list if self._check_template(i, q_arg)]
-                if temp_list:
+                _list = [i for i in temp_list if self._check_template(i, q_arg)]
+                if _list:
                     break
                 else:
                     arg_list.remove(q_arg)
                     # 这里可能出现预料外的问题，所以需要断言，后续需要修改
-                    assert len(arg_list) > 0, f"无法为关系({self.prev_statement} -> {self.next_statement})选择问题生成模板，请检查模板文件"
-            temp = random.choice(temp_list)
+                    assert len(arg_list), f"无法为关系({self.prev_statement} -> {self.next_statement})选择问题生成模板，请检查模板文件"
+            temp = random.choice(_list)
             if q_arg == "event1":
                 self.question_event = self.next_statement
             elif q_arg == "event2":
@@ -608,13 +608,13 @@ class LastingRelation(Relation):
             arg_list: list[str] = ["event1", "event2", "diff", "times", "ratio"]
             while arg_list:
                 q_arg = random.choice(arg_list)
-                temp_list = [i for i in TEMPLATES[DURATION_RELATION][typ] if self._check_template(i, q_arg)]
-                if temp_list:
+                _list = [i for i in TEMPLATES[DURATION_RELATION][typ] if self._check_template(i, q_arg)]
+                if _list:
                     break
                 else:
                     arg_list.remove(q_arg)
                     assert arg_list, f"无法为关系({self.prev_statement} -> {self.next_statement})选择问题生成模板，请检查模板文件"
-            temp = random.choice(temp_list)
+            temp = random.choice(_list)
             standard_answer = curr_dict[q_arg] # 标准答案
             question = self._question_replacement(temp, curr_dict, q_arg)
             return {_QUESTION: question, _QUESTION_TYPE: q_arg, _ANSWER: standard_answer}
