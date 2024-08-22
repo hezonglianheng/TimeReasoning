@@ -20,10 +20,10 @@ _QUESTION_TYPE = "question_type"
 _ANSWER = "answer"
 
 # 其他常量
-UNDERLINE = "____"
+__UNDERLINE = "____"
 
 # 模板文件路径
-TEMPLATE_FILES = {
+__TEMPLATE_FILES = {
     scale.TimeScale.Order: Path("templates/order.json5"),
     scale.TimeScale.Year: Path("templates/year.json5"),
 }
@@ -44,7 +44,7 @@ def get_templates(time_scale: scale.TimeScale) -> dict[str, Any]:
         dict[str, Any]: 模板字典
     """
     global TEMPLATES
-    curr_file = Path(__file__).parent / TEMPLATE_FILES[time_scale]
+    curr_file = Path(__file__).parent / __TEMPLATE_FILES[time_scale]
     with curr_file.open("r", encoding="utf-8") as f:
         TEMPLATES = json5.load(f)
         return TEMPLATES
@@ -94,7 +94,7 @@ class Statement(metaclass=abc.ABCMeta):
         Returns:
             str: 替换后的字符串
         """
-        replacements |= {question_type: UNDERLINE}
+        replacements |= {question_type: __UNDERLINE}
         template = Statement._replacement(template, replacements)
         return template
     
@@ -328,7 +328,7 @@ class LastingEvent(Event):
         else:
             # TODO: 生成"他____的时间长达5年"类型的问题，目前没有做到
             temp: str = random.choice(TEMPLATES["duration"])
-            temp = self._question_replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "duration": UNDERLINE}, "duration")
+            temp = self._question_replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "duration": __UNDERLINE}, "duration")
             return temp
     
     @verbose
