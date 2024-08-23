@@ -30,8 +30,12 @@ For User | [For Developer](readme4developer.md)
 
 ## 使用指南
 
+本程序使用的Python版本为3.12.1.请在目录下创建Python虚拟环境后执行`pip install -r requirements.txt`后使用此程序。
+
 ### 编写模板库
 
 ### 编写知识库
 
 ### 利用程序编写Python脚本
+编写可以生成试题的脚本可以参考[year_example.py](year_example.py).
+编写脚本主要分成如下步骤:
