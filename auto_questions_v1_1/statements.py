@@ -4,13 +4,13 @@
 # date: 2024-08-16
 
 import timescale as scale
+import knowledge
 import json5
 import random
 import abc
 from pathlib import Path
 from typing import Any, Callable, Self
 from fractions import Fraction
-import enum
 
 # statement()函数返回字典的键
 _STATEMENT = "statement"
@@ -31,23 +31,23 @@ __TEMPLATE_FILES = {
 # 模板字典
 TEMPLATES: dict[str, Any] = {}
 
+# 需要调用的知识库
+KNOWLEDGE_BASE: knowledge.KnowledgeBase = None
+
 # 详细信息输出强度
 VERBOSE = 0
 
-def get_templates(time_scale: scale.TimeScale) -> dict[str, Any]:
-    """获取指定时间尺度的模板字典
+def get_templates_knowledge(time_scale: scale.TimeScale) -> None:
+    """获取指定时间尺度的模板字典存入变量TEMPLATES，并初始化知识库存入变量KNOWLEDGE_BASE
 
     Args:
         time_scale (TimeScale): 时间尺度枚举类
-
-    Returns:
-        dict[str, Any]: 模板字典
     """
-    global TEMPLATES
+    global TEMPLATES, KNOWLEDGE_BASE
     curr_file = Path(__file__).parent / __TEMPLATE_FILES[time_scale]
     with curr_file.open("r", encoding="utf-8") as f:
         TEMPLATES = json5.load(f)
-        return TEMPLATES
+    KNOWLEDGE_BASE = knowledge.KnowledgeBase(time_scale)
 
 class Statement(metaclass=abc.ABCMeta):
     """陈述类的抽象基类"""
@@ -94,7 +94,7 @@ class Statement(metaclass=abc.ABCMeta):
         Returns:
             str: 替换后的字符串
         """
-        replacements |= {question_type: __UNDERLINE}
+        replacements |= {question_type: "____"}
         template = Statement._replacement(template, replacements)
         return template
     
@@ -110,6 +110,21 @@ class Statement(metaclass=abc.ABCMeta):
             bool: 模板是否含有特定的占位符
         """
         return all([f"[{arg}]" in template for arg in args])
+    
+    @staticmethod
+    def _use_knowledge(statement: str, ktype: knowledge.KTYPE, **kwargs) -> str:
+        """使用知识库对陈述进行处理
+
+        Args:
+            statement (str): 待处理的陈述
+
+        Returns:
+            str: 处理后的陈述
+        """
+        know_prob: float = .2 # 知识库处理的概率
+        if random.random() < know_prob:
+            return KNOWLEDGE_BASE.apply(statement, ktype, **kwargs)
+        return statement
     
     def __str__(self) -> str:
         return ""
@@ -281,6 +296,7 @@ class TemporalEvent(Event):
         else: # 生成一个陈述
             temp: str = random.choice(TEMPLATES["temporal_event"])
             state = self._replacement(temp, rp_dict)
+            state = self._use_knowledge(state, "point", time=self.time) # 使用知识库处理
             return {_STATEMENT: state}
 
 class LastingEvent(Event):
@@ -328,7 +344,7 @@ class LastingEvent(Event):
         else:
             # TODO: 生成"他____的时间长达5年"类型的问题，目前没有做到
             temp: str = random.choice(TEMPLATES["duration"])
-            temp = self._question_replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "duration": __UNDERLINE}, "duration")
+            temp = self._question_replacement(temp, {"verb": self.verb, "object": self.object, "event": str(self.event), "duration": "____"}, "duration")
             return temp
     
     @verbose
@@ -470,6 +486,9 @@ class TempRelation(Relation):
         else:
             temp = random.choice(temp_list)
             state = self._replacement(temp, replace_dict)
+            # 使用知识库处理
+            state = self._use_knowledge(state, "point", time=self.prev_statement.time)
+            state = self._use_knowledge(state, "point", time=self.next_statement.time)
             return {_STATEMENT: state}
 
 class TempLastingRelation(Relation):

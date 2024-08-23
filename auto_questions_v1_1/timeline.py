@@ -104,7 +104,7 @@ class TimeLine:
         """
         assert len(self.events) > 1, "时间轴上至少需要两个事件，请通过add_events方法添加事件"
         # random.seed(random_seed) # 设置随机种子
-        stmt.get_templates(self.scale) # 获取时间轴的模板
+        stmt.get_templates_knowledge(self.scale) # 获取时间轴的模板
         stmt.VERBOSE = verbose # 设置输出强度
         start_event = random.choice(self.events) # 随机选择一个事件作为起始事件
         self.__stmts.append(start_event.statement()[stmt._STATEMENT]) # 添加起始事件的描述
