@@ -33,9 +33,31 @@ For User | [For Developer](readme4developer.md)
 本程序使用的Python版本为3.12.1.请在目录下创建Python虚拟环境后执行`pip install -r requirements.txt`后使用此程序。
 
 ### 编写模板库
+模板库的编写请参照[templates\year.json5](templates\year.json5). 模板是用于将命题翻译为自然语言文本的, 包含占位符的未完成文本. 目前模板的可用字段如下:
+|   字段   |                             含义                             |
+|:--------:|:------------------------------------------------------------:|
+|   verb   |                        事件的谓语动词                        |
+|  object  |                          事件的宾语                          |
+|   event  |            事件，述宾结构。event1、event2含义相同            |
+|   time   | 瞬时事件发生的时间点。start、end表示持续事件的起始、终止时间 |
+| duration |                 持续事件的时长，程序自动计算                 |
+|   diff   |               两个瞬时事件时点的差值，自动计算               |
+|   times  |             两个持续事件时长的倍数，程序自动计算             |
+|   ratio  |             两个持续时间时长的比例关系，自动计算             |
 
 ### 编写知识库
+知识库的编写参照[knowledge\year.json5](knowledge\year.json5). 格式为`{"年份数字": [对于年份的描述列表]}`.
 
 ### 利用程序编写Python脚本
-编写可以生成试题的脚本可以参考[year_example.py](year_example.py).
-编写脚本主要分成如下步骤:
+编写可以生成试题的脚本可以参考[year_example.py](year_example.py). 主要分成如下步骤:
+1. 按照以下代码依次导入所需依赖:
+```python
+import timescale # 时间尺度及相关对象
+import timeline # 时间线及相关对象
+import statements # 陈述及相关对象
+```
+2. 导入需要的其他Python依赖.
+3. 创建时间线对象并设置试题的引导语.
+4. 设置事件. 目前可以设置的事件主要有瞬时事件和持续事件, 其中可以为持续时间设置特殊的起始事件和终止事件(均为瞬时事件). 请注意, 在设置事件时, 需要将谓词和宾语拆开设置. 
+5. 将事件添加到时间线中.
+6. 通过时间线的`run()`方法执行推理过程获得试题.
