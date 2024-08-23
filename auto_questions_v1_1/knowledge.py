@@ -7,16 +7,20 @@ import timescale as scale
 import json5
 from pathlib import Path
 import abc
-from typing import Any, Self, Literal
+from typing import Any, Self, Literal, Callable
 import random
 
 KTYPE = Literal["point", "period"]
+
+VERBOSE: int = 0 # 输出信息的详细程度
 
 # 时间常识知识库文件名称
 __KNOWLEDGE_FILES = {
     scale.TimeScale.Year: "year.json5",
     scale.TimeScale.Order: "order.json5",
 }
+
+KNOWLEDGE_LIST: list[str] = []
 
 def get_knowledge_dict(scale: scale.TimeScale) -> dict:
     """获取时间常识知识库
@@ -30,7 +34,7 @@ def get_knowledge_dict(scale: scale.TimeScale) -> dict:
     file = Path(__file__).parent / "knowledge" / __KNOWLEDGE_FILES[scale]
     with open(file, "r", encoding="utf8") as f:
         return json5.load(f)
-    
+
 class Knowledge(metaclass=abc.ABCMeta):
     """时间常识库中知识的抽象基类"""
     @abc.abstractmethod
@@ -46,6 +50,17 @@ class Knowledge(metaclass=abc.ABCMeta):
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return self.apply(*args, **kwds)
 
+def verbose(func: Callable[[Knowledge, str], str]) -> Callable[[Knowledge, str], str]:
+    """输出信息的装饰器"""
+    def wrapper(self: Knowledge, statement: str) -> str:
+        if VERBOSE >= 1:
+            if isinstance(self, PointKnowledge):
+                print(f"调用知识：({self.time}年, {self.description})")
+        if VERBOSE >= 2:
+            KNOWLEDGE_LIST.append(f"({self.time}年, {self.description})")
+        return func(self, statement)
+    return wrapper
+    
 class PointKnowledge(Knowledge):
     """时间点知识类"""
     def __init__(self, time: int, description: str, scale: scale.TimeScale):
@@ -75,6 +90,7 @@ class PointKnowledge(Knowledge):
         time, description = d.popitem()
         return cls(int(time), description, scale)
     
+    @verbose
     def apply(self, statement: str) -> str:
         """将statement中的时间点替换为描述
 

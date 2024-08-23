@@ -5,6 +5,7 @@
 
 import timescale as scale
 import statements as stmt
+import knowledge as know
 import random
 from fractions import Fraction
 import time # 引入计时功能
@@ -13,6 +14,7 @@ import time # 引入计时功能
 GUIDE = "guide"
 STATEMENTS = "statements"
 PROCESS = "process"
+KNOWLEDGE = "knowledge"
 QUESTION = "question"
 OPTIONS = "options"
 ANSWERS = "answers"
@@ -106,6 +108,7 @@ class TimeLine:
         # random.seed(random_seed) # 设置随机种子
         stmt.get_templates_knowledge(self.scale) # 获取时间轴的模板
         stmt.VERBOSE = verbose # 设置输出强度
+        know.VERBOSE = verbose # 设置输出强度
         start_event = random.choice(self.events) # 随机选择一个事件作为起始事件
         self.__stmts.append(start_event.statement()[stmt._STATEMENT]) # 添加起始事件的描述
         self.__described_events.append(start_event) # 记录已经表述过的事件
@@ -130,7 +133,7 @@ class TimeLine:
                     self.__processes_texts.append(f"生成事件关系描述：{prev_event} -> {curr_event}")
             self.__stmts.append(curr_statement[stmt._STATEMENT])
             self.__described_events.append(curr_event) # 记录已经表述过的事件
-        return {GUIDE: self.guide, STATEMENTS: "\n".join(self.__stmts), PROCESS: "\n".join(self.__processes_texts)}
+        return {GUIDE: self.guide, STATEMENTS: "\n".join(self.__stmts), PROCESS: "\n".join(self.__processes_texts), KNOWLEDGE: "\n".join(know.KNOWLEDGE_LIST)}
     
     def run_question(self, verbose: int = 0) -> dict[str, str|list[str]|dict[str, str]]:
         """生成时间轴的问题
