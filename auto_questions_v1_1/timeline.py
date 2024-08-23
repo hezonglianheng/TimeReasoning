@@ -3,6 +3,7 @@
 # date: 2024-08-18
 # author: Qin Yuhang
 
+import timescale as scale
 import statements as stmt
 import random
 from fractions import Fraction
@@ -22,7 +23,7 @@ ALL_WRONG_PROB = 0.1 # 全部选项均不正确的概率
 
 class TimeLine:
     """时间轴类，用于描述一个时间轴及其上的事件关系"""
-    def __init__(self, scale: stmt.TimeScale, guide: str = "") -> None:
+    def __init__(self, scale: scale.TimeScale, guide: str = "") -> None:
         """时间轴类，用于描述一个时间轴及其上的事件关系
 
         Args:
@@ -103,7 +104,7 @@ class TimeLine:
         """
         assert len(self.events) > 1, "时间轴上至少需要两个事件，请通过add_events方法添加事件"
         # random.seed(random_seed) # 设置随机种子
-        stmt.get_templates(self.scale) # 获取时间轴的模板
+        stmt.get_templates_knowledge(self.scale) # 获取时间轴的模板
         stmt.VERBOSE = verbose # 设置输出强度
         start_event = random.choice(self.events) # 随机选择一个事件作为起始事件
         self.__stmts.append(start_event.statement()[stmt._STATEMENT]) # 添加起始事件的描述
