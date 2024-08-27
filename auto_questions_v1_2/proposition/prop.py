@@ -43,3 +43,14 @@ class Proposition(metaclass = abc.ABCMeta):
         """
         # 判断value的类与self的类是否相同，之后判断value的属性与self的属性是否相同
         return type(value) == type(self) and vars(self) == vars(value)
+    
+    def got(self, prop_list: list["Proposition"]) -> bool:
+        """判断一个命题是否包含在一个命题列表中
+
+        Args:
+            prop_list (list[Proposition]): 命题列表
+
+        Returns:
+            bool: 一个命题是否包含在一个命题列表中
+        """
+        return any([self == prop for prop in prop_list])
