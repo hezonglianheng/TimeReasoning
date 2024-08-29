@@ -3,7 +3,7 @@
 # author: Qin Yuhang
 
 import abc
-from typing import Optional
+from typing import Optional, List
 import sys
 from pathlib import Path
 
@@ -26,14 +26,14 @@ class Relation(metaclass = abc.ABCMeta):
     
     @classmethod
     @abc.abstractmethod
-    def reason(cls, prop: prop.Proposition) -> Optional[prop.Proposition]:
+    def reason(cls, prop: prop.Proposition) -> Optional[List[prop.Proposition]]:
         """从一个命题推断具有某种关系的另一个命题
 
         Args:
             prop (prop.Proposition): 起始命题
 
         Returns:
-            Optional[prop.Proposition]: 推断出的命题
+            Optional[List[prop.Proposition]]: 推断出的命题列表
         """
         pass
 
@@ -48,7 +48,8 @@ class Relation(metaclass = abc.ABCMeta):
         Returns:
             bool: 两个命题是否具有这一关系
         """
-        if cls.reason(prop1) == prop2:
+        # if cls.reason(prop1) == prop2:
+        if any([prop2 == i for i in cls.reason(prop1)]):
             return True
         return False
 
