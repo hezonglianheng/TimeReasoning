@@ -6,7 +6,7 @@
 包含推理机类，用于执行推理任务
 """
 
-from itertools import product, combinations
+from itertools import product
 from functools import reduce, cache
 from typing import List, Sequence
 from copy import deepcopy
@@ -109,13 +109,13 @@ class SearchMachine:
             all_props (list[prop.Proposition]): 全部命题列表
             relations (list[type[relation.Relation]]): 关系列表
             rules (list[type[rule.Rule]]): 规则列表
-            limit (int | None): 最大搜索长度，None表示以初始命题列表长度的平方为上限. 默认为None.
+            limit (int | None): 最大搜索长度，None表示以初始命题列表长度的2倍为上限. 默认为None.
         """
         self.init_props = init_props # 初始命题列表
         self.all_props = all_props # 全部命题列表
         self.relations = relations
         self.rules = rules
-        self.limit = limit if limit is not None else len(init_props) ** 2
+        self.limit = limit if limit is not None else len(init_props) * 2
         self.index_list: List[List[int]] = []
 
     @cache
