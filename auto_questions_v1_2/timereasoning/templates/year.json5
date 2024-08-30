@@ -1,0 +1,107 @@
+// 以年为单位的命题陈述模板
+// 模板中存在占位符，格式为"[占位符名]"，如"[element]"、"[time]"等
+// 占位符与相应命题的属性对应
+
+{
+    // 瞬时事件的模板
+    "temporal": [
+        "他[element]，那是在[time]年",
+        "在[time]年，他[element]",
+        "他在[time]年[element]",
+        "他[element]的时候是在[time]年",
+    ],
+    // 时长的模板
+    "duration": [
+        "他[element]的时间长达[duration]年",
+        "他[element]有[duration]年之久",
+        "他[element]的时间已经长达[duration]年",
+        "他[element]的时间达到了[duration]年",
+        "他[element]整整[duration]年",
+    ],
+    // 持续事件的模板
+    "durative": [
+        // 描述起点和终点
+        "从[time]年到[endtime]年，他[element]",
+        "他自[time]年起[element]，直到[endtime]年结束",
+        "他从[time]年开始[element]，一直持续到[endtime]年",
+        "他自[time]年起到[endtime]年止[element]",
+        "[time]年至[endtime]年，他曾[element]",
+        // 描述起点和持续时间
+        "从[time]年开始的[duration]年间，他[element]",
+        "自[time]年起，他一直[element]，直到[duration]年后",
+        "从[time]年开始，他[element]，时间长达[duration]年",
+        // 描述终点和持续时间
+        "他在[endtime]年之前的[duration]年里一直[element]",
+        "直至[endtime]年，他已连续[duration]年[element]",
+        "他在[endtime]年之前[element][duration]年",
+    ],
+    // 时频的模板
+    "freq": [
+        "从[time]年到[endtime]年，每[frequency]年都[element]",
+        "从[time]年开始的[duration]年间，每[frequency]年都[element]",
+        "他在[endtime]年之前的[duration]年里每[frequency]年都[element]",
+    ],
+    // 事件先后关系的模板
+    "before": [
+        "[new_element]的时间比[prev_element]早",
+        "[new_element]是在[prev_element]之前发生的",
+        "[prev_element]是在[new_element]之后",
+    ],
+    "before_time": [
+        "[new_element]的时间比[prev_element]早了[diff]年", 
+        "在[prev_element]之前的[diff]年，他[new_element]", 
+        "他[prev_element]的[diff]年之前[new_element]", 
+        "[new_element]是在[prev_element]的[diff]年前发生的", 
+        "[prev_element]是在[new_element]的[diff]年后", 
+        "[new_element]是在[prev_element]之前的第[diff]年发生的",
+    ],
+    "after": [
+        "[new_element]的时间比[prev_element]晚",
+        "[new_element]是在[prev_element]之后发生的",
+        "[prev_element]是在[new_element]之前",
+    ],
+    "after_time": [
+        "[new_element]的时间比[prev_element]晚了[diff]年",
+        "在[prev_element]之后的[diff]年，他[new_element]",
+        "他[prev_element]的[diff]年之后，[new_element]",
+        "[new_element]是在[prev_element]的[diff]年后发生的",
+        "[prev_element]是在[new_element]的[diff]年前",
+        "[new_element]是在[prev_element]之后的第[diff]年发生的",
+    ],
+    "simultaneous": [
+        "在[prev_element]的那一年，他也[new_element]",
+        "那一年，他不仅[prev_element]，还[new_element]",
+        "在[prev_element]的那一年，他还[new_element]",
+        "他在[prev_element]的同一年，也[new_element]",
+        "那一年，他既[prev_element]，也[new_element]",
+    ],
+    // 事件间隔的模板
+    "gap_time": [
+        "[prev_element]和[new_element]之间相隔[diff]年",
+        "[prev_element]和[new_element]之间的时间间隔是[diff]年",
+    ],
+    // 时长关系的模板
+    "long": [
+        "他[new_element]的时间比[prev_element]的时间长",
+        "他[new_element]的总时长比[prev_element]的总时长多",
+    ],
+    "long_time": [
+        "他[new_element]的时间比[prev_element]的时间长了[diff]年",
+        "他[new_element]的总时长比[prev_element]的总时长多了[diff]年", 
+    ],
+    "short": [
+        "他[new_element]的时间比[prev_element]的时间短",
+        "他[new_element]的总时长比[prev_element]的总时长少",
+    ],
+    "short_time": [
+        "他[new_element]的时间比他[prev_element]的时间少了[diff]年",
+        "他[new_element]的时间比他[prev_element]的时间短了[diff]年"
+    ],
+    "same_len": [
+        "他[new_element]的年数和他[prev_element]的年数一样",
+        "他[new_element]的时间和他[prev_element]的时间一样长",
+        "他[new_element]的时间与他[prev_element]所花的时间相同",
+        "他[new_element]花费的时间和他[prev_element]花费的时间相等",
+        "他[new_element]的时间与他[prev_element]的时间一致",
+    ],
+}
