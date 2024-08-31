@@ -3,7 +3,7 @@
 # author: Qin Yuhang
 
 """
-包含推理机类，用于执行推理任务
+包含推理机类、搜索机类，用于执行推理任务
 """
 
 from itertools import product

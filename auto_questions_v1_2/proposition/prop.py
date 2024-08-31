@@ -4,29 +4,34 @@
 
 """
 关于命题的基本定义和基本操作
+本文件中定义了命题的抽象类、一元命题、二元命题和三元命题
 """
 
 import abc
 import random
 from typing import Dict, Any
+import sys
+from pathlib import Path
+
+# 将上级目录加入到sys.path中
+sys.path.append(Path(__file__).resolve().parents[1].as_posix())
+
+import proposition.element as element
 
 # 返回的问题信息
 SENTENCE = "sentence"
 TYPE = "type"
 ANSWER = "answer"
 
-class Proposition(metaclass = abc.ABCMeta):
+class Proposition(element.Element):
+    """命题的抽象基类"""
     @abc.abstractmethod
-    def __init__(self, symmetrical: bool = False, precise: bool = False, askable: bool = False):
+    def __init__(self, askable: bool = True):
         """初始化命题
 
         Args:
-            symmetrical (bool, optional): 是否对称. 默认为False.
-            precise (bool, optional): 是否精确. 默认为False.
-            askable (bool, optional): 是否可询问. 默认为False.
+            askable (bool, optional): 是否可询问. 默认为True.
         """
-        self.symmetrical = symmetrical
-        self.precise = precise
         self.askable = askable
 
     @property
@@ -36,22 +41,40 @@ class Proposition(metaclass = abc.ABCMeta):
         return ""
 
     def attrs(self) -> dict[str, str]:
-        """返回命题的属性，为dict[str, str]"""
+        """返回命题以字符串形式表达的属性
+        
+        Returns: 
+            dict[str, str]: 属性字典
+        """
         return {k: str(v) for k, v in vars(self).items()}
     
     def state(self, temps: dict[str, list[str]]) -> str:
-        """返回命题的陈述，为str"""
+        """返回命题的陈述
+        
+        Args:
+            temps (dict[str, list[str]]): 模板字典，从中选取对应的模板
+
+        Returns:
+            str: 命题的一个陈述句
+        """
         curr_temp = random.choice(temps[self.temp_key])
         for k, v in self.attrs().items():
             curr_temp = curr_temp.replace(f"[{k}]", v)
         return curr_temp
 
     def ask(self, temps: dict[str, list[str]], key: str = None) -> Dict[str, str | Any]:
-        """返回命题的问题信息，为dict[str, str | Any]"""
+        """返回命题的问题信息
+        
+        Args:
+            temps (dict[str, list[str]]): 模板字典，从中选取对应的模板
+            key (str): 可以指定询问的字段. 默认为None(不指定).
+
+        Returns:
+            Dict[str, str | Any]: 问题的题面、字段、正确答案等信息
+        """
         global SENTENCE, TYPE, ANSWER
         assert self.askable, "命题不可询问"
         curr_temp = random.choice(temps[self.temp_key])
-        # q_key: str = key if key is not None else random.choice(list(self.attrs().keys()))
         q_key: str = key
         while q_key is None or f"[{q_key}]" not in curr_temp:
             q_key = random.choice(list(self.attrs().keys()))
@@ -62,7 +85,7 @@ class Proposition(metaclass = abc.ABCMeta):
         return {SENTENCE: curr_temp, TYPE: q_key, ANSWER: curr_ans}
 
     def __eq__(self, value: object) -> bool:
-        """判断两个命题是否相等
+        """判断两个命题是否相等，本质上是判断两个命题的类型和属性是否相等
 
         Args:
             value (object): 另一个命题
@@ -72,6 +95,17 @@ class Proposition(metaclass = abc.ABCMeta):
         """
         # 判断value的类与self的类是否相同，之后判断value的属性与self的属性是否相同
         return type(value) == type(self) and vars(self) == vars(value)
+    
+    def __ne__(self, value: object) -> bool:
+        """判断两个命题是否不相等，本质上是判断两个命题的类型和属性是否不相等
+
+        Args:
+            value (object): 另一个命题
+
+        Returns:
+            bool: 两个命题是否不相等
+        """
+        return not self == value
     
     def got(self, prop_list: list["Proposition"]) -> bool:
         """判断一个命题是否包含在一个命题列表中
@@ -84,4 +118,30 @@ class Proposition(metaclass = abc.ABCMeta):
         """
         return any([self == prop for prop in prop_list])
 
-# TODO: 按照主要元的不同定义Proposition的子类，以解耦领域和推理
+# 按照主要元个数的不同定义Proposition的子类，以解耦领域和推理
+
+class SingleProp(Proposition):
+    """
+    一元命题，是有1个主要元的命题。它相当于一个一元函数。\n
+    例如：命题“星期五召开课题组会议”确定了一个主要元“召开课题组会议”(x)的位置，可以形式化为InFriday(x)，是个一元命题。
+    """
+    def __init__(self, element1: element.Element, askable: bool = True):
+        super().__init__(askable)
+        self.element = element1
+
+class DoubleProp(Proposition):
+    """
+    二元命题，是有2个主要元的命题。它相当于一个二元函数。\n
+    例如：命题“当她来到舞厅时，她的心上人已经离开了”确定了两个主要元“她来到舞厅”(x)和“她的心上人离开”(y)的关系，可以形式化为Before(y, x)，是个二元命题。
+    """
+    def __init__(self, element1: element.Element, element2: element.Element, askable: bool = True):
+        super().__init__(askable)
+        self.element1 = element1
+        self.element2 = element2
+
+class TripleProp(Proposition):
+    def __init__(self, element1: element.Element, element2: element.Element, element3: element.Element, askable: bool = True):
+        super().__init__(askable)
+        self.element1 = element1
+        self.element2 = element2
+        self.element3 = element3
