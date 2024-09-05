@@ -80,7 +80,7 @@ class DoubleRelation(Relation):
     
     @classmethod
     def add_props_tuples(cls, *tuples: tuple[type[prop.DoubleProp], type[prop.DoubleProp]]):
-        assert all([(issubclass(prop.DoubleProp), i) for i in tuples]), "元组中的元素必须为双元命题"
+        assert all([issubclass(i[0], prop.DoubleProp) and issubclass(i[1], prop.DoubleProp) for i in tuples]), "元组中的元素必须为双元命题"
         return super().add_props_tuples(*tuples)
 
 class SingleEquivalence(SingleRelation):
@@ -88,7 +88,8 @@ class SingleEquivalence(SingleRelation):
     单元命题的等价关系\n
     数学形式为: F(x) <-> G(x)
     """
-    
+    _tp_tuples: list[tuple[type[prop.SingleProp], type[prop.SingleProp]]] = []
+
     @classmethod
     def reason(cls, input_prop: prop.SingleProp) -> Optional[prop.SingleProp]:
         if not isinstance(input_prop, prop.SingleProp):
@@ -106,6 +107,8 @@ class DoubleEquivalence(DoubleRelation):
     双元命题的等价关系\n
     数学形式为: F(x, y) <-> G(x, y)
     """
+    _tp_tuples: list[tuple[type[prop.DoubleProp], type[prop.DoubleProp]]] = []
+    
     @classmethod
     def reason(cls, input_prop: prop.DoubleProp) -> Optional[prop.DoubleProp]:
         if not isinstance(input_prop, prop.DoubleProp):
@@ -123,6 +126,8 @@ class DoubleReverseEq(DoubleRelation):
     双元命题的对称关系\n
     数学形式为: F(x, y) <-> G(y, x)
     """
+    _tp_tuples: list[tuple[type[prop.DoubleProp], type[prop.DoubleProp]]] = []
+
     @classmethod
     def reason(cls, input_prop: prop.DoubleProp) -> Optional[prop.DoubleProp]:
         if not isinstance(input_prop, prop.DoubleProp):
@@ -130,9 +135,9 @@ class DoubleReverseEq(DoubleRelation):
         res: list[prop.DoubleProp] = []
         for tp1, tp2 in cls._tp_tuples:
             if isinstance(input_prop, tp1):
-                res.append(tp2(input_prop.element2, input_prop.element1))
+                res.append(tp2(element1=input_prop.element2, element2=input_prop.element1))
             if isinstance(input_prop, tp2):
-                res.append(tp1(input_prop.element2, input_prop.element1))
+                res.append(tp1(element1=input_prop.element2, element2=input_prop.element1))
         return res
 
 class SingleEntailment(SingleRelation):
@@ -140,6 +145,8 @@ class SingleEntailment(SingleRelation):
     单元命题的蕴含关系\n
     数学形式为: F(x) -> G(x)
     """
+    _tp_tuples: list[tuple[type[prop.SingleProp], type[prop.SingleProp]]] = []
+    
     @classmethod
     def reason(cls, input_prop: prop.SingleProp) -> Optional[prop.SingleProp]:
         if not isinstance(input_prop, prop.SingleProp):
@@ -155,10 +162,12 @@ class DoubleEntailment(DoubleRelation):
     双元命题的蕴含关系\n
     数学形式为: F(x, y) -> G(x, y)
     """
+    _tp_tuples: list[tuple[type[prop.DoubleProp], type[prop.DoubleProp]]] = []
+    
     @classmethod
     def reason(cls, input_prop: prop.DoubleProp) -> List[prop.DoubleProp] | None:
         if not isinstance(input_prop, prop.DoubleProp):
-            pass
+            return None
         res: list[prop.SingleProp] = []
         for tp1, tp2 in cls._tp_tuples:
             if isinstance(input_prop, tp1):
@@ -170,6 +179,8 @@ class DoubleReverseEn(DoubleRelation):
     双元命题的对称蕴含关系\n
     数学形式为: F(x, y) -> G(y, x)
     """
+    _tp_tuples: list[tuple[type[prop.DoubleProp], type[prop.DoubleProp]]] = []
+    
     @classmethod
     def reason(cls, input_prop: prop.DoubleProp) -> List[prop.DoubleProp] | None:
         if not isinstance(input_prop, prop.DoubleProp):

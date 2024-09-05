@@ -25,7 +25,7 @@ class Element(metaclass = abc.ABCMeta):
         Returns:
             bool: 是否相等
         """
-        pass
+        return type(self) == type(other)
 
     def __ne__(self, other: object) -> bool:
         """判断两个元素是否不相等，是__eq__的反向操作
@@ -37,3 +37,6 @@ class Element(metaclass = abc.ABCMeta):
             bool: 是否不相等
         """
         return not self == other
+
+    def __str__(self) -> str:
+        return "" # 返回空字符串

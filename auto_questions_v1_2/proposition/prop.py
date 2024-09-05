@@ -35,6 +35,11 @@ class Proposition(element.Element):
         self.askable = askable
 
     @property
+    def num_of_conditions(self) -> int:
+        """返回命题的可推出条件数量，为int"""
+        return 1
+
+    @property
     @abc.abstractmethod
     def temp_key(self) -> str:
         """返回命题的模板关键词，为str"""
@@ -84,7 +89,7 @@ class Proposition(element.Element):
             curr_temp = curr_temp.replace(f"[{k}]", v)
         return {SENTENCE: curr_temp, TYPE: q_key, ANSWER: curr_ans}
 
-    def __eq__(self, value: object) -> bool:
+    def __eq__(self, other: object) -> bool:
         """判断两个命题是否相等，本质上是判断两个命题的类型和属性是否相等
 
         Args:
@@ -93,8 +98,7 @@ class Proposition(element.Element):
         Returns:
             bool: 两个命题是否相等
         """
-        # 判断value的类与self的类是否相同，之后判断value的属性与self的属性是否相同
-        return type(value) == type(self) and vars(self) == vars(value)
+        return super().__eq__(other) and self.askable == other.askable
     
     def __ne__(self, value: object) -> bool:
         """判断两个命题是否不相等，本质上是判断两个命题的类型和属性是否不相等
@@ -118,6 +122,17 @@ class Proposition(element.Element):
         """
         return any([self == prop for prop in prop_list])
 
+    def contained(self, prop_list: list["Proposition"]) -> bool:
+        """判断时间命题的可推出条件是否包含在命题列表中
+
+        Args:
+            prop_list (list[prop.Proposition]): 命题列表
+
+        Returns:
+            bool: 时间命题是否包含在命题列表中
+        """
+        return any([i == self for i in prop_list])
+
 # 按照主要元个数的不同定义Proposition的子类，以解耦领域和推理
 
 class SingleProp(Proposition):
@@ -129,6 +144,9 @@ class SingleProp(Proposition):
         super().__init__(askable)
         self.element = element1
 
+    def __eq__(self, other: object) -> bool:
+        return super().__eq__(other) and self.element == other.element
+
 class DoubleProp(Proposition):
     """
     二元命题，是有2个主要元的命题。它相当于一个二元函数。\n
@@ -139,9 +157,15 @@ class DoubleProp(Proposition):
         self.element1 = element1
         self.element2 = element2
 
+    def __eq__(self, other: object) -> bool:
+        return super().__eq__(other) and self.element1 == other.element1 and self.element2 == other.element2
+
 class TripleProp(Proposition):
     def __init__(self, element1: element.Element, element2: element.Element, element3: element.Element, askable: bool = True):
         super().__init__(askable)
         self.element1 = element1
         self.element2 = element2
         self.element3 = element3
+
+    def __eq__(self, other: object) -> bool:
+        return super().__eq__(other) and self.element1 == other.element1 and self.element2 == other.element2 and self.element3 == other.element3

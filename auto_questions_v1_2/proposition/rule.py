@@ -73,7 +73,7 @@ class TransitivityRule(TripleRule):
 
     @classmethod
     def reason(cls, prop1: prop.DoubleProp, prop2: prop.DoubleProp) -> Optional[prop.DoubleProp]:
-        super().reason()
+        super().reason(prop1, prop2)
         if not cls._assert_condition(prop1, prop2):
             return None
         if prop1.element2 == prop2.element1 and prop1.element1 != prop2.element2:
@@ -91,7 +91,7 @@ class TwoSingleToDoubleRule(TripleRule):
 
     @classmethod
     def reason(cls, prop1: prop.SingleProp, prop2: prop.SingleProp) -> Optional[prop.DoubleProp]:
-        super().reason()
+        super().reason(prop1, prop2)
         if not cls._assert_condition(prop1, prop2):
             return None
         res_ty = cls._rule_tuple[-1]
@@ -100,18 +100,21 @@ class TwoSingleToDoubleRule(TripleRule):
 class DoubleSingleToSingleRule(Rule):
     """
     从一个双元素命题和一个单元素命题推出一个单元素命题的规则\n
-    推导方式: F(x, y) && G(x) -> H(y)
+    推导方式: F(x, y) && G(x) -> H(y) 或者 F(x, y) && G(y) -> H(x)
     """
     _rule_tuple: tuple[type[prop.DoubleProp], type[prop.SingleProp], type[prop.SingleProp]] = tuple()
 
     @classmethod
     def reason(cls, prop1: prop.DoubleProp, prop2: prop.SingleProp) -> Optional[prop.SingleProp]:
-        super().reason()
+        super().reason(prop1, prop2)
         if not cls._assert_condition(prop1, prop2):
             return None
         if prop1.element1 == prop2.element:
             res_ty = cls._rule_tuple[-1]
             return res_ty(prop1.element2)
+        elif prop1.element2 == prop2.element:
+            res_ty = cls._rule_tuple[-1]
+            return res_ty(prop1.element1)
         else:
             return None
         
