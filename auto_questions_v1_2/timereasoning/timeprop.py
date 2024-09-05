@@ -7,7 +7,7 @@
 """
 
 import sys
-from typing import Self, Optional
+from typing import Optional, Union
 from pathlib import Path
 import abc
 
@@ -20,44 +20,40 @@ import timereasoning.event as event
 class TimeP(prop.Proposition):
     """表示一个时间命题"""
     @abc.abstractmethod
-    def __init__(self, symmetrical: bool = False, precise: bool = False, askable: bool = False):
+    def __init__(self, askable: bool = False):
         """初始化时间命题
 
         Args:
-            symmetrical (bool, optional): 是否对称. 默认为False.
-            precise (bool, optional): 是否精确. 默认为False.
             askable (bool, optional): 是否可询问. 默认为False.
         """
-        super().__init__(symmetrical, precise, askable)
+        super().__init__(askable)
 
 # 单事件时间命题
-class SingleTimeP(TimeP):
+class SingleTimeP(prop.SingleProp, TimeP):
     """表示一个具有单个事件的时间命题"""
-    def __init__(self, element: event.Event, symmetrical: bool = True, precise: bool = True, askable: bool = True):
+    def __init__(self, element: event.Event, askable: bool = True):
         """初始化一个具有单个事件的时间命题
 
         Args:
             element (event.Event): 事件
-            symmetrical (bool, optional): 是否对称. 默认为True.
-            precise (bool, optional): 是否精确. 默认为True.
             askable (bool, optional): 是否可询问. 默认为True.
-        """        
-        super().__init__(symmetrical, precise, askable)
-        self.element = element
+        """
+        super().__init__(element, askable)
         self.time = element.time
-        self.child_props: list[SubTemporalP] = []
+        self.child_props: list["SubTemporalP" | "DurationP"] = []
 
     def attrs(self) -> dict[str, str]:
-        return super().attrs() | {"element": self.element.event()}
+        res = super().attrs()
+        if isinstance(self.element, event.Event):
+            res |= {"element": self.element.event()}
+        return res
 
     @classmethod
-    def build(cls, element: event.Event, symmetrical: bool = True, precise: bool = True, askable: bool = True) -> 'SingleTimeP':
+    def build(cls, element: event.Event, askable: bool = True) -> 'SingleTimeP':
         """根据事件生成时间命题的工厂方法
 
         Args:
             element (event.Event): 事件
-            symmetrical (bool, optional): 是否对称. 默认为True.
-            precise (bool, optional): 是否精确. 默认为True.
             askable (bool, optional): 是否可询问. 默认为True.
 
         Returns:
@@ -67,68 +63,91 @@ class SingleTimeP(TimeP):
             NotImplementedError: 暂不支持按照element的类型生成时间命题
         """
         if isinstance(element, event.SubEvent):
-            return SubTemporalP(element)
+            return SubTemporalP(element, askable)
         elif isinstance(element, event.TemporalEvent):
-            return TemporalP(element)
+            return TemporalP(element, askable)
         elif isinstance(element, event.DurativeEvent):
-            return DurativeP(element)
+            return DurativeP(element, askable)
         elif isinstance(element, event.FreqEvent):
-            return FreqP(element)
+            return FreqP(element, askable)
         elif isinstance(element, event.Duration):
-            return DurationP(element)
+            return DurationP(element, askable)
         else:
             raise NotImplementedError(f"暂不支持按照{type(element)}生成时间命题")
 
-    def get_child_props(self) -> list["SubTemporalP"]:
+    def get_child_props(self) -> list[Union["SubTemporalP", "DurationP"]]:
         """返回时间命题的子命题
 
         Returns:
-            list[SubTemporalP]: 时间命题的子命题
+            list[TemporalP | DurationP]: 时间命题的子命题
         """
         return self.child_props
 
 class TemporalP(SingleTimeP):
     """表示一个时间点的命题"""
-    def __init__(self, element: event.TemporalEvent, symmetrical: bool = True, precise: bool = True, askable: bool = True):
-        super().__init__(element, symmetrical, precise, askable)
+    def __init__(self, element: event.TemporalEvent, askable: bool = True):
+        super().__init__(element, askable)
     
     @property
     def temp_key(self) -> str:
         """返回时间点命题的模板关键词，为str"""
         return "temporal"
     
+    def __eq__(self, other: object) -> bool:
+        if super().__eq__(other):
+            return True
+        elif isinstance(self, TemporalP) and isinstance(other, TemporalP):
+            return self.element == other.element
+
 class SubTemporalP(TemporalP):
     """
     表示一个时间点的命题，其是另一个时间命题的子命题\n
     例如：亲命题为“从2000年到2010年，小明当老师”，则其中一个子命题为“2004年，小明正在当老师”\n
     其执行逻辑基本与TemporalP相同
     """
-    def __init__(self, element: event.SubEvent, symmetrical: bool = True, precise: bool = True, askable: bool = True):
-        super().__init__(element, symmetrical, precise, askable)
-        self.parent_event = element.parent
+    def __init__(self, element: event.SubEvent, askable: bool = True):
+        super().__init__(element, askable)
+        self.parent = element.parent
 
 class DurationP(SingleTimeP):
     """表示时间段时长的命题"""
-    def __init__(self, element: event.Duration, symmetrical: bool = True, precise: bool = True, askable: bool = True):
-        super().__init__(element, symmetrical, precise, askable)
-        self.parent_event = element.parent
+    def __init__(self, element: event.Duration, askable: bool = True):
+        super().__init__(element, askable)
+        self.parent = element.parent
         self.duration = element.time
+        self.related_prop: list[BeforeTimeP] = []
 
     @property
     def temp_key(self) -> str:
         return "duration"
+
+    def add_related_prop(self, prop: "BeforeTimeP") -> None:
+        """增加关联事件，将时间段时长的命题和时间点先后顺序的命题关联起来
+
+        Args:
+            prop (BeforeTimeP): 时间点先后顺序的命题
+        """
+        self.related_prop.append(prop)
+
+    def contained(self, prop_list: list[prop.Proposition]) -> bool:
+        return super().contained(prop_list) or self.related_prop[0].contained(prop_list)
     
 class DurativeP(SingleTimeP):
     """表示一个时间段的命题"""
-    def __init__(self, element: event.DurativeEvent, symmetrical: bool = True, precise: bool = True, askable: bool = True):
-        super().__init__(element, symmetrical, precise, askable)
+    def __init__(self, element: event.DurativeEvent, askable: bool = True):
+        super().__init__(element, askable)
         self.endtime = element.endtime
         self.duration = element.duration
         self.start_p = SubTemporalP(element.start_event)
         self.end_p = SubTemporalP(element.end_event)
         self.duration_p = DurationP(element.duration_event)
+        self.duration_p.add_related_prop(BeforeTimeP(element.start_event, element.end_event))
         self.child_props = [self.start_p, self.end_p, self.duration_p]
 
+    @property
+    def num_of_conditions(self) -> int:
+        return 2
+    
     @property
     def temp_key(self) -> str:
         return "durative"
@@ -136,26 +155,30 @@ class DurativeP(SingleTimeP):
     def get_child_props(self) -> list[SubTemporalP | DurationP]:
         # 将时间段的开始和结束时间点及时长事件加入到子命题中
         return super().get_child_props()
-
-    def got(self, prop_list: list[prop.Proposition]) -> bool:
-        # 判断时间段的开始和结束时间点及时长事件是否包含在一个命题列表中
-        got_self = super().got(prop_list)
-        if got_self:
-            return got_self
+    
+    def contained(self, prop_list: list[prop.Proposition]) -> bool:
+        contain_self =  super().contained(prop_list)
+        if contain_self:
+            return contain_self
         else:
-            got_child = [i.got(prop_list) for i in self.child_props]
-            if sum(got_child) > 2:
+            # 如果时间段的开始和结束时间点及时长事件至少2个包含在命题列表中，则返回True
+            child_contained = [i.contained(prop_list) for i in self.child_props]
+            if sum(child_contained) >= 2:
                 return True
             else:
                 return False
 
 class FreqP(SingleTimeP):
     """表示一个时间频率的命题"""
-    def __init__(self, element: event.FreqEvent, symmetrical: bool = True, precise: bool = True, askable: bool = True):
-        super().__init__(element, symmetrical, precise, askable)
+    def __init__(self, element: event.FreqEvent, askable: bool = True):
+        super().__init__(element, askable)
         self.frequency = element.frequency
         self.endtime = element.endtime
         self.child_props = [SubTemporalP(i) for i in element.sub_events]
+
+    @property
+    def num_of_conditions(self) -> int:
+        return len(self.child_props)
 
     @property
     def temp_key(self) -> str:
@@ -164,42 +187,36 @@ class FreqP(SingleTimeP):
     def get_child_props(self) -> list[SubTemporalP]:
         return super().get_child_props()
     
-    def got(self, prop_list: list[prop.Proposition]) -> bool:
-        return super().got(prop_list) or all([i.got(prop_list) for i in self.child_props])
+    def contained(self, prop_list: list[prop.Proposition]) -> bool:
+        contain_self =  super().contained(prop_list)
+        if contain_self:
+            return contain_self
+        else:
+            return all([i.contained(prop_list) for i in self.child_props])
 
 # 双事件时间命题
-class DoubleTimeP(TimeP):
+class DoubleTimeP(prop.DoubleProp, TimeP):
     """表示一个具有两个事件的时间命题"""
-    def __init__(self, new_element: event.Event, prev_element: event.Event, symmetrical: bool = False, precise: bool = False, askable: bool = False):
+    def __init__(self, element1: event.Event, element2: event.Event, askable: bool = False):
         """初始化一个具有两个事件的时间命题
 
         Args:
-            new_element (event.Event): 命题中被描述相对情形的事件
-            prev_element (event.Event): 命题中的参照事件
-            symmetrical (bool, optional): 是否对称. 默认为False.
-            precise (bool, optional): 是否精确. 默认为False.
+            element1 (event.Event): 命题中被描述相对情形的事件
+            element2 (event.Event): 命题中的参照事件
             askable (bool, optional): 是否可询问. 默认为False.
         """
-        super().__init__(symmetrical, precise, askable)
-        self.prev_element = prev_element
-        self.new_element = new_element
-
-    def swap(self) -> Optional[Self]:
-        """若时间命题对称，则交换两个事件的位置得到新的时间命题。否则返回None
-
-        Returns:
-            Optional[Self]: 交换后的新时间命题或者None
-        """
-        if self.symmetrical: # 如果是对称的时间命题，则可以交换两个事件的位置
-            return self.__class__(self.prev_element, self.new_element, self.symmetrical, self.precise, self.askable)
-        else: # 否则返回None
-            return None
+        super().__init__(element1, element2, askable)
         
     def attrs(self) -> dict[str, str]:
-        return super().attrs() | {"new_element": self.new_element.event(), "prev_element": self.prev_element.event()}
+        res = super().attrs()
+        if isinstance(self.element1, event.Event):
+            res |= {"element1": self.element1.event()}
+        if isinstance(self.element2, event.Event):
+            res |= {"element2": self.element2.event()}
+        return res
     
     @classmethod
-    def build(cls, new_element: event.Event, prev_element: event.Event) -> Optional["DoubleTimeP"]:
+    def build(cls, element1: event.Event, element2: event.Event) -> Optional["DoubleTimeP"]:
         """根据事件生成时间命题的工厂方法
 
         Args:
@@ -212,18 +229,18 @@ class DoubleTimeP(TimeP):
         Returns:
             Optional[DoubleTimeP]: 生成的命题
         """
-        param_dict = {"new_element": new_element, "prev_element": prev_element}
+        param_dict = {"element1": element1, "element2": element2}
         if all([isinstance(i, event.TemporalEvent) for i in param_dict.values()]):
-            if new_element.time > prev_element.time:
+            if element1.time > element2.time:
                 return AfterTimeP(**param_dict)
-            elif new_element.time < prev_element.time:
+            elif element1.time < element2.time:
                 return BeforeTimeP(**param_dict)
             else:
                 return SimultaneousP(**param_dict)
         elif all([isinstance(i, event.Duration) for i in param_dict.values()]):
-            if new_element.time > prev_element.time:
+            if element1.time > element2.time:
                 return LongTimeP(**param_dict)
-            elif new_element.time < prev_element.time:
+            elif element1.time < element2.time:
                 return ShortTimeP(**param_dict)
             else:
                 return SameLenTimeP(**param_dict)
@@ -232,8 +249,8 @@ class DoubleTimeP(TimeP):
 
 class BeforeP(DoubleTimeP):
     """表示一个事件发生在另一个事件之前的时间命题，是非精确命题"""
-    def __init__(self, new_element: event.TemporalEvent, prev_element: event.TemporalEvent, symmetrical: bool = False, precise: bool = False, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
+    def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
+        super().__init__(element1, element2, askable)
 
     @property
     def temp_key(self) -> str:
@@ -241,9 +258,9 @@ class BeforeP(DoubleTimeP):
     
 class BeforeTimeP(DoubleTimeP):
     """表示一个时间点发生在另一个时间点之前特定时间的时间命题，是精确命题"""
-    def __init__(self, new_element: event.TemporalEvent, prev_element: event.TemporalEvent, symmetrical: bool = False, precise: bool = True, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
-        self.diff = abs(prev_element.time - new_element.time)
+    def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
+        super().__init__(element1, element2, askable)
+        self.diff = abs(element2.time - element1.time)
 
     @property
     def temp_key(self) -> str:
@@ -251,8 +268,8 @@ class BeforeTimeP(DoubleTimeP):
     
 class AfterP(DoubleTimeP):
     """表示一个事件发生在另一个事件之后的时间命题，是非精确命题"""
-    def __init__(self, new_element: event.TemporalEvent, prev_element: event.TemporalEvent, symmetrical: bool = False, precise: bool = False, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
+    def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
+        super().__init__(element1, element2, askable)
 
     @property
     def temp_key(self) -> str:
@@ -260,9 +277,9 @@ class AfterP(DoubleTimeP):
     
 class AfterTimeP(DoubleTimeP):
     """表示一个时间点发生在另一个时间点之后特定时间的时间命题，是精确命题"""
-    def __init__(self, new_element: event.TemporalEvent, prev_element: event.TemporalEvent, symmetrical: bool = False, precise: bool = True, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
-        self.diff = abs(new_element.time - prev_element.time)
+    def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
+        super().__init__(element1, element2, askable)
+        self.diff = abs(element1.time - element2.time)
 
     @property
     def temp_key(self) -> str:
@@ -270,8 +287,8 @@ class AfterTimeP(DoubleTimeP):
     
 class SimultaneousP(DoubleTimeP):
     """表示两个事件同时发生的时间命题"""
-    def __init__(self, new_element: event.TemporalEvent, prev_element: event.TemporalEvent, symmetrical: bool = True, precise: bool = True, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
+    def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
+        super().__init__(element1, element2, askable)
 
     @property
     def temp_key(self) -> str:
@@ -279,9 +296,9 @@ class SimultaneousP(DoubleTimeP):
     
 class GapTimeP(DoubleTimeP):
     """表示两个事件之间的具体时间间隔的时间命题，是非精确命题"""
-    def __init__(self, new_element: event.TemporalEvent, prev_element: event.TemporalEvent, symmetrical: bool = True, precise: bool = False, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
-        self.diff = abs(new_element.time - prev_element.time)
+    def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
+        super().__init__(element1, element2, askable)
+        self.diff = abs(element1.time - element2.time)
 
     @property
     def temp_key(self) -> str:
@@ -289,8 +306,8 @@ class GapTimeP(DoubleTimeP):
     
 class LongP(DoubleTimeP):
     """表示某持续事件的时长长于另一持续事件的时间命题，是非精确命题"""
-    def __init__(self, new_element: event.Duration, prev_element: event.Duration, symmetrical: bool = False, precise: bool = False, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
+    def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
+        super().__init__(element1, element2, askable)
 
     @property
     def temp_key(self) -> str:
@@ -298,9 +315,9 @@ class LongP(DoubleTimeP):
     
 class LongTimeP(DoubleTimeP):
     """表示某持续事件的时长长于另一持续事件具体时长的时间命题，是精确命题"""
-    def __init__(self, new_element: event.Duration, prev_element: event.Duration, symmetrical: bool = False, precise: bool = True, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
-        self.diff = abs(new_element.time - prev_element.time)
+    def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
+        super().__init__(element1, element2, askable)
+        self.diff = abs(element1.time - element2.time)
 
     @property
     def temp_key(self) -> str:
@@ -308,8 +325,8 @@ class LongTimeP(DoubleTimeP):
     
 class ShortP(DoubleTimeP):
     """表示某持续事件的时长短于另一持续事件的时间命题，是非精确命题"""
-    def __init__(self, new_element: event.Duration, prev_element: event.Duration, symmetrical: bool = False, precise: bool = False, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
+    def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
+        super().__init__(element1, element2, askable)
 
     @property
     def temp_key(self) -> str:
@@ -317,9 +334,9 @@ class ShortP(DoubleTimeP):
     
 class ShortTimeP(DoubleTimeP):
     """表示某持续事件的时长短于另一持续事件具体时长的时间命题，是精确命题"""
-    def __init__(self, new_element: event.Duration, prev_element: event.Duration, symmetrical: bool = False, precise: bool = True, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
-        self.diff = abs(new_element.time - prev_element.time)
+    def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
+        super().__init__(element1, element2, askable)
+        self.diff = abs(element1.time - element2.time)
 
     @property
     def temp_key(self) -> str:
@@ -327,8 +344,8 @@ class ShortTimeP(DoubleTimeP):
     
 class SameLenTimeP(DoubleTimeP):
     """表示两个持续事件具有相同时长的时间命题，是精确命题"""
-    def __init__(self, new_element: event.Duration, prev_element: event.Duration, symmetrical: bool = True, precise: bool = True, askable: bool = True):
-        super().__init__(new_element, prev_element, symmetrical, precise, askable)
+    def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
+        super().__init__(element1, element2, askable)
 
     @property
     def temp_key(self) -> str:

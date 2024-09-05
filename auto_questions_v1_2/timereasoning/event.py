@@ -3,13 +3,20 @@
 # author: Qin Yuhang
 
 """
-定义了时间中的事件类
+定义了时间中的事件类，作为时间推理的基本元素
 """
 
 import abc
 import random
+import sys
+from pathlib import Path
 
-class Event(metaclass = abc.ABCMeta):
+# 将上级目录加入到sys.path中
+sys.path.append(Path(__file__).resolve().parents[1].as_posix())
+
+from proposition.element import Element
+
+class Event(Element):
     """表示一个事件"""
     @abc.abstractmethod
     def __init__(self, verb: str, object: str, time: int) -> None:
@@ -23,11 +30,11 @@ class Event(metaclass = abc.ABCMeta):
         self.verb = verb
         self.object = object
         self.time = time
-        self.__alias: list[dict[str, str]] = [] # 事件的别名
+        self._alias: list[dict[str, str]] = [] # 事件的别名
 
     def event(self) -> str:
         """随机选择事件的陈述"""
-        event_dict: dict[str, str] = random.choice(self.__alias + [{"verb": self.verb, "object": self.object}])
+        event_dict: dict[str, str] = random.choice(self._alias + [{"verb": self.verb, "object": self.object}])
         return f"{event_dict['verb']}{event_dict['object']}"
 
     def add_alias(self, verb: str, object: str) -> None:
@@ -37,7 +44,7 @@ class Event(metaclass = abc.ABCMeta):
             verb (str): 事件动词
             object (str): 事件宾语
         """
-        self.__alias.append({'verb': verb, 'object': object})
+        self._alias.append({'verb': verb, 'object': object})
     
     def __str__(self) -> str:
         """返回事件的初始描述
@@ -47,18 +54,7 @@ class Event(metaclass = abc.ABCMeta):
         """
         return f"{self.verb}{self.object}"
         
-    def same_name(self, value: object) -> bool:
-        """检查两个事件是否同名
-
-        Args:
-            value (object): 待检查的事件
-
-        Returns:
-            bool: 表示两个事件是否同名的bool值
-        """
-        return isinstance(value, Event) and str(value) == str(self)
-
-    def __eq__(self, value: object) -> bool:
+    def __eq__(self, other: object) -> bool:
         """判断两个事件是否相等，方法是检查两个事件的动词、宾语、时间、频率、结束事件等是否相等
 
         Args:
@@ -67,7 +63,7 @@ class Event(metaclass = abc.ABCMeta):
         Returns:
             bool: 两个事件是否相等
         """
-        return type(value) == type(self) and self.verb == value.verb and self.object == value.object and self.time == value.time
+        return super().__eq__(other) and self.verb == other.verb and self.object == other.object and self.time == other.time
     
     @classmethod
     def build_event(cls, verb: str, object: str, time: int, **kwargs) -> 'Event':
@@ -158,8 +154,8 @@ class DurativeEvent(Event):
         """
         self.duration_event = Duration(verb, object, self.duration, self)
 
-    def __eq__(self, value: object) -> bool:
-        return super().__eq__(value) and self.endtime == value.endtime
+    def __eq__(self, other: object) -> bool:
+        return super().__eq__(other) and self.endtime == other.endtime
     
 class FreqEvent(Event):
     """表示一个频率发生事件"""
@@ -178,5 +174,5 @@ class FreqEvent(Event):
         self.endtime = endtime
         self.sub_events: list[SubEvent] = [SubEvent(verb, object, i, self) for i in range(time, endtime+1, frequency)] # 事件的子事件
 
-    def __eq__(self, value: object) -> bool:
-        return super().__eq__(value) and self.frequency == value.frequency and self.endtime == value.endtime
+    def __eq__(self, other: object) -> bool:
+        return super().__eq__(other) and self.frequency == other.frequency and self.endtime == other.endtime
