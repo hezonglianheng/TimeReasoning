@@ -37,6 +37,7 @@ class Scene(metaclass = abc.ABCMeta):
         self._init_props: list[prop.Proposition] = []
         self._all_props: list[prop.Proposition] = []
         self._all_groups: list[list[int]] = []
+        self._chosen_group: list[prop.Proposition] = []
         self._statements: list[str] = []
         self._asked_prop: prop.Proposition = None
         self._ask_info: dict[str, Any] = {}
@@ -75,7 +76,8 @@ class Scene(metaclass = abc.ABCMeta):
         assert len(self._all_groups) > 0, "必须先获取可以表述全部情形的命题组合"
         random.seed(seed)
         idxs = random.choice(self._all_groups) # 选择一组命题
-        self._statements = [self._all_props[i].state(self.temps) for i in idxs]
+        self._chosen_group = [self._all_props[i] for i in idxs] # 选中的命题组合
+        self._statements = [i.state(self.temps) for i in self._chosen_group] # 陈述列表
         print("随机选择一组命题，得到其陈述.")
         return self._statements
 
@@ -89,8 +91,9 @@ class Scene(metaclass = abc.ABCMeta):
         Returns:
             Dict[str, Any]: 问题信息
         """
-        print("随机选择一个命题，提问.")
-        self._asked_prop = random.choice(self._all_props)
+        # 修改：选择的命题需要是未进入描述的命题
+        print("随机选择一个未进入描述的命题，提问.")
+        self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group)])
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
         return self._ask_info
