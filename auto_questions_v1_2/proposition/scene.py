@@ -29,6 +29,11 @@ class Scene(metaclass = abc.ABCMeta):
     用于定义推理场景的基本属性和操作
     """
     def __init__(self, guide: str = "") -> None:
+        """初始化推理场景
+
+        Args:
+            guide (str, optional): 引导语. 默认为空字符串.
+        """
         self.guide = guide # 引导语
         self.relations: list[relation.Relation] = [] # 关系列表
         self.rules: list[rule.Rule] = [] # 规则列表

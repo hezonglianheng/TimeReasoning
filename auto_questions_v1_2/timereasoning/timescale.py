@@ -9,7 +9,7 @@
 import json5
 from enum import IntEnum, unique
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 @unique
 class TimeScale(IntEnum):
@@ -46,3 +46,26 @@ def choose_templates(scale: TimeScale | int) -> Dict[str, List[str]]:
     with open(temp_dir / f"{scale.name.lower()}.json5", "r", encoding = "utf-8") as f:
         templates: Dict[str, List[str]] = json5.load(f)
     return templates
+
+def get_loop_param(scale: TimeScale | int) -> Optional[int]:
+    """根据时间尺度获取循环参数
+
+    Args:
+        scale (TimeScale | int): 时间尺度
+
+    Returns:
+        Optional[int]: 循环参数
+    """
+    scale = TimeScale(scale) if isinstance(scale, int) else scale
+    if scale == TimeScale.Weekday:
+        return 7
+    elif scale == TimeScale.Month:
+        return 12
+    elif scale == TimeScale.Date:
+        return 30
+    elif scale == TimeScale.Hour:
+        return 24
+    elif scale == TimeScale.Minute:
+        return 60
+    else:
+        return None

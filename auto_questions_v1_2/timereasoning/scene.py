@@ -3,19 +3,22 @@
 # author: Qin Yuhang
 
 from copy import deepcopy
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 import sys
 from pathlib import Path
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
-from proposition import prop
+from proposition import prop, relation
 from timereasoning import timeprop, timerule, timerelation, event
 from timereasoning import timescale as ts
 from proposition.scene import Scene
 
 class TimeScene(Scene):
+    """
+    时间场景
+    """
     def __init__(self, scale: ts.TimeScale | int, guide: str = "") -> None:
         """初始化时间场景
 
@@ -73,8 +76,42 @@ class TimeScene(Scene):
         return info
 
 class LineScene(TimeScene):
-    def __init__(self, scale: ts.TimeScale, guide: str = "") -> None:
+    """
+    线性时间场景
+    """
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "") -> None:
+        """初始化线性时间场景
+
+        Args:
+            scale (ts.TimeScale | int): 时间尺度
+            guide (str, optional): 引导语. 默认为空字符串.
+        """
         super().__init__(scale, guide)
 
 class LoopScene(TimeScene):
-    pass
+    """
+    循环时间场景
+    """
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None) -> None:
+        super().__init__(scale, guide)
+        self.loop = ts.get_loop_param(scale) if loop is None else loop
+        assert self.loop is not None, "未知的循环长度"
+        self.LoopRelation.loop = self.loop
+        self.relations.append(self.LoopRelation) # 添加循环关系
+    
+    class LoopRelation(relation.Relation):
+        """
+        时间循环关系
+        """
+        loop = 0
+
+        @classmethod
+        def reason(cls, prop: timeprop.BeforeTimeP | timeprop.AfterTimeP) -> Optional[timeprop.TimeP]:
+            if isinstance(prop, timeprop.BeforeTimeP):
+                new_prop = timeprop.AfterTimeP(prop.element1, prop.element2, cls.loop - prop.diff)
+                return [new_prop]
+            elif isinstance(prop, timeprop.AfterTimeP):
+                new_prop = timeprop.BeforeTimeP(prop.element1, prop.element2, cls.loop - prop.diff)
+                return [new_prop]
+            else:
+                return None
