@@ -9,7 +9,7 @@ from timereasoning import timescale as ts
 
 if __name__ == "__main__": # 程序入口，必须使用这个结构
     # 创建一个时间场景
-    curr_scene = scene.TimeScene(ts.TimeScale.Year, "时间推理")
+    curr_scene = scene.LineScene(ts.TimeScale.Year, "时间推理")
     # 添加事件
     life = event.DurativeEvent("度过", "一生", 1900, 1984)
     life.set_start_event("出生", "")

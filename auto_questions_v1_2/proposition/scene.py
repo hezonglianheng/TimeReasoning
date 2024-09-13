@@ -29,6 +29,11 @@ class Scene(metaclass = abc.ABCMeta):
     用于定义推理场景的基本属性和操作
     """
     def __init__(self, guide: str = "") -> None:
+        """初始化推理场景
+
+        Args:
+            guide (str, optional): 引导语. 默认为空字符串.
+        """
         self.guide = guide # 引导语
         self.relations: list[relation.Relation] = [] # 关系列表
         self.rules: list[rule.Rule] = [] # 规则列表
@@ -52,17 +57,14 @@ class Scene(metaclass = abc.ABCMeta):
         self._all_props = rm.run()
         print(f"全部命题生成完毕！生成了{len(self._all_props)}个命题")
 
-    def get_all_groups(self, limit: Optional[int] = None) -> None:
-        """调用搜索机，扩圈以发现可行的陈述命题组合
-        
-        Args:
-            limit (int | None, optional): 限制搜索深度. 默认为None.
+    def get_all_groups(self) -> None:
+        """调用搜索机，以发现可行的陈述命题组合
         """
         assert len(self._all_props) > 0, "必须先生成全部命题"
-        print("开始扩圈！")
-        sm = SM(self._init_props, self._all_props, self.relations, self.rules, limit)
-        self._all_groups = sm.run()
-        print(f"扩圈完毕！共获得命题组合{len(self._all_groups)}个")
+        print("开始搜索一组可行的命题组合.")
+        sm = SM(self._init_props, self._all_props, self.relations, self.rules)
+        self._chosen_group = sm.run()
+        print(f"命题组合搜索结束.")
 
     def get_statements(self, seed: Union[int, float, None] = None) -> list[str]:
         """获取一组命题组合的全部陈述
@@ -73,10 +75,10 @@ class Scene(metaclass = abc.ABCMeta):
         Returns:
             list[str]: 一组命题组合的全部陈述
         """
-        assert len(self._all_groups) > 0, "必须先获取可以表述全部情形的命题组合"
-        random.seed(seed)
-        idxs = random.choice(self._all_groups) # 选择一组命题
-        self._chosen_group = [self._all_props[i] for i in idxs] # 选中的命题组合
+        # assert len(self._all_groups) > 0, "必须先获取可以表述全部情形的命题组合"
+        # random.seed(seed)
+        # idxs = random.choice(self._all_groups) # 选择一组命题
+        # self._chosen_group = [self._all_props[i] for i in idxs] # 选中的命题组合
         self._statements = [i.state(self.temps) for i in self._chosen_group] # 陈述列表
         print("随机选择一组命题，得到其陈述.")
         return self._statements
@@ -115,7 +117,7 @@ class Scene(metaclass = abc.ABCMeta):
             am.set_value_range(k, v)
         return am.run()
     
-    def run(self, execute: int = 10, limit: Optional[int] = None, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
+    def run(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
         """运行场景，获取一组题目
 
         Args:
@@ -127,10 +129,11 @@ class Scene(metaclass = abc.ABCMeta):
             list[dict[str, Any]]: 一组题目
         """
         self.get_all_props()
-        self.get_all_groups(limit)
-        self.get_statements(seed)
         question_list = []
-        for _ in range(execute):
+        for i in range(execute):
+            print(f"开始第{i}次获取.")
+            self.get_all_groups()
+            self.get_statements(seed)
             self.ask(seed)
             answers = self.get_answers(seed)
             item = {"guide": self.guide, "statement": self._statements, "question": self._ask_info[prop.SENTENCE],} | answers

@@ -3,19 +3,22 @@
 # author: Qin Yuhang
 
 from copy import deepcopy
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 import sys
 from pathlib import Path
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
-from proposition import prop
+from proposition import prop, relation
 from timereasoning import timeprop, timerule, timerelation, event
 from timereasoning import timescale as ts
 from proposition.scene import Scene
 
 class TimeScene(Scene):
+    """
+    时间场景
+    """
     def __init__(self, scale: ts.TimeScale | int, guide: str = "") -> None:
         """初始化时间场景
 
@@ -73,8 +76,116 @@ class TimeScene(Scene):
         return info
 
 class LineScene(TimeScene):
-    def __init__(self, scale: ts.TimeScale, guide: str = "") -> None:
+    """
+    线性时间场景
+    """
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "") -> None:
+        """初始化线性时间场景
+
+        Args:
+            scale (ts.TimeScale | int): 时间尺度
+            guide (str, optional): 引导语. 默认为空字符串.
+        """
         super().__init__(scale, guide)
 
 class LoopScene(TimeScene):
-    pass
+    """
+    循环时间场景
+    """
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None) -> None:
+        super().__init__(scale, guide)
+        self.loop = ts.get_loop_param(scale) if loop is None else loop
+        assert self.loop is not None, "未知的循环长度"
+        new_relations = list(map(lambda x: x.set_loop(self.loop), [LoopRelation, PeriodRelation, DiffRelation]))
+        self.relations.extend(new_relations) # 添加特有的关系
+        self.rules.remove(timerule.BeforeandGap)
+        self.rules.remove(timerule.AfterandGap) # 移除不适用的规则
+    
+    def get_all_props(self) -> None:
+        super().get_all_props()
+        for i in self._all_props:
+            if isinstance(i, timeprop.TemporalP):
+                i.time = i.time % self.loop
+            elif isinstance(i, (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)):
+                i.diff = i.diff % self.loop
+        new_list: list[timeprop.TimeP] = list()
+        for i in range(len(self._all_props)):
+            if self._all_props[i].got(self._all_props[:i]):
+                continue
+            else:
+                new_list.append(self._all_props[i])
+        print(f"调整后有命题{len(new_list)}个.")
+        self._all_props = new_list
+
+    def get_all_groups(self) -> None:
+        return super().get_all_groups()
+
+class PeriodRelation(relation.SingleEntailment):
+    """表示时间点的周期性关系，属于单元蕴含关系"""
+    loop = 0
+    _tp_tuples = [(timeprop.TemporalP, timeprop.TemporalP)]
+
+    @classmethod
+    def reason(cls, input_prop: timeprop.TemporalP) -> list[timeprop.TemporalP] | None:
+        global _LOOP
+        if not isinstance(input_prop, timeprop.TemporalP):
+            return None
+        res = super().reason(input_prop)
+        if res is None:
+            return None
+        else:
+            for i in res:
+                i.time = i.time % cls.loop
+            return res
+
+    @classmethod
+    def set_loop(cls, loop: int) -> type["PeriodRelation"]:
+        """设置周期长度"""
+        cls.loop = loop
+        return cls
+
+class DiffRelation(relation.DoubleEntailment):
+    """表示时间差的周期性关系，属于双元蕴含关系"""
+    loop = 0
+    _tp_tuples = [(timeprop.BeforeTimeP, timeprop.BeforeTimeP), (timeprop.AfterTimeP, timeprop.AfterTimeP), (timeprop.GapTimeP, timeprop.GapTimeP)]
+
+    @classmethod
+    def reason(cls, input_prop: timeprop.DoubleTimeP) -> list[timeprop.DoubleTimeP] | None:
+        if not isinstance(input_prop, (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)):
+            return None
+        res = super().reason(input_prop)
+        if res is None:
+            return None
+        else:
+            for i in res:
+                i.diff = i.diff % cls.loop
+            return res
+        
+    @classmethod
+    def set_loop(cls, loop: int) -> type["DiffRelation"]:
+        """设置周期长度"""
+        cls.loop = loop
+        return cls
+    
+class LoopRelation(relation.DoubleEntailment):
+    """循环关系，用于处理先后关系的循环性质"""
+    loop = 0
+    _tp_tuples = [(timeprop.BeforeTimeP, timeprop.AfterTimeP), (timeprop.AfterTimeP, timeprop.BeforeTimeP)]
+
+    @classmethod
+    def reason(cls, prop: timeprop.BeforeTimeP | timeprop.AfterTimeP) -> list[timeprop.BeforeTimeP | timeprop.AfterTimeP] | None:
+        if not isinstance(prop, (timeprop.BeforeTimeP, timeprop.AfterTimeP)):
+            return None
+        res = super().reason(prop)
+        if res is None:
+            return None
+        else:
+            for i in res:
+                i.diff = cls.loop - prop.diff
+            return res
+
+    @classmethod
+    def set_loop(cls, loop: int) -> type["LoopRelation"]:
+        """设置周期长度"""
+        cls.loop = loop
+        return cls

@@ -269,7 +269,8 @@ class BeforeTimeP(DoubleTimeP):
     """表示一个时间点发生在另一个时间点之前特定时间的时间命题，是精确命题"""
     def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
         super().__init__(element1, element2, askable)
-        self.diff = abs(element2.time - element1.time)
+        # self.diff = abs(element2.time - element1.time)
+        self.diff = element2.time - element1.time
 
     @property
     def temp_key(self) -> str:
@@ -291,7 +292,8 @@ class AfterTimeP(DoubleTimeP):
     """表示一个时间点发生在另一个时间点之后特定时间的时间命题，是精确命题"""
     def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
         super().__init__(element1, element2, askable)
-        self.diff = abs(element1.time - element2.time)
+        # self.diff = abs(element1.time - element2.time)
+        self.diff = element1.time - element2.time
 
     @property
     def temp_key(self) -> str:
@@ -335,7 +337,8 @@ class LongTimeP(DoubleTimeP):
     """表示某持续事件的时长长于另一持续事件具体时长的时间命题，是精确命题"""
     def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
         super().__init__(element1, element2, askable)
-        self.diff = abs(element1.time - element2.time)
+        # self.diff = abs(element1.time - element2.time)
+        self.diff = element1.time - element2.time
 
     @property
     def temp_key(self) -> str:
@@ -357,7 +360,8 @@ class ShortTimeP(DoubleTimeP):
     """表示某持续事件的时长短于另一持续事件具体时长的时间命题，是精确命题"""
     def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
         super().__init__(element1, element2, askable)
-        self.diff = abs(element1.time - element2.time)
+        # self.diff = abs(element1.time - element2.time)
+        self.diff = element2.time - element1.time
 
     @property
     def temp_key(self) -> str:

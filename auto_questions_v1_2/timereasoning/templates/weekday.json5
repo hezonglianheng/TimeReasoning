@@ -1,0 +1,64 @@
+// 以周几为单位的陈述模板
+
+{
+    // 瞬时事件的模板
+    "temporal": [
+        "在星期[time][element]",
+        "[element]安排在星期[time]", 
+        "星期[time]，他[element]",
+        "在周[time][element]",
+        "[element]安排在周[time]", 
+        "周[time]，他[element]",
+    ],
+    // 时长的模板
+    "duration": [],
+    // 持续事件的模板
+    "durative": [],
+    // 时频的模板
+    "freq": [],
+    // 事件先后关系的模板
+    "before": [
+        "[element1]的时间比[element2]早",
+        "[element1]是在[element2]之前发生的",
+        "[element2]是在[element1]之后",
+    ],
+    "before_time": [
+        "[element1]的时间比[element2]早了[diff]天", 
+        "在[element2]之前的[diff]天，他[element1]", 
+        "他[element2]的[diff]天之前[element1]", 
+        "[element1]是在[element2]的[diff]天前发生的", 
+        "[element2]是在[element1]的[diff]天后", 
+        "[element1]是在[element2]之前的第[diff]天发生的",
+    ],
+    "after": [
+        "[element1]的时间比[element2]晚",
+        "[element1]是在[element2]之后发生的",
+        "[element2]是在[element1]之前",
+    ],
+    "after_time": [
+        "[element1]的时间比[element2]晚了[diff]天",
+        "在[element2]之后的[diff]天，他[element1]",
+        "他[element2]的[diff]天之后，[element1]",
+        "[element1]是在[element2]的[diff]天后发生的",
+        "[element2]是在[element1]的[diff]天前",
+        "[element1]是在[element2]之后的第[diff]天发生的",
+    ],
+    "simultaneous": [
+        "在[element2]的那一天，他也[element1]",
+        "某一天，他不仅[element2]，还[element1]",
+        "在[element2]的那一天，他还[element1]",
+        "他在[element2]的同一天，也[element1]",
+        "某一天，他既[element2]，也[element1]",
+    ],
+    // 事件间隔的模板
+    "gap_time": [
+        "[element2]和[element1]之间相隔[diff]天",
+        "[element2]和[element1]之间的时间间隔是[diff]天",
+    ],
+    // 时长关系的模板
+    "long": [],
+    "long_time": [],
+    "short": [],
+    "short_time": [],
+    "same_len": [],
+}

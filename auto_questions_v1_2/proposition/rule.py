@@ -117,5 +117,20 @@ class DoubleSingleToSingleRule(Rule):
             return res_ty(prop1.element1)
         else:
             return None
-        
+
+class DoubleAdd(TripleRule):
+    """二元命题的加和规则\n
+    推导方式: F(x, y) && G(x, y) -> H(x, y)
+    """
+    _rule_tuple: tuple[type[prop.DoubleProp], type[prop.DoubleProp], type[prop.DoubleProp]] = tuple()
+
+    @classmethod
+    def reason(cls, prop1: prop.DoubleProp, prop2: prop.DoubleProp) -> prop.DoubleProp | None:
+        super().reason(prop1, prop2)
+        if not cls._assert_condition(prop1, prop2):
+            return None
+        res_ty = cls._rule_tuple[-1]
+        if prop1.element1 == prop2.element1 and prop1.element2 == prop2.element2:
+            return res_ty(prop1.element1, prop1.element2)
+
 # TODO: 需要考虑提供更多的推理规则，供外部开发者调用和继承
