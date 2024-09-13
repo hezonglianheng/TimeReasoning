@@ -156,6 +156,31 @@ class FromShortTime(FromDoubleTime):
 class FromSameLenTime(FromDoubleTime):
     _rule_tuple = (timeprop.SameLenTimeP, timeprop.SingleTimeP, timeprop.SingleTimeP)
 
+# 增加推理规则：间隔+前后=具体时间前后
+class BeforeandGap(rule.DoubleAdd):
+    _rule_tuple = (timeprop.BeforeP, timeprop.GapTimeP, timeprop.BeforeTimeP)
+
+    @classmethod
+    def reason(cls, prop1: timeprop.BeforeP, prop2: timeprop.GapTimeP) -> DoubleProp | None:
+        new = super().reason(prop1, prop2)
+        if new is None:
+            return None
+        else:
+            new.diff = prop2.diff
+            return new
+
+class AfterandGap(rule.DoubleAdd):
+    _rule_tuple = (timeprop.AfterP, timeprop.GapTimeP, timeprop.AfterTimeP)
+
+    @classmethod
+    def reason(cls, prop1: timeprop.AfterP, prop2: timeprop.GapTimeP) -> DoubleProp | None:
+        new = super().reason(prop1, prop2)
+        if new is None:
+            return None
+        else:
+            new.diff = prop2.diff
+            return new
+
 # 时间推理规则列表
 RULES: list[type[rule.Rule]] = [
     GetBeforeTimeP,
@@ -180,4 +205,6 @@ RULES: list[type[rule.Rule]] = [
     FromLongTime,
     FromShortTime,
     FromSameLenTime,
+    BeforeandGap,
+    AfterandGap,
 ]
