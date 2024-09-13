@@ -91,7 +91,7 @@ class SingleEquivalence(SingleRelation):
     _tp_tuples: list[tuple[type[prop.SingleProp], type[prop.SingleProp]]] = []
 
     @classmethod
-    def reason(cls, input_prop: prop.SingleProp) -> Optional[prop.SingleProp]:
+    def reason(cls, input_prop: prop.SingleProp) -> Optional[List[prop.SingleProp]]:
         if not isinstance(input_prop, prop.SingleProp):
             return None
         res: list[prop.SingleProp] = []
@@ -110,7 +110,7 @@ class DoubleEquivalence(DoubleRelation):
     _tp_tuples: list[tuple[type[prop.DoubleProp], type[prop.DoubleProp]]] = []
     
     @classmethod
-    def reason(cls, input_prop: prop.DoubleProp) -> Optional[prop.DoubleProp]:
+    def reason(cls, input_prop: prop.DoubleProp) -> Optional[List[prop.DoubleProp]]:
         if not isinstance(input_prop, prop.DoubleProp):
             return None
         res: list[prop.DoubleProp] = []
@@ -129,7 +129,7 @@ class DoubleReverseEq(DoubleRelation):
     _tp_tuples: list[tuple[type[prop.DoubleProp], type[prop.DoubleProp]]] = []
 
     @classmethod
-    def reason(cls, input_prop: prop.DoubleProp) -> Optional[prop.DoubleProp]:
+    def reason(cls, input_prop: prop.DoubleProp) -> Optional[List[prop.DoubleProp]]:
         if not isinstance(input_prop, prop.DoubleProp):
             return None
         res: list[prop.DoubleProp] = []
@@ -148,7 +148,7 @@ class SingleEntailment(SingleRelation):
     _tp_tuples: list[tuple[type[prop.SingleProp], type[prop.SingleProp]]] = []
     
     @classmethod
-    def reason(cls, input_prop: prop.SingleProp) -> Optional[prop.SingleProp]:
+    def reason(cls, input_prop: prop.SingleProp) -> Optional[List[prop.SingleProp]]:
         if not isinstance(input_prop, prop.SingleProp):
             return None
         res: list[prop.SingleProp] = []
