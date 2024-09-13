@@ -10,10 +10,9 @@ from tqdm import tqdm
 import random
 from string import ascii_uppercase
 from warnings import warn
-import multiprocessing as mp
 from itertools import product, permutations
-from functools import reduce, cache
-from typing import List, Sequence, Union, Any
+from functools import reduce
+from typing import List, Union, Any
 from copy import deepcopy
 import sys
 from pathlib import Path
@@ -95,12 +94,13 @@ class ReasonMachine:
             # 否则当前命题变更为新命题
             self.curr_props = new_props
 
+# TODO: 优化搜索机，减少搜索时间
 class SearchMachine:
     """
     搜索机，用于搜索可以推出原始命题的命题组合\n
-    该搜索机使用了扩圈思想、剪枝算法、多进程，可以在一定程度上减少搜索时间
+    该搜索机使用了多进程，可以在一定程度上减少搜索时间
     """
-    def __init__(self, init_props: list[prop.Proposition], all_props: list[prop.Proposition], relations: list[type[relation.Relation]], rules: list[type[rule.Rule]], limit: int | None = None) -> None:
+    def __init__(self, init_props: list[prop.Proposition], all_props: list[prop.Proposition], relations: list[type[relation.Relation]], rules: list[type[rule.Rule]]) -> None:
         """初始化搜索机
 
         Args:
@@ -108,79 +108,50 @@ class SearchMachine:
             all_props (list[prop.Proposition]): 全部命题列表
             relations (list[type[relation.Relation]]): 关系列表
             rules (list[type[rule.Rule]]): 规则列表
-            limit (int | None): 最大搜索长度，None表示以初始命题列表长度的2倍为上限. 默认为None.
         """
         self.init_props = init_props # 初始命题列表
         self.all_props = all_props # 全部命题列表
         self.relations = relations
         self.rules = rules
-        self.limit = limit if limit is not None else sum([i.num_of_conditions for i in init_props])
-        self.index_list: List[List[int]] = []
+        self.chosen_props: List[prop.Proposition] = [] # 已经选择的命题
+        self.contained_props: List[prop.Proposition] = [] # 已经包含的命题
 
-    @cache
-    def _run(self, indexes: str) -> bool:
-        """判断一组命题能否推出全部命题
-
-        Args:
-            indexes (str): 命题索引
-
-        Returns:
-            bool: 是否可以推出全部命题
-        """
-        indexes_list: List[int] = [int(i) for i in indexes.split()]
-        prop_list: List[prop.Proposition] = [self.all_props[i] for i in indexes_list]
-        rm = ReasonMachine(prop_list, self.relations, self.rules)
-        res = rm.run()
-        if all([i.contained(res) for i in self.init_props]):
-            return True
-        return False
+    def _lessen_chosen_props(self) -> None:
+        """减少已选命题列表，去除已经包含的命题"""
+        reasoned: list[bool] = [False] * len(self.chosen_props)
+        for i, prop_ in tqdm(enumerate(self.chosen_props), desc="减少已选命题列表", total=len(self.chosen_props)):
+            rest_props = self.chosen_props[:i] + self.chosen_props[i + 1:]
+            rm = ReasonMachine(rest_props, self.relations, self.rules)
+            res = rm.run()
+            reasoned[i] = prop_.got(res)
+        if all(reasoned):
+            self.chosen_props = self.chosen_props[:-1] # 如果所有命题都已经包含，则去除最后一个
+            return None
+        self.chosen_props = [i for i, j in zip(self.chosen_props, reasoned) if not j]
     
-    def _be_contained(self, indexes: Sequence[int]) -> bool:
-        """判断当前命题组合是否包含一个已经存在的命题组合
+    def run(self) -> List[prop.Proposition]:
+        """运行搜索机，搜索可以推出原始命题的命题组合
 
-        Args:
-            indexes (Sequence[int]): 命题索引
-
-        Returns:
-            bool: 当前命题组合是否包含一个已经存在的命题组合
-        """
-        for lst in self.index_list:
-            if all([i in indexes for i in lst]):
-                return True # 如果存在一个命题组合是当前命题组合的子集，则返回True
-        return False # 否则返回False
-    
-    def run(self) -> List[List[int]]:
-        """运行搜索机，获得所有可以推出原始命题的命题组合索引
+        Raises:
+            ValueError: 如果检索发现已经没有可选的命题了，则抛出异常
 
         Returns:
-            List[List[int]]: 所有可以推出原始命题的命题组合索引
+            List[prop.Proposition]: 可以推出原始命题的命题组合
         """
-        all_indexes: List[int] = [i for i in range(len(self.all_props))]
-        basic_indexes: List[List[int]] = [[i] for i in range(len(self.init_props))]
-        for n in range(2, self.limit + 1):
-            sub_indexes: List[List[int]] = []
-            for lst in basic_indexes:
-                sub_indexes.extend([lst + [i] for i in all_indexes if i > lst[-1]])
-            # 去除已经为某个已有命题组合包含的命题组合
-            if len(flitered_indexes := [i for i in sub_indexes if not self._be_contained(i)]) == 0:
-                break
-            pool = mp.Pool(mp.cpu_count()) # 多进程池
-            judges: list[tuple[list[int], bool]] = []
-            with tqdm(total=len(flitered_indexes), desc=f"当前命题组合长度为{n}") as pbar:
-                for i in flitered_indexes:
-                    judges.append((i, pool.apply(self._run, args=(" ".join([str(j) for j in i]),))))
-                    pbar.update(1)
-            pool.close()
-            pool.join()
-            basic_indexes = [i for i, j in judges if not j]
-            self.index_list.extend([i for i, j in judges if j])
-            print(f"当前命题组合长度为{n}，已经找到命题组合{len(self.index_list)}个")
-        else:
-            print(f"已经达到最大搜索长度{self.limit}，搜索结束")
-        if len(self.index_list) <= 0:
-            print(f"未找到任何命题组合!")
-        print(f"合计找到命题组合{len(self.index_list)}个")
-        return self.index_list
+        i = 0
+        while True:
+            if len(candidate_props := [i for i in self.all_props if not i.got(self.chosen_props)]) == 0:
+                raise ValueError("已经没有可选的命题了")
+            print(f"第{(i := i + 1)}次搜索，已选命题数量为{len(self.chosen_props)}")
+            new_prop = random.choice(candidate_props)
+            self.chosen_props.append(new_prop)
+            if len(self.chosen_props) > 1:
+                self._lessen_chosen_props()
+            rm = ReasonMachine(self.chosen_props, self.relations, self.rules)
+            self.contained_props = rm.run()
+            if all([i.contained(self.contained_props) for i in self.init_props]):
+                print(f"已经找到可行的命题组合，共{len(self.chosen_props)}个命题")
+                return self.chosen_props
 
 class AnswerMachine:
     """
