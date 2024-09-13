@@ -131,7 +131,7 @@ class Scene(metaclass = abc.ABCMeta):
         self.get_all_props()
         question_list = []
         for i in range(execute):
-            print(f"开始第{i}次获取.")
+            print(f"开始第{i + 1}次获取.")
             self.get_all_groups()
             self.get_statements(seed)
             self.ask(seed)
