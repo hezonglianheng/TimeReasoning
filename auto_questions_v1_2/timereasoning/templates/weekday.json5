@@ -51,7 +51,7 @@
         "某一天，他既[element2]，也[element1]",
     ],
     // 事件间隔的模板
-    "gap": [
+    "gap_time": [
         "[element2]和[element1]之间相隔[diff]天",
         "[element2]和[element1]之间的时间间隔是[diff]天",
     ],
