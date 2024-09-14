@@ -137,13 +137,12 @@ class LoopScene(TimeScene):
         for i in range(len(self._all_props)):
             if self._all_props[i].got(self._all_props[:i]):
                 continue
+            elif isinstance(self._all_props[i], (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
+                continue
             else:
                 new_list.append(self._all_props[i])
         print(f"调整后有命题{len(new_list)}个.")
         self._all_props = new_list
-
-    def get_all_groups(self) -> None:
-        return super().get_all_groups()
 
 class PeriodRelation(relation.SingleEntailment):
     """表示时间点的周期性关系，属于单元蕴含关系"""
@@ -152,7 +151,6 @@ class PeriodRelation(relation.SingleEntailment):
 
     @classmethod
     def reason(cls, input_prop: timeprop.TemporalP) -> list[timeprop.TemporalP] | None:
-        global _LOOP
         if not isinstance(input_prop, timeprop.TemporalP):
             return None
         res = super().reason(input_prop)
