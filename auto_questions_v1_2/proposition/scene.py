@@ -41,7 +41,6 @@ class Scene(metaclass = abc.ABCMeta):
         # 命题收集变量
         self._init_props: list[prop.Proposition] = []
         self._all_props: list[prop.Proposition] = []
-        self._all_groups: list[list[int]] = []
         self._chosen_group: list[prop.Proposition] = []
         self._statements: list[str] = []
         self._asked_prop: prop.Proposition = None
@@ -80,7 +79,7 @@ class Scene(metaclass = abc.ABCMeta):
         # idxs = random.choice(self._all_groups) # 选择一组命题
         # self._chosen_group = [self._all_props[i] for i in idxs] # 选中的命题组合
         self._statements = [i.state(self.temps) for i in self._chosen_group] # 陈述列表
-        print("随机选择一组命题，得到其陈述.")
+        print("得到随机选择一组命题的陈述.")
         return self._statements
 
     @abc.abstractmethod
@@ -94,8 +93,9 @@ class Scene(metaclass = abc.ABCMeta):
             Dict[str, Any]: 问题信息
         """
         # 修改：选择的命题需要是未进入描述的命题
+        # 修改：提问的命题需要是可提问的命题
         print("随机选择一个未进入描述的命题，提问.")
-        self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group)])
+        self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
         return self._ask_info
