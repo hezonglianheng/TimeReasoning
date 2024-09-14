@@ -145,6 +145,13 @@ class LoopScene(TimeScene):
     def get_all_groups(self) -> None:
         return super().get_all_groups()
 
+    def ask(self, seed: int | float | None = None) -> Dict[str, Any]:
+        # 限制：只能表示前后关系的命题不可被提问
+        for i in self._all_props:
+            if isinstance(i, (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
+                i.askable = False
+        return super().ask(seed)
+
 class PeriodRelation(relation.SingleEntailment):
     """表示时间点的周期性关系，属于单元蕴含关系"""
     loop = 0
