@@ -66,7 +66,7 @@ class Scene(metaclass = abc.ABCMeta):
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
 
-    def get_statements(self, seed: Union[int, float, None] = None) -> list[str]:
+    def get_statements(self) -> list[str]:
         """获取一组命题组合的全部陈述
 
         Args:
@@ -131,9 +131,9 @@ class Scene(metaclass = abc.ABCMeta):
         self.get_all_props()
         question_list = []
         for i in range(execute):
-            print(f"开始第{i}次获取.")
+            print(f"开始第{i + 1}次获取.")
             self.get_all_groups()
-            self.get_statements(seed)
+            self.get_statements()
             self.ask(seed)
             answers = self.get_answers(seed)
             item = {"guide": self.guide, "statement": self._statements, "question": self._ask_info[prop.SENTENCE],} | answers

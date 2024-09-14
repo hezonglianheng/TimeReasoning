@@ -2,6 +2,8 @@
 # date: 2024-08-27
 # author: Qin Yuhang
 
+from pycnnum import num2cn # 引入中文数字转换库
+import re
 from copy import deepcopy
 from typing import Any, Dict, Optional
 import sys
@@ -53,6 +55,29 @@ class TimeScene(Scene):
         self.events.extend(events) # 将事件加入到事件列表中
         self._init_props.extend([timeprop.SingleTimeP.build(i) for i in events]) # 将事件转化为初始时间命题
 
+    def _statement_trans(self):
+        """
+        调整语句中的时间表达方式\n
+        例如，将星期几的数字转化为中文
+        """
+        if self.scale == ts.TimeScale.Weekday:
+            for n in range(len(self._statements)):
+                if (lst := re.findall(r"星期[0-9]", self._statements[n])) is not None:
+                    new_lst = ["星期" + p if (p:=num2cn(i[-1])) != "零" else "星期天" for i in lst]
+                    for i in range(len(lst)):
+                        self._statements[n] = self._statements[n].replace(lst[i], new_lst[i])
+                elif (lst := re.findall(r"周[0-9]", self._statements[n])) is not None:
+                    new_lst = ["周" + p if (p:=num2cn(i[-1])) != "零" else "周日" for i in lst]
+                    for i in range(len(lst)):
+                        self._statements[n] = self._statements[n].replace(lst[i], new_lst[i])
+        else:
+            pass
+
+    def get_statements(self) -> list[str]:
+        super().get_statements()
+        self._statement_trans()
+        return self._statements
+    
     def ask(self, seed: int | float | None = None) -> Dict[str, Any]:
         info = super().ask(seed)
         all_elements = [i.element for i in self._all_props if isinstance(i, timeprop.SingleTimeP)]
