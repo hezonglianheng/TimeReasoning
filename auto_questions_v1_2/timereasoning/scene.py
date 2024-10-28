@@ -60,7 +60,7 @@ class TimeScene(Scene):
         调整语句中的时间表达方式\n
         例如，将星期几的数字转化为中文
         """
-        if self.scale == ts.TimeScale.Weekday:
+        if self.scale == ts.TimeScale.Weekday: # 如果是星期尺度，可以做一些特殊的处理
             for n in range(len(self._statements)):
                 if (lst := re.findall(r"星期[0-9]", self._statements[n])) is not None:
                     new_lst = ["星期" + p if (p:=num2cn(i[-1])) != "零" else "星期天" for i in lst]
