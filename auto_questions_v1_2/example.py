@@ -19,7 +19,7 @@ if __name__ == "__main__": # 程序入口，必须使用这个结构
     curr_scene.add_events(life, meet_wife)
     # 运行时间场景
     res = curr_scene.run()
-    output_file = Path(__file__).resolve().parents[0] / "output.json"
+    output_file = Path(__file__).resolve().parents[0] / "outputs" / "output.json"
     with output_file.open('w', encoding='utf8') as f:
         json.dump(res, f, ensure_ascii=False, indent=4)
     print("结果成功输出在output.json文件中")
