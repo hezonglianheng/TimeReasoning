@@ -25,7 +25,7 @@ class GetBeforeTimeP(rule.TwoSingleToDoubleRule):
 
     @classmethod
     def reason(cls, prop1: timeprop.TemporalP, prop2: timeprop.TemporalP) -> timeprop.BeforeTimeP | None:
-        if not cls._assert_condition(prop1, prop2):
+        if not isinstance(prop1, (timeprop.TemporalP, timeprop.SubTemporalP)) or not isinstance(prop2, (timeprop.TemporalP, timeprop.SubTemporalP)):
             return None
         elif prop1.time < prop2.time:
             return super().reason(prop1, prop2)
@@ -37,7 +37,7 @@ class GetAfterTimeP(rule.TwoSingleToDoubleRule):
 
     @classmethod
     def reason(cls, prop1: timeprop.TemporalP, prop2: timeprop.TemporalP) -> timeprop.AfterTimeP | None:
-        if not cls._assert_condition(prop1, prop2):
+        if not isinstance(prop1, (timeprop.TemporalP, timeprop.SubTemporalP)) or not isinstance(prop2, (timeprop.TemporalP, timeprop.SubTemporalP)):
             return None
         elif prop1.time > prop2.time:
             return super().reason(prop1, prop2)
@@ -49,7 +49,7 @@ class GetSimultaneousP(rule.TwoSingleToDoubleRule):
 
     @classmethod
     def reason(cls, prop1: timeprop.TemporalP, prop2: timeprop.TemporalP) -> timeprop.SimultaneousP | None:
-        if not cls._assert_condition(prop1, prop2):
+        if not isinstance(prop1, (timeprop.TemporalP, timeprop.SubTemporalP)) or not isinstance(prop2, (timeprop.TemporalP, timeprop.SubTemporalP)):
             return None
         elif prop1.time == prop2.time:
             return super().reason(prop1, prop2)
