@@ -16,6 +16,8 @@ from typing import List, Union, Any
 from copy import deepcopy
 import sys
 from pathlib import Path
+from concurrent.futures import ProcessPoolExecutor
+import os
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -113,11 +115,15 @@ class SearchMachine:
         self.all_props = all_props # 全部命题列表
         self.relations = relations
         self.rules = rules
+        self._new_prop: prop.Proposition = None # 选择的新命题
         self.chosen_props: List[prop.Proposition] = [] # 已经选择的命题
-        self.contained_props: List[prop.Proposition] = [] # 已经包含的命题
+        self.contained_props: List[prop.Proposition] = [] # 由已经选择的命题推出的全部命题
+        # 新增：命题数量上限，默认值为init_props数量的两倍
+        self._upper_limit = len(init_props) * 2
 
     def _lessen_chosen_props(self) -> None:
         """减少已选命题列表，去除已经包含的命题"""
+        warn("函数SearchMachine._lessen_chosen_props()已经弃用", DeprecationWarning)
         reasoned: list[bool] = [False] * len(self.chosen_props)
         for i, prop_ in tqdm(enumerate(self.chosen_props), desc="减少已选命题列表", total=len(self.chosen_props)):
             rest_props = self.chosen_props[:i] + self.chosen_props[i + 1:]
@@ -128,6 +134,50 @@ class SearchMachine:
             self.chosen_props = self.chosen_props[:-1] # 如果所有命题都已经包含，则去除最后一个
             return None
         self.chosen_props = [i for i, j in zip(self.chosen_props, reasoned) if not j]
+    
+    def _check(self) -> None:
+        """
+        检查函数，用于减少已选命题数量
+        """
+        self.chosen_props.append(self._new_prop)
+        reasoned: list[bool] = [False] * len(self.chosen_props)
+        size: list[int] = [0] * len(self.chosen_props) # 记录推理结果范围广度
+        
+        # 检查命题
+        print("运行命题推出性检查...")
+        def process_reason(index: int):
+            """判断命题能否由其他命题推出
+
+            Args:
+                index (int): 待判断命题的索引值
+            """
+            curr = self.chosen_props[index] # 待检查命题
+            excluded = [x for i, x in enumerate(self.chosen_props) if i != index] # 其他命题
+            reason_machine = ReasonMachine(excluded, self.relations, self.rules) # 建立推理器
+            res = reason_machine.run() # 运行推理器
+            # 记录广度
+            size[index] = len(res)
+            # 记录判断
+            if curr.got(res):
+                reasoned[index] = True
+
+        with ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
+            executor.map(process_reason, range(len(self.chosen_props)))
+        
+        # 更新已选命题
+        self.chosen_props = [i for i, j in zip(self.chosen_props, reasoned) if not j] # 去除已经推理的命题
+        print(f"检查后已选命题有{len(self.chosen_props)}个")
+        if len(self.chosen_props) > self._upper_limit: # 超过上限时以推理最广的组合为基础调整已选命题数量
+            print(f"由于已选命题数量超过上限，调整为{self._upper_limit}个.")
+            max_num = max(size)
+            max_index = size.index(max_num)
+            self.chosen_props = [x for i, x in enumerate(self.chosen_props) if i != max_index]
+        
+    def _reason(self):
+        """推理函数，使用增量推理方式增加命题覆盖范围"""
+        print("根据已选命题运行推理...")
+        reason_machine = ReasonMachine(self.chosen_props, self.relations, self.rules)
+        self.contained_props = reason_machine.run()
     
     def run(self) -> List[prop.Proposition]:
         """运行搜索机，搜索可以推出原始命题的命题组合
@@ -140,18 +190,26 @@ class SearchMachine:
         """
         i = 0
         while True:
-            if len(candidate_props := [i for i in self.all_props if not i.got(self.chosen_props)]) == 0:
+            # if len(candidate_props := [i for i in self.all_props if not i.got(self.chosen_props)]) == 0:
+            if len(candidate_props := [i for i in self.all_props if not i.got(self.contained_props)]) == 0:
                 raise ValueError("已经没有可选的命题了")
             print(f"第{(i := i + 1)}次搜索，已选命题数量为{len(self.chosen_props)}")
-            new_prop = random.choice(candidate_props)
-            self.chosen_props.append(new_prop)
+            self._new_prop = random.choice(candidate_props) # 随机选择一个新命题
+            # self.chosen_props.append(new_prop)
+            '''
             if len(self.chosen_props) > 1:
                 self._lessen_chosen_props()
             rm = ReasonMachine(self.chosen_props, self.relations, self.rules)
             self.contained_props = rm.run()
-            if all([i.contained(self.contained_props) for i in self.init_props]):
-                print(f"已经找到可行的命题组合，共{len(self.chosen_props)}个命题")
-                return self.chosen_props
+            '''
+            self._check() # 检查命题，减少可行命题组合中命题数量
+            if self._new_prop.got(self.chosen_props): # 新增命题存在于已选命题中
+                self._reason() # 增量式推理
+                if all([i.contained(self.contained_props) for i in self.init_props]):
+                    print(f"已经找到可行的命题组合，共{len(self.chosen_props)}个命题")
+                    return self.chosen_props
+            else: # 新增命题不存在于已选择命题中
+                print("新增命题可以被推出，继续推理.")
 
 class AnswerMachine:
     """
