@@ -57,7 +57,7 @@ class Relation(metaclass = abc.ABCMeta):
         Returns:
             bool: 两个命题是否具有这一关系
         """
-        if any([prop2 == i for i in cls.reason(prop1)]):
+        if (res:= cls.reason(prop1)) and any([prop2 == i for i in res]):
             return True
         return False
 
