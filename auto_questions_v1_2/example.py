@@ -42,7 +42,6 @@ if __name__ == "__main__": # 程序入口，必须使用这个结构
         # 运行时间场景
         res.extend(curr_scene.run())
         curr_scene.reset()
-    res = curr_scene.run()
     output_file = Path(__file__).resolve().parents[0] / "outputs" / "output.json"
     with output_file.open('w', encoding='utf8') as f:
         json.dump(res, f, ensure_ascii=False, indent=4)
