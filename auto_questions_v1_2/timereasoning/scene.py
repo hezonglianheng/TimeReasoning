@@ -55,6 +55,11 @@ class TimeScene(Scene):
         self.events.extend(events) # 将事件加入到事件列表中
         self._init_props.extend([timeprop.SingleTimeP.build(i) for i in events]) # 将事件转化为初始时间命题
 
+    def reset(self):
+        """清空场景中的事件"""
+        self.events.clear()
+        self._init_props.clear()
+    
     def _statement_trans(self):
         """
         调整语句中的时间表达方式\n

@@ -45,6 +45,20 @@ class Rule(metaclass = abc.ABCMeta):
             return False
         return all([isinstance(i, j) for i, j in zip(props, cls._rule_tuple)])
 
+    @classmethod
+    @abc.abstractmethod
+    def judge(cls, dst: prop.Proposition, *props: prop.Proposition) -> bool:
+        """判断命题是否通过规则和前件推导出来\n
+
+        Args:
+            dst (Proposition): 待判断的命题
+            *props (Proposition): 输入的命题
+
+        Returns:
+            bool: 是否符合规则
+        """
+        return cls.reason(*props) == dst
+
 class TripleRule(Rule):
     """由2个前件和1个结论共同构成的3命题规则，来源于三段论，是最基础的推理形式"""
     _rule_tuple: tuple[type[prop.Proposition], type[prop.Proposition], type[prop.Proposition]] = tuple()
@@ -63,6 +77,20 @@ class TripleRule(Rule):
             Optional[prop.Proposition]: 新的命题或者None
         """
         assert len(cls._rule_tuple) == 3, "3命题规则要求规则中包含3个类名，其中，最后一个类名为推理结果的类型，之前的类名为条件的类名"
+
+    @classmethod
+    def judge(cls, dst: prop.Proposition, prop1: prop.Proposition, prop2: prop.Proposition) -> bool:
+        """判断命题是否通过规则和前件推导出来\n
+
+        Args:
+            dst (Proposition): 待判断的命题
+            prop1 (Proposition): 输入的命题1
+            prop2 (Proposition): 输入的命题2
+
+        Returns:
+            bool: 是否符合规则
+        """
+        return cls.reason(prop1, prop2) == dst or cls.reason(prop2, prop1) == dst
 
 class TransitivityRule(TripleRule):
     """

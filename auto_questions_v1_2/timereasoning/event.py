@@ -123,8 +123,8 @@ class DurativeEvent(Event):
         super().__init__(verb, object, time)
         self.endtime = endtime
         self.duration = self.endtime - self.time # 事件的持续时间
-        self.start_event: SubEvent = SubEvent("开始", self.event, time, self) # 事件的开始事件
-        self.end_event: SubEvent = SubEvent("结束", self.event, endtime, self) # 事件的结束事件
+        self.start_event: SubEvent = SubEvent("开始", self.event(), time, self) # 事件的开始事件
+        self.end_event: SubEvent = SubEvent("结束", self.event(), endtime, self) # 事件的结束事件
         self.duration_event: Duration = Duration(verb, object, self.duration, self) # 事件的持续时间事件
 
     def set_start_event(self, verb: str, object: str) -> None:
