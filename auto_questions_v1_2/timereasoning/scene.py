@@ -5,9 +5,10 @@
 from pycnnum import num2cn # 引入中文数字转换库
 import re
 from copy import deepcopy
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 import sys
 from pathlib import Path
+import random
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -16,7 +17,7 @@ from proposition import prop, relation
 from timereasoning import timeprop, timerule, timerelation, event
 from timereasoning import timescale as ts
 from proposition.scene import Scene
-
+from timereasoning import timeknoledge # 10-30修改：开始引入时间常识库
 class TimeScene(Scene):
     """
     时间场景
@@ -55,6 +56,23 @@ class TimeScene(Scene):
         self.events.extend(events) # 将事件加入到事件列表中
         self._init_props.extend([timeprop.SingleTimeP.build(i) for i in events]) # 将事件转化为初始时间命题
 
+    def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None) -> None:
+        """添加时间常识
+
+        Args:
+            number (int, optional): 添加的常识数量. 默认为5.
+            seed (Union[int, float, None], optional): 随机种子. 默认为None.
+        """
+        super().add_knowledge(number, seed)
+        know_list = timeknoledge.get_knowledge_base(self.scale)
+        chosen_know = random.sample(know_list, number) if number < len(know_list) else know_list
+        print(f"实际添加时间常识{len(chosen_know)}个.")
+        for k in chosen_know: # 遍历所有的时间常识
+            if isinstance(k, timeknoledge.EventKnowledge): # 如果是事件常识
+                self._knowledges.append(k.use()) # 将事件转化为时间命题
+            else:
+                pass # 其他类型的常识暂不处理，后续可以添加
+    
     def reset(self):
         """清空场景中的事件"""
         self.events.clear()
@@ -67,14 +85,14 @@ class TimeScene(Scene):
         """
         if self.scale == ts.TimeScale.Weekday: # 如果是星期尺度，可以做一些特殊的处理
             for n in range(len(self._statements)):
-                if (lst := re.findall(r"星期[0-9]", self._statements[n])) is not None:
-                    new_lst = ["星期" + p if (p:=num2cn(i[-1])) != "零" else "星期天" for i in lst]
-                    for i in range(len(lst)):
-                        self._statements[n] = self._statements[n].replace(lst[i], new_lst[i])
-                elif (lst := re.findall(r"周[0-9]", self._statements[n])) is not None:
-                    new_lst = ["周" + p if (p:=num2cn(i[-1])) != "零" else "周日" for i in lst]
-                    for i in range(len(lst)):
-                        self._statements[n] = self._statements[n].replace(lst[i], new_lst[i])
+                search1 = re.search(r"星期[0-9]", self._statements[n])
+                if search1 is not None:
+                    ch_num = num2cn(search1.group()[-1])
+                    self._statements[n] = self._statements[n].replace(search1.group(), "星期" + ch_num)
+                search2 = re.search(r"周[0-9]", self._statements[n])
+                if search2 is not None:
+                    ch_num = num2cn(search2.group()[-1])
+                    self._statements[n] = self._statements[n].replace(search2.group(), "周" + ch_num)
         else:
             pass
 
@@ -143,6 +161,9 @@ class LoopScene(TimeScene):
             if self._all_props[i].got(self._all_props[:i]):
                 continue
             elif isinstance(self._all_props[i], (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
+                continue
+            # 增加命题去除条件：若命题是BeforeTimeP, AfterTimeP, GapTimeP且diff为0，则去除
+            elif isinstance(self._all_props[i], (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)) and self._all_props[i].diff == 0:
                 continue
             else:
                 new_list.append(self._all_props[i])
