@@ -39,10 +39,12 @@ if __name__ == "__main__": # 程序入口，必须使用这个结构
     for s in samples:
         # 将事件添加到时间场景中
         curr_scene.add_events(*s)
+        # 注入知识
+        curr_scene.add_knowledge(number=5)
         # 运行时间场景
         res.extend(curr_scene.run())
         curr_scene.reset()
-    output_file = Path(__file__).resolve().parents[0] / "outputs" / "output.json"
+    output_file = Path(__file__).resolve().parents[0] / "outputs" / "knowledge_output.json"
     with output_file.open('w', encoding='utf8') as f:
         json.dump(res, f, ensure_ascii=False, indent=4)
-    print("结果成功输出在outputs/output.json文件中")
+    print("结果成功输出在outputs/knowledge_output.json文件中")

@@ -22,7 +22,7 @@ if __name__ == "__main__":
     enjoy_fiction = event.TemporalEvent("阅读", "科幻小说", 4)
     guitar = event.TemporalEvent("练习", "吉他", 5)
     # 随机抽取事件
-    all_combinations = list(combinations(learn_japanese, date, play_badminton, arrange, read_papers, meeting, movie, enjoy_fiction, guitar, jogging), 6)
+    all_combinations = list(combinations((learn_japanese, date, play_badminton, arrange, read_papers, meeting, movie, enjoy_fiction, guitar, jogging), 6))
     samples = random.sample(all_combinations, 10)
     res = []
     for s in samples:
