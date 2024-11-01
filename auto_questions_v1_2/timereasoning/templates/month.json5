@@ -1,0 +1,115 @@
+// 以月为单位的命题陈述模板
+// 模板中存在占位符，格式为"[占位符名]"，如"[element]"、"[time]"等
+// 占位符与相应命题的属性对应
+
+{
+    // 瞬时事件的模板
+    "temporal": [
+        "他[element]，那是在[time]月",
+        "在[time]月，他[element]",
+        "他在[time]月[element]",
+        "他[element]的时候是在[time]月",
+    ],
+    // 时长的模板
+    "duration": [
+        "他[element]的时间长达[duration]个月",
+        "他[element]有[duration]个月之久",
+        "他[element]的时间已经长达[duration]个月",
+        "他[element]的时间达到了[duration]个月",
+        "他[element]整整[duration]个月",
+    ],
+    // 持续事件的模板
+    "durative": [
+        // 描述起点和终点（同年）
+        "从[time]月到同年[endtime]月，他[element]",
+        "他自[time]月起[element]，直到同年[endtime]月结束",
+        "他从[time]月开始[element]，一直持续到同年[endtime]月",
+        "他自[time]月起到同年[endtime]月止[element]",
+        "[time]月至同年[endtime]月，他曾[element]",
+        // 描述起点和持续时间
+        "从[time]月开始的[duration]个月间，他[element]",
+        "自[time]月起，他一直[element]，直到[duration]个月后",
+        "从[time]月开始，他[element]，时间长达[duration]个月",
+        // 描述终点和持续时间
+        "他在[endtime]月之前的[duration]个月里一直[element]",
+        "直至[endtime]月，他已连续[duration]个月[element]",
+        "他在[endtime]月之前[element][duration]个月",
+    ],
+    // 时频的模板
+    "freq": [
+        "从[time]月到同年[endtime]月，每[frequency]个月他都[element]一次",
+        "从[time]月开始的[duration]个月间，每[frequency]个月他都[element]一次",
+        "他在[endtime]月之前的[duration]个月里每[frequency]个月都[element]一次",
+    ],
+    // 事件先后关系的模板
+    "before": [
+        "他[element1]的时间比[element2]早",
+        "[element1]是在[element2]之前发生的",
+        "他[element1]是在[element2]之前",
+    ],
+    "before_time": [
+        "他[element1]的时间比[element2]早了[diff]个月", 
+        "在[element2]之前[diff]个月，他曾[element1]", 
+        "他在[element2]的[diff]个月之前[element1]", 
+        "[element1]是在[element2]的[diff]个月前", 
+        "[element1]是在[element2]之前的第[diff]个月发生的",
+    ],
+    "after": [
+        "他[element1]的时间比[element2]晚",
+        "[element1]是在[element2]之后发生的",
+        "他[element1]是在[element2]之后",
+    ],
+    "after_time": [
+        "他[element1]的时间比[element2]晚了[diff]个月",
+        "在[element2]之后[diff]个月，他才[element1]",
+        "他在[element2]的[diff]个月之后[element1]",
+        "[element1]是在[element2]的[diff]个月后",
+        "[element1]是在[element2]之后的第[diff]个月发生的",
+    ],
+    "simultaneous": [
+        "在[element2]的那个月，他也[element1]",
+        "某个月，他不仅[element2]，还[element1]",
+        "在[element2]的那个月，他还[element1]",
+        "他在[element2]的同一个月，也[element1]",
+        "某个月，他既[element2]，也[element1]",
+    ],
+    // 事件间隔的模板
+    "gap_time": [
+        "[element2]和[element1]之间相隔[diff]个月",
+        "[element2]和[element1]之间的时间间隔是[diff]个月",
+        "他[element2]和[element1]中间差了[diff]个月",
+    ],
+    // 时长关系的模板
+    "long": [
+        "他[element1]的时间比[element2]的时间长",
+        "他[element1]的总时长比[element2]的总时长多",
+        "他用比[element2]长的时间[element1]",
+        "相比[element2]，他用了更多时间[element1]",
+        "他[element1]比[element2]用时更久",
+    ],
+    "long_time": [
+        "他[element1]的时间比[element2]的时间长了[diff]个月",
+        "他[element1]的总时长比[element2]的总时长多了[diff]个月", 
+        "他用比[element2]多[diff]个月的时间[element1]",
+    ],
+    "short": [
+        "他[element1]的时间比[element2]的时间短",
+        "他[element1]的总时长比[element2]的总时长少",
+        "他用比[element2]短的时间[element1]",
+        "相比[element2]，他用了更少时间[element1]",
+        "他[element1]比[element2]用时更短",
+    ],
+    "short_time": [
+        "他[element1]的时间比他[element2]的时间短了[diff]个月",
+        "他[element1]的总时长比他[element2]的总时长少了[diff]个月",
+        "他用比[element2]少[diff]个月的时间[element1]",
+    ],
+    "same_len": [
+        "他[element1]的月份数和他[element2]的月份数一样",
+        "他[element1]的时间和他[element2]的时间一样长",
+        "他[element1]的时间与他[element2]所花的时间相同",
+        "他[element1]花费的时间和他[element2]花费的时间相等",
+        "他[element1]的时间与他[element2]的时间一致",
+        "他用了相同的时间[element1]和[element2]",
+    ],
+}
