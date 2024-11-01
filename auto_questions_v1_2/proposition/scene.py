@@ -46,13 +46,26 @@ class Scene(metaclass = abc.ABCMeta):
         self._asked_prop: prop.Proposition = None
         self._ask_info: dict[str, Any] = {}
         self._value_range: dict[str, list[Any]] = dict()
+        self._knowledges: list[prop.Proposition] = []
 
+    def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None) -> None:
+        """添加知识命题
+
+        Args:
+            number (int): 要添加的知识命题数量. 默认为5.
+            seed (Union[int, float, None], optional): 随机种子. 默认为None.
+        """
+        assert number > 0, "知识命题数量必须大于0"
+        random.seed(seed)
+        print(f"开始添加知识命题.共添加{number}个.")
+    
     def get_all_props(self) -> None:
         """获得场景的全部命题"""
         assert len(self._init_props) >= 2, "命题数量必须大于等于2"
         print("开始生成全部命题！")
         curr_props = deepcopy(self._init_props)
-        rm = RM(curr_props, self.relations, self.rules)
+        knowledge = deepcopy(self._knowledges)
+        rm = RM(curr_props, self.relations, self.rules, knowledge)
         self._all_props = rm.run()
         print(f"全部命题生成完毕！生成了{len(self._all_props)}个命题")
 
@@ -61,7 +74,8 @@ class Scene(metaclass = abc.ABCMeta):
         """
         assert len(self._all_props) > 0, "必须先生成全部命题"
         print("开始搜索一组可行的命题组合.")
-        sm = SM(self._init_props, self._all_props, self.relations, self.rules)
+        knowledge = deepcopy(self._knowledges)
+        sm = SM(self._init_props, self._all_props, self.relations, self.rules, knowledge)
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
 
@@ -136,6 +150,9 @@ class Scene(metaclass = abc.ABCMeta):
             self.get_statements()
             self.ask(seed)
             answers = self.get_answers(seed)
+            if answers is None:
+                print("未能获取答案，跳过.")
+                continue
             item = {"guide": self.guide, "statement": self._statements, "question": self._ask_info[prop.SENTENCE],} | answers
             question_list.append(item)
         print(f"获取题目{execute}次，获得题目{len(question_list)}个.")

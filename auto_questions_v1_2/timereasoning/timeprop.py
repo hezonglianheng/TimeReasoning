@@ -20,25 +20,27 @@ import timereasoning.event as event
 class TimeP(prop.Proposition):
     """表示一个时间命题"""
     @abc.abstractmethod
-    def __init__(self, askable: bool = False):
+    def __init__(self, askable: bool = False, precise: bool = True):
         """初始化时间命题
 
         Args:
             askable (bool, optional): 是否可询问. 默认为False.
+            precise (bool, optional): 是否精确. 默认为True.
         """
-        super().__init__(askable)
+        super().__init__(askable, precise)
 
 # 单事件时间命题
 class SingleTimeP(prop.SingleProp, TimeP):
     """表示一个具有单个事件的时间命题"""
-    def __init__(self, element: event.Event, askable: bool = True):
+    def __init__(self, element: event.Event, askable: bool = True, precise: bool = True):
         """初始化一个具有单个事件的时间命题
 
         Args:
             element (event.Event): 事件
             askable (bool, optional): 是否可询问. 默认为True.
+            precise (bool, optional): 是否精确. 默认为True.
         """
-        super().__init__(element, askable)
+        super().__init__(element, askable, precise)
         self.time = element.time
         self.child_props: list["SubTemporalP" | "DurationP"] = []
 
@@ -141,9 +143,10 @@ class DurativeP(SingleTimeP):
         super().__init__(element, askable)
         self.endtime = element.endtime
         self.duration = element.duration
-        self.start_p = SubTemporalP(element.start_event)
-        self.end_p = SubTemporalP(element.end_event)
-        self.duration_p = DurationP(element.duration_event)
+        # 10-30修订：子事件和母事件具有相同的可提问性
+        self.start_p = SubTemporalP(element.start_event, askable)
+        self.end_p = SubTemporalP(element.end_event, askable)
+        self.duration_p = DurationP(element.duration_event, askable)
         self.duration_p.add_related_prop(BeforeTimeP(element.start_event, element.end_event))
         self.child_props = [self.start_p, self.end_p, self.duration_p]
 
@@ -206,15 +209,16 @@ class FreqP(SingleTimeP):
 # 双事件时间命题
 class DoubleTimeP(prop.DoubleProp, TimeP):
     """表示一个具有两个事件的时间命题"""
-    def __init__(self, element1: event.Event, element2: event.Event, askable: bool = False):
+    def __init__(self, element1: event.Event, element2: event.Event, askable: bool = False, precise: bool = True):
         """初始化一个具有两个事件的时间命题
 
         Args:
             element1 (event.Event): 命题中被描述相对情形的事件
             element2 (event.Event): 命题中的参照事件
             askable (bool, optional): 是否可询问. 默认为False.
+            precise (bool, optional): 是否精确. 默认为True.
         """
-        super().__init__(element1, element2, askable)
+        super().__init__(element1, element2, askable, precise)
         
     def attrs(self) -> dict[str, str]:
         res = super().attrs()
@@ -260,6 +264,7 @@ class BeforeP(DoubleTimeP):
     """表示一个事件发生在另一个事件之前的时间命题，是非精确命题"""
     def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
         super().__init__(element1, element2, askable)
+        self.precise = False
 
     @property
     def temp_key(self) -> str:
@@ -283,6 +288,7 @@ class AfterP(DoubleTimeP):
     """表示一个事件发生在另一个事件之后的时间命题，是非精确命题"""
     def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
         super().__init__(element1, element2, askable)
+        self.precise = False
 
     @property
     def temp_key(self) -> str:
@@ -316,6 +322,7 @@ class GapTimeP(DoubleTimeP):
     def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
         super().__init__(element1, element2, askable)
         self.diff = abs(element1.time - element2.time)
+        self.precise = False
 
     @property
     def temp_key(self) -> str:
@@ -328,6 +335,7 @@ class LongP(DoubleTimeP):
     """表示某持续事件的时长长于另一持续事件的时间命题，是非精确命题"""
     def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
         super().__init__(element1, element2, askable)
+        self.precise = False
 
     @property
     def temp_key(self) -> str:
@@ -351,6 +359,7 @@ class ShortP(DoubleTimeP):
     """表示某持续事件的时长短于另一持续事件的时间命题，是非精确命题"""
     def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
         super().__init__(element1, element2, askable)
+        self.precise = False
 
     @property
     def temp_key(self) -> str:

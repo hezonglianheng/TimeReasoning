@@ -26,13 +26,15 @@ ANSWER = "answer"
 class Proposition(element.Element):
     """命题的抽象基类"""
     @abc.abstractmethod
-    def __init__(self, askable: bool = True):
+    def __init__(self, askable: bool = True, precise: bool = True):
         """初始化命题
 
         Args:
             askable (bool, optional): 是否可询问. 默认为True.
+            precise (bool, optional): 是否精确. 默认为True.
         """
-        self.askable = askable
+        self.askable = askable # 是否可询问
+        self.precise = precise # 是否精确
 
     @property
     def num_of_conditions(self) -> int:
@@ -140,8 +142,8 @@ class SingleProp(Proposition):
     一元命题，是有1个主要元的命题。它相当于一个一元函数。\n
     例如：命题“星期五召开课题组会议”确定了一个主要元“召开课题组会议”(x)的位置，可以形式化为InFriday(x)，是个一元命题。
     """
-    def __init__(self, element1: element.Element, askable: bool = True):
-        super().__init__(askable)
+    def __init__(self, element1: element.Element, askable: bool = True, precise: bool = True):
+        super().__init__(askable, precise)
         self.element = element1
 
     def __eq__(self, other: object) -> bool:
@@ -152,8 +154,8 @@ class DoubleProp(Proposition):
     二元命题，是有2个主要元的命题。它相当于一个二元函数。\n
     例如：命题“当她来到舞厅时，她的心上人已经离开了”确定了两个主要元“她来到舞厅”(x)和“她的心上人离开”(y)的关系，可以形式化为Before(y, x)，是个二元命题。
     """
-    def __init__(self, element1: element.Element, element2: element.Element, askable: bool = True):
-        super().__init__(askable)
+    def __init__(self, element1: element.Element, element2: element.Element, askable: bool = True, precise: bool = True):
+        super().__init__(askable, precise)
         self.element1 = element1
         self.element2 = element2
 
@@ -161,8 +163,8 @@ class DoubleProp(Proposition):
         return super().__eq__(other) and self.element1 == other.element1 and self.element2 == other.element2
 
 class TripleProp(Proposition):
-    def __init__(self, element1: element.Element, element2: element.Element, element3: element.Element, askable: bool = True):
-        super().__init__(askable)
+    def __init__(self, element1: element.Element, element2: element.Element, element3: element.Element, askable: bool = True, precise: bool = True):
+        super().__init__(askable, precise)
         self.element1 = element1
         self.element2 = element2
         self.element3 = element3

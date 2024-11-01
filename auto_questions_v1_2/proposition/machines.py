@@ -23,25 +23,27 @@ import os
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 from proposition import prop, rule, relation
+from proposition.config import PRECISE_WEIGHT, NOT_PRECISE_WEIGHT
 
 OPTIONS = "options"
 ANSWERS = "answers"
 
 class ReasonMachine:
     """推理机，用于执行推理任务"""
-    def __init__(self, init_props: list[prop.Proposition], relations: list[type[relation.Relation]], rules: list[type[rule.Rule]]) -> None:
+    def __init__(self, init_props: list[prop.Proposition], relations: list[type[relation.Relation]], rules: list[type[rule.Rule]], knowledges: list[prop.Proposition] = []) -> None:
         """初始化推理机
 
         Args:
             init_props (list[Proposition]): 初始命题列表
             relations (list[type[Relation]]): 关系列表
             rules (list[type[Rule]]): 规则列表
+            knowledges (list[Proposition], optional): 已知命题列表. 默认为空.
         """
         self.init_props = init_props # 初始命题列表
         self.relations = relations # 关系列表
         self.rules = rules # 规则列表
         # 中间变量
-        self.old_props: list[prop.Proposition] = []
+        self.old_props: list[prop.Proposition] = knowledges
         self.curr_props: list[prop.Proposition] = []
         self.new_props: list[prop.Proposition] = []
 
@@ -102,7 +104,7 @@ class SearchMachine:
     搜索机，用于搜索可以推出原始命题的命题组合\n
     该搜索机使用了多进程，可以在一定程度上减少搜索时间
     """
-    def __init__(self, init_props: list[prop.Proposition], all_props: list[prop.Proposition], relations: list[type[relation.Relation]], rules: list[type[rule.Rule]]) -> None:
+    def __init__(self, init_props: list[prop.Proposition], all_props: list[prop.Proposition], relations: list[type[relation.Relation]], rules: list[type[rule.Rule]], knowledges: list[prop.Proposition] = []) -> None:
         """初始化搜索机
 
         Args:
@@ -115,6 +117,7 @@ class SearchMachine:
         self.all_props = all_props # 全部命题列表
         self.relations = relations
         self.rules = rules
+        self.knowledges = knowledges
         self._new_prop: prop.Proposition = None # 选择的新命题
         self.chosen_props: List[prop.Proposition] = [] # 已经选择的命题
         self.contained_props: List[prop.Proposition] = [] # 由已经选择的命题推出的全部命题
@@ -135,6 +138,15 @@ class SearchMachine:
             return None
         self.chosen_props = [i for i, j in zip(self.chosen_props, reasoned) if not j]
     
+    def _random_choose(self, candidate: list[prop.Proposition]) -> None:
+        """随机选择一个新命题，使用精确/非精确命题权重
+
+        Args:
+            candidate (list[prop.Proposition]): 候选命题列表
+        """
+        weight = [PRECISE_WEIGHT if i.precise else NOT_PRECISE_WEIGHT for i in candidate]
+        self._new_prop = random.choices(candidate, weights=weight)[0]
+    
     def _check(self) -> None:
         """
         检查函数，用于减少已选命题数量
@@ -153,7 +165,7 @@ class SearchMachine:
             """
             curr = self.chosen_props[index] # 待检查命题
             excluded = [x for i, x in enumerate(self.chosen_props) if i != index] # 其他命题
-            reason_machine = ReasonMachine(excluded, self.relations, self.rules) # 建立推理器
+            reason_machine = ReasonMachine(excluded, self.relations, self.rules, deepcopy(self.knowledges)) # 建立推理器
             res = reason_machine.run() # 运行推理器
             # 记录广度
             size[index] = len(res)
@@ -176,7 +188,7 @@ class SearchMachine:
     def _reason(self):
         """推理函数，使用增量推理方式增加命题覆盖范围"""
         print("根据已选命题运行推理...")
-        reason_machine = ReasonMachine(self.chosen_props, self.relations, self.rules)
+        reason_machine = ReasonMachine(self.chosen_props, self.relations, self.rules, deepcopy(self.knowledges))
         self.contained_props = reason_machine.run()
     
     def run(self) -> List[prop.Proposition]:
@@ -194,7 +206,8 @@ class SearchMachine:
             if len(candidate_props := [i for i in self.all_props if not i.got(self.contained_props)]) == 0:
                 raise ValueError("已经没有可选的命题了")
             print(f"第{(i := i + 1)}次搜索，已选命题数量为{len(self.chosen_props)}")
-            self._new_prop = random.choice(candidate_props) # 随机选择一个新命题
+            # self._new_prop = random.choice(candidate_props) # 随机选择一个新命题
+            self._random_choose(candidate_props) # 随机选择一个新命题
             # self.chosen_props.append(new_prop)
             '''
             if len(self.chosen_props) > 1:
@@ -257,13 +270,20 @@ class AnswerMachine:
         # 获取询问属性
         qtype = self._ask_info[prop.TYPE]
         option_situation_tuples: list[tuple[Any, bool]] = [(self._ask_info[prop.ANSWER], True)]
-        assert getattr(self._ask_prop, qtype), f"被询问的命题中没有属性{qtype}"
+        # 10-31修改：改用try-except结构捕捉错误
+        try:
+            getattr(self._ask_prop, qtype)
+        except AttributeError:
+            raise AttributeError(f"被询问的命题{type(self._ask_prop)}中没有属性{qtype}")
+        else:
+            pass
+        # assert getattr(self._ask_prop, qtype), f"被询问的命题{type(self._ask_prop)}中没有属性{qtype}"
         # 挑选候选项
         if (candidates := self._value_range.get(qtype)) is None:
             print(f"未找到属性{qtype}的值域，无法生成选项！")
             return None
         elif len(candidates) < self._options - 1:
-            print(f"候选项数量不足，无法生成选项！")
+            print(f"被询问的命题{type(self._ask_prop)}属性{qtype}的候选项数量不足，无法生成选项！")
             return None
         random.seed(self._seed) # 设置随机种子
         chosen_candidate = random.sample(candidates, self._options - 1)

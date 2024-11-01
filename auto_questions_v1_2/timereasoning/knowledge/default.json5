@@ -1,0 +1,30 @@
+// 时间领域知识库示例文件
+// 知识分为3类：事件时间知识、事件顺序关系常识、换算常识
+
+{
+    "event": [
+        {
+            "subtype": "temporal",
+            "verb": "",
+            "object": "",
+            "time": 0,
+        }, 
+        {
+            "subtype": "durative",
+            "verb": "",
+            "object": "",
+            "time": 0,
+            "endtime": 0,
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "",
+            "object": "",
+            "time": 0,
+            "endtime": 0,
+            "frequency": 0,
+        }
+    ], 
+    "order": [], 
+    "convert": [], 
+}
