@@ -128,6 +128,7 @@ class SearchMachine:
 
     def _lessen_chosen_props(self) -> None:
         """减少已选命题列表，去除已经包含的命题"""
+        warn("函数SearchMachine._lessen_chosen_props()已经弃用", DeprecationWarning)
         reasoned: list[bool] = [False] * len(self.chosen_props)
         for i, prop_ in tqdm(enumerate(self.chosen_props), desc="减少已选命题列表", total=len(self.chosen_props)):
             rest_props = self.chosen_props[:i] + self.chosen_props[i + 1:]
