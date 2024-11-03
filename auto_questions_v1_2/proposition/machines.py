@@ -54,7 +54,12 @@ class ReasonMachine:
             list[Proposition]: 新生成的命题列表
         """
         # 从现有命题推理，得到新命题列表的列表
-        prop_lists: List[List[prop.Proposition]] = [new_p for p, r in product(self.curr_props, self.relations) if (new_p := r.reason(p)) is not None]
+        prop_lists: List[List[prop.Proposition]] = []
+        for p, r in product(self.curr_props, self.relations):
+            new_p = r.reason(p)
+            if new_p is not None:
+                prop_lists.append(new_p)
+        
         # 将新命题列表的列表合并为一个新命题列表
         if len(prop_lists) == 0:
             return []
@@ -70,7 +75,12 @@ class ReasonMachine:
         Returns:
             list[Proposition]: 新生成的命题列表
         """
-        return [new_p for (p1, p2), r in product(permutations(self.curr_props + self.old_props, r=2), self.rules) if (new_p := r.reason(p1, p2)) is not None]
+        prop_list: list[prop.Proposition] = []
+        for (p1, p2), r in product(permutations(self.curr_props + self.old_props, r=2), self.rules):
+            new_p = r.reason(p1, p2)
+            if new_p is not None:
+                prop_list.append(new_p)
+        return prop_list
     
     def run(self) -> list[prop.Proposition]:
         """运行推理机，获得能够推出的最大命题
