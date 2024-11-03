@@ -22,6 +22,7 @@ import proposition.rule as rule
 from proposition.machines import ReasonMachine as RM
 from proposition.machines import SearchMachine as SM
 from proposition.machines import AnswerMachine as AM
+from proposition.config import SEMICOLON, COLON # 引入标点符号用于串联表达
 
 class Scene(metaclass = abc.ABCMeta):
     """
@@ -153,7 +154,8 @@ class Scene(metaclass = abc.ABCMeta):
             if answers is None:
                 print("未能获取答案，跳过.")
                 continue
-            item = {"guide": self.guide, "statement": self._statements, "question": self._ask_info[prop.SENTENCE],} | answers
+            text = self.guide + COLON + SEMICOLON.join(self._statements) # 题面文本，由引导语和陈述组成
+            item = {"guide": self.guide, "statement": self._statements, "text": text, "question": self._ask_info[prop.SENTENCE],} | answers
             question_list.append(item)
         print(f"获取题目{execute}次，获得题目{len(question_list)}个.")
         return question_list
