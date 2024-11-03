@@ -18,6 +18,7 @@ import sys
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor
 import os
+import math
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -55,7 +56,7 @@ class ReasonMachine:
         """
         # 从现有命题推理，得到新命题列表的列表
         prop_lists: List[List[prop.Proposition]] = []
-        for p, r in product(self.curr_props, self.relations):
+        for p, r in tqdm(product(self.curr_props, self.relations), desc="根据关系推理", total=len(self.curr_props) * len(self.relations)):
             new_p = r.reason(p)
             if new_p is not None:
                 prop_lists.append(new_p)
@@ -76,7 +77,8 @@ class ReasonMachine:
             list[Proposition]: 新生成的命题列表
         """
         prop_list: list[prop.Proposition] = []
-        for (p1, p2), r in product(permutations(self.curr_props + self.old_props, r=2), self.rules):
+        total_len = math.perm(len(self.curr_props + self.old_props), 2) * len(self.rules)
+        for (p1, p2), r in tqdm(product(permutations(self.curr_props + self.old_props, r=2), self.rules), desc="根据规则推理", total=total_len):
             new_p = r.reason(p1, p2)
             if new_p is not None:
                 prop_list.append(new_p)
@@ -93,6 +95,7 @@ class ReasonMachine:
         count = 0
         while True:
             count += 1
+            print(f"执行第{count}次推理...")
             self.new_props.clear() # 清空新命题列表
             by_relations = self._reason_by_relation() # 用关系推理
             by_rules = self._reason_by_rule() # 用规则推理
