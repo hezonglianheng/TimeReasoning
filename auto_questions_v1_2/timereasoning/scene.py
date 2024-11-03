@@ -98,6 +98,7 @@ class TimeScene(Scene):
         else:
             pass
 
+    # 11-03修改：在时间领域重载获取全部命题的方法
     def get_all_groups(self) -> None:
         assert len(self._all_props) > 0, "必须先生成全部命题"
         print("开始搜索一组可行的命题组合.")

@@ -13,6 +13,8 @@ sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 from timereasoning import event, timeprop
 
 class SearchMachine:
+    """时间领域专用搜索机
+    """
     class SortedEvents:
         """对事件列表进行排序的类"""
         def __init__(self, event_list: list[event.Event]) -> None:
@@ -77,6 +79,14 @@ class SearchMachine:
         return self.SortedEvents([e.duration_event for e in lst])
     
     def _find_props(self, e: event.Event) -> list[timeprop.TimeP]:
+        """查找事件e对应的表述命题
+
+        Args:
+            e (event.Event): 事件
+
+        Returns:
+            list[timeprop.TimeP]: 表述命题
+        """
         candidates: list[list[timeprop.TimeP]] = [[p] for p in self.single_prop_list if p.element == e] # 查找单元素命题
         if type(e) == event.TemporalEvent or type(e) == event.SubEvent:
             doubles = [[p] for p in self.double_prop_list if (isinstance(p, (timeprop.AfterTimeP, timeprop.SimultaneousP)) and p.element1 == e and p.element2.got(self._temporal_event_sorted.before_events(e)))]
@@ -97,9 +107,14 @@ class SearchMachine:
         return random.choice(candidates)
     
     def run(self) -> list[timeprop.TimeP]:
-        print("对事件集生成表述集...")
-        for _, e in tqdm(enumerate(self.event_list()), desc="事件生成表述", total=len(self.event_list())):
+        """运行推理机，对事件集生成表述命题集
+
+        Returns:
+            list[timeprop.TimeP]: 表述命题集
+        """
+        print("对事件集生成表述命题集...")
+        for _, e in tqdm(enumerate(self.event_list()), desc="事件生成表述命题", total=len(self.event_list())):
             props = self._find_props(e)
             self.chosen_props.extend(props)
-        print("表述集生成完毕.")
+        print("表述命题集生成完毕.")
         return self.chosen_props

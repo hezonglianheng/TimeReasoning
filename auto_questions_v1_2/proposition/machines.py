@@ -99,7 +99,7 @@ class ReasonMachine:
             self.curr_props = new_props
 
 # TODO: 优化搜索机，减少搜索时间
-# 11-03修订：废弃，事件领域可能不需要太复杂的命题组合关系
+# 11-03修订：时间领域可能不需要太复杂的命题组合关系
 class SearchMachine:
     """
     搜索机，用于搜索可以推出原始命题的命题组合\n
@@ -128,7 +128,6 @@ class SearchMachine:
 
     def _lessen_chosen_props(self) -> None:
         """减少已选命题列表，去除已经包含的命题"""
-        warn("函数SearchMachine._lessen_chosen_props()已经弃用", DeprecationWarning)
         reasoned: list[bool] = [False] * len(self.chosen_props)
         for i, prop_ in tqdm(enumerate(self.chosen_props), desc="减少已选命题列表", total=len(self.chosen_props)):
             rest_props = self.chosen_props[:i] + self.chosen_props[i + 1:]
@@ -202,7 +201,6 @@ class SearchMachine:
         Returns:
             List[prop.Proposition]: 可以推出原始命题的命题组合
         """
-        warn("类SearchMachine已经弃用", DeprecationWarning)
         i = 0
         while True:
             # if len(candidate_props := [i for i in self.all_props if not i.got(self.chosen_props)]) == 0:
