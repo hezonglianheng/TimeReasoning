@@ -18,6 +18,8 @@ from timereasoning import timeprop, timerule, timerelation, event
 from timereasoning import timescale as ts
 from proposition.scene import Scene
 from timereasoning import timeknoledge # 10-30修改：开始引入时间常识库
+from timereasoning.machines import SearchMachine as SM # 11-03修改：引入时间领域专用搜索机
+
 class TimeScene(Scene):
     """
     时间场景
@@ -95,6 +97,14 @@ class TimeScene(Scene):
                     self._statements[n] = self._statements[n].replace(search2.group(), "周" + ch_num)
         else:
             pass
+
+    # 11-03修改：在时间领域重载获取全部命题的方法
+    def get_all_groups(self) -> None:
+        assert len(self._all_props) > 0, "必须先生成全部命题"
+        print("开始搜索一组可行的命题组合.")
+        sm = SM(self.events, self._all_props)
+        self._chosen_group = sm.run()
+        print(f"命题组合搜索结束.")
 
     def get_statements(self) -> list[str]:
         super().get_statements()

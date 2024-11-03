@@ -6,3 +6,7 @@
 # 精确/非精确命题选择权重
 PRECISE_WEIGHT = 0.8
 NOT_PRECISE_WEIGHT = 0.2
+
+# punctuations
+SEMICOLON = "；"
+COLON = "："

@@ -40,3 +40,16 @@ class Element(metaclass = abc.ABCMeta):
 
     def __str__(self) -> str:
         return "" # 返回空字符串
+    
+    # 11-03新增：判断一个元素在一个元素集中的函数
+    def got(self, element_list: list["Element"]) -> bool:
+        """判断一个事件是否在一个事件集中
+
+        Args:
+            element_list (list[Element]): 事件集
+
+        Returns:
+            bool: 事件是否在事件集中
+        """
+        return any([self == e for e in element_list])
+    

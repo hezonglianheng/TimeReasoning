@@ -22,7 +22,7 @@ import os
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
-from proposition import prop, rule, relation
+from proposition import prop, rule, relation, element
 from proposition.config import PRECISE_WEIGHT, NOT_PRECISE_WEIGHT
 
 OPTIONS = "options"
@@ -99,6 +99,7 @@ class ReasonMachine:
             self.curr_props = new_props
 
 # TODO: 优化搜索机，减少搜索时间
+# 11-03修订：时间领域可能不需要太复杂的命题组合关系
 class SearchMachine:
     """
     搜索机，用于搜索可以推出原始命题的命题组合\n
@@ -113,6 +114,7 @@ class SearchMachine:
             relations (list[type[relation.Relation]]): 关系列表
             rules (list[type[rule.Rule]]): 规则列表
         """
+        warn("类SearchMachine已经弃用", DeprecationWarning)
         self.init_props = init_props # 初始命题列表
         self.all_props = all_props # 全部命题列表
         self.relations = relations
