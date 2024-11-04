@@ -23,6 +23,7 @@ from proposition.machines import ReasonMachine as RM
 from proposition.machines import SearchMachine as SM
 from proposition.machines import AnswerMachine as AM
 from proposition.config import SEMICOLON, COLON # 引入标点符号用于串联表达
+from proposition.graph import Graph
 
 class Scene(metaclass = abc.ABCMeta):
     """
@@ -48,6 +49,8 @@ class Scene(metaclass = abc.ABCMeta):
         self._ask_info: dict[str, Any] = {}
         self._value_range: dict[str, list[Any]] = dict()
         self._knowledges: list[prop.Proposition] = []
+        self.graph: Graph = None
+        self.chain: str = ""
 
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None) -> None:
         """添加知识命题
@@ -79,6 +82,11 @@ class Scene(metaclass = abc.ABCMeta):
         sm = SM(self._init_props, self._all_props, self.relations, self.rules, knowledge)
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
+        print(f"获取推理图.")
+        rm = RM(deepcopy(self._chosen_group), self.relations, self.rules, deepcopy(self._knowledges), graph_construct=True)
+        rm.run()
+        self.graph = rm.graph
+        print(f"推理图获取完毕.")
 
     def get_statements(self) -> list[str]:
         """获取一组命题组合的全部陈述
@@ -115,7 +123,7 @@ class Scene(metaclass = abc.ABCMeta):
         print("提问完毕.")
         return self._ask_info
 
-    def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1):
+    def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[str, Any]:
         """获取选项和正确答案
 
         Args:
@@ -124,13 +132,19 @@ class Scene(metaclass = abc.ABCMeta):
             all_wrong_prob (float, optional): 全部错误选项的概率. 默认为0.1.
 
         Returns:
-            _type_: _description_
+            Dict[str, Any]: 答案信息
         """
         assert self._asked_prop is not None, "必须先执行ask()方法进行提问"
         am = AM(self._all_props, self._asked_prop, self._ask_info, seed, options, all_wrong_prob)
         for k, v in self._value_range.items():
             am.set_value_range(k, v)
         return am.run()
+    
+    def get_chain(self) -> str:
+        assert self._asked_prop is not None, "必须先执行ask()方法进行提问"
+        reason_path = self.graph.backtrace(self._asked_prop)
+        self.chain = "\n".join([i.state(self.temps) for i in reason_path])
+        return self.chain
     
     def run(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
         """运行场景，获取一组题目
@@ -151,11 +165,12 @@ class Scene(metaclass = abc.ABCMeta):
             self.get_statements()
             self.ask(seed)
             answers = self.get_answers(seed)
+            chain = self.get_chain()
             if answers is None:
                 print("未能获取答案，跳过.")
                 continue
             text = self.guide + COLON + SEMICOLON.join(self._statements) # 题面文本，由引导语和陈述组成
-            item = {"guide": self.guide, "statement": self._statements, "text": text, "question": self._ask_info[prop.SENTENCE],} | answers
+            item = {"guide": self.guide, "statement": self._statements, "text": text, "question": self._ask_info[prop.SENTENCE],} | answers | {"chain": chain}
             question_list.append(item)
         print(f"获取题目{execute}次，获得题目{len(question_list)}个.")
         return question_list
