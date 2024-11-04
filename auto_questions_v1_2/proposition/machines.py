@@ -18,11 +18,12 @@ import sys
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor
 import os
+import math
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
-from proposition import prop, rule, relation, element
+from proposition import prop, rule, relation, graph
 from proposition.config import PRECISE_WEIGHT, NOT_PRECISE_WEIGHT
 
 OPTIONS = "options"
@@ -30,7 +31,7 @@ ANSWERS = "answers"
 
 class ReasonMachine:
     """推理机，用于执行推理任务"""
-    def __init__(self, init_props: list[prop.Proposition], relations: list[type[relation.Relation]], rules: list[type[rule.Rule]], knowledges: list[prop.Proposition] = []) -> None:
+    def __init__(self, init_props: list[prop.Proposition], relations: list[type[relation.Relation]], rules: list[type[rule.Rule]], knowledges: list[prop.Proposition] = [], graph_construct: bool = False) -> None:
         """初始化推理机
 
         Args:
@@ -38,6 +39,7 @@ class ReasonMachine:
             relations (list[type[Relation]]): 关系列表
             rules (list[type[Rule]]): 规则列表
             knowledges (list[Proposition], optional): 已知命题列表. 默认为空.
+            graph_construct (bool, optional): 是否构建推理图. 默认为False.
         """
         self.init_props = init_props # 初始命题列表
         self.relations = relations # 关系列表
@@ -46,31 +48,56 @@ class ReasonMachine:
         self.old_props: list[prop.Proposition] = knowledges
         self.curr_props: list[prop.Proposition] = []
         self.new_props: list[prop.Proposition] = []
+        # 11-03：增加图构建相关变量
+        self.graph_construct = graph_construct
+        self.graph = graph.Graph(deepcopy(init_props)) if graph_construct else None
 
-    def _reason_by_relation(self) -> list[prop.Proposition]:
+    def _reason_by_relation(self, layer: int) -> list[prop.Proposition]:
         """根据关系，从现有命题推理
+
+        Returns:
+            list[Proposition]: 新生成的命题列表
+            layer(int): 推理层数
 
         Returns:
             list[Proposition]: 新生成的命题列表
         """
         # 从现有命题推理，得到新命题列表的列表
-        prop_lists: List[List[prop.Proposition]] = [new_p for p, r in product(self.curr_props, self.relations) if (new_p := r.reason(p)) is not None]
+        prop_lists: List[List[prop.Proposition]] = []
+        for p, r in tqdm(product(self.curr_props, self.relations), desc="根据关系推理", total=len(self.curr_props) * len(self.relations)):
+            new_p = r.reason(p)
+            if new_p is not None:
+                prop_lists.append(new_p)
+                # 11-03：增加图构建
+                if self.graph_construct:
+                    for p0 in new_p:
+                        self.graph.add_node(graph.Node([p], p0, layer))
+        
         # 将新命题列表的列表合并为一个新命题列表
         if len(prop_lists) == 0:
             return []
         else:
             return reduce(lambda x, y: x + y, prop_lists)
     
-    def _reason_by_rule(self) -> list[prop.Proposition]:
+    def _reason_by_rule(self, layer: int) -> list[prop.Proposition]:
         """根据规则，从现有命题-(现有命题+旧命题)推理
 
         Args:
             prop_list (list[Proposition]): 待推理的命题列表
+            layer(int): 推理层数
 
         Returns:
             list[Proposition]: 新生成的命题列表
         """
-        return [new_p for (p1, p2), r in product(permutations(self.curr_props + self.old_props, r=2), self.rules) if (new_p := r.reason(p1, p2)) is not None]
+        prop_list: list[prop.Proposition] = []
+        total_len = math.perm(len(self.curr_props + self.old_props), 2) * len(self.rules)
+        for (p1, p2), r in tqdm(product(permutations(self.curr_props + self.old_props, r=2), self.rules), desc="根据规则推理", total=total_len):
+            new_p = r.reason(p1, p2)
+            if new_p is not None:
+                prop_list.append(new_p)
+                if self.graph_construct:
+                    self.graph.add_node(graph.Node([p1, p2], new_p, layer))
+        return prop_list
     
     def run(self) -> list[prop.Proposition]:
         """运行推理机，获得能够推出的最大命题
@@ -83,9 +110,10 @@ class ReasonMachine:
         count = 0
         while True:
             count += 1
+            print(f"执行第{count}次推理...")
             self.new_props.clear() # 清空新命题列表
-            by_relations = self._reason_by_relation() # 用关系推理
-            by_rules = self._reason_by_rule() # 用规则推理
+            by_relations = self._reason_by_relation(count) # 用关系推理
+            by_rules = self._reason_by_rule(count) # 用规则推理
             # 对新命题的去重和加入
             for p in by_relations + by_rules:
                 if all([p != i for i in self.new_props]):

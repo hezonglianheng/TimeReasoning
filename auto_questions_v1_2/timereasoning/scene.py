@@ -19,6 +19,7 @@ from timereasoning import timescale as ts
 from proposition.scene import Scene
 from timereasoning import timeknoledge # 10-30修改：开始引入时间常识库
 from timereasoning.machines import SearchMachine as SM # 11-03修改：引入时间领域专用搜索机
+from proposition.machines import ReasonMachine as RM # 11-03修改：引入推理机构建推理图
 
 class TimeScene(Scene):
     """
@@ -105,6 +106,11 @@ class TimeScene(Scene):
         sm = SM(self.events, self._all_props)
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
+        print(f"获取推理图.")
+        rm = RM(deepcopy(self._chosen_group), self.relations, self.rules, deepcopy(self._knowledges), graph_construct=True)
+        rm.run()
+        self.graph = rm.graph
+        print(f"推理图获取完毕.")
 
     def get_statements(self) -> list[str]:
         super().get_statements()
