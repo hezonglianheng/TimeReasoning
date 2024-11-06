@@ -10,6 +10,7 @@ import abc
 import random
 import sys
 from pathlib import Path
+from typing import Optional
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -19,7 +20,7 @@ from proposition.element import Element
 class Event(Element):
     """表示一个事件"""
     @abc.abstractmethod
-    def __init__(self, verb: str, object: str, time: int) -> None:
+    def __init__(self, verb: str, object: str, time: Optional[int] = None) -> None:
         """初始化事件
 
         Args:
@@ -66,7 +67,7 @@ class Event(Element):
         return super().__eq__(other) and self.verb == other.verb and self.object == other.object and self.time == other.time
     
     @classmethod
-    def build_event(cls, verb: str, object: str, time: int, **kwargs) -> 'Event':
+    def build_event(cls, verb: str, object: str, time: Optional[int] = None, **kwargs) -> 'Event':
         """根据参数生成事件的工厂方法，根据参数生成不同类型的事件\n
         如果没有额外参数，则生成瞬时事件\n
         如果有frequency参数，则生成频率事件，且可以提供endtime参数\n
@@ -87,7 +88,7 @@ class Event(Element):
 
 class TemporalEvent(Event):
     """表示一个瞬时事件"""
-    def __init__(self, verb: str, object: str, time: int) -> None:
+    def __init__(self, verb: str, object: str, time: Optional[int] = None) -> None:
         """初始化瞬时事件
         
         Args:
@@ -99,19 +100,19 @@ class TemporalEvent(Event):
 
 class SubEvent(TemporalEvent):
     """表示一个事件的子事件"""
-    def __init__(self, verb: str, object: str, time: int, parent: Event) -> None:
+    def __init__(self, verb: str, object: str, time: Optional[int] = None, parent: Event = None) -> None:
         super().__init__(verb, object, time)
         self.parent: Event = parent
 
 class Duration(Event):
     """表示一个持续事件的时长"""
-    def __init__(self, verb: str, object: str, time: int, parent: Event) -> None:
+    def __init__(self, verb: str, object: str, time: Optional[int] = None, parent: Event = None) -> None:
         super().__init__(verb, object, time)
         self.parent: Event = parent
 
 class DurativeEvent(Event):
     """表示一个持续事件"""
-    def __init__(self, verb: str, object: str, time: int, endtime: int) -> None:
+    def __init__(self, verb: str, object: str, time: Optional[int] = None, endtime: Optional[int] = None) -> None:
         """初始化持续事件
         
         Args:
@@ -122,7 +123,8 @@ class DurativeEvent(Event):
         """
         super().__init__(verb, object, time)
         self.endtime = endtime
-        self.duration = self.endtime - self.time # 事件的持续时间
+        # 事件的持续时间
+        self.duration = self.endtime - self.time if self.endtime is not None and self.time is not None else None
         self.start_event: SubEvent = SubEvent("开始", self.event(), time, self) # 事件的开始事件
         self.end_event: SubEvent = SubEvent("结束", self.event(), endtime, self) # 事件的结束事件
         self.duration_event: Duration = Duration(verb, object, self.duration, self) # 事件的持续时间事件
@@ -159,7 +161,7 @@ class DurativeEvent(Event):
     
 class FreqEvent(Event):
     """表示一个频率发生事件"""
-    def __init__(self, verb: str, object: str, time: int, frequency: int, endtime: int) -> None:
+    def __init__(self, verb: str, object: str, time: Optional[int] = None, frequency: Optional[int] = None, endtime: Optional[int] = None) -> None:
         """初始化频率发生事件
         
         Args:
