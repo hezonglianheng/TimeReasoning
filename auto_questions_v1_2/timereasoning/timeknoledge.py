@@ -109,12 +109,19 @@ def get_knowledge_base(scale: timescale.TimeScale | int) -> list[TimeKnowledge]:
     """
     scale = timescale.TimeScale(scale) if isinstance(scale, int) else scale
     know_dir = Path(__file__).resolve().parent / "knowledge"
-    all_knows: list[TimeKnowledge] = []
     with open(know_dir / f"{scale.name.lower()}.json5", "r", encoding="utf-8") as f:
         know_dict: dict[Literal["event", "order", "convert"], list] = json5.load(f)
-        for typ, knows in know_dict.items():
-            for know in knows:
-                all_knows.append(TimeKnowledge.build(typ, know))
+    return build_knowledge(know_dict)
+
+def read_knowledge_base(path: str|Path) -> list[TimeKnowledge]:
+    with open(path, "r", encoding="utf8") as f:
+        know_dict: dict[Literal["event", "order", "convert"], list] = json5.load(f)
+    return build_knowledge(know_dict)
+
+def build_knowledge(know_dict: dict[str, list]) -> list[TimeKnowledge]:
+    all_knows: list[TimeKnowledge] = []
+    for typ, know in know_dict.items():
+        all_knows.append(TimeKnowledge.build(typ, know))
     return all_knows
 
 def add_knowledge(scale: timescale.TimeScale):
