@@ -50,7 +50,7 @@ class ReasonMachine:
         self.new_props: list[prop.Proposition] = []
         # 11-03：增加图构建相关变量
         self.graph_construct = graph_construct
-        self.graph = graph.Graph(deepcopy(init_props)) if graph_construct else None
+        self.graph = graph.Graph(deepcopy(init_props), deepcopy(knowledges)) if graph_construct else None
 
     def _reason_by_relation(self, layer: int) -> list[prop.Proposition]:
         """根据关系，从现有命题推理
