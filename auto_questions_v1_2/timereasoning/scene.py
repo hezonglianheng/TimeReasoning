@@ -108,7 +108,7 @@ class TimeScene(Scene):
     def get_all_groups(self) -> None:
         assert len(self._all_props) > 0, "必须先生成全部命题"
         print("开始搜索一组可行的命题组合.")
-        sm = SM(self.events, self._all_props)
+        sm = SM(self.events, self._all_props, self._knowledges)
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
         print(f"获取推理图.")
