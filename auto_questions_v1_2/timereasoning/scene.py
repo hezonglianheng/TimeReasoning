@@ -59,15 +59,20 @@ class TimeScene(Scene):
         self.events.extend(events) # 将事件加入到事件列表中
         self._init_props.extend([timeprop.SingleTimeP.build(i) for i in events]) # 将事件转化为初始时间命题
 
-    def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None) -> None:
+    def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None, file_path: Union[str, Path, None] = None) -> None:
         """添加时间常识
 
         Args:
             number (int, optional): 添加的常识数量. 默认为5.
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
+            file_path (Union[str, Path, None], optional): 常识文件路径. 默认为None(按照时间尺度抽取默认知识).
         """
         super().add_knowledge(number, seed)
-        know_list = timeknoledge.get_knowledge_base(self.scale)
+        # 11-07修改：增加传入独有时间常识的接口
+        if file_path is not None:
+            know_list = timeknoledge.read_knowledge_base(file_path)
+        else:
+            know_list = timeknoledge.get_knowledge_base(self.scale)
         chosen_know = random.sample(know_list, number) if number < len(know_list) else know_list
         print(f"实际添加时间常识{len(chosen_know)}个.")
         for k in chosen_know: # 遍历所有的时间常识
@@ -103,7 +108,7 @@ class TimeScene(Scene):
     def get_all_groups(self) -> None:
         assert len(self._all_props) > 0, "必须先生成全部命题"
         print("开始搜索一组可行的命题组合.")
-        sm = SM(self.events, self._all_props)
+        sm = SM(self.events, self._all_props, self._knowledges)
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
         print(f"获取推理图.")

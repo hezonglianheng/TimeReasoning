@@ -114,14 +114,31 @@ def get_knowledge_base(scale: timescale.TimeScale | int) -> list[TimeKnowledge]:
     return build_knowledge(know_dict)
 
 def read_knowledge_base(path: str|Path) -> list[TimeKnowledge]:
+    """读取文件，构建时间常识库
+
+    Args:
+        path (str | Path): 文件路径
+
+    Returns:
+        list[TimeKnowledge]: 时间常识库
+    """
     with open(path, "r", encoding="utf8") as f:
         know_dict: dict[Literal["event", "order", "convert"], list] = json5.load(f)
     return build_knowledge(know_dict)
 
-def build_knowledge(know_dict: dict[str, list]) -> list[TimeKnowledge]:
+def build_knowledge(know_dict: dict[str, list[dict]]) -> list[TimeKnowledge]:
+    """根据知识字典构建时间常识库
+
+    Args:
+        know_dict (dict[str, list[dict]]): 知识的主要类型及知识字典列表
+
+    Returns:
+        list[TimeKnowledge]: 转换得到的知识列表
+    """
     all_knows: list[TimeKnowledge] = []
-    for typ, know in know_dict.items():
-        all_knows.append(TimeKnowledge.build(typ, know))
+    for typ, knows in know_dict.items():
+        for k in knows:
+            all_knows.append(TimeKnowledge.build(typ, k))
     return all_knows
 
 def add_knowledge(scale: timescale.TimeScale):
