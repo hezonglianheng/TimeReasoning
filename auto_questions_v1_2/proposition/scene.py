@@ -52,12 +52,13 @@ class Scene(metaclass = abc.ABCMeta):
         self.graph: Graph = None
         self.chain: str = ""
 
-    def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None) -> None:
+    def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None, file_path: Union[str, Path, None] = None) -> None:
         """添加知识命题
 
         Args:
             number (int): 要添加的知识命题数量. 默认为5.
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
+            file_path (Union[str, Path, None], optional): 知识命题文件路径. 默认为None.
         """
         assert number > 0, "知识命题数量必须大于0"
         random.seed(seed)

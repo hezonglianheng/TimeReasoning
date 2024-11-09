@@ -74,9 +74,16 @@ class Node:
 class Graph:
     """图类，表示一个推理图
     """
-    def __init__(self, init_props: list[Proposition] = []):
+    def __init__(self, init_props: list[Proposition] = [], knowledge_props: list[Proposition] = []):
+        """初始化一个图
+
+        Args:
+            init_props (list[Proposition], optional): 初始的命题. Defaults to [].
+            knowledge_props (list[Proposition], optional): 知识库中的命题. Defaults to [].
+        """
         self.nodes: list[Node] = []
-        self.conclusion_props: list[Proposition] = init_props # 已经查找过的结论命题
+        # 11-07更新：将知识添加到查找过的结论命题和路径当中
+        self.conclusion_props: list[Proposition] = init_props + knowledge_props # 已经查找过的结论命题
         self.paths: list[list[Node]] = [[]] * len(self.conclusion_props) # 结论命题的路径
 
     def add_node(self, node: Node) -> bool:

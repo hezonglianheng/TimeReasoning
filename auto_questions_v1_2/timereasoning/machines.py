@@ -37,7 +37,7 @@ class SearchMachine:
             """返回事件列表"""
             return self.list
 
-    def __init__(self, event_list: list[event.Event], prop_list: list[timeprop.TimeP]) -> None:
+    def __init__(self, event_list: list[event.Event], prop_list: list[timeprop.TimeP], knowledges: list[timeprop.TimeP] = []) -> None:
         """初始化搜索机
 
         Args:
@@ -52,6 +52,8 @@ class SearchMachine:
         self.prop_list = prop_list
         self.single_prop_list = [p for p in prop_list if isinstance(p, timeprop.SingleTimeP)]
         self.double_prop_list = [p for p in prop_list if isinstance(p, timeprop.DoubleTimeP)]
+        # 11-07增加：输入知识
+        self.knowledges = knowledges
         self.chosen_props: list[timeprop.TimeP] = []
 
     @property
@@ -78,25 +80,43 @@ class SearchMachine:
         lst.sort(key = lambda x: x.time)
         return self.SortedEvents([e.duration_event for e in lst])
     
-    def _find_props(self, e: event.Event) -> list[timeprop.TimeP]:
-        """查找事件e对应的表述命题
+    @property
+    def _knowledge_events(self) -> list[event.Event]:
+        """将知识库中的事件提取出来
+
+        Returns:
+            list[event.Event]: 事件列表
+        """
+        event_list = []
+        for k in self.knowledges:
+            if isinstance(k, timeprop.SingleTimeP):
+                event_list.append(k.element)
+            else:
+                pass
+        return event_list
+    
+    def _find_all_props(self, e: event.Event) -> list[list[timeprop.TimeP]]:
+        """查找事件e对应的全部表述命题
 
         Args:
             e (event.Event): 事件
 
         Returns:
-            list[timeprop.TimeP]: 表述命题
+            list[list[timeprop.TimeP]]: 表述命题列表
         """
         candidates: list[list[timeprop.TimeP]] = [[p] for p in self.single_prop_list if p.element == e] # 查找单元素命题
         if type(e) == event.TemporalEvent or type(e) == event.SubEvent:
             doubles = [[p] for p in self.double_prop_list if (isinstance(p, (timeprop.AfterTimeP, timeprop.SimultaneousP)) and p.element1 == e and p.element2.got(self._temporal_event_sorted.before_events(e)))]
             candidates.extend(doubles)
+            knowledge_related = [[p] for p in self.double_prop_list if (isinstance(p, (timeprop.AfterTimeP, timeprop.BeforeTimeP, timeprop.SimultaneousP)) and p.element1 == e and p.element2.got(self._knowledge_events))]
+            candidates.extend(knowledge_related)
         elif type(e) == event.DurativeEvent:
             second = random.choice(("end", "duration"))
             if second == "end":
-                double = self._find_props(e.start_event) + self._find_props(e.end_event)
+                double = self._find_all_props(e.start_event) + self._find_all_props(e.end_event)
             else:
-                double = self._find_props(e.start_event) + self._find_props(e.duration_event)
+                double = self._find_all_props(e.start_event) + self._find_all_props(e.duration_event)
+            candidates.extend(double)
         elif type(e) == event.FreqEvent:
             pass
         elif type(e) == event.Duration:
@@ -104,8 +124,19 @@ class SearchMachine:
             candidates.extend(double)
         else:
             raise TypeError(f"未知事件类型{type(e)}")
-        return random.choice(candidates)
+        return candidates
     
+    def _find_props(self, e: event.Event) -> list[timeprop.TimeP]:
+        """随机选择事件e对应的表述命题
+
+        Args:
+            e (event.Event): 事件
+
+        Returns:
+            list[timeprop.TimeP]: 表述命题
+        """
+        return random.choice(self._find_all_props(e))
+
     def run(self) -> list[timeprop.TimeP]:
         """运行推理机，对事件集生成表述命题集
 
