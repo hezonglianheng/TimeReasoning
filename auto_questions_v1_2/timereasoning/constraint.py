@@ -71,6 +71,8 @@ class Constraint(metaclass = abc.ABCMeta):
             return CertainAfterConstraint(**param)
         elif typ == "rangetime":
             return RangeTimeConstraint(**param)
+        elif typ == "rangebefore":
+            return RangeBeforeConstraint(**param)
         else:
             raise ValueError(f"记录{record}具有未知的约束类型: {typ}")
 
@@ -174,12 +176,32 @@ class RangeTimeConstraint(Constraint):
             ceiling (int): 上界
         """
         super().__init__(main_event, std_event)
-        assert floor <= ceiling
+        assert floor <= ceiling, "下界应小于等于上界"
         self.floor = floor
         self.ceiling = ceiling
 
     def get(self) -> dict[str, int]:
         return {FLOOR: self.floor, CEILING: self.ceiling}
+
+class RangeBeforeConstraint(Constraint):
+    """第一个事件在第二个事件之前特定时间范围内发生的约束关系
+    """
+    def __init__(self, main_event: str, std_event: str, floor: int, ceiling: int) -> None:
+        """初始化约束关系，表示第一个事件在第二个事件之前特定时间范围内发生
+
+        Args:
+            main_event (str): 主要事件
+            std_event (str): 基准事件
+            floor (int): 下界
+            ceiling (int): 上界
+        """
+        super().__init__(main_event, std_event)
+        assert floor <= ceiling, "下界应小于等于上界"
+        self.floor = floor
+        self.ceiling = ceiling
+
+    def get(self) -> dict[str, int]:
+        return {FLOOR: -self.ceiling, CEILING: -self.floor}
 
 # TODO: 目前的约束文件需要尝试性书写（有些写法虽然同义，但是会报错）
 # 需要调整约束器的设计
