@@ -236,7 +236,9 @@ class ConstraintMachine:
             constraint = Constraint.build(record)
             self.constraints_graph.add_edge(record["std_event"], record["main_event"], constraint=constraint)
         if not nx.is_directed_acyclic_graph(self.constraints_graph):
-            raise ValueError("约束图中存在环")
+            cycles = list(nx.find_cycle(self.constraints_graph, orientation="original"))
+            cycle_str = " ".join([f"{u} -> {v}" for u, v in cycles])
+            raise ValueError(f"约束图中存在环{cycle_str}")
         else:
             print("约束图构建成功.")
             # 为所有节点节点添加初始上下限属性
