@@ -16,8 +16,9 @@ from pathlib import Path
 from typing import Any, Optional
 import random
 
-CEILING = "ceiling"
-FLOOR = "floor"
+CEILING = "ceiling" # 表示上限
+FLOOR = "floor" # 表示下限
+TIME = "time" # 表示时间
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -238,6 +239,117 @@ class ConstraintMachine:
             raise ValueError("约束图中存在环")
         else:
             print("约束图构建成功.")
+            # 为所有节点节点添加初始上下限属性
+            node_attrs = {node: {FLOOR: self.lower_bound, CEILING: self.upper_bound} for node in self.constraints_graph.nodes}
+            nx.set_node_attributes(self.constraints_graph, node_attrs)
+
+    def _forwards(self) -> None:
+        """前向传播，根据约束图更新事件的时间上下限
+        """
+        print("前向传播，更新约束图事件的时间上下限...")
+        for node in list(nx.topological_sort(self.constraints_graph)):
+            # 获取与当前节点相关的约束
+            related_constraints = list(self.constraints_graph.in_edges(node, data=True))
+            # 若当前节点没有入边，则将其上限设置为lower_bound
+            if len(related_constraints) == 0:
+                self.constraints_graph.nodes[node][CEILING] = self.lower_bound
+            # 遍历与当前节点相关的约束，更新当前节点的时间上下限
+            for pre_node, _, data in related_constraints:
+                cons: Constraint = data["constraint"] # 连边记录的约束信息
+                info: dict[str, int] = cons.get() # 获取约束信息
+                # 更新当前节点的时间上下限
+                if FLOOR in info:
+                    # 更新时间下限
+                    self.constraints_graph.nodes[node][FLOOR] = max(self.constraints_graph.nodes[node][FLOOR], info[FLOOR] + self.constraints_graph.nodes[pre_node][FLOOR])
+                if CEILING in info:
+                    # 更新时间上限
+                    self.constraints_graph.nodes[node][CEILING] = min(self.constraints_graph.nodes[node][CEILING], info[CEILING] + self.constraints_graph.nodes[pre_node][CEILING])
+
+    def _backwards(self):
+        """反向传播，根据约束图更新事件的时间值
+        """
+
+        def update_limits(node: str):
+            """
+            递归更新节点的时间上下限
+
+            Args:
+                node (str): 节点名称
+            """
+            # 获取当前节点的入边和出边
+            in_edges = list(self.constraints_graph.in_edges(node, data=True))
+            out_edges = list(self.constraints_graph.out_edges(node, data=True))
+            # 遍历当前节点的入边，更新前驱节点的时间上下限
+            for pre_node, _, data in in_edges:
+                cons: Constraint = data["constraint"]
+                info: dict[str, int] = cons.get()
+                # 记录前驱节点的时间上下限
+                last_floor: int = self.constraints_graph.nodes[pre_node][FLOOR]
+                last_ceiling: int = self.constraints_graph.nodes[pre_node][CEILING]
+                if last_floor == last_ceiling:
+                    continue # 如果上下限相等则不更新
+                # 更新前驱节点的时间上下限
+                if FLOOR in info:
+                    self.constraints_graph.nodes[pre_node][CEILING] = min(self.constraints_graph.nodes[pre_node][CEILING], self.constraints_graph.nodes[node][CEILING] - info[FLOOR])
+                if CEILING in info:
+                    self.constraints_graph.nodes[pre_node][FLOOR] = max(self.constraints_graph.nodes[pre_node][FLOOR], self.constraints_graph.nodes[node][FLOOR] - info[CEILING])
+                # 如果发生更新则递归更新
+                if last_floor != self.constraints_graph.nodes[pre_node][FLOOR] or last_ceiling != self.constraints_graph.nodes[pre_node][CEILING]:
+                    update_limits(pre_node)
+            # 遍历当前节点的出边，更新后续节点的时间上下限
+            for _, next_node, data in out_edges:
+                cons: Constraint = data["constraint"]
+                info: dict[str, int] = cons.get()
+                # 记录后续节点的时间上下限
+                last_floor: int = self.constraints_graph.nodes[next_node][FLOOR]
+                last_ceiling: int = self.constraints_graph.nodes[next_node][CEILING]
+                if last_floor == last_ceiling:
+                    continue # 如果上下限相等则不更新
+                # 更新后续节点的时间上下限
+                if FLOOR in info:
+                    self.constraints_graph.nodes[next_node][FLOOR] = max(self.constraints_graph.nodes[next_node][FLOOR], self.constraints_graph.nodes[node][FLOOR] + info[FLOOR])
+                if CEILING in info:
+                    self.constraints_graph.nodes[next_node][CEILING] = min(self.constraints_graph.nodes[next_node][CEILING], self.constraints_graph.nodes[node][CEILING] + info[CEILING])
+                # 如果发生更新则递归更新
+                if last_floor != self.constraints_graph.nodes[next_node][FLOOR] or last_ceiling != self.constraints_graph.nodes[next_node][CEILING]:
+                    update_limits(next_node)
+
+        print("反向传播，更新约束图事件的时间值...")
+        # 逆序遍历节点
+        reversed_sorted_nodes = list(nx.topological_sort(self.constraints_graph))[::-1]
+        for node in reversed_sorted_nodes:
+            # 随机生成事件的时间
+            floor = self.constraints_graph.nodes[node][FLOOR]
+            ceiling = self.constraints_graph.nodes[node][CEILING]
+            if floor == ceiling:
+                self.constraints_graph.nodes[node][TIME] = floor
+            else:
+                self.constraints_graph.nodes[node][TIME] = random.randint(floor, ceiling) # 更新当前节点的时间上下限
+            self.constraints_graph.nodes[node][FLOOR] = self.constraints_graph.nodes[node][TIME]
+            self.constraints_graph.nodes[node][CEILING] = self.constraints_graph.nodes[node][TIME]
+            # 更新前驱节点和后续节点的时间上下限
+            update_limits(node)
+    
+    def _get_time(self, event_name: str) -> int:
+        """获取事件的时间值
+
+        Args:
+            event_name (str): 事件名称
+
+        Returns:
+            int: 事件的时间值
+
+        Raises:
+            ValueError: 约束图未初始化
+        """
+        if self.constraints_graph is None:
+            raise ValueError("约束图未初始化")
+        if self.constraints_graph.has_node(event_name):
+            # 如果事件存在，则返回图中计算得到的事件的时间值
+            return self.constraints_graph.nodes[event_name][TIME]
+        else:
+            # 如果事件不存在，则返回随机时间
+            return random.randint(self.lower_bound, self.upper_bound)
 
     def _check_event(self, name: str) -> Optional[ev.Event]:
         """检查事件是否存在，如果存在则返回事件，否则返回None
@@ -324,19 +436,34 @@ class ConstraintMachine:
 
         Returns:
             list[ev.Event]: 事件列表
+
+        Raises:
+            ValueError: 约束图未初始化
         """
+        # 如果约束图未初始化，则抛出异常
+        if self.constraints_graph is None:
+            raise ValueError("约束图未初始化")
+        # 前向传播
+        self._forwards()
+        # 反向传播
+        self._backwards()
         for event in self.events:
             if type(event) == ev.TemporalEvent:
-                new_event = self._set_time(event)
+                # new_event = self._set_time(event)
+                event.time = self._get_time(str(event)) # 为事件设置时间
             elif type(event) == ev.DurativeEvent:
-                # 自动向图形中添加约束
-                new_start_event = self._set_time(event.start_event)
-                new_end_event = self._set_time(event.end_event)
-                event.time = new_start_event.time
-                event.endtime = new_end_event.time
-                event.duration = new_end_event.time - new_start_event.time
+                # new_start_event = self._set_time(event.start_event)
+                # new_end_event = self._set_time(event.end_event)
+                # event.time = new_start_event.time
+                # event.endtime = new_end_event.time
+                # event.duration = new_end_event.time - new_start_event.time
+                event.start_event.time = self._get_time(str(event.start_event))
+                event.end_event.time = self._get_time(str(event.end_event))
+                event.time = event.start_event.time
+                event.endtime = event.end_event.time
+                event.duration = event.endtime - event.time
                 event.duration_event.time = event.duration
-                new_event = event
+                # new_event = event
         for event in self.events:
             if type(event) == ev.TemporalEvent:
                 print(f"{str(event)}: {event.time}")
