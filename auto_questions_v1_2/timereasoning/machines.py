@@ -7,6 +7,7 @@ from pathlib import Path
 from tqdm import tqdm
 import random
 from typing import Any
+from itertools import product
 
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
@@ -113,9 +114,21 @@ class SearchMachine:
         elif type(e) == event.DurativeEvent:
             second = random.choice(("end", "duration"))
             if second == "end":
-                double = self._find_all_props(e.start_event) + self._find_all_props(e.end_event)
+                # double = self._find_all_props(e.start_event) + self._find_all_props(e.end_event)
+                # 11-12修改：将持续时间事件的结束事件与开始事件的命题组合
+                double: list[list[timeprop.TimeP]] = []
+                start_props = self._find_all_props(e.start_event) # 开始事件的命题
+                end_props = self._find_all_props(e.end_event) # 结束事件的命题
+                for startp, endp in product(start_props, end_props):
+                    double.append(startp + endp)
             else:
-                double = self._find_all_props(e.start_event) + self._find_all_props(e.duration_event)
+                # double = self._find_all_props(e.start_event) + self._find_all_props(e.duration_event)
+                # 11-12修改：将持续时间事件的开始事件与持续时间事件的命题组合
+                double: list[list[timeprop.TimeP]] = []
+                start_props = self._find_all_props(e.start_event)
+                duration_props = self._find_all_props(e.duration_event)
+                for startp, durationp in product(start_props, duration_props):
+                    double.append(startp + durationp)
             candidates.extend(double)
         elif type(e) == event.FreqEvent:
             pass
