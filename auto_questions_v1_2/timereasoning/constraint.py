@@ -15,6 +15,7 @@ import sys
 from pathlib import Path
 from typing import Any, Optional
 import random
+from warnings import warn # 引入警告函数
 
 CEILING = "ceiling" # 表示上限
 FLOOR = "floor" # 表示下限
@@ -344,6 +345,7 @@ class ConstraintMachine:
         Raises:
             ValueError: 约束图未初始化
         """
+        warn("_get_time函数已经弃用", DeprecationWarning)
         if self.constraints_graph is None:
             raise ValueError("约束图未初始化")
         if self.constraints_graph.has_node(event_name):
@@ -362,6 +364,7 @@ class ConstraintMachine:
         Returns:
             Optional[ev.Event]: 事件，如果不存在则返回None
         """
+        warn("_check_event函数已经弃用", DeprecationWarning)
         for event in self.events:
             if type(event) == ev.TemporalEvent and str(event) == name:
                 return event
@@ -382,6 +385,7 @@ class ConstraintMachine:
         Returns:
             int: 事件的随机时间
         """
+        warn("_random_time函数已经弃用", DeprecationWarning)
         constraints = self.constraints_graph.in_edges(event_name, data=True)
         floor, ceiling = self.lower_bound, self.upper_bound # 初始化时间下限和上限
         for std_event, _, data in constraints:
@@ -419,6 +423,7 @@ class ConstraintMachine:
         Returns:
             ev.TemporalEvent: 设置时间后的事件
         """
+        warn("_set_time函数已经弃用", DeprecationWarning)
         # 如果已经定好时间就无需约束
         if event.time is not None:
             return event
