@@ -113,7 +113,7 @@ class TimeScene(Scene):
         print(f"命题组合搜索结束.")
         print(f"获取推理图.")
         rm = RM(deepcopy(self._chosen_group), self.relations, self.rules, deepcopy(self._knowledges), graph_construct=True)
-        rm.run()
+        self._reachables = rm.run() # 11-12修改: 将建立推理图得到的命题加入可达命题列表
         self.graph = rm.graph
         print(f"推理图获取完毕.")
 
@@ -124,7 +124,8 @@ class TimeScene(Scene):
     
     def ask(self, seed: int | float | None = None) -> Dict[str, Any]:
         info = super().ask(seed)
-        all_elements = [i.element for i in self._all_props if isinstance(i, timeprop.SingleTimeP)]
+        # all_elements = [i.element for i in self._all_props if isinstance(i, timeprop.SingleTimeP)]
+        all_elements = [i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)]
         if "element" in (typ := info.get(prop.TYPE)):
             ans = info.get(prop.ANSWER)
             if isinstance(ans, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent)):
