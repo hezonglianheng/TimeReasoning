@@ -1,0 +1,97 @@
+// 事件间约束关系示例文件
+// 约束关系的type字段取值为：
+// 1. rangetime: 两个事件之间的时间间隔在一个范围内
+// 2. sametime: 两个事件发生在同一时间
+// 3. after: 事件A发生在事件B之后
+// before: 事件A发生在事件B之前
+// 4. minafter: 事件A发生在事件B之后，且时间间隔大于等于某个值
+// minbefore: 事件A发生在事件B之前，且时间间隔大于等于某个值
+// 5. maxafter: 事件A发生在事件B之后，且时间间隔小于等于某个值
+// maxbefore: 事件A发生在事件B之前，且时间间隔小于等于某个值
+// 6. certainafter: 事件A发生在事件B之后，且时间间隔等于某个值
+// certainbefore: 事件A发生在事件B之前，且时间间隔等于某个值
+
+[
+// 度过7月约束
+    {
+        "main_event": "结束记录7月日记",
+        "std_event": "开始记录7月日记",
+        "type": "certainafter",
+        "time": 30,
+    },
+// 课程论文大纲约束
+    {
+        "main_event": "完成课程论文大纲",
+        "std_event": "开始撰写课程论文大纲",
+        "type": "rangetime",
+        "floor": 2,
+        "ceiling": 5,
+    },
+    {
+        "main_event": "开始撰写课程论文大纲",
+        "std_event": "开始记录7月日记",
+        "type": "after",
+    },
+// 课程论文撰写约束
+    {
+        "main_event": "写完并提交课程论文",
+        "std_event": "开始撰写课程论文",
+        "type": "rangetime",
+        "floor": 5,
+        "ceiling": 14,
+    },
+    {
+        "main_event": "开始撰写课程论文",
+        "std_event": "完成课程论文大纲",
+        "type": "after",
+    },
+// 组会约束
+    {
+        "main_event": "做组会报告",
+        "std_event": "开始准备组会报告",
+        "type": "rangetime",
+        "floor": 7,
+        "ceiling": 14,
+    },
+    {
+        "main_event": "开始准备组会报告",
+        "std_event": "开始记录7月日记",
+        "type": "after",
+    },
+// 和朋友旅游约束
+    {
+        "main_event": "结束和朋友的旅行",
+        "std_event": "开始和朋友去外地旅行",
+        "type": "rangetime",
+        "floor": 4,
+        "ceiling": 10,
+    },
+    {
+        "main_event": "开始和朋友去外地旅行",
+        "std_event": "写完并提交课程论文",
+        "type": "after",
+    },
+// 电影约束
+    {
+        "main_event": "观看最新上映的电影",
+        "std_event": "开始记录7月日记",
+        "type": "after",
+    },
+// 篮球比赛约束
+    {
+        "main_event": "参加篮球比赛",
+        "std_event": "开始记录7月日记",
+        "type": "after",
+    },
+    {
+        "main_event": "参加篮球比赛",
+        "std_event": "写完并提交课程论文",
+        "type": "after",
+    },
+// 电脑游戏约束
+    {
+        "main_event": "打了几乎一整天电脑游戏",
+        "std_event": "开始记录7月日记",
+        "type": "after",
+    }
+]
