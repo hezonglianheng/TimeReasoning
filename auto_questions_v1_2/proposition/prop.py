@@ -100,7 +100,7 @@ class Proposition(element.Element):
         Returns:
             bool: 两个命题是否相等
         """
-        return super().__eq__(other) and self.askable == other.askable
+        return super().__eq__(other) and self.askable == other.askable and self.precise == other.precise
     
     def __ne__(self, value: object) -> bool:
         """判断两个命题是否不相等，本质上是判断两个命题的类型和属性是否不相等
