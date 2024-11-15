@@ -51,6 +51,7 @@ class Scene(metaclass = abc.ABCMeta):
         self._knowledges: list[prop.Proposition] = []
         self.graph: Graph = None
         self.chain: str = ""
+        self._reachables: list[prop.Proposition] = [] # 可达命题列表
 
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None, file_path: Union[str, Path, None] = None) -> None:
         """添加知识命题
@@ -85,7 +86,7 @@ class Scene(metaclass = abc.ABCMeta):
         print(f"命题组合搜索结束.")
         print(f"获取推理图.")
         rm = RM(deepcopy(self._chosen_group), self.relations, self.rules, deepcopy(self._knowledges), graph_construct=True)
-        rm.run()
+        self._reachables = rm.run() # 11-12修改: 将建立推理图得到的命题加入可达命题列表
         self.graph = rm.graph
         print(f"推理图获取完毕.")
 
@@ -119,7 +120,8 @@ class Scene(metaclass = abc.ABCMeta):
         # 修改：选择的命题需要是未进入描述的命题
         # 修改：提问的命题需要是可提问的命题
         print("随机选择一个未进入描述的命题，提问.")
-        self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
+        self._asked_prop = random.choice([i for i in self._reachables if not i.got(self._chosen_group) and i.askable])
+        # self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
         return self._ask_info
@@ -136,7 +138,8 @@ class Scene(metaclass = abc.ABCMeta):
             Dict[str, Any]: 答案信息
         """
         assert self._asked_prop is not None, "必须先执行ask()方法进行提问"
-        am = AM(self._all_props, self._asked_prop, self._ask_info, seed, options, all_wrong_prob)
+        # am = AM(self._all_props, self._asked_prop, self._ask_info, seed, options, all_wrong_prob)
+        am = AM(self._reachables, self._asked_prop, self._ask_info, seed, options, all_wrong_prob)
         for k, v in self._value_range.items():
             am.set_value_range(k, v)
         return am.run()
