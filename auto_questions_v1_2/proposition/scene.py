@@ -7,7 +7,7 @@
 import abc
 from copy import deepcopy
 import random
-from typing import Union, Any, Dict, Literal
+from typing import Union, Any, Dict, Literal, Optional
 import sys
 from pathlib import Path
 
@@ -25,18 +25,23 @@ from proposition.graph import Graph
 
 class Scene(metaclass=abc.ABCMeta):
     """
-    推理场景的抽象类
+    推理场景的抽象类\n
     用于定义推理场景的基本属性和操作
     """
 
-    def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest'] = 'random') -> None:
+    def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
         """初始化推理场景
         Args:
             guide (str, optional): 引导语. 默认为空字符串.
-            ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'，即随机提问. 如果设置为'deepest'，则优先提问最深层的命题.
+            ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'.可选的值有：
+                - 'random'，即随机提问. 
+                - 'deepest'，优先提问最深层的命题.
+                - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
+            tag (Optional[list[str]], optional): 提问标签. 默认为None.
         """
         self.guide = guide  # 引导语
         self.ask_mode = ask_mode  # 提问模式
+        self.tag = tag # 提问标签
         self.relations: list[relation.Relation] = []  # 关系列表
         self.rules: list[rule.Rule] = []  # 规则列表
         self.temps: dict[str, list[str]] = []  # 模板字典
@@ -125,6 +130,9 @@ class Scene(metaclass=abc.ABCMeta):
             self._asked_prop = random.choice([i for i in self._reachables if not i.got(self._chosen_group) and i.askable])
         elif self.ask_mode == 'deepest':
             self._asked_prop = random.choice(self.graph.deepest_layer_props)
+        elif self.ask_mode == 'tag':
+            assert self.tag is not None, "tag提问模式下，提问标签不能为空"
+            self._asked_prop = random.choice([i for i in self._reachables if not i.got(self._chosen_group) and i.askable and i.typetag in self.tag])
         else:
             raise ValueError(f"提问模式错误，不存在{self.ask_mode}模式")
         # self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
@@ -196,6 +204,8 @@ class Scene(metaclass=abc.ABCMeta):
                         "chain": chain, 
                         # 11-24更新：增加提问命题的层级信息
                         "layer": self.graph.layer_query(self._asked_prop), 
+                        # 11-24更新：增加提问命题的标签信息
+                        "tag": self._asked_prop.typetag
                     }
             question_list.append(item)
         print(f"获取题目{execute}次，获得题目{len(question_list)}个.")
