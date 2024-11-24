@@ -5,7 +5,7 @@
 from pycnnum import num2cn # 引入中文数字转换库
 import re
 from copy import deepcopy
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional, Union, Literal
 import sys
 from pathlib import Path
 import random
@@ -25,15 +25,16 @@ class TimeScene(Scene):
     """
     时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "") -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest'] = 'random') -> None:
         """初始化时间场景
 
         Args:
             scale (ts.TimeScale | int): 时间尺度
             guide (str, optional): 引导语. 默认为"".
+            ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'，即随机提问. 如果设置为'deepest'，则优先提问最深层的命题.
         """
         # 需要使用的属性
-        super().__init__(guide)
+        super().__init__(guide, ask_mode=ask_mode)
         self.scale = scale if isinstance(scale, ts.TimeScale) else ts.TimeScale(scale) # 时间尺度
         self.events: list[event.Event] = [] # 事件列表
         self.relations = deepcopy(timerelation.RELATIONS) # 关系列表
@@ -149,21 +150,30 @@ class LineScene(TimeScene):
     """
     线性时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "") -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest'] = 'random') -> None:
         """初始化线性时间场景
 
         Args:
             scale (ts.TimeScale | int): 时间尺度
             guide (str, optional): 引导语. 默认为空字符串.
+            ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'，即随机提问. 如果设置为'deepest'，则优先提问最深层的命题.
         """
-        super().__init__(scale, guide)
+        super().__init__(scale, guide, ask_mode=ask_mode)
 
 class LoopScene(TimeScene):
     """
     循环时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None) -> None:
-        super().__init__(scale, guide)
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest'] = 'random') -> None:
+        """初始化循环时间场景
+
+        Args:
+            scale (ts.TimeScale | int): 时间尺度
+            guide (str, optional): 引导语. 默认为空字符串.
+            loop (Optional[int], optional): 循环长度. 默认为None.
+            ask_mode (Literal[&#39;random&#39;, &#39;deepest&#39;], optional): 提问模式. 默认为&#39;random&#39;，即随机提问. 如果设置为&#39;deepest&#39;，则优先提问最深层的命题.
+        """
+        super().__init__(scale, guide, ask_mode=ask_mode)
         self.loop = ts.get_loop_param(scale) if loop is None else loop
         assert self.loop is not None, "未知的循环长度"
         new_relations = list(map(lambda x: x.set_loop(self.loop), [LoopRelation, PeriodRelation, DiffRelation]))
