@@ -104,6 +104,10 @@ class TemporalP(SingleTimeP):
         elif isinstance(self, TemporalP) and isinstance(other, TemporalP):
             return self.element == other.element and self.time == other.time
 
+    @property
+    def typetag(self) -> str:
+        return "时刻-具体值"
+
 class SubTemporalP(TemporalP):
     """
     表示一个时间点的命题，其是另一个时间命题的子命题\n
@@ -136,6 +140,10 @@ class DurationP(SingleTimeP):
 
     def contained(self, prop_list: list[prop.Proposition]) -> bool:
         return super().contained(prop_list) or self.related_prop[0].contained(prop_list)
+
+    @property
+    def typetag(self) -> str:
+        return "时长-具体值"
     
 class DurativeP(SingleTimeP):
     """表示一个时间段的命题"""
@@ -176,6 +184,10 @@ class DurativeP(SingleTimeP):
 
     def __eq__(self, value: object) -> bool:
         return super().__eq__(value) and self.endtime == value.endtime and self.duration == value.duration
+    
+    @property
+    def typetag(self) -> str:
+        return "时段-具体值"
 
 class FreqP(SingleTimeP):
     """表示一个时间频率的命题"""
@@ -205,6 +217,10 @@ class FreqP(SingleTimeP):
 
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.frequency == other.frequency and self.endtime == other.endtime
+
+    @property
+    def typetag(self) -> str:
+        return "时频-具体值"
 
 # 双事件时间命题
 class DoubleTimeP(prop.DoubleProp, TimeP):
@@ -269,6 +285,10 @@ class BeforeP(DoubleTimeP):
     @property
     def temp_key(self) -> str:
         return "before"
+
+    @property
+    def typetag(self) -> str:
+        return "时刻-定性比较"
     
 class BeforeTimeP(DoubleTimeP):
     """表示一个时间点发生在另一个时间点之前特定时间的时间命题，是精确命题"""
@@ -284,6 +304,10 @@ class BeforeTimeP(DoubleTimeP):
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.diff == other.diff
     
+    @property
+    def typetag(self) -> str:
+        return "时刻-定量比较"
+    
 class AfterP(DoubleTimeP):
     """表示一个事件发生在另一个事件之后的时间命题，是非精确命题"""
     def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
@@ -293,6 +317,10 @@ class AfterP(DoubleTimeP):
     @property
     def temp_key(self) -> str:
         return "after"
+
+    @property
+    def typetag(self) -> str:
+        return "时刻-定性比较"
     
 class AfterTimeP(DoubleTimeP):
     """表示一个时间点发生在另一个时间点之后特定时间的时间命题，是精确命题"""
@@ -308,6 +336,10 @@ class AfterTimeP(DoubleTimeP):
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.diff == other.diff
     
+    @property
+    def typetag(self) -> str:
+        return "时刻-定量比较"
+    
 class SimultaneousP(DoubleTimeP):
     """表示两个事件同时发生的时间命题"""
     def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
@@ -316,6 +348,10 @@ class SimultaneousP(DoubleTimeP):
     @property
     def temp_key(self) -> str:
         return "simultaneous"
+    
+    @property
+    def typetag(self) -> str:
+        return "时刻-定性比较"
     
 class GapTimeP(DoubleTimeP):
     """表示两个事件之间的具体时间间隔的时间命题，是非精确命题"""
@@ -331,6 +367,10 @@ class GapTimeP(DoubleTimeP):
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.diff == other.diff
     
+    @property
+    def typetag(self) -> str:
+        return "时刻-定量间隔"
+    
 class LongP(DoubleTimeP):
     """表示某持续事件的时长长于另一持续事件的时间命题，是非精确命题"""
     def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
@@ -340,6 +380,10 @@ class LongP(DoubleTimeP):
     @property
     def temp_key(self) -> str:
         return "long"
+
+    @property
+    def typetag(self) -> str:
+        return "时长-定性比较"
     
 class LongTimeP(DoubleTimeP):
     """表示某持续事件的时长长于另一持续事件具体时长的时间命题，是精确命题"""
@@ -355,6 +399,10 @@ class LongTimeP(DoubleTimeP):
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.diff == other.diff
     
+    @property
+    def typetag(self) -> str:
+        return "时长-定量比较"
+    
 class ShortP(DoubleTimeP):
     """表示某持续事件的时长短于另一持续事件的时间命题，是非精确命题"""
     def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
@@ -364,6 +412,10 @@ class ShortP(DoubleTimeP):
     @property
     def temp_key(self) -> str:
         return "short"
+    
+    @property
+    def typetag(self) -> str:
+        return "时长-定性比较"
     
 class ShortTimeP(DoubleTimeP):
     """表示某持续事件的时长短于另一持续事件具体时长的时间命题，是精确命题"""
@@ -379,6 +431,10 @@ class ShortTimeP(DoubleTimeP):
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.diff == other.diff
     
+    @property
+    def typetag(self) -> str:
+        return "时长-定量比较"
+    
 class SameLenTimeP(DoubleTimeP):
     """表示两个持续事件具有相同时长的时间命题，是精确命题"""
     def __init__(self, element1: event.Duration, element2: event.Duration, askable: bool = True):
@@ -387,3 +443,7 @@ class SameLenTimeP(DoubleTimeP):
     @property
     def temp_key(self) -> str:
         return "same_len"
+
+    @property
+    def typetag(self) -> str:
+        return "时长-定性比较"
