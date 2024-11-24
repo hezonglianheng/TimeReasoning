@@ -135,6 +135,12 @@ class Proposition(element.Element):
         """
         return any([i == self for i in prop_list])
 
+    @property
+    @abc.abstractmethod
+    def typetag(self) -> str:
+        """返回命题的类型标签，为str"""
+        return ""
+
 # 按照主要元个数的不同定义Proposition的子类，以解耦领域和推理
 
 class SingleProp(Proposition):
