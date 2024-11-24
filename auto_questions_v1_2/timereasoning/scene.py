@@ -129,6 +129,8 @@ class TimeScene(Scene):
     
     def ask(self, seed: int | float | None = None) -> Dict[str, Any]:
         info = super().ask(seed)
+        if info is None:
+            return None
         # all_elements = [i.element for i in self._all_props if isinstance(i, timeprop.SingleTimeP)]
         all_elements = [i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)]
         if "element" in (typ := info.get(prop.TYPE)):
@@ -213,6 +215,21 @@ class LoopScene(TimeScene):
                 new_list.append(self._all_props[i])
         print(f"调整后有命题{len(new_list)}个.")
         self._all_props = new_list
+
+    def get_all_groups(self) -> None:
+        super().get_all_groups()
+        new_list: list[timeprop.TimeP] = list()
+        for i in range(len(self._reachables)):
+            if self._reachables[i].got(self._reachables[:i]):
+                continue
+            elif isinstance(self._reachables[i], (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
+                continue
+            elif isinstance(self._reachables[i], (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)) and self._reachables[i].diff == 0:
+                continue
+            else:
+                new_list.append(self._reachables[i])
+        print(f"调整后可及命题集中有命题{len(new_list)}个.")
+        self._reachables = new_list
 
 class PeriodRelation(relation.SingleEntailment):
     """表示时间点的周期性关系，属于单元蕴含关系"""
