@@ -255,4 +255,6 @@ RULES: list[type[rule.Rule]] = [
     # 增加时点-时段的前后推理规则
     TempBeforeDurative,
     TempAfterDurative,
+    # 增加During推理规则
+    GetDuring,
 ]
