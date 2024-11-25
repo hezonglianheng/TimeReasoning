@@ -9,6 +9,7 @@ from typing import Any, Dict, Optional, Union, Literal
 import sys
 from pathlib import Path
 import random
+import calendar
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -101,7 +102,7 @@ class TimeScene(Scene):
         Returns:
             str: 调整后的时间表达
         """
-        if self.scale == ts.TimeScale.Weekday:
+        if self.scale == ts.TimeScale.Weekday and self.lang == "zh": # 如果是星期尺度，可以做一些特殊的处理
             search1 = re.search(r"星期[0-9]", exp)
             if search1 is not None:
                 ch_num = num2cn(search1.group()[-1])
@@ -112,6 +113,11 @@ class TimeScene(Scene):
                 ch_num = num2cn(search2.group()[-1])
                 ch_num = "日" if ch_num == "零" else ch_num
                 exp = exp.replace(search2.group(), "周" + ch_num)
+        elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
+            search = re.search(r"weekday[0-9]", exp)
+            if search is not None:
+                num = int(search.group()[-1])
+                exp = exp.replace(search.group(), calendar.day_name[num-1])
         return exp
     
     def _statement_trans(self):
@@ -172,11 +178,14 @@ class TimeScene(Scene):
     def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any]:
         answer_info = super().get_answers(seed, options, all_wrong_prob)
         if "time" in (typ := self._ask_info.get(prop.TYPE)):
-            if self.scale == ts.TimeScale.Weekday:
+            if self.scale == ts.TimeScale.Weekday and self.lang == "zh":
                 for k, v in answer_info[machines.OPTIONS].items():
                     zh_num = num2cn(v)
                     zh_num = "日" if zh_num == "零" else zh_num
                     answer_info[machines.OPTIONS][k] = zh_num
+            elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
+                for k, v in answer_info[machines.OPTIONS].items():
+                    answer_info[machines.OPTIONS][k] = calendar.day_name[v-1]
         return answer_info
 
 class LineScene(TimeScene):
