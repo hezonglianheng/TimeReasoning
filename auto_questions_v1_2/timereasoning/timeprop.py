@@ -447,3 +447,17 @@ class SameLenTimeP(DoubleTimeP):
     @property
     def typetag(self) -> str:
         return "时长-定性比较"
+
+class DuringTimeP(DoubleTimeP):
+    """表示一个事件发生在另一个持续事件的时间命题，是非精确命题"""
+    def __init__(self, element1: event.TemporalEvent, element2: event.DurativeEvent, askable: bool = True):
+        super().__init__(element1, element2, askable)
+        self.precise = False
+
+    @property
+    def temp_key(self) -> str:
+        return "during"
+
+    @property
+    def typetag(self) -> str:
+        return "时刻-定性比较"
