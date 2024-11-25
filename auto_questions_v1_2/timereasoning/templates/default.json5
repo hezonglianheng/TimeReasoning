@@ -27,4 +27,6 @@
     "short": [],
     "short_time": [],
     "same_len": [],
+    // 在……期间的模板
+    "during": [],
 }
