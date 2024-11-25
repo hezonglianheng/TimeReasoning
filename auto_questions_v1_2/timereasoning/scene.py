@@ -45,7 +45,8 @@ class TimeScene(Scene):
         self.events: list[event.Event] = [] # 事件列表
         self.relations = deepcopy(timerelation.RELATIONS) # 关系列表
         self.rules = deepcopy(timerule.RULES) # 规则列表
-        self.temps = ts.choose_templates(scale)
+        # 11-25修改：增加语言变量
+        self.temps = ts.choose_templates(scale, lang=lang) # 模板字典
         # 命题收集变量（为了安全性需要重新定义）
         self._init_props: list[timeprop.TimeP] = []
         self._all_props: list[timeprop.TimeP] = []
