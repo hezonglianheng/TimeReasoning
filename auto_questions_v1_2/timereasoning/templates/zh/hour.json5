@@ -95,4 +95,6 @@
         "他[element1]花费的时间和他[element2]花费的时间相等",
         "他[element1]的时间与他[element2]的时间一致"
     ],
+    // 在……期间的模板
+    "during": [],
 }
