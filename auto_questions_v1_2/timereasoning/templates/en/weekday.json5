@@ -1,0 +1,31 @@
+// templates for weekdays
+
+{
+    // 瞬时事件的模板
+    "temporal": [
+        // 注意：为了程序的正确运行，我们做特殊处理，将星期几的模板表示成weekday[time]的形式
+        "He [element] on weekday[time]",
+    ],
+    // 时长的模板
+    "duration": [],
+    // 持续事件的模板
+    "durative": [],
+    // 时频的模板
+    "freq": [],
+    // 事件先后关系的模板
+    "before": [],
+    "before_time": [],
+    "after": [],
+    "after_time": [],
+    "simultaneous": [],
+    // 事件间隔的模板
+    "gap_time": [],
+    // 时长关系的模板
+    "long": [],
+    "long_time": [],
+    "short": [],
+    "short_time": [],
+    "same_len": [],
+    // 在……期间的模板
+    "during": [],
+}
