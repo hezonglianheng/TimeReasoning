@@ -131,7 +131,12 @@ class Scene(metaclass=abc.ABCMeta):
             # self._asked_prop = random.choice([i for i in self._reachables if not i.got(self._chosen_group) and i.askable])
         elif self.ask_mode == 'deepest':
             assert self.graph is not None, "deepest提问模式下，必须先获取推理图"
-            candidates = self.graph.deepest_layer_props
+            deepest_layer: int = -1
+            for i in [k for k in self._reachables if not k.got(self._chosen_group) and k.askable]:
+                layer = self.graph.layer_query(i)
+                if layer > deepest_layer:
+                    deepest_layer = layer
+            candidates = [i for i in self._reachables if not i.got(self._chosen_group) and i.askable and self.graph.layer_query(i) == deepest_layer]
             # self._asked_prop = random.choice(self.graph.deepest_layer_props)
         elif self.ask_mode == 'tag':
             assert self.tag is not None, "tag提问模式下，提问标签不能为空"
