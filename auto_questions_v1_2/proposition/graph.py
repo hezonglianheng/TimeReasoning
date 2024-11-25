@@ -85,6 +85,8 @@ class Graph:
         # 11-07更新：将知识添加到查找过的结论命题和路径当中
         self.conclusion_props: list[Proposition] = init_props + knowledge_props # 已经查找过的结论命题
         self.paths: list[list[Node]] = [[]] * len(self.conclusion_props) # 结论命题的路径
+        # 11-24更新：记录图的层级数
+        self.layers: int = 0 # 图的层级数，初始化为0
 
     def add_node(self, node: Node) -> bool:
         """添加一个节点到图中
@@ -101,12 +103,15 @@ class Graph:
             if n == node: # 如果有相同的节点，直接返回，不添加
                 return False
         self.nodes.append(node)
+        # 更新图的层级数
+        if node.layer > self.layers:
+            self.layers = node.layer
         return True
 
     # 返回一种比较短的推理路径
     # TODO: 优化算法，减少重复计算
     def backtrace(self, conclusion: Proposition) -> list[Node]:
-        """回溯推理路径上的节点，返回一种比较短的推理路径。
+        """回溯推理路径上的节点，返回一种比较短的推理路径。\n
         目前在每次检索时采用局部最优的算法，因此无法证明这是最短的推理路径
 
         Args:
@@ -136,3 +141,48 @@ class Graph:
         front_path: list[Node] = reduce(lambda x, y: x + y, conclusion_paths, [])
         curr_path = [i for i in front_path] + [trace_nodes[0]]
         return curr_path
+
+    def certain_layer_props(self, layer: int) -> list[Proposition]:
+        """返回某一层的全部命题集合
+
+        Args:
+            layer (int): 层级
+
+        Returns:
+            list[Proposition]: 层级为layer的命题
+        """
+        # 检索所有位于该层的节点的结论命题
+        conclusions =  [node.conclusion for node in self.nodes if node.layer == layer]
+        # 判断结论命题的最浅层次是否为本层
+        return [c for c in conclusions if self.layer_query(c) == layer]
+
+    @property
+    def deepest_layer_props(self) -> list[Proposition]:
+        """返回最深层的全部命题集合
+
+        Returns:
+            list[Proposition]: 最深层的全部命题集合
+        """
+        # 从最深层开始查找，找到第一个非空的层级
+        for layer in range(self.layers, 0, -1):
+            if len(prop_list := self.certain_layer_props(layer)) > 0:
+                return prop_list # 返回最深层的全部命题集合
+        return []
+
+    def layer_query(self, prop: Proposition) -> int:
+        """查询某个命题所在的最小层级，如果没有找到，返回-1
+
+        Args:
+            prop (Proposition): 要查询的命题
+
+        Returns:
+            int: 命题所在的层级，如果没有找到，返回-1
+        """
+        layer: int = self.layers + 1 # 初始化为一个不可能的层级
+        # 遍历所有节点，找到结论命题为prop的节点，取最小的层级
+        for node in self.nodes:
+            if node.conclusion == prop:
+                layer = min(layer, node.layer)
+        if layer == self.layers + 1:
+            return -1
+        return layer

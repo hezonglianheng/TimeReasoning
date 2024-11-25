@@ -7,7 +7,7 @@
 import abc
 from copy import deepcopy
 import random
-from typing import Union, Any, Dict, Optional
+from typing import Union, Any, Dict, Literal, Optional
 import sys
 from pathlib import Path
 
@@ -25,16 +25,23 @@ from proposition.graph import Graph
 
 class Scene(metaclass=abc.ABCMeta):
     """
-    推理场景的抽象类
+    推理场景的抽象类\n
     用于定义推理场景的基本属性和操作
     """
 
-    def __init__(self, guide: str = "") -> None:
+    def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
         """初始化推理场景
         Args:
             guide (str, optional): 引导语. 默认为空字符串.
+            ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'.可选的值有：
+                - 'random'，即随机提问. 
+                - 'deepest'，优先提问最深层的命题.
+                - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
+            tag (Optional[list[str]], optional): 提问标签. 默认为None.
         """
         self.guide = guide  # 引导语
+        self.ask_mode = ask_mode  # 提问模式
+        self.tag = tag # 提问标签
         self.relations: list[relation.Relation] = []  # 关系列表
         self.rules: list[rule.Rule] = []  # 规则列表
         self.temps: dict[str, list[str]] = []  # 模板字典
@@ -118,14 +125,35 @@ class Scene(metaclass=abc.ABCMeta):
         # 修改：提问的命题需要是可提问的命题
         print("随机选择一个未进入描述的命题，提问.")
 
-        self._asked_prop = random.choice([i for i in self._reachables if not i.got(self._chosen_group) and i.askable])
+        # 11-24更新：修改提问方式，以支持提问最深层命题和按照标签提问
+        if self.ask_mode == 'random':
+            candidates: list[prop.Proposition] = [i for i in self._reachables if not i.got(self._chosen_group) and i.askable]
+            # self._asked_prop = random.choice([i for i in self._reachables if not i.got(self._chosen_group) and i.askable])
+        elif self.ask_mode == 'deepest':
+            assert self.graph is not None, "deepest提问模式下，必须先获取推理图"
+            deepest_layer: int = -1
+            for i in [k for k in self._reachables if not k.got(self._chosen_group) and k.askable]:
+                layer = self.graph.layer_query(i)
+                if layer > deepest_layer:
+                    deepest_layer = layer
+            candidates = [i for i in self._reachables if not i.got(self._chosen_group) and i.askable and self.graph.layer_query(i) == deepest_layer]
+            # self._asked_prop = random.choice(self.graph.deepest_layer_props)
+        elif self.ask_mode == 'tag':
+            assert self.tag is not None, "tag提问模式下，提问标签不能为空"
+            candidates = [i for i in self._reachables if not i.got(self._chosen_group) and i.askable and i.typetag in self.tag]
+            # self._asked_prop = random.choice([i for i in self._reachables if not i.got(self._chosen_group) and i.askable and i.typetag in self.tag])
+        else:
+            raise ValueError(f"提问模式错误，不存在{self.ask_mode}模式")
+        if len(candidates) == 0:
+            print("没有可提问的命题，跳过.")
+            return None
+        self._asked_prop = random.choice(candidates)
         # self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
         return self._ask_info
 
-    def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[
-        str, Any]:
+    def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[str, Any]:
         """获取选项和正确答案
         Args:
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
@@ -134,7 +162,9 @@ class Scene(metaclass=abc.ABCMeta):
         Returns:
             Dict[str, Any]: 答案信息
         """
-        assert self._asked_prop is not None, "必须先执行ask()方法进行提问"
+        # assert self._asked_prop is not None, "必须先执行ask()方法进行提问"
+        if self._asked_prop is None:
+            return None # 11-24更新：如果没有可提问的命题，直接返回None
 
         # am = AM(self._all_props, self._asked_prop, self._ask_info, seed, options, all_wrong_prob)
         am = AM(self._reachables, self._asked_prop, self._ask_info, seed, options, all_wrong_prob)
@@ -142,7 +172,15 @@ class Scene(metaclass=abc.ABCMeta):
             am.set_value_range(k, v)
         return am.run()
 
-    def get_chain(self, ans_prop) -> str:
+    def get_chain(self, ans_prop: list[prop.Proposition]) -> str:
+        """获取推理链
+
+        Args:
+            ans_prop (list[prop.Proposition]): 答案命题，是由回答机返回的答案命题列表
+
+        Returns:
+            str: 推理链
+        """
         assert self._asked_prop is not None, "必须先执行ask()方法进行提问"
 
         reason_path = self.graph.backtrace(self._asked_prop)
@@ -156,8 +194,7 @@ class Scene(metaclass=abc.ABCMeta):
     def run(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
         """运行场景，获取一组题目
         Args:
-            execute (int, optional): 运行次数. 默认为10.
-            limit (Optional[int], optional): 搜索深度限制. 默认为None(根据隐藏值计算).
+            execute (int, optional): 生成的题目数量. 默认为10.
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
 
         Returns:
@@ -165,21 +202,35 @@ class Scene(metaclass=abc.ABCMeta):
         """
         self.get_all_props()
         question_list = []
-        for i in range(execute):
+        i = 0
+        while len(question_list) < execute:
+            i += 1
             print(f"开始第{i + 1}次获取.")
             self.get_all_groups()
             self.get_statements()
             self.ask(seed)
             answers = self.get_answers(seed)
-            ans_prop = answers["answerprop"]   #将正确答案填入空中的命题
-            chain = self.get_chain(ans_prop)
             if answers is None:
                 print("未能获取答案，跳过.")
                 continue
+            # 修改：先判定能否生成答案，再获取推理链
+            ans_prop = answers["answerprop"] # 将正确答案填入空中的命题
+            chain = self.get_chain(ans_prop)
             text = self.guide + COLON + SEMICOLON.join(self._statements)  # 题面文本，由引导语和陈述组成
-
-            item = {"guide": self.guide, "statement": self._statements, "text": text,
-                    "question": self._ask_info[prop.SENTENCE], } | {"options": answers["options"], "answers": answers["answers"]} | {"chain": chain}
+            # 问题信息
+            item = {
+                        "guide": self.guide, 
+                        "statement": self._statements, 
+                        "text": text,
+                        "question": self._ask_info[prop.SENTENCE], 
+                        "options": answers["options"], 
+                        "answers": answers["answers"], 
+                        "chain": chain, 
+                        # 11-24更新：增加提问命题的层级信息
+                        "layer": self.graph.layer_query(self._asked_prop), 
+                        # 11-24更新：增加提问命题的标签信息
+                        "tag": self._asked_prop.typetag
+                    }
             question_list.append(item)
-        print(f"获取题目{execute}次，获得题目{len(question_list)}个.")
+        print(f"获取题目{i}次，获得题目{len(question_list)}个.")
         return question_list

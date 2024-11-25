@@ -5,7 +5,7 @@
 from pycnnum import num2cn # 引入中文数字转换库
 import re
 from copy import deepcopy
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional, Union, Literal
 import sys
 from pathlib import Path
 import random
@@ -13,7 +13,7 @@ import random
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
-from proposition import prop, relation
+from proposition import prop, relation, machines
 from timereasoning import timeprop, timerule, timerelation, event
 from timereasoning import timescale as ts
 from proposition.scene import Scene
@@ -25,15 +25,20 @@ class TimeScene(Scene):
     """
     时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "") -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
         """初始化时间场景
 
         Args:
             scale (ts.TimeScale | int): 时间尺度
             guide (str, optional): 引导语. 默认为"".
+            ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'.可选的值有：
+                - 'random'，即随机提问. 
+                - 'deepest'，优先提问最深层的命题.
+                - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
+            tag (Optional[list[str]], optional): 提问标签. 默认为None.
         """
         # 需要使用的属性
-        super().__init__(guide)
+        super().__init__(guide, ask_mode=ask_mode, tag=tag)
         self.scale = scale if isinstance(scale, ts.TimeScale) else ts.TimeScale(scale) # 时间尺度
         self.events: list[event.Event] = [] # 事件列表
         self.relations = deepcopy(timerelation.RELATIONS) # 关系列表
@@ -86,6 +91,28 @@ class TimeScene(Scene):
         self.events.clear()
         self._init_props.clear()
     
+    def _exp_trans(self, exp: str) -> str:
+        """调整时间表达方式
+
+        Args:
+            exp (str): 时间表达
+
+        Returns:
+            str: 调整后的时间表达
+        """
+        if self.scale == ts.TimeScale.Weekday:
+            search1 = re.search(r"星期[0-9]", exp)
+            if search1 is not None:
+                ch_num = num2cn(search1.group()[-1])
+                ch_num = "天" if ch_num == "零" else ch_num # 将0转化为“天”
+                exp = exp.replace(search1.group(), "星期" + ch_num)
+            search2 = re.search(r"周[0-9]", exp)
+            if search2 is not None:
+                ch_num = num2cn(search2.group()[-1])
+                ch_num = "日" if ch_num == "零" else ch_num
+                exp = exp.replace(search2.group(), "周" + ch_num)
+        return exp
+    
     def _statement_trans(self):
         """
         调整语句中的时间表达方式\n
@@ -93,14 +120,7 @@ class TimeScene(Scene):
         """
         if self.scale == ts.TimeScale.Weekday: # 如果是星期尺度，可以做一些特殊的处理
             for n in range(len(self._statements)):
-                search1 = re.search(r"星期[0-9]", self._statements[n])
-                if search1 is not None:
-                    ch_num = num2cn(search1.group()[-1])
-                    self._statements[n] = self._statements[n].replace(search1.group(), "星期" + ch_num)
-                search2 = re.search(r"周[0-9]", self._statements[n])
-                if search2 is not None:
-                    ch_num = num2cn(search2.group()[-1])
-                    self._statements[n] = self._statements[n].replace(search2.group(), "周" + ch_num)
+                self._statements[n] = self._exp_trans(self._statements[n])
         else:
             pass
 
@@ -124,6 +144,9 @@ class TimeScene(Scene):
     
     def ask(self, seed: int | float | None = None) -> Dict[str, Any]:
         info = super().ask(seed)
+        if info is None:
+            return None
+        info[prop.SENTENCE] = self._exp_trans(info[prop.SENTENCE]) # 调整问题中的时间表达方式
         # all_elements = [i.element for i in self._all_props if isinstance(i, timeprop.SingleTimeP)]
         all_elements = [i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)]
         if "element" in (typ := info.get(prop.TYPE)):
@@ -145,25 +168,52 @@ class TimeScene(Scene):
             self._value_range[typ] = list(range(all_temp[-1] - all_temp[0] + 1))
         return info
 
+    def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any]:
+        answer_info = super().get_answers(seed, options, all_wrong_prob)
+        if "time" in (typ := self._ask_info.get(prop.TYPE)):
+            if self.scale == ts.TimeScale.Weekday:
+                for k, v in answer_info[machines.OPTIONS].items():
+                    zh_num = num2cn(v)
+                    zh_num = "日" if zh_num == "零" else zh_num
+                    answer_info[machines.OPTIONS][k] = zh_num
+        return answer_info
+
 class LineScene(TimeScene):
     """
     线性时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "") -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
         """初始化线性时间场景
 
         Args:
             scale (ts.TimeScale | int): 时间尺度
             guide (str, optional): 引导语. 默认为空字符串.
+            ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'.可选的值有：
+                - 'random'，即随机提问. 
+                - 'deepest'，优先提问最深层的命题.
+                - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
+            tag (Optional[list[str]], optional): 提问标签. 默认为None.
         """
-        super().__init__(scale, guide)
+        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag)
 
 class LoopScene(TimeScene):
     """
     循环时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None) -> None:
-        super().__init__(scale, guide)
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
+        """初始化循环时间场景
+
+        Args:
+            scale (ts.TimeScale | int): 时间尺度
+            guide (str, optional): 引导语. 默认为空字符串.
+            loop (Optional[int], optional): 循环长度. 默认为None.
+            ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'.可选的值有：
+                - 'random'，即随机提问. 
+                - 'deepest'，优先提问最深层的命题.
+                - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
+            tag (Optional[list[str]], optional): 提问标签. 默认为None.
+        """
+        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag)
         self.loop = ts.get_loop_param(scale) if loop is None else loop
         assert self.loop is not None, "未知的循环长度"
         new_relations = list(map(lambda x: x.set_loop(self.loop), [LoopRelation, PeriodRelation, DiffRelation]))
@@ -173,24 +223,49 @@ class LoopScene(TimeScene):
     
     def get_all_props(self) -> None:
         super().get_all_props()
-        for i in self._all_props:
+        self._arrange_props('all')
+
+    def get_all_groups(self) -> None:
+        super().get_all_groups()
+        self._arrange_props('reachable')
+
+    def _arrange_props(self, mode: Literal['all', 'reachable']):
+        """获得一组命题之后，整理命题
+
+        Args:
+            mode (Literal[&#39;all&#39;, &#39;reachable&#39;]): 整理的命题组类型
+                - 'all'，整理第一次推理得到的全部命题
+                - 'reachable'，整理推理图得到的可达命题
+
+        Raises:
+            ValueError: 未知的模式
+        """
+        if mode == 'all':
+            all_props = self._all_props
+        elif mode == 'reachable':
+            all_props = self._reachables
+        else:
+            raise ValueError(f"未知的模式{mode}")
+        for i in all_props:
             if isinstance(i, timeprop.TemporalP):
                 i.time = i.time % self.loop
             elif isinstance(i, (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)):
                 i.diff = i.diff % self.loop
         new_list: list[timeprop.TimeP] = list()
-        for i in range(len(self._all_props)):
-            if self._all_props[i].got(self._all_props[:i]):
+        for i in range(len(all_props)):
+            if all_props[i].got(all_props[:i]):
                 continue
-            elif isinstance(self._all_props[i], (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
+            elif isinstance(all_props[i], (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
                 continue
-            # 增加命题去除条件：若命题是BeforeTimeP, AfterTimeP, GapTimeP且diff为0，则去除
-            elif isinstance(self._all_props[i], (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)) and self._all_props[i].diff == 0:
+            elif isinstance(all_props[i], (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)) and all_props[i].diff == 0:
                 continue
             else:
-                new_list.append(self._all_props[i])
+                new_list.append(all_props[i])
+        if mode == 'all':
+            self._all_props = new_list
+        elif mode == 'reachable':
+            self._reachables = new_list
         print(f"调整后有命题{len(new_list)}个.")
-        self._all_props = new_list
 
 class PeriodRelation(relation.SingleEntailment):
     """表示时间点的周期性关系，属于单元蕴含关系"""
