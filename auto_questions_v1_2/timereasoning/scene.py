@@ -101,10 +101,12 @@ class TimeScene(Scene):
                 search1 = re.search(r"星期[0-9]", self._statements[n])
                 if search1 is not None:
                     ch_num = num2cn(search1.group()[-1])
+                    ch_num = "天" if ch_num == "零" else ch_num # 将0转化为“天”
                     self._statements[n] = self._statements[n].replace(search1.group(), "星期" + ch_num)
                 search2 = re.search(r"周[0-9]", self._statements[n])
                 if search2 is not None:
                     ch_num = num2cn(search2.group()[-1])
+                    ch_num = "日" if ch_num == "零" else ch_num # 将0转化为“日”
                     self._statements[n] = self._statements[n].replace(search2.group(), "周" + ch_num)
         else:
             pass
@@ -197,39 +199,49 @@ class LoopScene(TimeScene):
     
     def get_all_props(self) -> None:
         super().get_all_props()
-        for i in self._all_props:
+        self._arrange_props('all')
+
+    def get_all_groups(self) -> None:
+        super().get_all_groups()
+        self._arrange_props('reachable')
+
+    def _arrange_props(self, mode: Literal['all', 'reachable']):
+        """获得一组命题之后，整理命题
+
+        Args:
+            mode (Literal[&#39;all&#39;, &#39;reachable&#39;]): 整理的命题组类型
+                - 'all'，整理第一次推理得到的全部命题
+                - 'reachable'，整理推理图得到的可达命题
+
+        Raises:
+            ValueError: 未知的模式
+        """
+        if mode == 'all':
+            all_props = self._all_props
+        elif mode == 'reachable':
+            all_props = self._reachables
+        else:
+            raise ValueError(f"未知的模式{mode}")
+        for i in all_props:
             if isinstance(i, timeprop.TemporalP):
                 i.time = i.time % self.loop
             elif isinstance(i, (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)):
                 i.diff = i.diff % self.loop
         new_list: list[timeprop.TimeP] = list()
-        for i in range(len(self._all_props)):
-            if self._all_props[i].got(self._all_props[:i]):
+        for i in range(len(all_props)):
+            if all_props[i].got(all_props[:i]):
                 continue
-            elif isinstance(self._all_props[i], (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
+            elif isinstance(all_props[i], (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
                 continue
-            # 增加命题去除条件：若命题是BeforeTimeP, AfterTimeP, GapTimeP且diff为0，则去除
-            elif isinstance(self._all_props[i], (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)) and self._all_props[i].diff == 0:
+            elif isinstance(all_props[i], (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)) and all_props[i].diff == 0:
                 continue
             else:
-                new_list.append(self._all_props[i])
+                new_list.append(all_props[i])
+        if mode == 'all':
+            self._all_props = new_list
+        elif mode == 'reachable':
+            self._reachables = new_list
         print(f"调整后有命题{len(new_list)}个.")
-        self._all_props = new_list
-
-    def get_all_groups(self) -> None:
-        super().get_all_groups()
-        new_list: list[timeprop.TimeP] = list()
-        for i in range(len(self._reachables)):
-            if self._reachables[i].got(self._reachables[:i]):
-                continue
-            elif isinstance(self._reachables[i], (timeprop.BeforeP, timeprop.AfterP, timeprop.LongP, timeprop.ShortP)):
-                continue
-            elif isinstance(self._reachables[i], (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)) and self._reachables[i].diff == 0:
-                continue
-            else:
-                new_list.append(self._reachables[i])
-        print(f"调整后可及命题集中有命题{len(new_list)}个.")
-        self._reachables = new_list
 
 class PeriodRelation(relation.SingleEntailment):
     """表示时间点的周期性关系，属于单元蕴含关系"""
