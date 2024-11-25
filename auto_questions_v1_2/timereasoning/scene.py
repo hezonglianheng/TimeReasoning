@@ -25,7 +25,7 @@ class TimeScene(Scene):
     """
     时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化时间场景
 
         Args:
@@ -36,9 +36,10 @@ class TimeScene(Scene):
                 - 'deepest'，优先提问最深层的命题.
                 - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
             tag (Optional[list[str]], optional): 提问标签. 默认为None.
+            lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
         # 需要使用的属性
-        super().__init__(guide, ask_mode=ask_mode, tag=tag)
+        super().__init__(guide, ask_mode=ask_mode, tag=tag, lang=lang)
         self.scale = scale if isinstance(scale, ts.TimeScale) else ts.TimeScale(scale) # 时间尺度
         self.events: list[event.Event] = [] # 事件列表
         self.relations = deepcopy(timerelation.RELATIONS) # 关系列表
@@ -182,7 +183,7 @@ class LineScene(TimeScene):
     """
     线性时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化线性时间场景
 
         Args:
@@ -193,14 +194,15 @@ class LineScene(TimeScene):
                 - 'deepest'，优先提问最深层的命题.
                 - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
             tag (Optional[list[str]], optional): 提问标签. 默认为None.
+            lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
-        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag)
+        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag, lang=lang)
 
 class LoopScene(TimeScene):
     """
     循环时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化循环时间场景
 
         Args:
@@ -212,8 +214,9 @@ class LoopScene(TimeScene):
                 - 'deepest'，优先提问最深层的命题.
                 - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
             tag (Optional[list[str]], optional): 提问标签. 默认为None.
+            lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
-        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag)
+        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag, lang=lang)
         self.loop = ts.get_loop_param(scale) if loop is None else loop
         assert self.loop is not None, "未知的循环长度"
         new_relations = list(map(lambda x: x.set_loop(self.loop), [LoopRelation, PeriodRelation, DiffRelation]))

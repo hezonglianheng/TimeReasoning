@@ -32,17 +32,23 @@ class TimeScale(IntEnum):
     Hour = 5
     Minute = 6
 
-def choose_templates(scale: TimeScale | int) -> Dict[str, List[str]]:
-    """根据时间尺度选择对应的模板
+def choose_templates(scale: TimeScale | int, lang: str = "zh") -> Dict[str, List[str]]:
+    """根据时间尺度和语言信息选择对应的模板
     
     Args:
         scale (TimeScale): 时间尺度
+        lang (str, optional): 语言. 默认为"zh"(简体中文).
     
     Returns:
         Dict[str, List[str]]: 每种命题对应的模板
+
+    Raises:
+        FileNotFoundError: 当指定的语言参数不合法时，未找到对应的模板文件夹抛出
     """
     scale = TimeScale(scale) if isinstance(scale, int) else scale
-    temp_dir = Path(__file__).resolve().parent / "templates"
+    temp_dir = Path(__file__).resolve().parent / "templates" / lang
+    if not temp_dir.exists():
+        raise FileNotFoundError(f"未找到语言{lang}的模板文件夹")
     with open(temp_dir / f"{scale.name.lower()}.json5", "r", encoding = "utf-8") as f:
         templates: Dict[str, List[str]] = json5.load(f)
     return templates
