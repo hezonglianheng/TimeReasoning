@@ -278,7 +278,7 @@ class DoubleTimeP(prop.DoubleProp, TimeP):
 
 class BeforeP(DoubleTimeP):
     """表示一个事件发生在另一个事件之前的时间命题，是非精确命题"""
-    def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
+    def __init__(self, element1: event.TemporalEvent, element2: event.Event, askable: bool = True):
         super().__init__(element1, element2, askable)
         self.precise = False
 
@@ -310,7 +310,7 @@ class BeforeTimeP(DoubleTimeP):
     
 class AfterP(DoubleTimeP):
     """表示一个事件发生在另一个事件之后的时间命题，是非精确命题"""
-    def __init__(self, element1: event.TemporalEvent, element2: event.TemporalEvent, askable: bool = True):
+    def __init__(self, element1: event.TemporalEvent, element2: event.Event, askable: bool = True):
         super().__init__(element1, element2, askable)
         self.precise = False
 
