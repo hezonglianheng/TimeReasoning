@@ -13,7 +13,7 @@ import random
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
-from proposition import prop, relation
+from proposition import prop, relation, machines
 from timereasoning import timeprop, timerule, timerelation, event
 from timereasoning import timescale as ts
 from proposition.scene import Scene
@@ -91,6 +91,28 @@ class TimeScene(Scene):
         self.events.clear()
         self._init_props.clear()
     
+    def _exp_trans(self, exp: str) -> str:
+        """调整时间表达方式
+
+        Args:
+            exp (str): 时间表达
+
+        Returns:
+            str: 调整后的时间表达
+        """
+        if self.scale == ts.TimeScale.Weekday:
+            search1 = re.search(r"星期[0-9]", exp)
+            if search1 is not None:
+                ch_num = num2cn(search1.group()[-1])
+                ch_num = "天" if ch_num == "零" else ch_num # 将0转化为“天”
+                exp = exp.replace(search1.group(), "星期" + ch_num)
+            search2 = re.search(r"周[0-9]", exp)
+            if search2 is not None:
+                ch_num = num2cn(search2.group()[-1])
+                ch_num = "日" if ch_num == "零" else ch_num
+                exp = exp.replace(search2.group(), "周" + ch_num)
+        return exp
+    
     def _statement_trans(self):
         """
         调整语句中的时间表达方式\n
@@ -98,16 +120,7 @@ class TimeScene(Scene):
         """
         if self.scale == ts.TimeScale.Weekday: # 如果是星期尺度，可以做一些特殊的处理
             for n in range(len(self._statements)):
-                search1 = re.search(r"星期[0-9]", self._statements[n])
-                if search1 is not None:
-                    ch_num = num2cn(search1.group()[-1])
-                    ch_num = "天" if ch_num == "零" else ch_num # 将0转化为“天”
-                    self._statements[n] = self._statements[n].replace(search1.group(), "星期" + ch_num)
-                search2 = re.search(r"周[0-9]", self._statements[n])
-                if search2 is not None:
-                    ch_num = num2cn(search2.group()[-1])
-                    ch_num = "日" if ch_num == "零" else ch_num # 将0转化为“日”
-                    self._statements[n] = self._statements[n].replace(search2.group(), "周" + ch_num)
+                self._statements[n] = self._exp_trans(self._statements[n])
         else:
             pass
 
@@ -133,6 +146,7 @@ class TimeScene(Scene):
         info = super().ask(seed)
         if info is None:
             return None
+        info[prop.SENTENCE] = self._exp_trans(info[prop.SENTENCE]) # 调整问题中的时间表达方式
         # all_elements = [i.element for i in self._all_props if isinstance(i, timeprop.SingleTimeP)]
         all_elements = [i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)]
         if "element" in (typ := info.get(prop.TYPE)):
@@ -153,6 +167,16 @@ class TimeScene(Scene):
             all_temp = sorted([i.time for i in all_elements if isinstance(i, (event.TemporalEvent))], key=lambda x: x)
             self._value_range[typ] = list(range(all_temp[-1] - all_temp[0] + 1))
         return info
+
+    def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any]:
+        answer_info = super().get_answers(seed, options, all_wrong_prob)
+        if "time" in (typ := self._ask_info.get(prop.TYPE)):
+            if self.scale == ts.TimeScale.Weekday:
+                for k, v in answer_info[machines.OPTIONS].items():
+                    zh_num = num2cn(v)
+                    zh_num = "日" if zh_num == "零" else zh_num
+                    answer_info[machines.OPTIONS][k] = zh_num
+        return answer_info
 
 class LineScene(TimeScene):
     """
