@@ -112,4 +112,13 @@
         "他[element1]的时间与他[element2]的时间一致",
         "他用了相同的时间[element1]和[element2]",
     ],
+    // 增加：during的模板
+    "during": [
+        "在[element2]期间，他[element1]",
+        "他在[element2]期间[element1]",
+        "他在[element2]的时候[element1]",
+        "他[element1]的时候是在[element2]期间",
+        "他在[element2]的那段时间里[element1]",
+        "他[element1]的时间是在[element2]期间",
+    ], 
 }

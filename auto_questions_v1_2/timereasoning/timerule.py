@@ -181,6 +181,51 @@ class AfterandGap(rule.DoubleAdd):
             new.diff = prop2.diff
             return new
 
+class TempBeforeDurative(rule.TwoSingleToDoubleRule):
+    _rule_tuple = (timeprop.TemporalP, timeprop.DurativeP, timeprop.BeforeP)
+
+    @classmethod
+    def reason(cls, prop1: timeprop.TemporalP, prop2: timeprop.DurativeP) -> DoubleProp | None:
+        if not cls._assert_condition(prop1, prop2):
+            return None
+        if prop1.time < prop2.time:
+            return super().reason(prop1, prop2)
+        else:
+            return None
+
+class TempAfterDurative(rule.TwoSingleToDoubleRule):
+    _rule_tuple = (timeprop.TemporalP, timeprop.DurativeP, timeprop.AfterP)
+
+    @classmethod
+    def reason(cls, prop1: timeprop.TemporalP, prop2: timeprop.DurativeP) -> DoubleProp | None:
+        if not cls._assert_condition(prop1, prop2):
+            return None
+        if prop1.time > prop2.endtime:
+            return super().reason(prop1, prop2)
+        else:
+            return None
+
+class GetDuring(rule.TwoSingleToDoubleRule):
+    _rule_tuple = (timeprop.SingleTimeP, timeprop.DurativeP, timeprop.DuringTimeP)
+
+    @classmethod
+    def reason(cls, prop1: timeprop.SingleTimeP, prop2: timeprop.DurativeP) -> timeprop.DuringTimeP | None:
+        if not cls._assert_condition(prop1, prop2):
+            return None
+        if isinstance(prop1, timeprop.TemporalP):
+            if prop1.time >= prop2.time and prop1.time <= prop2.endtime:
+                return super().reason(prop1, prop2)
+        elif isinstance(prop1, timeprop.DurativeP):
+            if prop1.time <= prop2.time and prop1.endtime <= prop2.endtime:
+                return super().reason(prop1, prop2)
+            elif prop1.time >= prop2.time and prop1.endtime >= prop2.endtime:
+                return super().reason(prop1, prop2)
+            elif prop1.time <= prop2.time and prop1.endtime >= prop2.endtime:
+                return super().reason(prop1, prop2)
+            elif prop1.time >= prop2.time and prop1.endtime <= prop2.endtime:
+                return super().reason(prop1, prop2)
+        return None
+
 # 时间推理规则列表
 RULES: list[type[rule.Rule]] = [
     GetBeforeTimeP,
@@ -207,4 +252,9 @@ RULES: list[type[rule.Rule]] = [
     FromSameLenTime,
     BeforeandGap,
     AfterandGap,
+    # 增加时点-时段的前后推理规则
+    TempBeforeDurative,
+    TempAfterDurative,
+    # 增加During推理规则
+    GetDuring,
 ]
