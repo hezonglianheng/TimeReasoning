@@ -186,7 +186,7 @@ class TimeScene(Scene):
                     answer_info[machines.OPTIONS][k] = zh_num
             elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
                 for k, v in answer_info[machines.OPTIONS].items():
-                    answer_info[machines.OPTIONS][k] = calendar.day_name[v-1]
+                    answer_info[machines.OPTIONS][k] = calendar.day_name[int(v)-1]
         return answer_info
 
 class LineScene(TimeScene):
