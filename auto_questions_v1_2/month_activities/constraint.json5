@@ -1,0 +1,107 @@
+// 事件间约束关系示例文件
+// 约束关系的type字段取值为：
+// 1. rangetime: 两个事件之间的时间间隔在一个范围内
+// 2. sametime: 两个事件发生在同一时间
+// 3. after: 事件A发生在事件B之后
+// before: 事件A发生在事件B之前
+// 4. minafter: 事件A发生在事件B之后，且时间间隔大于等于某个值
+// minbefore: 事件A发生在事件B之前，且时间间隔大于等于某个值
+// 5. maxafter: 事件A发生在事件B之后，且时间间隔小于等于某个值
+// maxbefore: 事件A发生在事件B之前，且时间间隔小于等于某个值
+// 6. certainafter: 事件A发生在事件B之后，且时间间隔等于某个值
+// certainbefore: 事件A发生在事件B之前，且时间间隔等于某个值
+
+[
+// 度过一年约束
+    {
+        "main_event": "ended the journal of this year",
+        "std_event": "started the journal of this year",
+        "type": "certainafter",
+        "time": 11,
+    },
+// 答辩约束
+    {
+        "main_event": "passed the thesis defense",
+        "std_event": "started preparing for the thesis defense",
+        "type": "rangetime",
+        "floor": 3,
+        "ceiling": 6,
+    },
+    {
+        "main_event": "started preparing for the thesis defense",
+        "std_event": "started the journal of this year",
+        "type": "after",
+    },
+// 实习约束
+    {
+        "main_event": "started an online internship",
+        "std_event": "started the journal of this year",
+        "type": "after",
+    },
+    {
+        "main_event": "successfully ended the internship",
+        "std_event": "started an online internship",
+        "type": "rangetime",
+        "floor": 3,
+        "ceiling": 6,
+    },
+// 旅行约束
+    {
+        "main_event": "started an overseas trip",
+        "std_event": "started the journal of this year",
+        "type": "after",
+    },
+    {
+        "main_event": "ended the overseas trip",
+        "std_event": "started an overseas trip",
+        "type": "rangetime",
+        "floor": 1,
+        "ceiling": 3,
+    },
+// 创作约束
+    {
+        "main_event": "started writing a novel",
+        "std_event": "started the journal of this year",
+        "type": "after",
+    },
+    {
+        "main_event": "published his own novel",
+        "std_event": "started writing a novel",
+        "type": "rangetime",
+        "floor": 6,
+        "ceiling": 8,
+    },
+// 彩票约束
+    {
+        "main_event": "won the lottery",
+        "std_event": "started the journal of this year",
+        "type": "after",
+    },
+    {
+        "main_event": "won the lottery",
+        "std_event": "ended the journal of this year",
+        "type": "before",
+    },
+// 聚会约束
+    {
+        "main_event": "attended a class reunion",
+        "std_event": "started the journal of this year",
+        "type": "after",
+    },
+    {
+        "main_event": "attended a class reunion",
+        "std_event": "ended the journal of this year",
+        "type": "before",
+    },
+// 音乐会约束
+    {
+        "main_event": "attended a concert",
+        "std_event": "started the journal of this year",
+        "type": "after",
+    },
+    {
+        "main_event": "attended a concert",
+        "std_event": "ended the journal of this year",
+        "type": "before",
+    },
+]

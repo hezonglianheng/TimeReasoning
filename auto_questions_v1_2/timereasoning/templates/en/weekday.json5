@@ -1,10 +1,12 @@
-// templates for weekdays
+// 以周几为单位的陈述模板
 
 {
     // 瞬时事件的模板
     "temporal": [
-        // 注意：为了程序的正确运行，我们做特殊处理，将星期几的模板表示成weekday[time]的形式
-        "He [element] on weekday[time]",
+        "He [element], and that was on weekday [time]",
+        "On weekday [time], he [element]",
+        "He [element] on weekday [time]",
+        "When it's weekday [time] he [element]",
     ],
     // 时长的模板
     "duration": [],
@@ -13,19 +15,40 @@
     // 时频的模板
     "freq": [],
     // 事件先后关系的模板
-    "before": [],
-    "before_time": [],
-    "after": [],
-    "after_time": [],
-    "simultaneous": [],
+    "before": [
+        "He [element1] earlier than [element2]",
+        "He [element1] before he [element2]"
+    ],
+    "before_time": [
+        "He [element1] [diff] day(s) earlier than he [element2]",
+        "He [element1] [diff] day(s) before he [element2]",
+        "[diff] day(s) before he [element2], he [element1]"
+    ],
+    "after": [
+        "He [element1] later than [element2]",
+        "He [element1] after he [element2]"
+    ],
+    "after_time": [
+        "He [element1] [diff] day(s) later than he [element2]",
+        "He [element1] [diff] day(s) after he [element2]",
+        "[diff] day(s) after he [element2], he [element1]"
+    ],
+    "simultaneous": [
+        "On the day that he [element2], he also [element1]",
+        "On the same day, he not only [element2], but also [element1]",
+        "On the same day as he [element2], he also [element1]",
+        "On a certain day, he both [element2] and [element1]"
+    ],
     // 事件间隔的模板
-    "gap_time": [],
+    "gap_time": [
+        "There are [diff] day(s) between he [element2] and [element1]",
+        "The time gap between he [element2] and [element1] is [diff] day(s)",
+        "He has a [diff]-day difference between he [element2] and [element1]"
+    ],
     // 时长关系的模板
     "long": [],
     "long_time": [],
     "short": [],
     "short_time": [],
     "same_len": [],
-    // 在……期间的模板
-    "during": [],
 }
