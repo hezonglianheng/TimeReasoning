@@ -358,7 +358,7 @@ class AnswerMachine:
                 answers.append(ascii_uppercase[i])
         # 设置“以上选项均不正确”选项
         if random.random() < self._all_wrong_prob:
-            options[ascii_uppercase[self._options - 1]] = "以上选项均不正确"
+            options[ascii_uppercase[self._options - 1]] = "none of the above is correct"
             if len(answers) > 1 and ascii_uppercase[self._options - 1] in answers:
                 answers.remove(ascii_uppercase[self._options - 1])
         # 返回最终结果

@@ -29,7 +29,7 @@ class Scene(metaclass=abc.ABCMeta):
     用于定义推理场景的基本属性和操作
     """
 
-    def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
+    def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化推理场景
         Args:
             guide (str, optional): 引导语. 默认为空字符串.
@@ -38,10 +38,12 @@ class Scene(metaclass=abc.ABCMeta):
                 - 'deepest'，优先提问最深层的命题.
                 - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
             tag (Optional[list[str]], optional): 提问标签. 默认为None.
+            lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
         self.guide = guide  # 引导语
         self.ask_mode = ask_mode  # 提问模式
         self.tag = tag # 提问标签
+        self.lang = lang  # 语言
         self.relations: list[relation.Relation] = []  # 关系列表
         self.rules: list[rule.Rule] = []  # 规则列表
         self.temps: dict[str, list[str]] = []  # 模板字典

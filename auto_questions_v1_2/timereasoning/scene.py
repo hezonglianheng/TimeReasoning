@@ -9,6 +9,7 @@ from typing import Any, Dict, Optional, Union, Literal
 import sys
 from pathlib import Path
 import random
+import calendar
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -25,7 +26,7 @@ class TimeScene(Scene):
     """
     时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化时间场景
 
         Args:
@@ -36,14 +37,16 @@ class TimeScene(Scene):
                 - 'deepest'，优先提问最深层的命题.
                 - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
             tag (Optional[list[str]], optional): 提问标签. 默认为None.
+            lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
         # 需要使用的属性
-        super().__init__(guide, ask_mode=ask_mode, tag=tag)
+        super().__init__(guide, ask_mode=ask_mode, tag=tag, lang=lang)
         self.scale = scale if isinstance(scale, ts.TimeScale) else ts.TimeScale(scale) # 时间尺度
         self.events: list[event.Event] = [] # 事件列表
         self.relations = deepcopy(timerelation.RELATIONS) # 关系列表
         self.rules = deepcopy(timerule.RULES) # 规则列表
-        self.temps = ts.choose_templates(scale)
+        # 11-25修改：增加语言变量
+        self.temps = ts.choose_templates(scale, lang=lang) # 模板字典
         # 命题收集变量（为了安全性需要重新定义）
         self._init_props: list[timeprop.TimeP] = []
         self._all_props: list[timeprop.TimeP] = []
@@ -100,7 +103,7 @@ class TimeScene(Scene):
         Returns:
             str: 调整后的时间表达
         """
-        if self.scale == ts.TimeScale.Weekday:
+        if self.scale == ts.TimeScale.Weekday and self.lang == "zh": # 如果是星期尺度，可以做一些特殊的处理
             search1 = re.search(r"星期[0-9]", exp)
             if search1 is not None:
                 ch_num = num2cn(search1.group()[-1])
@@ -111,6 +114,22 @@ class TimeScene(Scene):
                 ch_num = num2cn(search2.group()[-1])
                 ch_num = "日" if ch_num == "零" else ch_num
                 exp = exp.replace(search2.group(), "周" + ch_num)
+        elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
+            search = re.search(r"(weekday) ([0-9])", exp)
+            if search is not None:
+                num = int(search.group()[-1])
+                exp = exp.replace(search.group(), calendar.day_name[num-1])
+            # 将问题中的weekday_中的weekday去掉
+            exp = exp.replace("weekday ", " ")
+        elif self.scale == ts.TimeScale.Month and self.lang == "en":
+            search = re.findall(r"(month) ([0-9]{1,2})", exp)
+            if search is not None:
+                # 获取月份数字
+                for result in search:
+                    num = int(result[-1])
+                    # 获取月份名称
+                    exp = exp.replace(result[-1], calendar.month_name[num])
+            exp = exp.replace("month ", "")
         return exp
     
     def _statement_trans(self):
@@ -119,6 +138,9 @@ class TimeScene(Scene):
         例如，将星期几的数字转化为中文
         """
         if self.scale == ts.TimeScale.Weekday: # 如果是星期尺度，可以做一些特殊的处理
+            for n in range(len(self._statements)):
+                self._statements[n] = self._exp_trans(self._statements[n])
+        elif self.scale == ts.TimeScale.Month: # 月份的转换处理
             for n in range(len(self._statements)):
                 self._statements[n] = self._exp_trans(self._statements[n])
         else:
@@ -171,18 +193,24 @@ class TimeScene(Scene):
     def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any]:
         answer_info = super().get_answers(seed, options, all_wrong_prob)
         if "time" in (typ := self._ask_info.get(prop.TYPE)):
-            if self.scale == ts.TimeScale.Weekday:
+            if self.scale == ts.TimeScale.Weekday and self.lang == "zh":
                 for k, v in answer_info[machines.OPTIONS].items():
                     zh_num = num2cn(v)
                     zh_num = "日" if zh_num == "零" else zh_num
                     answer_info[machines.OPTIONS][k] = zh_num
+            elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
+                for k, v in answer_info[machines.OPTIONS].items():
+                    answer_info[machines.OPTIONS][k] = calendar.day_name[int(v)-1]
+            elif self.scale == ts.TimeScale.Month and self.lang == "en":
+                for k, v in answer_info[machines.OPTIONS].items():
+                    answer_info[machines.OPTIONS][k] = calendar.month_name[int(v)]
         return answer_info
 
 class LineScene(TimeScene):
     """
     线性时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化线性时间场景
 
         Args:
@@ -193,14 +221,15 @@ class LineScene(TimeScene):
                 - 'deepest'，优先提问最深层的命题.
                 - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
             tag (Optional[list[str]], optional): 提问标签. 默认为None.
+            lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
-        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag)
+        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag, lang=lang)
 
 class LoopScene(TimeScene):
     """
     循环时间场景
     """
-    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None) -> None:
+    def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化循环时间场景
 
         Args:
@@ -212,8 +241,9 @@ class LoopScene(TimeScene):
                 - 'deepest'，优先提问最深层的命题.
                 - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
             tag (Optional[list[str]], optional): 提问标签. 默认为None.
+            lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
-        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag)
+        super().__init__(scale, guide, ask_mode=ask_mode, tag=tag, lang=lang)
         self.loop = ts.get_loop_param(scale) if loop is None else loop
         assert self.loop is not None, "未知的循环长度"
         new_relations = list(map(lambda x: x.set_loop(self.loop), [LoopRelation, PeriodRelation, DiffRelation]))
