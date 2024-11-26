@@ -77,9 +77,10 @@
     },
 // 婚恋约束
     {
-        "main_event": "met his future wife",
-        "std_event": "was born",
-        "type": "after",
+        "main_event": "遇见未来的妻子", 
+        "std_event": "出生",
+        "type": "minafter",
+        "time": 5,  
     },
     {
         "main_event": "met his future wife",
@@ -93,10 +94,15 @@
         "time": 16,
     },
     {
-        "main_event": "started dating",
-        "std_event": "got married",
-        "type": "before",
-    },
+        "main_event": "结婚", 
+        "std_event": "开始谈恋爱", 
+        "type": "after",
+    }, 
+    {
+        "main_event": "结束谈恋爱", 
+        "std_event": "开始谈恋爱",
+        "type": "after",
+    }, 
     {
         "main_event": "ended dating",
         "std_event": "got married",
