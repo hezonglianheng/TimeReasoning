@@ -1,0 +1,208 @@
+Jack has a clear weekly plan: He learns Japanese on Monday; He has a meeting 2 day(s) after he learns Japanese; On Thursday, he cleans his dormitory; He practices the guitar 4 day(s) after he learns Japanese; He reads essays, and that was on Saturday; When it's Sunday he watches movies.
+Please answer: He has a ____-day difference between he reads essays and learns Japanese.
+A: 5 B: 2 C: 4 D: 6
+Answers: A
+
+4o:
+To find the day difference between when Jack reads essays and learns Japanese, let's break it down based on the given information:
+
+Jack learns Japanese on Monday.
+He reads essays on Saturday.
+From Monday to Saturday, the difference is 6 days.
+
+So, the correct answer is D: 6.
+
+*----------*
+
+Jack has a clear weekly plan: He learns Japanese on Monday; 2 day(s) after he learns Japanese, he has a meeting; He cleans his dormitory 3 day(s) after he learns Japanese; 4 day(s) after he learns Japanese, he practices the guitar; He reads essays 5 day(s) after he learns Japanese; He watches movies 3 day(s) after he cleans his dormitory.
+Please answer: 5 day(s) before he ____, he has a meeting.
+A: reads essays B: learns Japanese C: cleans his dormitory D: has a meeting
+Answers: B
+
+4o:
+Let's break this down:
+
+Jack learns Japanese on Monday.
+2 days after learning Japanese, he has a meeting (on Wednesday).
+5 days before the meeting would be 5 days before Wednesday, which is Friday.
+Now, we need to figure out what Jack is doing on Friday. From the plan, we know:
+
+He reads essays 5 days after learning Japanese (which is Saturday), so he doesn’t read essays on Friday.
+He has a meeting on Wednesday, so he doesn’t have a meeting on Friday.
+He cleans his dormitory 3 days after learning Japanese (which is Thursday), so he doesn't clean his dormitory on Friday.
+Therefore, 5 days before he has a meeting, he cleans his dormitory.
+
+So, the correct answer is C: cleans his dormitory.
+
+*----------*
+
+Jack has a clear weekly plan: He learns Japanese, and that was on Monday; He has a meeting 2 day(s) later than he learns Japanese; He cleans his dormitory 3 day(s) later than he learns Japanese; 4 day(s) after he learns Japanese, he practices the guitar; 1 day(s) after he practices the guitar, he reads essays; 3 day(s) after he cleans his dormitory, he watches movies.
+Please answer: He ____ 1 day(s) before he learns Japanese.
+A: learns Japanese B: cleans his dormitory C: reads essays D: watches movies
+Answers: D
+
+4o:
+Let's break it down step by step:
+
+Jack learns Japanese on Monday.
+1 day before he learns Japanese would be Sunday.
+Now, let's see what Jack does on Sunday:
+
+He learns Japanese on Monday, so he doesn't do any of the activities listed on Sunday.
+He cleans his dormitory 3 days after learning Japanese, so he cleans it on Thursday.
+He reads essays 1 day after practicing the guitar, so that happens on Friday.
+He watches movies 3 days after cleaning his dormitory, which is on Sunday, so he watches movies on Sunday.
+Therefore, the correct answer is D: watches movies.
+
+*----------*
+
+Jack has a clear weekly plan: When it's Monday he learns Japanese; He has a meeting on Wednesday; He cleans his dormitory, and that was on Thursday; He practices the guitar 1 day(s) after he cleans his dormitory; He reads essays 3 day(s) later than he has a meeting; 1 day(s) after he reads essays, he watches movies.
+Please answer: He practices the guitar 5 day(s) before he ____.
+A: has a meeting B: learns Japanese C: reads essays D: watches movies
+Answers: A
+
+4o:
+Let's break this down:
+
+Jack learns Japanese on Monday.
+He has a meeting on Wednesday.
+He cleans his dormitory on Thursday.
+He practices the guitar 1 day after he cleans his dormitory, which means he practices the guitar on Friday.
+He reads essays 3 days after his meeting, so he reads essays on Saturday.
+1 day after reading essays, he watches movies on Sunday.
+Now, we need to find the activity that happens 5 days after Jack practices the guitar (which is on Friday).
+
+If we count 5 days after Friday, that brings us to Wednesday, which is the day he has a meeting.
+
+So, the correct answer is A: has a meeting.
+
+*----------*
+
+Jack has a clear weekly plan: On Monday, he learns Japanese; He has a meeting, and that was on Wednesday; He cleans his dormitory on Thursday; He practices the guitar 4 day(s) after he learns Japanese; He reads essays 3 day(s) after he has a meeting; He watches movies 4 day(s) after he has a meeting.
+Please answer: 3 day(s) before he ____, he has a meeting.
+A: reads essays B: has a meeting C: cleans his dormitory D: none of the above is correct
+Answers: A
+
+4o:
+Let's break this down:
+
+Jack learns Japanese on Monday.
+He has a meeting on Wednesday.
+He cleans his dormitory on Thursday.
+He practices the guitar 4 days after learning Japanese, so he practices the guitar on Friday.
+He reads essays 3 days after his meeting, so he reads essays on Saturday.
+He watches movies 4 days after his meeting, so he watches movies on Sunday.
+Now, the question asks: "3 days before he ____ , he has a meeting."
+
+We know that Jack has a meeting on Wednesday. So, 3 days before Wednesday is Sunday. On Sunday, he watches movies.
+
+Thus, the correct answer is D: none of the above is correct, because 3 days before he has a meeting, he watches movies, not any of the other listed activities.
+
+*----------*
+
+Jack has a clear weekly plan: When it's Monday he learns Japanese; 2 day(s) after he learns Japanese, he plays badminton; 1 day(s) after he plays badminton, he cleans his dormitory; He practices the guitar 4 day(s) after he learns Japanese; When it's Saturday he reads essays; He watches movies 2 day(s) later than he practices the guitar.
+Please answer: The time gap between he ____ and reads essays is 2 day(s).
+A: learns Japanese B: cleans his dormitory C: practices the guitar D: reads essays
+Answers: B
+
+4o:
+Let's break it down:
+
+Jack learns Japanese on Monday.
+2 days after learning Japanese, he plays badminton on Wednesday.
+1 day after playing badminton, he cleans his dormitory on Thursday.
+He practices the guitar 4 days after learning Japanese, so he practices the guitar on Friday.
+On Saturday, he reads essays.
+He watches movies 2 days after practicing the guitar, so he watches movies on Sunday.
+The question asks: "The time gap between he ____ and reads essays is 2 days."
+
+Since Jack reads essays on Saturday, and the gap between two activities needs to be 2 days, the activity that happens 2 days before reading essays (on Saturday) is Thursday, when he cleans his dormitory.
+
+So, the correct answer is B: cleans his dormitory.
+
+*----------*
+
+Jack has a clear weekly plan: When it's Monday he learns Japanese; He plays badminton 2 day(s) later than he learns Japanese; He cleans his dormitory, and that was on Thursday; 2 day(s) after he plays badminton, he practices the guitar; He reads essays 2 day(s) after he cleans his dormitory; He watches movies 4 day(s) after he plays badminton.
+Please answer: He cleans his dormitory ____ day(s) before he learns Japanese.
+A: 3 B: 0 C: 4 D: 5
+Answers: C
+
+4o:
+Let's break this down:
+
+Jack learns Japanese on Monday.
+He plays badminton 2 days after learning Japanese, so he plays badminton on Wednesday.
+He cleans his dormitory on Thursday.
+2 days after playing badminton (which is on Wednesday), he practices the guitar on Friday.
+He reads essays 2 days after cleaning his dormitory, so he reads essays on Saturday.
+He watches movies 4 days after playing badminton, so he watches movies on Sunday.
+The question asks: "He cleans his dormitory ____ day(s) before he learns Japanese."
+
+Since he cleans his dormitory on Thursday and learns Japanese on Monday, the gap between Thursday and Monday is 5 days.
+
+So, the correct answer is D: 5.
+
+*----------*
+
+Jack has a clear weekly plan: He learns Japanese on Monday; He has a meeting, and that was on Wednesday; On Wednesday, he does some exercises; On Thursday, he reads sci-fi novels; He goes on a date 1 day(s) after he reads sci-fi novels; When it's Friday he practices the guitar.
+Please answer: He goes on a date ____ day(s) later than he does some exercises.
+A: 3 B: 2 C: 0 D: 4
+Answers: B
+
+4o:
+Let's break it down:
+
+Jack learns Japanese on Monday.
+He has a meeting on Wednesday, and he also does some exercises on Wednesday.
+On Thursday, he reads sci-fi novels.
+1 day after reading sci-fi novels (on Thursday), he goes on a date on Friday.
+On Friday, he practices the guitar.
+Now, the question asks: "He goes on a date ____ day(s) later than he does some exercises."
+
+Since he does exercises on Wednesday and goes on a date on Friday, the time gap between Wednesday and Friday is 2 days.
+
+So, the correct answer is B: 2.
+
+*----------*
+
+Jack has a clear weekly plan: When it's Wednesday he plays badminton; He does some exercises on Wednesday; 1 day(s) after he does some exercises, he reads sci-fi novels; When it's Friday he goes on a date; He practices the guitar 2 day(s) after he does some exercises; He reads essays 3 day(s) after he plays badminton.
+Please answer: ____ day(s) after he reads sci-fi novels, he does some exercises.
+A: 2 B: 0 C: 6 D:1
+Answers: C
+
+4o:
+Let's break it down:
+
+Jack plays badminton on Wednesday.
+He does some exercises on Wednesday.
+1 day after doing exercises, he reads sci-fi novels on Thursday.
+On Friday, he goes on a date.
+He practices the guitar 2 days after doing exercises, so he practices the guitar on Friday.
+He reads essays 3 days after playing badminton, which is on Saturday.
+Now, the question asks: "____ day(s) after he reads sci-fi novels, he does some exercises."
+
+Since Jack reads sci-fi novels on Thursday, and he does exercises on Wednesday (which is 1 day before Thursday), the correct answer is D: 1.
+
+So, the answer is D: 1.
+
+*----------*
+
+Jack has a clear weekly plan: On Wednesday, he plays badminton; He does some exercises, and that was on Wednesday; When it's Thursday he reads sci-fi novels; 2 day(s) after he plays badminton, he goes on a date; He practices the guitar 2 day(s) after he does some exercises; On Saturday, he reads essays.
+Please answer: On a certain day, he both ____ and plays badminton.
+A: reads essays B: does some exercises C: reads sci-fi novels D: plays badminton
+Answers: B
+
+4o:
+Let's break down the weekly plan:
+
+Jack plays badminton on Wednesday.
+He does some exercises on Wednesday.
+On Thursday, he reads sci-fi novels.
+2 days after playing badminton (on Friday), he goes on a date.
+He practices the guitar 2 days after doing exercises, so he practices the guitar on Friday.
+On Saturday, he reads essays.
+Now, the question asks: "On a certain day, he both ____ and plays badminton."
+
+From the plan, we see that Jack both plays badminton and does some exercises on Wednesday.
+
+So, the correct answer is B: does some exercises.
