@@ -1,0 +1,183 @@
+Jack's daughter is telling her friends about the story of his life: He started junior high school, and that was in 1911; In the year of 1915 he graduated from junior high school; In 1915, he started high school; 3 year(s) after he graduated from junior high school, he graduated from high school; He met his future wife, and that was in 1915; In 1918, he started university; The total duration of which he studied in university is 1 year(s) longer than that of he studied in junior high school; He got married 8 year(s) after he started university; 50 year(s) after he met his future wife, he retired.
+Please answer: The total duration of which he ____ is longer than that of he studied in junior high school.
+A: graduated from high school B: got married C: started university D: studied in university
+Answers: D
+
+4o:
+The correct answer is D: studied in university.
+
+Here’s the reasoning:
+
+The sentence mentions that the total duration of his university studies is 1 year longer than the duration of his junior high school studies.
+The other options (graduated from high school, got married, started university) don’t directly relate to the comparison of duration with his junior high school studies, while "studied in university" directly corresponds to the duration of his university education.
+So, the full sentence would read:
+"The total duration of which he studied in university is longer than that of he studied in junior high school."
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He studied in junior high school in 1911, and ended in 1915; In 1915, he started high school; He studied in high school for 3 year(s); 4 year(s) after he started junior high school, he met his future wife; He started university 3 year(s) after he started high school; Compared to the time he studied in junior high school, more time is taken that he studied in university; He got married 8 year(s) later than he graduated from high school; In the year of 1965 he retired.
+Please answer: ____ year(s) before he graduated from high school, he graduated from junior high school.
+A: 26 B: 3 C: 53 D: 22
+Answers: B
+
+4o:
+The correct answer is B: 3.
+
+Here’s the reasoning:
+
+He started junior high school in 1911 and graduated in 1915.
+He started high school in 1915, so he graduated from junior high school 3 years before he graduated from high school.
+Thus, the correct answer is 3 years.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: In 1911, he started junior high school; The total duration of which he studied in junior high school is longer than that of he studied in high school; He started high school, and that was in 1915; He studied in high school for 3 year(s); 4 year(s) after he started junior high school, he met his future wife; He started university, and that was in 1918; It takes a longer time that he studied in university than he studied in junior high school; He got married 8 year(s) after he graduated from high school; He retired 50 year(s) later than he started high school.
+Please answer: He started junior high school 7 year(s) earlier than he ____.
+A: started university B: graduated from high school C: met his future wife D: retired
+Answers: AB
+
+4o:
+The correct answer is C: met his future wife.
+
+Here’s the reasoning:
+
+Jack started junior high school in 1911.
+He met his future wife 4 years after he started junior high school, which would be in 1915.
+The question asks how many years earlier Jack started junior high school compared to when he met his future wife. Since he met her in 1915, and he started junior high school in 1911, it means he started junior high school 4 years before meeting his future wife.
+Therefore, the answer is C: met his future wife.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He started junior high school, and that was in 1911; The total duration of which he studied in junior high school is 1 year(s) longer than that of he studied in high school; He started high school, and that was in 1915; It takes 3 year(s) that he studied in high school; 4 year(s) after he started junior high school, he met his future wife; He started university 3 year(s) later than he started high school; The total duration of which he studied in university is longer than that of he studied in junior high school; He got married 11 year(s) later than he started high school; He retired 47 year(s) later than he graduated from high school.
+Please answer: He ____ later than started high school.
+A: started junior high school B: started university C: met his future wife D: graduated from high school
+Answers: BD
+
+4o:
+The correct answer is B: started university.
+
+Here’s the reasoning:
+
+According to the information provided, Jack started high school in 1915, and he started university 3 years later than he started high school. This means he started university in 1918.
+The sentence asks for what event occurred later than starting high school. Since Jack started university 3 years after high school, the correct answer is that he started university later than starting high school.
+So the complete sentence is:
+"He started university later than started high school."
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He started junior high school in 1911; In 1915, he graduated from junior high school; By 1918, he studied in high school for 3 year(s); In the year of 1915 he met his future wife; He started university 3 year(s) after he started high school; 1 more year(s) are taken that he studied in university than he studied in junior high school; 11 year(s) after he met his future wife, he got married; He retired 50 year(s) later than he started high school.
+Please answer: He ____ before he retired.
+A: got married B: started junior high school C: started high school D: graduated from junior high school
+Answers: ABCD
+
+4o:
+The correct answer is A: got married.
+
+Here’s the reasoning:
+
+According to the information, Jack retired 50 years after he started high school.
+He met his future wife in 1915 and got married 11 years later, which means he got married in 1926 (1915 + 11 years).
+Since he retired 50 years after he started high school, this means he retired in 1965 (1915 + 50 years).
+So, Jack got married before he retired, making A: got married the correct answer.
+The complete sentence is:
+"He got married before he retired."
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He studied in junior high school since 1911, for 4 year(s); By 1918, he studied in high school for 3 year(s); In the year of 1915 he met his future wife; He started university 7 year(s) later than he started junior high school; He graduated from university 8 year(s) after he started high school; He got married 8 year(s) later than he graduated from high school; He retired 47 year(s) after he started university.
+Please answer: ____ year(s) before he retired, he started junior high school.
+A: 45 B: 44 C: 18 D: 54
+Answers: D
+
+4o:
+The correct answer is B: 44.
+
+Here’s the reasoning:
+
+Jack started junior high school in 1911.
+
+He retired 47 years after he started university.
+
+He started university 7 years later than he started junior high school, which means he started university in 1918 (1911 + 7 years).
+
+He retired 47 years after 1918, so he retired in 1965 (1918 + 47 years).
+
+To find how many years before his retirement he started junior high school, we subtract the year he started junior high school (1911) from the year he retired (1965):
+
+1965 - 1911 = 54 years.
+
+So, 54 years before he retired, he started junior high school.
+
+Therefore, the correct answer should be D: 54.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He started junior high school in 1911; 4 year(s) after he started junior high school, he graduated from junior high school; He started high school, and that was in 1915; He graduated from high school 3 year(s) later than he started high school; He met his future wife in 1915; He started university 7 year(s) later than he started junior high school; He graduated from university 5 year(s) after he graduated from high school; In the year of 1926 he got married; 47 year(s) after he graduated from high school, he retired.
+Please answer: He ____ earlier than started university.
+A: started junior high school B: met his future wife C: started high school D: started university
+Answers: ABC
+
+4o:
+The correct answer is A: started junior high school.
+
+Here’s the reasoning:
+
+Jack started junior high school in 1911.
+He started university 7 years later than he started junior high school, which means he started university in 1918 (1911 + 7 years).
+Therefore, Jack started junior high school earlier than he started university by 7 years.
+The complete sentence would be:
+"He started junior high school earlier than started university."
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He started junior high school in 1911; He graduated from junior high school 4 year(s) after he started junior high school; In the year of 1915 he started high school; He graduated from high school 3 year(s) later than he met his future wife; He met his future wife 4 year(s) later than he started junior high school; He studied in university from 1918 to 1923; He got married 15 year(s) later than he started junior high school; He retired 47 year(s) after he started university.
+Please answer: He ____ before he retired.
+A: graduated from high school B: started junior high school C: graduated from university D: started university
+Answers: ABCD
+
+4o:
+The correct answer is C: graduated from university.
+
+Here’s the reasoning:
+
+Jack retired 47 years after he started university. He started university in 1918, so he retired in 1965 (1918 + 47 years).
+He graduated from university in 1923 (since he studied in university from 1918 to 1923).
+Therefore, Jack graduated from university before he retired in 1965.
+The complete sentence would be:
+"He graduated from university before he retired."
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He started junior high school, and that was in 1911; He graduated from junior high school 4 year(s) after he started junior high school; In the year of 1915 he started high school; It takes 3 year(s) that he studied in high school; He met his future wife 4 year(s) after he started junior high school; 7 year(s) after he started junior high school, he started university; 5 year(s) after he started university, he graduated from university; 3 year(s) after he graduated from university, he got married; He retired in 1965.
+Please answer: He has a 4-year difference between he ____ and graduated from junior high school.
+A: graduated from university B: started junior high school C: started high school D: met his future wife
+Answers: B
+
+4o:
+The correct answer is C: started high school.
+
+Here’s the reasoning:
+
+Jack started junior high school in 1911, and he graduated from junior high school 4 years later, in 1915.
+He started high school in 1915, the same year he graduated from junior high school.
+The question asks about a 4-year difference between an event and graduating from junior high school. Since he graduated from junior high school in 1915 and started high school in 1915, the 4-year difference is between starting high school and graduating from junior high school.
+So, the complete sentence would be:
+"He has a 4-year difference between he started high school and graduated from junior high school."
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He started junior high school, and that was in 1911; 1 more year(s) are taken that he studied in junior high school than he studied in high school; He studied in high school for 3 year(s) before 1918; He met his future wife in 1915; He started university 3 year(s) later than he graduated from junior high school; He graduated from university 8 year(s) later than he started high school; He got married 11 year(s) after he met his future wife; He retired 39 year(s) after he got married.
+Please answer: There are ____ year(s) between he started junior high school and met his future wife.
+A: 47 B: 49 C: 4 D: 0
+Answers: C
+
+4o:
+The correct answer is C: 4.
+
+Here’s the reasoning:
+
+Jack started junior high school in 1911.
+He met his future wife in 1915.
+The difference between 1911 and 1915 is 4 years.
+So, the complete sentence is:
+"There are 4 years between he started junior high school and met his future wife."
