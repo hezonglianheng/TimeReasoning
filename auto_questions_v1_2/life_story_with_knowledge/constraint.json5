@@ -1,0 +1,172 @@
+// 事件间约束关系示例文件
+// 约束关系的type字段取值为：
+// 1. rangetime: 两个事件之间的时间间隔在一个范围内
+// 2. sametime: 两个事件发生在同一时间
+// 3. after: 事件A发生在事件B之后
+// before: 事件A发生在事件B之前
+// 4. minafter: 事件A发生在事件B之后，且时间间隔大于等于某个值
+// minbefore: 事件A发生在事件B之前，且时间间隔大于等于某个值
+// 5. maxafter: 事件A发生在事件B之后，且时间间隔小于等于某个值
+// maxbefore: 事件A发生在事件B之前，且时间间隔小于等于某个值
+// 6. certainafter: 事件A发生在事件B之后，且时间间隔等于某个值
+// certainbefore: 事件A发生在事件B之前，且时间间隔等于某个值
+
+[
+// 寿命约束
+    {
+        "main_event": "passed away",
+        "std_event": "was born",
+        "type": "rangetime",
+        "floor": 70,
+        "ceiling": 100,
+    },
+// 求学约束
+    {
+        "main_event": "started elementary school",
+        "std_event": "was born",
+        "type": "rangetime",
+        "floor": 6,
+        "ceiling": 7,
+    },
+    {
+        "main_event": "graduated from elementary school",
+        "std_event": "started elementary school",
+        "type": "rangetime",
+        "floor": 5,
+        "ceiling": 6,
+    },
+    {
+        "main_event": "started junior high school",
+        "std_event": "graduated from elementary school",
+        "type": "sametime",
+    },
+    {
+        "main_event": "graduated from junior high school",
+        "std_event": "started junior high school",
+        "type": "rangetime",
+        "floor": 3,
+        "ceiling": 4,
+    },
+    {
+        "main_event": "started high school",
+        "std_event": "graduated from junior high school",
+        "type": "sametime",
+    },
+    {
+        "main_event": "graduated from high school",
+        "std_event": "started high school",
+        "type": "certainafter",
+        "time": 3,
+    },
+    {
+        "main_event": "started university",
+        "std_event": "graduated from high school",
+        "type": "sametime",
+    },
+    {
+        "main_event": "graduated from university",
+        "std_event": "started university",
+        "type": "rangetime",
+        "floor": 4,
+        "ceiling": 5,
+    },
+    {
+        "main_event": "graduated from university",
+        "std_event": "passed away",
+        "type": "before",
+    },
+// 婚恋约束
+    {
+        "main_event": "遇见未来的妻子", 
+        "std_event": "出生",
+        "type": "minafter",
+        "time": 5,  
+    },
+    {
+        "main_event": "met his future wife",
+        "std_event": "started dating",
+        "type": "before",
+    },
+    {
+        "main_event": "started dating",
+        "std_event": "was born",
+        "type": "minafter",
+        "time": 16,
+    },
+    {
+        "main_event": "结婚", 
+        "std_event": "开始谈恋爱", 
+        "type": "after",
+    }, 
+    {
+        "main_event": "结束谈恋爱", 
+        "std_event": "开始谈恋爱",
+        "type": "after",
+    }, 
+    {
+        "main_event": "ended dating",
+        "std_event": "got married",
+        "type": "sametime",
+    },
+    {
+        "main_event": "got married",
+        "std_event": "was born",
+        "type": "rangetime",
+        "floor": 22,
+        "ceiling": 30,
+    },
+    {
+        "main_event": "became a father",
+        "std_event": "got married",
+        "type": "after",
+    },
+    {
+        "main_event": "became a father",
+        "std_event": "was born",
+        "type": "rangetime",
+        "floor": 22,
+        "ceiling": 45,
+    },
+    {
+        "main_event": "became a father",
+        "std_event": "passed away",
+        "type": "before",
+    },
+// 职场约束
+    {
+        "main_event": "joined a company",
+        "std_event": "was born",
+        "type": "rangetime",
+        "floor": 22,
+        "ceiling": 45,
+    },
+    {
+        "main_event": "joined a company",
+        "std_event": "graduated from university",
+        "type": "rangetime",
+        "floor": 0,
+        "ceiling": 3,
+    },
+    {
+        "main_event": "became a leader",
+        "std_event": "joined a company",
+        "type": "after",
+    },
+    {
+        "main_event": "became a leader",
+        "std_event": "retired",
+        "type": "before",
+    },
+    {
+        "main_event": "retired",
+        "std_event": "was born",
+        "type": "rangetime",
+        "floor": 60,
+        "ceiling": 65,
+    },
+    {
+        "main_event": "retired",
+        "std_event": "passed away",
+        "type": "before",
+    },
+]
