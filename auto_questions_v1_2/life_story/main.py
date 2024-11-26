@@ -16,33 +16,37 @@ from timereasoning import timescale as ts
 
 if __name__ == "__main__":
     # 定义事件，注意有控制之后不需要赋时间值
-    life = event.DurativeEvent("度过", "一生")
-    life.set_start_event("出生", "")
-    life.set_end_event("去世", "")
+    life = event.DurativeEvent("lived", " his life")
+    life.set_start_event("was born", "")
+    life.set_end_event("passed away", "")
 
-    primary_school = event.DurativeEvent("上", "小学")
-    primary_school.set_end_event("小学毕业", "")
+    primary_school = event.DurativeEvent("studied in", " elementary school")
+    primary_school.set_start_event("started", " elementary school")
+    primary_school.set_end_event("graduated from", " elementary school")
 
-    middle_school = event.DurativeEvent("上", "初中")
-    middle_school.set_end_event("初中毕业", "")
+    middle_school = event.DurativeEvent("studied in", " junior high school")
+    middle_school.set_start_event("started", " junior high school")
+    middle_school.set_end_event("graduated from", " junior high school")
 
-    high_school = event.DurativeEvent("上", "高中")
-    high_school.set_end_event("高中毕业", "")
+    high_school = event.DurativeEvent("studied in", " high school")
+    high_school.set_start_event("started", " high school")
+    high_school.set_end_event("graduated from", " high school")
 
-    university = event.DurativeEvent("上", "大学")
-    university.set_end_event("大学毕业", "")
+    university = event.DurativeEvent("studied in", " university")
+    university.set_start_event("started", " university")
+    university.set_end_event("graduated from", " university")
 
-    meet_wife = event.TemporalEvent("遇见", "未来的妻子")
+    meet_wife = event.TemporalEvent("met", " his future wife")
 
-    love = event.DurativeEvent("谈", "恋爱")
+    love = event.DurativeEvent("started", " dating")
 
-    marry = event.TemporalEvent("结婚", "")
+    marry = event.TemporalEvent("got married", "")
 
-    be_father = event.TemporalEvent("成为", "父亲")
+    be_father = event.TemporalEvent("became", " a father")
 
-    enter = event.TemporalEvent("进入", "公司")
-    # be_leader = event.TemporalEvent("成为", "领导")
-    retire = event.TemporalEvent("退休", "")
+    enter = event.TemporalEvent("joined", " a company")
+    # be_leader = event.TemporalEvent("became", " a leader")
+    retire = event.TemporalEvent("retired", "")
 
     # 定义约束
     cons = constraint.ConstraintMachine(1900, 2000)
@@ -52,7 +56,8 @@ if __name__ == "__main__":
 
     # 定义场景
     # 随机抽取事件
-    curr_scene = scene.LineScene(ts.TimeScale.Year, "小明的女儿正在给朋友讲述父亲的一生")
+
+    curr_scene = scene.LineScene(ts.TimeScale.Year, "Jack's daughter is telling her friends about the story of his life", lang="en")
     all_combinations = list(combinations((event_list), 6))
     samples = random.sample(all_combinations, 1)
     res = []

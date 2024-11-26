@@ -10,17 +10,17 @@ from timereasoning import event, scene
 from timereasoning import timescale as ts
 
 if __name__ == "__main__":
-    curr_scene = scene.LoopScene(ts.TimeScale.Weekday, "时间推理")
-    learn_japanese = event.TemporalEvent("学", "日语", 1)
-    date = event.TemporalEvent("约会", "", 5)
-    play_badminton = event.TemporalEvent("打", "羽毛球", 3)
-    arrange = event.TemporalEvent("整理", "宿舍", 4)
-    read_papers = event.TemporalEvent("看", "论文", 6)
-    meeting = event.TemporalEvent("开", "组会", 3)
-    jogging = event.TemporalEvent("跑步", "", 3)
-    movie = event.TemporalEvent("看", "电影", 7)
-    enjoy_fiction = event.TemporalEvent("阅读", "科幻小说", 4)
-    guitar = event.TemporalEvent("练习", "吉他", 5)
+    curr_scene = scene.LoopScene(ts.TimeScale.Weekday, "Jack has a clear weekly plan", lang="en")
+    learn_japanese = event.TemporalEvent("learns", " Japanese", 1)
+    date = event.TemporalEvent("goes on", " a date", 5)
+    play_badminton = event.TemporalEvent("plays", " badminton", 3)
+    arrange = event.TemporalEvent("cleans", " his dormitory", 4)
+    read_papers = event.TemporalEvent("reads", " essays", 6)
+    meeting = event.TemporalEvent("has", " a meeting", 3)
+    jogging = event.TemporalEvent("does", " some exercises", 3)
+    movie = event.TemporalEvent("watches", " movies", 7)
+    enjoy_fiction = event.TemporalEvent("reads", " sci-fi novels", 4)
+    guitar = event.TemporalEvent("practices", " the guitar", 5)
     # 随机抽取事件
     all_combinations = list(combinations((learn_japanese, date, play_badminton, arrange, read_papers, meeting, movie, enjoy_fiction, guitar, jogging), 6))
     samples = random.sample(all_combinations, 10)

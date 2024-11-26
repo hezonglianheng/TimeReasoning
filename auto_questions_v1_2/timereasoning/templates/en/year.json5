@@ -1,0 +1,104 @@
+// 以年为单位的命题陈述模板
+// 模板中存在占位符，格式为"[占位符名]"，如"[element]"、"[time]"等
+// 占位符与相应命题的属性对应
+
+{
+    // 瞬时事件的模板
+    "temporal": [
+        "He [element], and that was in [time]",
+        "In [time], he [element]",
+        "In the year of [time] he [element]",
+        "He [element] in [time]",
+    ],
+    // 时长的模板
+    "duration": [
+        "He [element] for [duration] year(s)",
+        "He [element], and spent [duration] year(s) on it",
+        "It takes [duration] year(s) that he [element]",
+        "He [element], until [duration] year(s) later",
+        "For [duration] year(s), he [element]",
+    ],
+    // 持续事件的模板
+    "durative": [
+        // 描述起点和终点
+        "From [time] to [endtime], he [element]",
+        "In [time] he [element], until [endtime]",
+        "He [element] in [time], and ended in [endtime]",
+        "He [element] from [time] to [endtime]",
+        "[time] to [endtime], he [element]",
+        // 描述起点和持续时间
+        "From [time] on, he [element] for [duration] year(s)",
+        "Starting from [time], he [element] for [duration] year(s)",
+        "He [element] since [time], for [duration] year(s)",
+        // 描述终点和持续时间
+        "He [element] for [duration] year(s) before [endtime]",
+        "By [endtime], he [element] for [duration] year(s)",
+        "Before [endtime], it's been [duration] year(s) that he [element]",
+    ],
+    // 时频的模板
+    "freq": [
+        "From [time] to [endtime], he [element] once every [frequency] year(s)",
+        "Over the [duration] year(s) starting from [time], he [element] once every [frequency] year(s)",
+        "In the [duration] year(s) before [endtime], he [element] once every [frequency] year(s)",
+    ],
+    // 事件先后关系的模板
+    "before": [
+        "He [element1] earlier than [element2]",
+        "He [element1] before he [element2]",
+    ],
+    "before_time": [
+        "He [element1] [diff] year(s) earlier than he [element2]",
+        "He [element1] [diff] year(s) before he [element2]",
+        "[diff] year(s) before he [element2], he [element1]",
+    ],
+    "after": [
+        "He [element1] later than [element2]",
+        "He [element1] after he [element2]",
+    ],
+    "after_time": [
+        "He [element1] [diff] year(s) later than he [element2]",
+        "He [element1] [diff] year(s) after he [element2]",
+        "[diff] year(s) after he [element2], he [element1]",
+    ],
+    "simultaneous": [
+        "In the year that he [element2], he also [element1]",
+        "In the same year, he not only [element2], but also [element1]",
+        "In the same year as he [element2], he also [element1]",
+        "In a certain year, he both [element2] and [element1]",
+    ],
+    // 事件间隔的模板
+    "gap_time": [
+        "There are [diff] year(s) between he [element2] and [element1]",
+        "The time gap between he [element2] and [element1] is [diff] year(s)",
+        "He has a [diff]-year difference between he [element2] and [element1]",
+    ],
+    // 时长关系的模板
+    "long": [
+        "The total duration of which he [element1] is longer than that of he [element2]",
+        "It takes a longer time that he [element1] than he [element2]",
+        "Compared to the time he [element2], more time is taken that he [element1]",
+    ],
+    "long_time": [
+        "[diff] more year(s) are taken that he [element1] than he [element2]",
+        "The total duration of which he [element1] is [diff] year(s) longer than that of he [element2]",
+        "He takes [diff] more year(s) than he [element2] that he [element1]",
+    ],
+    "short": [
+        "The total duration of which he [element1] is shorter than that of he [element2]",
+        "It takes a shorter time that he [element1] than he [element2]",
+        "Compared to the time he [element2], less time is taken that he [element1]"
+    ],
+    "short_time": [
+        "[diff] less year(s) are taken that he [element1] than he [element2]",
+        "The total duration of which he [element1] is [diff] year(s) shorter than that of he [element2]",
+        "He takes [diff] less year(s) than he [element2] that he [element1]"
+    ],
+    "same_len": [
+        "He spends the same number of year(s) that he [element1] as he [element2]",
+        "The time he [element1] is the same length as that he [element2]",
+        "The time he [element1] is the same as the time he [element2]",
+        "The time he [element1] is equal to the time he [element2]",
+        "The time he [element1] matches the time he [element2]",
+        "He spends the same amount of time that he [element1] and [element2]",
+    ],
+}
