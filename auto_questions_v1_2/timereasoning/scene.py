@@ -115,12 +115,20 @@ class TimeScene(Scene):
                 ch_num = "日" if ch_num == "零" else ch_num
                 exp = exp.replace(search2.group(), "周" + ch_num)
         elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
-            search = re.search(r"weekday[0-9]", exp)
+            search = re.search(r"weekday [0-9]", exp)
             if search is not None:
                 num = int(search.group()[-1])
                 exp = exp.replace(search.group(), calendar.day_name[num-1])
             # 将问题中的weekday_中的weekday去掉
-            exp = exp.replace("weekday_", "_")
+            exp = exp.replace("weekday ", " ")
+        elif self.scale == ts.TimeScale.Month and self.lang == "en":
+            search = re.search(r"month [0-9]{1,2}", exp)
+            if search is not None:
+                # 获取月份数字
+                num = int(search.group().split()[-1])
+                # 获取月份名称
+                exp = exp.replace(search.group(), calendar.month_name[num-1])
+            exp = exp.replace("month ", " ")
         return exp
     
     def _statement_trans(self):
@@ -189,6 +197,9 @@ class TimeScene(Scene):
             elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
                 for k, v in answer_info[machines.OPTIONS].items():
                     answer_info[machines.OPTIONS][k] = calendar.day_name[int(v)-1]
+            elif self.scale == ts.TimeScale.Month and self.lang == "en":
+                for k, v in answer_info[machines.OPTIONS].items():
+                    answer_info[machines.OPTIONS][k] = calendar.month_name[int(v)-1]
         return answer_info
 
 class LineScene(TimeScene):
