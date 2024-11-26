@@ -119,6 +119,8 @@ class TimeScene(Scene):
             if search is not None:
                 num = int(search.group()[-1])
                 exp = exp.replace(search.group(), calendar.day_name[num-1])
+            # 将问题中的weekday_中的weekday去掉
+            exp = exp.replace("weekday_", "_")
         return exp
     
     def _statement_trans(self):
