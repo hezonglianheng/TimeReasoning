@@ -15,12 +15,7 @@ import random
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from proposition.prop import Proposition
-
-REASON_CONJUNCTIONS = {
-    "because": ["因为", "由于", "既然", "根据",],
-    "another": ["另外", "再者", "此外", "而且", "并且",],
-    "so": ["所以", "因此", "故", "于是", "因而",],
-}
+from proposition.config import LANG_CONFIG, BECAUSE, ANOTHER, SO
 
 class Node:
     """节点类，表示一个推理步骤
@@ -36,22 +31,23 @@ class Node:
         self.conclusion = conclusion
         self.layer = layer
 
-    def state(self, temps: dict[str, list[str]]) -> str:
+    def state(self, temps: dict[str, list[str]], lang: str = 'zh') -> str:
         """返回节点的陈述
 
         Args:
             temps (dict[str, list[str]]): 模板字典
+            lang (str, optional): 语言. 默认为'zh'(中文).
 
         Returns:
             str: 节点的陈述
         """
-        global REASON_CONJUNCTIONS
+        # global REASON_CONJUNCTIONS
         sentences = ""
         for i, p in enumerate(self.conditions):
-            sentences += random.choice(REASON_CONJUNCTIONS["because"]) + p.state(temps) + "，"
+            sentences += random.choice(LANG_CONFIG[lang][BECAUSE]) + p.state(temps) + "，"
             if i < len(self.conditions) - 1:
-                sentences += random.choice(REASON_CONJUNCTIONS["another"])
-        sentences += random.choice(REASON_CONJUNCTIONS["so"]) + self.conclusion.state(temps)
+                sentences += random.choice(LANG_CONFIG[lang][ANOTHER])
+        sentences += random.choice(LANG_CONFIG[lang][SO]) + self.conclusion.state(temps)
         return sentences
     
     def __eq__(self, other) -> bool:

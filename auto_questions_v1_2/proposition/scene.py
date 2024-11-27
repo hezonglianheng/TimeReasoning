@@ -190,7 +190,7 @@ class Scene(metaclass=abc.ABCMeta):
             if i != self._asked_prop:
                 reason_path = reason_path + self.graph.backtrace(i)
 
-        self.chain = "\n".join([i.state(self.temps) for i in reason_path])
+        self.chain = "\n".join([i.state(self.temps, lang=self.lang) for i in reason_path])
         return self.chain
 
     def run(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
