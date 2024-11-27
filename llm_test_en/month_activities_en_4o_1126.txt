@@ -1,0 +1,285 @@
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June, He started writing a novel; 2 month(s) after he ended the overseas trip, he published his own novel; 3 month(s) after he started writing a novel, he started an overseas trip; He had an overseas trip for 1 month(s); In November, He attended a concert; 6 month(s) after he started writing a novel, he ended the journal of this year; He won the lottery 2 month(s) after he ended the overseas trip; He attended a class reunion 3 month(s) after he started an overseas trip.
+Please answer: He won the lottery after he ____.
+A: won the lottery B: attended a  concert C: started an overseas trip D: started writing a novel
+Answers: BCD
+
+4o:
+To answer the question "He won the lottery after he ____," we need to figure out the timeline based on the information provided.
+
+Here’s the breakdown of events:
+
+Started writing a novel (June)
+Started an overseas trip (3 months after starting to write the novel)
+Had an overseas trip for 1 month
+Published his own novel (2 months after finishing the overseas trip)
+Won the lottery (2 months after ending the overseas trip)
+Attended a class reunion (3 months after starting the overseas trip)
+Attended a concert (November)
+Ended the journal (6 months after starting the novel)
+From the sequence, we see that Jack won the lottery 2 months after he ended the overseas trip. Since he ended the overseas trip before he won the lottery, the correct answer is:
+
+C: started an overseas trip.
+
+He won the lottery after he started an overseas trip.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: He started writing a novel, and that was in June; 3 month(s) after he started an overseas trip, he published his own novel; 3 month(s) after he started writing a novel, he started an overseas trip; 4 month(s) after he started writing a novel, he ended the overseas trip; He attended a concert 5 month(s) later than he started writing a novel; 3 month(s) after he started an overseas trip, he ended the journal of this year; He won the lottery 1 month(s) later than he attended a concert; He attended a class reunion 3 month(s) later than he started an overseas trip.
+Please answer: He ____ before he published his own novel.
+A: attended a concert B: started an overseas trip C: won the lottery D: started writing a novel
+Answers: ABD
+
+4o:
+Let's break down the events based on the timeline provided:
+
+Started writing a novel (June)
+Started an overseas trip (3 months after starting to write the novel)
+Ended the overseas trip (4 months after starting to write the novel)
+Published his own novel (3 months after starting the overseas trip)
+Attended a concert (5 months after starting to write the novel)
+Ended the journal of the year (3 months after starting the overseas trip)
+Won the lottery (1 month after attending the concert)
+Attended a class reunion (3 months after starting the overseas trip)
+Now, we are asked to determine what happened before he published his own novel. Looking at the timeline, the event that occurred before he published the novel (which happened 3 months after starting the overseas trip) is when he started an overseas trip (which was 3 months after starting the novel).
+
+Therefore, the correct answer is:
+
+B: started an overseas trip.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June, He started writing a novel; He wrote a novel for 6 month(s); He had an overseas trip for 1 month(s) before October; He attended a concert 2 month(s) after he started an overseas trip; 6 month(s) after he started writing a novel, he ended the journal of this year; In December, He won the lottery; He attended a class reunion 6 month(s) later than he started writing a novel.
+Please answer: He has a 2-difference between he ____ and attended a class reunion.
+A: ended the overseas trip B: had an overseas trip C: won the lottery D: attended a concert
+Answers: A
+
+4o:
+Let's break down the events based on the information provided:
+
+Started writing a novel (June)
+Wrote the novel for 6 months
+Had an overseas trip for 1 month before October
+Attended a concert 2 months after starting the overseas trip
+Ended the journal of the year 6 months after starting to write the novel
+Won the lottery in December
+Attended a class reunion 6 months after starting to write the novel (which would be December)
+Now, we need to figure out which event has a 2-month difference between it and the class reunion. Since the class reunion happened in December (6 months after starting the novel), let's check the events that occurred 2 months before December.
+
+Attended a concert: This happened 2 months after starting the overseas trip. Based on the timeline, the overseas trip occurred before October, and the concert happened 2 months after that. If the concert was in October, then the concert is 2 months before December.
+Therefore, the correct answer is:
+
+D: attended a concert.
+
+He has a 2-month difference between attending a concert and attending a class reunion.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: He started writing a novel, and that was in June; He wrote a novel for 6 month(s); Starting from September, he had an overseas trip for 1 month(s); In November, He attended a concert; 3 month(s) after he started an overseas trip, he ended the journal of this year; He won the lottery, and that was in December; He attended a class reunion 1 month(s) after he attended a concert.
+Please answer: He has a 3-difference between he ____ and started an overseas trip.
+A: attended a concert B: started an overseas trip C: started writing a novel D: ended the overseas trip
+Answers: C
+
+4o:
+Let's break down the timeline and events:
+
+Started writing a novel (June)
+Wrote the novel for 6 months (so this ends in November)
+Started an overseas trip (September)
+Had an overseas trip for 1 month (September to October)
+Attended a concert (November)
+Ended the journal of the year (3 months after starting the overseas trip, which would be December)
+Won the lottery (December)
+Attended a class reunion (1 month after attending the concert, so in December)
+Now, we are asked which event has a 3-month difference between it and starting the overseas trip (which began in September).
+
+Started writing a novel: This was in June, which is 3 months before September (the start of the overseas trip).
+Therefore, the correct answer is:
+
+C: started writing a novel.
+
+He has a 3-month difference between starting writing a novel and starting an overseas trip.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: He started writing a novel, and that was in June; He published his own novel, and that was in December; He started an overseas trip, and that was in September; For 1 month(s), he had an overseas trip; He attended a concert 2 month(s) after he started an overseas trip; He ended the journal of this year 6 month(s) after he started writing a novel; He won the lottery 6 month(s) after he started writing a novel; He attended a class reunion 1 month(s) after he attended a concert.
+Please answer: He ____ later than started writing a novel.
+A: attended a concert B: attended a class reunion C: won the lottery D: ended the journal of this year
+Answers: ABCD
+
+4o:
+Let's break down the timeline based on the information provided:
+
+Started writing a novel (June)
+Started an overseas trip (September)
+Had an overseas trip for 1 month (September to October)
+Attended a concert (2 months after starting the overseas trip, which would be in November)
+Attended a class reunion (1 month after attending a concert, so in December)
+Published his own novel (December)
+Ended the journal of this year (6 months after starting to write the novel, so in December)
+Won the lottery (6 months after starting to write the novel, so in December)
+Now, we are asked what event happened later than starting to write a novel (June). The options are:
+
+A: attended a concert (November, which is later than June)
+B: attended a class reunion (December, which is later than June)
+C: won the lottery (December, which is later than June)
+D: ended the journal of this year (December, which is later than June)
+Since all of these events occurred after June, the correct answer is:
+
+D: ended the journal of this year.
+
+This is the most direct event that happened later than starting to write a novel.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June he wrote a novel, until December; He started an overseas trip 3 month(s) later than he started writing a novel; It takes 1 month(s) that he had an overseas trip; He attended a concert 5 month(s) after he started writing a novel; He ended the journal of this year 6 month(s) later than he started writing a novel; He won the lottery, and that was in December; He attended a class reunion 2 month(s) later than he ended the overseas trip.
+Please answer: He has a 3-difference between he started an overseas trip and ____.
+A: started writing a novel B: ended the journal of this year C: attended a concert D: won the lottery
+Answers: ABD
+
+4o:
+Let's break down the timeline and events:
+
+Started writing a novel (June)
+Started an overseas trip (3 months after starting to write the novel, so in September)
+Had an overseas trip for 1 month (September to October)
+Attended a concert (5 months after starting to write a novel, so in November)
+Ended the journal of this year (6 months after starting to write a novel, so in December)
+Won the lottery (in December)
+Attended a class reunion (2 months after ending the overseas trip, so in December)
+The question asks about a 3-month difference between when Jack started an overseas trip (which happened in September) and another event.
+
+Started writing a novel: This happened 3 months before starting the overseas trip (June), so this is 3 months before the overseas trip.
+Ended the journal of this year: This happened 6 months after starting to write the novel, so 3 months after the overseas trip (December).
+Attended a concert: This happened 5 months after starting to write the novel, so 2 months after the overseas trip (November).
+Won the lottery: This happened in December, which is 3 months after the overseas trip.
+Thus, the event with a 3-month difference from starting an overseas trip (September) is:
+
+D: won the lottery.
+
+He has a 3-month difference between starting an overseas trip and winning the lottery.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: By December, he wrote a novel for 6 month(s); By October, he had an overseas trip for 1 month(s); 2 month(s) after he started an overseas trip, he attended a concert; 6 month(s) after he started writing a novel, he ended the journal of this year; 3 month(s) after he started an overseas trip, he won the lottery; In December, He attended a class reunion.
+Please answer: In ____, He won the lottery.
+A: September B: August C: December D: November
+Answers: C
+
+4o:
+Let's break down the timeline and events:
+
+Started writing a novel (June)
+Wrote the novel for 6 months (which means by December)
+Started an overseas trip (by October, as he had the trip for 1 month)
+Had an overseas trip for 1 month (so he started in September)
+Attended a concert (2 months after starting the overseas trip, so in November)
+Ended the journal of this year (6 months after starting to write the novel, so in December)
+Won the lottery (3 months after starting the overseas trip, so in December)
+Attended a class reunion (in December)
+Now, we need to find when Jack won the lottery. The timeline shows that he won the lottery 3 months after starting his overseas trip, and he started the overseas trip in September.
+
+3 months after September would be December.
+
+Thus, the correct answer is:
+
+C: December.
+
+He won the lottery in December.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: He started writing a novel, and that was in June; He published his own novel 2 month(s) after he ended the overseas trip; In September, He started an overseas trip; He ended the overseas trip 1 month(s) later than he started an overseas trip; He attended a concert 1 month(s) later than he ended the overseas trip; He ended the journal of this year, and that was in December; He won the lottery, and that was in December; He attended a class reunion 1 month(s) later than he attended a concert.
+Please answer: He has a ____-difference between he ended the overseas trip and ended the journal of this year.
+A: 2 B: 4 C: 5 D: none of the above is correct
+Answers: A
+
+4o:
+Let's break down the timeline and events:
+
+Started writing a novel (June)
+Started an overseas trip (September)
+Ended the overseas trip (1 month after starting, so in October)
+Attended a concert (1 month after ending the overseas trip, so in November)
+Ended the journal of this year (in December)
+Published his own novel (2 months after ending the overseas trip, so in December)
+Won the lottery (in December)
+Attended a class reunion (1 month after attending the concert, so in December)
+The question asks for the difference between when Jack ended the overseas trip (in October) and when he ended the journal of this year (in December).
+
+He ended the overseas trip in October.
+He ended the journal of this year in December.
+So, the difference between October and December is 2 months.
+
+Therefore, the correct answer is:
+
+A: 2.
+
+He has a 2-month difference between ending the overseas trip and ending the journal of this year.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June, He started writing a novel; The total duration of which he wrote a novel is 5 month(s) longer than that of he had an overseas trip; He had an overseas trip from September to October; 2 month(s) after he started an overseas trip, he attended a concert; He ended the journal of this year 3 month(s) later than he started an overseas trip; He won the lottery, and that was in December; He attended a class reunion 3 month(s) later than he started an overseas trip.
+Please answer: He ____ earlier than won the lottery.
+A: attended a concert B: attended a class reunion C: started an overseas trip D: ended the overseas trip
+Answers: ACD
+
+4o:
+Let's break down the timeline based on the information:
+
+Started writing a novel (June)
+Wrote the novel for 5 months longer than the overseas trip
+Had an overseas trip (from September to October)
+Attended a concert (2 months after starting the overseas trip, so in November)
+Ended the journal of this year (3 months after starting the overseas trip, so in December)
+Won the lottery (in December)
+Attended a class reunion (3 months after starting the overseas trip, so in December)
+Now, the question asks which event happened earlier than winning the lottery. Since the lottery was won in December, let's look at the events that occurred before December:
+
+Attended a concert (November, which is earlier than December)
+Attended a class reunion (December, at the same time as winning the lottery)
+Started an overseas trip (September, earlier than December)
+Ended the overseas trip (October, earlier than December)
+The question asks about which event happened earlier than winning the lottery, which happened in December. The events that occurred earlier are:
+
+A: attended a concert (November)
+C: started an overseas trip (September)
+D: ended the overseas trip (October)
+Out of these, the earliest event is:
+
+C: started an overseas trip.
+
+He started the overseas trip earlier than he won the lottery.
+
+*----------*
+
+Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June, He started writing a novel; 6 month(s) after he started writing a novel, he published his own novel; In September, He started an overseas trip; It takes 1 month(s) that he had an overseas trip; He attended a concert, and that was in November; He ended the journal of this year 3 month(s) after he started an overseas trip; He won the lottery 6 month(s) later than he started writing a novel; He attended a class reunion 2 month(s) later than he ended the overseas trip.
+Please answer: There are 3 month(s) between he ____ and attended a class reunion.
+A: started an overseas trip B: attended a class reunion C: published his own novel D: won the lottery
+Answers: A
+
+4o:
+Let's break down the timeline based on the information provided:
+
+Started writing a novel (June)
+Published his own novel (6 months after starting to write the novel, so in December)
+Started an overseas trip (September)
+Had an overseas trip for 1 month (September to October)
+Attended a concert (in November)
+Ended the journal of this year (3 months after starting the overseas trip, so in December)
+Won the lottery (6 months after starting to write the novel, so in December)
+Attended a class reunion (2 months after ending the overseas trip, so in December)
+Now, the question asks about the 3-month difference between an event and attending a class reunion. Since the class reunion happened in December, we need to look for an event that occurred 3 months before December.
+
+Started an overseas trip: This was in September. 3 months before December is September.
+Attended a class reunion: This is the event we are comparing the difference to, so this does not answer the question.
+Published his own novel: This happened in December, so it's not 3 months before.
+Won the lottery: This happened in December, so it's not 3 months before.
+From the options, the event that happened 3 months before attending the class reunion (which is in December) is:
+
+A: started an overseas trip.
+
+Therefore, the correct answer is:
+
+A: started an overseas trip.
+
+There are 3 months between starting an overseas trip and attending a class reunion.
