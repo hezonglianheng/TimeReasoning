@@ -14,94 +14,94 @@
 [
 // 度过一年约束
     {
-        "main_event": "ended the journal of this year",
-        "std_event": "started the journal of this year",
+        "main_event": "结束记录本年的日记",
+        "std_event": "开始记录新一年的日记",
         "type": "certainafter",
         "time": 11,
     },
 // 答辩约束
     {
-        "main_event": "passed the thesis defense",
-        "std_event": "started preparing for the thesis defense",
+        "main_event": "通过答辩",
+        "std_event": "开始准备答辩",
         "type": "rangetime",
         "floor": 3,
         "ceiling": 6,
     },
     {
-        "main_event": "started preparing for the thesis defense",
-        "std_event": "started the journal of this year",
+        "main_event": "开始准备答辩",
+        "std_event": "开始记录新一年的日记",
         "type": "after",
     },
 // 实习约束
     {
-        "main_event": "started an online internship",
-        "std_event": "started the journal of this year",
+        "main_event": "开始线上实习",
+        "std_event": "开始记录新一年的日记",
         "type": "after",
     },
     {
-        "main_event": "successfully ended the internship",
-        "std_event": "started an online internship",
+        "main_event": "顺利离职",
+        "std_event": "开始线上实习",
         "type": "rangetime",
         "floor": 3,
         "ceiling": 6,
     },
 // 旅行约束
     {
-        "main_event": "started an overseas trip",
-        "std_event": "started the journal of this year",
+        "main_event": "开始出国旅行",
+        "std_event": "开始记录新一年的日记",
         "type": "after",
     },
     {
-        "main_event": "ended the overseas trip",
-        "std_event": "started an overseas trip",
+        "main_event": "旅行结束",
+        "std_event": "开始出国旅行",
         "type": "rangetime",
         "floor": 1,
         "ceiling": 3,
     },
 // 创作约束
     {
-        "main_event": "started writing a novel",
-        "std_event": "started the journal of this year",
+        "main_event": "开始创作小说",
+        "std_event": "开始记录新一年的日记",
         "type": "after",
     },
     {
-        "main_event": "published his own novel",
-        "std_event": "started writing a novel",
+        "main_event": "小说发表",
+        "std_event": "开始创作小说",
         "type": "rangetime",
         "floor": 6,
         "ceiling": 8,
     },
 // 彩票约束
     {
-        "main_event": "won the lottery",
-        "std_event": "started the journal of this year",
+        "main_event": "抽中彩票",
+        "std_event": "开始记录新一年的日记",
         "type": "after",
     },
     {
-        "main_event": "won the lottery",
-        "std_event": "ended the journal of this year",
+        "main_event": "抽中彩票",
+        "std_event": "结束记录本年的日记",
         "type": "before",
     },
 // 聚会约束
     {
-        "main_event": "attended a class reunion",
-        "std_event": "started the journal of this year",
+        "main_event": "参加同学聚会",
+        "std_event": "开始记录新一年的日记",
         "type": "after",
     },
     {
-        "main_event": "attended a class reunion",
-        "std_event": "ended the journal of this year",
+        "main_event": "参加同学聚会",
+        "std_event": "结束记录本年的日记",
         "type": "before",
     },
 // 音乐会约束
     {
-        "main_event": "attended a concert",
-        "std_event": "started the journal of this year",
+        "main_event": "听音乐会",
+        "std_event": "开始记录新一年的日记",
         "type": "after",
     },
     {
-        "main_event": "attended a concert",
-        "std_event": "ended the journal of this year",
+        "main_event": "听音乐会",
+        "std_event": "结束记录本年的日记",
         "type": "before",
     },
 ]
