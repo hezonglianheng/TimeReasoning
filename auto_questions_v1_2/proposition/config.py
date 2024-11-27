@@ -12,6 +12,8 @@ SEMICOLON = "; "
 COLON = ": "
 
 # language settings
+LANG_MODE = "zh"
+
 ALL_WRONG = 'all_wrong'
 BECAUSE = 'because'
 ANOTHER = 'another'
@@ -31,3 +33,14 @@ LANG_CONFIG = {
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],
     },
 }
+
+# functions.
+
+def set_lang_mode(lang_mode: str):
+    """设置语言模式
+
+    Args:
+        lang_mode (str): 语言模式. 目前支持"zh"或"en".
+    """
+    global LANG_MODE
+    LANG_MODE = lang_mode
