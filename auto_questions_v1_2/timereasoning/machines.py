@@ -136,7 +136,7 @@ class SearchMachine:
         elif type(e) == event.FreqEvent:
             pass
         elif type(e) == event.Duration:
-            double = [[p] for p in self.double_prop_list if (isinstance(p, timeprop.DoubleTimeP) and p.element1 == e and p.element2.got(self._duration_event_sorted.before_events(e)))]
+            double = [[p] for p in self.double_prop_list if (isinstance(p, (timeprop.LongTimeP, timeprop.ShortTimeP, timeprop.SameLenTimeP)) and p.element1 == e and p.element2.got(self._duration_event_sorted.before_events(e)))]
             candidates.extend(double)
         else:
             raise TypeError(f"未知事件类型{type(e)}")
