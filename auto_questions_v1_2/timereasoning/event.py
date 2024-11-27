@@ -15,6 +15,7 @@ from typing import Optional
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
+from timereasoning import config
 from proposition.element import Element
 
 class Event(Element):
@@ -156,6 +157,15 @@ class DurativeEvent(Event):
         """
         self.duration_event = Duration(verb, object, self.duration, self)
 
+    def auto_set(self, lang: str = "zh") -> None:
+        """自动设置事件的开始、结束事件
+        
+        Args:
+            lang (str, optional): 语言. 默认为"zh".
+        """
+        self.set_start_event(config.LANG_CONFIG[lang][config.START], self.event())
+        self.set_end_event(config.LANG_CONFIG[lang][config.END], self.event())
+    
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.endtime == other.endtime
     
