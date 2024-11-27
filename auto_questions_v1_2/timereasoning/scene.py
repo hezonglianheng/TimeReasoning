@@ -21,6 +21,8 @@ from proposition.scene import Scene
 from timereasoning import timeknoledge # 10-30修改：开始引入时间常识库
 from timereasoning.machines import SearchMachine as SM # 11-03修改：引入时间领域专用搜索机
 from proposition.machines import ReasonMachine as RM # 11-03修改：引入推理机构建推理图
+from timereasoning.machines import TimeGetRangeMachine as TGRM # 11-26修改：引入时间领域专用取值范围机
+from timereasoning.machines import TimeAskAllMachine as TAAM # 11-27修改：引入时间领域专用询问机
 
 class TimeScene(Scene):
     """
@@ -158,18 +160,24 @@ class TimeScene(Scene):
         self._reachables = rm.run() # 11-12修改: 将建立推理图得到的命题加入可达命题列表
         self.graph = rm.graph
         print(f"推理图获取完毕.")
+        # 以可及命题中的单元素时间命题为基础，构建时间领域专用取值范围机
+        self._range_machine = TGRM([i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)])
+        print("初始化选取干扰项的范围获取机.")
+        self._ask_all_machine = TAAM(deepcopy(self._reachables), deepcopy(self._chosen_group), self.temps, self.graph, self._range_machine, ask_correct=self._ask_correct, lang=self.lang, ask_mode=self.ask_mode, tag=self.tag)
+        print("初始化询问机.")
 
     def get_statements(self) -> list[str]:
         super().get_statements()
         self._statement_trans()
         return self._statements
     
-    def ask(self, seed: int | float | None = None) -> Dict[str, Any]:
-        info = super().ask(seed)
+    def ask_one(self, seed: int | float | None = None) -> Dict[str, Any]:
+        info = super().ask_one(seed)
         if info is None:
             return None
         info[prop.SENTENCE] = self._exp_trans(info[prop.SENTENCE]) # 调整问题中的时间表达方式
         # all_elements = [i.element for i in self._all_props if isinstance(i, timeprop.SingleTimeP)]
+        """
         all_elements = [i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)]
         if "element" in (typ := info.get(prop.TYPE)):
             ans = info.get(prop.ANSWER)
@@ -188,6 +196,7 @@ class TimeScene(Scene):
         elif typ == "diff":
             all_temp = sorted([i.time for i in all_elements if isinstance(i, (event.TemporalEvent))], key=lambda x: x)
             self._value_range[typ] = list(range(all_temp[-1] - all_temp[0] + 1))
+        """
         return info
 
     def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any]:

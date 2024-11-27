@@ -13,6 +13,7 @@ from pathlib import Path
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
+
 import proposition.prop as prop
 import proposition.relation as relation
 import proposition.rule as rule
@@ -21,7 +22,9 @@ from proposition.machines import SearchMachine as SM
 from proposition.machines import AnswerMachine as AM
 from proposition.config import SEMICOLON, COLON  # 引入标点符号用于串联表达
 from proposition.graph import Graph
-
+from proposition.machines import GetRangeMachine as GRM
+import proposition.machines as machines
+from proposition.machines import AskAllMachine
 
 class Scene(metaclass=abc.ABCMeta):
     """
@@ -58,8 +61,12 @@ class Scene(metaclass=abc.ABCMeta):
         self._knowledges: list[prop.Proposition] = []
         self.graph: Graph = None
         self.chain: str = ""
-        self._reachables: list[prop.Proposition] = []  # 可达命题列表
-
+        self._reachables: list[prop.Proposition] = [] # 可达命题列表
+        # 11-25新增：场景的范围获取机
+        self._range_machine: GRM = None # 范围获取机
+        # 11-26新增：场景的询问机
+        self._ask_all_machine: AskAllMachine = None
+        self._ask_correct: bool = True
 
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
@@ -83,8 +90,12 @@ class Scene(metaclass=abc.ABCMeta):
         self._all_props = rm.run()
         print(f"全部命题生成完毕！生成了{len(self._all_props)}个命题")
 
+    @abc.abstractmethod
     def get_all_groups(self) -> None:
-        """调用搜索机，以发现可行的陈述命题组合
+        """调用搜索机，以发现可行的陈述命题组合\n
+        之后，该方法从可行的陈述命题组合出发，建立推理图，获得可达命题列表\n
+        最后，该方法初始化范围获取机.\n
+        注意：该方法需要被子类重写
         """
         assert len(self._all_props) > 0, "必须先生成全部命题"
         print("开始搜索一组可行的命题组合.")
@@ -99,6 +110,12 @@ class Scene(metaclass=abc.ABCMeta):
         self._reachables = rm.run()  # 11-12修改: 将建立推理图得到的命题加入可达命题列表
         self.graph = rm.graph
         print(f"推理图获取完毕.")
+        # 11-25新增：初始化范围获取机
+        self._range_machine = GRM(self._all_props)
+        print("初始化选取干扰项的范围获取机.")
+        # 11-26新增：初始化询问机
+        self._ask_all_machine = AskAllMachine(deepcopy(self._reachables), deepcopy(self._chosen_group), self.temps, self.graph, self._range_machine, ask_correct=self._ask_correct, lang=self.lang, ask_mode=self.ask_mode, tag=self.tag)
+        print("初始化询问机.")
 
     def get_statements(self) -> list[str]:
         """获取一组命题组合的全部陈述
@@ -114,9 +131,9 @@ class Scene(metaclass=abc.ABCMeta):
         self._statements = [i.state(self.temps) for i in self._chosen_group]  # 陈述列表
         print("得到随机选择一组命题的陈述.")
         return self._statements
-
-    @abc.abstractmethod
-    def ask(self, seed: Union[int, float, None] = None) -> Dict[str, Any]:
+    
+    # @abc.abstractmethod
+    def ask_one(self, seed: Union[int, float, None] = None) -> Dict[str, Any]:
         """随机选择一个命题，提问，并根据具体情况获得备选项，最后返回问题信息
         Args:
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
@@ -154,6 +171,15 @@ class Scene(metaclass=abc.ABCMeta):
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
         return self._ask_info
+
+    def set_value_range(self) -> None:
+        """设置命题的值范围
+        """
+        if self._asked_prop is None:
+            return None # 如果没有可提问的命题，直接返回None
+        typ: str = self._ask_info.get(prop.TYPE)
+        assert typ is not None, "提问信息中没有类型信息"
+        self._value_range[typ] = self._range_machine.get_range(self._ask_info)
 
     def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[str, Any]:
         """获取选项和正确答案
@@ -193,6 +219,18 @@ class Scene(metaclass=abc.ABCMeta):
         self.chain = "\n".join([i.state(self.temps, lang=self.lang) for i in reason_path])
         return self.chain
 
+    def ask_all(self, seed: Union[int, float, None] = None) -> dict[str, Any] | None:
+        """询问“以下说法正确的是”“以下说法错误的是”这样的问题的函数
+
+        Args:
+            seed (Union[int, float, None], optional): 随机种子. 默认为None.
+
+        Returns:
+            dict[str, Any]: 问题信息
+        """
+        assert self._ask_all_machine is not None, "必须先初始化询问机"
+        return self._ask_all_machine.run()
+    
     def run(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
         """运行场景，获取一组题目
         Args:
@@ -207,16 +245,17 @@ class Scene(metaclass=abc.ABCMeta):
         i = 0
         while len(question_list) < execute:
             i += 1
-            print(f"开始第{i + 1}次获取.")
+            print(f"开始第{i}次获取.")
             self.get_all_groups()
             self.get_statements()
-            self.ask(seed)
+            self.ask_one(seed)
+            self.set_value_range() # 设置值域
             answers = self.get_answers(seed)
             if answers is None:
                 print("未能获取答案，跳过.")
                 continue
             # 修改：先判定能否生成答案，再获取推理链
-            ans_prop = answers["answerprop"] # 将正确答案填入空中的命题
+            ans_prop = answers[machines.ANSWERPROP] # 将正确答案填入空中的命题
             chain = self.get_chain(ans_prop)
             text = self.guide + COLON + SEMICOLON.join(self._statements)  # 题面文本，由引导语和陈述组成
             # 问题信息
@@ -225,14 +264,50 @@ class Scene(metaclass=abc.ABCMeta):
                         "statement": self._statements, 
                         "text": text,
                         "question": self._ask_info[prop.SENTENCE], 
-                        "options": answers["options"], 
-                        "answers": answers["answers"], 
+                        "options": answers[machines.OPTIONS], 
+                        "answers": answers[machines.ANSWERS], 
                         "chain": chain, 
                         # 11-24更新：增加提问命题的层级信息
                         "layer": self.graph.layer_query(self._asked_prop), 
                         # 11-24更新：增加提问命题的标签信息
                         "tag": self._asked_prop.typetag
                     }
+            question_list.append(item)
+        print(f"获取题目{i}次，获得题目{len(question_list)}个.")
+        return question_list
+
+    def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None, ask_correct: bool = True) -> list[dict[str, Any]]:
+        """运行场景，获取一组询问多个命题类型的题目
+        Args:
+            execute (int, optional): 生成的题目数量. 默认为10.
+            seed (Union[int, float, None], optional): 随机种子. 默认为None.
+            ask_correct (bool, optional): 询问机的询问模式. 默认为True(询问“以下说法正确的是”). 可选的值有：
+                - True，询问“以下说法正确的是”
+                - False，询问“以下说法错误的是”
+
+        Returns:
+            list[dict[str, Any]]: 一组题目
+        """
+        random.seed(seed)
+        self._ask_correct = ask_correct # 设置询问机的询问模式
+        self.get_all_props()
+        question_list = []
+        i = 0
+        while len(question_list) < execute:
+            i += 1
+            print(f"开始第{i}次获取.")
+            self.get_all_groups()
+            self.get_statements()
+            ask_all_info = self.ask_all(seed)
+            if ask_all_info is None:
+                print("未能获取答案，跳过.")
+                continue
+            text = self.guide + COLON + SEMICOLON.join(self._statements)  # 题面文本，由引导语和陈述组成
+            item = {
+                "guide": self.guide,
+                "statement": self._statements,
+                "text": text,
+            } | ask_all_info
             question_list.append(item)
         print(f"获取题目{i}次，获得题目{len(question_list)}个.")
         return question_list

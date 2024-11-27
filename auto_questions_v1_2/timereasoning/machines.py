@@ -6,12 +6,15 @@ import sys
 from pathlib import Path
 from tqdm import tqdm
 import random
-from typing import Any
+from typing import Any, List, Literal
 from itertools import product
 
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 from timereasoning import event, timeprop
+from proposition import machines
+from proposition import prop
+from proposition.graph import Graph
 
 class SearchMachine:
     """时间领域专用搜索机
@@ -162,3 +165,70 @@ class SearchMachine:
             self.chosen_props.extend(props)
         print("表述命题集生成完毕.")
         return self.chosen_props
+
+class TimeGetRangeMachine(machines.GetRangeMachine):
+    def __init__(self, all_elements: list[event.Event]) -> None:
+        """初始化时间领域专用范围获取机
+
+        Args:
+            all_elements (list[event.Event]): 全部事件
+        """
+        super().__init__(all_elements)
+
+    def get_range(self, ask_info: dict[str, Any], *args, **kwargs) -> List[event.Event] | List[int]:
+        """获取时间领域的范围
+
+        Args:
+            ask_info (dict[str, Any]): 问题信息
+
+        Raises:
+            ValueError: 如果回答的答案或者类型是未知的，则抛出此错误
+
+        Returns:
+            List[event.Event] | List[int]: 时间领域的范围
+        """
+        if "element" in (typ := ask_info.get(prop.TYPE)):
+            ans = ask_info.get(prop.ANSWER)
+            if isinstance(ans, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent)):
+                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent))]
+            elif isinstance(ans, event.Duration):
+                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration, event.TemporalEvent, event.FreqEvent))]
+            else:
+                raise ValueError(f"未知类型{type(ans)}")
+        elif "time" in typ:
+            all_temp = sorted([i.time for i in self.all_elements if isinstance(i, (event.TemporalEvent))], key=lambda x: x)
+            range_list = list(range(all_temp[0], all_temp[-1] + 1))
+        elif typ == "duration":
+            all_temp = sorted([i.time for i in self.all_elements if isinstance(i, (event.TemporalEvent))], key=lambda x: x)
+            range_list = list(range(all_temp[-1] - all_temp[0] + 1))
+        elif typ == "diff":
+            all_temp = sorted([i.time for i in self.all_elements if isinstance(i, (event.TemporalEvent))], key=lambda x: x)
+            range_list = list(range(all_temp[-1] - all_temp[0] + 1))
+        else:
+            raise ValueError(f"未知类型{typ}")
+        return range_list
+
+class TimeAskAllMachine(machines.AskAllMachine):
+    """时间领域专用询问机
+    """
+    def _get_option_range(self, ask_info: dict[str, Any], curr_prop: timeprop.TimeP) -> List[Any]:
+        """获取选项范围
+
+        Args:
+            ask_info (dict[str, Any]): 问题信息
+            curr_prop (timeprop.TimeP): 当前命题
+
+        Returns:
+            List[Any]: 选项范围
+        """
+        initial_range = super()._get_option_range(ask_info, curr_prop)
+        
+        if isinstance(curr_prop, timeprop.DurativeP):
+            # 如果是持续时间命题且询问endtime，则选项范围为起始时间之后的时间
+            if ask_info.get(prop.TYPE) == "endtime":
+                initial_range = [i for i in initial_range if i > curr_prop.time]
+            # 如果是持续时间命题且询问time，则选项范围为结束时间之前的时间
+            elif ask_info.get(prop.TYPE) == "time":
+                initial_range = [i for i in initial_range if i < curr_prop.endtime]
+
+        return initial_range

@@ -3,7 +3,7 @@
 # author: Qin Yuhang
 
 """
-包含推理机类、搜索机类，用于执行推理任务
+包含推理机类、搜索机类、回答机类、范围获取机类，用于执行推理任务
 """
 
 from tqdm import tqdm
@@ -19,17 +19,23 @@ from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor
 import os
 import math
+import abc # 增加表示抽象类的模块
+from typing import Literal, Optional # 增加表示字面值类型
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 from proposition import prop, rule, relation, graph
 from proposition.config import PRECISE_WEIGHT, NOT_PRECISE_WEIGHT
+from proposition import element
+from proposition.config import LANG_CONFIG, ALL_WRONG, ASK_RIGHT, ASK_WRONG
 
 OPTIONS = "options"
 ANSWERS = "answers"
 ANSWERPROP = "answerprop"
-
+# 新增返回字典的键
+QUESTION = "question"
+CHAIN = "chain"
 
 class ReasonMachine:
     """推理机，用于执行推理任务"""
@@ -274,7 +280,7 @@ class AnswerMachine:
     """
 
     def __init__(self, all_prop: list[prop.Proposition], ask_prop: prop.Proposition, ask_info: dict[str, Any],
-                 seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> None:
+                 seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1, lang: str = 'zh') -> None:
         """初始化答案机，用于根据询问命题和信息生成选项和答案
 
         Args:
@@ -283,7 +289,8 @@ class AnswerMachine:
             ask_info (dict[str, Any]): 询问后获得的信息
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
             options (int, optional): 选项数量. 默认为4.
-            all_wrong_prob (float, optional): 设置“全部错误”的概率. 默认为.1.
+            all_wrong_prob (float, optional): 设置“全部错误”的概率. 默认为0.1.
+            lang (str, optional): 语言设置. 默认为'zh'(中文).
         """
         self._all_prop = all_prop  # 全部命题
         self._ask_prop = ask_prop  # 被询问的命题
@@ -296,7 +303,7 @@ class AnswerMachine:
         self._options = options
         self._all_wrong_prob = all_wrong_prob  # 全部错误的概率
         self.options_and_answers: dict[str, Any] = dict()
-
+        self.lang = lang # 语言设置
 
 
 
@@ -365,3 +372,203 @@ class AnswerMachine:
 
         self.options_and_answers = {OPTIONS: options, ANSWERS: answers, ANSWERPROP: ans_prop}
         return self.options_and_answers
+
+class GetRangeMachine(metaclass = abc.ABCMeta):
+    """范围获取机的抽象基类，用于根据输入参数获取特定的范围\n
+    该类是一个抽象类，需要在领域中被继承并实现get_range方法
+    """
+    def __init__(self, all_elements: list[element.Element]) -> None:
+        """初始化范围获取机
+
+        Args:
+            all_elements (list[element.Element]): 全部元素列表
+        """
+        self.all_elements = all_elements
+
+    @abc.abstractmethod
+    def get_range(self, ask_info: dict[str, Any], *args, **kwargs) -> List[Any]:
+        """根据输入参数获取特定的范围
+        Args:
+            ask_info (dict[str, Any]): 询问信息
+
+        Returns:
+            List[Any]: 获得的范围列表
+        """
+        pass
+
+# TODO
+class AskAllMachine:
+    """询问机，用于询问“以下选项中正确的是”“以下选项中错误的是”两类试题
+    """
+    # 题干模板
+    ask_correct_questions: str = "请问: 以下选项中正确的是____"
+    ask_wrong_questions: str = "请问: 以下选项中错误的是____"
+
+    def __init__(self, all_props: list[prop.Proposition], chosen_props: list[prop.Proposition], temps: dict[str, list[str]], reason_graph: graph.Graph, range_machine: GetRangeMachine, ask_correct: bool = True, lang: str = "zh", *, options: int = 4, correct: int = 1, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', all_wrong_prob: float = .1, tag: Optional[list[str]] = None) -> None:
+        """初始化询问机
+
+        Args:
+            all_props (list[prop.Proposition]): 全部命题
+            chosen_props (list[prop.Proposition]): 已选命题
+            temps (dict[str, list[str]]): 模板字典
+            reason_graph (graph.Graph): 推理图
+            range_machine (GetRangeMachine): 范围获取机
+            ask_correct (bool, optional): 是否询问“以上选项中正确的是”. 默认为True. 若为False，则询问“以上选项中错误的是”
+            lang (str, optional): 语言设置. 默认为'zh'(中文).
+            options (int, optional): 选项数量. 默认为4.(最大26)
+            correct (int, optional): 正确选项数量. 默认为1.(大于0且小于等于options)
+            ask_mode (Literal[&#39;random&#39;, &#39;deepest&#39;, &#39;tag&#39;], optional): 询问模式. 默认为&#39;random&#39;.
+                - random: 随机询问
+                - deepest: 从推理图中选择最深的节点询问
+                - tag: 从推理图中选择特定标记的节点询问，需要提供tag参数
+            all_wrong_prob (float, optional): 设置“全部错误”的概率. 默认为0.1.
+            tag (Optional[list[str]], optional): 询问标记. 默认为空.
+        """
+        self.all_props = all_props # 全部可提问的命题
+        self.chosen_group = chosen_props # 已选命题
+        self.temps = temps # 模板字典
+        self.reason_graph = reason_graph # 推理图
+        self.range_machine = range_machine # 范围获取机
+        self.ask_correct = ask_correct # 是否询问“以上选项中正确的是”
+        self.lang = lang # 语言设置
+        if options > len(ascii_uppercase):
+            warn(f"选项数量{options}大于26，将被重置为26", UserWarning)
+            options = len(ascii_uppercase)
+        self.options = options
+        assert 0 < correct <= options, f"正确选项数量{correct}不合法"
+        self.correct = correct # 正确选项数量
+        self.ask_mode = ask_mode # 询问模式
+        self.all_wrong_prob = all_wrong_prob # 全部错误的概率
+        self.tag = tag # 询问标记
+        # 中间变量
+        self._candidates: list[prop.Proposition] = [] # 候选命题列表
+        self._question = ASK_RIGHT if ask_correct else ASK_WRONG # 问题
+        self._option_dict: dict[str, str] = dict() # 选项字典
+        self._answers: list[str] = [] # 答案列表
+        self._chains: list[str] = [] # 询问链
+
+    def _choose_candidates(self) -> list[prop.Proposition]:
+        """选择候选命题
+
+        Raises:
+            ValueError: 如果询问模式不合法，则抛出异常
+
+        Returns:
+            list[prop.Proposition]: 候选命题列表
+        """
+        if self.ask_mode == 'random':
+            candidates: list[prop.Proposition] = [i for i in self.all_props if not i.got(self.chosen_group) and i.askable]
+        elif self.ask_mode == 'deepest':
+            assert self.reason_graph is not None, "deepest提问模式下，必须先获取推理图"
+            deepest_layer: int = -1
+            for i in [k for k in self.all_props if not k.got(self.chosen_group) and k.askable]:
+                layer = self.reason_graph.layer_query(i)
+                if layer > deepest_layer:
+                    deepest_layer = layer
+            candidates = [i for i in self.all_props if not i.got(self.chosen_group) and i.askable and self.reason_graph.layer_query(i) == deepest_layer]
+        elif self.ask_mode == 'tag':
+            assert self.tag is not None, "tag提问模式下，提问标签不能为空"
+            candidates = [i for i in self.all_props if not i.got(self.chosen_group) and i.askable and i.typetag in self.tag]
+        else:
+            raise ValueError(f"提问模式错误，不存在{self.ask_mode}模式")
+        self._candidates = candidates # 保存候选命题列表
+        return candidates
+
+    def _get_option_range(self, ask_info: dict[str, Any], curr_prop: prop.Proposition) -> List[Any]:
+        """获取选项可替换的值域范围
+
+        Args:
+            ask_info (dict[str, Any]): 询问信息
+            curr_prop (prop.Proposition): 当前命题
+
+        Returns:
+            List[Any]: 可替换的值域范围
+        """
+        value_range = self.range_machine.get_range(ask_info) # 获取值域
+        value_range = [i for i in value_range if i != ask_info[prop.ANSWER]] # 排除值域中的正确项
+        return value_range
+    
+    def _get_option_prop(self, curr_prop: prop.Proposition, judge: bool) -> prop.Proposition:
+        """获取选项中需要使用的命题
+
+        Args:
+            curr_prop (prop.Proposition): 当前命题
+            judge (bool): 是否为正确选项
+
+        Returns:
+            prop.Proposition: 选项中需要使用的命题
+        """
+        if judge:
+            return curr_prop
+        else:
+            ask_info = curr_prop.ask(self.temps) # 询问信息
+            value_range = self._get_option_range(ask_info, curr_prop) # 获取值域
+            new_prop = deepcopy(curr_prop) # 复制当前命题
+            setattr(new_prop, ask_info[prop.TYPE], random.choice(value_range)) # 随机选择一个错误选项，替换当前命题，生成新命题
+            return new_prop
+    
+    def _make_options(self) -> None:
+        """生成选项、答案和推理链
+
+        Raises:
+            ValueError: 如果候选命题列表为空，则抛出异常
+        """
+        # candidate为空，则报错
+        if len(self._candidates) == 0:
+            raise ValueError("候选命题列表为空，无法生成选项")
+        # candidate不足，返回None
+        if len(self._candidates) < self.options:
+            print(f"候选命题数量不足，无法生成选项")
+            return None
+        # 采样命题
+        samples = random.sample(self._candidates, self.options)
+        # 随机为每个命题确定一个bool值作为判断值
+        if self.ask_correct:
+            situation = [True] * self.correct + [False] * (self.options - self.correct)
+        else:
+            situation = [False] * self.correct + [True] * (self.options - self.correct)
+        random.shuffle(situation)
+        # 生成选项
+        option_props = [self._get_option_prop(i, j) for i, j in zip(samples, situation)]
+        # 生成新的判断（旧的判断未必能够成功替换）
+        judges = [i.got(self.all_props) for i in option_props]
+        # 生成选项字典
+        self._option_dict = {ascii_uppercase[i]: j.state(self.temps) for i, j in enumerate(option_props)}
+        # 生成答案
+        if self.ask_correct:
+            self._answers = [ascii_uppercase[i] for i, j in enumerate(judges) if j]
+        else:
+            self._answers = [ascii_uppercase[i] for i, j in enumerate(judges) if not j]
+        # 获得采样命题的推理链
+        chain_nodes = [self.reason_graph.backtrace(i) for i in samples]
+        self._chains = ["\n".join([j.state(self.temps, lang=self.lang) for j in i]) for i in chain_nodes]
+        # 检查答案是否为空
+        if len(self._answers) == 0:
+            # 将最后一个项换成“以上选项均不对”
+            self._option_dict[ascii_uppercase[self.options - 1]] = LANG_CONFIG[self.lang][ALL_WRONG]
+            self._answers = [ascii_uppercase[self.options - 1]]
+            return None
+        if random.random() < self.all_wrong_prob:
+            # 将最后一个项换成“以上选项均不对”
+            self._option_dict[ascii_uppercase[self.options - 1]] = LANG_CONFIG[self.lang][ALL_WRONG]
+            if len(self._answers) > 1 and ascii_uppercase[self.options - 1] in self._answers:
+                self._answers.remove(ascii_uppercase[self.options - 1])
+
+    def run(self) -> dict[str, Any] | None:
+        """运行询问机，生成问题、选项、答案和推理链
+
+        Returns:
+            dict[str, Any]: 问题、选项、答案和推理链
+        """
+        self._choose_candidates() # 选择候选命题
+        self._make_options() # 生成选项、答案和推理链
+        # 如果选项字典为空，则返回None
+        if len(self._option_dict) == 0:
+            return None
+        # 否则返回问题、选项、答案和推理链
+        return {
+            QUESTION: LANG_CONFIG[self.lang][self._question],
+            OPTIONS: self._option_dict,
+            ANSWERS: self._answers,
+            CHAIN: "\n".join(self._chains)
+        }

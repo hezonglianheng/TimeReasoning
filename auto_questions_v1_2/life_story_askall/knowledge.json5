@@ -1,0 +1,58 @@
+// 以年为单位的知识库
+
+{
+    "event": [
+        {
+            "subtype": "temporal",
+            "verb": "八国联军攻入",
+            "object": "北京",
+            "time": 1900,
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "辛亥革命爆发",
+            "object": "",
+            "time": 1911,
+        }, 
+        {
+            "subtype": "durative",
+            "verb": "进行",
+            "object": "第一次世界大战",
+            "time": 1914,
+            "endtime": 1918,
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "五四运动爆发",
+            "object": "",
+            "time": 1919,
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "中国共产党成立",
+            "object": "",
+            "time": 1921,
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "新中国成立",
+            "object": "",
+            "time": 1949,
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "改革开放",
+            "object": "开始",
+            "time": 1978,
+        }, 
+        {
+            "subtype": "durative",
+            "verb": "进行",
+            "object": "抗日战争",
+            "time": 1931,
+            "endtime": 1945,
+        }, 
+    ], 
+    "order": [], 
+    "convert": [], 
+}

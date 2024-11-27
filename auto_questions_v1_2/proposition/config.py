@@ -18,6 +18,8 @@ ALL_WRONG = 'all_wrong'
 BECAUSE = 'because'
 ANOTHER = 'another'
 SO = 'so'
+ASK_RIGHT = "ask_right"
+ASK_WRONG = "ask_wrong"
 
 LANG_CONFIG = {
     'zh': {
@@ -25,12 +27,16 @@ LANG_CONFIG = {
         BECAUSE: ["因为", "由于", "既然", "根据",],
         ANOTHER: ["另外", "再者", "此外", "而且", "并且",],
         SO: ["所以", "因此", "故", "于是", "因而",],
+        ASK_RIGHT: "请问: 以下选项中正确的是____",
+        ASK_WRONG: "请问: 以下选项中不正确的是____",
     },
     'en': {
         ALL_WRONG: "none of the above is correct",
         BECAUSE: ["because ", "since ", "as ", "according to ",],
         ANOTHER: ["furthermore ", "moreover ", "besides ", "and ",],
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],
+        ASK_RIGHT: "Which of the following is correct?",
+        ASK_WRONG: "Which of the following is incorrect?",
     },
 }
 
