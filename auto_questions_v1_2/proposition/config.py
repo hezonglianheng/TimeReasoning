@@ -35,8 +35,8 @@ LANG_CONFIG = {
         BECAUSE: ["because ", "since ", "as ", "according to ",],
         ANOTHER: ["furthermore ", "moreover ", "besides ", "and ",],
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],
-        ASK_RIGHT: "Which of the following is correct?",
-        ASK_WRONG: "Which of the following is incorrect?",
+        ASK_RIGHT: "Which of the following is(are) correct?",
+        ASK_WRONG: "Which of the following is(are) incorrect?",
     },
 }
 
