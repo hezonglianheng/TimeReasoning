@@ -339,7 +339,33 @@ D: He graduated from university before he started elementary school.
 Answers: C
 
 4o:
+Let's break down the timeline from the information given:
 
+Jack's life timeline:
+1900: Born
+1906: Started elementary school (studied from 1906 to 1911)
+1906: Met his future wife (same year he started elementary school)
+1911: Graduated from elementary school
+1917: Started university (6 years after graduating from elementary school)
+1921: Graduated from university (21 years after he was born, so in 1921)
+1927: Got married (21 years after starting elementary school in 1906)
+1946: Retired (45 years after starting university in 1901)
+Now, let's assess each option:
+
+A: He has a 35-year difference between he was born and retired.
+He was born in 1900 and retired in 1946. The difference between 1900 and 1946 is 46 years, not 35.
+Incorrect.
+B: There are 21 years between he started elementary school and met his future wife.
+He started elementary school in 1906 and met his future wife in 1906, so the difference between starting elementary school and meeting his future wife is 0 years, not 21.
+Incorrect.
+C: He retired after he was born.
+He was born in 1900 and retired in 1946. Since 1946 is after 1900, this is correct.
+Correct.
+D: He graduated from university before he started elementary school.
+He started elementary school in 1906 and graduated from university in 1921. Clearly, he did not graduate from university before he started elementary school.
+Incorrect.
+Final answer:
+C is correct.
 
 *----------*
 
@@ -352,3 +378,31 @@ D: The time gap between he started high school and joined a company is 8 year(s)
 Answers: CD
 
 4o:
+Let's break down the timeline based on the given information:
+
+Jack's life timeline:
+1900: Born
+1911: Started junior high school (11 years after being born)
+1914: Graduated from junior high school (3 years after starting)
+1914: Started high school (same year as graduating junior high school)
+1917: Graduated from high school (3 years after starting high school)
+1920: Started dating (3 years after graduating high school)
+1920: Started dating (same year as mentioned)
+1922: Joined a company (22 years after being born)
+1962: Retired (45 years after graduating from high school in 1917)
+Now let's evaluate each option:
+
+A: He has a 40-year difference between he started dating and retired.
+He started dating in 1920 and retired in 1962. The difference between 1962 and 1920 is 42 years, not 40.
+Incorrect.
+B: He has a 39-year difference between he graduated from high school and graduated from junior high school.
+He graduated from high school in 1917 and graduated from junior high school in 1914. The difference between 1917 and 1914 is 3 years, not 39.
+Incorrect.
+C: He joined a company before he retired.
+He joined a company in 1922 and retired in 1962. Since 1922 is before 1962, this is correct.
+Correct.
+D: The time gap between he started high school and joined a company is 8 years.
+He started high school in 1914 and joined a company in 1922. The difference between 1922 and 1914 is 8 years, so this is correct.
+Correct.
+Final answer:
+C and D are correct.
