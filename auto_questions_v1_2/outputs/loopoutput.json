@@ -1,0 +1,256 @@
+[
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "When it's Wednesday he plays badminton",
+            "When it's Wednesday he does some exercises",
+            "He reads sci-fi novels 1 day(s) after he does some exercises",
+            "He goes on a date 2 day(s) after he plays badminton",
+            "2 day(s) after he reads sci-fi novels, he reads essays",
+            "He watches movies 3 day(s) after he reads sci-fi novels"
+        ],
+        "text": "Jack has a clear weekly plan: When it's Wednesday he plays badminton; When it's Wednesday he does some exercises; He reads sci-fi novels 1 day(s) after he does some exercises; He goes on a date 2 day(s) after he plays badminton; 2 day(s) after he reads sci-fi novels, he reads essays; He watches movies 3 day(s) after he reads sci-fi novels",
+        "question": "He reads sci-fi novels 2 day(s) earlier than he ____",
+        "options": {
+            "A": "plays badminton",
+            "B": "does some exercises",
+            "C": "reads essays",
+            "D": "reads sci-fi novels"
+        },
+        "answers": [
+            "C"
+        ],
+        "chain": "根据2 day(s) after he reads sci-fi novels, he reads essays，于是He reads sci-fi novels 2 day(s) earlier than he reads essays",
+        "layer": 1,
+        "tag": "时刻-定量比较"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "On Wednesday, he plays badminton",
+            "On Wednesday, he does some exercises",
+            "He cleans his dormitory, and that was on Thursday",
+            "1 day(s) after he does some exercises, he reads sci-fi novels",
+            "When it's Friday he goes on a date",
+            "He watches movies 3 day(s) after he cleans his dormitory"
+        ],
+        "text": "Jack has a clear weekly plan: On Wednesday, he plays badminton; On Wednesday, he does some exercises; He cleans his dormitory, and that was on Thursday; 1 day(s) after he does some exercises, he reads sci-fi novels; When it's Friday he goes on a date; He watches movies 3 day(s) after he cleans his dormitory",
+        "question": "The time gap between he watches movies and does some exercises is ____ day(s)",
+        "options": {
+            "A": "1",
+            "B": "3",
+            "C": "4",
+            "D": "0"
+        },
+        "answers": [
+            "C"
+        ],
+        "chain": "由于When it's weekday 3 he does some exercises，并且既然When it's weekday 4 he cleans his dormitory，于是1 day(s) before he cleans his dormitory, he does some exercises\n根据He watches movies 3 day(s) after he cleans his dormitory，于是He cleans his dormitory 3 day(s) earlier than he watches movies\n既然He does some exercises 1 day(s) before he cleans his dormitory，并且既然He cleans his dormitory 3 day(s) earlier than he watches movies，于是4 day(s) before he watches movies, he does some exercises\n因为He does some exercises 4 day(s) earlier than he watches movies，故The time gap between he watches movies and does some exercises is 4 day(s)",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "He learns Japanese on Monday",
+            "He plays badminton, and that was on Wednesday",
+            "He has a meeting 2 day(s) later than he learns Japanese",
+            "He goes on a date 4 day(s) later than he learns Japanese",
+            "2 day(s) after he has a meeting, he practices the guitar",
+            "4 day(s) after he plays badminton, he watches movies"
+        ],
+        "text": "Jack has a clear weekly plan: He learns Japanese on Monday; He plays badminton, and that was on Wednesday; He has a meeting 2 day(s) later than he learns Japanese; He goes on a date 4 day(s) later than he learns Japanese; 2 day(s) after he has a meeting, he practices the guitar; 4 day(s) after he plays badminton, he watches movies",
+        "question": "He has a 4-day difference between he ____ and watches movies",
+        "options": {
+            "A": "goes on a date",
+            "B": "has a meeting",
+            "C": "watches movies",
+            "D": "plays badminton"
+        },
+        "answers": [
+            "B",
+            "D"
+        ],
+        "chain": "由于He watches movies 4 day(s) after he plays badminton，而且由于He plays badminton, and that was on weekday 3，于是When it's weekday 0 he watches movies\n因为2 day(s) after he learns Japanese, he has a meeting，而且既然On weekday 1, he learns Japanese，所以When it's weekday 3 he has a meeting\n既然When it's weekday 0 he watches movies，并且既然He has a meeting, and that was on weekday 3，所以4 day(s) after he has a meeting, he watches movies\n因为4 day(s) after he has a meeting, he watches movies，因此The time gap between he has a meeting and watches movies is 4 day(s)\n因为He watches movies 4 day(s) later than he plays badminton，因而He has a 4-day difference between he plays badminton and watches movies",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "He does some exercises on Wednesday",
+            "He reads sci-fi novels on Thursday",
+            "2 day(s) after he does some exercises, he goes on a date",
+            "1 day(s) after he reads sci-fi novels, he practices the guitar",
+            "He reads essays 2 day(s) later than he reads sci-fi novels",
+            "He watches movies 2 day(s) later than he goes on a date"
+        ],
+        "text": "Jack has a clear weekly plan: He does some exercises on Wednesday; He reads sci-fi novels on Thursday; 2 day(s) after he does some exercises, he goes on a date; 1 day(s) after he reads sci-fi novels, he practices the guitar; He reads essays 2 day(s) later than he reads sci-fi novels; He watches movies 2 day(s) later than he goes on a date",
+        "question": "He ____ 6 day(s) before he reads sci-fi novels",
+        "options": {
+            "A": "reads essays",
+            "B": "watches movies",
+            "C": "goes on a date",
+            "D": "practices the guitar"
+        },
+        "answers": [
+            "C",
+            "D"
+        ],
+        "chain": "由于2 day(s) after he does some exercises, he goes on a date，因此5 day(s) before he does some exercises, he goes on a date\n根据He does some exercises on weekday 3，此外根据He reads sci-fi novels, and that was on weekday 4，于是He does some exercises 1 day(s) earlier than he reads sci-fi novels\n根据He goes on a date 5 day(s) earlier than he does some exercises，再者根据He does some exercises 1 day(s) before he reads sci-fi novels，所以He goes on a date 6 day(s) earlier than he reads sci-fi novels\n既然He practices the guitar 1 day(s) after he reads sci-fi novels，因而6 day(s) before he reads sci-fi novels, he practices the guitar",
+        "layer": 2,
+        "tag": "时刻-定量比较"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "When it's Monday he learns Japanese",
+            "He has a meeting on Wednesday",
+            "On Wednesday, he does some exercises",
+            "He reads sci-fi novels 3 day(s) after he learns Japanese",
+            "3 day(s) after he does some exercises, he reads essays",
+            "He watches movies 4 day(s) after he does some exercises"
+        ],
+        "text": "Jack has a clear weekly plan: When it's Monday he learns Japanese; He has a meeting on Wednesday; On Wednesday, he does some exercises; He reads sci-fi novels 3 day(s) after he learns Japanese; 3 day(s) after he does some exercises, he reads essays; He watches movies 4 day(s) after he does some exercises",
+        "question": "He reads essays 2 day(s) earlier than he ____",
+        "options": {
+            "A": "watches movies",
+            "B": "learns Japanese",
+            "C": "reads essays",
+            "D": "does some exercises"
+        },
+        "answers": [
+            "B"
+        ],
+        "chain": "由于He reads essays 3 day(s) later than he does some exercises，而且因为When it's weekday 3 he does some exercises，因此He reads essays on weekday 6\n由于When it's weekday 6 he reads essays，再者既然When it's weekday 1 he learns Japanese，于是He reads essays 5 day(s) later than he learns Japanese\n由于He reads essays 5 day(s) after he learns Japanese，故He reads essays 2 day(s) before he learns Japanese",
+        "layer": 3,
+        "tag": "时刻-定量比较"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "On Wednesday, he has a meeting",
+            "He does some exercises, and that was on Wednesday",
+            "1 day(s) after he has a meeting, he cleans his dormitory",
+            "He goes on a date 2 day(s) later than he has a meeting",
+            "2 day(s) after he does some exercises, he practices the guitar",
+            "1 day(s) after he goes on a date, he reads essays"
+        ],
+        "text": "Jack has a clear weekly plan: On Wednesday, he has a meeting; He does some exercises, and that was on Wednesday; 1 day(s) after he has a meeting, he cleans his dormitory; He goes on a date 2 day(s) later than he has a meeting; 2 day(s) after he does some exercises, he practices the guitar; 1 day(s) after he goes on a date, he reads essays",
+        "question": "He has a 1-day difference between he goes on a date and ____",
+        "options": {
+            "A": "goes on a date",
+            "B": "cleans his dormitory",
+            "C": "does some exercises",
+            "D": "none of the above is correct"
+        },
+        "answers": [
+            "B"
+        ],
+        "chain": "根据1 day(s) after he has a meeting, he cleans his dormitory，因而He cleans his dormitory 6 day(s) before he has a meeting\n因为He goes on a date 2 day(s) later than he has a meeting，于是He has a meeting 2 day(s) earlier than he goes on a date\n因为He cleans his dormitory 6 day(s) before he has a meeting，再者既然2 day(s) before he goes on a date, he has a meeting，于是He cleans his dormitory 1 day(s) earlier than he goes on a date\n根据He cleans his dormitory 1 day(s) earlier than he goes on a date，因此The time gap between he goes on a date and cleans his dormitory is 1 day(s)\n由于He reads essays 1 day(s) after he goes on a date，所以He has a 1-day difference between he goes on a date and reads essays",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "When it's Wednesday he plays badminton",
+            "He has a meeting, and that was on Wednesday",
+            "On Wednesday, he does some exercises",
+            "On Thursday, he reads sci-fi novels",
+            "2 day(s) after he does some exercises, he goes on a date",
+            "4 day(s) after he has a meeting, he watches movies"
+        ],
+        "text": "Jack has a clear weekly plan: When it's Wednesday he plays badminton; He has a meeting, and that was on Wednesday; On Wednesday, he does some exercises; On Thursday, he reads sci-fi novels; 2 day(s) after he does some exercises, he goes on a date; 4 day(s) after he has a meeting, he watches movies",
+        "question": "He reads sci-fi novels 1 day(s) after he ____",
+        "options": {
+            "A": "watches movies",
+            "B": "reads sci-fi novels",
+            "C": "plays badminton",
+            "D": "does some exercises"
+        },
+        "answers": [
+            "C",
+            "D"
+        ],
+        "chain": "根据On weekday 4, he reads sci-fi novels，此外根据He plays badminton on weekday 3，因此He reads sci-fi novels 1 day(s) later than he plays badminton\n由于On weekday 4, he reads sci-fi novels，而且因为On weekday 3, he does some exercises，因而1 day(s) after he does some exercises, he reads sci-fi novels",
+        "layer": 1,
+        "tag": "时刻-定量比较"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "He learns Japanese, and that was on Monday",
+            "2 day(s) after he learns Japanese, he plays badminton",
+            "When it's Wednesday he has a meeting",
+            "When it's Wednesday he does some exercises",
+            "He cleans his dormitory 1 day(s) later than he has a meeting",
+            "He goes on a date 2 day(s) after he does some exercises"
+        ],
+        "text": "Jack has a clear weekly plan: He learns Japanese, and that was on Monday; 2 day(s) after he learns Japanese, he plays badminton; When it's Wednesday he has a meeting; When it's Wednesday he does some exercises; He cleans his dormitory 1 day(s) later than he has a meeting; He goes on a date 2 day(s) after he does some exercises",
+        "question": "He has a 4-day difference between he ____ and goes on a date",
+        "options": {
+            "A": "has a meeting",
+            "B": "does some exercises",
+            "C": "plays badminton",
+            "D": "learns Japanese"
+        },
+        "answers": [
+            "D"
+        ],
+        "chain": "因为He goes on a date 2 day(s) later than he does some exercises，再者根据He does some exercises on weekday 3，于是He goes on a date on weekday 5\n既然He goes on a date on weekday 5，另外由于On weekday 1, he learns Japanese，所以He goes on a date 4 day(s) after he learns Japanese\n既然He goes on a date 4 day(s) later than he learns Japanese，因此The time gap between he learns Japanese and goes on a date is 4 day(s)",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "He plays badminton, and that was on Wednesday",
+            "He has a meeting, and that was on Wednesday",
+            "He cleans his dormitory on Thursday",
+            "He reads sci-fi novels 1 day(s) later than he plays badminton",
+            "He goes on a date 1 day(s) later than he reads sci-fi novels",
+            "2 day(s) after he cleans his dormitory, he reads essays"
+        ],
+        "text": "Jack has a clear weekly plan: He plays badminton, and that was on Wednesday; He has a meeting, and that was on Wednesday; He cleans his dormitory on Thursday; He reads sci-fi novels 1 day(s) later than he plays badminton; He goes on a date 1 day(s) later than he reads sci-fi novels; 2 day(s) after he cleans his dormitory, he reads essays",
+        "question": "He ____ 6 day(s) before he has a meeting",
+        "options": {
+            "A": "reads essays",
+            "B": "goes on a date",
+            "C": "reads sci-fi novels",
+            "D": "cleans his dormitory"
+        },
+        "answers": [
+            "C",
+            "D"
+        ],
+        "chain": "因为1 day(s) after he plays badminton, he reads sci-fi novels，另外根据He plays badminton, and that was on weekday 3，因而When it's weekday 4 he reads sci-fi novels\n因为He reads sci-fi novels on weekday 4，而且根据He has a meeting on weekday 3，于是He reads sci-fi novels 1 day(s) later than he has a meeting\n因为1 day(s) after he has a meeting, he reads sci-fi novels，因此He reads sci-fi novels 6 day(s) before he has a meeting\n由于On weekday 4, he cleans his dormitory，另外由于He has a meeting on weekday 3，因而He cleans his dormitory 1 day(s) after he has a meeting\n既然He cleans his dormitory 1 day(s) later than he has a meeting，故6 day(s) before he has a meeting, he cleans his dormitory",
+        "layer": 3,
+        "tag": "时刻-定量比较"
+    },
+    {
+        "guide": "Jack has a clear weekly plan",
+        "statement": [
+            "When it's Wednesday he plays badminton",
+            "On Wednesday, he does some exercises",
+            "He cleans his dormitory on Thursday",
+            "1 day(s) after he cleans his dormitory, he goes on a date",
+            "3 day(s) after he plays badminton, he reads essays",
+            "He watches movies 3 day(s) after he cleans his dormitory"
+        ],
+        "text": "Jack has a clear weekly plan: When it's Wednesday he plays badminton; On Wednesday, he does some exercises; He cleans his dormitory on Thursday; 1 day(s) after he cleans his dormitory, he goes on a date; 3 day(s) after he plays badminton, he reads essays; He watches movies 3 day(s) after he cleans his dormitory",
+        "question": "He has a ____-day difference between he reads essays and goes on a date",
+        "options": {
+            "A": "1",
+            "B": "4",
+            "C": "2",
+            "D": "0"
+        },
+        "answers": [
+            "A"
+        ],
+        "chain": "因为1 day(s) after he cleans his dormitory, he goes on a date，再者由于When it's weekday 4 he cleans his dormitory，于是When it's weekday 5 he goes on a date\n因为He reads essays 3 day(s) later than he plays badminton，再者由于On weekday 3, he plays badminton，所以He reads essays on weekday 6\n因为When it's weekday 5 he goes on a date，而且由于He reads essays on weekday 6，因而He goes on a date 1 day(s) before he reads essays\n因为He goes on a date 1 day(s) before he reads essays，所以There are 1 day(s) between he reads essays and goes on a date",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    }
+]

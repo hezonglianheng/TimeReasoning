@@ -1,0 +1,338 @@
+Jack's daughter is telling her friends about the story of his life: He started elementary school, and that was in 1907; He graduated from elementary school in 1913; 6 year(s) after he started elementary school, he started junior high school; He graduated from junior high school 4 year(s) after he graduated from elementary school; In the year of 1917 he started high school; It takes 3 year(s) that he studied in high school; He joined a company 14 year(s) after he started junior high school; He started dating 22 year(s) later than he started elementary school; He started dating, and spent 0 year(s) on it; He retired 55 year(s) later than he started elementary school.
+Please answer: Which of the following is(are) incorrect?
+A: The time gap between he joined a company and joined a company is 35 year(s).
+B: He joined a company after he graduated from junior high school.
+C: He graduated from junior high school before he joined a company.
+D: There are 13 year(s) between he started elementary school and graduated from high school.
+Answers: A
+
+4o:
+Let's break down the timeline based on the information provided:
+
+Jack's life events:
+Started elementary school in 1907.
+Graduated from elementary school in 1913 (6 years after starting elementary school).
+Started junior high school 6 years after starting elementary school, i.e., 1913 + 6 = 1919.
+Graduated from junior high school 4 years after graduating from elementary school, i.e., 1913 + 4 = 1917.
+Started high school in 1917.
+Graduated from high school 3 years after starting high school, i.e., 1917 + 3 = 1920.
+Joined a company 14 years after starting junior high school, i.e., 1919 + 14 = 1933.
+Started dating 22 years after starting elementary school, i.e., 1907 + 22 = 1929.
+Spent 0 years dating (indicating he started and ended dating at the same time).
+Retired 55 years after starting elementary school, i.e., 1907 + 55 = 1962.
+Now let's analyze the options:
+
+A: The time gap between he joined a company and joined a company is 35 year(s).
+
+This statement is nonsensical, as it repeats the same event (joining the company). There is no gap between joining a company and joining a company. Thus, A is incorrect.
+B: He joined a company after he graduated from junior high school.
+
+Jack joined a company in 1933, which is 14 years after he started junior high school in 1919. He graduated junior high school in 1917, which means he joined a company after graduating from junior high school. Thus, B is correct.
+C: He graduated from junior high school before he joined a company.
+
+Jack graduated from junior high school in 1917, and he joined the company in 1933, which is 16 years later. Thus, C is correct.
+D: There are 13 year(s) between he started elementary school and graduated from high school.
+
+Jack started elementary school in 1907 and graduated from high school in 1920, which is a gap of 13 years (1920 - 1907 = 13). Thus, D is correct.
+Conclusion:
+The incorrect statement is A.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He started elementary school in 1907; He graduated from elementary school 6 year(s) after he started elementary school; 6 year(s) after he started elementary school, he started junior high school; He studied in junior high school, until 4 year(s) later; He joined a company 10 year(s) after he graduated from junior high school; 11 year(s) after he graduated from junior high school, he met his future wife; He got married 12 year(s) after he graduated from junior high school; 1 year(s) after he got married, he became a father.
+Please answer: Which of the following is(are) incorrect?
+A: He has a 1-year difference between he met his future wife and joined a company.
+B: He became a father after he graduated from elementary school.
+C: He met his future wife later than joined a company.
+D: none of the above is correct.
+Answers: D
+
+4o:
+Let's break down the timeline based on the new information:
+
+Jack's life events:
+Started elementary school in 1907.
+Graduated from elementary school 6 years later, i.e., 1907 + 6 = 1913.
+Started junior high school 6 years after starting elementary school, i.e., 1907 + 6 = 1913.
+Studied in junior high school for 4 years, i.e., 1913 + 4 = 1917 (graduated junior high school in 1917).
+Joined a company 10 years after graduating from junior high school, i.e., 1917 + 10 = 1927.
+Met his future wife 11 years after graduating from junior high school, i.e., 1917 + 11 = 1928.
+Got married 12 years after graduating from junior high school, i.e., 1917 + 12 = 1929.
+Became a father 1 year after getting married, i.e., 1929 + 1 = 1930.
+Now let's analyze the options:
+
+A: He has a 1-year difference between he met his future wife and joined a company.
+
+Jack met his future wife in 1928, and he joined the company in 1927. The difference between these two events is 1 year. Therefore, A is correct.
+B: He became a father after he graduated from elementary school.
+
+Jack became a father in 1930, which is after he graduated from elementary school in 1913. Therefore, B is correct.
+C: He met his future wife later than joined a company.
+
+Jack met his future wife in 1928, which is 1 year after he joined the company in 1927. Therefore, C is correct.
+D: None of the above is correct.
+
+Since all of the previous statements (A, B, and C) are correct, D is incorrect.
+Conclusion:
+None of the options are incorrect. Therefore, D is incorrect, and A, B, and C are correct.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He studied in junior high school from 1913 to 1917; In the year of 1917 he started high school; 3 more year(s) are taken that he studied in high school than he started dating; He met his future wife 15 year(s) after he started junior high school; 9 year(s) after he graduated from high school, he started dating; He started dating in 1929; He got married 16 year(s) after he started junior high school; He retired 49 year(s) later than he started junior high school.
+Please answer: Which of the following is(are) incorrect?
+A: There are 12 year(s) between he graduated from junior high school and got married.
+B: He studied in junior high school earlier than got married.
+C: He has a 9-year difference between he got married and graduated from high school.
+D: He got married before he met his future wife.
+Answers: D
+
+4o:
+Let's break down the timeline based on the given information:
+
+Jack's life events:
+Studied in junior high school from 1913 to 1917 (4 years).
+Started high school in 1917.
+Studied in high school for 3 more years than he started dating. Since he started dating in 1929, he must have studied in high school until 1929. Therefore, he finished high school in 1929.
+Met his future wife 15 years after starting junior high school, i.e., 1913 + 15 = 1928.
+Started dating in 1929.
+Got married 16 years after starting junior high school, i.e., 1913 + 16 = 1929.
+Retired 49 years after starting junior high school, i.e., 1913 + 49 = 1962.
+Now, let's analyze the options:
+
+A: There are 12 year(s) between he graduated from junior high school and got married.
+
+Jack graduated from junior high school in 1917 and got married in 1929. The difference is 1929 - 1917 = 12 years, so A is correct.
+B: He studied in junior high school earlier than got married.
+
+Jack studied in junior high school from 1913 to 1917, and got married in 1929. Therefore, he studied in junior high school earlier than he got married, so B is correct.
+C: He has a 9-year difference between he got married and graduated from high school.
+
+Jack graduated from high school in 1929 (the same year he started dating and got married), so the difference between getting married and graduating from high school is 0 years, not 9 years. Therefore, C is incorrect.
+D: He got married before he met his future wife.
+
+Jack met his future wife in 1928 and got married in 1929. Therefore, he did not get married before meeting his future wife, so D is incorrect.
+Conclusion:
+The incorrect statements are C and D. Therefore, C and D are incorrect.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: From 1907 on, he studied in elementary school for 6 year(s); By 1920, he studied in high school for 3 year(s); He started university 3 year(s) later than he started high school; He studied in university, and spent 5 year(s) on it; 21 year(s) after he started elementary school, he met his future wife; 1 year(s) after he met his future wife, he started dating; For 0 year(s), he started dating; 49 year(s) after he graduated from elementary school, he retired.
+Please answer: Which of the following is(are) incorrect?
+A: He graduated from high school earlier than graduated from university.
+B: He has a 5-year difference between he graduated from university and graduated from high school.
+C: The time gap between he started dating and graduated from university is 4 year(s).
+D: There are 3 year(s) between he graduated from university and started university.
+Answers: D
+
+4o:
+Let's break down the timeline based on the given information:
+
+Jack's life events:
+Started elementary school in 1907 and studied for 6 years, so he graduated from elementary school in 1913.
+By 1920, he had studied in high school for 3 years, which means he started high school in 1917 (1920 - 3 years).
+He started university 3 years after starting high school, so he started university in 1920 (1917 + 3 years).
+He studied in university for 5 years, so he graduated from university in 1925 (1920 + 5 years).
+Met his future wife 21 years after starting elementary school, i.e., 1928 (1907 + 21 years).
+He started dating 1 year after meeting his future wife, so he started dating in 1929 (1928 + 1 year).
+He spent 0 years dating, which indicates that he started and ended dating at the same time in 1929.
+He retired 49 years after graduating from elementary school, i.e., 1962 (1913 + 49 years).
+Now, let's analyze the options:
+
+A: He graduated from high school earlier than graduated from university.
+
+Jack graduated from high school in 1920 and graduated from university in 1925. He graduated from high school earlier than university. Therefore, A is correct.
+B: He has a 5-year difference between he graduated from university and graduated from high school.
+
+Jack graduated from high school in 1920 and graduated from university in 1925. The difference is 5 years (1925 - 1920 = 5 years). Therefore, B is correct.
+C: The time gap between he started dating and graduated from university is 4 year(s).
+
+Jack started dating in 1929 and graduated from university in 1925. The gap between these two events is 1929 - 1925 = 4 years. Therefore, C is correct.
+D: There are 3 year(s) between he graduated from university and started university.
+
+Jack started university in 1920 and graduated in 1925. The gap between starting and graduating from university is 5 years, not 3 years. Therefore, D is incorrect.
+Conclusion:
+The incorrect statement is D. Therefore, D is incorrect, while A, B, and C are correct.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: Starting from 1900, he lived his life for 96 year(s); From 1917 on, he studied in high school for 3 year(s); 27 year(s) after he was born, he joined a company; He got married 12 year(s) later than he started high school; 13 year(s) after he started high school, he became a father; 45 year(s) after he started high school, he retired.
+Please answer: Which of the following is(are) incorrect?
+A: He joined a company before he became a father.
+B: There are 33 year(s) between he got married and retired.
+C: The time gap between he joined a company and passed away is 35 year(s).
+D: He has a 32-year difference between he retired and became a father.
+Answers: C
+
+4o:
+Let's break down the timeline based on the information given:
+
+Jack's life events:
+Born in 1900 (since he lived for 96 years starting from 1900, so he passed away in 1996).
+Started high school in 1917.
+Studied in high school for 3 years, so he graduated in 1920.
+Joined a company 27 years after he was born, i.e., 1927 (1900 + 27 years).
+Got married 12 years after starting high school, i.e., 1917 + 12 = 1929.
+Became a father 13 years after starting high school, i.e., 1917 + 13 = 1930.
+Retired 45 years after starting high school, i.e., 1917 + 45 = 1962.
+Passed away in 1996.
+Now, let's analyze the options:
+
+A: He joined a company before he became a father.
+
+Jack joined a company in 1927 and became a father in 1930. He joined the company before becoming a father. Therefore, A is correct.
+B: There are 33 year(s) between he got married and retired.
+
+Jack got married in 1929 and retired in 1962. The difference between these two events is 1962 - 1929 = 33 years. Therefore, B is correct.
+C: The time gap between he joined a company and passed away is 35 year(s).
+
+Jack joined a company in 1927 and passed away in 1996. The difference between these two events is 1996 - 1927 = 69 years, not 35 years. Therefore, C is incorrect.
+D: He has a 32-year difference between he retired and became a father.
+
+Jack became a father in 1930 and retired in 1962. The difference between these two events is 1962 - 1930 = 32 years. Therefore, D is correct.
+Conclusion:
+The incorrect statement is C. Therefore, C is incorrect, while A, B, and D are correct.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: In 1907 he studied in elementary school, until 1913; He started university 7 year(s) later than he graduated from elementary school; He graduated from university 18 year(s) later than he started elementary school; 2 year(s) after he graduated from university, he joined a company; 22 year(s) after he started elementary school, he got married; He became a father 10 year(s) after he started university; 55 year(s) after he started elementary school, he retired.
+Please answer: Which of the following is(are) incorrect?
+A: The time gap between he started university and got married is 16 year(s).
+B: He graduated from university before he retired.
+C: He has a 49-year difference between he retired and graduated from elementary school.
+D: The time gap between he started university and retired is 42 year(s).
+Answers: A
+
+4o:
+
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: In 1913, he started junior high school; In the year of 1917 he graduated from junior high school; He joined a company 10 year(s) later than he graduated from junior high school; He met his future wife 1 year(s) later than he joined a company; He started dating in 1929, and ended in 1929; He became a father 3 year(s) after he joined a company; He retired 45 year(s) after he graduated from junior high school.
+Please answer: Which of the following is(are) incorrect?
+A: He retired after he met his future wife.
+B: He started junior high school earlier than became a father.
+C: He started dating earlier than joined a company.
+D: He retired later than became a father.
+Answers: C
+
+4o:
+Let's break down the timeline based on the information given:
+
+Jack's life events:
+Started junior high school in 1913.
+Graduated from junior high school in 1917.
+Joined a company 10 years after graduating from junior high school, i.e., 1927 (1917 + 10 years).
+Met his future wife 1 year after joining a company, i.e., 1928 (1927 + 1 year).
+Started dating in 1929 and ended the same year, which means he started and ended dating in 1929.
+Became a father 3 years after joining a company, i.e., 1930 (1927 + 3 years).
+Retired 45 years after graduating from junior high school, i.e., 1962 (1917 + 45 years).
+Now, let's analyze the options:
+
+A: He retired after he met his future wife.
+
+Jack met his future wife in 1928 and retired in 1962. He did retire after meeting his future wife, so A is correct.
+B: He started junior high school earlier than became a father.
+
+Jack started junior high school in 1913 and became a father in 1930. He started junior high school earlier than becoming a father, so B is correct.
+C: He started dating earlier than joined a company.
+
+Jack started dating in 1929 and joined the company in 1927. He joined the company before starting dating. Therefore, C is incorrect.
+D: He retired later than became a father.
+
+Jack became a father in 1930 and retired in 1962. He did retire later than becoming a father, so D is correct.
+Conclusion:
+The incorrect statement is C. Therefore, C is incorrect, while A, B, and D are correct.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He lived his life from 1900 to 1996; He started elementary school in 1907; He graduated from elementary school 13 year(s) after he was born; He started high school 10 year(s) after he started elementary school; He takes 3 more year(s) than he started dating that he studied in high school; 13 year(s) after he started elementary school, he started university; He studied in university, and spent 5 year(s) on it; He joined a company 20 year(s) later than he started elementary school; He started dating 2 year(s) later than he joined a company; He started dating, and spent 0 year(s) on it.
+Please answer: Which of the following is(are) incorrect?
+A: He has a 8-year difference between he started high school and graduated from university.
+B: He graduated from university after he graduated from elementary school.
+C: He has a 18-year difference between he started elementary school and graduated from university.
+D: He has a 16-year difference between he started dating and started high school.
+Answers: D
+
+4o:
+Let's break down the timeline based on the information provided:
+
+Jack's life events:
+Born in 1900 and lived until 1996.
+Started elementary school in 1907.
+Graduated from elementary school 13 years after being born, i.e., 1913 (1900 + 13 years).
+Started high school 10 years after starting elementary school, i.e., 1917 (1907 + 10 years).
+Took 3 more years to study in high school than to start dating, so if he started dating 2 years after joining the company, he must have graduated high school in 1929 (1917 + 12 years, with 3 more years added to the time it took to date).
+Started university 13 years after starting elementary school, i.e., 1920 (1907 + 13 years).
+Studied in university for 5 years, so he graduated from university in 1925 (1920 + 5 years).
+Joined a company 20 years after starting elementary school, i.e., 1927 (1907 + 20 years).
+Started dating 2 years later than he joined a company, i.e., 1929 (1927 + 2 years).
+Spent 0 years dating, meaning he started and ended dating in 1929.
+Now, let's analyze the options:
+
+A: He has an 8-year difference between he started high school and graduated from university.
+
+Jack started high school in 1917 and graduated from university in 1925. The difference is 1925 - 1917 = 8 years. Therefore, A is correct.
+B: He graduated from university after he graduated from elementary school.
+
+Jack graduated from elementary school in 1913 and graduated from university in 1925. He graduated from university after elementary school. Therefore, B is correct.
+C: He has an 18-year difference between he started elementary school and graduated from university.
+
+Jack started elementary school in 1907 and graduated from university in 1925. The difference is 1925 - 1907 = 18 years. Therefore, C is correct.
+D: He has a 16-year difference between he started dating and started high school.
+
+Jack started dating in 1929 and started high school in 1917. The difference is 1929 - 1917 = 12 years, not 16 years. Therefore, D is incorrect.
+Conclusion:
+The incorrect statement is D. Therefore, D is incorrect, while A, B, and C are correct.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: In the year of 1900 he was born; He passed away 66 year(s) after he became a father; He started high school 17 year(s) later than he was born; He studied in high school, and spent 3 year(s) on it; He started university 3 year(s) later than he started high school; 2 more year(s) are taken that he studied in university than he studied in high school; 2 year(s) after he graduated from university, he joined a company; 9 year(s) after he started university, he started dating; He started dating 4 year(s) later than he graduated from university; 10 year(s) after he graduated from high school, he became a father.
+Please answer: Which of the following is(are) incorrect?
+A: There are 7 year(s) between he started university and joined a company.
+B: He joined a company before he started dating.
+C: He graduated from high school before he joined a company.
+D: He joined a company before he was born.
+Answers: D
+
+4o:
+Let's break down the timeline based on the provided information:
+
+Jack's life events:
+Born in 1900.
+Started high school 17 years after being born, i.e., 1917 (1900 + 17).
+Studied in high school for 3 years, so he graduated high school in 1920 (1917 + 3 years).
+Started university 3 years after starting high school, i.e., 1920 + 3 = 1923.
+Studied in university for 5 years (2 more years than in high school), so he graduated from university in 1928 (1923 + 5 years).
+Joined a company 2 years after graduating from university, i.e., 1930 (1928 + 2 years).
+Started dating 9 years after starting university, i.e., 1932 (1923 + 9 years).
+Started dating 4 years after graduating from university, i.e., 1932 (1928 + 4 years).
+Became a father 10 years after graduating from high school, i.e., 1930 (1920 + 10 years).
+Passed away 66 years after becoming a father, i.e., 1930 + 66 = 1996.
+Now let's analyze the options:
+
+A: There are 7 years between he started university and joined a company.
+
+Jack started university in 1923 and joined a company in 1930. The difference between these two events is 1930 - 1923 = 7 years. Therefore, A is correct.
+B: He joined a company before he started dating.
+
+Jack joined a company in 1930 and started dating in 1932. He joined the company before starting dating. Therefore, B is correct.
+C: He graduated from high school before he joined a company.
+
+Jack graduated from high school in 1920 and joined a company in 1930. He graduated from high school before joining a company. Therefore, C is correct.
+D: He joined a company before he was born.
+
+Jack was born in 1900 and joined a company in 1930. He joined the company after he was born, not before. Therefore, D is incorrect.
+Conclusion:
+The incorrect statement is D. Therefore, D is incorrect, while A, B, and C are correct.
+
+*----------*
+
+Jack's daughter is telling her friends about the story of his life: He studied in elementary school in 1907, and ended in 1913; He started junior high school, and that was in 1913; 10 year(s) after he started elementary school, he graduated from junior high school; 13 year(s) after he started elementary school, he started university; He graduated from university 8 year(s) later than he graduated from junior high school; In 1927, he joined a company; He became a father 23 year(s) after he started elementary school; He retired 45 year(s) later than he graduated from junior high school.
+Please answer: Which of the following is(are) incorrect?
+A: He started junior high school before he graduated from university.
+B: There are 42 year(s) between he became a father and retired.
+C: He joined a company earlier than retired.
+D: He has a 4-year difference between he graduated from junior high school and graduated from elementary school.
+Answers: B
+
+4o:

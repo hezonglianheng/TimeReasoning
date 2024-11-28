@@ -1,0 +1,277 @@
+[
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "In June, He started writing a novel",
+            "2 month(s) after he ended the overseas trip, he published his own novel",
+            "3 month(s) after he started writing a novel, he started an overseas trip",
+            "He had an overseas trip for 1 month(s)",
+            "In November, He attended a concert",
+            "6 month(s) after he started writing a novel, he ended the journal of this year",
+            "He won the lottery 2 month(s) after he ended the overseas trip",
+            "He attended a class reunion 3 month(s) after he started an overseas trip"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June, He started writing a novel; 2 month(s) after he ended the overseas trip, he published his own novel; 3 month(s) after he started writing a novel, he started an overseas trip; He had an overseas trip for 1 month(s); In November, He attended a concert; 6 month(s) after he started writing a novel, he ended the journal of this year; He won the lottery 2 month(s) after he ended the overseas trip; He attended a class reunion 3 month(s) after he started an overseas trip",
+        "question": "He won the lottery after he ____",
+        "options": {
+            "A": "won the lottery",
+            "B": "attended a concert",
+            "C": "started an overseas trip",
+            "D": "started writing a novel"
+        },
+        "answers": [
+            "B",
+            "C",
+            "D"
+        ],
+        "chain": "由于He started an overseas trip 3 month(s) after he started writing a novel，所以3 month(s) before he started an overseas trip, he started writing a novel\n既然He had an overseas trip, and spent 1 month(s) on it，故He started an overseas trip 1 month(s) earlier than he ended the overseas trip\n根据He started writing a novel 3 month(s) before he started an overseas trip，此外既然He started an overseas trip 1 month(s) before he ended the overseas trip，因此4 month(s) before he ended the overseas trip, he started writing a novel\n因为2 month(s) after he ended the overseas trip, he won the lottery，因此2 month(s) before he won the lottery, he ended the overseas trip\n因为4 month(s) before he ended the overseas trip, he started writing a novel，而且由于2 month(s) before he won the lottery, he ended the overseas trip，因而He started writing a novel 6 month(s) before he won the lottery\n根据He started writing a novel 6 month(s) earlier than he won the lottery，因而He won the lottery 6 month(s) after he started writing a novel\n根据He won the lottery 6 month(s) later than he started writing a novel，因而He won the lottery later than started writing a novel\n既然It takes 1 month(s) that he had an overseas trip，因此He started an overseas trip 1 month(s) earlier than he ended the overseas trip\n由于2 month(s) after he ended the overseas trip, he won the lottery，于是2 month(s) before he won the lottery, he ended the overseas trip\n既然He started an overseas trip 1 month(s) earlier than he ended the overseas trip，并且因为He ended the overseas trip 2 month(s) earlier than he won the lottery，所以He started an overseas trip 3 month(s) earlier than he won the lottery\n根据He started an overseas trip 3 month(s) later than he started writing a novel，而且由于He started writing a novel, and that was in month 6，所以He started an overseas trip, and that was in month 9\n由于3 month(s) before he won the lottery, he started an overseas trip，此外既然In month 9, He started an overseas trip，故In month 12, He won the lottery\n由于He won the lottery, and that was in month 12，另外因为In month 11, He attended a concert，所以He won the lottery 1 month(s) later than he attended a concert\n既然He won the lottery 1 month(s) after he attended a concert，故He won the lottery after he attended a concert\n因为He had an overseas trip, until 1 month(s) later，故He started an overseas trip 1 month(s) earlier than he ended the overseas trip\n既然2 month(s) after he ended the overseas trip, he won the lottery，因而He ended the overseas trip 2 month(s) before he won the lottery\n因为He started an overseas trip 1 month(s) before he ended the overseas trip，另外根据He ended the overseas trip 2 month(s) earlier than he won the lottery，所以3 month(s) before he won the lottery, he started an overseas trip\n既然He started an overseas trip 3 month(s) before he won the lottery，于是3 month(s) after he started an overseas trip, he won the lottery\n因为He won the lottery 3 month(s) later than he started an overseas trip，于是He won the lottery later than started an overseas trip",
+        "layer": 5,
+        "tag": "时刻-定性比较"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "He started writing a novel, and that was in June",
+            "3 month(s) after he started an overseas trip, he published his own novel",
+            "3 month(s) after he started writing a novel, he started an overseas trip",
+            "4 month(s) after he started writing a novel, he ended the overseas trip",
+            "He attended a concert 5 month(s) later than he started writing a novel",
+            "3 month(s) after he started an overseas trip, he ended the journal of this year",
+            "He won the lottery 1 month(s) later than he attended a concert",
+            "He attended a class reunion 3 month(s) later than he started an overseas trip"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: He started writing a novel, and that was in June; 3 month(s) after he started an overseas trip, he published his own novel; 3 month(s) after he started writing a novel, he started an overseas trip; 4 month(s) after he started writing a novel, he ended the overseas trip; He attended a concert 5 month(s) later than he started writing a novel; 3 month(s) after he started an overseas trip, he ended the journal of this year; He won the lottery 1 month(s) later than he attended a concert; He attended a class reunion 3 month(s) later than he started an overseas trip",
+        "question": "He ____ before he published his own novel",
+        "options": {
+            "A": "attended a concert",
+            "B": "started an overseas trip",
+            "C": "won the lottery",
+            "D": "started writing a novel"
+        },
+        "answers": [
+            "A",
+            "B",
+            "D"
+        ],
+        "chain": "因为He attended a concert 5 month(s) after he started writing a novel，另外由于In month 6, He started writing a novel，因此He attended a concert, and that was in month 11\n由于3 month(s) after he started an overseas trip, he published his own novel，故He started an overseas trip 3 month(s) earlier than he published his own novel\n因为He started an overseas trip 3 month(s) later than he started writing a novel，而且既然He started writing a novel, and that was in month 6，因此In month 9, He started an overseas trip\n因为3 month(s) before he published his own novel, he started an overseas trip，而且既然In month 9, He started an overseas trip，故In month 12, He published his own novel\n根据He attended a concert, and that was in month 11，另外由于He published his own novel, and that was in month 12，因而He attended a concert 1 month(s) before he published his own novel\n由于1 month(s) before he published his own novel, he attended a concert，因而He attended a concert earlier than published his own novel\n由于He published his own novel 3 month(s) later than he started an overseas trip，故He started an overseas trip 3 month(s) earlier than he published his own novel\n因为3 month(s) before he published his own novel, he started an overseas trip，因此He started an overseas trip earlier than published his own novel\n由于3 month(s) after he started an overseas trip, he published his own novel，另外由于3 month(s) after he started writing a novel, he started an overseas trip，故He published his own novel 6 month(s) later than he started writing a novel\n由于6 month(s) after he started writing a novel, he published his own novel，故6 month(s) before he published his own novel, he started writing a novel\n由于He started writing a novel 6 month(s) before he published his own novel，所以He started writing a novel before he published his own novel",
+        "layer": 4,
+        "tag": "时刻-定性比较"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "In June, He started writing a novel",
+            "He wrote a novel for 6 month(s)",
+            "He had an overseas trip for 1 month(s) before October",
+            "He attended a concert 2 month(s) after he started an overseas trip",
+            "6 month(s) after he started writing a novel, he ended the journal of this year",
+            "In December, He won the lottery",
+            "He attended a class reunion 6 month(s) later than he started writing a novel"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June, He started writing a novel; He wrote a novel for 6 month(s); He had an overseas trip for 1 month(s) before October; He attended a concert 2 month(s) after he started an overseas trip; 6 month(s) after he started writing a novel, he ended the journal of this year; In December, He won the lottery; He attended a class reunion 6 month(s) later than he started writing a novel",
+        "question": "He has a 2-difference between he ____ and attended a class reunion",
+        "options": {
+            "A": "ended the overseas trip",
+            "B": "had an overseas trip",
+            "C": "won the lottery",
+            "D": "attended a concert"
+        },
+        "answers": [
+            "A"
+        ],
+        "chain": "既然6 month(s) after he started writing a novel, he attended a class reunion，另外由于He started writing a novel, and that was in month 6，因而In month 12, He attended a class reunion\n既然He had an overseas trip since month 9, for 1 month(s)，因此In month 10, He ended the overseas trip\n根据In month 12, He attended a class reunion，而且因为In month 10, He ended the overseas trip，因而He attended a class reunion 2 month(s) later than he ended the overseas trip\n由于He attended a class reunion 2 month(s) later than he ended the overseas trip，所以There are 2 month(s) between he ended the overseas trip and attended a class reunion",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "He started writing a novel, and that was in June",
+            "He wrote a novel for 6 month(s)",
+            "Starting from September, he had an overseas trip for 1 month(s)",
+            "In November, He attended a concert",
+            "3 month(s) after he started an overseas trip, he ended the journal of this year",
+            "He won the lottery, and that was in December",
+            "He attended a class reunion 1 month(s) after he attended a concert"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: He started writing a novel, and that was in June; He wrote a novel for 6 month(s); Starting from September, he had an overseas trip for 1 month(s); In November, He attended a concert; 3 month(s) after he started an overseas trip, he ended the journal of this year; He won the lottery, and that was in December; He attended a class reunion 1 month(s) after he attended a concert",
+        "question": "He has a 3-difference between he ____ and started an overseas trip",
+        "options": {
+            "A": "attended a concert",
+            "B": "started an overseas trip",
+            "C": "started writing a novel",
+            "D": "ended the overseas trip"
+        },
+        "answers": [
+            "C"
+        ],
+        "chain": "由于He had an overseas trip since month 9, for 1 month(s)，因而In month 9, He started an overseas trip\n因为In month 9, He started an overseas trip，此外根据In month 6, He started writing a novel，于是He started an overseas trip 3 month(s) after he started writing a novel\n既然3 month(s) after he started writing a novel, he started an overseas trip，因而There are 3 month(s) between he started writing a novel and started an overseas trip",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "He started writing a novel, and that was in June",
+            "He published his own novel, and that was in December",
+            "He started an overseas trip, and that was in September",
+            "For 1 month(s), he had an overseas trip",
+            "He attended a concert 2 month(s) after he started an overseas trip",
+            "He ended the journal of this year 6 month(s) after he started writing a novel",
+            "He won the lottery 6 month(s) after he started writing a novel",
+            "He attended a class reunion 1 month(s) after he attended a concert"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: He started writing a novel, and that was in June; He published his own novel, and that was in December; He started an overseas trip, and that was in September; For 1 month(s), he had an overseas trip; He attended a concert 2 month(s) after he started an overseas trip; He ended the journal of this year 6 month(s) after he started writing a novel; He won the lottery 6 month(s) after he started writing a novel; He attended a class reunion 1 month(s) after he attended a concert",
+        "question": "He ____ later than started writing a novel",
+        "options": {
+            "A": "attended a concert",
+            "B": "attended a class reunion",
+            "C": "won the lottery",
+            "D": "ended the journal of this year"
+        },
+        "answers": [
+            "A",
+            "B",
+            "C",
+            "D"
+        ],
+        "chain": "既然He won the lottery 6 month(s) later than he started writing a novel，因而He won the lottery after he started writing a novel\n因为He attended a class reunion 1 month(s) after he attended a concert，再者既然He attended a concert 2 month(s) later than he started an overseas trip，因而3 month(s) after he started an overseas trip, he attended a class reunion\n既然In month 9, He started an overseas trip，并且由于He started writing a novel, and that was in month 6，所以He started an overseas trip 3 month(s) after he started writing a novel\n既然He attended a class reunion 3 month(s) later than he started an overseas trip，另外因为He started an overseas trip 3 month(s) later than he started writing a novel，所以He attended a class reunion 6 month(s) after he started writing a novel\n既然He attended a class reunion 6 month(s) later than he started writing a novel，所以He attended a class reunion later than started writing a novel\n根据6 month(s) after he started writing a novel, he ended the journal of this year，故He ended the journal of this year later than started writing a novel\n既然He attended a concert 2 month(s) after he started an overseas trip，并且由于In month 9, He started an overseas trip，故He attended a concert, and that was in month 11\n既然He attended a concert, and that was in month 11，此外因为He started writing a novel, and that was in month 6，于是He attended a concert 5 month(s) after he started writing a novel\n根据He attended a concert 5 month(s) after he started writing a novel，故He attended a concert after he started writing a novel",
+        "layer": 1,
+        "tag": "时刻-定性比较"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "In June he wrote a novel, until December",
+            "He started an overseas trip 3 month(s) later than he started writing a novel",
+            "It takes 1 month(s) that he had an overseas trip",
+            "He attended a concert 5 month(s) after he started writing a novel",
+            "He ended the journal of this year 6 month(s) later than he started writing a novel",
+            "He won the lottery, and that was in December",
+            "He attended a class reunion 2 month(s) later than he ended the overseas trip"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June he wrote a novel, until December; He started an overseas trip 3 month(s) later than he started writing a novel; It takes 1 month(s) that he had an overseas trip; He attended a concert 5 month(s) after he started writing a novel; He ended the journal of this year 6 month(s) later than he started writing a novel; He won the lottery, and that was in December; He attended a class reunion 2 month(s) later than he ended the overseas trip",
+        "question": "He has a 3-difference between he started an overseas trip and ____",
+        "options": {
+            "A": "started writing a novel",
+            "B": "ended the journal of this year",
+            "C": "attended a concert",
+            "D": "won the lottery"
+        },
+        "answers": [
+            "A",
+            "B",
+            "D"
+        ],
+        "chain": "既然He ended the journal of this year 6 month(s) later than he started writing a novel，所以6 month(s) before he ended the journal of this year, he started writing a novel\n根据In month 6 he wrote a novel, until month 12，于是In month 6, He started writing a novel\n根据He started writing a novel 6 month(s) earlier than he ended the journal of this year，再者由于He started writing a novel, and that was in month 6，因此In month 12, He ended the journal of this year\n根据He started an overseas trip 3 month(s) after he started writing a novel，所以He started writing a novel 3 month(s) before he started an overseas trip\n由于Before month 12, it's been 6 month(s) that he wrote a novel，故In month 6, He started writing a novel\n由于He started writing a novel 3 month(s) before he started an overseas trip，此外根据In month 6, He started writing a novel，因此He started an overseas trip, and that was in month 9\n既然In month 12, He ended the journal of this year，此外既然He started an overseas trip, and that was in month 9，故He ended the journal of this year 3 month(s) after he started an overseas trip\n根据He ended the journal of this year 3 month(s) after he started an overseas trip，因而There are 3 month(s) between he started an overseas trip and ended the journal of this year\n因为3 month(s) after he started writing a novel, he started an overseas trip，因而3 month(s) before he started an overseas trip, he started writing a novel\n由于3 month(s) before he started an overseas trip, he started writing a novel，因此He has a 3-month difference between he started an overseas trip and started writing a novel\n既然He started an overseas trip 3 month(s) later than he started writing a novel，所以3 month(s) before he started an overseas trip, he started writing a novel\n因为He wrote a novel for 6 month(s) before month 12，因而In month 6, He started writing a novel\n由于3 month(s) before he started an overseas trip, he started writing a novel，再者既然In month 6, He started writing a novel，于是He started an overseas trip, and that was in month 9\n既然He won the lottery, and that was in month 12，此外根据In month 9, He started an overseas trip，于是He won the lottery 3 month(s) after he started an overseas trip\n根据3 month(s) after he started an overseas trip, he won the lottery，所以The time gap between he started an overseas trip and won the lottery is 3 month(s)",
+        "layer": 4,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "By December, he wrote a novel for 6 month(s)",
+            "By October, he had an overseas trip for 1 month(s)",
+            "2 month(s) after he started an overseas trip, he attended a concert",
+            "6 month(s) after he started writing a novel, he ended the journal of this year",
+            "3 month(s) after he started an overseas trip, he won the lottery",
+            "In December, He attended a class reunion"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: By December, he wrote a novel for 6 month(s); By October, he had an overseas trip for 1 month(s); 2 month(s) after he started an overseas trip, he attended a concert; 6 month(s) after he started writing a novel, he ended the journal of this year; 3 month(s) after he started an overseas trip, he won the lottery; In December, He attended a class reunion",
+        "question": "In ____, He won the lottery",
+        "options": {
+            "A": "September",
+            "B": "August",
+            "C": "December",
+            "D": "November"
+        },
+        "answers": [
+            "C"
+        ],
+        "chain": "根据He won the lottery 3 month(s) later than he started an overseas trip，因此He started an overseas trip 3 month(s) earlier than he won the lottery\n根据He had an overseas trip in month 9, and ended in month 10，于是In month 9, He started an overseas trip\n因为He started an overseas trip 3 month(s) before he won the lottery，而且既然In month 9, He started an overseas trip，所以In month 12, He won the lottery",
+        "layer": 2,
+        "tag": "时刻-具体值"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "He started writing a novel, and that was in June",
+            "He published his own novel 2 month(s) after he ended the overseas trip",
+            "In September, He started an overseas trip",
+            "He ended the overseas trip 1 month(s) later than he started an overseas trip",
+            "He attended a concert 1 month(s) later than he ended the overseas trip",
+            "He ended the journal of this year, and that was in December",
+            "He won the lottery, and that was in December",
+            "He attended a class reunion 1 month(s) later than he attended a concert"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: He started writing a novel, and that was in June; He published his own novel 2 month(s) after he ended the overseas trip; In September, He started an overseas trip; He ended the overseas trip 1 month(s) later than he started an overseas trip; He attended a concert 1 month(s) later than he ended the overseas trip; He ended the journal of this year, and that was in December; He won the lottery, and that was in December; He attended a class reunion 1 month(s) later than he attended a concert",
+        "question": "He has a ____-difference between he ended the overseas trip and ended the journal of this year",
+        "options": {
+            "A": "2",
+            "B": "4",
+            "C": "5",
+            "D": "none of the above is correct"
+        },
+        "answers": [
+            "A"
+        ],
+        "chain": "由于1 month(s) after he started an overseas trip, he ended the overseas trip，而且因为He started an overseas trip, and that was in month 9，于是He ended the overseas trip, and that was in month 10\n既然He ended the journal of this year, and that was in month 12，再者既然He ended the overseas trip, and that was in month 10，因而He ended the journal of this year 2 month(s) later than he ended the overseas trip\n既然2 month(s) after he ended the overseas trip, he ended the journal of this year，因此The time gap between he ended the overseas trip and ended the journal of this year is 2 month(s)",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "In June, He started writing a novel",
+            "The total duration of which he wrote a novel is 5 month(s) longer than that of he had an overseas trip",
+            "He had an overseas trip from September to October",
+            "2 month(s) after he started an overseas trip, he attended a concert",
+            "He ended the journal of this year 3 month(s) later than he started an overseas trip",
+            "He won the lottery, and that was in December",
+            "He attended a class reunion 3 month(s) later than he started an overseas trip"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June, He started writing a novel; The total duration of which he wrote a novel is 5 month(s) longer than that of he had an overseas trip; He had an overseas trip from September to October; 2 month(s) after he started an overseas trip, he attended a concert; He ended the journal of this year 3 month(s) later than he started an overseas trip; He won the lottery, and that was in December; He attended a class reunion 3 month(s) later than he started an overseas trip",
+        "question": "He ____ earlier than won the lottery",
+        "options": {
+            "A": "attended a concert",
+            "B": "attended a class reunion",
+            "C": "started an overseas trip",
+            "D": "ended the overseas trip"
+        },
+        "answers": [
+            "A",
+            "C",
+            "D"
+        ],
+        "chain": "既然Before month 10, it's been 1 month(s) that he had an overseas trip，因而He started an overseas trip, and that was in month 9\n既然He started an overseas trip, and that was in month 9，而且既然He won the lottery, and that was in month 12，于是He started an overseas trip 3 month(s) earlier than he won the lottery\n由于He started an overseas trip 3 month(s) earlier than he won the lottery，于是He started an overseas trip before he won the lottery\n因为Before month 10, it's been 1 month(s) that he had an overseas trip，因而He ended the overseas trip, and that was in month 10\n既然In month 10, He ended the overseas trip，另外根据In month 12, He won the lottery，于是He ended the overseas trip 2 month(s) before he won the lottery\n因为2 month(s) before he won the lottery, he ended the overseas trip，所以He ended the overseas trip earlier than won the lottery\n因为He attended a concert 2 month(s) after he started an overseas trip，因此2 month(s) before he attended a concert, he started an overseas trip\n由于He had an overseas trip since month 9, for 1 month(s)，因此In month 9, He started an overseas trip\n由于He started an overseas trip 2 month(s) before he attended a concert，而且根据He started an overseas trip, and that was in month 9，所以In month 11, He attended a concert\n既然He attended a concert, and that was in month 11，另外既然He won the lottery, and that was in month 12，因此He attended a concert 1 month(s) before he won the lottery\n因为He attended a concert 1 month(s) earlier than he won the lottery，故He attended a concert earlier than won the lottery",
+        "layer": 3,
+        "tag": "时刻-定性比较"
+    },
+    {
+        "guide": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year",
+        "statement": [
+            "In June, He started writing a novel",
+            "6 month(s) after he started writing a novel, he published his own novel",
+            "In September, He started an overseas trip",
+            "It takes 1 month(s) that he had an overseas trip",
+            "He attended a concert, and that was in November",
+            "He ended the journal of this year 3 month(s) after he started an overseas trip",
+            "He won the lottery 6 month(s) later than he started writing a novel",
+            "He attended a class reunion 2 month(s) later than he ended the overseas trip"
+        ],
+        "text": "Jack has kept writing journal during this year. As the year comes to a close, he opens his journal and reflects on his fulfilling year: In June, He started writing a novel; 6 month(s) after he started writing a novel, he published his own novel; In September, He started an overseas trip; It takes 1 month(s) that he had an overseas trip; He attended a concert, and that was in November; He ended the journal of this year 3 month(s) after he started an overseas trip; He won the lottery 6 month(s) later than he started writing a novel; He attended a class reunion 2 month(s) later than he ended the overseas trip",
+        "question": "There are 3 month(s) between he ____ and attended a class reunion",
+        "options": {
+            "A": "started an overseas trip",
+            "B": "attended a class reunion",
+            "C": "published his own novel",
+            "D": "won the lottery"
+        },
+        "answers": [
+            "A"
+        ],
+        "chain": "根据He had an overseas trip for 1 month(s)，于是He started an overseas trip 1 month(s) before he ended the overseas trip\n因为2 month(s) after he ended the overseas trip, he attended a class reunion，所以He ended the overseas trip 2 month(s) earlier than he attended a class reunion\n因为He started an overseas trip 1 month(s) before he ended the overseas trip，此外因为2 month(s) before he attended a class reunion, he ended the overseas trip，于是He started an overseas trip 3 month(s) before he attended a class reunion\n由于He started an overseas trip 3 month(s) before he attended a class reunion，故3 month(s) after he started an overseas trip, he attended a class reunion\n既然3 month(s) after he started an overseas trip, he attended a class reunion，所以There are 3 month(s) between he started an overseas trip and attended a class reunion",
+        "layer": 4,
+        "tag": "时刻-定量间隔"
+    }
+]
