@@ -206,3 +206,9 @@ Now, the question asks: "On a certain day, he both ____ and plays badminton."
 From the plan, we see that Jack both plays badminton and does some exercises on Wednesday.
 
 So, the correct answer is B: does some exercises.
+
+*----------*
+
+分析：
+正确：5 不完全正确：0 错误：5
+说明：

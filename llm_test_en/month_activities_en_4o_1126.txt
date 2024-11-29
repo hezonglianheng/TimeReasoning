@@ -283,3 +283,9 @@ Therefore, the correct answer is:
 A: started an overseas trip.
 
 There are 3 months between starting an overseas trip and attending a class reunion.
+
+*----------*
+
+分析：
+正确：4 不完全正确：5 错误：1
+说明：
