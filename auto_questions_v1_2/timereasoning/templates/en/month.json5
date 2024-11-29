@@ -99,4 +99,11 @@
         "The time he [element1] matches the time he [element2]",
         "He spends the same amount of time that he [element1] and [element2]",
     ],
+    // 增加：during的模板
+    "during": [
+        "During the time that he [element2], he also [element1]",
+        "He [element1], and that was during the time that he [element2]",
+        "He [element2], and during this time he also [element1]",
+        "He [element1] during the time he [element2]",
+    ]
 }
