@@ -1,0 +1,277 @@
+[
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "Before May 11, it's been 8 day(s) that he went on a trip with his friends",
+            "5 day(s) after he started a trip with friends, he watched the latest released movie",
+            "He started writing the course paper 5 day(s) later than he finished the trip with his friends",
+            "He finished writing and submitted the course paper 18 day(s) after he watched the latest released movie",
+            "He played computer games for almost an entire day 26 day(s) later than he started a trip with friends",
+            "15 day(s) after he started writing the course paper, he finished recording the journal of May",
+            "He participated in a basketball game 15 day(s) after he started writing the course paper"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: Before May 11, it's been 8 day(s) that he went on a trip with his friends; 5 day(s) after he started a trip with friends, he watched the latest released movie; He started writing the course paper 5 day(s) later than he finished the trip with his friends; He finished writing and submitted the course paper 18 day(s) after he watched the latest released movie; He played computer games for almost an entire day 26 day(s) later than he started a trip with friends; 15 day(s) after he started writing the course paper, he finished recording the journal of May; He participated in a basketball game 15 day(s) after he started writing the course paper",
+        "question": "He ____ after he watched the latest released movie",
+        "options": {
+            "A": "finished recording the journal of May",
+            "B": "watched the latest released movie",
+            "C": "started writing the course paper",
+            "D": "finished the trip with his friends"
+        },
+        "answers": [
+            "A",
+            "C",
+            "D"
+        ],
+        "chain": "according to He started writing the course paper 5 day(s) later than he finished the trip with his friends，so He finished the trip with his friends 5 day(s) earlier than he started writing the course paper\nsince From May 3 to 11, he went on a trip with his friends，thus On May 11, He finished the trip with his friends\nsince 5 day(s) before he started writing the course paper, he finished the trip with his friends，furthermore according to He finished the trip with his friends, and that was on May 11，thus He started writing the course paper, and that was on May 16\nsince He watched the latest released movie 5 day(s) later than he started a trip with friends，therefore He started a trip with friends 5 day(s) earlier than he watched the latest released movie\nbecause Before May 11, it's been 8 day(s) that he went on a trip with his friends，hence He started a trip with friends, and that was on May 3\nbecause He started a trip with friends 5 day(s) earlier than he watched the latest released movie，furthermore since He started a trip with friends, and that was on May 3，hence On May 8, He watched the latest released movie\nsince He started writing the course paper, and that was on May 16，furthermore since On May 8, He watched the latest released movie，consequently He started writing the course paper 8 day(s) later than he watched the latest released movie\naccording to He started writing the course paper 8 day(s) after he watched the latest released movie，therefore He started writing the course paper later than watched the latest released movie\nsince He went on a trip with his friends for 8 day(s) before May 11，so He finished the trip with his friends, and that was on May 11\nas 5 day(s) after he started a trip with friends, he watched the latest released movie，so 5 day(s) before he watched the latest released movie, he started a trip with friends\naccording to May 3 to 11, he went on a trip with his friends，consequently He started a trip with friends, and that was on May 3\nbecause 5 day(s) before he watched the latest released movie, he started a trip with friends，moreover as He started a trip with friends, and that was on May 3，consequently On May 8, He watched the latest released movie\nas He finished the trip with his friends, and that was on May 11，besides according to On May 8, He watched the latest released movie，therefore 3 day(s) after he watched the latest released movie, he finished the trip with his friends\naccording to 3 day(s) after he watched the latest released movie, he finished the trip with his friends，consequently He finished the trip with his friends after he watched the latest released movie\nas He finished recording the journal of May 15 day(s) later than he started writing the course paper，besides because He started writing the course paper 5 day(s) after he finished the trip with his friends，hence 20 day(s) after he finished the trip with his friends, he finished recording the journal of May\nas From May 3 to 11, he went on a trip with his friends，thus On May 11, He finished the trip with his friends\nbecause He finished recording the journal of May 20 day(s) later than he finished the trip with his friends，besides according to On May 11, He finished the trip with his friends，therefore He finished recording the journal of May, and that was on May 31\nbecause He watched the latest released movie 5 day(s) later than he started a trip with friends，hence He started a trip with friends 5 day(s) earlier than he watched the latest released movie\nbecause He went on a trip with his friends since month 3, for 8 month(s)，so On May 3, He started a trip with friends\nbecause He started a trip with friends 5 day(s) before he watched the latest released movie，and according to He started a trip with friends, and that was on May 3，hence He watched the latest released movie, and that was on May 8\nas He finished recording the journal of May, and that was on May 31，besides according to He watched the latest released movie, and that was on May 8，consequently He finished recording the journal of May 23 day(s) later than he watched the latest released movie\nsince He finished recording the journal of May 23 day(s) later than he watched the latest released movie，hence He finished recording the journal of May later than watched the latest released movie",
+        "layer": 4,
+        "tag": "时刻-定性比较"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "On May 3, He started a trip with friends",
+            "3 day(s) after he watched the latest released movie, he finished the trip with his friends",
+            "He watched the latest released movie, and that was on May 8",
+            "He started writing the course paper 13 day(s) after he started a trip with friends",
+            "15 day(s) after he finished the trip with his friends, he finished writing and submitted the course paper",
+            "26 day(s) after he started a trip with friends, he played computer games for almost an entire day",
+            "20 day(s) after he finished the trip with his friends, he finished recording the journal of May",
+            "He participated in a basketball game, and that was on May 31"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: On May 3, He started a trip with friends; 3 day(s) after he watched the latest released movie, he finished the trip with his friends; He watched the latest released movie, and that was on May 8; He started writing the course paper 13 day(s) after he started a trip with friends; 15 day(s) after he finished the trip with his friends, he finished writing and submitted the course paper; 26 day(s) after he started a trip with friends, he played computer games for almost an entire day; 20 day(s) after he finished the trip with his friends, he finished recording the journal of May; He participated in a basketball game, and that was on May 31",
+        "question": "The time gap between he started writing the course paper and played computer games for almost an entire day is ____ day(s)",
+        "options": {
+            "A": "13",
+            "B": "27",
+            "C": "10",
+            "D": "12"
+        },
+        "answers": [
+            "A"
+        ],
+        "chain": "since He played computer games for almost an entire day 26 day(s) later than he started a trip with friends，moreover according to On May 3, He started a trip with friends，therefore On May 29, He played computer games for almost an entire day\naccording to 13 day(s) after he started a trip with friends, he started writing the course paper，and according to He started a trip with friends, and that was on May 3，thus He started writing the course paper, and that was on May 16\nas On May 29, He played computer games for almost an entire day，besides according to He started writing the course paper, and that was on May 16，so 13 day(s) after he started writing the course paper, he played computer games for almost an entire day\naccording to He played computer games for almost an entire day 13 day(s) later than he started writing the course paper，consequently The time gap between he started writing the course paper and played computer games for almost an entire day is 13 day(s)",
+        "layer": 3,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "He started a trip with friends, and that was on May 3",
+            "He finished the trip with his friends 3 day(s) after he watched the latest released movie",
+            "He watched the latest released movie, and that was on May 8",
+            "He started writing the course paper 5 day(s) later than he finished the trip with his friends",
+            "10 day(s) after he started writing the course paper, he finished writing and submitted the course paper",
+            "He played computer games for almost an entire day 3 day(s) later than he finished writing and submitted the course paper",
+            "28 day(s) after he started a trip with friends, he finished recording the journal of May",
+            "He participated in a basketball game 20 day(s) later than he finished the trip with his friends"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: He started a trip with friends, and that was on May 3; He finished the trip with his friends 3 day(s) after he watched the latest released movie; He watched the latest released movie, and that was on May 8; He started writing the course paper 5 day(s) later than he finished the trip with his friends; 10 day(s) after he started writing the course paper, he finished writing and submitted the course paper; He played computer games for almost an entire day 3 day(s) later than he finished writing and submitted the course paper; 28 day(s) after he started a trip with friends, he finished recording the journal of May; He participated in a basketball game 20 day(s) later than he finished the trip with his friends",
+        "question": "He started a trip with friends before he ____",
+        "options": {
+            "A": "started a trip with friends",
+            "B": "finished recording the journal of May",
+            "C": "watched the latest released movie",
+            "D": "finished the trip with his friends"
+        },
+        "answers": [
+            "B",
+            "C",
+            "D"
+        ],
+        "chain": "because He finished recording the journal of May 28 day(s) later than he started a trip with friends，consequently He started a trip with friends 28 day(s) earlier than he finished recording the journal of May\naccording to He started a trip with friends 28 day(s) before he finished recording the journal of May，so He started a trip with friends earlier than finished recording the journal of May\nbecause He started a trip with friends, and that was on May 3，and since On May 8, He watched the latest released movie，hence 5 day(s) before he watched the latest released movie, he started a trip with friends\nbecause He finished the trip with his friends 3 day(s) later than he watched the latest released movie，consequently 3 day(s) before he finished the trip with his friends, he watched the latest released movie\nas He started a trip with friends 5 day(s) before he watched the latest released movie，besides according to 3 day(s) before he finished the trip with his friends, he watched the latest released movie，therefore He started a trip with friends 8 day(s) before he finished the trip with his friends\nsince 8 day(s) before he finished the trip with his friends, he started a trip with friends，thus He started a trip with friends before he finished the trip with his friends\nbecause On May 3, He started a trip with friends，furthermore because He watched the latest released movie, and that was on May 8，thus He started a trip with friends 5 day(s) earlier than he watched the latest released movie\nsince 5 day(s) before he watched the latest released movie, he started a trip with friends，so He started a trip with friends earlier than watched the latest released movie",
+        "layer": 2,
+        "tag": "时刻-定性比较"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "Before May 11, it's been 8 day(s) that he went on a trip with his friends",
+            "On May 8, He watched the latest released movie",
+            "He started writing the course paper 8 day(s) later than he watched the latest released movie",
+            "10 day(s) after he started writing the course paper, he finished writing and submitted the course paper",
+            "He played computer games for almost an entire day 26 day(s) later than he started a trip with friends",
+            "20 day(s) after he finished the trip with his friends, he finished recording the journal of May",
+            "On May 31, He participated in a basketball game"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: Before May 11, it's been 8 day(s) that he went on a trip with his friends; On May 8, He watched the latest released movie; He started writing the course paper 8 day(s) later than he watched the latest released movie; 10 day(s) after he started writing the course paper, he finished writing and submitted the course paper; He played computer games for almost an entire day 26 day(s) later than he started a trip with friends; 20 day(s) after he finished the trip with his friends, he finished recording the journal of May; On May 31, He participated in a basketball game",
+        "question": "____ day(s) before he finished recording the journal of May, he started a trip with friends",
+        "options": {
+            "A": "24",
+            "B": "28",
+            "C": "10",
+            "D": "17"
+        },
+        "answers": [
+            "B"
+        ],
+        "chain": "as From month 3 on, he went on a trip with his friends for 8 month(s)，hence It takes 8 day(s) that he went on a trip with his friends\nbecause He went on a trip with his friends, until 8 day(s) later，hence 8 day(s) before he finished the trip with his friends, he started a trip with friends\nsince 20 day(s) after he finished the trip with his friends, he finished recording the journal of May，hence He finished the trip with his friends 20 day(s) earlier than he finished recording the journal of May\naccording to 8 day(s) before he finished the trip with his friends, he started a trip with friends，moreover as He finished the trip with his friends 20 day(s) before he finished recording the journal of May，therefore 28 day(s) before he finished recording the journal of May, he started a trip with friends",
+        "layer": 3,
+        "tag": "时刻-定量比较"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "He started a trip with friends, and that was on May 3",
+            "He finished the trip with his friends 8 day(s) after he started a trip with friends",
+            "5 day(s) after he started a trip with friends, he watched the latest released movie",
+            "On May 16, He started writing the course paper",
+            "It takes 10 day(s) that he wrote the course paper",
+            "21 day(s) after he watched the latest released movie, he played computer games for almost an entire day",
+            "23 day(s) after he watched the latest released movie, he finished recording the journal of May",
+            "23 day(s) after he watched the latest released movie, he participated in a basketball game"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: He started a trip with friends, and that was on May 3; He finished the trip with his friends 8 day(s) after he started a trip with friends; 5 day(s) after he started a trip with friends, he watched the latest released movie; On May 16, He started writing the course paper; It takes 10 day(s) that he wrote the course paper; 21 day(s) after he watched the latest released movie, he played computer games for almost an entire day; 23 day(s) after he watched the latest released movie, he finished recording the journal of May; 23 day(s) after he watched the latest released movie, he participated in a basketball game",
+        "question": "There are ____ day(s) between he started writing the course paper and played computer games for almost an entire day",
+        "options": {
+            "A": "0",
+            "B": "9",
+            "C": "13",
+            "D": "10"
+        },
+        "answers": [
+            "C"
+        ],
+        "chain": "according to He played computer games for almost an entire day 21 day(s) later than he watched the latest released movie，therefore He watched the latest released movie 21 day(s) before he played computer games for almost an entire day\nas He watched the latest released movie 5 day(s) later than he started a trip with friends，and according to He started a trip with friends, and that was on May 3，therefore On May 8, He watched the latest released movie\naccording to He watched the latest released movie 21 day(s) earlier than he played computer games for almost an entire day，and according to On May 8, He watched the latest released movie，consequently On May 29, He played computer games for almost an entire day\nas He played computer games for almost an entire day, and that was on May 29，furthermore since On May 16, He started writing the course paper，therefore He played computer games for almost an entire day 13 day(s) after he started writing the course paper\nbecause He played computer games for almost an entire day 13 day(s) after he started writing the course paper，thus He has a 13-day difference between he started writing the course paper and played computer games for almost an entire day",
+        "layer": 4,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "He started a trip with friends, and that was on May 3",
+            "He finished the trip with his friends 3 day(s) after he watched the latest released movie",
+            "He watched the latest released movie 5 day(s) after he started a trip with friends",
+            "He started writing the course paper 8 day(s) after he watched the latest released movie",
+            "He takes 2 more day(s) than he went on a trip with his friends that he wrote the course paper",
+            "18 day(s) after he finished the trip with his friends, he played computer games for almost an entire day",
+            "He finished recording the journal of May 23 day(s) later than he watched the latest released movie",
+            "He participated in a basketball game 23 day(s) after he watched the latest released movie"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: He started a trip with friends, and that was on May 3; He finished the trip with his friends 3 day(s) after he watched the latest released movie; He watched the latest released movie 5 day(s) after he started a trip with friends; He started writing the course paper 8 day(s) after he watched the latest released movie; He takes 2 more day(s) than he went on a trip with his friends that he wrote the course paper; 18 day(s) after he finished the trip with his friends, he played computer games for almost an entire day; He finished recording the journal of May 23 day(s) later than he watched the latest released movie; He participated in a basketball game 23 day(s) after he watched the latest released movie",
+        "question": "There are 15 day(s) between he finished recording the journal of May and ____",
+        "options": {
+            "A": "started writing the course paper",
+            "B": "played computer games for almost an entire day",
+            "C": "finished recording the journal of May",
+            "D": "watched the latest released movie"
+        },
+        "answers": [
+            "A"
+        ],
+        "chain": "according to He started writing the course paper 8 day(s) after he watched the latest released movie，hence He watched the latest released movie 8 day(s) before he started writing the course paper\nas He watched the latest released movie 5 day(s) later than he started a trip with friends，furthermore because He started a trip with friends, and that was on May 3，therefore He watched the latest released movie, and that was on May 8\nsince 8 day(s) before he started writing the course paper, he watched the latest released movie，besides according to He watched the latest released movie, and that was on May 8，therefore On May 16, He started writing the course paper\nbecause 23 day(s) after he watched the latest released movie, he finished recording the journal of May，consequently He watched the latest released movie 23 day(s) before he finished recording the journal of May\nas He watched the latest released movie 5 day(s) after he started a trip with friends，moreover as He started a trip with friends, and that was on May 3，so On May 8, He watched the latest released movie\nbecause He watched the latest released movie 23 day(s) earlier than he finished recording the journal of May，moreover because He watched the latest released movie, and that was on May 8，therefore On May 31, He finished recording the journal of May\nsince He started writing the course paper, and that was on May 16，moreover because He finished recording the journal of May, and that was on May 31，thus 15 day(s) before he finished recording the journal of May, he started writing the course paper\naccording to 15 day(s) before he finished recording the journal of May, he started writing the course paper，consequently He has a 15-day difference between he finished recording the journal of May and started writing the course paper",
+        "layer": 4,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "He started a trip with friends, and that was on May 3",
+            "It takes 8 day(s) that he went on a trip with his friends",
+            "He watched the latest released movie, and that was on May 8",
+            "On May 16, He started writing the course paper",
+            "The total duration of which he wrote the course paper is 2 day(s) longer than that of he went on a trip with his friends",
+            "He played computer games for almost an entire day 18 day(s) later than he finished the trip with his friends",
+            "He finished recording the journal of May 23 day(s) after he watched the latest released movie",
+            "He participated in a basketball game 5 day(s) later than he finished writing and submitted the course paper"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: He started a trip with friends, and that was on May 3; It takes 8 day(s) that he went on a trip with his friends; He watched the latest released movie, and that was on May 8; On May 16, He started writing the course paper; The total duration of which he wrote the course paper is 2 day(s) longer than that of he went on a trip with his friends; He played computer games for almost an entire day 18 day(s) later than he finished the trip with his friends; He finished recording the journal of May 23 day(s) after he watched the latest released movie; He participated in a basketball game 5 day(s) later than he finished writing and submitted the course paper",
+        "question": "He has a 5-day difference between he ____ and finished writing and submitted the course paper",
+        "options": {
+            "A": "watched the latest released movie",
+            "B": "participated in a basketball game",
+            "C": "started writing the course paper",
+            "D": "started a trip with friends"
+        },
+        "answers": [
+            "B"
+        ],
+        "chain": "as He participated in a basketball game 5 day(s) after he finished writing and submitted the course paper，thus 5 day(s) before he participated in a basketball game, he finished writing and submitted the course paper\nbecause He finished writing and submitted the course paper 5 day(s) before he participated in a basketball game，therefore There are 5 day(s) between he participated in a basketball game and finished writing and submitted the course paper",
+        "layer": 2,
+        "tag": "时刻-定量间隔"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "On May 3, He started a trip with friends",
+            "He finished the trip with his friends 3 day(s) later than he watched the latest released movie",
+            "He watched the latest released movie 5 day(s) after he started a trip with friends",
+            "He started writing the course paper 5 day(s) later than he finished the trip with his friends",
+            "He finished writing and submitted the course paper 18 day(s) after he watched the latest released movie",
+            "He played computer games for almost an entire day 18 day(s) later than he finished the trip with his friends",
+            "20 day(s) after he finished the trip with his friends, he finished recording the journal of May",
+            "He participated in a basketball game 23 day(s) later than he watched the latest released movie"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: On May 3, He started a trip with friends; He finished the trip with his friends 3 day(s) later than he watched the latest released movie; He watched the latest released movie 5 day(s) after he started a trip with friends; He started writing the course paper 5 day(s) later than he finished the trip with his friends; He finished writing and submitted the course paper 18 day(s) after he watched the latest released movie; He played computer games for almost an entire day 18 day(s) later than he finished the trip with his friends; 20 day(s) after he finished the trip with his friends, he finished recording the journal of May; He participated in a basketball game 23 day(s) later than he watched the latest released movie",
+        "question": "He started a trip with friends ____ day(s) before he finished writing and submitted the course paper",
+        "options": {
+            "A": "18",
+            "B": "23",
+            "C": "17",
+            "D": "4"
+        },
+        "answers": [
+            "B"
+        ],
+        "chain": "as 18 day(s) after he watched the latest released movie, he finished writing and submitted the course paper，furthermore because He watched the latest released movie 5 day(s) later than he started a trip with friends，hence 23 day(s) after he started a trip with friends, he finished writing and submitted the course paper\nas He finished writing and submitted the course paper 23 day(s) after he started a trip with friends，so He started a trip with friends 23 day(s) before he finished writing and submitted the course paper",
+        "layer": 2,
+        "tag": "时刻-定量比较"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "He started a trip with friends, and that was on May 3",
+            "He finished the trip with his friends 3 day(s) after he watched the latest released movie",
+            "5 day(s) after he started a trip with friends, he watched the latest released movie",
+            "5 day(s) after he finished the trip with his friends, he started writing the course paper",
+            "He finished writing and submitted the course paper, and that was on May 26",
+            "He played computer games for almost an entire day 13 day(s) after he started writing the course paper",
+            "He finished recording the journal of May 15 day(s) later than he started writing the course paper",
+            "He participated in a basketball game 23 day(s) later than he watched the latest released movie"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: He started a trip with friends, and that was on May 3; He finished the trip with his friends 3 day(s) after he watched the latest released movie; 5 day(s) after he started a trip with friends, he watched the latest released movie; 5 day(s) after he finished the trip with his friends, he started writing the course paper; He finished writing and submitted the course paper, and that was on May 26; He played computer games for almost an entire day 13 day(s) after he started writing the course paper; He finished recording the journal of May 15 day(s) later than he started writing the course paper; He participated in a basketball game 23 day(s) later than he watched the latest released movie",
+        "question": "He played computer games for almost an entire day before he ____",
+        "options": {
+            "A": "watched the latest released movie",
+            "B": "finished recording the journal of May",
+            "C": "finished writing and submitted the course paper",
+            "D": "participated in a basketball game"
+        },
+        "answers": [
+            "B",
+            "D"
+        ],
+        "chain": "as 13 day(s) after he started writing the course paper, he played computer games for almost an entire day，furthermore because 5 day(s) after he finished the trip with his friends, he started writing the course paper，so He played computer games for almost an entire day 18 day(s) after he finished the trip with his friends\nas He played computer games for almost an entire day 18 day(s) after he finished the trip with his friends，thus 18 day(s) before he played computer games for almost an entire day, he finished the trip with his friends\naccording to 3 day(s) after he watched the latest released movie, he finished the trip with his friends，so He watched the latest released movie 3 day(s) before he finished the trip with his friends\nsince He watched the latest released movie 5 day(s) after he started a trip with friends，and since On May 3, He started a trip with friends，consequently On May 8, He watched the latest released movie\naccording to He watched the latest released movie 3 day(s) before he finished the trip with his friends，moreover according to On May 8, He watched the latest released movie，thus He finished the trip with his friends, and that was on May 11\nsince 18 day(s) before he played computer games for almost an entire day, he finished the trip with his friends，furthermore since He finished the trip with his friends, and that was on May 11，hence He played computer games for almost an entire day, and that was on May 29\nas He finished recording the journal of May 15 day(s) after he started writing the course paper，furthermore because He started writing the course paper 5 day(s) later than he finished the trip with his friends，therefore He finished recording the journal of May 20 day(s) later than he finished the trip with his friends\nas He finished recording the journal of May 20 day(s) later than he finished the trip with his friends，hence 20 day(s) before he finished recording the journal of May, he finished the trip with his friends\naccording to He finished the trip with his friends 3 day(s) after he watched the latest released movie，thus 3 day(s) before he finished the trip with his friends, he watched the latest released movie\nas 5 day(s) after he started a trip with friends, he watched the latest released movie，and because He started a trip with friends, and that was on May 3，consequently On May 8, He watched the latest released movie\naccording to He watched the latest released movie 3 day(s) earlier than he finished the trip with his friends，and as He watched the latest released movie, and that was on May 8，so On May 11, He finished the trip with his friends\nsince He finished the trip with his friends 20 day(s) before he finished recording the journal of May，moreover according to On May 11, He finished the trip with his friends，thus On May 31, He finished recording the journal of May\nbecause He played computer games for almost an entire day, and that was on May 29，and according to On May 31, He finished recording the journal of May，consequently He played computer games for almost an entire day 2 day(s) before he finished recording the journal of May\nsince He played computer games for almost an entire day 2 day(s) before he finished recording the journal of May，thus He played computer games for almost an entire day earlier than finished recording the journal of May\nas He played computer games for almost an entire day 13 day(s) after he started writing the course paper，furthermore because He started writing the course paper 5 day(s) after he finished the trip with his friends，thus He played computer games for almost an entire day 18 day(s) later than he finished the trip with his friends\nbecause 18 day(s) after he finished the trip with his friends, he played computer games for almost an entire day，consequently He finished the trip with his friends 18 day(s) before he played computer games for almost an entire day\nas He finished the trip with his friends 3 day(s) later than he watched the latest released movie，so 3 day(s) before he finished the trip with his friends, he watched the latest released movie\naccording to He watched the latest released movie 5 day(s) after he started a trip with friends，and because He started a trip with friends, and that was on May 3，consequently He watched the latest released movie, and that was on May 8\nas He watched the latest released movie 3 day(s) earlier than he finished the trip with his friends，besides according to He watched the latest released movie, and that was on May 8，therefore On May 11, He finished the trip with his friends\nbecause 18 day(s) before he played computer games for almost an entire day, he finished the trip with his friends，and because He finished the trip with his friends, and that was on May 11，so He played computer games for almost an entire day, and that was on May 29\naccording to He participated in a basketball game 23 day(s) later than he watched the latest released movie，hence 23 day(s) before he participated in a basketball game, he watched the latest released movie\nbecause 5 day(s) after he started a trip with friends, he watched the latest released movie，moreover as On May 3, He started a trip with friends，so He watched the latest released movie, and that was on May 8\naccording to He watched the latest released movie 23 day(s) earlier than he participated in a basketball game，and according to He watched the latest released movie, and that was on May 8，so On May 31, He participated in a basketball game\nbecause On May 29, He played computer games for almost an entire day，and since On May 31, He participated in a basketball game，therefore 2 day(s) before he participated in a basketball game, he played computer games for almost an entire day\nbecause He played computer games for almost an entire day 2 day(s) before he participated in a basketball game，so He played computer games for almost an entire day before he participated in a basketball game",
+        "layer": 5,
+        "tag": "时刻-定性比较"
+    },
+    {
+        "guide": "Jack had a busy May, and he has recorded everything he did in a journal",
+        "statement": [
+            "On May 3, He started a trip with friends",
+            "It takes 8 day(s) that he went on a trip with his friends",
+            "He watched the latest released movie 5 day(s) later than he started a trip with friends",
+            "He started writing the course paper 13 day(s) later than he started a trip with friends",
+            "He finished writing and submitted the course paper 18 day(s) later than he watched the latest released movie",
+            "He played computer games for almost an entire day 3 day(s) after he finished writing and submitted the course paper",
+            "On May 31, He finished recording the journal of May",
+            "20 day(s) after he finished the trip with his friends, he participated in a basketball game"
+        ],
+        "text": "Jack had a busy May, and he has recorded everything he did in a journal: On May 3, He started a trip with friends; It takes 8 day(s) that he went on a trip with his friends; He watched the latest released movie 5 day(s) later than he started a trip with friends; He started writing the course paper 13 day(s) later than he started a trip with friends; He finished writing and submitted the course paper 18 day(s) later than he watched the latest released movie; He played computer games for almost an entire day 3 day(s) after he finished writing and submitted the course paper; On May 31, He finished recording the journal of May; 20 day(s) after he finished the trip with his friends, he participated in a basketball game",
+        "question": "He ____ after he watched the latest released movie",
+        "options": {
+            "A": "started a trip with friends",
+            "B": "finished recording the journal of May",
+            "C": "finished writing and submitted the course paper",
+            "D": "finished the trip with his friends"
+        },
+        "answers": [
+            "B",
+            "C",
+            "D"
+        ],
+        "chain": "according to He watched the latest released movie 5 day(s) later than he started a trip with friends，furthermore as He started a trip with friends, and that was on May 3，so He watched the latest released movie, and that was on May 8\nbecause He finished recording the journal of May, and that was on May 31，besides according to On May 8, He watched the latest released movie，therefore 23 day(s) after he watched the latest released movie, he finished recording the journal of May\nbecause He finished recording the journal of May 23 day(s) after he watched the latest released movie，hence He finished recording the journal of May after he watched the latest released movie\nbecause 18 day(s) after he watched the latest released movie, he finished writing and submitted the course paper，so He finished writing and submitted the course paper later than watched the latest released movie\naccording to He went on a trip with his friends, and spent 8 day(s) on it，consequently He started a trip with friends 8 day(s) before he finished the trip with his friends\naccording to 8 day(s) before he finished the trip with his friends, he started a trip with friends，furthermore since He started a trip with friends, and that was on May 3，thus He finished the trip with his friends, and that was on May 11\nsince He watched the latest released movie 5 day(s) later than he started a trip with friends，furthermore as He started a trip with friends, and that was on May 3，thus He watched the latest released movie, and that was on May 8\nsince He finished the trip with his friends, and that was on May 11，besides according to He watched the latest released movie, and that was on May 8，therefore He finished the trip with his friends 3 day(s) after he watched the latest released movie\naccording to 3 day(s) after he watched the latest released movie, he finished the trip with his friends，therefore He finished the trip with his friends after he watched the latest released movie",
+        "layer": 3,
+        "tag": "时刻-定性比较"
+    }
+]

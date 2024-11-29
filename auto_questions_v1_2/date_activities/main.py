@@ -40,7 +40,7 @@ if __name__ == "__main__":
     # 定义约束
     cons = constraint.ConstraintMachine(1, 31)
     cons.add_event(start, end, paper_outline, paper_writing, meeting, meet_friends, watch_movie, basketball_game, video_game)
-    cons.read_constraints(Path(__file__).resolve().parents[0] / "constraint_date.json5")
+    cons.read_constraints(Path(__file__).resolve().parents[0] / "constraint.json5")
     event_list = cons.run()
 
     # 定义场景

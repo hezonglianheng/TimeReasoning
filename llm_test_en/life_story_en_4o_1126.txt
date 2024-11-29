@@ -181,3 +181,9 @@ He met his future wife in 1915.
 The difference between 1911 and 1915 is 4 years.
 So, the complete sentence is:
 "There are 4 years between he started junior high school and met his future wife."
+
+*----------*
+
+分析：
+正确：3 不完全正确：4 错误：3
+说明：

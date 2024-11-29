@@ -203,7 +203,32 @@ D: The time gap between he started university and retired is 42 year(s).
 Answers: A
 
 4o:
+Let's break down the timeline based on the provided information:
 
+Jack's life events:
+Started elementary school in 1907 and studied until 1913 (so he graduated in 1913).
+Started university 7 years after graduating from elementary school, i.e., 1920 (1913 + 7 years).
+Graduated from university 18 years after starting elementary school, i.e., 1925 (1907 + 18 years).
+Joined a company 2 years after graduating from university, i.e., 1927 (1925 + 2 years).
+Got married 22 years after starting elementary school, i.e., 1929 (1907 + 22 years).
+Became a father 10 years after starting university, i.e., 1930 (1920 + 10 years).
+Retired 55 years after starting elementary school, i.e., 1962 (1907 + 55 years).
+Now, let's analyze the options:
+
+A: The time gap between he started university and got married is 16 years.
+
+Jack started university in 1920 and got married in 1929. The difference is 1929 - 1920 = 9 years, not 16 years. Therefore, A is incorrect.
+B: He graduated from university before he retired.
+
+Jack graduated from university in 1925 and retired in 1962. He did graduate from university before retiring. Therefore, B is correct.
+C: He has a 49-year difference between he retired and graduated from elementary school.
+
+Jack graduated from elementary school in 1913 and retired in 1962. The difference is 1962 - 1913 = 49 years. Therefore, C is correct.
+D: The time gap between he started university and retired is 42 years.
+
+Jack started university in 1920 and retired in 1962. The difference is 1962 - 1920 = 42 years. Therefore, D is correct.
+Conclusion:
+The incorrect statement is A. Therefore, A is incorrect, while B, C, and D are correct.
 
 *----------*
 
@@ -336,3 +361,36 @@ D: He has a 4-year difference between he graduated from junior high school and g
 Answers: B
 
 4o:
+Let's break down the timeline based on the information provided:
+
+Jack's life events:
+Studied in elementary school from 1907 to 1913, so he graduated from elementary school in 1913.
+Started junior high school in 1913 (the same year he graduated from elementary school).
+Graduated from junior high school 10 years after starting elementary school, i.e., 1920 (1907 + 10 years).
+Started university 13 years after starting elementary school, i.e., 1920 (1907 + 13 years).
+Graduated from university 8 years after graduating from junior high school, i.e., 1928 (1920 + 8 years).
+Joined a company in 1927.
+Became a father 23 years after starting elementary school, i.e., 1930 (1907 + 23 years).
+Retired 45 years after graduating from junior high school, i.e., 1965 (1920 + 45 years).
+Now, let's analyze the options:
+
+A: He started junior high school before he graduated from university.
+
+Jack started junior high school in 1913 and graduated from university in 1928. He did start junior high school before graduating from university. Therefore, A is correct.
+B: There are 42 years between he became a father and retired.
+
+Jack became a father in 1930 and retired in 1965. The difference is 1965 - 1930 = 35 years, not 42 years. Therefore, B is incorrect.
+C: He joined a company earlier than retired.
+
+Jack joined a company in 1927 and retired in 1965. He did join a company earlier than retiring. Therefore, C is correct.
+D: He has a 4-year difference between he graduated from junior high school and graduated from elementary school.
+
+Jack graduated from elementary school in 1913 and graduated from junior high school in 1920. The difference is 1920 - 1913 = 7 years, not 4 years. Therefore, D is incorrect.
+Conclusion:
+The incorrect statements are B and D. Therefore, B and D are incorrect, while A and C are correct.
+
+*----------*
+
+分析：
+正确：8 不完全正确：0 错误：2
+说明：
