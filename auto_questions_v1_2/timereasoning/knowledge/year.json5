@@ -35,6 +35,18 @@
         }, 
         {
             "subtype": "temporal",
+            "verb": "南昌起义",
+            "object": "爆发",
+            "time": 1927,
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "长征",
+            "object": "开始",
+            "time": 1934,
+        }
+        {
+            "subtype": "temporal",
             "verb": "新中国成立",
             "object": "",
             "time": 1949,
@@ -51,6 +63,12 @@
             "object": "抗日战争",
             "time": 1931,
             "endtime": 1945,
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "中国加入",
+            "object": "WTO",
+            "time": 2001,
         }, 
     ], 
     "order": [], 
