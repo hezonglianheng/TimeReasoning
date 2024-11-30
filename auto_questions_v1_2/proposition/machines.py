@@ -446,6 +446,7 @@ class AskAllMachine:
         self._option_dict: dict[str, str] = dict() # 选项字典
         self._answers: list[str] = [] # 答案列表
         self._chains: list[str] = [] # 询问链
+        self._chain_length: int = 0 # 询问链长度
 
     def _choose_candidates(self) -> list[prop.Proposition]:
         """选择候选命题
@@ -541,6 +542,8 @@ class AskAllMachine:
             self._answers = [ascii_uppercase[i] for i, j in enumerate(judges) if not j]
         # 获得采样命题的推理链
         chain_nodes = [self.reason_graph.backtrace(i) for i in samples]
+        # 11-30更新：计算推理链长度
+        self._chain_length = sum([len(i) for i in chain_nodes])
         self._chains = ["\n".join([j.state(self.temps, lang=self.lang) for j in i]) for i in chain_nodes]
         # 检查答案是否为空
         if len(self._answers) == 0:
