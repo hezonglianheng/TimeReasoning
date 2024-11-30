@@ -131,7 +131,7 @@ class ReasonMachine:
             by_relations = self._reason_by_relation(count)  # 用关系推理
             by_rules = self._reason_by_rule(count)  # 用规则推理
             # 对新命题的去重和加入
-            for p in by_relations + by_rules:
+            for p in tqdm(by_relations + by_rules, desc="去重和加入新命题", total=len(by_relations + by_rules)):
                 if all([p != i for i in self.new_props]):
                     self.new_props.append(p)
             # 将当前命题加入旧命题并去重
