@@ -6,6 +6,7 @@ import subprocess
 from pathlib import Path
 
 script_paths = [
+    "life_story_with_knowledge\main.py", 
     "life_story_with_knowledge_askall/main.py",
     "life_story_with_knowledge_askall_neg/main.py",
     "week_schedule_deepest/main.py",
