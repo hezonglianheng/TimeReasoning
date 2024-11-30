@@ -207,14 +207,29 @@ class TimeScene(Scene):
         if "time" in (typ := self._ask_info.get(prop.TYPE)):
             if self.scale == ts.TimeScale.Weekday and self.lang == "zh":
                 for k, v in answer_info[machines.OPTIONS].items():
+                    # 11-30更新：为防止“以上选项均不正确”报错，加入try-except结构排错
+                    try:
+                        num = int(v)
+                    except ValueError:
+                        continue
                     zh_num = num2cn(v)
                     zh_num = "日" if zh_num == "零" else zh_num
                     answer_info[machines.OPTIONS][k] = zh_num
             elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
                 for k, v in answer_info[machines.OPTIONS].items():
+                    # 11-30更新：为防止“以上选项均不正确”报错，加入try-except结构排错
+                    try:
+                        num = int(v)
+                    except ValueError:
+                        continue
                     answer_info[machines.OPTIONS][k] = calendar.day_name[int(v)-1]
             elif self.scale == ts.TimeScale.Month and self.lang == "en":
                 for k, v in answer_info[machines.OPTIONS].items():
+                    # 11-30更新：为防止“以上选项均不正确”报错，加入try-except结构排错
+                    try:
+                        num = int(v)
+                    except ValueError:
+                        continue
                     answer_info[machines.OPTIONS][k] = calendar.month_name[int(v)]
         return answer_info
 
