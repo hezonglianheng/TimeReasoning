@@ -36,6 +36,8 @@ ANSWERPROP = "answerprop"
 # 新增返回字典的键
 QUESTION = "question"
 CHAIN = "chain"
+LENGTH = "length"
+CHOICES = "choices"
 
 class ReasonMachine:
     """推理机，用于执行推理任务"""
@@ -305,8 +307,6 @@ class AnswerMachine:
         self.options_and_answers: dict[str, Any] = dict()
         self.lang = lang # 语言设置
 
-
-
     def set_value_range(self, key: str, value: list[Any]) -> None:
         """为一个可询问的属性设置值域，值域需要被调用用于生成选项
 
@@ -569,6 +569,8 @@ class AskAllMachine:
         return {
             QUESTION: LANG_CONFIG[self.lang][self._question],
             OPTIONS: self._option_dict,
-            ANSWERS: self._answers,
-            CHAIN: "\n".join(self._chains)
+            # ANSWERS: self._answers,
+            CHOICES: self._answers, # 11-30更新：将答案的键改为CHOICES
+            CHAIN: "\n".join(self._chains), 
+            LENGTH: self._chain_length, 
         }

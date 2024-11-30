@@ -265,7 +265,8 @@ class Scene(metaclass=abc.ABCMeta):
                         "text": text,
                         "question": self._ask_info[prop.SENTENCE], 
                         "options": answers[machines.OPTIONS], 
-                        "answers": answers[machines.ANSWERS], 
+                        # "answers": answers[machines.ANSWERS], 
+                        "choices": answers[machines.ANSWERS], # 11-24更新：将键从answers改为choices
                         "chain": chain, 
                         # 11-24更新：增加提问命题的层级信息
                         "layer": self.graph.layer_query(self._asked_prop), 
