@@ -69,7 +69,7 @@ if __name__ == "__main__":
         curr_scene.add_knowledge()
         # 运行时间场景
         # res.extend(curr_scene.run(1))
-        res.extend(curr_scene.ask_all())
+        res.extend(curr_scene.run_ask_all())
         curr_scene.reset()
     output_file = Path(__file__).resolve().parents[0] / "output.json"
     with output_file.open('w', encoding='utf8') as f:
