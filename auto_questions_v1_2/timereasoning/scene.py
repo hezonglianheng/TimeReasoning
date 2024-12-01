@@ -25,7 +25,7 @@ from proposition.machines import ReasonMachine as RM # 11-03修改：引入推�
 from timereasoning.machines import TimeGetRangeMachine as TGRM # 11-26修改：引入时间领域专用取值范围机
 from timereasoning.machines import TimeAskAllMachine as TAAM # 11-27修改：引入时间领域专用询问机
 
-LOOP_LIMIT = 10 # 循环时间场景的循环长度上限
+LOOP_LIMIT = 1 # 循环时间场景的循环长度上限
 
 class TimeScene(Scene):
     """
