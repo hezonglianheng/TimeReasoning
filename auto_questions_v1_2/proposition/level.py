@@ -13,7 +13,7 @@ statement_length_weight = 0.01
 # 选项数
 option_num_weight = 0.2
 # 知识数量
-knowledge_num_weight = 0.1
+knowledge_num_weight = 0.2
 
 # functions.
 def ask_level(chain_len: int, statement_len: int, option_num: int, knowledge_num: int, scene_level: float) -> int:
