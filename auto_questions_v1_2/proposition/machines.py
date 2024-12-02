@@ -571,9 +571,10 @@ class AskAllMachine:
         # 否则返回问题、选项、答案和推理链
         return {
             QUESTION: LANG_CONFIG[self.lang][self._question],
-            OPTIONS: self._option_dict,
-            # ANSWERS: self._answers,
-            CHOICES: self._answers, # 11-30更新：将答案的键改为CHOICES
+            # OPTIONS: self._option_dict,
+            CHOICES: self._option_dict, # 12-02更新：将选项的键改为CHOICES
+            ANSWERS: self._answers,
+            # CHOICES: self._answers, # 11-30更新：将答案的键改为CHOICES
             CHAIN: "\n".join(self._chains), 
             LENGTH: self._chain_length, 
         }
