@@ -11,7 +11,7 @@ chain_length_weight = 0.01
 # 命题长度
 statement_length_weight = 0.01
 # 选项数
-option_num_weight = 0.2
+option_num_weight = 0.3
 # 知识数量
 knowledge_num_weight = 0.2
 
