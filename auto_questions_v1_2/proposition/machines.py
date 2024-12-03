@@ -36,6 +36,8 @@ ANSWERPROP = "answerprop"
 # 新增返回字典的键
 QUESTION = "question"
 CHAIN = "chain"
+LENGTH = "length"
+CHOICES = "choices"
 
 class ReasonMachine:
     """推理机，用于执行推理任务"""
@@ -129,7 +131,7 @@ class ReasonMachine:
             by_relations = self._reason_by_relation(count)  # 用关系推理
             by_rules = self._reason_by_rule(count)  # 用规则推理
             # 对新命题的去重和加入
-            for p in by_relations + by_rules:
+            for p in tqdm(by_relations + by_rules, desc="去重和加入新命题", total=len(by_relations + by_rules)):
                 if all([p != i for i in self.new_props]):
                     self.new_props.append(p)
             # 将当前命题加入旧命题并去重
@@ -305,8 +307,6 @@ class AnswerMachine:
         self.options_and_answers: dict[str, Any] = dict()
         self.lang = lang # 语言设置
 
-
-
     def set_value_range(self, key: str, value: list[Any]) -> None:
         """为一个可询问的属性设置值域，值域需要被调用用于生成选项
 
@@ -446,6 +446,7 @@ class AskAllMachine:
         self._option_dict: dict[str, str] = dict() # 选项字典
         self._answers: list[str] = [] # 答案列表
         self._chains: list[str] = [] # 询问链
+        self._chain_length: int = 0 # 询问链长度
 
     def _choose_candidates(self) -> list[prop.Proposition]:
         """选择候选命题
@@ -541,6 +542,8 @@ class AskAllMachine:
             self._answers = [ascii_uppercase[i] for i, j in enumerate(judges) if not j]
         # 获得采样命题的推理链
         chain_nodes = [self.reason_graph.backtrace(i) for i in samples]
+        # 11-30更新：计算推理链长度
+        self._chain_length = sum([len(i) for i in chain_nodes])
         self._chains = ["\n".join([j.state(self.temps, lang=self.lang) for j in i]) for i in chain_nodes]
         # 检查答案是否为空
         if len(self._answers) == 0:
@@ -568,7 +571,10 @@ class AskAllMachine:
         # 否则返回问题、选项、答案和推理链
         return {
             QUESTION: LANG_CONFIG[self.lang][self._question],
-            OPTIONS: self._option_dict,
+            # OPTIONS: self._option_dict,
+            CHOICES: self._option_dict, # 12-02更新：将选项的键改为CHOICES
             ANSWERS: self._answers,
-            CHAIN: "\n".join(self._chains)
+            # CHOICES: self._answers, # 11-30更新：将答案的键改为CHOICES
+            CHAIN: "\n".join(self._chains), 
+            LENGTH: self._chain_length, 
         }

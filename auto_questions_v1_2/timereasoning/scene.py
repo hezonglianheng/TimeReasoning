@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 import random
 import calendar
+from itertools import product
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -23,6 +24,8 @@ from timereasoning.machines import SearchMachine as SM # 11-03修改：引入时
 from proposition.machines import ReasonMachine as RM # 11-03修改：引入推理机构建推理图
 from timereasoning.machines import TimeGetRangeMachine as TGRM # 11-26修改：引入时间领域专用取值范围机
 from timereasoning.machines import TimeAskAllMachine as TAAM # 11-27修改：引入时间领域专用询问机
+
+LOOP_LIMIT = 1 # 循环时间场景的循环长度上限
 
 class TimeScene(Scene):
     """
@@ -109,12 +112,12 @@ class TimeScene(Scene):
             search1 = re.search(r"星期[0-9]", exp)
             if search1 is not None:
                 ch_num = num2cn(search1.group()[-1])
-                ch_num = "天" if ch_num == "零" else ch_num # 将0转化为“天”
+                ch_num = "天" if (ch_num == "零" or ch_num == "七") else ch_num # 将0转化为“天”
                 exp = exp.replace(search1.group(), "星期" + ch_num)
             search2 = re.search(r"周[0-9]", exp)
             if search2 is not None:
                 ch_num = num2cn(search2.group()[-1])
-                ch_num = "日" if ch_num == "零" else ch_num
+                ch_num = "日" if (ch_num == "零" or ch_num == "七") else ch_num
                 exp = exp.replace(search2.group(), "周" + ch_num)
         elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
             search = re.search(r"(weekday) ([0-9])", exp)
@@ -204,16 +207,39 @@ class TimeScene(Scene):
         if "time" in (typ := self._ask_info.get(prop.TYPE)):
             if self.scale == ts.TimeScale.Weekday and self.lang == "zh":
                 for k, v in answer_info[machines.OPTIONS].items():
+                    # 11-30更新：为防止“以上选项均不正确”报错，加入try-except结构排错
+                    try:
+                        num = int(v)
+                    except ValueError:
+                        continue
                     zh_num = num2cn(v)
                     zh_num = "日" if zh_num == "零" else zh_num
                     answer_info[machines.OPTIONS][k] = zh_num
             elif self.scale == ts.TimeScale.Weekday and self.lang == "en":
                 for k, v in answer_info[machines.OPTIONS].items():
+                    # 11-30更新：为防止“以上选项均不正确”报错，加入try-except结构排错
+                    try:
+                        num = int(v)
+                    except ValueError:
+                        continue
                     answer_info[machines.OPTIONS][k] = calendar.day_name[int(v)-1]
             elif self.scale == ts.TimeScale.Month and self.lang == "en":
                 for k, v in answer_info[machines.OPTIONS].items():
+                    # 11-30更新：为防止“以上选项均不正确”报错，加入try-except结构排错
+                    try:
+                        num = int(v)
+                    except ValueError:
+                        continue
                     answer_info[machines.OPTIONS][k] = calendar.month_name[int(v)]
         return answer_info
+
+    def ask_all(self, seed: int | float | None = None) -> Dict[str, Any]:
+        info = super().ask_all(seed)
+        if info is None:
+            return None
+        info[machines.QUESTION] = self._exp_trans(info[machines.QUESTION]) # 调整问题中的时间表达方式
+        info[machines.OPTIONS] = {k: self._exp_trans(v) for k, v in info[machines.OPTIONS].items()} # 调整选项中的时间表达方式
+        return info
 
 class LineScene(TimeScene):
     """
@@ -238,6 +264,9 @@ class LoopScene(TimeScene):
     """
     循环时间场景
     """
+    # 11-30新增：场景难度评级
+    scene_level: float = 0.2
+    
     def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化循环时间场景
 
@@ -336,6 +365,7 @@ class DiffRelation(relation.DoubleEntailment):
 
     @classmethod
     def reason(cls, input_prop: timeprop.DoubleTimeP) -> list[timeprop.DoubleTimeP] | None:
+        global LOOP_LIMIT
         if not isinstance(input_prop, (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)):
             return None
         res = super().reason(input_prop)
@@ -344,7 +374,13 @@ class DiffRelation(relation.DoubleEntailment):
         else:
             for i in res:
                 i.diff = i.diff % cls.loop
-            return res
+            new_res: timeprop.DoubleTimeP = []
+            for i, t in product(res, range(1, LOOP_LIMIT)):
+                j = deepcopy(i)
+                j.diff = i.diff + t * cls.loop
+                new_res.append(j)
+            # return res
+            return res + new_res
         
     @classmethod
     def set_loop(cls, loop: int) -> type["DiffRelation"]:
@@ -366,7 +402,7 @@ class LoopRelation(relation.DoubleEntailment):
             return None
         else:
             for i in res:
-                i.diff = cls.loop - prop.diff
+                i.diff = (cls.loop - prop.diff) % cls.loop
             return res
 
     @classmethod

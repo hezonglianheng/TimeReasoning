@@ -25,12 +25,19 @@ from proposition.graph import Graph
 from proposition.machines import GetRangeMachine as GRM
 import proposition.machines as machines
 from proposition.machines import AskAllMachine
+# 11-30新增：引入难度评级函数
+from proposition.level import ask_level
+
+# constants.
+LEVEL = "level"
 
 class Scene(metaclass=abc.ABCMeta):
     """
     推理场景的抽象类\n
     用于定义推理场景的基本属性和操作
     """
+    # 11-30新增：场景的难度评级
+    scene_level: float = 0.0  # 场景难度
 
     def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化推理场景
@@ -67,6 +74,10 @@ class Scene(metaclass=abc.ABCMeta):
         # 11-26新增：场景的询问机
         self._ask_all_machine: AskAllMachine = None
         self._ask_correct: bool = True
+        # 11-30新增：推理链长度记录变量
+        self.chain_length: int = 0
+        # 12-01新增：记录由回答机返回的回答命题
+        self.ans_props: list[prop.Proposition] = []
 
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
@@ -200,11 +211,8 @@ class Scene(metaclass=abc.ABCMeta):
             am.set_value_range(k, v)
         return am.run()
 
-    def get_chain(self, ans_prop: list[prop.Proposition]) -> str:
+    def get_chain(self) -> str:
         """获取推理链
-
-        Args:
-            ans_prop (list[prop.Proposition]): 答案命题，是由回答机返回的答案命题列表
 
         Returns:
             str: 推理链
@@ -212,10 +220,12 @@ class Scene(metaclass=abc.ABCMeta):
         assert self._asked_prop is not None, "必须先执行ask()方法进行提问"
 
         reason_path = self.graph.backtrace(self._asked_prop)
-        for i in ans_prop:
+        for i in self.ans_props:
             if i != self._asked_prop:
                 reason_path = reason_path + self.graph.backtrace(i)
 
+        # 11-30更新：计算推理链长度
+        self.chain_length = len(reason_path)
         self.chain = "\n".join([i.state(self.temps, lang=self.lang) for i in reason_path])
         return self.chain
 
@@ -255,8 +265,8 @@ class Scene(metaclass=abc.ABCMeta):
                 print("未能获取答案，跳过.")
                 continue
             # 修改：先判定能否生成答案，再获取推理链
-            ans_prop = answers[machines.ANSWERPROP] # 将正确答案填入空中的命题
-            chain = self.get_chain(ans_prop)
+            self.ans_props = answers[machines.ANSWERPROP] # 将正确答案填入空中的命题
+            chain = self.get_chain() # 修改：将正确答案填入空中的命题记录到中间变量中
             text = self.guide + COLON + SEMICOLON.join(self._statements)  # 题面文本，由引导语和陈述组成
             # 问题信息
             item = {
@@ -264,13 +274,16 @@ class Scene(metaclass=abc.ABCMeta):
                         "statement": self._statements, 
                         "text": text,
                         "question": self._ask_info[prop.SENTENCE], 
-                        "options": answers[machines.OPTIONS], 
-                        "answers": answers[machines.ANSWERS], 
+                        "choices": answers[machines.OPTIONS], 
+                        # "answers": answers[machines.ANSWERS], 
+                        "answers": answers[machines.ANSWERS], # 11-24更新：将键从answers改为choices
                         "chain": chain, 
                         # 11-24更新：增加提问命题的层级信息
                         "layer": self.graph.layer_query(self._asked_prop), 
                         # 11-24更新：增加提问命题的标签信息
-                        "tag": self._asked_prop.typetag
+                        "tag": self._asked_prop.typetag, 
+                        # 11-30更新：增加推理链长度信息
+                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level)
                     }
             question_list.append(item)
         print(f"获取题目{i}次，获得题目{len(question_list)}个.")
@@ -303,11 +316,13 @@ class Scene(metaclass=abc.ABCMeta):
                 print("未能获取答案，跳过.")
                 continue
             text = self.guide + COLON + SEMICOLON.join(self._statements)  # 题面文本，由引导语和陈述组成
+            # 11-30更新：计算试题等级
+            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.OPTIONS]), len(self._knowledges), self.scene_level)
             item = {
                 "guide": self.guide,
                 "statement": self._statements,
                 "text": text,
-            } | ask_all_info
+            } | ask_all_info | {LEVEL: level}
             question_list.append(item)
         print(f"获取题目{i}次，获得题目{len(question_list)}个.")
         return question_list
