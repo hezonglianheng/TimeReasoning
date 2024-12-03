@@ -15,6 +15,8 @@ from typing import Optional
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
+# 12-02新增：引入全局语言模式
+from proposition.config import LANG_MODE
 from timereasoning import config
 from proposition.element import Element
 
@@ -33,6 +35,19 @@ class Event(Element):
         self.object = object
         self.time = time
         self._alias: list[dict[str, str]] = [] # 事件的别名
+        # 12-02新增：事件的不同语言的名称
+        self.names: dict[str, dict[str, str]] = {"zh": {"verb": verb, "object": object}}
+
+    # 12-02新增：添加事件的不同语言的名称
+    def add_name(self, lang: str, verb: str, object: str) -> None:
+        """添加事件的名称
+
+        Args:
+            lang (str): 语言
+            verb (str): 事件动词
+            object (str): 事件宾语
+        """
+        self.names[lang] = {"verb": verb, "object": object}
 
     def event(self) -> str:
         """随机选择事件的陈述"""
@@ -54,7 +69,10 @@ class Event(Element):
         Returns:
             str: 事件的描述
         """
-        return f"{self.verb}{self.object}"
+        # return f"{self.verb}{self.object}"
+        if LANG_MODE not in self.names:
+            raise ValueError(f"事件没有设置语言模式{LANG_MODE}对应的名称")
+        return f"{self.names[LANG_MODE]['verb']}{self.names[LANG_MODE]['object']}"
         
     def __eq__(self, other: object) -> bool:
         """判断两个事件是否相等，方法是检查两个事件的动词、宾语、时间、频率、结束事件等是否相等
