@@ -7,18 +7,16 @@
 {
     // 瞬时事件的模板
     "temporal": [
-        "在这一分钟,[element]",
-		"[element]发生在前[time]分钟",
-		"前[time]分钟,[element]",
-		"在这一分钟，他[element]",
-        "他在前[time]分钟[element]",
+		"[element]发生在第[time]分钟",
+		"第[time]分钟,[element]",
+        "他在第[time]分钟[element]",
     ],
     // 时长的模板
     "duration": [
         "他[element]的时间为[duration]分钟",
 		"他花了[duration]分钟[element]",
 		"他[element]了[duration]分钟",
-		"他只用了[duration]分钟[element]",
+		"他用了[duration]分钟[element]",
     ],
     // 持续事件的模板
     "durative": [
@@ -34,72 +32,84 @@
         "他在[endtime]分前的[duration]分钟，一直在[element]",
 		"在[endtime]分前，他已经[element]了[duration]分钟",
 		"在[endtime]分前，他已经花了[duration]分钟[element]",
-        //
-        "这[duration]分钟，他一直在[element]",
     ],
     // 时频的模板
     "freq": [
-        "从[time]分到[endtime]分，他每[frequency]分钟都[element]",
-	    "从[time]分开始的[duration]分钟里，每[frequency]分钟都[element]",
-	    "他在[endtime]分前的[duration]分钟里，每[frequency]分钟都[element]",
+        "从[time]分到[endtime]分，他每[frequency]分钟都[element]一次",
+	    "从[time]分开始的[duration]分钟里，每[frequency]分钟都[element]一次",
+	    "他在[endtime]分前的[duration]分钟里，每[frequency]分钟都[element]一次",
     ],
     // 事件先后关系的模板
-    "before": [],
+    "before": [
+        "[element1]的时间比[element2]早",
+        "[element1]是在[element2]之前发生的",
+        "[element1]在[element2]之前",
+    ],
     "before_time": [
         "[element1]的时间比[element2]早了[diff]分钟",
-        "在[element2]之前的[diff]分钟，他[element1]",
-        "他[element2]的[diff]分钟之前[element1]",
-        "他在[element2]的前[diff]分钟[element1]",
-        "[element1]是在[element2]的前[diff]分钟发生的",
-        "[element2]发生在[element1]前[diff]分钟",
+        "在[element2]之前的[diff]分钟，[element1]",
+        "在[element2]的[diff]分钟之前[element1]",
+        "[element1]是在[element2]的[diff]分钟前",
+        "[element1]是在[element2]之前的第[diff]分钟发生的",
     ],
-    "after": [],
+    "after": [
+        "[element1]的时间比[element2]晚",
+        "[element1]是在[element2]之后发生的",
+        "[element1]在[element2]之后",
+    ],
     "after_time": [
         "[element1]的时间比[element2]晚了[diff]分钟",
-        "在[element2]之后的[diff]分钟，他[element1]",
-        "他[element2]的[diff]分钟后，[element1]",
-        "他在[element2]的前[diff]分钟[element1]",
-        "[element1]是在[element2]的[diff]分钟后发生的",
-        "[element2]发生在[element1]后[diff]分钟",
-        "[element1]是在[element2]的后[diff]分钟发生的",
+        "在[element2]之后的[diff]分钟，[element1]",
+        "在[element2]的[diff]分钟后[element1]",
+        "[element1]是在[element2]的[diff]分钟后",
+        "[element1]是在[element2]之后的第[diff]分钟发生的",
     ],
     "simultaneous": [
-        "在[element2]的那一分钟，他也[element1]",
-        "那一分钟，他不仅[element2]，还[element1]",
-        "在[element2]的那一分钟，他还[element1]",
-        "他在[element2]的同一分钟，也[element1]",
-        "那一分钟，他既[element2]，也[element1]"
+        "在[element2]的那一分钟，[element1]",
+        "某一分钟，不仅[element2]，还[element1]",
+        "在[element2]的同一分钟，[element1]",
+        "某一分钟，[element2]和[element1]都发生",
     ],
     // 事件间隔的模板
     "gap_time": [
         "[element2]和[element1]之间相隔[diff]分钟",
         "[element2]和[element1]之间的时间间隔是[diff]分钟",
+        "[element2]和[element1]中间差了[diff]分钟",
     ],
     // 时长关系的模板
-    "long": [],
-    "long_time": [
-        "他[element1]的时间比[element2]的时间长了[diff]分钟",
-        "他[element1]的总时长比[element2]的总时长多了[diff]分钟",
+    "long": [
+        "[element1]的时间比[element2]的时间长",
+        "[element1]的总时长比[element2]的总时长多",
+        "相比[element2]，[element1]用了更多时间",
+        "[element1]比[element2]用时更久",
     ],
-    "short": [],
+    "long_time": [
+        "[element1]的时间比[element2]的时间长了[diff]分钟",
+        "[element1]的总时长比[element2]的总时长多了[diff]分钟",
+        "[element1]用了比[element2]多[diff]分钟的时间",
+    ],
+    "short": [
+        "[element1]的时间比[element2]的时间短",
+        "[element1]的总时长比[element2]的总时长少",
+        "相比[element2]，[element1]用了更少时间",
+        "[element1]比[element2]用时更短",
+    ],
     "short_time": [
-        "他[element1]的时间比他[element2]的时间少了[diff]分钟",
-        "他[element1]的时间比他[element2]的时间短了[diff]分钟",
+        "[element1]的时间比[element2]的时间短了[diff]分钟",
+        "[element1]的总时长比[element2]的总时长少了[diff]分钟",
+        "[element1]用了比[element2]少[diff]分钟的时间",
     ],
     "same_len": [
         "[element1]和[element2]花费了相同的时间",
-        "他[element1]的时间和他[element2]的时间一样长",
-        "他[element1]的时间与他[element2]所花的时间相同",
-        "他[element1]花费的时间和他[element2]花费的时间相等",
-        "他[element1]的时间与他[element2]的时间一致"
+        "[element1]的时间和[element2]的时间一样长",
+        "[element1]的时间与[element2]所花的时间相同",
+        "[element1]花费的时间和[element2]花费的时间相等",
+        "[element1]的时长与[element2]的时长一致",
     ],
     // 增加：during的模板
     "during": [
-        "在[element2]期间，他[element1]",
-        "他在[element2]期间[element1]",
-        "他在[element2]的时候[element1]",
-        "他[element1]的时候是在[element2]期间",
-        "他在[element2]的那段时间里[element1]",
-        "他[element1]的时间是在[element2]期间",
+        "在[element2]期间，也[element1]",
+        "[element1]是在[element2]期间",
+        "在[element2]的那段时间里，[element1]",
     ]
 }
