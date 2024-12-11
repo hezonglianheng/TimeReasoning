@@ -44,68 +44,66 @@
     // 事件先后关系的模板
     "before": [
         "He [element1] earlier than [element2]",
-        "He [element1] before he [element2]",
+        "He [element1] before [element2]",
     ],
     "before_time": [
-        "He [element1] [diff] year(s) earlier than he [element2]",
-        "He [element1] [diff] year(s) before he [element2]",
-        "[diff] year(s) before he [element2], he [element1]",
+        "He [element1] [diff] year(s) earlier than [element2]",
+        "He [element1] [diff] year(s) before [element2]",
+        "[diff] year(s) before [element2], he [element1]",
     ],
     "after": [
         "He [element1] later than [element2]",
-        "He [element1] after he [element2]",
+        "He [element1] after [element2]",
     ],
     "after_time": [
-        "He [element1] [diff] year(s) later than he [element2]",
-        "He [element1] [diff] year(s) after he [element2]",
-        "[diff] year(s) after he [element2], he [element1]",
+        "He [element1] [diff] year(s) later than [element2]",
+        "He [element1] [diff] year(s) after [element2]",
+        "[diff] year(s) after [element2], he [element1]",
     ],
     "simultaneous": [
-        "In the year that he [element2], he also [element1]",
-        "In the same year, he not only [element2], but also [element1]",
-        "In the same year as he [element2], he also [element1]",
-        "In a certain year, he both [element2] and [element1]",
+        "In the year that [element2], he also [element1]",
+        "In the same year, not only he [element1], but also [element2]",
+        "In the same year as [element2], he also [element1]",
+        "In a certain year, both [element2] and [element1] happened",
     ],
     // 事件间隔的模板
     "gap_time": [
-        "There are [diff] year(s) between he [element2] and [element1]",
-        "The time gap between he [element2] and [element1] is [diff] year(s)",
-        "He has a [diff]-year difference between he [element2] and [element1]",
+        "There are [diff] year(s) between he [element1] and [element2]",
+        "The time gap between he [element1] and [element2] is [diff] year(s)",
+        "He has a [diff]-year difference between [element1] and [element2]",
     ],
     // 时长关系的模板
     "long": [
-        "The total duration of which he [element1] is longer than that of he [element2]",
-        "It takes a longer time that he [element1] than he [element2]",
-        "Compared to the time he [element2], more time is taken that he [element1]",
+        "The total duration that he [element1] is longer than that of [element2]",
+        "It takes a longer time that he [element1] than [element2]",
+        "Compared to the duration of [element2], more time is taken that he [element1]",
     ],
     "long_time": [
-        "[diff] more year(s) are taken that he [element1] than he [element2]",
-        "The total duration of which he [element1] is [diff] year(s) longer than that of he [element2]",
-        "He takes [diff] more year(s) than he [element2] that he [element1]",
+        "[diff] more year(s) are taken that he [element1] than [element2]",
+        "The total duration that he [element1] is [diff] year(s) longer than that of [element2]",
+        "He takes [diff] more year(s) than [element2] that he [element1]",
     ],
     "short": [
-        "The total duration of which he [element1] is shorter than that of he [element2]",
-        "It takes a shorter time that he [element1] than he [element2]",
-        "Compared to the time he [element2], less time is taken that he [element1]"
+        "The total duration that he [element1] is shorter than that of [element2]",
+        "It takes a shorter time that he [element1] than [element2]",
+        "Compared to the duration of [element2], less time is taken that he [element1]",
     ],
     "short_time": [
-        "[diff] less year(s) are taken that he [element1] than he [element2]",
-        "The total duration of which he [element1] is [diff] year(s) shorter than that of he [element2]",
-        "He takes [diff] less year(s) than he [element2] that he [element1]"
+        "[diff] less year(s) are taken that he [element1] than [element2]",
+        "The total duration that he [element1] is [diff] year(s) shorter than that of [element2]",
+        "He takes [diff] less year(s) than [element2] that he [element1]",
     ],
     "same_len": [
-        "He spends the same number of year(s) that he [element1] as he [element2]",
-        "The time he [element1] is the same length as that he [element2]",
-        "The time he [element1] is the same as the time he [element2]",
-        "The time he [element1] is equal to the time he [element2]",
-        "The time he [element1] matches the time he [element2]",
+        "He spends the same number of year(s) that he [element1] as [element2]",
+        "The time he [element1] is the same length as that of [element2]",
+        "The time he [element1] is equal to the time duration of [element2]",
+        "The time he [element1] matches the time duration of [element2]",
         "He spends the same amount of time that he [element1] and [element2]",
     ],
     // 增加：during的模板
     "during": [
-        "During the time that he [element2], he also [element1]",
-        "He [element1], and that was during the time that he [element2]",
-        "He [element2], and during this time he also [element1]",
-        "He [element1] during the time he [element2]",
+        "During the time that [element2], he also [element1]",
+        "He [element1], and that was during the time that [element2]",
+        "He [element1] during [element2]",
     ]
 }

@@ -19,16 +19,16 @@
     ],
     // 持续事件的模板
     "durative": [
-        // 描述起点和终点（同月）
+        // 描述起点和终点
         "From May [time] to [endtime], he [element]",
         "On May [time] he [element], until May [endtime]",
         "He [element] on May [time], and ended on May [endtime]",
         "He [element] from May [time] to [endtime]",
         "May [time] to [endtime], he [element]",
         // 描述起点和持续时间
-        "From month [time] on, he [element] for [duration] month(s)",
-        "Starting from month [time], he [element] for [duration] month(s)",
-        "He [element] since month [time], for [duration] month(s)",
+        "From May [time] on, he [element] for [duration] day(s)",
+        "Starting from May [time], he [element] for [duration] day(s)",
+        "He [element] since May [time], for [duration] day(s)",
         // 描述终点和持续时间
         "He [element] for [duration] day(s) before May [endtime]",
         "By May [endtime], he [element] for [duration] day(s)",
@@ -43,68 +43,66 @@
     // 事件先后关系的模板
     "before": [
         "He [element1] earlier than [element2]",
-        "He [element1] before he [element2]",
+        "He [element1] before [element2]",
     ],
     "before_time": [
-        "He [element1] [diff] day(s) earlier than he [element2]",
-        "He [element1] [diff] day(s) before he [element2]",
-        "[diff] day(s) before he [element2], he [element1]",
+        "He [element1] [diff] day(s) earlier than [element2]",
+        "He [element1] [diff] day(s) before [element2]",
+        "[diff] day(s) before [element2], he [element1]",
     ],
     "after": [
         "He [element1] later than [element2]",
-        "He [element1] after he [element2]",
+        "He [element1] after [element2]",
     ],
     "after_time": [
-        "He [element1] [diff] day(s) later than he [element2]",
-        "He [element1] [diff] day(s) after he [element2]",
-        "[diff] day(s) after he [element2], he [element1]",
+        "He [element1] [diff] day(s) later than [element2]",
+        "He [element1] [diff] day(s) after [element2]",
+        "[diff] day(s) after [element2], he [element1]",
     ],
     "simultaneous": [
-        "On the day that he [element2], he also [element1]",
-        "On the same day, he not only [element2], but also [element1]",
-        "On the same day as he [element2], he also [element1]",
-        "On a certain day, he both [element2] and [element1]",
+        "On the day that [element2], he also [element1]",
+        "On the same day, not only he [element1], but also [element2]",
+        "On the same day as [element2], he also [element1]",
+        "On a certain day, both [element2] and [element1] happened",
     ],
     // 事件间隔的模板
     "gap_time": [
-        "There are [diff] day(s) between he [element2] and [element1]",
-        "The time gap between he [element2] and [element1] is [diff] day(s)",
-        "He has a [diff]-day difference between he [element2] and [element1]",
+        "There are [diff] day(s) between he [element1] and [element2]",
+        "The time gap between he [element1] and [element2] is [diff] day(s)",
+        "He has a [diff]-day difference between [element1] and [element2]",
     ],
     // 时长关系的模板
     "long": [
-        "The total duration of which he [element1] is longer than that of he [element2]",
-        "It takes a longer time that he [element1] than he [element2]",
-        "Compared to the time he [element2], more time is taken that he [element1]",
+        "The total duration that he [element1] is longer than that of [element2]",
+        "It takes a longer time that he [element1] than [element2]",
+        "Compared to the duration of [element2], more time is taken that he [element1]",
     ],
     "long_time": [
-        "[diff] more day(s) are taken that he [element1] than he [element2]",
-        "The total duration of which he [element1] is [diff] day(s) longer than that of he [element2]",
-        "He takes [diff] more day(s) than he [element2] that he [element1]",
+        "[diff] more day(s) are taken that he [element1] than [element2]",
+        "The total duration that he [element1] is [diff] day(s) longer than that of [element2]",
+        "He takes [diff] more day(s) than [element2] that he [element1]",
     ],
     "short": [
-        "The total duration of which he [element1] is shorter than that of he [element2]",
-        "It takes a shorter time that he [element1] than he [element2]",
-        "Compared to the time he [element2], less time is taken that he [element1]",
+        "The total duration that he [element1] is shorter than that of [element2]",
+        "It takes a shorter time that he [element1] than [element2]",
+        "Compared to the duration of [element2], less time is taken that he [element1]",
     ],
     "short_time": [
-        "[diff] less day(s) are taken that he [element1] than he [element2]",
-        "The total duration of which he [element1] is [diff] day(s) shorter than that of he [element2]",
-        "He takes [diff] less day(s) than he [element2] that he [element1]",
+        "[diff] less day(s) are taken that he [element1] than [element2]",
+        "The total duration that he [element1] is [diff] day(s) shorter than that of [element2]",
+        "He takes [diff] less day(s) than [element2] that he [element1]",
     ],
     "same_len": [
-        "He spends the same number of day(s) that he [element1] as he [element2]",
-        "The time he [element1] is the same length as that he [element2]",
-        "The time he [element1] is the same as the time he [element2]",
-        "The time he [element1] is equal to the time he [element2]",
-        "The time he [element1] matches the time he [element2]",
+        "He spends the same number of day(s) that he [element1] as [element2]",
+        "The time he [element1] is the same length as that [element2]",
+        "The time he [element1] is equal to the time duration that [element2]",
+        "The time he [element1] matches the time duration of [element2]",
         "He spends the same amount of time that he [element1] and [element2]",
     ],
     // 增加：during的模板
     "during": [
-        "During the time that he [element2], he also [element1]",
-        "He [element1], and that was during the time that he [element2]",
-        "He [element2], and during this time he also [element1]",
-        "He [element1] during the time he [element2]",
+        "During the time that [element2], he also [element1]",
+        "He [element1], and that was during the time that [element2]",
+        "He [element1] during [element2]",
     ]
 }
