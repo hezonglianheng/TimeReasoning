@@ -19,6 +19,10 @@ import timereasoning.timeprop as timeprop
 # 时间尺度决定调用哪一个时间常识库
 import timereasoning.timescale as timescale
 
+# 常用的字典键
+SUBTYPE = "subtype"
+LANGUAGE = "language"
+
 class TimeKnowledge(know.Knowledge):
     """表示时间常识的抽象基类"""
     def __init__(self):
@@ -67,19 +71,28 @@ class EventKnowledge(TimeKnowledge):
         Raises:
             ValueError: 事件知识的subtype标签不正确
         """
-        if "subtype" not in self.dic:
+        if SUBTYPE not in self.dic:
             raise ValueError(f"事件知识{self.dic}没有subtype标签")
-        if self.dic["subtype"] == "temporal":
+        if self.dic[SUBTYPE] == "temporal":
             curr_dict = {k: v for k, v in self.dic.items() if k in ["verb", "object", "time"]}
-            return event.TemporalEvent(**curr_dict)
-        elif self.dic["subtype"] == "durative":
+            # return event.TemporalEvent(**curr_dict)
+            ev = event.TemporalEvent(**curr_dict) # 取消直接返回
+        elif self.dic[SUBTYPE] == "durative":
             curr_dict = {k: v for k, v in self.dic.items() if k in ["verb", "object", "time", "endtime"]}
-            return event.DurativeEvent(**curr_dict)
-        elif self.dic["subtype"] == "freq":
+            # return event.DurativeEvent(**curr_dict)
+            ev = event.DurativeEvent(**curr_dict) # 取消直接返回
+        elif self.dic[SUBTYPE] == "freq":
             curr_dict = {k: v for k, v in self.dic.items() if k in ["verb", "object", "time", "endtime", "frequency"]}
-            return event.FreqEvent(**curr_dict)
+            # return event.FreqEvent(**curr_dict)
+            ev = event.FreqEvent(**curr_dict) # 取消直接返回
         else:
-            raise ValueError(f"事件知识的subtype标签{self.dic["subtype"]}不正确")
+            raise ValueError(f"事件知识的subtype标签{self.dic[SUBTYPE]}不正确")
+        
+        # 12-11新增：根据知识文件信息添加知识的其他语言名称
+        languages: list[dict[str, str]] = self.dic[LANGUAGE]
+        for d in languages:
+            ev.add_name(**d)
+        return ev
 
     def use(self) -> timeprop.SingleTimeP:
         """使用事件常识的方法，返回事件对应的不可提问时间命题"""

@@ -1,4 +1,5 @@
 // 以年为单位的知识库
+// 12-11新增：增加知识的多语言表示以支持其他语言试题
 
 {
     "event": [
@@ -7,12 +8,26 @@
             "verb": "八国联军攻入",
             "object": "北京",
             "time": 1900,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
             "verb": "辛亥革命爆发",
             "object": "",
             "time": 1911,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "Xinhai Revolution erupted", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "durative",
@@ -20,42 +35,91 @@
             "object": "第一次世界大战",
             "time": 1914,
             "endtime": 1918,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the World War I", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
             "verb": "五四运动爆发",
             "object": "",
             "time": 1919,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "May Fourth movement took place", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
             "verb": "中国共产党成立",
             "object": "",
             "time": 1921,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "The Chinese Communist Party (CCP) was founded", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
             "verb": "南昌起义",
             "object": "爆发",
             "time": 1927,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "Nanchang uprising erupted", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
             "verb": "长征",
             "object": "开始",
             "time": 1934,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "started", // 动词，和原来的event相同
+                    "object": "Long March", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
             "verb": "新中国成立",
             "object": "",
             "time": 1949,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the People's Republic of China established", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
             "verb": "改革开放",
             "object": "开始",
             "time": 1978,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "Chinese economic reform started", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "durative",
@@ -63,12 +127,26 @@
             "object": "抗日战争",
             "time": 1931,
             "endtime": 1945,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "anti-Japanese war", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
             "verb": "中国加入",
             "object": "WTO",
             "time": 2001,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "China joined", // 动词，和原来的event相同
+                    "object": "the World Trade Organization", // 名词，和原来的event相同
+                }
+            ], 
         }, 
     ], 
     "order": [], 
