@@ -58,26 +58,28 @@ class Scene(metaclass=abc.ABCMeta):
         self.rules: list[rule.Rule] = []  # 规则列表
         self.temps: dict[str, list[str]] = []  # 模板字典
         # 命题收集变量
-        self._init_props: list[prop.Proposition] = []
-        self._all_props: list[prop.Proposition] = []
-        self._chosen_group: list[prop.Proposition] = []
-        self._statements: list[str] = []
-        self._asked_prop: prop.Proposition = None
-        self._ask_info: dict[str, Any] = {}
-        self._value_range: dict[str, list[Any]] = dict()
-        self._knowledges: list[prop.Proposition] = []
-        self.graph: Graph = None
-        self.chain: str = ""
+        self._init_props: list[prop.Proposition] = [] # 初始命题
+        self._all_props: list[prop.Proposition] = [] # 遍历推理得到的所有命题
+        self._chosen_group: list[prop.Proposition] = [] # 被选择用于陈述的命题
+        self._statements: list[str] = [] # 题目的陈述文本
+        self._asked_prop: prop.Proposition = None # 被询问的命题
+        self._ask_info: dict[str, Any] = {} # 从被询问的命题中获取的信息
+        self._value_range: dict[str, list[Any]] = dict() # 不同的类型对应的值域
+        self._knowledges: list[prop.Proposition] = [] # 知识命题
+        self.graph: Graph = None # 推理图
+        self.chain: str = "" # 推理链文本
         self._reachables: list[prop.Proposition] = [] # 可达命题列表
         # 11-25新增：场景的范围获取机
         self._range_machine: GRM = None # 范围获取机
         # 11-26新增：场景的询问机
         self._ask_all_machine: AskAllMachine = None
-        self._ask_correct: bool = True
+        self._ask_correct: bool = True # 是否询问“以下正确”，True为询问“以下正确”，False为询问“以下错误”
         # 11-30新增：推理链长度记录变量
         self.chain_length: int = 0
         # 12-01新增：记录由回答机返回的回答命题
         self.ans_props: list[prop.Proposition] = []
+        # 12-11新增：记录由回答机返回的答案信息
+        self.answer_info: dict[str, Any] = {}
 
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
@@ -209,7 +211,12 @@ class Scene(metaclass=abc.ABCMeta):
         am = AM(self._reachables, self._asked_prop, self._ask_info, seed, options, all_wrong_prob)
         for k, v in self._value_range.items():
             am.set_value_range(k, v)
-        return am.run()
+        # 12-11修改：将答案信息记录到中间变量中
+        self.answer_info = am.run()
+        ans_info = deepcopy(self.answer_info) # 12-11修订：复制一份答案信息
+        str_options = {k: str(v) for k, v in self.answer_info[machines.OPTIONS].items()} # 将选项转换为字符串
+        ans_info | {machines.OPTIONS: str_options} # 将选项转换为字符串后添加到答案信息中
+        return ans_info
 
     def get_chain(self) -> str:
         """获取推理链
@@ -239,10 +246,16 @@ class Scene(metaclass=abc.ABCMeta):
             dict[str, Any]: 问题信息
         """
         assert self._ask_all_machine is not None, "必须先初始化询问机"
-        return self._ask_all_machine.run()
+        # return self._ask_all_machine.run()
+        ask_res = self._ask_all_machine.run()
+        option_state = [i.state(self.temps) if isinstance(i, prop.Proposition) else str(i) for i in self._ask_all_machine._option_dict.values()]
+        choice_dict = {k: v for k, v in zip(ask_res["choices"].keys(), option_state)}
+        new_ask_res = ask_res | {"choices": choice_dict}
+        return new_ask_res
     
     def run(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
         """运行场景，获取一组题目
+
         Args:
             execute (int, optional): 生成的题目数量. 默认为10.
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
@@ -291,6 +304,7 @@ class Scene(metaclass=abc.ABCMeta):
 
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None, ask_correct: bool = True) -> list[dict[str, Any]]:
         """运行场景，获取一组询问多个命题类型的题目
+        
         Args:
             execute (int, optional): 生成的题目数量. 默认为10.
             seed (Union[int, float, None], optional): 随机种子. 默认为None.

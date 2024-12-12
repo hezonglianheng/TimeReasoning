@@ -7,11 +7,14 @@
 PRECISE_WEIGHT = 0.8
 NOT_PRECISE_WEIGHT = 0.2
 
-# punctuations
+# punctuations.
 SEMICOLON = "; "
 COLON = ": "
 
-# language settings
+# language settings.
+# 当前支持的语言
+CURR_LANGS = ["zh", "en",]
+
 LANG_MODE = "zh"
 
 ALL_WRONG = 'all_wrong'

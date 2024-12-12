@@ -357,10 +357,12 @@ class AnswerMachine:
                 option_situation_tuples.append((i, False))
         # 随机打乱选项，生成选项和答案
         random.shuffle(option_situation_tuples)
-        options: dict[str, str] = dict()
+        options: dict[str, Any] = dict() # 12-11修订：不再返回字符串，而是返回内部存储对象
         answers: list[str] = list()
         for i, (opt, judge) in enumerate(option_situation_tuples):
-            options[ascii_uppercase[i]] = str(opt)
+            # 12-11修订：不再返回字符串，而是返回内部存储对象
+            # options[ascii_uppercase[i]] = str(opt)
+            options[ascii_uppercase[i]] = opt
             if judge:
                 answers.append(ascii_uppercase[i])
         # 设置“以上选项均不正确”选项
@@ -534,7 +536,9 @@ class AskAllMachine:
         # 生成新的判断（旧的判断未必能够成功替换）
         judges = [i.got(self.all_props) for i in option_props]
         # 生成选项字典
-        self._option_dict = {ascii_uppercase[i]: j.state(self.temps) for i, j in enumerate(option_props)}
+        # 12-12修改：输出的选项字典的值不是字符串而是命题
+        # self._option_dict = {ascii_uppercase[i]: j.state(self.temps) for i, j in enumerate(option_props)}
+        self._option_dict = {ascii_uppercase[i]: j for i, j in enumerate(option_props)}
         # 生成答案
         if self.ask_correct:
             self._answers = [ascii_uppercase[i] for i, j in enumerate(judges) if j]
