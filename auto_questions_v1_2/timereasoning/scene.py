@@ -151,22 +151,6 @@ class TimeScene(Scene):
         else:
             pass
 
-    # 12-11添加临时性修改：在原有get_all_props方法中添加调整，将双元命题中element1为知识事件的排除掉
-    # TODO: 在下一个版本中废除此更改
-    def get_all_props(self) -> None:
-        super().get_all_props() # 调用父类的方法
-        # 12-11添加临时性修改：将双元命题中element2为知识事件的排除掉
-        # 获得知识事件
-        know_events = [i.element for i in self._knowledges if isinstance(i, timeprop.SingleTimeP)]
-        # 遍历所有命题，将双元命题中element1为知识事件的排除掉
-        new_list: list[timeprop.TimeP] = list()
-        for i in range(len(self._all_props)):
-            prop = self._all_props[i]
-            if isinstance(prop, timeprop.DoubleTimeP) and prop.element1.got(know_events):
-                continue
-            new_list.append(prop)
-        self._all_props = new_list
-    
     # 11-03修改：在时间领域重载获取全部命题的方法
     def get_all_groups(self) -> None:
         assert len(self._all_props) > 0, "必须先生成全部命题"
@@ -190,7 +174,8 @@ class TimeScene(Scene):
             prop = self._reachables[i]
             if isinstance(prop, timeprop.DoubleTimeP) and prop.element1.got(know_events):
                 continue
-            new_list.append(prop)
+            else:
+                new_list.append(prop)
         self._reachables = new_list
 
         # 以可及命题中的单元素时间命题为基础，构建时间领域专用取值范围机
@@ -268,7 +253,7 @@ class TimeScene(Scene):
         if info is None:
             return None
         info[machines.QUESTION] = self._exp_trans(info[machines.QUESTION]) # 调整问题中的时间表达方式
-        info[machines.OPTIONS] = {k: self._exp_trans(v) for k, v in info[machines.OPTIONS].items()} # 调整选项中的时间表达方式
+        info[machines.CHOICES] = {k: self._exp_trans(v) for k, v in info[machines.CHOICES].items()} # 调整选项中的时间表达方式
         return info
 
 class LineScene(TimeScene):

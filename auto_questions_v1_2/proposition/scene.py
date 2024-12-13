@@ -248,6 +248,8 @@ class Scene(metaclass=abc.ABCMeta):
         assert self._ask_all_machine is not None, "必须先初始化询问机"
         # return self._ask_all_machine.run()
         ask_res = self._ask_all_machine.run()
+        if ask_res is None:
+            return ask_res
         option_state = [i.state(self.temps) if isinstance(i, prop.Proposition) else str(i) for i in self._ask_all_machine._option_dict.values()]
         choice_dict = {k: v for k, v in zip(ask_res["choices"].keys(), option_state)}
         new_ask_res = ask_res | {"choices": choice_dict}
@@ -331,7 +333,7 @@ class Scene(metaclass=abc.ABCMeta):
                 continue
             text = self.guide + COLON + SEMICOLON.join(self._statements)  # 题面文本，由引导语和陈述组成
             # 11-30更新：计算试题等级
-            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.OPTIONS]), len(self._knowledges), self.scene_level)
+            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.CHOICES]), len(self._knowledges), self.scene_level)
             item = {
                 "guide": self.guide,
                 "statement": self._statements,

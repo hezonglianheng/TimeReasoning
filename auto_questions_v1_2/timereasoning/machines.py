@@ -230,5 +230,8 @@ class TimeAskAllMachine(machines.AskAllMachine):
             # 如果是持续时间命题且询问time，则选项范围为结束时间之前的时间
             elif ask_info.get(prop.TYPE) == "time":
                 initial_range = [i for i in initial_range if i < curr_prop.endtime]
+        if isinstance(curr_prop, timeprop.DoubleTimeP):
+            if ask_info.get(prop.TYPE) == "element1":
+                initial_range = initial_range
 
         return initial_range

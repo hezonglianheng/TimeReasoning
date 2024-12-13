@@ -13,7 +13,7 @@ sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 from proposition.config import CURR_LANGS, set_lang_mode
 from proposition.scene import Scene, LEVEL
-from proposition.config import COLON, SEMICOLON
+from proposition.config import COLON, SEMICOLON, LANG_MODE
 from proposition import prop, machines
 
 class LangParallelScene(metaclass=abc.ABCMeta):
@@ -90,12 +90,13 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         Returns:
             list[dict[str, Any]]: 数据
         """
+        global LANG_MODE
         data: list[dict[str, Any]] = [] # 用于存储数据
         for _ in range(execute):
             # 运行原始场景生成原始数据
             origin_result = self.original_scene.run(execute=1, seed=seed)
             for lang in CURR_LANGS:
-                set_lang_mode(lang) # 设置全局语言模式
+                LANG_MODE = lang # 设置全局语言模式
                 self.original_scene.lang = lang # 设置原始场景的语言
                 guide = self.lang_guides[lang] # 获取引导语
                 statements = self.get_statements(lang) # 获取语句
@@ -123,12 +124,13 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         return new_dict
     
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
+        global LANG_MODE
         data: list[dict[str, Any]] = [] # 用于存储数据
         for _ in range(execute):
             # 运行原始场景生成原始数据
             origin_result = self.original_scene.run_ask_all(execute=1, seed=seed)
             for lang in CURR_LANGS:
-                set_lang_mode(lang) # 设置全局语言模式
+                LANG_MODE = lang # 设置全局语言模式
                 self.original_scene.lang = lang # 设置原始场景的语言
                 guide = self.lang_guides[lang] # 获取引导语
                 statements = self.get_statements(lang) # 获取语句

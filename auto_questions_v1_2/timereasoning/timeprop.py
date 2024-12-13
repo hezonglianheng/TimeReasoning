@@ -47,7 +47,8 @@ class SingleTimeP(prop.SingleProp, TimeP):
     def attrs(self) -> dict[str, str]:
         res = super().attrs()
         if isinstance(self.element, event.Event):
-            res |= {"element": self.element.event()}
+            # res |= {"element": self.element.event()}
+            res |= {"element": str(self.element)}
         return res
 
     @classmethod
@@ -239,9 +240,11 @@ class DoubleTimeP(prop.DoubleProp, TimeP):
     def attrs(self) -> dict[str, str]:
         res = super().attrs()
         if isinstance(self.element1, event.Event):
-            res |= {"element1": self.element1.event()}
+            # res |= {"element1": self.element1.event()}
+            res |= {"element1": str(self.element1)}
         if isinstance(self.element2, event.Event):
-            res |= {"element2": self.element2.event()}
+            # res |= {"element2": self.element2.event()}
+            res |= {"element2": str(self.element2)}
         return res
     
     @classmethod
