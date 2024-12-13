@@ -89,7 +89,6 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         Returns:
             list[dict[str, Any]]: 数据
         """
-        global LANG_MODE
         data: list[dict[str, Any]] = [] # 用于存储数据
         for _ in range(execute):
             # 运行原始场景生成原始数据
@@ -123,14 +122,13 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         return new_dict
     
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
-        global LANG_MODE
         data: list[dict[str, Any]] = [] # 用于存储数据
         for _ in range(execute):
             # 运行原始场景生成原始数据
             origin_result = self.original_scene.run_ask_all(execute=1, seed=seed)
             for lang in proposition.config.CURR_LANGS:
                 proposition.config.set_lang_mode(lang) # 设置全局语言模式
-                print(LANG_MODE)
+                print(proposition.config.LANG_MODE)
                 self.original_scene.lang = lang # 设置原始场景的语言
                 guide = self.lang_guides[lang] # 获取引导语
                 statements = self.get_statements(lang) # 获取语句
