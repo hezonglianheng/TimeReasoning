@@ -70,7 +70,7 @@ class Event(Element):
             str: 事件的描述
         """
         # return f"{self.verb}{self.object}"
-        print(proposition.config.LANG_MODE)
+        # print(proposition.config.LANG_MODE)
         if proposition.config.LANG_MODE not in self.names:
             raise ValueError(f"事件没有设置语言模式{proposition.config.LANG_MODE}对应的名称")
         return f"{self.names[proposition.config.LANG_MODE]['verb']}{self.names[proposition.config.LANG_MODE]['object']}"

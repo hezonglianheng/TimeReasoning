@@ -11,8 +11,8 @@
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "", // 动词，和原来的event相同
-                    "object": "", // 名词，和原来的event相同
+                    "verb": "The Eight-Nation Alliance invaded", // 动词，和原来的event相同
+                    "object": "Beijing", // 名词，和原来的event相同
                 }
             ], 
         }, 

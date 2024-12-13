@@ -12,6 +12,7 @@ from copy import deepcopy
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 import proposition.config
+from proposition.config import LANG_CONFIG, ASK_RIGHT, ASK_WRONG
 from proposition.scene import Scene, LEVEL
 from proposition import prop, machines
 
@@ -128,12 +129,18 @@ class LangParallelScene(metaclass=abc.ABCMeta):
             origin_result = self.original_scene.run_ask_all(execute=1, seed=seed)
             for lang in proposition.config.CURR_LANGS:
                 proposition.config.set_lang_mode(lang) # 设置全局语言模式
-                print(proposition.config.LANG_MODE)
                 self.original_scene.lang = lang # 设置原始场景的语言
                 guide = self.lang_guides[lang] # 获取引导语
                 statements = self.get_statements(lang) # 获取语句
                 text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
-                question = origin_result[0][machines.QUESTION] # 获取问题
+                origin_question = origin_result[0][machines.QUESTION] # 获取问题
+                if origin_question == LANG_CONFIG["zh"][ASK_RIGHT] or origin_question == LANG_CONFIG["en"][ASK_RIGHT]:
+                    question = LANG_CONFIG[lang][ASK_RIGHT]
+                elif origin_question == LANG_CONFIG["zh"][ASK_WRONG] or origin_question == LANG_CONFIG["en"][ASK_WRONG]:
+                    question = LANG_CONFIG[lang][ASK_WRONG]
+                else:
+                    raise ValueError(f"问题{origin_question}不正确")
+                # question = origin_result[0][machines.QUESTION] # 获取问题
                 choices = self.get_options(lang) # 获取选项
                 answer = origin_result[0][machines.ANSWERS] # 获取答案
                 level = origin_result[0][LEVEL]
