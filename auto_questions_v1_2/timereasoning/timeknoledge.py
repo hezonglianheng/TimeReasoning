@@ -81,6 +81,16 @@ class EventKnowledge(TimeKnowledge):
             curr_dict = {k: v for k, v in self.dic.items() if k in ["verb", "object", "time", "endtime"]}
             # return event.DurativeEvent(**curr_dict)
             ev = event.DurativeEvent(**curr_dict) # 取消直接返回
+            # 12-13新增：为子事件设置语言信息
+            start_lang: list[dict[str, str]] = self.dic["start_language"]
+            for d in start_lang:
+                ev.start_event.add_name(**d)
+            end_lang: list[dict[str, str]] = self.dic["end_language"]
+            for d in end_lang:
+                ev.end_event.add_name(**d)
+            duration_lang: list[dict[str, str]] = self.dic["end_language"]
+            for d in duration_lang:
+                ev.duration_event.add_name(**d)
         elif self.dic[SUBTYPE] == "freq":
             curr_dict = {k: v for k, v in self.dic.items() if k in ["verb", "object", "time", "endtime", "frequency"]}
             # return event.FreqEvent(**curr_dict)

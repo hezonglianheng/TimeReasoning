@@ -15,7 +15,7 @@
                     "lang": "en", // 语言类型
                     "verb": "", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
-                }
+                },
             ], 
         }, 
         {
@@ -30,11 +30,32 @@
                     "lang": "en", // 语言类型
                     "verb": "", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
-                }
+                },
             ], 
+            "start_language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                },
+            ],
+            "end_language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                },
+            ],
+            "duration_language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ],
         }, 
         {
-            "subtype": "temporal",
+            "subtype": "freq",
             "verb": "",
             "object": "",
             "time": 0,
@@ -46,7 +67,7 @@
                     "lang": "en", // 语言类型
                     "verb": "", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
-                }
+                },
             ], 
         }
     ], 
