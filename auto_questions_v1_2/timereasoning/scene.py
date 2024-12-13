@@ -163,21 +163,6 @@ class TimeScene(Scene):
         self._reachables = rm.run() # 11-12修改: 将建立推理图得到的命题加入可达命题列表
         self.graph = rm.graph
         print(f"推理图获取完毕.")
-
-        # 12-11添加临时性修改：在原有方法中添加调整，将双元命题中element1为知识事件的排除掉
-        # TODO: 下一个版本废除这一修改
-        # 获得知识事件
-        know_events = [i.element for i in self._knowledges if isinstance(i, timeprop.SingleTimeP)]
-        # 遍历所有命题，将双元命题中element1为知识事件的排除掉
-        new_list: list[timeprop.TimeP] = list()
-        for i in range(len(self._reachables)):
-            prop = self._reachables[i]
-            if isinstance(prop, timeprop.DoubleTimeP) and prop.element1.got(know_events):
-                continue
-            else:
-                new_list.append(prop)
-        self._reachables = new_list
-
         # 以可及命题中的单元素时间命题为基础，构建时间领域专用取值范围机
         self._range_machine = TGRM([i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)])
         print("初始化选取干扰项的范围获取机.")
