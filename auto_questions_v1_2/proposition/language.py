@@ -11,9 +11,8 @@ from copy import deepcopy
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
-from proposition.config import CURR_LANGS, set_lang_mode
+import proposition.config
 from proposition.scene import Scene, LEVEL
-from proposition.config import COLON, SEMICOLON, LANG_MODE
 from proposition import prop, machines
 
 class LangParallelScene(metaclass=abc.ABCMeta):
@@ -95,12 +94,12 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         for _ in range(execute):
             # 运行原始场景生成原始数据
             origin_result = self.original_scene.run(execute=1, seed=seed)
-            for lang in CURR_LANGS:
-                LANG_MODE = lang # 设置全局语言模式
+            for lang in proposition.config.CURR_LANGS:
+                proposition.config.set_lang_mode(lang) # 设置全局语言模式
                 self.original_scene.lang = lang # 设置原始场景的语言
                 guide = self.lang_guides[lang] # 获取引导语
                 statements = self.get_statements(lang) # 获取语句
-                text = guide + COLON + SEMICOLON.join(statements) # 生成试题文本
+                text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
                 # 获取问题
                 question = self.get_question(lang)
                 answer_info = self.get_answers(lang) # 获取答案信息
@@ -129,12 +128,13 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         for _ in range(execute):
             # 运行原始场景生成原始数据
             origin_result = self.original_scene.run_ask_all(execute=1, seed=seed)
-            for lang in CURR_LANGS:
-                LANG_MODE = lang # 设置全局语言模式
+            for lang in proposition.config.CURR_LANGS:
+                proposition.config.set_lang_mode(lang) # 设置全局语言模式
+                print(LANG_MODE)
                 self.original_scene.lang = lang # 设置原始场景的语言
                 guide = self.lang_guides[lang] # 获取引导语
                 statements = self.get_statements(lang) # 获取语句
-                text = guide + COLON + SEMICOLON.join(statements) # 生成试题文本
+                text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
                 question = origin_result[0][machines.QUESTION] # 获取问题
                 choices = self.get_options(lang) # 获取选项
                 answer = origin_result[0][machines.ANSWERS] # 获取答案
