@@ -84,6 +84,8 @@ if __name__ == "__main__":
     # 随机抽取事件
     curr_scene = scene.LineScene(ts.TimeScale.Year, "小明的女儿正在给朋友讲述父亲的一生", ask_mode="deepest")
     lang_scene = lg.TimeParallelScene(curr_scene)
+    lang_scene.add_guide("zh", "小明的女儿正在给朋友讲述父亲的一生")
+    lang_scene.add_guide("en", "Jack's daughter is telling her friends about the story of his life")
     all_combinations = list(combinations((event_list), 6))
     samples = random.sample(all_combinations, 10)
     res = []
@@ -95,7 +97,7 @@ if __name__ == "__main__":
         # 运行时间场景
         # res.extend(curr_scene.run(1))
         # res.extend(curr_scene.run_ask_all())
-        res.extend(lang_scene.run_ask_all())
+        res.extend(lang_scene.run_ask_all(1))
         curr_scene.reset()
     output_file = Path(__file__).resolve().parents[0] / "output.json"
     with output_file.open('w', encoding='utf8') as f:
