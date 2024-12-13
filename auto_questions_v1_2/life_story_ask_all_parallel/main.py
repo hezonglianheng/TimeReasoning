@@ -24,6 +24,7 @@ if __name__ == "__main__":
     life.start_event.add_name("en", "was born", "")
     life.set_end_event("去世", "")
     life.end_event.add_name("en", "passed away", "")
+    life.duration_event.add_name("en", "lived", " his life")
 
     primary_school = event.DurativeEvent("上", "小学")
     primary_school.add_name("en", "studied in", " elementary school")
@@ -31,6 +32,7 @@ if __name__ == "__main__":
     primary_school.start_event.add_name("en", "started", " elementary school")
     primary_school.set_end_event("小学毕业", "")
     primary_school.end_event.add_name("en", "graduated from", " elementary school")
+    primary_school.duration_event.add_name("en", "studied in", " elementary school")
 
     middle_school = event.DurativeEvent("上", "初中")
     middle_school.add_name("en", "studied in", " junior high school")
@@ -38,6 +40,7 @@ if __name__ == "__main__":
     middle_school.start_event.add_name("en", "started", " junior high school")
     middle_school.set_end_event("初中毕业", "")
     middle_school.end_event.add_name("en", "graduated from", " junior high school")
+    middle_school.duration_event.add_name("en", "studied in", " junior high school")
 
     high_school = event.DurativeEvent("上", "高中")
     high_school.add_name("en", "studied in", " high school")
@@ -45,6 +48,7 @@ if __name__ == "__main__":
     high_school.start_event.add_name("en", "started", " high school")
     high_school.set_end_event("高中毕业", "")
     high_school.end_event.add_name("en", "graduated from", " high school")
+    high_school.duration_event.add_name("en", "studied in", " high school")
 
     university = event.DurativeEvent("上", "大学")
     university.auto_set(lang)
@@ -52,6 +56,7 @@ if __name__ == "__main__":
     university.start_event.add_name("en", "started", " university")
     university.set_end_event("大学毕业", "")
     university.end_event.add_name("en", "graduated from", " university")
+    university.duration_event.add_name("en", "studied in", " university")
 
     meet_wife = event.TemporalEvent("遇见", "未来的妻子")
     meet_wife.add_name("en", "met", " his future wife")
@@ -61,6 +66,7 @@ if __name__ == "__main__":
     love.auto_set(lang)
     love.start_event.add_name("en", "started", " dating")
     love.end_event.add_name("en", "ended", " dating")
+    love.duration_event.add_name("en", "have", " a romantic relationship")
 
     marry = event.TemporalEvent("结婚", "")
     marry.add_name("en", "got married", "")
@@ -97,7 +103,7 @@ if __name__ == "__main__":
         # 运行时间场景
         # res.extend(curr_scene.run(1))
         # res.extend(curr_scene.run_ask_all())
-        res.extend(lang_scene.run_ask_all(1))
+        res.extend(lang_scene.run_ask_all())
         curr_scene.reset()
     output_file = Path(__file__).resolve().parents[0] / "output.json"
     with output_file.open('w', encoding='utf8') as f:
