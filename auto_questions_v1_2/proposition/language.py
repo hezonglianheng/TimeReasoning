@@ -21,6 +21,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         self.original_scene = original_scene # 原始场景
         self.lang_temps: dict[str, dict[str, list[str]]] = {} # 语言对应模板
         self.lang_guides: dict[str, str] = {} # 语言对应引导语
+        # 12-14新增：记录提问信息的中间变量
+        self._ask_info: dict[str, Any] = {}
 
     def add_guide(self, lang: str, guide: str) -> None:
         """添加引导语
@@ -61,6 +63,7 @@ class LangParallelScene(metaclass=abc.ABCMeta):
             str: 问题
         """
         ask_info = self.original_scene._ask_info # 获取问题信息
+        self._ask_info = ask_info # 记录提问信息
         ask_prop = self.original_scene._asked_prop # 获取问题命题
         question = ask_prop.ask(self.lang_temps[lang], ask_info[prop.TYPE]) # 生成问题
         return question[prop.SENTENCE]
