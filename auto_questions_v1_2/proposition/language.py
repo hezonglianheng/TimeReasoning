@@ -23,6 +23,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         self.lang_guides: dict[str, str] = {} # 语言对应引导语
         # 12-14新增：记录提问信息的中间变量
         self._ask_info: dict[str, Any] = {}
+        # 12-14新增：记录提问的命题的typetag
+        self._type_tags: list[str] = []
 
     def add_guide(self, lang: str, guide: str) -> None:
         """添加引导语
@@ -65,6 +67,7 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         ask_info = self.original_scene._ask_info # 获取问题信息
         self._ask_info = ask_info # 记录提问信息
         ask_prop = self.original_scene._asked_prop # 获取问题命题
+        self._type_tags.append(ask_prop.typetag) # 记录提问的命题的typetag
         question = ask_prop.ask(self.lang_temps[lang], ask_info[prop.TYPE]) # 生成问题
         return question[prop.SENTENCE]
     
@@ -108,7 +111,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 answer_info = self.get_answers(lang) # 获取答案信息
                 level = origin_result[0][LEVEL] # 获取难度等级
                 infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
-                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang} | infos) # 添加数据
+                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
+                self._type_tags.clear() # 清空typetags
         # 返回数据
         return data
 
@@ -122,6 +126,7 @@ class LangParallelScene(metaclass=abc.ABCMeta):
             dict[str, Any]: 选项列表
         """
         option_dict = self.original_scene._ask_all_machine._option_dict # 获取选项信息
+        self._type_tags.extend([i.typetag for i in option_dict.values() if isinstance(i, prop.Proposition)]) # 记录选项的命题的typetag
         choices = [i.state(self.lang_temps[lang]) if isinstance(i, prop.Proposition) else str(i) for i in option_dict.values()] # 生成选项
         new_dict = {k: v for k, v in zip(option_dict.keys(), choices)} # 生成新的选项字典
         # 检查new_dict的最后一个选项，如果是“以上选项均不正确”，则按照语言寻找ALL_WRONG替换之
@@ -164,6 +169,7 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 answer = origin_result[0][machines.ANSWERS] # 获取答案
                 level = origin_result[0][LEVEL]
                 infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
-                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": choices, "answer": answer, LEVEL: level, "lang": lang} | infos)
+                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": choices, "answer": answer, LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
+                self._type_tags.clear() # 清空typetags
 
         return data
