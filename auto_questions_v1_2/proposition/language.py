@@ -123,6 +123,9 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         option_dict = self.original_scene._ask_all_machine._option_dict # 获取选项信息
         choices = [i.state(self.lang_temps[lang]) if isinstance(i, prop.Proposition) else str(i) for i in option_dict.values()] # 生成选项
         new_dict = {k: v for k, v in zip(option_dict.keys(), choices)} # 生成新的选项字典
+        # 12-14新增：检查new_dict中的最后一项是否是“以上选项均不正确”选项，如果是则将其替换英文
+        if new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["zh"][ASK_WRONG] or new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["en"][ASK_WRONG]:
+            new_dict[list(new_dict.keys())[-1]] = LANG_CONFIG[lang][ASK_WRONG]
         return new_dict
     
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
