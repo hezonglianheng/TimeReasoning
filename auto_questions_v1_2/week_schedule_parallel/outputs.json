@@ -1,0 +1,492 @@
+[
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他打羽毛球安排在周三",
+            "他开组会安排在星期三",
+            "他在周三跑步",
+            "开组会是在约会的2天前",
+            "开组会是在练习吉他的2天前",
+            "他看电影的时间比跑步晚了4天"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他打羽毛球安排在周三; 他开组会安排在星期三; 他在周三跑步; 开组会是在约会的2天前; 开组会是在练习吉他的2天前; 他看电影的时间比跑步晚了4天",
+        "question": "练习吉他是在看电影之前的第____天发生的",
+        "choice": {
+            "A": "2",
+            "B": "3",
+            "C": "4",
+            "D": "0"
+        },
+        "answer": [
+            "A"
+        ],
+        "level": 1,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack plays badminton on Wednesday",
+            "Jack has a group meeting on Wednesday",
+            "On Wednesday, Jack goes jogging",
+            "2 day(s) after Jack has a group meeting, Jack goes on a date",
+            "Jack practices the guitar 2 day(s) after Jack has a group meeting",
+            "Jack watches a movie 4 day(s) after Jack goes jogging"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack plays badminton on Wednesday; Jack has a group meeting on Wednesday; On Wednesday, Jack goes jogging; 2 day(s) after Jack has a group meeting, Jack goes on a date; Jack practices the guitar 2 day(s) after Jack has a group meeting; Jack watches a movie 4 day(s) after Jack goes jogging",
+        "question": "____ day(s) before Jack watches a movie, Jack practices the guitar",
+        "choice": {
+            "A": "2",
+            "B": "3",
+            "C": "4",
+            "D": "0"
+        },
+        "answer": [
+            "A"
+        ],
+        "level": 1,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "在周一他学日语",
+            "星期三，他开组会",
+            "在开组会之后1天，他才整理宿舍",
+            "约会是在开组会之后的第2天发生的",
+            "在学日语之后5天，他才看论文",
+            "他看电影的时间比开组会晚了4天"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 在周一他学日语; 星期三，他开组会; 在开组会之后1天，他才整理宿舍; 约会是在开组会之后的第2天发生的; 在学日语之后5天，他才看论文; 他看电影的时间比开组会晚了4天",
+        "question": "开组会是在整理宿舍之后的第____天发生的",
+        "choice": {
+            "A": "6",
+            "B": "5",
+            "C": "0",
+            "D": "4"
+        },
+        "answer": [
+            "A"
+        ],
+        "level": 1,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "On Monday, Jack learns Japanese",
+            "When it's Wednesday Jack has a group meeting",
+            "1 day(s) after Jack has a group meeting, Jack cleans his dormitory",
+            "Jack goes on a date 2 day(s) after Jack has a group meeting",
+            "Jack reads essays 5 day(s) later than Jack learns Japanese",
+            "Jack watches a movie 4 day(s) after Jack has a group meeting"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: On Monday, Jack learns Japanese; When it's Wednesday Jack has a group meeting; 1 day(s) after Jack has a group meeting, Jack cleans his dormitory; Jack goes on a date 2 day(s) after Jack has a group meeting; Jack reads essays 5 day(s) later than Jack learns Japanese; Jack watches a movie 4 day(s) after Jack has a group meeting",
+        "question": "____ day(s) after Jack cleans his dormitory, Jack has a group meeting",
+        "choice": {
+            "A": "6",
+            "B": "5",
+            "C": "0",
+            "D": "4"
+        },
+        "answer": [
+            "A"
+        ],
+        "level": 1,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他学日语安排在周一",
+            "打羽毛球是在学日语的2天后发生的",
+            "跑步是在学日语的2天后发生的",
+            "约会是在学日语的4天后发生的",
+            "他练习吉他的时间比学日语晚了4天",
+            "他在星期六看论文"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他学日语安排在周一; 打羽毛球是在学日语的2天后发生的; 跑步是在学日语的2天后发生的; 约会是在学日语的4天后发生的; 他练习吉他的时间比学日语晚了4天; 他在星期六看论文",
+        "question": "他在约会的3天之后____",
+        "choice": {
+            "A": "看论文",
+            "B": "约会",
+            "C": "学日语",
+            "D": "跑步"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 1,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "When it's Monday Jack learns Japanese",
+            "Jack plays badminton 2 day(s) after Jack learns Japanese",
+            "2 day(s) after Jack learns Japanese, Jack goes jogging",
+            "Jack goes on a date 4 day(s) after Jack learns Japanese",
+            "Jack practices the guitar 4 day(s) after Jack learns Japanese",
+            "Jack reads essays on Saturday"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: When it's Monday Jack learns Japanese; Jack plays badminton 2 day(s) after Jack learns Japanese; 2 day(s) after Jack learns Japanese, Jack goes jogging; Jack goes on a date 4 day(s) after Jack learns Japanese; Jack practices the guitar 4 day(s) after Jack learns Japanese; Jack reads essays on Saturday",
+        "question": "____ 3 day(s) later than Jack goes on a date",
+        "choice": {
+            "A": "Jack reads essays",
+            "B": "Jack goes on a date",
+            "C": "Jack learns Japanese",
+            "D": "Jack goes jogging"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 1,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他在周三打羽毛球",
+            "他在周三开组会",
+            "在星期三他跑步",
+            "开组会是在阅读科幻小说的1天前",
+            "练习吉他是在打羽毛球之后的第2天发生的",
+            "在跑步之后4天，他才看电影"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他在周三打羽毛球; 他在周三开组会; 在星期三他跑步; 开组会是在阅读科幻小说的1天前; 练习吉他是在打羽毛球之后的第2天发生的; 在跑步之后4天，他才看电影",
+        "question": "____和看电影之间相隔4天",
+        "choice": {
+            "A": "开组会",
+            "B": "打羽毛球",
+            "C": "跑步",
+            "D": "阅读科幻小说"
+        },
+        "answer": [
+            "A",
+            "B",
+            "C"
+        ],
+        "level": 2,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack plays badminton, and that was on Wednesday",
+            "Jack has a group meeting, and that was on Wednesday",
+            "On Wednesday, Jack goes jogging",
+            "Jack reads sci-fi novels 1 day(s) later than Jack has a group meeting",
+            "2 day(s) after Jack plays badminton, Jack practices the guitar",
+            "4 day(s) after Jack goes jogging, Jack watches a movie"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack plays badminton, and that was on Wednesday; Jack has a group meeting, and that was on Wednesday; On Wednesday, Jack goes jogging; Jack reads sci-fi novels 1 day(s) later than Jack has a group meeting; 2 day(s) after Jack plays badminton, Jack practices the guitar; 4 day(s) after Jack goes jogging, Jack watches a movie",
+        "question": "The time gap between Jack watches a movie and ____ is 4 day(s)",
+        "choice": {
+            "A": "Jack has a group meeting",
+            "B": "Jack plays badminton",
+            "C": "Jack goes jogging",
+            "D": "Jack reads sci-fi novels"
+        },
+        "answer": [
+            "A",
+            "B",
+            "C"
+        ],
+        "level": 2,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "周一，他学日语",
+            "他在学日语的2天之后打羽毛球",
+            "在周三他开组会",
+            "在学日语之后3天，他才整理宿舍",
+            "他在开组会的1天之后阅读科幻小说",
+            "他练习吉他的时间比学日语晚了4天"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 周一，他学日语; 他在学日语的2天之后打羽毛球; 在周三他开组会; 在学日语之后3天，他才整理宿舍; 他在开组会的1天之后阅读科幻小说; 他练习吉他的时间比学日语晚了4天",
+        "question": "整理宿舍是在____的1天后发生的",
+        "choice": {
+            "A": "学日语",
+            "B": "开组会",
+            "C": "打羽毛球",
+            "D": "阅读科幻小说"
+        },
+        "answer": [
+            "B",
+            "C"
+        ],
+        "level": 2,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "When it's Monday Jack learns Japanese",
+            "Jack plays badminton 2 day(s) after Jack learns Japanese",
+            "When it's Wednesday Jack has a group meeting",
+            "Jack cleans his dormitory 3 day(s) after Jack learns Japanese",
+            "Jack reads sci-fi novels 1 day(s) after Jack has a group meeting",
+            "Jack practices the guitar 4 day(s) later than Jack learns Japanese"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: When it's Monday Jack learns Japanese; Jack plays badminton 2 day(s) after Jack learns Japanese; When it's Wednesday Jack has a group meeting; Jack cleans his dormitory 3 day(s) after Jack learns Japanese; Jack reads sci-fi novels 1 day(s) after Jack has a group meeting; Jack practices the guitar 4 day(s) later than Jack learns Japanese",
+        "question": "1 day(s) after ____, Jack cleans his dormitory",
+        "choice": {
+            "A": "Jack learns Japanese",
+            "B": "Jack has a group meeting",
+            "C": "Jack plays badminton",
+            "D": "Jack reads sci-fi novels"
+        },
+        "answer": [
+            "B",
+            "C"
+        ],
+        "level": 2,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "周一，他学日语",
+            "开组会是在学日语的2天后发生的",
+            "他在周三跑步",
+            "星期五，他约会",
+            "开组会是在看论文的3天前",
+            "看电影是在看论文之后的第1天发生的"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 周一，他学日语; 开组会是在学日语的2天后发生的; 他在周三跑步; 星期五，他约会; 开组会是在看论文的3天前; 看电影是在看论文之后的第1天发生的",
+        "question": "看电影是在开组会的____天后",
+        "choice": {
+            "A": "6",
+            "B": "3",
+            "C": "4",
+            "D": "5"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 1,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "On Monday, Jack learns Japanese",
+            "Jack has a group meeting 2 day(s) later than Jack learns Japanese",
+            "When it's Wednesday Jack goes jogging",
+            "Jack goes on a date on Friday",
+            "Jack reads essays 3 day(s) after Jack has a group meeting",
+            "Jack watches a movie 1 day(s) after Jack reads essays"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: On Monday, Jack learns Japanese; Jack has a group meeting 2 day(s) later than Jack learns Japanese; When it's Wednesday Jack goes jogging; Jack goes on a date on Friday; Jack reads essays 3 day(s) after Jack has a group meeting; Jack watches a movie 1 day(s) after Jack reads essays",
+        "question": "Jack has a group meeting ____ day(s) before Jack watches a movie",
+        "choice": {
+            "A": "6",
+            "B": "3",
+            "C": "4",
+            "D": "5"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 1,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "在星期一他学日语",
+            "他整理宿舍安排在周四",
+            "在学日语之后3天，他才阅读科幻小说",
+            "他约会安排在星期五",
+            "练习吉他是在阅读科幻小说的1天后发生的",
+            "在整理宿舍之后3天，他才看电影"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 在星期一他学日语; 他整理宿舍安排在周四; 在学日语之后3天，他才阅读科幻小说; 他约会安排在星期五; 练习吉他是在阅读科幻小说的1天后发生的; 在整理宿舍之后3天，他才看电影",
+        "question": "他在学日语的4天之前____",
+        "choice": {
+            "A": "约会",
+            "B": "整理宿舍",
+            "C": "学日语",
+            "D": "阅读科幻小说"
+        },
+        "answer": [
+            "B",
+            "D"
+        ],
+        "level": 1,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "On Monday, Jack learns Japanese",
+            "Jack cleans his dormitory, and that was on Thursday",
+            "Jack reads sci-fi novels 3 day(s) later than Jack learns Japanese",
+            "Jack goes on a date on Friday",
+            "Jack practices the guitar 1 day(s) after Jack reads sci-fi novels",
+            "3 day(s) after Jack cleans his dormitory, Jack watches a movie"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: On Monday, Jack learns Japanese; Jack cleans his dormitory, and that was on Thursday; Jack reads sci-fi novels 3 day(s) later than Jack learns Japanese; Jack goes on a date on Friday; Jack practices the guitar 1 day(s) after Jack reads sci-fi novels; 3 day(s) after Jack cleans his dormitory, Jack watches a movie",
+        "question": "4 day(s) before Jack learns Japanese, ____",
+        "choice": {
+            "A": "Jack goes on a date",
+            "B": "Jack cleans his dormitory",
+            "C": "Jack learns Japanese",
+            "D": "Jack reads sci-fi novels"
+        },
+        "answer": [
+            "B",
+            "D"
+        ],
+        "level": 1,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他打羽毛球安排在星期三",
+            "他开组会安排在星期三",
+            "在周三他跑步",
+            "跑步是在整理宿舍的1天前",
+            "他看论文的时间比整理宿舍晚了2天",
+            "他在周日看电影"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他打羽毛球安排在星期三; 他开组会安排在星期三; 在周三他跑步; 跑步是在整理宿舍的1天前; 他看论文的时间比整理宿舍晚了2天; 他在周日看电影",
+        "question": "在____的那一天，他还打羽毛球",
+        "choice": {
+            "A": "看电影",
+            "B": "整理宿舍",
+            "C": "开组会",
+            "D": "跑步"
+        },
+        "answer": [
+            "C",
+            "D"
+        ],
+        "level": 1,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack plays badminton, and that was on Wednesday",
+            "On Wednesday, Jack has a group meeting",
+            "On Wednesday, Jack goes jogging",
+            "Jack cleans his dormitory 1 day(s) later than Jack goes jogging",
+            "2 day(s) after Jack cleans his dormitory, Jack reads essays",
+            "When it's Sunday Jack watches a movie"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack plays badminton, and that was on Wednesday; On Wednesday, Jack has a group meeting; On Wednesday, Jack goes jogging; Jack cleans his dormitory 1 day(s) later than Jack goes jogging; 2 day(s) after Jack cleans his dormitory, Jack reads essays; When it's Sunday Jack watches a movie",
+        "question": "On a certain day, ____, and Jack plays badminton",
+        "choice": {
+            "A": "Jack watches a movie",
+            "B": "Jack cleans his dormitory",
+            "C": "Jack has a group meeting",
+            "D": "Jack goes jogging"
+        },
+        "answer": [
+            "C",
+            "D"
+        ],
+        "level": 1,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他在星期三开组会",
+            "周三，他跑步",
+            "星期四，他整理宿舍",
+            "他在跑步的1天之后阅读科幻小说",
+            "在跑步之后2天，他才练习吉他",
+            "看电影是在开组会之后的第4天发生的"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他在星期三开组会; 周三，他跑步; 星期四，他整理宿舍; 他在跑步的1天之后阅读科幻小说; 在跑步之后2天，他才练习吉他; 看电影是在开组会之后的第4天发生的",
+        "question": "阅读科幻小说是在开组会的____天后发生的",
+        "choice": {
+            "A": "2",
+            "B": "4",
+            "C": "3",
+            "D": "1"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 1,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack has a group meeting on Wednesday",
+            "On Wednesday, Jack goes jogging",
+            "When it's Thursday Jack cleans his dormitory",
+            "Jack reads sci-fi novels 1 day(s) later than Jack goes jogging",
+            "2 day(s) after Jack goes jogging, Jack practices the guitar",
+            "Jack watches a movie 4 day(s) after Jack has a group meeting"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack has a group meeting on Wednesday; On Wednesday, Jack goes jogging; When it's Thursday Jack cleans his dormitory; Jack reads sci-fi novels 1 day(s) later than Jack goes jogging; 2 day(s) after Jack goes jogging, Jack practices the guitar; Jack watches a movie 4 day(s) after Jack has a group meeting",
+        "question": "____ day(s) after Jack has a group meeting, Jack reads sci-fi novels",
+        "choice": {
+            "A": "2",
+            "B": "4",
+            "C": "3",
+            "D": "1"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 1,
+        "lang": "en"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他打羽毛球安排在周三",
+            "星期三，他开组会",
+            "他在星期三跑步",
+            "他在打羽毛球的1天之后阅读科幻小说",
+            "在阅读科幻小说之后1天，他才练习吉他",
+            "他在星期六看论文"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他打羽毛球安排在周三; 星期三，他开组会; 他在星期三跑步; 他在打羽毛球的1天之后阅读科幻小说; 在阅读科幻小说之后1天，他才练习吉他; 他在星期六看论文",
+        "question": "他在阅读科幻小说的5天之前____",
+        "choice": {
+            "A": "阅读科幻小说",
+            "B": "看论文",
+            "C": "跑步",
+            "D": "打羽毛球"
+        },
+        "answer": [
+            "B"
+        ],
+        "level": 1,
+        "lang": "zh"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack plays badminton, and that was on Wednesday",
+            "On Wednesday, Jack has a group meeting",
+            "Jack goes jogging on Wednesday",
+            "Jack reads sci-fi novels 1 day(s) later than Jack plays badminton",
+            "Jack practices the guitar 1 day(s) later than Jack reads sci-fi novels",
+            "On Saturday, Jack reads essays"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack plays badminton, and that was on Wednesday; On Wednesday, Jack has a group meeting; Jack goes jogging on Wednesday; Jack reads sci-fi novels 1 day(s) later than Jack plays badminton; Jack practices the guitar 1 day(s) later than Jack reads sci-fi novels; On Saturday, Jack reads essays",
+        "question": "5 day(s) before Jack reads sci-fi novels, ____",
+        "choice": {
+            "A": "Jack reads sci-fi novels",
+            "B": "Jack reads essays",
+            "C": "Jack goes jogging",
+            "D": "Jack plays badminton"
+        },
+        "answer": [
+            "B"
+        ],
+        "level": 1,
+        "lang": "en"
+    }
+]
