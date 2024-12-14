@@ -1,0 +1,562 @@
+[
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "在星期三他开组会",
+            "他在周三跑步",
+            "周四，他阅读科幻小说",
+            "他在阅读科幻小说的1天之后约会",
+            "周五，他练习吉他",
+            "看论文是在练习吉他之后的第1天发生的"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 在星期三他开组会; 他在周三跑步; 周四，他阅读科幻小说; 他在阅读科幻小说的1天之后约会; 周五，他练习吉他; 看论文是在练习吉他之后的第1天发生的",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "练习吉他是在跑步的5天前发生的",
+            "B": "开组会和阅读科幻小说之间相隔1天",
+            "C": "约会是在开组会之后的第2天发生的",
+            "D": "看论文是在看论文的6天后"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "When it's Wednesday Jack has a group meeting",
+            "Jack goes jogging on Wednesday",
+            "When it's Thursday Jack reads sci-fi novels",
+            "Jack goes on a date 1 day(s) later than Jack reads sci-fi novels",
+            "On Friday, Jack practices the guitar",
+            "Jack reads essays 1 day(s) after Jack practices the guitar"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: When it's Wednesday Jack has a group meeting; Jack goes jogging on Wednesday; When it's Thursday Jack reads sci-fi novels; Jack goes on a date 1 day(s) later than Jack reads sci-fi novels; On Friday, Jack practices the guitar; Jack reads essays 1 day(s) after Jack practices the guitar",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "5 day(s) before Jack goes jogging, Jack practices the guitar",
+            "B": "There is a 1-day difference between Jack reads sci-fi novels and Jack has a group meeting",
+            "C": "Jack goes on a date 2 day(s) later than Jack has a group meeting",
+            "D": "Jack reads essays 6 day(s) earlier than Jack reads essays"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "星期三，他跑步",
+            "他整理宿舍安排在周四",
+            "约会是在整理宿舍之后的第1天发生的",
+            "练习吉他是在跑步之后的第2天发生的",
+            "看论文是在约会的1天后发生的",
+            "周日，他看电影"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 星期三，他跑步; 他整理宿舍安排在周四; 约会是在整理宿舍之后的第1天发生的; 练习吉他是在跑步之后的第2天发生的; 看论文是在约会的1天后发生的; 周日，他看电影",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "看电影和约会之间的时间间隔是2天",
+            "B": "他跑步和看论文中间差了3天",
+            "C": "他整理宿舍和约会中间差了1天",
+            "D": "以上选项均不正确"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 9,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "When it's Wednesday Jack goes jogging",
+            "On Thursday, Jack cleans his dormitory",
+            "Jack goes on a date 1 day(s) later than Jack cleans his dormitory",
+            "Jack practices the guitar 2 day(s) after Jack goes jogging",
+            "1 day(s) after Jack goes on a date, Jack reads essays",
+            "Jack watches a movie on Sunday"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: When it's Wednesday Jack goes jogging; On Thursday, Jack cleans his dormitory; Jack goes on a date 1 day(s) later than Jack cleans his dormitory; Jack practices the guitar 2 day(s) after Jack goes jogging; 1 day(s) after Jack goes on a date, Jack reads essays; Jack watches a movie on Sunday",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "There are 2 day(s) between Jack goes on a date and Jack watches a movie",
+            "B": "The time gap between Jack reads essays and Jack goes jogging is 3 day(s)",
+            "C": "The time gap between Jack goes on a date and Jack cleans his dormitory is 1 day(s)",
+            "D": "none of the above is correct"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 9,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他打羽毛球安排在星期三",
+            "在星期三他开组会",
+            "他在周三跑步",
+            "阅读科幻小说是在跑步之后的第1天发生的",
+            "看论文是在打羽毛球的3天后发生的",
+            "他看电影的时间比跑步晚了4天"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他打羽毛球安排在星期三; 在星期三他开组会; 他在周三跑步; 阅读科幻小说是在跑步之后的第1天发生的; 看论文是在打羽毛球的3天后发生的; 他看电影的时间比跑步晚了4天",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "在看电影之前3天，他曾阅读科幻小说",
+            "B": "他在看电影的4天之前跑步",
+            "C": "看电影和开组会之间的时间间隔是2天",
+            "D": "在阅读科幻小说之后6天，他才打羽毛球"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack plays badminton, and that was on Wednesday",
+            "On Wednesday, Jack has a group meeting",
+            "When it's Wednesday Jack goes jogging",
+            "Jack reads sci-fi novels 1 day(s) later than Jack goes jogging",
+            "Jack reads essays 3 day(s) later than Jack plays badminton",
+            "Jack watches a movie 4 day(s) later than Jack goes jogging"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack plays badminton, and that was on Wednesday; On Wednesday, Jack has a group meeting; When it's Wednesday Jack goes jogging; Jack reads sci-fi novels 1 day(s) later than Jack goes jogging; Jack reads essays 3 day(s) later than Jack plays badminton; Jack watches a movie 4 day(s) later than Jack goes jogging",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "3 day(s) before Jack watches a movie, Jack reads sci-fi novels",
+            "B": "Jack goes jogging 4 day(s) before Jack watches a movie",
+            "C": "There are 2 day(s) between Jack has a group meeting and Jack watches a movie",
+            "D": "Jack plays badminton 6 day(s) later than Jack reads sci-fi novels"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "周三，他打羽毛球",
+            "周三，他开组会",
+            "整理宿舍是在打羽毛球之后的第1天发生的",
+            "打羽毛球是在阅读科幻小说的1天前",
+            "在周五他约会",
+            "在整理宿舍之后1天，他才练习吉他"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 周三，他打羽毛球; 周三，他开组会; 整理宿舍是在打羽毛球之后的第1天发生的; 打羽毛球是在阅读科幻小说的1天前; 在周五他约会; 在整理宿舍之后1天，他才练习吉他",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "他练习吉他和开组会中间差了2天",
+            "B": "约会是在打羽毛球的1天后",
+            "C": "他阅读科幻小说的时间比练习吉他晚了6天",
+            "D": "开组会和阅读科幻小说之间相隔1天"
+        },
+        "answer": [
+            "B"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 14,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack plays badminton on Wednesday",
+            "On Wednesday, Jack has a group meeting",
+            "Jack cleans his dormitory 1 day(s) later than Jack plays badminton",
+            "Jack reads sci-fi novels 1 day(s) after Jack plays badminton",
+            "Jack goes on a date on Friday",
+            "Jack practices the guitar 1 day(s) later than Jack cleans his dormitory"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack plays badminton on Wednesday; On Wednesday, Jack has a group meeting; Jack cleans his dormitory 1 day(s) later than Jack plays badminton; Jack reads sci-fi novels 1 day(s) after Jack plays badminton; Jack goes on a date on Friday; Jack practices the guitar 1 day(s) later than Jack cleans his dormitory",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "There is a 2-day difference between Jack has a group meeting and Jack practices the guitar",
+            "B": "Jack plays badminton 1 day(s) before Jack goes on a date",
+            "C": "6 day(s) after Jack practices the guitar, Jack reads sci-fi novels",
+            "D": "There are 1 day(s) between Jack reads sci-fi novels and Jack has a group meeting"
+        },
+        "answer": [
+            "B"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 14,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "在星期三他打羽毛球",
+            "星期三，他开组会",
+            "他跑步安排在周三",
+            "他整理宿舍的时间比打羽毛球晚了1天",
+            "开组会是在约会的2天前",
+            "他练习吉他安排在周五"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 在星期三他打羽毛球; 星期三，他开组会; 他跑步安排在周三; 他整理宿舍的时间比打羽毛球晚了1天; 开组会是在约会的2天前; 他练习吉他安排在周五",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "他跑步的时间比练习吉他晚了1天",
+            "B": "练习吉他是在打羽毛球的5天前",
+            "C": "在整理宿舍之后6天，他才开组会",
+            "D": "在整理宿舍之后1天，他才约会"
+        },
+        "answer": [
+            "A"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "When it's Wednesday Jack plays badminton",
+            "Jack has a group meeting, and that was on Wednesday",
+            "On Wednesday, Jack goes jogging",
+            "Jack cleans his dormitory 1 day(s) after Jack plays badminton",
+            "Jack goes on a date 2 day(s) later than Jack has a group meeting",
+            "Jack practices the guitar, and that was on Friday"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: When it's Wednesday Jack plays badminton; Jack has a group meeting, and that was on Wednesday; On Wednesday, Jack goes jogging; Jack cleans his dormitory 1 day(s) after Jack plays badminton; Jack goes on a date 2 day(s) later than Jack has a group meeting; Jack practices the guitar, and that was on Friday",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "Jack goes jogging 1 day(s) after Jack practices the guitar",
+            "B": "Jack plays badminton 5 day(s) after Jack practices the guitar",
+            "C": "6 day(s) after Jack cleans his dormitory, Jack has a group meeting",
+            "D": "Jack goes on a date 1 day(s) after Jack cleans his dormitory"
+        },
+        "answer": [
+            "A"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他在星期一学日语",
+            "在学日语之后2天，他才打羽毛球",
+            "他整理宿舍的时间比打羽毛球晚了1天",
+            "阅读科幻小说是在学日语之后的第3天发生的",
+            "他在周五约会",
+            "周六，他看论文"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他在星期一学日语; 在学日语之后2天，他才打羽毛球; 他整理宿舍的时间比打羽毛球晚了1天; 阅读科幻小说是在学日语之后的第3天发生的; 他在周五约会; 周六，他看论文",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "在阅读科幻小说的那一天，他还整理宿舍",
+            "B": "他学日语的时间比阅读科幻小说晚了3天",
+            "C": "在周四他阅读科幻小说",
+            "D": "约会是在阅读科幻小说之后的第1天发生的"
+        },
+        "answer": [
+            "B"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "When it's Monday Jack learns Japanese",
+            "2 day(s) after Jack learns Japanese, Jack plays badminton",
+            "Jack cleans his dormitory 1 day(s) later than Jack plays badminton",
+            "Jack reads sci-fi novels 3 day(s) later than Jack learns Japanese",
+            "When it's Friday Jack goes on a date",
+            "Jack reads essays on Saturday"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: When it's Monday Jack learns Japanese; 2 day(s) after Jack learns Japanese, Jack plays badminton; Jack cleans his dormitory 1 day(s) later than Jack plays badminton; Jack reads sci-fi novels 3 day(s) later than Jack learns Japanese; When it's Friday Jack goes on a date; Jack reads essays on Saturday",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "On the same day, not only Jack cleans his dormitory, but also Jack reads sci-fi novels",
+            "B": "Jack learns Japanese 3 day(s) later than Jack reads sci-fi novels",
+            "C": "When it's Thursday Jack reads sci-fi novels",
+            "D": "Jack goes on a date 1 day(s) after Jack reads sci-fi novels"
+        },
+        "answer": [
+            "B"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "星期三，他打羽毛球",
+            "他在星期三开组会",
+            "整理宿舍是在打羽毛球之后的第1天发生的",
+            "他阅读科幻小说的时间比打羽毛球晚了1天",
+            "在开组会之后2天，他才练习吉他",
+            "周日，他看电影"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 星期三，他打羽毛球; 他在星期三开组会; 整理宿舍是在打羽毛球之后的第1天发生的; 他阅读科幻小说的时间比打羽毛球晚了1天; 在开组会之后2天，他才练习吉他; 周日，他看电影",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "在练习吉他之后2天，他才看电影",
+            "B": "他打羽毛球的时间比阅读科幻小说晚了6天",
+            "C": "在练习吉他之后5天，他才开组会",
+            "D": "练习吉他是在开组会之后的第1天发生的"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "On Wednesday, Jack plays badminton",
+            "Jack has a group meeting on Wednesday",
+            "Jack cleans his dormitory 1 day(s) after Jack plays badminton",
+            "Jack reads sci-fi novels 1 day(s) after Jack plays badminton",
+            "2 day(s) after Jack has a group meeting, Jack practices the guitar",
+            "Jack watches a movie on Sunday"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: On Wednesday, Jack plays badminton; Jack has a group meeting on Wednesday; Jack cleans his dormitory 1 day(s) after Jack plays badminton; Jack reads sci-fi novels 1 day(s) after Jack plays badminton; 2 day(s) after Jack has a group meeting, Jack practices the guitar; Jack watches a movie on Sunday",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "Jack watches a movie 2 day(s) later than Jack practices the guitar",
+            "B": "6 day(s) after Jack reads sci-fi novels, Jack plays badminton",
+            "C": "5 day(s) after Jack practices the guitar, Jack has a group meeting",
+            "D": "Jack practices the guitar 1 day(s) later than Jack has a group meeting"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他在周一学日语",
+            "他在周三开组会",
+            "学日语是在跑步的2天前",
+            "他在跑步的1天之后整理宿舍",
+            "他阅读科幻小说的时间比开组会晚了1天",
+            "在学日语之后4天，他才约会"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他在周一学日语; 他在周三开组会; 学日语是在跑步的2天前; 他在跑步的1天之后整理宿舍; 他阅读科幻小说的时间比开组会晚了1天; 在学日语之后4天，他才约会",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "开组会是在约会的2天前",
+            "B": "他在约会的6天之后整理宿舍",
+            "C": "他在周四整理宿舍",
+            "D": "他在星期四约会"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "When it's Monday Jack learns Japanese",
+            "Jack has a group meeting, and that was on Wednesday",
+            "2 day(s) after Jack learns Japanese, Jack goes jogging",
+            "Jack cleans his dormitory 1 day(s) after Jack goes jogging",
+            "1 day(s) after Jack has a group meeting, Jack reads sci-fi novels",
+            "Jack goes on a date 4 day(s) after Jack learns Japanese"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: When it's Monday Jack learns Japanese; Jack has a group meeting, and that was on Wednesday; 2 day(s) after Jack learns Japanese, Jack goes jogging; Jack cleans his dormitory 1 day(s) after Jack goes jogging; 1 day(s) after Jack has a group meeting, Jack reads sci-fi novels; Jack goes on a date 4 day(s) after Jack learns Japanese",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "Jack goes on a date 2 day(s) after Jack has a group meeting",
+            "B": "6 day(s) after Jack goes on a date, Jack cleans his dormitory",
+            "C": "When it's Thursday Jack cleans his dormitory",
+            "D": "Jack goes on a date, and that was on Thursday"
+        },
+        "answer": [
+            "D"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他学日语安排在周一",
+            "他开组会的时间比学日语晚了2天",
+            "在星期三他跑步",
+            "在开组会之后1天，他才整理宿舍",
+            "他阅读科幻小说安排在周四",
+            "看论文是在开组会的3天后发生的"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他学日语安排在周一; 他开组会的时间比学日语晚了2天; 在星期三他跑步; 在开组会之后1天，他才整理宿舍; 他阅读科幻小说安排在周四; 看论文是在开组会的3天后发生的",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "阅读科幻小说和看论文之间相隔2天",
+            "B": "他在跑步的3天之后看论文",
+            "C": "在阅读科幻小说的那一天，他也开组会",
+            "D": "他整理宿舍和跑步中间差了1天"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 17,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack learns Japanese on Monday",
+            "Jack has a group meeting 2 day(s) after Jack learns Japanese",
+            "When it's Wednesday Jack goes jogging",
+            "Jack cleans his dormitory 1 day(s) after Jack has a group meeting",
+            "Jack reads sci-fi novels, and that was on Thursday",
+            "Jack reads essays 3 day(s) after Jack has a group meeting"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack learns Japanese on Monday; Jack has a group meeting 2 day(s) after Jack learns Japanese; When it's Wednesday Jack goes jogging; Jack cleans his dormitory 1 day(s) after Jack has a group meeting; Jack reads sci-fi novels, and that was on Thursday; Jack reads essays 3 day(s) after Jack has a group meeting",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "There is a 2-day difference between Jack reads essays and Jack reads sci-fi novels",
+            "B": "Jack reads essays 3 day(s) later than Jack goes jogging",
+            "C": "On the same day as Jack reads sci-fi novels, Jack has a group meeting",
+            "D": "There is a 1-day difference between Jack goes jogging and Jack cleans his dormitory"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 17,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "小明是一名大学生，以下是他的每周安排",
+        "statements": [
+            "他学日语安排在周一",
+            "打羽毛球是在学日语之后的第2天发生的",
+            "在周三他跑步",
+            "整理宿舍是在学日语的3天后发生的",
+            "跑步是在阅读科幻小说的1天前",
+            "他在跑步的2天之后练习吉他"
+        ],
+        "text": "小明是一名大学生，以下是他的每周安排: 他学日语安排在周一; 打羽毛球是在学日语之后的第2天发生的; 在周三他跑步; 整理宿舍是在学日语的3天后发生的; 跑步是在阅读科幻小说的1天前; 他在跑步的2天之后练习吉他",
+        "question": "请问: 以下选项中不正确的是____",
+        "choice": {
+            "A": "打羽毛球是在练习吉他的2天前发生的",
+            "B": "学日语和打羽毛球之间的时间间隔是2天",
+            "C": "打羽毛球是在阅读科幻小说的3天前",
+            "D": "在打羽毛球之后1天，他才整理宿舍"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 2,
+        "lang": "zh",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    },
+    {
+        "guide": "Jack is a college student, and here are his weekly plans",
+        "statements": [
+            "Jack learns Japanese on Monday",
+            "2 day(s) after Jack learns Japanese, Jack plays badminton",
+            "Jack goes jogging on Wednesday",
+            "Jack cleans his dormitory 3 day(s) after Jack learns Japanese",
+            "Jack reads sci-fi novels 1 day(s) later than Jack goes jogging",
+            "Jack practices the guitar 2 day(s) later than Jack goes jogging"
+        ],
+        "text": "Jack is a college student, and here are his weekly plans: Jack learns Japanese on Monday; 2 day(s) after Jack learns Japanese, Jack plays badminton; Jack goes jogging on Wednesday; Jack cleans his dormitory 3 day(s) after Jack learns Japanese; Jack reads sci-fi novels 1 day(s) later than Jack goes jogging; Jack practices the guitar 2 day(s) later than Jack goes jogging",
+        "question": "Which of the following is(are) incorrect?",
+        "choice": {
+            "A": "Jack plays badminton 2 day(s) before Jack practices the guitar",
+            "B": "The time gap between Jack plays badminton and Jack learns Japanese is 2 day(s)",
+            "C": "Jack reads sci-fi novels 3 day(s) later than Jack plays badminton",
+            "D": "1 day(s) after Jack plays badminton, Jack cleans his dormitory"
+        },
+        "answer": [
+            "C"
+        ],
+        "level": 2,
+        "lang": "en",
+        "init_num": 6,
+        "chain_length": 10,
+        "knowledge_num": 0,
+        "scene_type": "循环时间场景"
+    }
+]
