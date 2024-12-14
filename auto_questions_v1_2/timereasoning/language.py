@@ -66,3 +66,8 @@ class TimeParallelScene(language.LangParallelScene):
                         continue
                     answer_info[machines.OPTIONS][k] = calendar.month_name[int(v)]
         return answer_info
+
+    def get_options(self, lang: str) -> dict[str, Any]:
+        option_dic = super().get_options(lang)
+        new_dic = {k: self.original_scene._exp_trans(v) for k, v in option_dic.items()}
+        return new_dic
