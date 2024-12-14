@@ -12,7 +12,7 @@ from copy import deepcopy
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 import proposition.config
-from proposition.config import LANG_CONFIG, ASK_RIGHT, ASK_WRONG
+from proposition.config import LANG_CONFIG, ASK_RIGHT, ASK_WRONG, ALL_WRONG
 from proposition.scene import Scene, LEVEL
 from proposition import prop, machines
 
@@ -123,6 +123,9 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         option_dict = self.original_scene._ask_all_machine._option_dict # 获取选项信息
         choices = [i.state(self.lang_temps[lang]) if isinstance(i, prop.Proposition) else str(i) for i in option_dict.values()] # 生成选项
         new_dict = {k: v for k, v in zip(option_dict.keys(), choices)} # 生成新的选项字典
+        # 检查new_dict的最后一个选项，如果是“以上选项均不正确”，则按照语言寻找ALL_WRONG替换之
+        if new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["zh"][ALL_WRONG] or new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["en"][ALL_WRONG]:
+            new_dict[list(new_dict.keys())[-1]] = LANG_CONFIG[lang][ALL_WRONG]
         return new_dict
     
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
