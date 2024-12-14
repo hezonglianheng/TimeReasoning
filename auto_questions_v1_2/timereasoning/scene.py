@@ -158,6 +158,9 @@ class TimeScene(Scene):
         sm = SM(self.events, self._all_props, self._knowledges)
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
+        
+    # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
+    def get_preparations(self):
         print(f"获取推理图.")
         rm = RM(deepcopy(self._chosen_group), self.relations, self.rules, deepcopy(self._knowledges), graph_construct=True)
         self._reachables = rm.run() # 11-12修改: 将建立推理图得到的命题加入可达命题列表

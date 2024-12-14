@@ -106,8 +106,6 @@ class Scene(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get_all_groups(self) -> None:
         """调用搜索机，以发现可行的陈述命题组合\n
-        之后，该方法从可行的陈述命题组合出发，建立推理图，获得可达命题列表\n
-        最后，该方法初始化范围获取机.\n
         注意：该方法需要被子类重写
         """
         assert len(self._all_props) > 0, "必须先生成全部命题"
@@ -116,6 +114,13 @@ class Scene(metaclass=abc.ABCMeta):
         sm = SM(self._init_props, self._all_props, self.relations, self.rules, knowledge)
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
+        
+    # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
+    def get_preparations(self) -> None:
+        """
+        该方法从可行的陈述命题组合出发，建立推理图，获得可达命题列表\n
+        该方法初始化范围获取机.\n
+        """
         print(f"获取推理图.")
         rm = RM(deepcopy(self._chosen_group), self.relations, self.rules, deepcopy(self._knowledges),
                 graph_construct=True)
@@ -272,6 +277,7 @@ class Scene(metaclass=abc.ABCMeta):
             i += 1
             print(f"开始第{i}次获取.")
             self.get_all_groups()
+            self.get_preparations() # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
             self.get_statements()
             self.ask_one(seed)
             self.set_value_range() # 设置值域
@@ -326,6 +332,7 @@ class Scene(metaclass=abc.ABCMeta):
             i += 1
             print(f"开始第{i}次获取.")
             self.get_all_groups()
+            self.get_preparations() # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
             self.get_statements()
             ask_all_info = self.ask_all(seed)
             if ask_all_info is None:
