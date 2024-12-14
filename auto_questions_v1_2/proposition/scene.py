@@ -114,13 +114,6 @@ class Scene(metaclass=abc.ABCMeta):
         sm = SM(self._init_props, self._all_props, self.relations, self.rules, knowledge)
         self._chosen_group = sm.run()
         print(f"命题组合搜索结束.")
-        
-    # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
-    def get_preparations(self) -> None:
-        """
-        该方法从可行的陈述命题组合出发，建立推理图，获得可达命题列表\n
-        该方法初始化范围获取机.\n
-        """
         print(f"获取推理图.")
         rm = RM(deepcopy(self._chosen_group), self.relations, self.rules, deepcopy(self._knowledges),
                 graph_construct=True)
@@ -128,6 +121,13 @@ class Scene(metaclass=abc.ABCMeta):
         self._reachables = rm.run()  # 11-12修改: 将建立推理图得到的命题加入可达命题列表
         self.graph = rm.graph
         print(f"推理图获取完毕.")
+        
+    # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
+    def get_preparations(self) -> None:
+        """
+        该方法从可行的陈述命题组合出发，建立推理图，获得可达命题列表\n
+        该方法初始化范围获取机.\n
+        """
         # 11-25新增：初始化范围获取机
         self._range_machine = GRM(self._all_props)
         print("初始化选取干扰项的范围获取机.")
