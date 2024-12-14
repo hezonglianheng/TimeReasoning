@@ -30,6 +30,10 @@ from proposition.level import ask_level
 
 # constants.
 LEVEL = "level"
+CHAIN_LENGTH = "chain_length"
+INIT_NUM = "init_num"
+KNOWLEDGE_NUM = "knowledge_num"
+SCENE_TYPE = "scene_type"
 
 class Scene(metaclass=abc.ABCMeta):
     """
@@ -81,6 +85,13 @@ class Scene(metaclass=abc.ABCMeta):
         # 12-11新增：记录由回答机返回的答案信息
         self.answer_info: dict[str, Any] = {}
 
+    # 12-13新增：场景类型名称
+    @property
+    @abc.abstractmethod
+    def scene_type(self) -> str:
+        """场景类型名称"""
+        return ""
+    
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
         """添加知识命题
@@ -304,7 +315,12 @@ class Scene(metaclass=abc.ABCMeta):
                         # 11-24更新：增加提问命题的标签信息
                         "tag": self._asked_prop.typetag, 
                         # 11-30更新：增加推理链长度信息
-                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level)
+                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level),
+                        # 12-13更新：增加各种辅助判断信息
+                        CHAIN_LENGTH: self.chain_length, 
+                        SCENE_TYPE: self.scene_type, 
+                        INIT_NUM: len(self._init_props), 
+                        KNOWLEDGE_NUM: len(self._knowledges), 
                     }
             question_list.append(item)
         print(f"获取题目{i}次，获得题目{len(question_list)}个.")
@@ -345,7 +361,13 @@ class Scene(metaclass=abc.ABCMeta):
                 "guide": self.guide,
                 "statement": self._statements,
                 "text": text,
-            } | ask_all_info | {LEVEL: level}
+            } | ask_all_info | {
+                LEVEL: level, 
+                CHAIN_LENGTH: ask_all_info[machines.LENGTH], 
+                SCENE_TYPE: self.scene_type, 
+                INIT_NUM: len(self._init_props), 
+                KNOWLEDGE_NUM: len(self._knowledges), 
+            }
             question_list.append(item)
         print(f"获取题目{i}次，获得题目{len(question_list)}个.")
         return question_list

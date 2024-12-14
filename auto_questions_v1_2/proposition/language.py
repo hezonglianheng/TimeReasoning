@@ -13,7 +13,7 @@ sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 import proposition.config
 from proposition.config import LANG_CONFIG, ASK_RIGHT, ASK_WRONG, ALL_WRONG
-from proposition.scene import Scene, LEVEL
+from proposition.scene import Scene, LEVEL, INIT_NUM, KNOWLEDGE_NUM, CHAIN_LENGTH, SCENE_TYPE
 from proposition import prop, machines
 
 class LangParallelScene(metaclass=abc.ABCMeta):
@@ -107,7 +107,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 question = self.get_question(lang)
                 answer_info = self.get_answers(lang) # 获取答案信息
                 level = origin_result[0][LEVEL] # 获取难度等级
-                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang}) # 添加数据
+                infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
+                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang} | infos) # 添加数据
         # 返回数据
         return data
 
@@ -128,11 +129,23 @@ class LangParallelScene(metaclass=abc.ABCMeta):
             new_dict[list(new_dict.keys())[-1]] = LANG_CONFIG[lang][ALL_WRONG]
         return new_dict
     
-    def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
+    def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None, ask_correct: bool = True) -> list[dict[str, Any]]:
+        """运行场景，获取一组询问多个命题类型的题目
+        
+        Args:
+            execute (int, optional): 生成的题目数量. 默认为10.
+            seed (Union[int, float, None], optional): 随机种子. 默认为None.
+            ask_correct (bool, optional): 询问机的询问模式. 默认为True(询问“以下说法正确的是”). 可选的值有：
+                - True，询问“以下说法正确的是”
+                - False，询问“以下说法错误的是”
+
+        Returns:
+            list[dict[str, Any]]: 一组题目
+        """
         data: list[dict[str, Any]] = [] # 用于存储数据
         for _ in range(execute):
             # 运行原始场景生成原始数据
-            origin_result = self.original_scene.run_ask_all(execute=1, seed=seed)
+            origin_result = self.original_scene.run_ask_all(execute=1, seed=seed, ask_correct=ask_correct)
             for lang in proposition.config.CURR_LANGS:
                 proposition.config.set_lang_mode(lang) # 设置全局语言模式
                 self.original_scene.lang = lang # 设置原始场景的语言
@@ -150,6 +163,7 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 choices = self.get_options(lang) # 获取选项
                 answer = origin_result[0][machines.ANSWERS] # 获取答案
                 level = origin_result[0][LEVEL]
-                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": choices, "answer": answer, LEVEL: level, "lang": lang})
+                infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
+                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": choices, "answer": answer, LEVEL: level, "lang": lang} | infos)
 
         return data

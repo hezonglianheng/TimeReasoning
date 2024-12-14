@@ -263,6 +263,10 @@ class LineScene(TimeScene):
         """
         super().__init__(scale, guide, ask_mode=ask_mode, tag=tag, lang=lang)
 
+    @property
+    def scene_type(self) -> str:
+        return "线性时间场景"
+
 class LoopScene(TimeScene):
     """
     循环时间场景
@@ -337,6 +341,10 @@ class LoopScene(TimeScene):
         elif mode == 'reachable':
             self._reachables = new_list
         print(f"调整后有命题{len(new_list)}个.")
+
+    @property
+    def scene_type(self) -> str:
+        return "循环时间场景"
 
 class PeriodRelation(relation.SingleEntailment):
     """表示时间点的周期性关系，属于单元蕴含关系"""
