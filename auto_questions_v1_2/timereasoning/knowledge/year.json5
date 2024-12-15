@@ -12,7 +12,7 @@
                 {
                     "lang": "en", // 语言类型
                     "verb": "The Eight-Nation Alliance invaded", // 动词，和原来的event相同
-                    "object": "Beijing", // 名词，和原来的event相同
+                    "object": " Beijing", // 名词，和原来的event相同
                 }
             ], 
         }, 
@@ -112,7 +112,7 @@
                 {
                     "lang": "en", // 语言类型
                     "verb": "started", // 动词，和原来的event相同
-                    "object": "Long March", // 名词，和原来的event相同
+                    "object": " Long March", // 名词，和原来的event相同
                 }
             ], 
         }, 
@@ -186,7 +186,7 @@
                 {
                     "lang": "en", // 语言类型
                     "verb": "China joined", // 动词，和原来的event相同
-                    "object": "the World Trade Organization", // 名词，和原来的event相同
+                    "object": " the World Trade Organization", // 名词，和原来的event相同
                 }
             ], 
         }, 
