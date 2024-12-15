@@ -59,9 +59,9 @@
         "[element1]在[element2]之后",
     ],
     "after_time": [
-        "他[element1]的时间比[element2]晚了[diff]年",
+        "[element1]的时间比[element2]晚了[diff]年",
         "在[element2]之后[diff]年，[element1]",
-        "他在[element2]的[diff]年之后[element1]",
+        "在[element2]的[diff]年之后[element1]",
         "[element1]是在[element2]的[diff]年后",
         "[element1]是在[element2]之后的第[diff]年发生的",
     ],
