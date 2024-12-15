@@ -231,7 +231,10 @@ class TimeAskAllMachine(machines.AskAllMachine):
             elif ask_info.get(prop.TYPE) == "time":
                 initial_range = [i for i in initial_range if i < curr_prop.endtime]
         if isinstance(curr_prop, timeprop.DoubleTimeP):
+            # 如果是双元素命题，则值域中不包含当前命题的另一个元素
             if ask_info.get(prop.TYPE) == "element1":
-                initial_range = initial_range
+                initial_range = [i for i in initial_range if i != curr_prop.element2]
+            elif ask_info.get(prop.TYPE) == "element2":
+                initial_range = [i for i in initial_range if i != curr_prop.element1]
 
         return initial_range
