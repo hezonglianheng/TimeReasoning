@@ -6,7 +6,7 @@
     "event": [
         {
             "subtype": "temporal",
-            "verb": "第一次诺贝尔奖颁发",
+            "verb": "第一届诺贝尔奖颁发",
             "object": "",
             "time": 1901,
             "language": [
@@ -19,7 +19,7 @@
         }, 
         {
             "subtype": "temporal",
-            "verb": "第一次普利策奖颁发",
+            "verb": "第一届普利策奖颁发",
             "object": "",
             "time": 1917,
             "language": [
@@ -108,7 +108,7 @@
             "subtype": "temporal",
             "verb": "第一台彩色电视机生产",
             "object": "",
-            "time": 1953,
+            "time": 1954, // 修正事件发生的时间
             "language": [
                 {
                     "lang": "en", // 语言类型
