@@ -210,7 +210,7 @@ class Scene(metaclass=abc.ABCMeta):
         assert typ is not None, "提问信息中没有类型信息"
         self._value_range[typ] = self._range_machine.get_range(self._ask_info)
 
-    def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[str, Any]:
+    def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[str, Any] | None:
         """获取选项和正确答案
         Args:
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
@@ -228,7 +228,11 @@ class Scene(metaclass=abc.ABCMeta):
         for k, v in self._value_range.items():
             am.set_value_range(k, v)
         # 12-11修改：将答案信息记录到中间变量中
-        self.answer_info = am.run()
+        answer_info = am.run()
+        if answer_info is None:
+            return None
+        else:
+            self.answer_info = answer_info
         ans_info = deepcopy(self.answer_info) # 12-11修订：复制一份答案信息
         str_options = {k: str(v) for k, v in self.answer_info[machines.OPTIONS].items()} # 将选项转换为字符串
         ans_info | {machines.OPTIONS: str_options} # 将选项转换为字符串后添加到答案信息中

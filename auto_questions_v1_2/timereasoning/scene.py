@@ -205,8 +205,11 @@ class TimeScene(Scene):
         """
         return info
 
-    def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any]:
+    def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any] | None:
         answer_info = super().get_answers(seed, options, all_wrong_prob)
+        # 12-16新增：如果answer_info是None，则返回None
+        if answer_info is None:
+            return None
         if "time" in (typ := self._ask_info.get(prop.TYPE)):
             if self.scale == ts.TimeScale.Weekday and self.lang == "zh":
                 for k, v in answer_info[machines.OPTIONS].items():
