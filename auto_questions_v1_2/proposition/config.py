@@ -23,6 +23,8 @@ ANOTHER = 'another'
 SO = 'so'
 ASK_RIGHT = "ask_right"
 ASK_WRONG = "ask_wrong"
+# 12-24新增：句号
+FULL_STOP = "full_stop"
 
 LANG_CONFIG = {
     'zh': {
@@ -32,14 +34,16 @@ LANG_CONFIG = {
         SO: ["所以", "因此", "故", "于是", "因而",],
         ASK_RIGHT: "请问: 以下选项中正确的是____",
         ASK_WRONG: "请问: 以下选项中不正确的是____",
+        FULL_STOP: "。"
     },
     'en': {
-        ALL_WRONG: "none of the options above meets the requirements of the question",
+        ALL_WRONG: "None of the options above meets the requirements of the question",
         BECAUSE: ["because ", "since ", "as ", "according to ",],
         ANOTHER: ["furthermore ", "moreover ", "besides ", "and ",],
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],
         ASK_RIGHT: "Which of the following is(are) correct?",
         ASK_WRONG: "Which of the following is(are) incorrect?",
+        FULL_STOP: "."
     },
 }
 

@@ -15,6 +15,8 @@ import proposition.config
 from proposition.config import LANG_CONFIG, ASK_RIGHT, ASK_WRONG, ALL_WRONG
 from proposition.scene import Scene, LEVEL, INIT_NUM, KNOWLEDGE_NUM, CHAIN_LENGTH, SCENE_TYPE
 from proposition import prop, machines
+# 12-24新增：引入句号
+from proposition.config import FULL_STOP
 
 class LangParallelScene(metaclass=abc.ABCMeta):
     def __init__(self, original_scene: Scene) -> None:
@@ -44,6 +46,20 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         """
         self.lang_temps[lang] = temp
     
+    def _first_capitalize(self, lang: str, text: str) -> str:
+        """将文本调整为首字母大写，而其他字母不变的形式
+
+        Args:
+            lang (str): 语言
+            text (str): 文本
+
+        Returns:
+            str: 首字母大写而其他字母不变的文本
+        """
+        if lang == "en":
+            return text[0].upper() + text[1:]
+        return text
+    
     def get_statements(self, lang: str) -> list[str]:
         """获取语言对应的语句
 
@@ -55,7 +71,12 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         """
         # 12-17修改：修改试题文本生成形式
         # return [i.state(self.lang_temps[lang]) for i in self.original_scene._chosen_group]
-        return [f"({n})" + i.state(self.lang_temps[lang]) + proposition.config.SEMICOLON for n, i in enumerate(self.original_scene._chosen_group, start=1)]
+        # 12-24修改：移除陈述后的分号
+        statements = [i.state(self.lang_temps[lang]) for n, i in enumerate(self.original_scene._chosen_group, start=1)]
+        # 12-24新增：语言为英文时将陈述句首字母大写
+        statements = [self._first_capitalize(lang, i) for i in statements]
+        # 12-24新增：为每个陈述句加上编号
+        return [f"({n}){i}" for n, i in enumerate(statements, start=1)]
     
     def get_question(self, lang: str) -> str:
         """获取问题
@@ -71,7 +92,9 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         ask_prop = self.original_scene._asked_prop # 获取问题命题
         self._type_tags.append(ask_prop.typetag) # 记录提问的命题的typetag
         question = ask_prop.ask(self.lang_temps[lang], ask_info[prop.TYPE]) # 生成问题
-        return question[prop.SENTENCE]
+        # 12-24新增：添加句号
+        # return question[prop.SENTENCE]
+        return question[prop.SENTENCE] + proposition.config.LANG_CONFIG[lang][FULL_STOP]
     
     def get_answers(self, lang: str) -> dict[str, Any]:
         """获取答案信息
@@ -109,7 +132,9 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 statements = self.get_statements(lang) # 获取语句
                 # 12-17修改：修改试题文本的生成格式
                 # text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
-                text = guide + proposition.config.COLON + "\n" + "\n".join(statements) # 生成试题文本
+                # 12-24修改：修改试题文本的生成格式
+                # text = guide + proposition.config.COLON + "\n" + "\n".join(statements) # 生成试题文本
+                text = guide + proposition.config.COLON + "\n" + f"{proposition.config.SEMICOLON}\n".join(statements) + proposition.config.LANG_CONFIG[lang][FULL_STOP] # 生成试题文本
                 # 获取问题
                 question = self.get_question(lang)
                 answer_info = self.get_answers(lang) # 获取答案信息
@@ -132,6 +157,10 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         option_dict = self.original_scene._ask_all_machine._option_dict # 获取选项信息
         self._type_tags.extend([i.typetag for i in option_dict.values() if isinstance(i, prop.Proposition)]) # 记录选项的命题的typetag
         choices = [i.state(self.lang_temps[lang]) if isinstance(i, prop.Proposition) else str(i) for i in option_dict.values()] # 生成选项
+        # 12-24新增：将文本的首字母大写
+        choices = [self._first_capitalize(lang, i) for i in choices]
+        # 12-24新增：为选项加上句号
+        choices = [i + proposition.config.LANG_CONFIG[lang][FULL_STOP] for i in choices]
         new_dict = {k: v for k, v in zip(option_dict.keys(), choices)} # 生成新的选项字典
         # 检查new_dict的最后一个选项，如果是“以上选项均不正确”，则按照语言寻找ALL_WRONG替换之
         if new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["zh"][ALL_WRONG] or new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["en"][ALL_WRONG]:
@@ -162,7 +191,9 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 statements = self.get_statements(lang) # 获取语句
                 # 12-17修改：修改试题文本的生成格式
                 # text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
-                text = guide + proposition.config.COLON + "\n" + "\n".join(statements) # 生成试题文本
+                # 12-24修改：修改试题文本的生成格式
+                # text = guide + proposition.config.COLON + "\n" + "\n".join(statements) # 生成试题文本
+                text = guide + proposition.config.COLON + "\n" + f"{proposition.config.SEMICOLON}\n".join(statements) + proposition.config.LANG_CONFIG[lang][FULL_STOP] # 生成试题文本
                 origin_question = origin_result[0][machines.QUESTION] # 获取问题
                 if origin_question == LANG_CONFIG["zh"][ASK_RIGHT] or origin_question == LANG_CONFIG["en"][ASK_RIGHT]:
                     question = LANG_CONFIG[lang][ASK_RIGHT]
