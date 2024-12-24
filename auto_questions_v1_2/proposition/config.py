@@ -26,7 +26,7 @@ ASK_WRONG = "ask_wrong"
 
 LANG_CONFIG = {
     'zh': {
-        ALL_WRONG: "以上选项均不正确",
+        ALL_WRONG: "以上选项均不符合题目要求",
         BECAUSE: ["因为", "由于", "既然", "根据",],
         ANOTHER: ["另外", "再者", "此外", "而且", "并且",],
         SO: ["所以", "因此", "故", "于是", "因而",],
@@ -34,7 +34,7 @@ LANG_CONFIG = {
         ASK_WRONG: "请问: 以下选项中不正确的是____",
     },
     'en': {
-        ALL_WRONG: "none of the above is correct",
+        ALL_WRONG: "none of the options above meets the requirements of the question",
         BECAUSE: ["because ", "since ", "as ", "according to ",],
         ANOTHER: ["furthermore ", "moreover ", "besides ", "and ",],
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],

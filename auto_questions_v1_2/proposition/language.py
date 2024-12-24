@@ -53,7 +53,9 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         Returns:
             list[str]: 语句列表
         """
-        return [i.state(self.lang_temps[lang]) for i in self.original_scene._chosen_group]
+        # 12-17修改：修改试题文本生成形式
+        # return [i.state(self.lang_temps[lang]) for i in self.original_scene._chosen_group]
+        return [f"({n})" + i.state(self.lang_temps[lang]) + proposition.config.SEMICOLON for n, i in enumerate(self.original_scene._chosen_group, start=1)]
     
     def get_question(self, lang: str) -> str:
         """获取问题
@@ -105,7 +107,9 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 self.original_scene.lang = lang # 设置原始场景的语言
                 guide = self.lang_guides[lang] # 获取引导语
                 statements = self.get_statements(lang) # 获取语句
-                text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
+                # 12-17修改：修改试题文本的生成格式
+                # text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
+                text = guide + proposition.config.COLON + "\n" + "\n".join(statements) # 生成试题文本
                 # 获取问题
                 question = self.get_question(lang)
                 answer_info = self.get_answers(lang) # 获取答案信息
@@ -156,7 +160,9 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 self.original_scene.lang = lang # 设置原始场景的语言
                 guide = self.lang_guides[lang] # 获取引导语
                 statements = self.get_statements(lang) # 获取语句
-                text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
+                # 12-17修改：修改试题文本的生成格式
+                # text = guide + proposition.config.COLON + proposition.config.SEMICOLON.join(statements) # 生成试题文本
+                text = guide + proposition.config.COLON + "\n" + "\n".join(statements) # 生成试题文本
                 origin_question = origin_result[0][machines.QUESTION] # 获取问题
                 if origin_question == LANG_CONFIG["zh"][ASK_RIGHT] or origin_question == LANG_CONFIG["en"][ASK_RIGHT]:
                     question = LANG_CONFIG[lang][ASK_RIGHT]
