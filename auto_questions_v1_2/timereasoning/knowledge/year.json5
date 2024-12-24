@@ -6,26 +6,26 @@
     "event": [
         {
             "subtype": "temporal",
-            "verb": "第一次诺贝尔奖颁发",
+            "verb": "第一届诺贝尔奖被颁发",
             "object": "",
             "time": 1901,
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "First Nobel Prizes awarded", // 动词，和原来的event相同
+                    "verb": "the first Nobel Prizes were awarded", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
         }, 
         {
             "subtype": "temporal",
-            "verb": "第一次普利策奖颁发",
+            "verb": "第一届普利策奖被颁发",
             "object": "",
             "time": 1917,
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "The first Pulitzer Prizes announced", // 动词，和原来的event相同
+                    "verb": "the first Pulitzer Prizes were announced", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
@@ -73,7 +73,7 @@
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "IBM Personal Computer released", // 动词，和原来的event相同
+                    "verb": "IBM released the first personal computer", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
@@ -86,7 +86,7 @@
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "bubble gum is invented", // 动词，和原来的event相同
+                    "verb": "bubble gum was invented", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
@@ -106,13 +106,13 @@
         }, 
         {
             "subtype": "temporal",
-            "verb": "第一台彩色电视机生产",
+            "verb": "第一台彩色电视机被生产",
             "object": "",
             "time": 1953,
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "The first color television is produced", // 动词，和原来的event相同
+                    "verb": "the first color television was produced", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
@@ -125,7 +125,7 @@
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "Apollo 11 Moon landing", // 动词，和原来的event相同
+                    "verb": "Apollo 11 landed on the moon", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
@@ -138,7 +138,7 @@
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "Google is founded", // 动词，和原来的event相同
+                    "verb": "Google was founded", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
