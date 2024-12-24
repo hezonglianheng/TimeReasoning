@@ -5,11 +5,11 @@
     "temporal": [
         "他在星期[time][element]",
         "在星期[time]他[element]",
-        "他[element]安排在星期[time]", 
+        // "他[element]安排在星期[time]", 
         "星期[time]，他[element]",
-        "他在周[time][element]",        
+        "他在周[time][element]",
         "在周[time]他[element]",
-        "他[element]安排在周[time]", 
+        // "他[element]安排在周[time]", 
         "周[time]，他[element]",
     ],
     // 时长的模板

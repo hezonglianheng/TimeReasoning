@@ -12,10 +12,12 @@
     ],
     // 时长的模板
     "duration": [
-        "他[element]的时间长达[duration]年",
-        "他[element]有[duration]年之久",
-        "他[element]的时间达到了[duration]年",
-        "他[element]整整[duration]年",
+        // "他[element]的时间长达[duration]年",
+        // "他[element]有[duration]年之久",
+        // "他[element]的时间达到了[duration]年",
+        "他[element]的时间是[duration]年",
+        "他[element]的时间一共[duration]年",
+        // "他[element]整整[duration]年",
     ],
     // 持续事件的模板
     "durative": [
@@ -24,7 +26,7 @@
         "他自[time]年起[element]，直到[endtime]年结束",
         "他从[time]年开始[element]，一直持续到[endtime]年",
         "他自[time]年起到[endtime]年止[element]",
-        "[time]年至[endtime]年，他曾[element]",
+        // "[time]年至[endtime]年，他曾[element]",
         // 描述起点和持续时间
         "从[time]年开始的[duration]年间，他[element]",
         "自[time]年起，他一直[element]，直到[duration]年后",
@@ -48,7 +50,7 @@
     ],
     "before_time": [
         "[element1]的时间比[element2]早了[diff]年", 
-        "在[element2]之前[diff]年，曾[element1]", 
+        // "在[element2]之前[diff]年，曾[element1]", 
         "在[element2]的[diff]年之前[element1]", 
         "[element1]是在[element2]的[diff]年前", 
         "[element1]是在[element2]之前的第[diff]年发生的",
@@ -68,6 +70,7 @@
     "simultaneous": [
         "在[element2]的那一年，[element1]",
         "某一年，不仅[element2]，还[element1]",
+        "某一年，既[element2]，又[element1]",
         "在[element2]的同一年，[element1]",
         "某一年，[element2]和[element1]都发生",
     ],
