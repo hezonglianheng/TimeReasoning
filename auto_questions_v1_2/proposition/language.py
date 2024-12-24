@@ -111,7 +111,7 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 answer_info = self.get_answers(lang) # 获取答案信息
                 level = origin_result[0][LEVEL] # 获取难度等级
                 infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
-                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
+                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choices": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
                 self._type_tags.clear() # 清空typetags
         # 返回数据
         return data
@@ -169,7 +169,7 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 answer = origin_result[0][machines.ANSWERS] # 获取答案
                 level = origin_result[0][LEVEL]
                 infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
-                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choice": choices, "answer": answer, LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
+                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choices": choices, "answer": answer, LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
                 self._type_tags.clear() # 清空typetags
 
         return data
