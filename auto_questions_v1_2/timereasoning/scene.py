@@ -95,9 +95,10 @@ class TimeScene(Scene):
                 pass # 其他类型的常识暂不处理，后续可以添加
     
     def reset(self):
-        """清空场景中的事件"""
+        """清空场景中的事件、初始化命题和知识命题"""
         self.events.clear()
-        self._init_props.clear()
+        # 12-24修改：调用父类的reset方法
+        super().reset()
     
     def _exp_trans(self, exp: str) -> str:
         """调整时间表达方式

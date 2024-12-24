@@ -92,6 +92,13 @@ class Scene(metaclass=abc.ABCMeta):
         """场景类型名称"""
         return ""
     
+    # 12-24移动：将reset()方法移动到父类中，成为场景类的共同方法
+    def reset(self):
+        """清空场景中的初始化命题和知识命题"""
+        self._init_props.clear()
+        # 12-24新增：同时移除知识
+        self._knowledges.clear()
+    
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
         """添加知识命题
