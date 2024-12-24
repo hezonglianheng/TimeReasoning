@@ -192,7 +192,9 @@ class TimeGetRangeMachine(machines.GetRangeMachine):
             if isinstance(ans, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent)):
                 range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent))]
             elif isinstance(ans, event.Duration):
-                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration, event.TemporalEvent, event.FreqEvent))]
+                # 12-24修改：对于持续时间的值域，只返回持续时间事件
+                # range_list = [i for i in self.all_elements if isinstance(i, (event.Duration, event.TemporalEvent, event.FreqEvent))]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration))]
             else:
                 raise ValueError(f"未知类型{type(ans)}")
         elif "time" in typ:
