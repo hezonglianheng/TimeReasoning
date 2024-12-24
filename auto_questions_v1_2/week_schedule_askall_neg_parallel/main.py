@@ -45,9 +45,11 @@ if __name__ == "__main__":
     all_combinations = list(combinations((learn_japanese, date, play_badminton, arrange, read_papers, meeting, movie, enjoy_fiction, guitar, jogging), 6))
     samples = random.sample(all_combinations, 10)
     res = []
-    for s in samples:
+    for i, s in enumerate(samples):
         curr_scene.add_events(*s)
-        res.extend(lang_scene.run_ask_all(1, ask_correct=False))
+        curr_res = lang_scene.run_ask_all(ask_correct=False)
+        curr_res = [r | {"group": f"week-schedule-askall-neg-{i}"} for r in curr_res]
+        res.extend(curr_res)
         curr_scene.reset()
     output_file = Path(__file__).resolve().parents[0] / "outputs.json"
     with output_file.open('w', encoding='utf8') as f:

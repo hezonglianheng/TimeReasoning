@@ -94,14 +94,14 @@ if __name__ == "__main__":
 
     # 定义场景
     # 随机抽取事件
-    curr_scene = scene.LineScene(ts.TimeScale.Year, "小明的女儿正在给朋友讲述父亲的一生", ask_mode="deepest")
+    curr_scene = scene.LineScene(ts.TimeScale.Year, "小明的女儿正在给朋友讲述父亲的一生", ask_mode="random")
     lang_scene = lg.TimeParallelScene(curr_scene)
     lang_scene.add_guide("zh", "小明的女儿正在给朋友讲述父亲的一生")
     lang_scene.add_guide("en", "Jack's daughter is telling her friends about the story of his life")
     all_combinations = list(combinations((event_list), 6))
     samples = random.sample(all_combinations, 10)
     res = []
-    for s in samples:
+    for i, s in enumerate(samples):
         # 将事件添加到时间场景中
         curr_scene.add_events(*s)
         # 添加知识
@@ -109,7 +109,9 @@ if __name__ == "__main__":
         # 运行时间场景
         # res.extend(curr_scene.run(1))
         # res.extend(curr_scene.run_ask_all())
-        res.extend(lang_scene.run_ask_all())
+        curr_res = lang_scene.run_ask_all()
+        curr_res = [r | {"group": f"life-story-askall-{i}"} for r in curr_res]
+        res.extend(curr_res)
         curr_scene.reset()
     output_file = Path(__file__).resolve().parents[0] / "output.json"
     with output_file.open('w', encoding='utf8') as f:
