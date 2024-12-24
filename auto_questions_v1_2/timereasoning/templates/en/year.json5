@@ -5,9 +5,8 @@
 {
     // 瞬时事件的模板
     "temporal": [
-        "[element], and that was in [time]",
         "In [time], [element]",
-        "In the year of [time] [element]",
+        "In the year of [time], [element]",
         "[element] in [time]",
     ],
     // 时长的模板
@@ -22,18 +21,15 @@
     "durative": [
         // 描述起点和终点
         "From [time] to [endtime], [element]",
-        "In [time] [element], until [endtime]",
         "[element] in [time], and ended in [endtime]",
         "[element] from [time] to [endtime]",
-        "[time] to [endtime], [element]",
         // 描述起点和持续时间
         "From [time] on, [element] for [duration] year(s)",
         "Starting from [time], [element] for [duration] year(s)",
-        "[element] since [time], for [duration] year(s)",
+        "[element] since [time], and lasts [duration] year(s)",
         // 描述终点和持续时间
-        "[element] for [duration] year(s) before [endtime]",
-        "By [endtime], [element] for [duration] year(s)",
-        "Before [endtime], it's been [duration] year(s) that [element]",
+        "[element] for [duration] year(s), and ended in [endtime]",
+        "Before ended in [endtime], it's been [duration] year(s) that [element]",
     ],
     // 时频的模板
     "freq": [
@@ -62,20 +58,19 @@
     ],
     "simultaneous": [
         "In the year that [element2], [element1]",
-        "In the same year, not only [element1], but also [element2]",
+        "In the same year, [element1], and [element2]",
         "In the same year as [element2], [element1]",
         "In a certain year, [element2], and [element1]",
     ],
     // 事件间隔的模板
     "gap_time": [
-        "There are [diff] year(s) between [element1] and [element2]",
         "The time gap between [element1] and [element2] is [diff] year(s)",
         "There is a [diff]-year difference between [element1] and [element2]",
     ],
     // 时长关系的模板
     "long": [
         "The total duration that [element1] is longer than that of [element2]",
-        "It takes a longer time that [element1] than [element2]",
+        "It takes longer time that [element1] than [element2]",
         "Compared to the duration that [element2], more time is taken that [element1]",
     ],
     "long_time": [
@@ -85,7 +80,7 @@
     ],
     "short": [
         "The total duration that [element1] is shorter than that of [element2]",
-        "It takes a shorter time that [element1] than [element2]",
+        "It takes shorter time that [element1] than [element2]",
         "Compared to the duration that [element2], less time is taken that [element1]",
     ],
     "short_time": [
@@ -95,7 +90,7 @@
     ],
     "same_len": [
         "It takes the same number of year(s) that [element1] as [element2]",
-        "The time [element1] is the same length as that [element2]",
+        "The time [element1] is the same length as [element2]",
         "The duration that [element1] is the same as the duration that [element2]",
         "The duration [element1] is equal to the duration [element2]",
         "The duration [element1] matches the duration [element2]",
