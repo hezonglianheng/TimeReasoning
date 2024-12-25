@@ -189,12 +189,20 @@ class TimeGetRangeMachine(machines.GetRangeMachine):
         """
         if "element" in (typ := ask_info.get(prop.TYPE)):
             ans = ask_info.get(prop.ANSWER)
-            if isinstance(ans, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent)):
-                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent))]
+            # 12-25修改：对于瞬时事件的值域，只返回瞬时事件
+            # if isinstance(ans, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent)):
+            if isinstance(ans, (event.TemporalEvent)):
+                # range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent))]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent))]
             elif isinstance(ans, event.Duration):
                 # 12-24修改：对于持续时间的值域，只返回持续时间事件
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.Duration, event.TemporalEvent, event.FreqEvent))]
                 range_list = [i for i in self.all_elements if isinstance(i, (event.Duration))]
+            # 12-25新增：其他类型的事件的值域只返回同类型的事件，以避免理解上的困难
+            elif isinstance(ans, event.DurativeEvent):
+                range_list = [i for i in self.all_elements if isinstance(i, (event.DurativeEvent))]
+            elif isinstance(ans, event.FreqEvent):
+                range_list = [i for i in self.all_elements if isinstance(i, (event.FreqEvent))]
             else:
                 raise ValueError(f"未知类型{type(ans)}")
         elif "time" in typ:
