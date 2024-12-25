@@ -326,7 +326,9 @@ class Scene(metaclass=abc.ABCMeta):
                         # 11-24更新：增加提问命题的标签信息
                         "tag": self._asked_prop.typetag, 
                         # 11-30更新：增加推理链长度信息
-                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level),
+                        # LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level),
+                        # 12-25更新：修复评级上的错误
+                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level),
                         # 12-13更新：增加各种辅助判断信息
                         CHAIN_LENGTH: self.chain_length, 
                         SCENE_TYPE: self.scene_type, 
@@ -367,7 +369,9 @@ class Scene(metaclass=abc.ABCMeta):
                 continue
             text = self.guide + COLON + SEMICOLON.join(self._statements)  # 题面文本，由引导语和陈述组成
             # 11-30更新：计算试题等级
-            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.CHOICES]), len(self._knowledges), self.scene_level)
+            # level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.CHOICES]), len(self._knowledges), self.scene_level)
+            # 12-25更新：修复评级上的错误
+            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level)
             item = {
                 "guide": self.guide,
                 "statement": self._statements,
