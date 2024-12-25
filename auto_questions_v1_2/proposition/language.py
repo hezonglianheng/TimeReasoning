@@ -108,6 +108,10 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         answer_info = self.original_scene.answer_info # 获取答案信息
         answers: dict[str, Any] = deepcopy(answer_info[machines.OPTIONS]) # 深复制答案
         str_answers: dict[str, str] = {k: str(v) for k, v in answers.items()} # 转换为字符串
+        # 12-25增加：检查答案文本，如果是“以上选项均不满足要求”，需要替换成对应语言的文本
+        for k, v in str_answers.items():
+            if v == LANG_CONFIG["zh"][ALL_WRONG] or v == LANG_CONFIG["en"][ALL_WRONG]:
+                str_answers[k] = LANG_CONFIG[lang][ALL_WRONG]
         new_info = deepcopy(answer_info) | {machines.OPTIONS: str_answers} # 更新答案信息
         return new_info
         
