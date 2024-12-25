@@ -11,15 +11,15 @@
     // 时长的模板
     "duration": [
         "[element]的时长为[duration]年",
-        "[element][duration]年",
-        "[element]用了[duration]年",
+        "[element]一共[duration]年",
+        // "[element]用了[duration]年",
     ],
     // 持续事件的模板
     "durative": [
         // 描述起点和终点
         "从[time]年到[endtime]年，[element]",
         "自[time]年起[element]，直到[endtime]年结束",
-        "从[time]年开始[element]，持续到[endtime]年",
+        "从[time]年开始[element]，一直到[endtime]年",
         "自[time]年起到[endtime]年止，[element]",
         "[time]年至[endtime]年，[element]",
         // 描述起点和持续时间
@@ -28,7 +28,7 @@
         "从[time]年开始，[element]，持续了[duration]年",
         // 描述终点和持续时间
         "在[endtime]年之前的[duration]年里，[element]",
-        "[element]用了[duration]年，直至[endtime]年结束",
+        // "[element]用了[duration]年，直至[endtime]年结束",
     ],
     // 时频的模板
     "freq": [
@@ -39,8 +39,8 @@
     // 事件先后关系的模板
     "before": [
         "[element1]的年份比[element2]早",
-        "[element1]是在[element2]那年之前",
-        "在[element2]那年之前，[element1]",
+        "[element1]是在[element2]之前",
+        "在[element2]之前，[element1]",
     ],
     "before_time": [
         "[element1]的时间比[element2]早[diff]年", 
@@ -50,8 +50,8 @@
     ],
     "after": [
         "[element1]的年份比[element2]晚",
-        "[element1]是在[element2]那年之后",
-        "在[element2]那年之后，[element1]",
+        "[element1]是在[element2]之后",
+        "在[element2]之后，[element1]",
     ],
     "after_time": [
         "[element1]的时间比[element2]晚[diff]年",
