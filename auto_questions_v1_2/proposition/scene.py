@@ -30,6 +30,10 @@ from proposition.level import ask_level
 
 # constants.
 LEVEL = "level"
+CHAIN_LENGTH = "chain_length"
+INIT_NUM = "init_num"
+KNOWLEDGE_NUM = "knowledge_num"
+SCENE_TYPE = "scene_type"
 
 class Scene(metaclass=abc.ABCMeta):
     """
@@ -58,27 +62,43 @@ class Scene(metaclass=abc.ABCMeta):
         self.rules: list[rule.Rule] = []  # 规则列表
         self.temps: dict[str, list[str]] = []  # 模板字典
         # 命题收集变量
-        self._init_props: list[prop.Proposition] = []
-        self._all_props: list[prop.Proposition] = []
-        self._chosen_group: list[prop.Proposition] = []
-        self._statements: list[str] = []
-        self._asked_prop: prop.Proposition = None
-        self._ask_info: dict[str, Any] = {}
-        self._value_range: dict[str, list[Any]] = dict()
-        self._knowledges: list[prop.Proposition] = []
-        self.graph: Graph = None
-        self.chain: str = ""
+        self._init_props: list[prop.Proposition] = [] # 初始命题
+        self._all_props: list[prop.Proposition] = [] # 遍历推理得到的所有命题
+        self._chosen_group: list[prop.Proposition] = [] # 被选择用于陈述的命题
+        self._statements: list[str] = [] # 题目的陈述文本
+        self._asked_prop: prop.Proposition = None # 被询问的命题
+        self._ask_info: dict[str, Any] = {} # 从被询问的命题中获取的信息
+        self._value_range: dict[str, list[Any]] = dict() # 不同的类型对应的值域
+        self._knowledges: list[prop.Proposition] = [] # 知识命题
+        self.graph: Graph = None # 推理图
+        self.chain: str = "" # 推理链文本
         self._reachables: list[prop.Proposition] = [] # 可达命题列表
         # 11-25新增：场景的范围获取机
         self._range_machine: GRM = None # 范围获取机
         # 11-26新增：场景的询问机
         self._ask_all_machine: AskAllMachine = None
-        self._ask_correct: bool = True
+        self._ask_correct: bool = True # 是否询问“以下正确”，True为询问“以下正确”，False为询问“以下错误”
         # 11-30新增：推理链长度记录变量
         self.chain_length: int = 0
         # 12-01新增：记录由回答机返回的回答命题
         self.ans_props: list[prop.Proposition] = []
+        # 12-11新增：记录由回答机返回的答案信息
+        self.answer_info: dict[str, Any] = {}
 
+    # 12-13新增：场景类型名称
+    @property
+    @abc.abstractmethod
+    def scene_type(self) -> str:
+        """场景类型名称"""
+        return ""
+    
+    # 12-24移动：将reset()方法移动到父类中，成为场景类的共同方法
+    def reset(self):
+        """清空场景中的初始化命题和知识命题"""
+        self._init_props.clear()
+        # 12-24新增：同时移除知识
+        self._knowledges.clear()
+    
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
         """添加知识命题
@@ -104,8 +124,6 @@ class Scene(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get_all_groups(self) -> None:
         """调用搜索机，以发现可行的陈述命题组合\n
-        之后，该方法从可行的陈述命题组合出发，建立推理图，获得可达命题列表\n
-        最后，该方法初始化范围获取机.\n
         注意：该方法需要被子类重写
         """
         assert len(self._all_props) > 0, "必须先生成全部命题"
@@ -121,6 +139,13 @@ class Scene(metaclass=abc.ABCMeta):
         self._reachables = rm.run()  # 11-12修改: 将建立推理图得到的命题加入可达命题列表
         self.graph = rm.graph
         print(f"推理图获取完毕.")
+        
+    # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
+    def get_preparations(self) -> None:
+        """
+        该方法从可行的陈述命题组合出发，建立推理图，获得可达命题列表\n
+        该方法初始化范围获取机.\n
+        """
         # 11-25新增：初始化范围获取机
         self._range_machine = GRM(self._all_props)
         print("初始化选取干扰项的范围获取机.")
@@ -192,7 +217,7 @@ class Scene(metaclass=abc.ABCMeta):
         assert typ is not None, "提问信息中没有类型信息"
         self._value_range[typ] = self._range_machine.get_range(self._ask_info)
 
-    def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[str, Any]:
+    def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[str, Any] | None:
         """获取选项和正确答案
         Args:
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
@@ -209,7 +234,16 @@ class Scene(metaclass=abc.ABCMeta):
         am = AM(self._reachables, self._asked_prop, self._ask_info, seed, options, all_wrong_prob)
         for k, v in self._value_range.items():
             am.set_value_range(k, v)
-        return am.run()
+        # 12-11修改：将答案信息记录到中间变量中
+        answer_info = am.run()
+        if answer_info is None:
+            return None
+        else:
+            self.answer_info = answer_info
+        ans_info = deepcopy(self.answer_info) # 12-11修订：复制一份答案信息
+        str_options = {k: str(v) for k, v in self.answer_info[machines.OPTIONS].items()} # 将选项转换为字符串
+        ans_info | {machines.OPTIONS: str_options} # 将选项转换为字符串后添加到答案信息中
+        return ans_info
 
     def get_chain(self) -> str:
         """获取推理链
@@ -239,10 +273,18 @@ class Scene(metaclass=abc.ABCMeta):
             dict[str, Any]: 问题信息
         """
         assert self._ask_all_machine is not None, "必须先初始化询问机"
-        return self._ask_all_machine.run()
+        # return self._ask_all_machine.run()
+        ask_res = self._ask_all_machine.run()
+        if ask_res is None:
+            return ask_res
+        option_state = [i.state(self.temps) if isinstance(i, prop.Proposition) else str(i) for i in self._ask_all_machine._option_dict.values()]
+        choice_dict = {k: v for k, v in zip(ask_res["choices"].keys(), option_state)}
+        new_ask_res = ask_res | {"choices": choice_dict}
+        return new_ask_res
     
     def run(self, execute: int = 10, seed: Union[int, float, None] = None) -> list[dict[str, Any]]:
         """运行场景，获取一组题目
+
         Args:
             execute (int, optional): 生成的题目数量. 默认为10.
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
@@ -257,6 +299,7 @@ class Scene(metaclass=abc.ABCMeta):
             i += 1
             print(f"开始第{i}次获取.")
             self.get_all_groups()
+            self.get_preparations() # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
             self.get_statements()
             self.ask_one(seed)
             self.set_value_range() # 设置值域
@@ -283,7 +326,14 @@ class Scene(metaclass=abc.ABCMeta):
                         # 11-24更新：增加提问命题的标签信息
                         "tag": self._asked_prop.typetag, 
                         # 11-30更新：增加推理链长度信息
-                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level)
+                        # LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level),
+                        # 12-25更新：修复评级上的错误
+                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level),
+                        # 12-13更新：增加各种辅助判断信息
+                        CHAIN_LENGTH: self.chain_length, 
+                        SCENE_TYPE: self.scene_type, 
+                        INIT_NUM: len(self._init_props), 
+                        KNOWLEDGE_NUM: len(self._knowledges), 
                     }
             question_list.append(item)
         print(f"获取题目{i}次，获得题目{len(question_list)}个.")
@@ -291,6 +341,7 @@ class Scene(metaclass=abc.ABCMeta):
 
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None, ask_correct: bool = True) -> list[dict[str, Any]]:
         """运行场景，获取一组询问多个命题类型的题目
+        
         Args:
             execute (int, optional): 生成的题目数量. 默认为10.
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
@@ -310,6 +361,7 @@ class Scene(metaclass=abc.ABCMeta):
             i += 1
             print(f"开始第{i}次获取.")
             self.get_all_groups()
+            self.get_preparations() # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
             self.get_statements()
             ask_all_info = self.ask_all(seed)
             if ask_all_info is None:
@@ -317,12 +369,20 @@ class Scene(metaclass=abc.ABCMeta):
                 continue
             text = self.guide + COLON + SEMICOLON.join(self._statements)  # 题面文本，由引导语和陈述组成
             # 11-30更新：计算试题等级
-            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.OPTIONS]), len(self._knowledges), self.scene_level)
+            # level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.CHOICES]), len(self._knowledges), self.scene_level)
+            # 12-25更新：修复评级上的错误
+            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level)
             item = {
                 "guide": self.guide,
                 "statement": self._statements,
                 "text": text,
-            } | ask_all_info | {LEVEL: level}
+            } | ask_all_info | {
+                LEVEL: level, 
+                CHAIN_LENGTH: ask_all_info[machines.LENGTH], 
+                SCENE_TYPE: self.scene_type, 
+                INIT_NUM: len(self._init_props), 
+                KNOWLEDGE_NUM: len(self._knowledges), 
+            }
             question_list.append(item)
         print(f"获取题目{i}次，获得题目{len(question_list)}个.")
         return question_list

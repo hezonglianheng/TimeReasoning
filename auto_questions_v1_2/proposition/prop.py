@@ -65,8 +65,9 @@ class Proposition(element.Element):
             str: 命题的一个陈述句
         """
         curr_temp = random.choice(temps[self.temp_key])
-        for k, v in self.attrs().items():
-            curr_temp = curr_temp.replace(f"[{k}]", v)
+        # for k, v in self.attrs().items():
+        for k, v in vars(self).items():
+            curr_temp = curr_temp.replace(f"[{k}]", str(v))
         return curr_temp
 
     def ask(self, temps: dict[str, list[str]], key: str = None) -> Dict[str, str | Any]:

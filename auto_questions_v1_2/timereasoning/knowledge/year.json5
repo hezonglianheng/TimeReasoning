@@ -1,18 +1,34 @@
 // 以年为单位的知识库
+// 12-11新增：增加知识的多语言表示以支持其他语言试题
+// 12-17修订：移除政治类事件，改为科技类事件
 
 {
     "event": [
         {
             "subtype": "temporal",
-            "verb": "八国联军攻入",
-            "object": "北京",
-            "time": 1900,
+            "verb": "第一届诺贝尔奖颁发",
+            "object": "",
+            "time": 1901,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the first Nobel Prizes were awarded", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
-            "verb": "辛亥革命爆发",
+            "verb": "第一届普利策奖颁发",
             "object": "",
-            "time": 1911,
+            "time": 1917,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the first Pulitzer Prizes were announced", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "durative",
@@ -20,55 +36,112 @@
             "object": "第一次世界大战",
             "time": 1914,
             "endtime": 1918,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the World War I", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
+            "start_language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the World War I started", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                },
+            ],
+            "end_language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the World War I ended", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                },
+            ],
+            "duration_language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the World War I continued", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                },
+            ]
         }, 
         {
             "subtype": "temporal",
-            "verb": "五四运动爆发",
+            "verb": "IBM发布第一款个人电脑",
             "object": "",
-            "time": 1919,
+            "time": 1981,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "IBM released the first personal computer", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
-            "verb": "中国共产党成立",
+            "verb": "泡泡糖被发明",
             "object": "",
-            "time": 1921,
+            "time": 1928,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "bubble gum was invented", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
-            "verb": "南昌起义",
-            "object": "爆发",
-            "time": 1927,
-        }, 
-        {
-            "subtype": "temporal",
-            "verb": "长征",
-            "object": "开始",
-            "time": 1934,
-        }, 
-        {
-            "subtype": "temporal",
-            "verb": "新中国成立",
+            "verb": "联合国成立",
             "object": "",
-            "time": 1949,
+            "time": 1945,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "United Nations founded", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
-            "verb": "改革开放",
-            "object": "开始",
-            "time": 1978,
-        }, 
-        {
-            "subtype": "durative",
-            "verb": "进行",
-            "object": "抗日战争",
-            "time": 1931,
-            "endtime": 1945,
+            "verb": "第一台彩色电视机被生产",
+            "object": "",
+            "time": 1954, // 修正事件发生的时间
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "the first color television was produced", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
         {
             "subtype": "temporal",
-            "verb": "中国加入",
-            "object": "WTO",
-            "time": 2001,
+            "verb": "阿波罗11号在月球着陆",
+            "object": "",
+            "time": 1969,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "Apollo 11 landed on the moon", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
+        }, 
+        {
+            "subtype": "temporal",
+            "verb": "谷歌创立",
+            "object": "",
+            "time": 1998,
+            "language": [
+                {
+                    "lang": "en", // 语言类型
+                    "verb": "Google was founded", // 动词，和原来的event相同
+                    "object": "", // 名词，和原来的event相同
+                }
+            ], 
         }, 
     ], 
     "order": [], 

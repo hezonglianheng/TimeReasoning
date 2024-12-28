@@ -189,10 +189,20 @@ class TimeGetRangeMachine(machines.GetRangeMachine):
         """
         if "element" in (typ := ask_info.get(prop.TYPE)):
             ans = ask_info.get(prop.ANSWER)
-            if isinstance(ans, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent)):
-                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent))]
+            # 12-25修改：对于瞬时事件的值域，只返回瞬时事件
+            # if isinstance(ans, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent)):
+            if isinstance(ans, (event.TemporalEvent)):
+                # range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent))]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent))]
             elif isinstance(ans, event.Duration):
-                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration, event.TemporalEvent, event.FreqEvent))]
+                # 12-24修改：对于持续时间的值域，只返回持续时间事件
+                # range_list = [i for i in self.all_elements if isinstance(i, (event.Duration, event.TemporalEvent, event.FreqEvent))]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration))]
+            # 12-25新增：其他类型的事件的值域只返回同类型的事件，以避免理解上的困难
+            elif isinstance(ans, event.DurativeEvent):
+                range_list = [i for i in self.all_elements if isinstance(i, (event.DurativeEvent))]
+            elif isinstance(ans, event.FreqEvent):
+                range_list = [i for i in self.all_elements if isinstance(i, (event.FreqEvent))]
             else:
                 raise ValueError(f"未知类型{type(ans)}")
         elif "time" in typ:
@@ -230,5 +240,11 @@ class TimeAskAllMachine(machines.AskAllMachine):
             # 如果是持续时间命题且询问time，则选项范围为结束时间之前的时间
             elif ask_info.get(prop.TYPE) == "time":
                 initial_range = [i for i in initial_range if i < curr_prop.endtime]
+        if isinstance(curr_prop, timeprop.DoubleTimeP):
+            # 如果是双元素命题，则值域中不包含当前命题的另一个元素
+            if ask_info.get(prop.TYPE) == "element1":
+                initial_range = [i for i in initial_range if i != curr_prop.element2]
+            elif ask_info.get(prop.TYPE) == "element2":
+                initial_range = [i for i in initial_range if i != curr_prop.element1]
 
         return initial_range

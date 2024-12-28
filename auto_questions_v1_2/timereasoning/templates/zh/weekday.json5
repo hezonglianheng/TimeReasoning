@@ -3,14 +3,10 @@
 {
     // 瞬时事件的模板
     "temporal": [
-        "他在星期[time][element]",
-        "在星期[time]他[element]",
-        "他[element]安排在星期[time]", 
-        "星期[time]，他[element]",
-        "他在周[time][element]",        
-        "在周[time]他[element]",
-        "他[element]安排在周[time]", 
-        "周[time]，他[element]",
+        "在星期[time]，[element]",
+        "星期[time]，[element]",
+        "在周[time]，[element]",
+        "周[time]，[element]",
     ],
     // 时长的模板
     "duration": [],
@@ -20,43 +16,29 @@
     "freq": [],
     // 事件先后关系的模板
     "before": [
-        "他[element1]的时间比[element2]早",
-        "[element1]是在[element2]之前发生的",
-        "他[element2]是在[element1]之后",
+        "在以周一起始的一周范围内，[element1]是在[element2]那天之前",
     ],
     "before_time": [
-        "他[element1]的时间比[element2]早了[diff]天", 
-        "在[element2]之前[diff]天，他曾[element1]", 
-        "他在[element2]的[diff]天之前[element1]", 
-        "[element1]是在[element2]的[diff]天前发生的", 
-        "[element2]是在[element1]的[diff]天后", 
-        "[element1]是在[element2]之前的第[diff]天发生的",
+        "在[element2]之前[diff]天，[element1]", 
+        "在[element2]的[diff]天之前，[element1]", 
     ],
     "after": [
-        "他[element1]的时间比[element2]晚",
-        "[element1]是在[element2]之后发生的",
-        "他[element2]是在[element1]之前",
+        "在以周一起始的一周范围内，[element1]是在[element2]那天之后",
     ],
     "after_time": [
-        "他[element1]的时间比[element2]晚了[diff]天",
-        "在[element2]之后[diff]天，他才[element1]",
-        "他在[element2]的[diff]天之后[element1]",
-        "[element1]是在[element2]的[diff]天后发生的",
-        "[element2]是在[element1]的[diff]天前",
-        "[element1]是在[element2]之后的第[diff]天发生的",
+        "在[element2]之后[diff]天，[element1]",
+        "在[element2]的[diff]天之后，[element1]",
     ],
     "simultaneous": [
-        "在[element2]的那一天，他也[element1]",
-        "某一天，他不仅[element2]，还[element1]",
-        "在[element2]的那一天，他还[element1]",
-        "他在[element2]的同一天，也[element1]",
-        "某一天，他既[element2]，也[element1]",
+        "在[element2]的那一天，[element1]",
+        "某一天，[element2]，而且[element1]",
+        "在[element2]的同一天，[element1]",
     ],
     // 事件间隔的模板
     "gap_time": [
         "[element2]和[element1]之间相隔[diff]天",
         "[element2]和[element1]之间的时间间隔是[diff]天",
-        "他[element2]和[element1]中间差了[diff]天",
+        "[element2]和[element1]中间差了[diff]天",
     ],
     // 时长关系的模板
     "long": [],
@@ -66,11 +48,8 @@
     "same_len": [],
     // 增加：during的模板
     "during": [
-        "在[element2]期间，他[element1]",
-        "他在[element2]期间[element1]",
-        "他在[element2]的时候[element1]",
-        "他[element1]的时候是在[element2]期间",
-        "他在[element2]的那段时间里[element1]",
-        "他[element1]的时间是在[element2]期间",
+        "在[element2]期间，[element1]",
+        "[element1]是在[element2]期间",
+        "在[element2]的那段时间里，[element1]",
     ]
 }

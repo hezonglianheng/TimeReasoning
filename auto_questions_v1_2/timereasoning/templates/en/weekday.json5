@@ -3,59 +3,98 @@
 {
     // 瞬时事件的模板
     "temporal": [
-        "He [element], and that was on weekday [time]",
-        "On weekday [time], he [element]",
-        "He [element] on weekday [time]",
-        "When it's weekday [time] he [element]",
+        "On weekday [time], [element]",
+        "[element] on weekday [time]",
+        "When it's weekday [time], [element]",
     ],
     // 时长的模板
-    "duration": [],
+    "duration": [
+        "[element] for [duration] day(s)",
+        "[element], and spent [duration] day(s) on it",
+        "It takes [duration] day(s) that [element]",
+        "For [duration] day(s), [element]",
+    ],
     // 持续事件的模板
-    "durative": [],
+    "durative": [
+        // 描述起点和终点
+        "From weekday [time] to weekday [endtime], [element]",
+        "On weekday [time] [element], until weekday [endtime]",
+        "[element] on weekday [time], and ended on weekday [endtime]",
+        "[element] from weekday [time] to weekday [endtime]",
+        // 描述起点和持续时间
+        "From weekday [time] on, [element] for [duration] day(s)",
+        "Starting from weekday [time], [element] for [duration] day(s)",
+        // 描述终点和持续时间
+        "[element] for [duration] day(s), and ends on weekday [endtime]",
+        "Before ending on weekday [endtime], [element] for [duration] day(s)",
+    ],
     // 时频的模板
-    "freq": [],
+    "freq": [
+        "From weekday [time] to weekday [endtime], [element] once every [frequency] day(s)",
+        "Over the [duration] day(s) starting from weekday [time], [element] once every [frequency] day(s)",
+    ],
     // 事件先后关系的模板
     "before": [
-        "He [element1] earlier than [element2]",
-        "He [element1] before he [element2]"
+        "Within a week's range starting from Monday, [element1] earlier than [element2]",
+        "Within a week's range starting from Monday, [element1] before [element2]",
     ],
     "before_time": [
-        "He [element1] [diff] day(s) earlier than he [element2]",
-        "He [element1] [diff] day(s) before he [element2]",
-        "[diff] day(s) before he [element2], he [element1]"
+        "[element1] [diff] day(s) before [element2]",
+        "[diff] day(s) before [element2], [element1]",
     ],
     "after": [
-        "He [element1] later than [element2]",
-        "He [element1] after he [element2]"
+        "Within a week's range starting from Monday, [element1] later than [element2]",
+        "Within a week's range starting from Monday, [element1] after [element2]",
     ],
     "after_time": [
-        "He [element1] [diff] day(s) later than he [element2]",
-        "He [element1] [diff] day(s) after he [element2]",
-        "[diff] day(s) after he [element2], he [element1]"
+        "[element1] [diff] day(s) after [element2]",
+        "[diff] day(s) after [element2], [element1]",
     ],
     "simultaneous": [
-        "On the day that he [element2], he also [element1]",
-        "On the same day, he not only [element2], but also [element1]",
-        "On the same day as he [element2], he also [element1]",
-        "On a certain day, he both [element2] and [element1]"
+        "On the day that [element2], [element1]",
+        "On the same day, [element1], and [element2]",
+        "On the same day as [element2], [element1]",
+        "On a certain day, [element2], and [element1]",
     ],
     // 事件间隔的模板
     "gap_time": [
-        "There are [diff] day(s) between he [element2] and [element1]",
-        "The time gap between he [element2] and [element1] is [diff] day(s)",
-        "He has a [diff]-day difference between he [element2] and [element1]"
+        "The time gap between [element1] and [element2] is [diff] day(s)",
+        "There is a [diff]-day difference between [element1] and [element2]",
     ],
     // 时长关系的模板
-    "long": [],
-    "long_time": [],
-    "short": [],
-    "short_time": [],
-    "same_len": [],
+    "long": [
+        "The total duration that [element1] is longer than that of [element2]",
+        "It takes a longer time that [element1] than [element2]",
+        "Compared to the duration that [element2], more time is taken that [element1]",
+    ],
+    "long_time": [
+        "[diff] more day(s) are taken that [element1] than [element2]",
+        "The total duration that [element1] is [diff] day(s) longer than that of [element2]",
+        "It takes [diff] more day(s) than [element2] that [element1]",
+    ],
+    "short": [
+        "The total duration that [element1] is shorter than that of [element2]",
+        "It takes a shorter time that [element1] than [element2]",
+        "Compared to the duration that [element2], less time is taken that [element1]",
+    ],
+    "short_time": [
+        "[diff] less day(s) are taken that [element1] than [element2]",
+        "The total duration that [element1] is [diff] day(s) shorter than that of [element2]",
+        "It takes [diff] less day(s) than [element2] that [element1]",
+    ],
+    "same_len": [
+        "It takes the same number of day(s) that [element1] as [element2]",
+        "The time [element1] is the same length as that [element2]",
+        "The duration that [element1] is the same as the duration that [element2]",
+        "The duration [element1] is equal to the duration [element2]",
+        "The duration [element1] matches the duration [element2]",
+        "It takes the same amount of time that [element1] and [element2]",
+    ],
     // 增加：during的模板
     "during": [
-        "During the time that he [element2], he also [element1]",
-        "He [element1], and that was during the time that he [element2]",
-        "He [element2], and during this time he also [element1]",
-        "He [element1] during the time he [element2]",
+        "During the time that [element2], [element1]",
+        "[element1], and that was during the time that [element2]",
+        "[element2], and during this time [element1]",
+        "[element1] during the time [element2]",
     ]
 }

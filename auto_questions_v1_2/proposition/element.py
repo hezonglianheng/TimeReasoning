@@ -43,13 +43,13 @@ class Element(metaclass = abc.ABCMeta):
     
     # 11-03新增：判断一个元素在一个元素集中的函数
     def got(self, element_list: list["Element"]) -> bool:
-        """判断一个事件是否在一个事件集中
+        """判断一个元素是否在一个元素集中
 
         Args:
-            element_list (list[Element]): 事件集
+            element_list (list[Element]): 元素集
 
         Returns:
-            bool: 事件是否在事件集中
+            bool: 事件是否在元素集中的判定
         """
         return any([self == e for e in element_list])
     

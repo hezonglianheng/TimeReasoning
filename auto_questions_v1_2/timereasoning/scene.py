@@ -95,9 +95,10 @@ class TimeScene(Scene):
                 pass # 其他类型的常识暂不处理，后续可以添加
     
     def reset(self):
-        """清空场景中的事件"""
+        """清空场景中的事件、初始化命题和知识命题"""
         self.events.clear()
-        self._init_props.clear()
+        # 12-24修改：调用父类的reset方法
+        super().reset()
     
     def _exp_trans(self, exp: str) -> str:
         """调整时间表达方式
@@ -163,6 +164,9 @@ class TimeScene(Scene):
         self._reachables = rm.run() # 11-12修改: 将建立推理图得到的命题加入可达命题列表
         self.graph = rm.graph
         print(f"推理图获取完毕.")
+        
+    # 12-14新增：将初始化范围获取机和询问机和获取可及命题的函数分开
+    def get_preparations(self):
         # 以可及命题中的单元素时间命题为基础，构建时间领域专用取值范围机
         self._range_machine = TGRM([i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)])
         print("初始化选取干扰项的范围获取机.")
@@ -202,8 +206,11 @@ class TimeScene(Scene):
         """
         return info
 
-    def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any]:
+    def get_answers(self, seed: int | float | None = None, options: int = 4, all_wrong_prob: float = 0.1) -> Dict[str, Any] | None:
         answer_info = super().get_answers(seed, options, all_wrong_prob)
+        # 12-16新增：如果answer_info是None，则返回None
+        if answer_info is None:
+            return None
         if "time" in (typ := self._ask_info.get(prop.TYPE)):
             if self.scale == ts.TimeScale.Weekday and self.lang == "zh":
                 for k, v in answer_info[machines.OPTIONS].items():
@@ -238,7 +245,7 @@ class TimeScene(Scene):
         if info is None:
             return None
         info[machines.QUESTION] = self._exp_trans(info[machines.QUESTION]) # 调整问题中的时间表达方式
-        info[machines.OPTIONS] = {k: self._exp_trans(v) for k, v in info[machines.OPTIONS].items()} # 调整选项中的时间表达方式
+        info[machines.CHOICES] = {k: self._exp_trans(v) for k, v in info[machines.CHOICES].items()} # 调整选项中的时间表达方式
         return info
 
 class LineScene(TimeScene):
@@ -259,6 +266,10 @@ class LineScene(TimeScene):
             lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
         super().__init__(scale, guide, ask_mode=ask_mode, tag=tag, lang=lang)
+
+    @property
+    def scene_type(self) -> str:
+        return "线性时间场景"
 
 class LoopScene(TimeScene):
     """
@@ -334,6 +345,10 @@ class LoopScene(TimeScene):
         elif mode == 'reachable':
             self._reachables = new_list
         print(f"调整后有命题{len(new_list)}个.")
+
+    @property
+    def scene_type(self) -> str:
+        return "循环时间场景"
 
 class PeriodRelation(relation.SingleEntailment):
     """表示时间点的周期性关系，属于单元蕴含关系"""

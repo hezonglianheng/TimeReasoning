@@ -357,10 +357,12 @@ class AnswerMachine:
                 option_situation_tuples.append((i, False))
         # 随机打乱选项，生成选项和答案
         random.shuffle(option_situation_tuples)
-        options: dict[str, str] = dict()
+        options: dict[str, Any] = dict() # 12-11修订：不再返回字符串，而是返回内部存储对象
         answers: list[str] = list()
         for i, (opt, judge) in enumerate(option_situation_tuples):
-            options[ascii_uppercase[i]] = str(opt)
+            # 12-11修订：不再返回字符串，而是返回内部存储对象
+            # options[ascii_uppercase[i]] = str(opt)
+            options[ascii_uppercase[i]] = opt
             if judge:
                 answers.append(ascii_uppercase[i])
         # 设置“以上选项均不正确”选项
@@ -443,7 +445,7 @@ class AskAllMachine:
         # 中间变量
         self._candidates: list[prop.Proposition] = [] # 候选命题列表
         self._question = ASK_RIGHT if ask_correct else ASK_WRONG # 问题
-        self._option_dict: dict[str, str] = dict() # 选项字典
+        self._option_dict: dict[str, prop.Proposition | str] = dict() # 选项字典
         self._answers: list[str] = [] # 答案列表
         self._chains: list[str] = [] # 询问链
         self._chain_length: int = 0 # 询问链长度
@@ -489,7 +491,8 @@ class AskAllMachine:
         value_range = [i for i in value_range if i != ask_info[prop.ANSWER]] # 排除值域中的正确项
         return value_range
     
-    def _get_option_prop(self, curr_prop: prop.Proposition, judge: bool) -> prop.Proposition:
+    # 12-25修订：如果检查值域发现值域为空，则返回None
+    def _get_option_prop(self, curr_prop: prop.Proposition, judge: bool) -> prop.Proposition | None:
         """获取选项中需要使用的命题
 
         Args:
@@ -504,6 +507,9 @@ class AskAllMachine:
         else:
             ask_info = curr_prop.ask(self.temps) # 询问信息
             value_range = self._get_option_range(ask_info, curr_prop) # 获取值域
+            # 12-25新增：如果检查值域发现值域为空，则返回None
+            if len(value_range) == 0:
+                return None
             new_prop = deepcopy(curr_prop) # 复制当前命题
             setattr(new_prop, ask_info[prop.TYPE], random.choice(value_range)) # 随机选择一个错误选项，替换当前命题，生成新命题
             return new_prop
@@ -531,10 +537,15 @@ class AskAllMachine:
         random.shuffle(situation)
         # 生成选项
         option_props = [self._get_option_prop(i, j) for i, j in zip(samples, situation)]
+        # 12-25修订：如果option_props中包含空，则返回，不进行后续的操作
+        if None in option_props:
+            return None
         # 生成新的判断（旧的判断未必能够成功替换）
         judges = [i.got(self.all_props) for i in option_props]
         # 生成选项字典
-        self._option_dict = {ascii_uppercase[i]: j.state(self.temps) for i, j in enumerate(option_props)}
+        # 12-12修改：输出的选项字典的值不是字符串而是命题
+        # self._option_dict = {ascii_uppercase[i]: j.state(self.temps) for i, j in enumerate(option_props)}
+        self._option_dict = {ascii_uppercase[i]: j for i, j in enumerate(option_props)}
         # 生成答案
         if self.ask_correct:
             self._answers = [ascii_uppercase[i] for i, j in enumerate(judges) if j]
