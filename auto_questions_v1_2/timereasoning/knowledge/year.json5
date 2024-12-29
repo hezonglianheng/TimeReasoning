@@ -105,14 +105,15 @@
             ], 
         }, 
         {
+            // 修正一个新的事件
             "subtype": "temporal",
-            "verb": "第一台彩色电视机被生产",
+            "verb": "迈克尔·杰克逊出生",
             "object": "",
-            "time": 1954, // 修正事件发生的时间
+            "time": 1958, // 修正事件发生的时间
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "the first color television was produced", // 动词，和原来的event相同
+                    "verb": "Michael Jackson was born", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
