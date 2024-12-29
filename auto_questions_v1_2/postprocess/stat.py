@@ -139,7 +139,13 @@ def stat(data: list[dict]) -> str:
     Returns:
         str: 统计报告
     """
-    reports = [init_num_stat(data), chain_length_stat(data), scene_type_stat(data), level_stat(data), typetag_stat(data)]
+    reports = [
+        init_num_stat(data), 
+        chain_length_stat(data), 
+        scene_type_stat(data), 
+        level_stat(data), 
+        typetag_stat(data)
+    ]
     return "\n\n".join(reports)
 
 if __name__ == "__main__":

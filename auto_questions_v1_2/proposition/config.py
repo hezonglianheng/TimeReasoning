@@ -32,8 +32,9 @@ LANG_CONFIG = {
         BECAUSE: ["因为", "由于", "既然", "根据",],
         ANOTHER: ["另外", "再者", "此外", "而且", "并且",],
         SO: ["所以", "因此", "故", "于是", "因而",],
-        ASK_RIGHT: "请问: 以下选项中正确的是____",
-        ASK_WRONG: "请问: 以下选项中不正确的是____",
+        # 12-29修订：去除“请问”前缀
+        ASK_RIGHT: "以下选项中正确的是____",
+        ASK_WRONG: "以下选项中不正确的是____",
         FULL_STOP: "。"
     },
     'en': {
@@ -41,11 +42,32 @@ LANG_CONFIG = {
         BECAUSE: ["because ", "since ", "as ", "according to ",],
         ANOTHER: ["furthermore ", "moreover ", "besides ", "and ",],
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],
-        ASK_RIGHT: "Which of the following is(are) correct?",
-        ASK_WRONG: "Which of the following is(are) incorrect?",
+        # 12-29修订：修改试题表述
+        # ASK_RIGHT: "Which of the following is(are) correct?",
+        ASK_RIGHT: "Select the correct statement(s): ____",
+        # ASK_WRONG: "Which of the following is(are) incorrect?",
+        ASK_WRONG: "Select the incorrect statement(s): ____",
         FULL_STOP: "."
     },
 }
+
+# 12-29新增：输出的字段名称
+DOMAIN = "domain"
+ID = "id"
+LANGUAGE = "language"
+TEXT = "text"
+QUESTION = "question"
+OPTIONS = "options"
+ANSWER = "answer"
+LEVEL = "level"
+COT = "CoT"
+QUES_INFO = "ques_info"
+SCENE_TYPE = "scene_type"
+ENTITY_NUM = "entity_num"
+CHAIN_LENGTH = "chain_length"
+KNOWLEDGE_NUM = "knowledge_num"
+QUESTION_TYPE = "question_type"
+RELATED_QUESTIONS = "related_questions"
 
 # functions.
 
