@@ -183,8 +183,16 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         choices = [i + proposition.config.LANG_CONFIG[lang][FULL_STOP] for i in choices]
         new_dict = {k: v for k, v in zip(option_dict.keys(), choices)} # 生成新的选项字典
         # 检查new_dict的最后一个选项，如果是“以上选项均不正确”，则按照语言寻找ALL_WRONG替换之
+        # 12-29修订：修改检查的逻辑，改为检查全部选项
+        '''
         if new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["zh"][ALL_WRONG] or new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["en"][ALL_WRONG]:
             new_dict[list(new_dict.keys())[-1]] = LANG_CONFIG[lang][ALL_WRONG]
+        '''
+        for k, v in new_dict.items():
+            if v == LANG_CONFIG["zh"][ALL_WRONG]:
+                new_dict[k] = LANG_CONFIG[lang][ALL_WRONG]
+            elif v == LANG_CONFIG["en"][ALL_WRONG]:
+                new_dict[k] = LANG_CONFIG[lang][ALL_WRONG]
         return new_dict
     
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None, ask_correct: bool = True) -> list[dict[str, Any]]:
