@@ -213,7 +213,8 @@ class TimeGetRangeMachine(machines.GetRangeMachine):
             range_list = list(range(all_temp[-1] - all_temp[0] + 1))
         elif typ == "diff":
             all_temp = sorted([i.time for i in self.all_elements if isinstance(i, (event.TemporalEvent))], key=lambda x: x)
-            range_list = list(range(all_temp[-1] - all_temp[0] + 1))
+            # 12-30修订：diff的值域从1开始
+            range_list = list(range(1, all_temp[-1] - all_temp[0] + 1))
         else:
             raise ValueError(f"未知类型{typ}")
         return range_list
