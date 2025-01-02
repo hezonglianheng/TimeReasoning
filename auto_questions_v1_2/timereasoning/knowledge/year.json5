@@ -126,7 +126,7 @@
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "Apollo 11 landed on the moon", // 动词，和原来的event相同
+                    "verb": "Apollo 11 landed on moon", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
