@@ -5,13 +5,11 @@
     "temporal": [
         "On weekday [time], [element]",
         "[element] on weekday [time]",
-        "When it's weekday [time], [element]",
     ],
     // 时长的模板
     "duration": [
         "[element] for [duration] day(s)",
         "[element], and spent [duration] day(s) on it",
-        "It takes [duration] day(s) that [element]",
         "For [duration] day(s), [element]",
     ],
     // 持续事件的模板
@@ -35,7 +33,6 @@
     ],
     // 事件先后关系的模板
     "before": [
-        "Within a week's range starting from Monday, [element1] earlier than [element2]",
         "Within a week's range starting from Monday, [element1] before [element2]",
     ],
     "before_time": [
@@ -43,7 +40,6 @@
         "[diff] day(s) before [element2], [element1]",
     ],
     "after": [
-        "Within a week's range starting from Monday, [element1] later than [element2]",
         "Within a week's range starting from Monday, [element1] after [element2]",
     ],
     "after_time": [
@@ -59,27 +55,23 @@
     // 事件间隔的模板
     "gap_time": [
         "The time gap between [element1] and [element2] is [diff] day(s)",
-        "There is a [diff]-day difference between [element1] and [element2]",
+        "There is a [diff]-day gap between the time [element1] and the time [element2]",
     ],
     // 时长关系的模板
     "long": [
-        "The total duration that [element1] is longer than that of [element2]",
         "It takes a longer time that [element1] than [element2]",
         "Compared to the duration that [element2], more time is taken that [element1]",
     ],
     "long_time": [
-        "[diff] more day(s) are taken that [element1] than [element2]",
-        "The total duration that [element1] is [diff] day(s) longer than that of [element2]",
+        "[element1] for [diff] day(s) longer than the time [element2]",
         "It takes [diff] more day(s) than [element2] that [element1]",
     ],
     "short": [
-        "The total duration that [element1] is shorter than that of [element2]",
         "It takes a shorter time that [element1] than [element2]",
         "Compared to the duration that [element2], less time is taken that [element1]",
     ],
     "short_time": [
-        "[diff] less day(s) are taken that [element1] than [element2]",
-        "The total duration that [element1] is [diff] day(s) shorter than that of [element2]",
+        "[element1] for [diff] day(s) shorter than the time [element2]",
         "It takes [diff] less day(s) than [element2] that [element1]",
     ],
     "same_len": [
