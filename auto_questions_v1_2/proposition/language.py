@@ -179,6 +179,13 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         choices = [i.state(self.lang_temps[lang]) if isinstance(i, prop.Proposition) else str(i) for i in option_dict.values()] # 生成选项
         # 12-24新增：将文本的首字母大写
         choices = [self._first_capitalize(lang, i) for i in choices]
+        # 1-3新增：检查选项，如果选项是“以上选项均不正确”，则替换成对应语言的文本
+        for i in range(len(choices)):
+            # 如果是中文的“以上选项均不正确”或英文的“None of the options above meets the requirements of the question”，则替换成对应语言的文本
+            if choices[i] == LANG_CONFIG["zh"][ALL_WRONG]:
+                choices[i] = LANG_CONFIG[lang][ALL_WRONG]
+            elif choices[i] == LANG_CONFIG["en"][ALL_WRONG]:
+                choices[i] = LANG_CONFIG[lang][ALL_WRONG]
         # 12-24新增：为选项加上句号
         choices = [i + proposition.config.LANG_CONFIG[lang][FULL_STOP] for i in choices]
         new_dict = {k: v for k, v in zip(option_dict.keys(), choices)} # 生成新的选项字典
@@ -188,11 +195,14 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         if new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["zh"][ALL_WRONG] or new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["en"][ALL_WRONG]:
             new_dict[list(new_dict.keys())[-1]] = LANG_CONFIG[lang][ALL_WRONG]
         '''
+        # 1-3移除：原有的检查选项的逻辑前移
+        '''
         for k, v in new_dict.items():
             if v == LANG_CONFIG["zh"][ALL_WRONG]:
                 new_dict[k] = LANG_CONFIG[lang][ALL_WRONG]
             elif v == LANG_CONFIG["en"][ALL_WRONG]:
                 new_dict[k] = LANG_CONFIG[lang][ALL_WRONG]
+        '''
         return new_dict
     
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None, ask_correct: bool = True) -> list[dict[str, Any]]:
