@@ -73,21 +73,25 @@
     // 时长关系的模板
     "long": [
         "[element1]的时间比[element2]的时间长",
-        "相比[element2]，[element1]用了更多时间",
-        "[element1]比[element2]用时更久",
+        // 12-31移除：移除不适宜的模板
+        // "相比[element2]，[element1]用了更多时间",
+        // "[element1]比[element2]用时更久",
     ],
     "long_time": [
         "[element1]的时间比[element2]的时间长[diff]年",
-        "[element1]用了比[element2]多[diff]年的时间",
+        // 12-31移除：移除不适宜的模板
+        // "[element1]用了比[element2]多[diff]年的时间",
     ],
     "short": [
         "[element1]的时间比[element2]的时间短",
-        "相比[element2]，[element1]用了更少时间",
-        "[element1]比[element2]用时更短",
+        // 12-31移除：移除不适宜的模板
+        // "相比[element2]，[element1]用了更少时间",
+        // "[element1]比[element2]用时更短",
     ],
     "short_time": [
         "[element1]的时间比[element2]的时间短[diff]年",
-        "[element1]用了比[element2]少[diff]年的时间",
+        // 12-31移除：移除不适宜的模板
+        // "[element1]用了比[element2]少[diff]年的时间",
     ],
     "same_len": [
         "[element1]持续的年数和[element2]一样",
