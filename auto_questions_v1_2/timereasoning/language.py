@@ -13,10 +13,17 @@ sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 from proposition import language, prop, machines
 from timereasoning import scene, timescale
+# 1-3新增：引入中英文配置
+from proposition.config import LANG_CONFIG, ALL_WRONG
 
 # constants.
 # 匹配英文中数字-名词结构的pattern
 NUM_NOUN_PATTERN = re.compile(r"([0-9]+) ([a-zA-Z]+)\(s\)")
+# 1-3新增：匹配英文中数字-more/less-名词结构的pattern
+# 匹配英文中数字-more-名词结构的pattern
+NUM_MORE_NOUN_PATTERN = re.compile(r"([0-9]+) more ([a-zA-Z]+)\(s\)")
+# 匹配英文中数字-less-名词结构的pattern
+NUM_LESS_NOUN_PATTERN = re.compile(r"([0-9]+) less ([a-zA-Z]+)\(s\)")
 
 class TimeParallelScene(language.LangParallelScene):
     def __init__(self, original_scene: scene.TimeScene) -> None:
@@ -51,6 +58,25 @@ class TimeParallelScene(language.LangParallelScene):
                     text = text.replace(f"{num} {noun}(s)", f"{num} {noun}")
                 else:
                     text = text.replace(f"{num} {noun}(s)", f"{num} {noun}s")
+            
+            # 1-3新增：获得数字-more-名词结构的全部匹配
+            matches = NUM_MORE_NOUN_PATTERN.findall(text)
+            # 根据数字调整名词
+            for num, noun in matches:
+                if int(num) == 1:
+                    text = text.replace(f"{num} more {noun}(s)", f"{num} more {noun}")
+                else:
+                    text = text.replace(f"{num} more {noun}(s)", f"{num} more {noun}s")
+            
+            # 1-3新增：获得数字-less-名词结构的全部匹配
+            matches = NUM_LESS_NOUN_PATTERN.findall(text)
+            # 根据数字调整名词
+            for num, noun in matches:
+                if int(num) == 1:
+                    text = text.replace(f"{num} less {noun}(s)", f"{num} less {noun}")
+                else:
+                    text = text.replace(f"{num} less {noun}(s)", f"{num} less {noun}s")
+            
             return text
         else:
             raise ValueError(f"Unknown language: {lang}")
