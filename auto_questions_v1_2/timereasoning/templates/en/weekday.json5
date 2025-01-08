@@ -5,6 +5,7 @@
     "temporal": [
         "On weekday [time], [element]",
         "[element] on weekday [time]",
+        "When it's weekday [time], [element]",
     ],
     // 时长的模板
     "duration": [
@@ -49,8 +50,7 @@
     "simultaneous": [
         "On the day that [element2], [element1]",
         "On the same day, [element1], and [element2]",
-        "On the same day as [element2], [element1]",
-        "On a certain day, [element2], and [element1]",
+        "On the same day that [element2], [element1]",
     ],
     // 事件间隔的模板
     "gap_time": [
@@ -59,34 +59,33 @@
     ],
     // 时长关系的模板
     "long": [
-        "It takes a longer time that [element1] than [element2]",
-        "Compared to the duration that [element2], more time is taken that [element1]",
+        "The time that [element1] takes a longer time than [element2]",
+        "[element1] for longer time than [element2]",
+        "Compared to the duration that [element2], [element1] for a longer time",
     ],
     "long_time": [
-        "[element1] for [diff] day(s) longer than the time [element2]",
-        "It takes [diff] more day(s) than [element2] that [element1]",
+        "[element1] [diff] more day(s) than [element2]",
+        "The total duration that [element1] is [diff] day(s) longer than [element2]",
     ],
     "short": [
-        "It takes a shorter time that [element1] than [element2]",
-        "Compared to the duration that [element2], less time is taken that [element1]",
+        "The time that [element1] takes a shorter time than [element2]",
+        "[element1] for shorter time than [element2]",
+        "Compared to the duration that [element2], [element1] for a shorter time",
     ],
     "short_time": [
-        "[element1] for [diff] day(s) shorter than the time [element2]",
-        "It takes [diff] less day(s) than [element2] that [element1]",
+        "[element1] [diff] less day(s) than [element2]",
+        "The total duration that [element1] is [diff] day(s) shorter than [element2]",
     ],
     "same_len": [
-        "It takes the same number of day(s) that [element1] as [element2]",
-        "The time [element1] is the same length as that [element2]",
+        "The time that [element1] takes the same amount of time that [element2]",
+        "The time [element1] is the same length as [element2]",
         "The duration that [element1] is the same as the duration that [element2]",
         "The duration [element1] is equal to the duration [element2]",
         "The duration [element1] matches the duration [element2]",
-        "It takes the same amount of time that [element1] and [element2]",
     ],
     // 增加：during的模板
     "during": [
         "During the time that [element2], [element1]",
-        "[element1], and that was during the time that [element2]",
-        "[element2], and during this time [element1]",
         "[element1] during the time [element2]",
     ]
 }
