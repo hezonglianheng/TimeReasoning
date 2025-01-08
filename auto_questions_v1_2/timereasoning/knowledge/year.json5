@@ -39,28 +39,28 @@
             "language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "the World War I", // 动词，和原来的event相同
+                    "verb": "World War I", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 }
             ], 
             "start_language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "the World War I started", // 动词，和原来的event相同
+                    "verb": "World War I started", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 },
             ],
             "end_language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "the World War I ended", // 动词，和原来的event相同
+                    "verb": "World War I ended", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 },
             ],
             "duration_language": [
                 {
                     "lang": "en", // 语言类型
-                    "verb": "the World War I continued", // 动词，和原来的event相同
+                    "verb": "World War I continued", // 动词，和原来的event相同
                     "object": "", // 名词，和原来的event相同
                 },
             ]
