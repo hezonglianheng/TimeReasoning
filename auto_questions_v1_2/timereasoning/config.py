@@ -16,3 +16,8 @@ LANG_CONFIG = {
         END: "end"
     }
 }
+
+# 1-8新增：名字和代词的关系
+NAME_PRONOUN = {
+    "Jack": "he",
+}

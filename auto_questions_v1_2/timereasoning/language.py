@@ -15,6 +15,8 @@ from proposition import language, prop, machines
 from timereasoning import scene, timescale
 # 1-3新增：引入中英文配置
 from proposition.config import LANG_CONFIG, ALL_WRONG
+# 1-8新增：引入名字和代词的关系
+from timereasoning.config import NAME_PRONOUN
 
 # constants.
 # 匹配英文中数字-名词结构的pattern
@@ -81,6 +83,23 @@ class TimeParallelScene(language.LangParallelScene):
         else:
             raise ValueError(f"Unknown language: {lang}")
     
+    def _replace_name_with_pronoun(self, text: str) -> str:
+        """对每一条表达，搜索其中的姓名，将第二个及之后出现的姓名替换为代词
+
+        Args:
+            text (str): 文本
+
+        Returns:
+            str: 替换后的文本
+        """
+        for name, pronoun in NAME_PRONOUN.items():
+            # 对于每一个姓名，搜索所有出现的位置
+            for n, match in enumerate(re.finditer(name, text)):
+                # 如果不是第一个出现的姓名，则替换为代词
+                if n > 0:
+                    text = text[:match.start()] + pronoun + text[match.end():]
+        return text
+    
     def get_statements(self, lang) -> list[str]:
         statements = super().get_statements(lang)
         # 利用原始场景的语言属性调整陈述表达
@@ -88,6 +107,8 @@ class TimeParallelScene(language.LangParallelScene):
         new_statements = [self.original_scene._exp_trans(i) for i in statements]
         # 12-24新增：调整名词的单复数表达
         new_statements = [self._decide_noun_number(lang, i) for i in new_statements]
+        # 1-8新增：对每一条表达，搜索其中的姓名，将第二个及之后出现的姓名替换为代词
+        new_statements = [self._replace_name_with_pronoun(i) for i in new_statements]
         return new_statements
 
     def get_question(self, lang) -> str:
@@ -97,6 +118,8 @@ class TimeParallelScene(language.LangParallelScene):
         new_question = self.original_scene._exp_trans(question)
         # 12-24新增：调整名词的单复数表达
         new_question = self._decide_noun_number(lang, new_question)
+        # 1-9新增：对每一条表达，搜索其中的姓名，将第二个及之后出现的姓名替换为代词
+        new_question = self._replace_name_with_pronoun(new_question)
         return new_question
 
     def get_answers(self, lang) -> dict[str, Any]:
@@ -130,9 +153,11 @@ class TimeParallelScene(language.LangParallelScene):
                     answer_info[machines.OPTIONS][k] = calendar.month_name[int(v)]
         return answer_info
 
-    def get_options(self, lang: str) -> dict[str, Any]:
+    def get_options(self, lang: str) -> dict[str, str]:
         option_dic = super().get_options(lang)
         new_dic = {k: self.original_scene._exp_trans(v) for k, v in option_dic.items()}
         # 12-24新增：调整名词的单复数表达
         new_dic = {k: self._decide_noun_number(lang, v) for k, v in new_dic.items()}
+        # 1-8新增：对每一条表达，搜索其中的姓名，将第二个及之后出现的姓名替换为代词
+        new_dic = {k: self._replace_name_with_pronoun(v) for k, v in new_dic.items()}
         return new_dic

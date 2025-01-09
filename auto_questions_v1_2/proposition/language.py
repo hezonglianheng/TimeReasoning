@@ -165,14 +165,14 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         # 返回数据
         return data
 
-    def get_options(self, lang: str) -> dict[str, Any]:
+    def get_options(self, lang: str) -> dict[str, str]:
         """获取选项
 
         Args:
             lang (str): 语言
 
         Returns:
-            dict[str, Any]: 选项列表
+            dict[str, str]: 选项列表
         """
         option_dict = self.original_scene._ask_all_machine._option_dict # 获取选项信息
         self._type_tags.extend([i.typetag for i in option_dict.values() if isinstance(i, prop.Proposition)]) # 记录选项的命题的typetag
@@ -187,7 +187,7 @@ class LangParallelScene(metaclass=abc.ABCMeta):
             elif choices[i] == LANG_CONFIG["en"][ALL_WRONG]:
                 choices[i] = LANG_CONFIG[lang][ALL_WRONG]
         # 12-24新增：为选项加上句号
-        choices = [i + proposition.config.LANG_CONFIG[lang][FULL_STOP] for i in choices]
+        choices: list[str] = [i + proposition.config.LANG_CONFIG[lang][FULL_STOP] for i in choices]
         new_dict = {k: v for k, v in zip(option_dict.keys(), choices)} # 生成新的选项字典
         # 检查new_dict的最后一个选项，如果是“以上选项均不正确”，则按照语言寻找ALL_WRONG替换之
         # 12-29修订：修改检查的逻辑，改为检查全部选项
