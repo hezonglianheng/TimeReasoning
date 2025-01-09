@@ -72,7 +72,7 @@ if __name__ == "__main__":
     love.start_event.add_name("en", "Jack started", " dating")
     love.set_end_event("他结束谈恋爱", "")
     love.end_event.add_name("en", "Jack ended", " dating")
-    love.duration_event.add_name("en", "Jack had", " a romantic relationship")
+    love.duration_event.add_name("en", "Jack was in", " a romantic relationship")
 
     marry = event.TemporalEvent("他结婚", "")
     marry.add_name("en", "Jack got married", "")
