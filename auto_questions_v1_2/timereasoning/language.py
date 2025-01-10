@@ -94,10 +94,17 @@ class TimeParallelScene(language.LangParallelScene):
         """
         for name, pronoun in NAME_PRONOUN.items():
             # 对于每一个姓名，搜索所有出现的位置
+            # 1-10修改：查找其单独作为单词出现的位置，即后一个字符是空格或标点符号
+            for n, match in enumerate(re.finditer(rf"{name}(?=\s|[\.,;:!?])", text)):
+                # 如果不是第一个出现的姓名，则替换为代词
+                if n > 0:
+                    text = text[:match.start()] + pronoun + text[match.end():]
+            '''
             for n, match in enumerate(re.finditer(name, text)):
                 # 如果不是第一个出现的姓名，则替换为代词
                 if n > 0:
                     text = text[:match.start()] + pronoun + text[match.end():]
+            '''
         return text
     
     def get_statements(self, lang) -> list[str]:
