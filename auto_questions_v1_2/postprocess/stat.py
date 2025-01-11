@@ -10,6 +10,8 @@ import sys
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 from proposition import scene
+# 1-11新增：引入配置文件
+import proposition.config
 
 def basic_stat(data: list[int]) -> tuple[int, int, float, float]:
     """基础统计函数，统计数据的最大值、最小值、均值和方差
@@ -36,7 +38,9 @@ def init_num_stat(records: list[dict]) -> str:
         str: 统计报告
     """
     # 读取数据
-    data: list[int] = [len(r["statements"]) for r in records]
+    # 1-11修订：改为读取text.split()的长度
+    data: list[int] = [len(r["text"].split()) for r in records]
+    # data: list[int] = [len(r["statements"]) for r in records]
     # 统计数据
     maximum, minimum, mean, variance = basic_stat(data)
     # 生成报告
@@ -57,7 +61,9 @@ def chain_length_stat(records: list[dict]) -> str:
         str: 统计报告
     """
     # 读取数据
-    data: list[int] = [r[scene.CHAIN_LENGTH] for r in records]
+    # 1-11修订：应数据结构修改要求修改数据读取方式
+    # data: list[int] = [r[scene.CHAIN_LENGTH] for r in records]
+    data: list[int] = [r[proposition.config.QUES_INFO][scene.CHAIN_LENGTH] for r in records]
     # 统计数据
     maximum, minimum, mean, variance = basic_stat(data)
     # 生成报告
@@ -78,7 +84,9 @@ def scene_type_stat(records: list[dict]) -> str:
         str: 统计报告
     """
     # 读取数据
-    data: list[str] = [r[scene.SCENE_TYPE] for r in records]
+    # 1-11修订：应数据结构修改要求修改数据读取方式
+    # data: list[str] = [r[scene.SCENE_TYPE] for r in records]
+    data: list[str] = [r[proposition.config.QUES_INFO][scene.SCENE_TYPE] for r in records]
     # 统计数据
     counter = Counter(data)
     # 生成报告
@@ -122,7 +130,9 @@ def typetag_stat(records: list[dict]) -> str:
     except KeyError:
         return ""
     # 读取typetags数据
-    data: list[str] = [tag for r in records for tag in r["typetags"]]
+    # 1-11修订：应数据结构修改要求修改数据读取方式
+    # data: list[str] = [tag for r in records for tag in r["typetags"]]
+    data: list[str] = [tag for r in records for tag in r[proposition.config.QUES_INFO]["typetags"]]
     # 统计数据
     counter = Counter(data)
     result = counter.most_common()
