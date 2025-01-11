@@ -158,6 +158,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                         proposition.config.ENTITY_NUM: origin_result[0][INIT_NUM],  # init_num指的是场景中涉及的事件数量
                         proposition.config.KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM],
                         proposition.config.SCENE_TYPE: origin_result[0][SCENE_TYPE],
+                        # 1-11补充：增加QUESTION_TYPE字段
+                        proposition.config.QUESTION_TYPE: deepcopy(self._type_tags),
                     },
                 }
                 data.append(output)
@@ -258,6 +260,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                         proposition.config.ENTITY_NUM: origin_result[0][INIT_NUM],  # init_num指的是场景中涉及的事件数量
                         proposition.config.KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM],
                         proposition.config.SCENE_TYPE: origin_result[0][SCENE_TYPE],
+                        # 1-11补充：增加QUESTION_TYPE字段
+                        proposition.config.QUESTION_TYPE: deepcopy(self._type_tags),
                     },
                 }
                 data.append(output)
