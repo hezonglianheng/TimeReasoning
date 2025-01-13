@@ -147,12 +147,14 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 # infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
                 # data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choices": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
                 output: dict[str, Any] = {
-                    proposition.config.LANGUAGE: lang,
+                    # 1-13修订：将语言信息放置到后方，并改变定义
+                    # proposition.config.LANGUAGE: lang,
                     proposition.config.TEXT: text,
                     proposition.config.QUESTION: question,
                     proposition.config.OPTIONS: answer_info[machines.OPTIONS],
                     proposition.config.ANSWER: answer_info[machines.ANSWERS],
                     proposition.config.LEVEL: level,
+                    proposition.config.LANGUAGE: proposition.config.LANG_CONFIG[lang][proposition.config.LANG_NAME],
                     proposition.config.QUES_INFO: {
                         proposition.config.CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH],
                         proposition.config.ENTITY_NUM: origin_result[0][INIT_NUM],  # init_num指的是场景中涉及的事件数量
@@ -249,12 +251,14 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 # data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choices": choices, "answer": answer, LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
                 # 12-29修订：调整输出的字段名称
                 output: dict[str, Any] = {
-                    proposition.config.LANGUAGE: lang,
+                    # 1-13修订：将语言信息放置到后方，并改变定义
+                    # proposition.config.LANGUAGE: lang,
                     proposition.config.TEXT: text,
                     proposition.config.QUESTION: question,
                     proposition.config.OPTIONS: choices,
                     proposition.config.ANSWER: answer,
                     proposition.config.LEVEL: level,
+                    proposition.config.LANGUAGE: proposition.config.LANG_CONFIG[lang][proposition.config.LANG_NAME],
                     proposition.config.QUES_INFO: {
                         proposition.config.CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH],
                         proposition.config.ENTITY_NUM: origin_result[0][INIT_NUM],  # init_num指的是场景中涉及的事件数量

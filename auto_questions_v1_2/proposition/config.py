@@ -25,6 +25,8 @@ ASK_RIGHT = "ask_right"
 ASK_WRONG = "ask_wrong"
 # 12-24新增：句号
 FULL_STOP = "full_stop"
+# 1-13新增：语言名称的转换
+LANG_NAME = "lang_name"
 
 LANG_CONFIG = {
     'zh': {
@@ -33,9 +35,11 @@ LANG_CONFIG = {
         ANOTHER: ["另外", "再者", "此外", "而且", "并且",],
         SO: ["所以", "因此", "故", "于是", "因而",],
         # 12-29修订：去除“请问”前缀
-        ASK_RIGHT: "以下选项中正确的是____",
-        ASK_WRONG: "以下选项中不正确的是____",
-        FULL_STOP: "。"
+        # 1-13修订：与其他领域对齐试题表述
+        ASK_RIGHT: "以下选项中正确的是?",
+        ASK_WRONG: "以下选项中不正确的是?",
+        FULL_STOP: "。",
+        LANG_NAME: "ch",
     },
     'en': {
         ALL_WRONG: "None of the options above meets the requirements of the question",
@@ -47,7 +51,8 @@ LANG_CONFIG = {
         ASK_RIGHT: "Select the correct statement(s): ____",
         # ASK_WRONG: "Which of the following is(are) incorrect?",
         ASK_WRONG: "Select the incorrect statement(s): ____",
-        FULL_STOP: "."
+        FULL_STOP: ".",
+        LANG_NAME: "en",
     },
 }
 
