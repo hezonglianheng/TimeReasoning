@@ -20,8 +20,9 @@
         "Beginning in [time], [element] for [duration] year(s)",
         "Starting from [time], [element] for [duration] year(s)",
         // 描述终点和持续时间
-        "[element] for [duration] year(s), which ended in [endtime]",
-        "Before ending in [endtime], [element] for [duration] year(s)",
+        // 1-13修改：移除以结束时间和持续时间描述的模板
+        // "[element] for [duration] year(s), which ended in [endtime]",
+        // "Before ending in [endtime], [element] for [duration] year(s)",
     ],
     // 时频的模板
     "freq": [
