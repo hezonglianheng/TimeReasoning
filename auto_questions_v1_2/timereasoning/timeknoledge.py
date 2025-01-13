@@ -81,6 +81,16 @@ class EventKnowledge(TimeKnowledge):
             curr_dict = {k: v for k, v in self.dic.items() if k in ["verb", "object", "time", "endtime"]}
             # return event.DurativeEvent(**curr_dict)
             ev = event.DurativeEvent(**curr_dict) # 取消直接返回
+            # 1-13新增：为持续事件添加起始、结束、持续时间的语言信息
+            start_name: dict[str, str] | None = self.dic.get("start", None)
+            if start_name is not None:
+                ev.set_start_event(**start_name)
+            end_name: dict[str, str] | None = self.dic.get("end", None)
+            if end_name is not None:
+                ev.set_end_event(**end_name)
+            duration_name: dict[str, str] | None = self.dic.get("duration", None)
+            if duration_name is not None:
+                ev.set_duration_event(**duration_name)
             # 12-13新增：为子事件设置语言信息
             start_lang: list[dict[str, str]] = self.dic["start_language"]
             for d in start_lang:
