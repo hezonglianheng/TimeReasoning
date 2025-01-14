@@ -20,7 +20,8 @@ if __name__ == "__main__":
         data: list[dict] = json.load(f)
     
     # 给试题编号
-    data = [{config.ID: i, **d} for i, d in enumerate(data, start=1)]
+    # 1-13修订：将试题的编号修改为domain-num-language格式
+    data = [{config.ID: f"{d[config.DOMAIN]}-{i}-{d[config.LANGUAGE]}", **d} for i, d in enumerate(data, start=1)]
 
     # 领域模板编号
     # 获得试题中的group字段

@@ -34,7 +34,8 @@ if __name__ == '__main__':
         # 12-29新增：将领域名称写入试题字典中
         spec_lang_data = [{config.DOMAIN: domain, **d} for d in spec_lang_data]
         # 12-29新增：新的文件名称
-        file_name: str = f"{domain}_{lang}_{len(spec_lang_data)}_{datetime.date.today().isoformat()}.json"
+        # 1-14修改：文件名称与最终要求靠近
+        file_name: str = f"{domain}-{lang}-{len(spec_lang_data)}-{datetime.date.today().isoformat()}.json"
         
         # 12-29修改：使用新的文件名称
         # with open(Path(file_path).parent / (Path(file_path).stem + f"_{lang}.json"), 'w', encoding="utf8") as f:
