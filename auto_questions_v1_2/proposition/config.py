@@ -39,7 +39,7 @@ LANG_CONFIG = {
         ASK_RIGHT: "以下选项中正确的是?",
         ASK_WRONG: "以下选项中不正确的是?",
         FULL_STOP: "。",
-        LANG_NAME: "ch",
+        LANG_NAME: "cn", # 修改LANG_NAME为cn
     },
     'en': {
         ALL_WRONG: "None of the options above meets the requirements of the question",
