@@ -26,7 +26,7 @@ if __name__ == "__main__":
     arrange = event.TemporalEvent("他整理", "宿舍", 4)
     arrange.add_name("en", "Jack cleans", " his dormitory room")
     read_papers = event.TemporalEvent("他看", "论文", 6)
-    read_papers.add_name("en", "Jack reads", " essays")
+    read_papers.add_name("en", "Jack reads", " research papers")
     meeting = event.TemporalEvent("他开", "组会", 3)
     meeting.add_name("en", "Jack has", " a group meeting")
     jogging = event.TemporalEvent("他跑步", "", 3)
