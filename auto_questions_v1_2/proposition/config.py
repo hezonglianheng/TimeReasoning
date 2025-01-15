@@ -42,7 +42,7 @@ LANG_CONFIG = {
         LANG_NAME: "cn", # 修改LANG_NAME为cn
     },
     'en': {
-        ALL_WRONG: "None of the options above meets the requirements of the question",
+        ALL_WRONG: "None of the options above meet the requirements of the question",
         BECAUSE: ["because ", "since ", "as ", "according to ",],
         ANOTHER: ["furthermore ", "moreover ", "besides ", "and ",],
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],
