@@ -196,22 +196,22 @@ class TimeGetRangeMachine(machines.GetRangeMachine):
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent))]
                 # 1-13修改：返回的事件不能和已有的事件重复
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent))]
-                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent)) and i != ans]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent)) and i.event() != ans.event()]
             elif isinstance(ans, event.Duration):
                 # 12-24修改：对于持续时间的值域，只返回持续时间事件
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.Duration, event.TemporalEvent, event.FreqEvent))]
                 # 1-13修改：返回的事件不能和已有的事件重复
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.Duration))]
-                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration)) and i != ans]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration)) and i.event() != ans.event()]
             # 12-25新增：其他类型的事件的值域只返回同类型的事件，以避免理解上的困难
             elif isinstance(ans, event.DurativeEvent):
                 # 1-13修改：返回的事件不能和已有的事件重复
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.DurativeEvent))]
-                range_list = [i for i in self.all_elements if isinstance(i, (event.DurativeEvent)) and i != ans]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.DurativeEvent)) and i.event() != ans.event()]
             elif isinstance(ans, event.FreqEvent):
                 # 1-13修改：返回的事件不能和已有的事件重复
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.FreqEvent))]
-                range_list = [i for i in self.all_elements if isinstance(i, (event.FreqEvent)) and i != ans]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.FreqEvent)) and i.event() != ans.event()]
             else:
                 raise ValueError(f"未知类型{type(ans)}")
         elif "time" in typ:
