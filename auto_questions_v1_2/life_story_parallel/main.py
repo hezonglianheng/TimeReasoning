@@ -66,12 +66,12 @@ if __name__ == "__main__":
     meet_wife.add_name("en", "Jack met", " his future wife")
 
     love = event.DurativeEvent("他谈", "恋爱")
-    love.add_name("en", "Jack started", " dating")
+    love.add_name("en", "Jack was in", " a romantic relationship")
     love.auto_set(lang)
     love.set_start_event("他开始谈恋爱", "")
     love.start_event.add_name("en", "Jack started", " dating")
     love.set_end_event("他结束谈恋爱", "")
-    love.end_event.add_name("en", "Jack ended", " dating")
+    love.end_event.add_name("en", "Jack ended", " his romantic relationship")
     love.duration_event.add_name("en", "Jack was in", " a romantic relationship")
 
     marry = event.TemporalEvent("他结婚", "")
