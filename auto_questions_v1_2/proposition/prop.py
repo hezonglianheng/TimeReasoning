@@ -35,6 +35,8 @@ class Proposition(element.Element):
         """
         self.askable = askable # 是否可询问
         self.precise = precise # 是否精确
+        # 1-15新增：命题的难度等级
+        self.difficulty = 1 # 难度等级，默认为1
 
     @property
     def num_of_conditions(self) -> int:

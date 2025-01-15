@@ -84,6 +84,8 @@ class Scene(metaclass=abc.ABCMeta):
         self.ans_props: list[prop.Proposition] = []
         # 12-11新增：记录由回答机返回的答案信息
         self.answer_info: dict[str, Any] = {}
+        # 1-15新增：增加对命题难度的记录
+        self._difficulties: int = 0
 
     # 12-13新增：场景类型名称
     @property
@@ -98,6 +100,8 @@ class Scene(metaclass=abc.ABCMeta):
         self._init_props.clear()
         # 12-24新增：同时移除知识
         self._knowledges.clear()
+        # 1-15新增：同时移除难度
+        self._difficulties = 0
     
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
@@ -203,6 +207,8 @@ class Scene(metaclass=abc.ABCMeta):
             print("没有可提问的命题，跳过.")
             return None
         self._asked_prop = random.choice(candidates)
+        # 1-15新增：记录命题的难度
+        self._difficulties = self._asked_prop.difficulty
         # self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
@@ -278,6 +284,8 @@ class Scene(metaclass=abc.ABCMeta):
         if ask_res is None:
             return ask_res
         option_state = [i.state(self.temps) if isinstance(i, prop.Proposition) else str(i) for i in self._ask_all_machine._option_dict.values()]
+        # 1-15新增：记录命题的难度
+        self._difficulties = sum([i.difficulty for i in self._ask_all_machine._option_dict.values() if isinstance(i, prop.Proposition)])
         choice_dict = {k: v for k, v in zip(ask_res["choices"].keys(), option_state)}
         new_ask_res = ask_res | {"choices": choice_dict}
         return new_ask_res
@@ -328,7 +336,8 @@ class Scene(metaclass=abc.ABCMeta):
                         # 11-30更新：增加推理链长度信息
                         # LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level),
                         # 12-25更新：修复评级上的错误
-                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level),
+                        # 1-15更新：增加命题难度参数
+                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._difficulties),
                         # 12-13更新：增加各种辅助判断信息
                         CHAIN_LENGTH: self.chain_length, 
                         SCENE_TYPE: self.scene_type, 
@@ -371,7 +380,8 @@ class Scene(metaclass=abc.ABCMeta):
             # 11-30更新：计算试题等级
             # level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.CHOICES]), len(self._knowledges), self.scene_level)
             # 12-25更新：修复评级上的错误
-            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level)
+            # 1-15更新：增加命题难度参数
+            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._difficulties)
             item = {
                 "guide": self.guide,
                 "statement": self._statements,

@@ -236,6 +236,7 @@ class DoubleTimeP(prop.DoubleProp, TimeP):
             precise (bool, optional): 是否精确. 默认为True.
         """
         super().__init__(element1, element2, askable, precise)
+        self.difficulty = 2 # 1-15新增：二元时间命题的默认难度为2
         
     def attrs(self) -> dict[str, str]:
         res = super().attrs()
@@ -362,6 +363,7 @@ class GapTimeP(DoubleTimeP):
         super().__init__(element1, element2, askable)
         self.diff = abs(element1.time - element2.time)
         self.precise = False
+        self.difficulty = 3 # 1-15新增：时间间隔的默认难度为3
 
     @property
     def temp_key(self) -> str:
