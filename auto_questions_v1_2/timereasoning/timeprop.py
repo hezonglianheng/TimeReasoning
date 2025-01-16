@@ -263,6 +263,8 @@ class DoubleTimeP(prop.DoubleProp, TimeP):
             Optional[DoubleTimeP]: 生成的命题
         """
         param_dict = {"element1": element1, "element2": element2}
+        if element1.names == element2.names:
+            return None
         if all([isinstance(i, event.TemporalEvent) for i in param_dict.values()]):
             if element1.time > element2.time:
                 return AfterTimeP(**param_dict)
