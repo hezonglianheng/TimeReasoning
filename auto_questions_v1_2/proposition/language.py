@@ -27,6 +27,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         self._ask_info: dict[str, Any] = {}
         # 12-14新增：记录提问的命题的typetag
         self._type_tags: list[str] = []
+        # 1-18新增：记录statements的type
+        self._statements_type: list[str] = []
 
     def add_guide(self, lang: str, guide: str) -> None:
         """添加引导语
@@ -71,6 +73,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         """
         # 12-17修改：修改试题文本生成形式
         # return [i.state(self.lang_temps[lang]) for i in self.original_scene._chosen_group]
+        # 1-18新增：记录statements的type
+        self._statements_type = [i.typetag for i in self.original_scene._chosen_group]
         # 12-24修改：移除陈述后的分号
         statements = [i.state(self.lang_temps[lang]) for n, i in enumerate(self.original_scene._chosen_group, start=1)]
         # 12-24新增：语言为英文时将陈述句首字母大写
@@ -162,10 +166,13 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                         proposition.config.SCENE_TYPE: origin_result[0][SCENE_TYPE],
                         # 1-11补充：增加QUESTION_TYPE字段
                         proposition.config.QUESTION_TYPE: deepcopy(self._type_tags),
+                        # 1-18新增：增加statements_type字段
+                        proposition.config.STATEMENTS_TYPE: deepcopy(self._statements_type),
                     },
                 }
                 data.append(output)
                 self._type_tags.clear() # 清空typetags
+                self._statements_type.clear() # 清空statements_type
         # 返回数据
         return data
 
@@ -266,9 +273,12 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                         proposition.config.SCENE_TYPE: origin_result[0][SCENE_TYPE],
                         # 1-11补充：增加QUESTION_TYPE字段
                         proposition.config.QUESTION_TYPE: deepcopy(self._type_tags),
+                        # 1-18新增：增加statements_type字段
+                        proposition.config.STATEMENTS_TYPE: deepcopy(self._statements_type),
                     },
                 }
                 data.append(output)
                 self._type_tags.clear() # 清空typetags
-
+                self._statements_type.clear() # 清空statements_type
+        # 返回数据
         return data

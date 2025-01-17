@@ -74,6 +74,8 @@ CHAIN_LENGTH = "chain_length"
 KNOWLEDGE_NUM = "knowledge_num"
 QUESTION_TYPE = "question_type"
 RELATED_QUESTIONS = "related_questions"
+# 1-18新增：增加statements_type字段
+STATEMENTS_TYPE = "statements_type"
 
 # functions.
 
