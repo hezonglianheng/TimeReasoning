@@ -37,7 +37,7 @@
     // 事件间隔的模板
     "gap_time": [
         "[element2]和[element1]之间相差[diff]天",
-        "[element2]和[element1]之间差着[diff]天",
+        // "[element2]和[element1]之间差着[diff]天",
         "[element2]和[element1]中间差了[diff]天",
     ],
     // 时长关系的模板
