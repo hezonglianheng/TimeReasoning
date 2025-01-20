@@ -16,6 +16,8 @@ from timereasoning import timescale as ts
 from timereasoning import language as lg
 
 if __name__ == "__main__":
+    # 1-20新增：增加对随机seed的控制
+    random.seed(0)
     lang = "zh"
     learn_japanese = event.TemporalEvent("他学", "日语", 1)
     learn_japanese.add_name("en", "Jack learns", " Japanese")

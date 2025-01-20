@@ -341,7 +341,8 @@ class AnswerMachine:
         elif len(candidates) < self._options - 1:
             print(f"被询问的命题{type(self._ask_prop)}属性{qtype}的候选项数量不足，无法生成选项！")
             return None
-        random.seed(self._seed)  # 设置随机种子
+        # 1-20移除：移除随机种子设置
+        # random.seed(self._seed)  # 设置随机种子
         # 1-17修改：修改获得干扰命题的逻辑
         # 洗切candidates
         random.shuffle(candidates)

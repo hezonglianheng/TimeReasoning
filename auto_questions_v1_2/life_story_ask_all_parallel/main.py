@@ -16,6 +16,8 @@ from timereasoning import timescale as ts
 from timereasoning import language as lg
 
 if __name__ == "__main__":
+    # 1-20新增：增加对随机seed的控制
+    random.seed(0)
     # 定义事件，注意有控制之后不需要赋时间值
     lang = "zh"
     life = event.DurativeEvent("他度过", "一生")

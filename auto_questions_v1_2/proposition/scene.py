@@ -117,7 +117,8 @@ class Scene(metaclass=abc.ABCMeta):
             file_path (Union[str, Path, None], optional): 知识命题文件路径. 默认为None.
         """
         assert number > 0, "知识命题数量必须大于0"
-        random.seed(seed)
+        # 1-20移除：移除随机种子设置
+        # random.seed(seed)
         print(f"开始添加知识命题.共添加{number}个.")
 
     def get_all_props(self) -> None:
@@ -374,7 +375,8 @@ class Scene(metaclass=abc.ABCMeta):
         Returns:
             list[dict[str, Any]]: 一组题目
         """
-        random.seed(seed)
+        # 1-20移除：移除随机种子设置
+        # random.seed(seed)
         self._ask_correct = ask_correct # 设置询问机的询问模式
         self.get_all_props()
         question_list = []
