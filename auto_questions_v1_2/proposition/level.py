@@ -5,6 +5,13 @@
 用于时间推理题的难度评级
 """
 
+# limits.
+# 难度等级上限
+# 1-20修改：改为3
+level_upper_limit = 3
+# 难度等级下限
+level_lower_limit = 1
+
 # weights of parameters.
 # 链长
 chain_length_weight = 0.02
@@ -43,9 +50,10 @@ def ask_level(chain_len: int, statement_difficulty: int, option_num: int, knowle
     # level = chain_level + statement_level + option_level + knowledge_level + scene_level
     level = chain_level + statement_level + option_level + knowledge_level + scene_level + difficulty_level
     level_rank = round(level)
-    if level_rank < 1:
-        return 1
-    elif level_rank > 4:
-        return 4
+    # 1-20修改：修改难度等级上限
+    if level_rank < level_lower_limit:
+        return level_lower_limit
+    elif level_rank > level_upper_limit:
+        return level_upper_limit
     else:
         return level_rank
