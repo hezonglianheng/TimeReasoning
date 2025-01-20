@@ -91,6 +91,8 @@ class Scene(metaclass=abc.ABCMeta):
         self._question_difficulties: int = 0
         # 1-15新增：增加对已知条件中命题的难度的记录
         self._statement_difficulties: int = 0
+        # 1-20新增：记录知识的难度
+        self._knowledge_difficulties: int = 0
 
     # 12-13新增：场景类型名称
     @property
@@ -107,6 +109,8 @@ class Scene(metaclass=abc.ABCMeta):
         self._knowledges.clear()
         # 1-15新增：同时移除难度
         self._question_difficulties = 0
+        # 1-20新增：同时移除知识难度
+        self._knowledge_difficulties = 0
     
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
@@ -350,7 +354,9 @@ class Scene(metaclass=abc.ABCMeta):
                         # 1-15更新：增加问题中命题难度参数
                         # 1-15更新：增加已知条件中命题的难度参数
                         # LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties),
-                        LEVEL: ask_level(self.chain_length, self._statement_difficulties, len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties),
+                        # LEVEL: ask_level(self.chain_length, self._statement_difficulties, len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties),
+                        # 1-20修订：采用知识难度参数计算难度
+                        LEVEL: ask_level(self.chain_length, self._statement_difficulties, len(answers[machines.ANSWERS]), self._knowledge_difficulties, self.scene_level, self._question_difficulties),
                         # 12-13更新：增加各种辅助判断信息
                         CHAIN_LENGTH: self.chain_length, 
                         SCENE_TYPE: self.scene_type, 
@@ -398,7 +404,9 @@ class Scene(metaclass=abc.ABCMeta):
             # 1-15更新：增加问题中的命题难度参数
             # 1-15更新：增加已知条件中的命题难度参数
             # level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties)
-            level = ask_level(ask_all_info[machines.LENGTH], self._statement_difficulties, len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties)
+            # level = ask_level(ask_all_info[machines.LENGTH], self._statement_difficulties, len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties)
+            # 1-20修订：采用知识难度参数计算难度
+            level = ask_level(ask_all_info[machines.LENGTH], self._statement_difficulties, len(ask_all_info[machines.ANSWERS]), self._knowledge_difficulties, self.scene_level, self._question_difficulties)
             item = {
                 "guide": self.guide,
                 "statement": self._statements,

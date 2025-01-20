@@ -91,6 +91,8 @@ class TimeScene(Scene):
         for k in chosen_know: # 遍历所有的时间常识
             if isinstance(k, timeknoledge.EventKnowledge): # 如果是事件常识
                 self._knowledges.append(k.use()) # 将事件转化为时间命题
+                # 1-20新增：记录知识难度
+                self._knowledge_difficulties += k.difficulty
             else:
                 pass # 其他类型的常识暂不处理，后续可以添加
     

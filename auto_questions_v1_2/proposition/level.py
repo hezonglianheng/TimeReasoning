@@ -20,14 +20,14 @@ chain_length_weight = 0.02
 statement_difficulty_weight = 0.02
 # 选项数
 option_num_weight = 0.35
-# 知识数量
-knowledge_num_weight = 0.15
+# 知识难度参数
+knowledge_diff_weight = 0.15
 # 命题难度
 question_difficulty_weight = 0.1
 
 # functions.
 # 1-15新增：加入问题中命题的难度参数
-def ask_level(chain_len: int, statement_difficulty: int, option_num: int, knowledge_num: int, scene_level: float, question_difficulty: int) -> int:
+def ask_level(chain_len: int, statement_difficulty: int, option_num: int, knowledge_diff: int, scene_level: float, question_difficulty: int) -> int:
     """根据题目参数评级
 
     Args:
@@ -44,7 +44,7 @@ def ask_level(chain_len: int, statement_difficulty: int, option_num: int, knowle
     chain_level = chain_len * chain_length_weight
     statement_level = statement_difficulty * statement_difficulty_weight
     option_level = option_num * option_num_weight
-    knowledge_level = knowledge_num * knowledge_num_weight
+    knowledge_level = knowledge_diff * knowledge_diff_weight
     # 1-15新增：加入命题难度参数
     difficulty_level = question_difficulty * question_difficulty_weight
     # level = chain_level + statement_level + option_level + knowledge_level + scene_level
