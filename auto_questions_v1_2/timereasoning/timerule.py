@@ -253,8 +253,9 @@ RULES: list[type[rule.Rule]] = [
     BeforeandGap,
     AfterandGap,
     # 增加时点-时段的前后推理规则
-    TempBeforeDurative,
-    TempAfterDurative,
+    # 1-9修改：移除时点-时段的前后推理规则
+    # TempBeforeDurative,
+    # TempAfterDurative,
     # 增加During推理规则
     GetDuring,
 ]

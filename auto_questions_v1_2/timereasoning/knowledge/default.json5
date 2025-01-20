@@ -24,6 +24,19 @@
             "object": "",
             "time": 0,
             "endtime": 0,
+            // 1-13新增：新增持续事件的起始、结束、时长事件名称(可选)
+            "start": {
+                "verb": "",
+                "object": "",
+            }, 
+            "end": {
+                "verb": "",
+                "object": "",
+            },
+            "duration": {
+                "verb": "",
+                "object": "",
+            },
             // 新增事件的语言属性，原有语言属性只放置中文
             "language": [
                 {

@@ -45,12 +45,15 @@ class Scene(metaclass=abc.ABCMeta):
 
     def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化推理场景
+        
         Args:
             guide (str, optional): 引导语. 默认为空字符串.
             ask_mode (Literal['random', 'deepest'], optional): 提问模式. 默认为'random'.可选的值有：
+
                 - 'random'，即随机提问. 
                 - 'deepest'，优先提问最深层的命题.
                 - 'tag'，根据命题的标签进行提问，该模式需要传入tag参数(一个标签列表).
+            
             tag (Optional[list[str]], optional): 提问标签. 默认为None.
             lang (str, optional): 语言. 默认为"zh"(简体中文).
         """
@@ -84,6 +87,10 @@ class Scene(metaclass=abc.ABCMeta):
         self.ans_props: list[prop.Proposition] = []
         # 12-11新增：记录由回答机返回的答案信息
         self.answer_info: dict[str, Any] = {}
+        # 1-15新增：增加对问题中命题的难度的记录
+        self._question_difficulties: int = 0
+        # 1-15新增：增加对已知条件中命题的难度的记录
+        self._statement_difficulties: int = 0
 
     # 12-13新增：场景类型名称
     @property
@@ -98,6 +105,8 @@ class Scene(metaclass=abc.ABCMeta):
         self._init_props.clear()
         # 12-24新增：同时移除知识
         self._knowledges.clear()
+        # 1-15新增：同时移除难度
+        self._question_difficulties = 0
     
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
@@ -155,6 +164,7 @@ class Scene(metaclass=abc.ABCMeta):
 
     def get_statements(self) -> list[str]:
         """获取一组命题组合的全部陈述
+        
         Args:
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
         Returns:
@@ -164,13 +174,16 @@ class Scene(metaclass=abc.ABCMeta):
         # random.seed(seed)
         # idxs = random.choice(self._all_groups) # 选择一组命题
         # self._chosen_group = [self._all_props[i] for i in idxs] # 选中的命题组合
-        self._statements = [i.state(self.temps) for i in self._chosen_group]  # 陈述列表
+        self._statements = [i.state(self.temps) for i in self._chosen_group] # 陈述列表
+        # 1-15新增：记录命题的难度
+        self._statement_difficulties = sum([i.difficulty for i in self._chosen_group])
         print("得到随机选择一组命题的陈述.")
         return self._statements
     
     # @abc.abstractmethod
     def ask_one(self, seed: Union[int, float, None] = None) -> Dict[str, Any]:
         """随机选择一个命题，提问，并根据具体情况获得备选项，最后返回问题信息
+        
         Args:
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
         Returns:
@@ -203,6 +216,8 @@ class Scene(metaclass=abc.ABCMeta):
             print("没有可提问的命题，跳过.")
             return None
         self._asked_prop = random.choice(candidates)
+        # 1-15新增：记录命题的难度
+        self._question_difficulties = self._asked_prop.difficulty
         # self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
@@ -219,6 +234,7 @@ class Scene(metaclass=abc.ABCMeta):
 
     def get_answers(self, seed: Union[int, float, None] = None, options: int = 4, all_wrong_prob: float = .1) -> Dict[str, Any] | None:
         """获取选项和正确答案
+        
         Args:
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
             options (int, optional): 选项数量. 默认为4.
@@ -278,6 +294,8 @@ class Scene(metaclass=abc.ABCMeta):
         if ask_res is None:
             return ask_res
         option_state = [i.state(self.temps) if isinstance(i, prop.Proposition) else str(i) for i in self._ask_all_machine._option_dict.values()]
+        # 1-15新增：记录命题的难度
+        self._question_difficulties = sum([i.difficulty for i in self._ask_all_machine._option_dict.values() if isinstance(i, prop.Proposition)])
         choice_dict = {k: v for k, v in zip(ask_res["choices"].keys(), option_state)}
         new_ask_res = ask_res | {"choices": choice_dict}
         return new_ask_res
@@ -328,7 +346,10 @@ class Scene(metaclass=abc.ABCMeta):
                         # 11-30更新：增加推理链长度信息
                         # LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.OPTIONS]), len(self._knowledges), self.scene_level),
                         # 12-25更新：修复评级上的错误
-                        LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level),
+                        # 1-15更新：增加问题中命题难度参数
+                        # 1-15更新：增加已知条件中命题的难度参数
+                        # LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties),
+                        LEVEL: ask_level(self.chain_length, self._statement_difficulties, len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties),
                         # 12-13更新：增加各种辅助判断信息
                         CHAIN_LENGTH: self.chain_length, 
                         SCENE_TYPE: self.scene_type, 
@@ -346,6 +367,7 @@ class Scene(metaclass=abc.ABCMeta):
             execute (int, optional): 生成的题目数量. 默认为10.
             seed (Union[int, float, None], optional): 随机种子. 默认为None.
             ask_correct (bool, optional): 询问机的询问模式. 默认为True(询问“以下说法正确的是”). 可选的值有：
+                
                 - True，询问“以下说法正确的是”
                 - False，询问“以下说法错误的是”
 
@@ -371,7 +393,10 @@ class Scene(metaclass=abc.ABCMeta):
             # 11-30更新：计算试题等级
             # level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.CHOICES]), len(self._knowledges), self.scene_level)
             # 12-25更新：修复评级上的错误
-            level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level)
+            # 1-15更新：增加问题中的命题难度参数
+            # 1-15更新：增加已知条件中的命题难度参数
+            # level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties)
+            level = ask_level(ask_all_info[machines.LENGTH], self._statement_difficulties, len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties)
             item = {
                 "guide": self.guide,
                 "statement": self._statements,

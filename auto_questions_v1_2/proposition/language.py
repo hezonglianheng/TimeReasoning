@@ -27,6 +27,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         self._ask_info: dict[str, Any] = {}
         # 12-14新增：记录提问的命题的typetag
         self._type_tags: list[str] = []
+        # 1-18新增：记录statements的type
+        self._statements_type: list[str] = []
 
     def add_guide(self, lang: str, guide: str) -> None:
         """添加引导语
@@ -71,6 +73,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         """
         # 12-17修改：修改试题文本生成形式
         # return [i.state(self.lang_temps[lang]) for i in self.original_scene._chosen_group]
+        # 1-18新增：记录statements的type
+        self._statements_type = [i.typetag for i in self.original_scene._chosen_group]
         # 12-24修改：移除陈述后的分号
         statements = [i.state(self.lang_temps[lang]) for n, i in enumerate(self.original_scene._chosen_group, start=1)]
         # 12-24新增：语言为英文时将陈述句首字母大写
@@ -143,32 +147,73 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 question = self.get_question(lang)
                 answer_info = self.get_answers(lang) # 获取答案信息
                 level = origin_result[0][LEVEL] # 获取难度等级
-                infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
-                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choices": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
+                # 12-29修订：调整输出的字段名称
+                # infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
+                # data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choices": answer_info[machines.OPTIONS], "answer": answer_info[machines.ANSWERS], LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
+                output: dict[str, Any] = {
+                    # 1-13修订：将语言信息放置到后方，并改变定义
+                    # proposition.config.LANGUAGE: lang,
+                    proposition.config.TEXT: text,
+                    proposition.config.QUESTION: question,
+                    proposition.config.OPTIONS: answer_info[machines.OPTIONS],
+                    proposition.config.ANSWER: answer_info[machines.ANSWERS],
+                    proposition.config.LEVEL: level,
+                    proposition.config.LANGUAGE: proposition.config.LANG_CONFIG[lang][proposition.config.LANG_NAME],
+                    proposition.config.QUES_INFO: {
+                        proposition.config.CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH],
+                        proposition.config.ENTITY_NUM: origin_result[0][INIT_NUM],  # init_num指的是场景中涉及的事件数量
+                        proposition.config.KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM],
+                        proposition.config.SCENE_TYPE: origin_result[0][SCENE_TYPE],
+                        # 1-11补充：增加QUESTION_TYPE字段
+                        proposition.config.QUESTION_TYPE: deepcopy(self._type_tags),
+                        # 1-18新增：增加statements_type字段
+                        proposition.config.STATEMENTS_TYPE: deepcopy(self._statements_type),
+                    },
+                }
+                data.append(output)
                 self._type_tags.clear() # 清空typetags
+                self._statements_type.clear() # 清空statements_type
         # 返回数据
         return data
 
-    def get_options(self, lang: str) -> dict[str, Any]:
+    def get_options(self, lang: str) -> dict[str, str]:
         """获取选项
 
         Args:
             lang (str): 语言
 
         Returns:
-            dict[str, Any]: 选项列表
+            dict[str, str]: 选项列表
         """
         option_dict = self.original_scene._ask_all_machine._option_dict # 获取选项信息
         self._type_tags.extend([i.typetag for i in option_dict.values() if isinstance(i, prop.Proposition)]) # 记录选项的命题的typetag
         choices = [i.state(self.lang_temps[lang]) if isinstance(i, prop.Proposition) else str(i) for i in option_dict.values()] # 生成选项
         # 12-24新增：将文本的首字母大写
         choices = [self._first_capitalize(lang, i) for i in choices]
+        # 1-3新增：检查选项，如果选项是“以上选项均不正确”，则替换成对应语言的文本
+        for i in range(len(choices)):
+            # 如果是中文的“以上选项均不正确”或英文的“None of the options above meets the requirements of the question”，则替换成对应语言的文本
+            if choices[i] == LANG_CONFIG["zh"][ALL_WRONG]:
+                choices[i] = LANG_CONFIG[lang][ALL_WRONG]
+            elif choices[i] == LANG_CONFIG["en"][ALL_WRONG]:
+                choices[i] = LANG_CONFIG[lang][ALL_WRONG]
         # 12-24新增：为选项加上句号
-        choices = [i + proposition.config.LANG_CONFIG[lang][FULL_STOP] for i in choices]
+        choices: list[str] = [i + proposition.config.LANG_CONFIG[lang][FULL_STOP] for i in choices]
         new_dict = {k: v for k, v in zip(option_dict.keys(), choices)} # 生成新的选项字典
         # 检查new_dict的最后一个选项，如果是“以上选项均不正确”，则按照语言寻找ALL_WRONG替换之
+        # 12-29修订：修改检查的逻辑，改为检查全部选项
+        '''
         if new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["zh"][ALL_WRONG] or new_dict[list(new_dict.keys())[-1]] == LANG_CONFIG["en"][ALL_WRONG]:
             new_dict[list(new_dict.keys())[-1]] = LANG_CONFIG[lang][ALL_WRONG]
+        '''
+        # 1-3移除：原有的检查选项的逻辑前移
+        '''
+        for k, v in new_dict.items():
+            if v == LANG_CONFIG["zh"][ALL_WRONG]:
+                new_dict[k] = LANG_CONFIG[lang][ALL_WRONG]
+            elif v == LANG_CONFIG["en"][ALL_WRONG]:
+                new_dict[k] = LANG_CONFIG[lang][ALL_WRONG]
+        '''
         return new_dict
     
     def run_ask_all(self, execute: int = 10, seed: Union[int, float, None] = None, ask_correct: bool = True) -> list[dict[str, Any]]:
@@ -209,8 +254,31 @@ class LangParallelScene(metaclass=abc.ABCMeta):
                 choices = self.get_options(lang) # 获取选项
                 answer = origin_result[0][machines.ANSWERS] # 获取答案
                 level = origin_result[0][LEVEL]
-                infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
-                data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choices": choices, "answer": answer, LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
+                # infos = {INIT_NUM: origin_result[0][INIT_NUM], CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH], KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM], SCENE_TYPE: origin_result[0][SCENE_TYPE]}
+                # data.append({"guide": guide, "statements": statements, "text": text, "question": question, "choices": choices, "answer": answer, LEVEL: level, "lang": lang} | infos | {"typetags": deepcopy(self._type_tags)}) # 添加数据
+                # 12-29修订：调整输出的字段名称
+                output: dict[str, Any] = {
+                    # 1-13修订：将语言信息放置到后方，并改变定义
+                    # proposition.config.LANGUAGE: lang,
+                    proposition.config.TEXT: text,
+                    proposition.config.QUESTION: question,
+                    proposition.config.OPTIONS: choices,
+                    proposition.config.ANSWER: answer,
+                    proposition.config.LEVEL: level,
+                    proposition.config.LANGUAGE: proposition.config.LANG_CONFIG[lang][proposition.config.LANG_NAME],
+                    proposition.config.QUES_INFO: {
+                        proposition.config.CHAIN_LENGTH: origin_result[0][CHAIN_LENGTH],
+                        proposition.config.ENTITY_NUM: origin_result[0][INIT_NUM],  # init_num指的是场景中涉及的事件数量
+                        proposition.config.KNOWLEDGE_NUM: origin_result[0][KNOWLEDGE_NUM],
+                        proposition.config.SCENE_TYPE: origin_result[0][SCENE_TYPE],
+                        # 1-11补充：增加QUESTION_TYPE字段
+                        proposition.config.QUESTION_TYPE: deepcopy(self._type_tags),
+                        # 1-18新增：增加statements_type字段
+                        proposition.config.STATEMENTS_TYPE: deepcopy(self._statements_type),
+                    },
+                }
+                data.append(output)
                 self._type_tags.clear() # 清空typetags
-
+                self._statements_type.clear() # 清空statements_type
+        # 返回数据
         return data

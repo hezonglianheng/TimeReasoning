@@ -27,7 +27,8 @@
         "自[time]年起，[element]，直到[duration]年后",
         "从[time]年开始，[element]，持续了[duration]年",
         // 描述终点和持续时间
-        "在[endtime]年之前的[duration]年里，[element]",
+        // 1-13修改：移除以结束时间和持续时间描述的模板
+        // "在[endtime]年之前的[duration]年里，[element]",
         // "[element]用了[duration]年，直至[endtime]年结束",
     ],
     // 时频的模板
@@ -73,21 +74,25 @@
     // 时长关系的模板
     "long": [
         "[element1]的时间比[element2]的时间长",
-        "相比[element2]，[element1]用了更多时间",
-        "[element1]比[element2]用时更久",
+        // 12-31移除：移除不适宜的模板
+        // "相比[element2]，[element1]用了更多时间",
+        // "[element1]比[element2]用时更久",
     ],
     "long_time": [
         "[element1]的时间比[element2]的时间长[diff]年",
-        "[element1]用了比[element2]多[diff]年的时间",
+        // 12-31移除：移除不适宜的模板
+        // "[element1]用了比[element2]多[diff]年的时间",
     ],
     "short": [
         "[element1]的时间比[element2]的时间短",
-        "相比[element2]，[element1]用了更少时间",
-        "[element1]比[element2]用时更短",
+        // 12-31移除：移除不适宜的模板
+        // "相比[element2]，[element1]用了更少时间",
+        // "[element1]比[element2]用时更短",
     ],
     "short_time": [
         "[element1]的时间比[element2]的时间短[diff]年",
-        "[element1]用了比[element2]少[diff]年的时间",
+        // 12-31移除：移除不适宜的模板
+        // "[element1]用了比[element2]少[diff]年的时间",
     ],
     "same_len": [
         "[element1]持续的年数和[element2]一样",

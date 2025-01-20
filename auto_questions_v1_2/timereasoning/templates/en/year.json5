@@ -5,102 +5,83 @@
 {
     // 瞬时事件的模板
     "temporal": [
-        "In [time], [element]",
-        "In the year of [time], [element]",
         "[element] in [time]",
     ],
     // 时长的模板
     "duration": [
         "[element] for [duration] year(s)",
-        "[element], and spent [duration] year(s) on it",
-        "It takes [duration] year(s) that [element]",
-        "[element], until [duration] year(s) later",
-        "For [duration] year(s), [element]",
+        "[element] and spent [duration] year(s) on it",
     ],
     // 持续事件的模板
     "durative": [
         // 描述起点和终点
-        "From [time] to [endtime], [element]",
-        "[element] in [time], and ended in [endtime]",
         "[element] from [time] to [endtime]",
         // 描述起点和持续时间
-        "From [time] on, [element] for [duration] year(s)",
+        "Beginning in [time], [element] for [duration] year(s)",
         "Starting from [time], [element] for [duration] year(s)",
-        "[element] since [time], and lasts [duration] year(s)",
         // 描述终点和持续时间
-        "[element] for [duration] year(s), and ended in [endtime]",
-        "Before ended in [endtime], it's been [duration] year(s) that [element]",
+        // 1-13修改：移除以结束时间和持续时间描述的模板
+        // "[element] for [duration] year(s), which ended in [endtime]",
+        // "Before ending in [endtime], [element] for [duration] year(s)",
     ],
     // 时频的模板
     "freq": [
         "From [time] to [endtime], [element] once every [frequency] year(s)",
-        "Over the [duration] year(s) starting from [time], [element] once every [frequency] year(s)",
+        "Starting from [time], [element] once every [frequency] year(s) for [duration] year(s)",
         "In the [duration] year(s) before [endtime], [element] once every [frequency] year(s)",
     ],
     // 事件先后关系的模板
     "before": [
-        "[element1] earlier than [element2]",
         "[element1] before [element2]",
     ],
     "before_time": [
-        "[element1] [diff] year(s) earlier than [element2]",
         "[element1] [diff] year(s) before [element2]",
-        "[diff] year(s) before [element2], [element1]",
     ],
     "after": [
-        "[element1] later than [element2]",
         "[element1] after [element2]",
     ],
     "after_time": [
-        "[element1] [diff] year(s) later than [element2]",
         "[element1] [diff] year(s) after [element2]",
-        "[diff] year(s) after [element2], [element1]",
     ],
     "simultaneous": [
         "In the year that [element2], [element1]",
         "In the same year, [element1], and [element2]",
         "In the same year as [element2], [element1]",
-        "In a certain year, [element2], and [element1]",
     ],
     // 事件间隔的模板
     "gap_time": [
-        "The time gap between [element1] and [element2] is [diff] year(s)",
-        "There is a [diff]-year difference between [element1] and [element2]",
+        "The gap between the time [element1] and the time [element2] is [diff] year(s)",
+        "There is a [diff]-year gap between [element1] and [element2]",
     ],
     // 时长关系的模板
     "long": [
-        "The total duration that [element1] is longer than that of [element2]",
-        "It takes longer time that [element1] than [element2]",
-        "Compared to the duration that [element2], more time is taken that [element1]",
+        "The time that [element1] takes a longer time than [element2]",
+        "[element1] for longer time than [element2]",
+        "Compared to the duration that [element2], [element1] for a longer time",
     ],
     "long_time": [
-        "[diff] more year(s) are taken that [element1] than [element2]",
-        "The total duration that [element1] is [diff] year(s) longer than that of [element2]",
-        "It takes [diff] more year(s) than [element2] that [element1]",
+        "[element1] [diff] more year(s) than [element2]",
+        "The total duration that [element1] is [diff] year(s) longer than [element2]",
     ],
     "short": [
-        "The total duration that [element1] is shorter than that of [element2]",
-        "It takes shorter time that [element1] than [element2]",
-        "Compared to the duration that [element2], less time is taken that [element1]",
+        "The time that [element1] takes a shorter time than [element2]",
+        "[element1] for shorter time than [element2]",
+        "Compared to the duration that [element2], [element1] for a shorter time",
     ],
     "short_time": [
-        "[diff] less year(s) are taken that [element1] than [element2]",
-        "The total duration that [element1] is [diff] year(s) shorter than that of [element2]",
-        "It takes [diff] less year(s) than [element2] that [element1]",
+        "[element1] [diff] less year(s) than [element2]",
+        "The total duration that [element1] is [diff] year(s) shorter than [element2]",
     ],
     "same_len": [
-        "It takes the same number of year(s) that [element1] as [element2]",
+        "The time that [element1] takes the same amount of time that [element2]",
         "The time [element1] is the same length as [element2]",
         "The duration that [element1] is the same as the duration that [element2]",
         "The duration [element1] is equal to the duration [element2]",
         "The duration [element1] matches the duration [element2]",
-        "It takes the same amount of time that [element1] and [element2]",
     ],
     // 增加：during的模板
     "during": [
         "During the time that [element2], [element1]",
-        "[element1], and that was during the time that [element2]",
-        "[element2], and during this time [element1]",
         "[element1] during the time [element2]",
     ]
 }

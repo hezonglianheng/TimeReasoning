@@ -342,10 +342,29 @@ class AnswerMachine:
             print(f"被询问的命题{type(self._ask_prop)}属性{qtype}的候选项数量不足，无法生成选项！")
             return None
         random.seed(self._seed)  # 设置随机种子
-        chosen_candidate = random.sample(candidates, self._options - 1)
+        # 1-17修改：修改获得干扰命题的逻辑
+        # 洗切candidates
+        random.shuffle(candidates)
+        # 不再需要采样，直接从candidates中选取
+        # chosen_candidate = random.sample(candidates, self._options - 1)
 
         ans_prop: list[prop.Proposition] = []  # 将选项重新填入空中得到的命题
 
+        # 1-17修改：随机从candidates中抽取元素，生成新的命题
+        candidate_index = -1
+        while len(option_situation_tuples) < self._options:
+            candidate_index += 1 # 从0开始，累加索引值
+            new_prop = deepcopy(self._ask_prop)
+            setattr(new_prop, qtype, candidates[candidate_index])
+            # 理智性检查
+            if not new_prop.sancheck():
+                continue
+            if new_prop.got(self._all_prop):
+                ans_prop.append(new_prop)
+                option_situation_tuples.append((candidates[candidate_index], True))
+            else:
+                option_situation_tuples.append((candidates[candidate_index], False))
+        """
         # 确定候选项是否正确
         for i in chosen_candidate:
             new_prop = deepcopy(self._ask_prop)
@@ -355,6 +374,7 @@ class AnswerMachine:
                 option_situation_tuples.append((i, True))
             else:
                 option_situation_tuples.append((i, False))
+        """
         # 随机打乱选项，生成选项和答案
         random.shuffle(option_situation_tuples)
         options: dict[str, Any] = dict() # 12-11修订：不再返回字符串，而是返回内部存储对象

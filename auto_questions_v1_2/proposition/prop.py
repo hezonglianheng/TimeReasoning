@@ -35,6 +35,8 @@ class Proposition(element.Element):
         """
         self.askable = askable # 是否可询问
         self.precise = precise # 是否精确
+        # 1-15新增：命题的难度等级
+        self.difficulty = 1 # 难度等级，默认为1
 
     @property
     def num_of_conditions(self) -> int:
@@ -142,6 +144,15 @@ class Proposition(element.Element):
         """返回命题的类型标签，为str"""
         return ""
 
+    # 1-17添加：一个验证函数，用于验证命题的合法性
+    def sancheck(self) -> bool:
+        """验证命题的合理性
+
+        Returns:
+            bool: 命题是否合理
+        """
+        return True
+
 # 按照主要元个数的不同定义Proposition的子类，以解耦领域和推理
 
 class SingleProp(Proposition):
@@ -169,6 +180,15 @@ class DoubleProp(Proposition):
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.element1 == other.element1 and self.element2 == other.element2
 
+    # 1-17添加：一个验证函数，用于验证命题的合理性
+    def sancheck(self) -> bool:
+        """验证2元命题的合理性，即两个元素不能相等
+
+        Returns:
+            bool: 命题是否合理
+        """
+        return self.element1 != self.element2
+
 class TripleProp(Proposition):
     def __init__(self, element1: element.Element, element2: element.Element, element3: element.Element, askable: bool = True, precise: bool = True):
         super().__init__(askable, precise)
@@ -178,3 +198,12 @@ class TripleProp(Proposition):
 
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and self.element1 == other.element1 and self.element2 == other.element2 and self.element3 == other.element3
+
+    # 1-17添加：一个验证函数，用于验证命题的合理性
+    def sancheck(self) -> bool:
+        """验证3元命题的合法性，即元素不能相等
+
+        Returns:
+            bool: 命题是否合理
+        """
+        return self.element1 != self.element2 and self.element1 != self.element3 and self.element2 != self.element3

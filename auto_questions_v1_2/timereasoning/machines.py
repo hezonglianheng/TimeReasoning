@@ -190,19 +190,28 @@ class TimeGetRangeMachine(machines.GetRangeMachine):
         if "element" in (typ := ask_info.get(prop.TYPE)):
             ans = ask_info.get(prop.ANSWER)
             # 12-25修改：对于瞬时事件的值域，只返回瞬时事件
+            # 1-13修改：返回的事件不能和已有的事件重复
             # if isinstance(ans, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent)):
             if isinstance(ans, (event.TemporalEvent)):
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent, event.DurativeEvent, event.FreqEvent))]
-                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent))]
+                # 1-13修改：返回的事件不能和已有的事件重复
+                # range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent))]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.TemporalEvent)) and i.event() != ans.event()]
             elif isinstance(ans, event.Duration):
                 # 12-24修改：对于持续时间的值域，只返回持续时间事件
                 # range_list = [i for i in self.all_elements if isinstance(i, (event.Duration, event.TemporalEvent, event.FreqEvent))]
-                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration))]
+                # 1-13修改：返回的事件不能和已有的事件重复
+                # range_list = [i for i in self.all_elements if isinstance(i, (event.Duration))]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.Duration)) and i.event() != ans.event()]
             # 12-25新增：其他类型的事件的值域只返回同类型的事件，以避免理解上的困难
             elif isinstance(ans, event.DurativeEvent):
-                range_list = [i for i in self.all_elements if isinstance(i, (event.DurativeEvent))]
+                # 1-13修改：返回的事件不能和已有的事件重复
+                # range_list = [i for i in self.all_elements if isinstance(i, (event.DurativeEvent))]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.DurativeEvent)) and i.event() != ans.event()]
             elif isinstance(ans, event.FreqEvent):
-                range_list = [i for i in self.all_elements if isinstance(i, (event.FreqEvent))]
+                # 1-13修改：返回的事件不能和已有的事件重复
+                # range_list = [i for i in self.all_elements if isinstance(i, (event.FreqEvent))]
+                range_list = [i for i in self.all_elements if isinstance(i, (event.FreqEvent)) and i.event() != ans.event()]
             else:
                 raise ValueError(f"未知类型{type(ans)}")
         elif "time" in typ:
@@ -213,7 +222,8 @@ class TimeGetRangeMachine(machines.GetRangeMachine):
             range_list = list(range(all_temp[-1] - all_temp[0] + 1))
         elif typ == "diff":
             all_temp = sorted([i.time for i in self.all_elements if isinstance(i, (event.TemporalEvent))], key=lambda x: x)
-            range_list = list(range(all_temp[-1] - all_temp[0] + 1))
+            # 12-30修订：diff的值域从1开始
+            range_list = list(range(1, all_temp[-1] - all_temp[0] + 1))
         else:
             raise ValueError(f"未知类型{typ}")
         return range_list

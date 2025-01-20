@@ -98,6 +98,13 @@
         "type": "before",
     }, 
     {
+        // 新增约束：他结束谈恋爱在他开始谈恋爱之后至少1年
+        "main_event": "他结束谈恋爱", 
+        "std_event": "他开始谈恋爱",
+        "type": "minafter",
+        "time": 1,
+    }, 
+    {
         "main_event": "他结束谈恋爱", 
         "std_event": "他结婚",
         "type": "sametime",

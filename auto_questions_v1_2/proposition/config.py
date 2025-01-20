@@ -25,6 +25,8 @@ ASK_RIGHT = "ask_right"
 ASK_WRONG = "ask_wrong"
 # 12-24新增：句号
 FULL_STOP = "full_stop"
+# 1-13新增：语言名称的转换
+LANG_NAME = "lang_name"
 
 LANG_CONFIG = {
     'zh': {
@@ -32,20 +34,48 @@ LANG_CONFIG = {
         BECAUSE: ["因为", "由于", "既然", "根据",],
         ANOTHER: ["另外", "再者", "此外", "而且", "并且",],
         SO: ["所以", "因此", "故", "于是", "因而",],
-        ASK_RIGHT: "请问: 以下选项中正确的是____",
-        ASK_WRONG: "请问: 以下选项中不正确的是____",
-        FULL_STOP: "。"
+        # 12-29修订：去除“请问”前缀
+        # 1-13修订：与其他领域对齐试题表述
+        # 1-17修订：修改试题表述，以____作为提问点
+        ASK_RIGHT: "以下选项中正确的是____",
+        ASK_WRONG: "以下选项中不正确的是____",
+        FULL_STOP: "。",
+        LANG_NAME: "cn", # 修改LANG_NAME为cn
     },
     'en': {
-        ALL_WRONG: "None of the options above meets the requirements of the question",
+        ALL_WRONG: "None of the options above meet the requirements of the question",
         BECAUSE: ["because ", "since ", "as ", "according to ",],
         ANOTHER: ["furthermore ", "moreover ", "besides ", "and ",],
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],
-        ASK_RIGHT: "Which of the following is(are) correct?",
-        ASK_WRONG: "Which of the following is(are) incorrect?",
-        FULL_STOP: "."
+        # 12-29修订：修改试题表述
+        # ASK_RIGHT: "Which of the following is(are) correct?",
+        ASK_RIGHT: "Select the correct statement(s): ____",
+        # ASK_WRONG: "Which of the following is(are) incorrect?",
+        ASK_WRONG: "Select the incorrect statement(s): ____",
+        FULL_STOP: ".",
+        LANG_NAME: "en",
     },
 }
+
+# 12-29新增：输出的字段名称
+DOMAIN = "domain"
+ID = "id"
+LANGUAGE = "language"
+TEXT = "text"
+QUESTION = "question"
+OPTIONS = "options"
+ANSWER = "answer"
+LEVEL = "level"
+COT = "CoT"
+QUES_INFO = "ques_info"
+SCENE_TYPE = "scene_type"
+ENTITY_NUM = "entity_num"
+CHAIN_LENGTH = "chain_length"
+KNOWLEDGE_NUM = "knowledge_num"
+QUESTION_TYPE = "question_type"
+RELATED_QUESTIONS = "related_questions"
+# 1-18新增：增加statements_type字段
+STATEMENTS_TYPE = "statements_type"
 
 # functions.
 

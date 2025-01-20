@@ -5,11 +5,14 @@ import statistics
 from pathlib import Path
 from collections import Counter
 import sys
+from functools import reduce
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 from proposition import scene
+# 1-11新增：引入配置文件
+import proposition.config
 
 def basic_stat(data: list[int]) -> tuple[int, int, float, float]:
     """基础统计函数，统计数据的最大值、最小值、均值和方差
@@ -36,7 +39,9 @@ def init_num_stat(records: list[dict]) -> str:
         str: 统计报告
     """
     # 读取数据
-    data: list[int] = [len(r["statements"]) for r in records]
+    # 1-11修订：改为读取text.split()的长度
+    data: list[int] = [len(r["text"].split()) for r in records]
+    # data: list[int] = [len(r["statements"]) for r in records]
     # 统计数据
     maximum, minimum, mean, variance = basic_stat(data)
     # 生成报告
@@ -57,7 +62,9 @@ def chain_length_stat(records: list[dict]) -> str:
         str: 统计报告
     """
     # 读取数据
-    data: list[int] = [r[scene.CHAIN_LENGTH] for r in records]
+    # 1-11修订：应数据结构修改要求修改数据读取方式
+    # data: list[int] = [r[scene.CHAIN_LENGTH] for r in records]
+    data: list[int] = [r[proposition.config.QUES_INFO][scene.CHAIN_LENGTH] for r in records]
     # 统计数据
     maximum, minimum, mean, variance = basic_stat(data)
     # 生成报告
@@ -78,7 +85,9 @@ def scene_type_stat(records: list[dict]) -> str:
         str: 统计报告
     """
     # 读取数据
-    data: list[str] = [r[scene.SCENE_TYPE] for r in records]
+    # 1-11修订：应数据结构修改要求修改数据读取方式
+    # data: list[str] = [r[scene.SCENE_TYPE] for r in records]
+    data: list[str] = [r[proposition.config.QUES_INFO][scene.SCENE_TYPE] for r in records]
     # 统计数据
     counter = Counter(data)
     # 生成报告
@@ -107,8 +116,8 @@ def level_stat(records: list[dict]) -> str:
     report += "\n\t".join([f"{k}：{v}" for k, v in counter.items()])
     return report
 
-def typetag_stat(records: list[dict]) -> str:
-    """类型标签统计
+def statements_tag_stat(records: list[dict]) -> str:
+    """命题类型标签统计
     
     Args:
         records (list[dict]): 数据记录
@@ -116,18 +125,46 @@ def typetag_stat(records: list[dict]) -> str:
     Returns:
         str: 统计报告
     """
-    # 尝试读取typetags数据，如果没有则返回空统计报告
-    try:
-        example_tag = records[0]["typetags"]
-    except KeyError:
-        return ""
-    # 读取typetags数据
-    data: list[str] = [tag for r in records for tag in r["typetags"]]
+    # 读取数据
+    data: list[list[str]] = [r[proposition.config.QUES_INFO][proposition.config.STATEMENTS_TYPE] for r in records]
+    # 将二维列表转换为一维列表
+    data = reduce(lambda x, y: x + y, data)
     # 统计数据
     counter = Counter(data)
     result = counter.most_common()
     # 生成报告
-    report: str = "类型标签统计：\n\t" + "\n\t".join([f"{k}：{v}" for k, v in result])
+    report: str = "命题类型标签统计：\n\t" + "\n\t".join([f"{k}：{v}" for k, v in result])
+    return report
+
+# 1-18修改：修改问题类型标签统计函数逻辑
+def question_tag_stat(records: list[dict]) -> str:
+    """问题类型标签统计
+    
+    Args:
+        records (list[dict]): 数据记录
+
+    Returns:
+        str: 统计报告
+    """
+    """
+    # 尝试读取typetags数据，如果没有则返回空统计报告
+    try:
+        example_tag = records[0][proposition.config.QUESTION_TYPE]
+    except KeyError:
+        return ""
+    """
+    # 读取typetags数据
+    # 1-11修订：应数据结构修改要求修改数据读取方式
+    # data: list[str] = [tag for r in records for tag in r["typetags"]]
+    # data: list[list[str]] = [tag for r in records for tag in r[proposition.config.QUES_INFO][proposition.config.QUESTION_TYPE]]
+    data: list[list[str]] = [r[proposition.config.QUES_INFO][proposition.config.QUESTION_TYPE] for r in records]
+    # 将二维列表转换为一维列表
+    data = reduce(lambda x, y: x + y, data)
+    # 统计数据
+    counter = Counter(data)
+    result = counter.most_common()
+    # 生成报告
+    report: str = "问题类型标签统计：\n\t" + "\n\t".join([f"{k}：{v}" for k, v in result])
     return report
 
 def stat(data: list[dict]) -> str:
@@ -139,7 +176,14 @@ def stat(data: list[dict]) -> str:
     Returns:
         str: 统计报告
     """
-    reports = [init_num_stat(data), chain_length_stat(data), scene_type_stat(data), level_stat(data), typetag_stat(data)]
+    reports = [
+        init_num_stat(data), 
+        chain_length_stat(data), 
+        scene_type_stat(data), 
+        level_stat(data), 
+        statements_tag_stat(data),
+        question_tag_stat(data), 
+    ]
     return "\n\n".join(reports)
 
 if __name__ == "__main__":
