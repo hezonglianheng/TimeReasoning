@@ -531,7 +531,12 @@ class AskAllMachine:
             if len(value_range) == 0:
                 return None
             new_prop = deepcopy(curr_prop) # 复制当前命题
-            setattr(new_prop, ask_info[prop.TYPE], random.choice(value_range)) # 随机选择一个错误选项，替换当前命题，生成新命题
+            # 1-20修改：需要对新的命题进行sancheck
+            while True:
+                setattr(new_prop, ask_info[prop.TYPE], random.choice(value_range))
+                if new_prop.sancheck():
+                    break
+            # setattr(new_prop, ask_info[prop.TYPE], random.choice(value_range)) # 随机选择一个错误选项，替换当前命题，生成新命题
             return new_prop
     
     def _make_options(self) -> None:
