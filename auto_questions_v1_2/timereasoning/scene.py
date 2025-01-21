@@ -391,13 +391,16 @@ class DiffRelation(relation.DoubleEntailment):
         else:
             for i in res:
                 i.diff = i.diff % cls.loop
+            # 1-21移除：移除循环时间场景的循环时间上限决定的命题
+            """
             new_res: timeprop.DoubleTimeP = []
             for i, t in product(res, range(1, LOOP_LIMIT)):
                 j = deepcopy(i)
                 j.diff = i.diff + t * cls.loop
                 new_res.append(j)
-            # return res
-            return res + new_res
+            """
+            return res
+            # return res + new_res
         
     @classmethod
     def set_loop(cls, loop: int) -> type["DiffRelation"]:
@@ -420,6 +423,8 @@ class LoopRelation(relation.DoubleEntailment):
         else:
             for i in res:
                 i.diff = (cls.loop - prop.diff) % cls.loop
+                # 1-21新增：将新的命题的难度+1
+                i.difficulty += 1
             return res
 
     @classmethod
