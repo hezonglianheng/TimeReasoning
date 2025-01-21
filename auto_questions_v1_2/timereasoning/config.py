@@ -1,6 +1,8 @@
 # encoding: utf8
 # date: 2024-11-27
 
+from pathlib import Path
+
 # language settings
 
 START = "start"
@@ -21,3 +23,6 @@ LANG_CONFIG = {
 NAME_PRONOUN = {
     "Jack": "he",
 }
+
+# 1-21新增：记录命题难度的文件路径
+PROP_DIFFICULTY_PATH = Path(__file__).parent / "difficulty/prop_difficulty.json5"

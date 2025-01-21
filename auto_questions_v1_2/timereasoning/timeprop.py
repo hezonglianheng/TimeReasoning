@@ -6,6 +6,7 @@
 关于时间命题的基本定义和基本操作
 """
 
+import json5
 import sys
 from typing import Optional, Union
 from pathlib import Path
@@ -16,6 +17,7 @@ sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 import proposition.prop as prop
 import timereasoning.event as event
+import timereasoning.config as config
 
 class TimeP(prop.Proposition):
     """表示一个时间命题"""
@@ -28,6 +30,20 @@ class TimeP(prop.Proposition):
             precise (bool, optional): 是否精确. 默认为True.
         """
         super().__init__(askable, precise)
+        # 1-21新增：通过函数读取命题的难度
+        self.difficulty = self._get_difficulty()
+
+    def _get_difficulty(self) -> int:
+        """获取时间命题的难度
+
+        Returns:
+            int: 时间命题的难度
+        """
+        # 读取难度配置文件
+        with config.PROP_DIFFICULTY_PATH.open("r", encoding="utf-8") as f:
+            difficulty_dict: dict[str, int] = json5.load(f)
+        # 根据模板关键词获取难度，默认值为1
+        return difficulty_dict.get(self.temp_key, 1)
 
 # 单事件时间命题
 class SingleTimeP(prop.SingleProp, TimeP):
@@ -236,7 +252,8 @@ class DoubleTimeP(prop.DoubleProp, TimeP):
             precise (bool, optional): 是否精确. 默认为True.
         """
         super().__init__(element1, element2, askable, precise)
-        self.difficulty = 2 # 1-15新增：二元时间命题的默认难度为2
+        # 1-21移除：移除二元命题的默认难度
+        # self.difficulty = 2 # 1-15新增：二元时间命题的默认难度为2
         
     def attrs(self) -> dict[str, str]:
         res = super().attrs()
@@ -363,7 +380,8 @@ class GapTimeP(DoubleTimeP):
         super().__init__(element1, element2, askable)
         self.diff = abs(element1.time - element2.time)
         self.precise = False
-        self.difficulty = 3 # 1-15新增：时间间隔的默认难度为3
+        # 1-21修改：移除时间间隔的默认难度
+        # self.difficulty = 3 # 1-15新增：时间间隔的默认难度为3
 
     @property
     def temp_key(self) -> str:
