@@ -24,6 +24,8 @@ from timereasoning.machines import SearchMachine as SM # 11-03修改：引入时
 from proposition.machines import ReasonMachine as RM # 11-03修改：引入推理机构建推理图
 from timereasoning.machines import TimeGetRangeMachine as TGRM # 11-26修改：引入时间领域专用取值范围机
 from timereasoning.machines import TimeAskAllMachine as TAAM # 11-27修改：引入时间领域专用询问机
+# 1-22新增：引入时间领域config文件
+import timereasoning.config
 
 LOOP_LIMIT = 1 # 循环时间场景的循环长度上限
 
@@ -172,7 +174,11 @@ class TimeScene(Scene):
         # 以可及命题中的单元素时间命题为基础，构建时间领域专用取值范围机
         self._range_machine = TGRM([i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)])
         print("初始化选取干扰项的范围获取机.")
-        self._ask_all_machine = TAAM(deepcopy(self._reachables), deepcopy(self._chosen_group), self.temps, self.graph, self._range_machine, ask_correct=self._ask_correct, lang=self.lang, ask_mode=self.ask_mode, tag=self.tag)
+        # 1-22新增：调整正确选项数量
+        nums: list[int] = list(timereasoning.config.ANSWER_NUM_WEIGHT.keys())
+        weights: list[float] = list(timereasoning.config.ANSWER_NUM_WEIGHT.values())
+        correct_num = random.choices(nums, weights=weights, k=1)[0]
+        self._ask_all_machine = TAAM(deepcopy(self._reachables), deepcopy(self._chosen_group), self.temps, self.graph, self._range_machine, ask_correct=self._ask_correct, lang=self.lang, ask_mode=self.ask_mode, tag=self.tag, correct=correct_num)
         print("初始化询问机.")
 
     def get_statements(self) -> list[str]:

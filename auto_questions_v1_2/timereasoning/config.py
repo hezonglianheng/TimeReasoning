@@ -26,3 +26,11 @@ NAME_PRONOUN = {
 
 # 1-21新增：记录命题难度的文件路径
 PROP_DIFFICULTY_PATH = Path(__file__).parent / "difficulty/prop_difficulty.json5"
+
+# 1-22新增：选项数量的选择权重
+ANSWER_NUM_WEIGHT = {
+    4: 0.5,
+    3: 0.2,
+    2: 0.2,
+    1: 0.1,
+}
