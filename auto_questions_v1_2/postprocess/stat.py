@@ -167,6 +167,24 @@ def question_tag_stat(records: list[dict]) -> str:
     report: str = "问题类型标签统计：\n\t" + "\n\t".join([f"{k}：{v}" for k, v in result])
     return report
 
+def answer_num_stat(records: list[dict]) -> str:
+    """选项数量统计
+    
+    Args:
+        records (list[dict]): 数据记录
+
+    Returns:
+        str: 统计报告
+    """
+    # 读取数据
+    data: list[int] = [len(r[proposition.config.ANSWER]) for r in records]
+    # 统计每个数量的试题量
+    counter = Counter(data)
+    sorted_data = counter.most_common()
+    # 生成报告
+    report: str = "选项数量统计：\n\t" + "\n\t".join([f"选项数量{k}：{v}" for k, v in sorted_data])
+    return report
+
 def stat(data: list[dict]) -> str:
     """统计数据
     
@@ -178,6 +196,8 @@ def stat(data: list[dict]) -> str:
     """
     reports = [
         init_num_stat(data), 
+        # 1-22新增：增加选项数量统计
+        answer_num_stat(data),
         chain_length_stat(data), 
         scene_type_stat(data), 
         level_stat(data), 
