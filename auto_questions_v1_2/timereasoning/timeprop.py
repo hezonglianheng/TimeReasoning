@@ -297,6 +297,9 @@ class DoubleTimeP(prop.DoubleProp, TimeP):
         else:
             return None
 
+    def sancheck(self):
+        return super().sancheck() and self.element1.event() != self.element2.event()
+
 class BeforeP(DoubleTimeP):
     """表示一个事件发生在另一个事件之前的时间命题，是非精确命题"""
     def __init__(self, element1: event.TemporalEvent, element2: event.Event, askable: bool = True):
