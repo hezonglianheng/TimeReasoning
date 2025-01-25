@@ -28,9 +28,10 @@ NAME_PRONOUN = {
 PROP_DIFFICULTY_PATH = Path(__file__).parent / "difficulty/prop_difficulty.json5"
 
 # 1-22新增：选项数量的选择权重
+# 1-25修改
 ANSWER_NUM_WEIGHT = {
-    4: 0.5,
-    3: 0.2,
-    2: 0.2,
+    4: 0.2,
+    3: 0.4,
+    2: 0.3,
     1: 0.1,
 }
