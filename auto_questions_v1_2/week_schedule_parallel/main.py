@@ -45,7 +45,7 @@ if __name__ == "__main__":
     lang_scene.add_guide("zh", "小明是一名大学生，以下是他的每周安排")
     lang_scene.add_guide("en", "Jack is a college student, and here are his weekly plans")
     all_combinations = list(combinations((learn_japanese, date, play_badminton, arrange, read_papers, meeting, movie, enjoy_fiction, guitar, jogging), 6))
-    samples = random.sample(all_combinations, 10)
+    samples = random.sample(all_combinations, 20)
     res = []
     for i, s in enumerate(samples):
         curr_scene.add_events(*s)

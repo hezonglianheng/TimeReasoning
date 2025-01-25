@@ -101,7 +101,7 @@ if __name__ == "__main__":
     lang_scene.add_guide("zh", "小明的女儿正在给朋友讲述父亲的一生")
     lang_scene.add_guide("en", "Jack's daughter is telling her friends about the story of her father's life")
     all_combinations = list(combinations((event_list), 6))
-    samples = random.sample(all_combinations, 10)
+    samples = random.sample(all_combinations, 20)
     res = []
     for i, s in enumerate(samples):
         # 将事件添加到时间场景中
