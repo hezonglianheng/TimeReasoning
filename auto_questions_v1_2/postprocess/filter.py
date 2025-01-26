@@ -21,19 +21,7 @@ RATE = {
     3: 3,
 }
 
-def certain_level_count(data: list[dict[str, Any]], scene: str, level: int) -> int:
-    """统计某一场景类型中level的问题数量
-
-    Args:
-        data (list[dict[str, Any]]): 问题数据
-        scene (str): 场景类型
-        level (int): 等级
-
-    Returns:
-        int: level的问题数量
-    """
-    certain_data = [i for i in data if i[config.QUES_INFO][config.SCENE_TYPE] == scene]
-    return len([i for i in certain_data if i[config.LEVEL] == level])
+random.seed(0) # 设置随机种子
 
 if __name__ == "__main__":
     # 输入json文件路径
