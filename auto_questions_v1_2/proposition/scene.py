@@ -10,6 +10,8 @@ import random
 from typing import Union, Any, Dict, Literal, Optional
 import sys
 from pathlib import Path
+# 引入统计库
+import statistics
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -88,7 +90,8 @@ class Scene(metaclass=abc.ABCMeta):
         # 12-11新增：记录由回答机返回的答案信息
         self.answer_info: dict[str, Any] = {}
         # 1-15新增：增加对问题中命题的难度的记录
-        self._question_difficulties: int = 0
+        # 1-28修改：数据类型改为float
+        self._question_difficulties: float = 0.0
         # 1-15新增：增加对已知条件中命题的难度的记录
         self._statement_difficulties: int = 0
         # 1-20新增：记录知识的难度
@@ -108,7 +111,7 @@ class Scene(metaclass=abc.ABCMeta):
         # 12-24新增：同时移除知识
         self._knowledges.clear()
         # 1-15新增：同时移除难度
-        self._question_difficulties = 0
+        self._question_difficulties = 0.0
         # 1-20新增：同时移除知识难度
         self._knowledge_difficulties = 0
     
@@ -222,7 +225,9 @@ class Scene(metaclass=abc.ABCMeta):
             return None
         self._asked_prop = random.choice(candidates)
         # 1-15新增：记录命题的难度
-        self._question_difficulties = self._asked_prop.difficulty
+        # 1-28修改：引用问题难度参数
+        # self._question_difficulties = self._asked_prop.difficulty
+        self._question_difficulties = self._asked_prop.question_difficulty
         # self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
@@ -300,7 +305,8 @@ class Scene(metaclass=abc.ABCMeta):
             return ask_res
         option_state = [i.state(self.temps) if isinstance(i, prop.Proposition) else str(i) for i in self._ask_all_machine._option_dict.values()]
         # 1-15新增：记录命题的难度
-        self._question_difficulties = sum([i.difficulty for i in self._ask_all_machine._option_dict.values() if isinstance(i, prop.Proposition)])
+        # 1-28修改：将这类问题的难度修改为命题难度均值的两倍
+        self._question_difficulties += 2 * statistics.mean([i.difficulty for i in self._ask_all_machine._option_dict.values() if isinstance(i, prop.Proposition)])
         choice_dict = {k: v for k, v in zip(ask_res["choices"].keys(), option_state)}
         new_ask_res = ask_res | {"choices": choice_dict}
         return new_ask_res

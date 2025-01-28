@@ -38,6 +38,8 @@ class Proposition(element.Element):
         self.precise = precise # 是否精确
         # 1-15新增：命题的难度等级
         self.difficulty = 1 # 难度等级，默认为1
+        # 1-28新增：命题的问题难度等级，默认与命题的难度等级相同
+        self.question_difficulty: float = self.difficulty
 
     @property
     def num_of_conditions(self) -> int:
@@ -93,6 +95,8 @@ class Proposition(element.Element):
         curr_dict = self.attrs() | {q_key: config.ASK_POINT}
         for k, v in curr_dict.items():
             curr_temp = curr_temp.replace(f"[{k}]", v)
+        # 计算命题的问题难度等级：增加下划线索引与SENTENCE长度的比例值相关的反比例函数
+        self.question_difficulty = self.difficulty + (1 - curr_temp.index(config.ASK_POINT) / len(curr_temp))
         return {SENTENCE: curr_temp, TYPE: q_key, ANSWER: curr_ans}
 
     def __eq__(self, other: object) -> bool:

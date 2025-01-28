@@ -19,15 +19,17 @@ chain_length_weight = 0.02
 # 1-15修改：改为命题难度参数，且改为0.02
 statement_difficulty_weight = 0.02
 # 选项数
-option_num_weight = 0.35
+# 1-28修改：应测试prompt修改，减小选项数的影响至0.25
+option_num_weight = 0.25
 # 知识难度参数
 knowledge_diff_weight = 0.15
 # 命题难度
-question_difficulty_weight = 0.1
+# 1-28修改：将其改为0.4
+question_difficulty_weight = 0.4
 
 # functions.
 # 1-15新增：加入问题中命题的难度参数
-def ask_level(chain_len: int, statement_difficulty: int, option_num: int, knowledge_diff: int, scene_level: float, question_difficulty: int) -> int:
+def ask_level(chain_len: int, statement_difficulty: int, option_num: int, knowledge_diff: int, scene_level: float, question_difficulty: float) -> int:
     """根据题目参数评级
 
     Args:
@@ -36,7 +38,7 @@ def ask_level(chain_len: int, statement_difficulty: int, option_num: int, knowle
         option_num (int): 选项数
         knowledge_num (int): 知识数量
         scene_level (float): 场景难度
-        question_difficulty (int): 问题中命题的难度
+        question_difficulty (float): 问题中命题的难度
 
     Returns:
         int: 难度等级
