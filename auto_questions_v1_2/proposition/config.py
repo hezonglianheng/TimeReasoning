@@ -10,6 +10,7 @@ NOT_PRECISE_WEIGHT = 0.2
 # punctuations.
 SEMICOLON = "; "
 COLON = ": "
+ASK_POINT = "____"
 
 # language settings.
 # 当前支持的语言
@@ -37,8 +38,8 @@ LANG_CONFIG = {
         # 12-29修订：去除“请问”前缀
         # 1-13修订：与其他领域对齐试题表述
         # 1-17修订：修改试题表述，以____作为提问点
-        ASK_RIGHT: "以下选项中正确的是____",
-        ASK_WRONG: "以下选项中不正确的是____",
+        ASK_RIGHT: f"以下选项中正确的是{ASK_POINT}",
+        ASK_WRONG: f"以下选项中不正确的是{ASK_POINT}",
         FULL_STOP: "。",
         LANG_NAME: "cn", # 修改LANG_NAME为cn
     },
@@ -49,9 +50,9 @@ LANG_CONFIG = {
         SO: ["so ", "therefore ", "thus ", "hence ", "consequently ",],
         # 12-29修订：修改试题表述
         # ASK_RIGHT: "Which of the following is(are) correct?",
-        ASK_RIGHT: "Select the correct statement(s): ____",
+        ASK_RIGHT: f"Select the correct statement(s): {ASK_POINT}",
         # ASK_WRONG: "Which of the following is(are) incorrect?",
-        ASK_WRONG: "Select the incorrect statement(s): ____",
+        ASK_WRONG: f"Select the incorrect statement(s): {ASK_POINT}",
         FULL_STOP: ".",
         LANG_NAME: "en",
     },

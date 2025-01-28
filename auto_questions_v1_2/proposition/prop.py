@@ -17,6 +17,7 @@ from pathlib import Path
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
 
 import proposition.element as element
+import proposition.config as config
 
 # 返回的问题信息
 SENTENCE = "sentence"
@@ -89,7 +90,7 @@ class Proposition(element.Element):
         while q_key is None or f"[{q_key}]" not in curr_temp:
             q_key = random.choice(list(self.attrs().keys()))
         curr_ans = vars(self)[q_key]
-        curr_dict = self.attrs() | {q_key: "____"}
+        curr_dict = self.attrs() | {q_key: config.ASK_POINT}
         for k, v in curr_dict.items():
             curr_temp = curr_temp.replace(f"[{k}]", v)
         return {SENTENCE: curr_temp, TYPE: q_key, ANSWER: curr_ans}
