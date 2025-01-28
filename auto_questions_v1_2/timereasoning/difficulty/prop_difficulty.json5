@@ -20,11 +20,11 @@
     // 事件间隔的模板
     "gap_time": 2,
     // 时长关系的模板
-    "long": 2,
-    "long_time": 2,
-    "short": 2,
-    "short_time": 2,
-    "same_len": 2,
+    "long": 3,
+    "long_time": 3,
+    "short": 3,
+    "short_time": 3,
+    "same_len": 3,
     // 在……期间的模板
     "during": 2,
 }
