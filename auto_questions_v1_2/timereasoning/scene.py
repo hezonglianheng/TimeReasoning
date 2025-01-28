@@ -284,7 +284,8 @@ class LoopScene(TimeScene):
     循环时间场景
     """
     # 11-30新增：场景难度评级
-    scene_level: float = 0.2
+    # 1-28修订：将场景难度评级从0.2增加为0.35
+    scene_level: float = 0.35
     
     def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化循环时间场景
