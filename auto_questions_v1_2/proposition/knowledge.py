@@ -14,7 +14,7 @@ class Knowledge(metaclass=abc.ABCMeta):
     """
     def __init__(self) -> None:
         # 1-20新增：知识的难度，默认为1
-        self.difficulty = 1
+        self.difficulty: int = 1
     
     @abc.abstractmethod
     def use(self) -> Any:
