@@ -16,25 +16,25 @@ level_lower_limit = 1
 # 链长
 chain_length_weight = 0.02
 # 命题长度
-# 1-15修改：改为命题难度参数，且改为0.02
-statement_difficulty_weight = 0.02
+# 2-5修改：由于记录的难度改为命题难度的平均值，将命题难度参数改为0.2
+statement_difficulty_weight = 0.2
 # 选项数
 # 1-28修改：应测试prompt修改，减小选项数的影响至0.25
 option_num_weight = 0.25
-# 知识难度参数
-knowledge_diff_weight = 0.15
+# 知识难度参数，改为0.1
+knowledge_diff_weight = 0.05
 # 命题难度
-# 1-28修改：将其改为0.4
-question_difficulty_weight = 0.4
+# 1-29修改：将其改为0.5
+question_difficulty_weight = 0.5
 
 # functions.
 # 1-15新增：加入问题中命题的难度参数
-def ask_level(chain_len: int, statement_difficulty: int, option_num: int, knowledge_diff: int, scene_level: float, question_difficulty: float) -> int:
+def ask_level(chain_len: int, statement_difficulty: float, option_num: int, knowledge_diff: int, scene_level: float, question_difficulty: float) -> int:
     """根据题目参数评级
 
     Args:
         chain_len (int): 链长
-        statement_difficulty (int): 已知命题的难度
+        statement_difficulty (float): 已知命题的难度
         option_num (int): 选项数
         knowledge_num (int): 知识数量
         scene_level (float): 场景难度
