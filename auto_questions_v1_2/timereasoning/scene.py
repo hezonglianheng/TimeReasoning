@@ -284,8 +284,9 @@ class LoopScene(TimeScene):
     循环时间场景
     """
     # 11-30新增：场景难度评级
-    # 1-28修订：将场景难度评级从0.2增加为0.35
-    scene_level: float = 0.35
+    # 1-29修订：将场景难度评级从0.2增加为0.4
+    # 移动到__init__内部
+    # scene_level: float = 0.4
     
     def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化循环时间场景
@@ -308,6 +309,7 @@ class LoopScene(TimeScene):
         self.relations.extend(new_relations) # 添加特有的关系
         self.rules.remove(timerule.BeforeandGap)
         self.rules.remove(timerule.AfterandGap) # 移除不适用的规则
+        self.scene_level = .5 # 场景难度评级为0.5
     
     def get_all_props(self) -> None:
         super().get_all_props()

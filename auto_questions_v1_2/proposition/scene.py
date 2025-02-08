@@ -43,7 +43,8 @@ class Scene(metaclass=abc.ABCMeta):
     用于定义推理场景的基本属性和操作
     """
     # 11-30新增：场景的难度评级
-    scene_level: float = 0.0  # 场景难度
+    # 1-31修改：移动到内部
+    # scene_level: float = 0.0  # 场景难度
 
     def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化推理场景
@@ -96,6 +97,7 @@ class Scene(metaclass=abc.ABCMeta):
         self._statement_difficulties: int = 0
         # 1-20新增：记录知识的难度
         self._knowledge_difficulties: int = 0
+        self.scene_level: float = 0.0  # 场景难度
 
     # 12-13新增：场景类型名称
     @property
