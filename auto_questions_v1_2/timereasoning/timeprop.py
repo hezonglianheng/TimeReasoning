@@ -32,18 +32,19 @@ class TimeP(prop.Proposition):
         super().__init__(askable, precise)
         # 1-21新增：通过函数读取命题的难度
         self.difficulty = self._get_difficulty()
+        self.question_difficulty = self._get_difficulty()
 
-    def _get_difficulty(self) -> int:
+    def _get_difficulty(self) -> float:
         """获取时间命题的难度
 
         Returns:
-            int: 时间命题的难度
+            float: 时间命题的难度
         """
         # 读取难度配置文件
         with config.PROP_DIFFICULTY_PATH.open("r", encoding="utf-8") as f:
             difficulty_dict: dict[str, int] = json5.load(f)
         # 根据模板关键词获取难度，默认值为1
-        return difficulty_dict.get(self.temp_key, 1)
+        return difficulty_dict.get(self.temp_key, 1.0)
 
 # 单事件时间命题
 class SingleTimeP(prop.SingleProp, TimeP):

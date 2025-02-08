@@ -37,7 +37,7 @@ class Proposition(element.Element):
         self.askable = askable # 是否可询问
         self.precise = precise # 是否精确
         # 1-15新增：命题的难度等级
-        self.difficulty = 1 # 难度等级，默认为1
+        self.difficulty: float = 1.0 # 难度等级，默认为1
         # 1-28新增：命题的问题难度等级，默认与命题的难度等级相同
         self.question_difficulty: float = self.difficulty
 
@@ -96,7 +96,9 @@ class Proposition(element.Element):
         for k, v in curr_dict.items():
             curr_temp = curr_temp.replace(f"[{k}]", v)
         # 计算命题的问题难度等级：增加下划线索引与SENTENCE长度的比例值相关的反比例函数
-        self.question_difficulty = self.difficulty + (1 - curr_temp.index(config.ASK_POINT) / len(curr_temp))
+        # 1-29新增：考虑下划线索引的中间值
+        # 1-31新增：将下划线影响改为2
+        self.question_difficulty = self.difficulty + 2 * (1 - (curr_temp.index(config.ASK_POINT) + 2) / len(curr_temp))
         return {SENTENCE: curr_temp, TYPE: q_key, ANSWER: curr_ans}
 
     def __eq__(self, other: object) -> bool:
