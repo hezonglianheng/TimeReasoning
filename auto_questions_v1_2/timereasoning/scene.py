@@ -430,9 +430,8 @@ class LoopRelation(relation.DoubleEntailment):
         else:
             for i in res:
                 i.diff = (cls.loop - prop.diff) % cls.loop
-                # 1-21新增：将新的命题的难度+1
-                # 1-25修改：命题难度改为+2
-                i.difficulty += 2
+                # 1-25修改：命题难度改为+2.0
+                i.difficulty += 2.0
             return res
 
     @classmethod
