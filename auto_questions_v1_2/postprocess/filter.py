@@ -44,7 +44,11 @@ if __name__ == "__main__":
         for scene in scene_type:
             scene_groups = [group for group in level_groups if group[0][config.QUES_INFO][config.SCENE_TYPE] == scene]
             scene_num = round(len(scene_groups) * (TOTAL_NUM * RATE[level] / sum(RATE.values())) / len(level_groups))
-            scene_data = random.sample(scene_groups, scene_num)
+            try:
+                scene_data = random.sample(scene_groups, scene_num)
+            except ValueError:
+                print(f"{scene}在等级{level}的数量{len(scene_groups)}少于所需数量{scene_num}")
+                exit(1)
             filtered_data.extend(scene_data)
     # 输出json文件
     result = reduce(lambda x, y: x + y, filtered_data)
