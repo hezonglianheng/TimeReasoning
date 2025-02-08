@@ -14,7 +14,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 import proposition.config as config
 
-TOTAL_NUM = 600
+TOTAL_NUM = 600 # 总题目数量
 RATE = {
     1: 1,
     2: 2,
