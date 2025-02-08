@@ -10,8 +10,6 @@ import random
 from typing import Union, Any, Dict, Literal, Optional
 import sys
 from pathlib import Path
-# 引入统计库
-import statistics
 
 # 将上级目录加入到sys.path中
 sys.path.append(Path(__file__).resolve().parents[1].as_posix())
@@ -94,7 +92,8 @@ class Scene(metaclass=abc.ABCMeta):
         # 1-28修改：数据类型改为float
         self._question_difficulties: float = 0.0
         # 1-15新增：增加对已知条件中命题的难度的记录
-        self._statement_difficulties: int = 0
+        # 1-29修改：修改数据类型，改为平均值
+        self._statement_difficulties: float = 0.0
         # 1-20新增：记录知识的难度
         self._knowledge_difficulties: int = 0
         self.scene_level: float = 0.0  # 场景难度
@@ -116,6 +115,8 @@ class Scene(metaclass=abc.ABCMeta):
         self._question_difficulties = 0.0
         # 1-20新增：同时移除知识难度
         self._knowledge_difficulties = 0
+        # 2-5新增：移除命题难度
+        self._statement_difficulties = 0.0
     
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
@@ -186,7 +187,8 @@ class Scene(metaclass=abc.ABCMeta):
         # self._chosen_group = [self._all_props[i] for i in idxs] # 选中的命题组合
         self._statements = [i.state(self.temps) for i in self._chosen_group] # 陈述列表
         # 1-15新增：记录命题的难度
-        self._statement_difficulties = sum([i.difficulty for i in self._chosen_group])
+        # 1-29修改：改为记录命题难度的最高值
+        self._statement_difficulties = max([i.difficulty for i in self._chosen_group])
         print("得到随机选择一组命题的陈述.")
         return self._statements
     
@@ -307,8 +309,8 @@ class Scene(metaclass=abc.ABCMeta):
             return ask_res
         option_state = [i.state(self.temps) if isinstance(i, prop.Proposition) else str(i) for i in self._ask_all_machine._option_dict.values()]
         # 1-15新增：记录命题的难度
-        # 1-28修改：将这类问题的难度修改为命题难度均值的两倍
-        self._question_difficulties += 2 * statistics.mean([i.difficulty for i in self._ask_all_machine._option_dict.values() if isinstance(i, prop.Proposition)])
+        # 1-28修改：将这类问题的难度修改为命题难度最大值
+        self._question_difficulties = max([i.difficulty for i in self._ask_all_machine._option_dict.values() if isinstance(i, prop.Proposition)])
         choice_dict = {k: v for k, v in zip(ask_res["choices"].keys(), option_state)}
         new_ask_res = ask_res | {"choices": choice_dict}
         return new_ask_res
