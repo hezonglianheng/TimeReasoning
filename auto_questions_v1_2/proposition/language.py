@@ -123,8 +123,8 @@ class LangParallelScene(metaclass=abc.ABCMeta):
         """运行“提问单个命题”
 
         Args:
-            execute (int, optional): 运行次数. Defaults to 10.
-            seed (Union[int, float, None], optional): 随机种子. Defaults to None.
+            execute (int, optional): 运行次数. 默认为10.
+            seed (Union[int, float, None], optional): 随机种子. 默认为None.
 
         Returns:
             list[dict[str, Any]]: 数据
