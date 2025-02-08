@@ -1,0 +1,30 @@
+// date: 2025-01-21
+// 记录命题的难度等级的文件
+
+{
+    // 格式: "命题类型": 难度等级
+    // 瞬时事件的模板
+    "temporal": 1.0,
+    // 时长的模板
+    "duration": 1.0,
+    // 持续事件的模板
+    "durative": 1.0,
+    // 时频的模板
+    "freq": 1.0,
+    // 事件先后关系的模板
+    "before": 1.0,
+    "before_time": 1.0,
+    "after": 1.0,
+    "after_time": 1.0,
+    "simultaneous": 1.0,
+    // 事件间隔的模板
+    "gap_time": 2.0,
+    // 时长关系的模板
+    "long": 3.0,
+    "long_time": 3.0,
+    "short": 3.0,
+    "short_time": 3.0,
+    "same_len": 3.0,
+    // 在……期间的模板
+    "during": 2.0,
+}

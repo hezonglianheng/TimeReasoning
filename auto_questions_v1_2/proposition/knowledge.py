@@ -13,7 +13,8 @@ class Knowledge(metaclass=abc.ABCMeta):
     """知识的抽象基类
     """
     def __init__(self) -> None:
-        pass
+        # 1-20新增：知识的难度，默认为1
+        self.difficulty: int = 1
     
     @abc.abstractmethod
     def use(self) -> Any:

@@ -16,6 +16,8 @@ from timereasoning import timescale as ts
 from timereasoning import language as lg
 
 if __name__ == "__main__":
+    # 1-20新增：增加对随机seed的控制
+    random.seed(0)
     lang = "zh"
     learn_japanese = event.TemporalEvent("他学", "日语", 1)
     learn_japanese.add_name("en", "Jack learns", " Japanese")
@@ -43,7 +45,7 @@ if __name__ == "__main__":
     lang_scene.add_guide("zh", "小明是一名大学生，以下是他的每周安排")
     lang_scene.add_guide("en", "Jack is a college student, and here are his weekly plans")
     all_combinations = list(combinations((learn_japanese, date, play_badminton, arrange, read_papers, meeting, movie, enjoy_fiction, guitar, jogging), 6))
-    samples = random.sample(all_combinations, 10)
+    samples = random.sample(all_combinations, 40)
     res = []
     for i, s in enumerate(samples):
         curr_scene.add_events(*s)

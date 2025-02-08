@@ -24,6 +24,8 @@ from timereasoning.machines import SearchMachine as SM # 11-03修改：引入时
 from proposition.machines import ReasonMachine as RM # 11-03修改：引入推理机构建推理图
 from timereasoning.machines import TimeGetRangeMachine as TGRM # 11-26修改：引入时间领域专用取值范围机
 from timereasoning.machines import TimeAskAllMachine as TAAM # 11-27修改：引入时间领域专用询问机
+# 1-22新增：引入时间领域config文件
+import timereasoning.config
 
 LOOP_LIMIT = 1 # 循环时间场景的循环长度上限
 
@@ -91,6 +93,8 @@ class TimeScene(Scene):
         for k in chosen_know: # 遍历所有的时间常识
             if isinstance(k, timeknoledge.EventKnowledge): # 如果是事件常识
                 self._knowledges.append(k.use()) # 将事件转化为时间命题
+                # 1-20新增：记录知识难度
+                self._knowledge_difficulties += k.difficulty
             else:
                 pass # 其他类型的常识暂不处理，后续可以添加
     
@@ -170,7 +174,11 @@ class TimeScene(Scene):
         # 以可及命题中的单元素时间命题为基础，构建时间领域专用取值范围机
         self._range_machine = TGRM([i.element for i in self._reachables if isinstance(i, timeprop.SingleTimeP)])
         print("初始化选取干扰项的范围获取机.")
-        self._ask_all_machine = TAAM(deepcopy(self._reachables), deepcopy(self._chosen_group), self.temps, self.graph, self._range_machine, ask_correct=self._ask_correct, lang=self.lang, ask_mode=self.ask_mode, tag=self.tag)
+        # 1-22新增：调整正确选项数量
+        nums: list[int] = list(timereasoning.config.ANSWER_NUM_WEIGHT.keys())
+        weights: list[float] = list(timereasoning.config.ANSWER_NUM_WEIGHT.values())
+        correct_num = random.choices(nums, weights=weights, k=1)[0]
+        self._ask_all_machine = TAAM(deepcopy(self._reachables), deepcopy(self._chosen_group), self.temps, self.graph, self._range_machine, ask_correct=self._ask_correct, lang=self.lang, ask_mode=self.ask_mode, tag=self.tag, correct=correct_num)
         print("初始化询问机.")
 
     def get_statements(self) -> list[str]:
@@ -276,7 +284,9 @@ class LoopScene(TimeScene):
     循环时间场景
     """
     # 11-30新增：场景难度评级
-    scene_level: float = 0.2
+    # 1-29修订：将场景难度评级从0.2增加为0.4
+    # 移动到__init__内部
+    # scene_level: float = 0.4
     
     def __init__(self, scale: ts.TimeScale | int, guide: str = "", loop: Optional[int] = None, *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化循环时间场景
@@ -299,6 +309,7 @@ class LoopScene(TimeScene):
         self.relations.extend(new_relations) # 添加特有的关系
         self.rules.remove(timerule.BeforeandGap)
         self.rules.remove(timerule.AfterandGap) # 移除不适用的规则
+        self.scene_level = .5 # 场景难度评级为0.5
     
     def get_all_props(self) -> None:
         super().get_all_props()
@@ -389,13 +400,16 @@ class DiffRelation(relation.DoubleEntailment):
         else:
             for i in res:
                 i.diff = i.diff % cls.loop
+            # 1-21移除：移除循环时间场景的循环时间上限决定的命题
+            """
             new_res: timeprop.DoubleTimeP = []
             for i, t in product(res, range(1, LOOP_LIMIT)):
                 j = deepcopy(i)
                 j.diff = i.diff + t * cls.loop
                 new_res.append(j)
-            # return res
-            return res + new_res
+            """
+            return res
+            # return res + new_res
         
     @classmethod
     def set_loop(cls, loop: int) -> type["DiffRelation"]:
@@ -418,6 +432,8 @@ class LoopRelation(relation.DoubleEntailment):
         else:
             for i in res:
                 i.diff = (cls.loop - prop.diff) % cls.loop
+                # 1-25修改：命题难度改为+2.0
+                i.difficulty += 2.0
             return res
 
     @classmethod

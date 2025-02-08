@@ -41,7 +41,8 @@ class Scene(metaclass=abc.ABCMeta):
     用于定义推理场景的基本属性和操作
     """
     # 11-30新增：场景的难度评级
-    scene_level: float = 0.0  # 场景难度
+    # 1-31修改：移动到内部
+    # scene_level: float = 0.0  # 场景难度
 
     def __init__(self, guide: str = "", *, ask_mode: Literal['random', 'deepest', 'tag'] = 'random', tag: Optional[list[str]] = None, lang: str = "zh") -> None:
         """初始化推理场景
@@ -88,9 +89,14 @@ class Scene(metaclass=abc.ABCMeta):
         # 12-11新增：记录由回答机返回的答案信息
         self.answer_info: dict[str, Any] = {}
         # 1-15新增：增加对问题中命题的难度的记录
-        self._question_difficulties: int = 0
+        # 1-28修改：数据类型改为float
+        self._question_difficulties: float = 0.0
         # 1-15新增：增加对已知条件中命题的难度的记录
-        self._statement_difficulties: int = 0
+        # 1-29修改：修改数据类型，改为平均值
+        self._statement_difficulties: float = 0.0
+        # 1-20新增：记录知识的难度
+        self._knowledge_difficulties: int = 0
+        self.scene_level: float = 0.0  # 场景难度
 
     # 12-13新增：场景类型名称
     @property
@@ -106,7 +112,11 @@ class Scene(metaclass=abc.ABCMeta):
         # 12-24新增：同时移除知识
         self._knowledges.clear()
         # 1-15新增：同时移除难度
-        self._question_difficulties = 0
+        self._question_difficulties = 0.0
+        # 1-20新增：同时移除知识难度
+        self._knowledge_difficulties = 0
+        # 2-5新增：移除命题难度
+        self._statement_difficulties = 0.0
     
     def add_knowledge(self, number: int = 5, seed: Union[int, float, None] = None,
                       file_path: Union[str, Path, None] = None) -> None:
@@ -117,7 +127,8 @@ class Scene(metaclass=abc.ABCMeta):
             file_path (Union[str, Path, None], optional): 知识命题文件路径. 默认为None.
         """
         assert number > 0, "知识命题数量必须大于0"
-        random.seed(seed)
+        # 1-20移除：移除随机种子设置
+        # random.seed(seed)
         print(f"开始添加知识命题.共添加{number}个.")
 
     def get_all_props(self) -> None:
@@ -176,7 +187,8 @@ class Scene(metaclass=abc.ABCMeta):
         # self._chosen_group = [self._all_props[i] for i in idxs] # 选中的命题组合
         self._statements = [i.state(self.temps) for i in self._chosen_group] # 陈述列表
         # 1-15新增：记录命题的难度
-        self._statement_difficulties = sum([i.difficulty for i in self._chosen_group])
+        # 1-29修改：改为记录命题难度的最高值
+        self._statement_difficulties = max([i.difficulty for i in self._chosen_group])
         print("得到随机选择一组命题的陈述.")
         return self._statements
     
@@ -217,7 +229,9 @@ class Scene(metaclass=abc.ABCMeta):
             return None
         self._asked_prop = random.choice(candidates)
         # 1-15新增：记录命题的难度
-        self._question_difficulties = self._asked_prop.difficulty
+        # 1-28修改：引用问题难度参数
+        # self._question_difficulties = self._asked_prop.difficulty
+        self._question_difficulties = self._asked_prop.question_difficulty
         # self._asked_prop = random.choice([i for i in self._all_props if not i.got(self._chosen_group) and i.askable])
         self._ask_info = self._asked_prop.ask(self.temps)
         print("提问完毕.")
@@ -295,7 +309,8 @@ class Scene(metaclass=abc.ABCMeta):
             return ask_res
         option_state = [i.state(self.temps) if isinstance(i, prop.Proposition) else str(i) for i in self._ask_all_machine._option_dict.values()]
         # 1-15新增：记录命题的难度
-        self._question_difficulties = sum([i.difficulty for i in self._ask_all_machine._option_dict.values() if isinstance(i, prop.Proposition)])
+        # 1-28修改：将这类问题的难度修改为命题难度最大值
+        self._question_difficulties = max([i.difficulty for i in self._ask_all_machine._option_dict.values() if isinstance(i, prop.Proposition)])
         choice_dict = {k: v for k, v in zip(ask_res["choices"].keys(), option_state)}
         new_ask_res = ask_res | {"choices": choice_dict}
         return new_ask_res
@@ -349,7 +364,9 @@ class Scene(metaclass=abc.ABCMeta):
                         # 1-15更新：增加问题中命题难度参数
                         # 1-15更新：增加已知条件中命题的难度参数
                         # LEVEL: ask_level(self.chain_length, len(self._statements), len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties),
-                        LEVEL: ask_level(self.chain_length, self._statement_difficulties, len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties),
+                        # LEVEL: ask_level(self.chain_length, self._statement_difficulties, len(answers[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties),
+                        # 1-20修订：采用知识难度参数计算难度
+                        LEVEL: ask_level(self.chain_length, self._statement_difficulties, len(answers[machines.ANSWERS]), self._knowledge_difficulties, self.scene_level, self._question_difficulties),
                         # 12-13更新：增加各种辅助判断信息
                         CHAIN_LENGTH: self.chain_length, 
                         SCENE_TYPE: self.scene_type, 
@@ -374,7 +391,8 @@ class Scene(metaclass=abc.ABCMeta):
         Returns:
             list[dict[str, Any]]: 一组题目
         """
-        random.seed(seed)
+        # 1-20移除：移除随机种子设置
+        # random.seed(seed)
         self._ask_correct = ask_correct # 设置询问机的询问模式
         self.get_all_props()
         question_list = []
@@ -396,7 +414,9 @@ class Scene(metaclass=abc.ABCMeta):
             # 1-15更新：增加问题中的命题难度参数
             # 1-15更新：增加已知条件中的命题难度参数
             # level = ask_level(ask_all_info[machines.LENGTH], len(self._statements), len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties)
-            level = ask_level(ask_all_info[machines.LENGTH], self._statement_difficulties, len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties)
+            # level = ask_level(ask_all_info[machines.LENGTH], self._statement_difficulties, len(ask_all_info[machines.ANSWERS]), len(self._knowledges), self.scene_level, self._question_difficulties)
+            # 1-20修订：采用知识难度参数计算难度
+            level = ask_level(ask_all_info[machines.LENGTH], self._statement_difficulties, len(ask_all_info[machines.ANSWERS]), self._knowledge_difficulties, self.scene_level, self._question_difficulties)
             item = {
                 "guide": self.guide,
                 "statement": self._statements,

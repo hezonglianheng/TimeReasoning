@@ -16,6 +16,8 @@ from timereasoning import timescale as ts
 from timereasoning import language as lg
 
 if __name__ == "__main__":
+    # 1-20新增：增加对随机seed的控制
+    random.seed(0)
     # 定义事件，注意有控制之后不需要赋时间值
     lang = "zh"
     life = event.DurativeEvent("他度过", "一生")
@@ -99,7 +101,7 @@ if __name__ == "__main__":
     lang_scene.add_guide("zh", "小明的女儿正在给朋友讲述父亲的一生")
     lang_scene.add_guide("en", "Jack's daughter is telling her friends about the story of her father's life")
     all_combinations = list(combinations((event_list), 6))
-    samples = random.sample(all_combinations, 10)
+    samples = random.sample(all_combinations, 40)
     res = []
     for i, s in enumerate(samples):
         # 将事件添加到时间场景中

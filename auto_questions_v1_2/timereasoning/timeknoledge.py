@@ -61,6 +61,8 @@ class EventKnowledge(TimeKnowledge):
         """
         self.dic = dic
         self.event = self._check_subtype()
+        # 1-20新增：从字典中读取知识的难度
+        self.difficulty: int = dic.get("difficulty", 1)
 
     def _check_subtype(self) -> event.Event:
         """检查事件知识的subtype标签是否正确，根据subtype标签构造事件对象并返回
