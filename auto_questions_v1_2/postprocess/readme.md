@@ -7,3 +7,4 @@
 - [numbering.py](numbering.py): 给同一文件中的试题编号，给试题中的group字段编号，去除临时字段group
 - [simplify.py](simplify.py): 生成简化版数据，从数据中抽取必要的字段用于测试
 - [stat.py](stat.py): 生成试题的简要统计报告
+- [result_stat.py](result_stat.py): 生成模型测试结果的简要统计报告
