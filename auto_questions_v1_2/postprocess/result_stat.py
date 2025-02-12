@@ -1,4 +1,5 @@
 # encoding: utf8
+# date: 2025-02-12
 
 """对模型输出的结果进行统计分析"""
 
@@ -22,19 +23,19 @@ LANGS = [config.LANG_CONFIG[n][config.LANG_NAME] for n in config.CURR_LANGS]
 
 MODEL_NAMES = [
     "claude-3-5-sonnet-20241022", 
-    "deepseek-chat",
-    "deepseek-r1-distill-qwen-32b", 
+    # "deepseek-chat",
+    # "deepseek-r1-distill-qwen-32b", 
     "deepseek-reasoner", 
-    "glm-4-plus", 
-    "glm-zero-preview", 
+    # "glm-4-plus", 
+    # "glm-zero-preview", 
     "gpt-4o", 
-    "Llama-3.3-70B-Instruct", 
+    # "Llama-3.3-70B-Instruct", 
     "o1-mini", 
     "o1-preview", 
-    "o3-mini", 
+    # "o3-mini", 
     "qwen-25-72B", 
     "qwen-max", 
-    "qwq-32B", 
+    # "qwq-32B", 
 ]
 
 def answer_ignore(records: list[dict]) -> dict[str, dict[str, float]]:
