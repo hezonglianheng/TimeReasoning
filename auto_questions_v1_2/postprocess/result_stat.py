@@ -6,6 +6,8 @@ import json
 import sys
 from pathlib import Path
 from collections import Counter
+import statistics
+from functools import reduce
 
 # 将上级目录加入到sys.path中
 sys.path.append(str(Path(__file__).absolute().parents[1].as_posix()))
@@ -14,6 +16,9 @@ import proposition.config as config
 
 CORRECT_ANSWER = "correct_answer"
 EXTRACTED_ANSWER = "extracted_answer"
+
+# 程序目前支持的语言
+LANGS = [config.LANG_CONFIG[n][config.LANG_NAME] for n in config.CURR_LANGS]
 
 MODEL_NAMES = [
     "claude-3-5-sonnet-20241022", 
@@ -32,14 +37,14 @@ MODEL_NAMES = [
     "qwq-32B", 
 ]
 
-def answer_ignore(records: list[dict]) -> str:
+def answer_ignore(records: list[dict]) -> dict[str, dict[str, float]]:
     """统计忽略正确选项的情况
 
     Args:
         records (list[dict]): 数据记录
 
     Returns:
-        str: 统计报告
+        dict[str, dict[str, float]]: 统计报告
     """
 
     def is_ignore(correct: list[str], extract: list[str]) -> bool:
@@ -60,19 +65,17 @@ def answer_ignore(records: list[dict]) -> str:
     # 统计忽略正确选项的比例
     ratio = sum(ignore_judges) / len(ignore_judges)
     # 生成报告
-    report: str = f"""忽略正确选项统计：
-    忽略正确选项的数量：{sum(ignore_judges)}
-    忽略正确选项的比例：{ratio}"""
+    report = {"miss": {"ratio": ratio, "num": sum(ignore_judges)}}
     return report
 
-def extra_answer(records: list[dict]) -> str:
+def extra_answer(records: list[dict]) -> dict[str, dict[str, float]]:
     """统计多余答案的情况
 
     Args:
         records (list[dict]): 数据记录
 
     Returns:
-        str: 统计报告
+        dict[str, dict[str, float]]: 统计报告
     """
 
     def is_extra(correct: list[str], extract: list[str]) -> bool:
@@ -93,12 +96,10 @@ def extra_answer(records: list[dict]) -> str:
     # 统计多余答案的比例
     ratio = sum(extra_judges) / len(extra_judges)
     # 生成报告
-    report: str = f"""多余答案统计：
-    多余答案的数量：{sum(extra_judges)}
-    多余答案的比例：{ratio}"""
+    report: dict = {"extra": {"ratio": ratio, "num": sum(extra_judges)}}
     return report
 
-def info_analysis(records: list[dict], standard_path: Path) -> str:
+def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[str, float]]:
     """对试题的详细信息进行分析
 
     Args:
@@ -106,17 +107,17 @@ def info_analysis(records: list[dict], standard_path: Path) -> str:
         standard_path (Path): 标准答案文件路径
 
     Returns:
-        str: 分析报告
+        dict[str, dict[str, float]]: 试题详细信息分析报告
     """
 
-    def scene_type(records: list[dict]) -> str:
+    def scene_type(records: list[dict]) -> dict[str, dict[str, float]]:
         """统计各个场景类型的数量和正确率
 
         Args:
             records (list[dict]): 数据记录
 
         Returns:
-            str: 场景类型统计报告
+            dict[str, dict[str, float]]: 场景各类型正确率
         """
         scene = Counter()
         cor_scene = Counter()
@@ -126,17 +127,18 @@ def info_analysis(records: list[dict], standard_path: Path) -> str:
             if r["is_cor"]:
                 cor_scene[s[config.QUES_INFO][config.SCENE_TYPE]] += 1
 
-        report = "场景类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_scene[k]}, 正确率{cor_scene[k]/v}" for k, v in scene.items()])
-        return report
+        # report = "场景类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_scene[k]}, 正确率{cor_scene[k]/v}" for k, v in scene.items()])
+        report = {k: cor_scene[k]/v for k, v in scene.items()}
+        return {"scene": report}
 
-    def question_type(records: list[dict]) -> str:
+    def question_type(records: list[dict]) -> dict[str, dict[str, float]]:
         """统计各个问题类型的数量和正确率
 
         Args:
             records (list[dict]): 数据记录
 
         Returns:
-            str: 问题类型统计报告
+            dict[str, dict[str, float]]: 问题类型正确率
         """
         qtype = Counter()
         cor_qtype = Counter()
@@ -148,8 +150,9 @@ def info_analysis(records: list[dict], standard_path: Path) -> str:
                 if r["is_cor"]:
                     cor_qtype[q] += 1
 
-        report = "问题类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_qtype[k]}, 正确率{cor_qtype[k]/v}" for k, v in qtype.items()])
-        return report
+        # report = "问题类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_qtype[k]}, 正确率{cor_qtype[k]/v}" for k, v in qtype.items()])
+        report = {k: cor_qtype[k]/v for k, v in qtype.items()}
+        return {"question_type": report}
         
     # standard_path = Path(input("请输入标准答案文件路径："))
     with standard_path.open(encoding="utf8") as f:
@@ -159,9 +162,13 @@ def info_analysis(records: list[dict], standard_path: Path) -> str:
         scene_type(records),
         question_type(records),
     ]
-    return "\n\n".join(reports)
+    # return "\n\n".join(reports)
+    report = {}
+    for r in reports:
+        report.update(r)
+    return report
 
-def reports4single_model(dir: Path, model_name: str, field: str, lang: str, standard_path: Path) -> None:
+def reports4single_model(dir: Path, model_name: str, field: str, lang: str, standard_path: Path) -> dict[str, dict[str, float]] | None:
     """对单个模型的结果进行统计分析
 
     Args:
@@ -170,6 +177,9 @@ def reports4single_model(dir: Path, model_name: str, field: str, lang: str, stan
         field (str): 领域类型
         lang (str): 语言参数
         standard_path (Path): 标准答案文件路径
+
+    Returns:
+        dict[str, dict[str, float]]: 统计报告
     """
     # 输入json文件路径
     # file_path = input("请输入json文件路径：")
@@ -190,24 +200,56 @@ def reports4single_model(dir: Path, model_name: str, field: str, lang: str, stan
         info_analysis(data, standard_path),
     ]
 
+    """
     # 输出报告
     print("\n\n".join(reports))
     report_path = file_path.parents[1] / (file_path.stem + "_report.txt")
     with open(report_path, "w", encoding="utf8") as f:
         f.write("\n\n".join(reports))
+    """
+    # 报告合并
+    report = {}
+    for r in reports:
+        report.update(r)
+    return report
+
+def lang_report(dir_path: Path, lang: str, field: str) -> dict[str, dict[str, float]]:
+    """对不同语言的结果进行统计分析
+
+    Args:
+        dir_path (Path): 包含json文件的文件夹的路径
+        lang (str): 语言参数
+        field (str): 领域类型
+
+    Returns:
+        dict[str, dict[str, float]]: 统计报告
+    """
+    # 输入标准答案文件路径
+    standard_path = Path(input(f"请输入语言{lang}标准答案文件路径："))
+    # 遍历模型类型
+    model_reports = [report for m in MODEL_NAMES if (report := reports4single_model(dir_path, m, field, lang, standard_path)) is not None]
+    # 总体报告
+    report = {}
+    for k1 in model_reports[0]:
+        report[k1] = {}
+        for k2 in model_reports[0][k1]:
+            report[k1][f"{k2}_{lang}"] = statistics.mean([i[k1][k2] for i in model_reports if i is not None])
+    return report
 
 def main():
     # 输入包含json文件的文件夹的路径
     dir_path = Path(input("请输入包含json文件的文件夹的路径："))
-    # 输入语言参数
-    lang = input("请输入语言参数：")
     # 输入领域类型
     field = input("请输入领域类型：")
-    # 输入标准答案文件路径
-    standard_path = Path(input("请输入标准答案文件路径："))
-    # 遍历模型类型
-    for model_name in MODEL_NAMES:
-        reports4single_model(dir_path, model_name, field, lang, standard_path)
+    reports = [lang_report(dir_path, lang, field) for lang in LANGS]
+    report = {}
+    for key in reports[0]:
+        curr_report = reduce(lambda x, y: x | y, [r[key] for r in reports])
+        report[key] = curr_report
+
+    res_path = dir_path.parents[1] / (field + "_report.json")
+    with res_path.open("w", encoding="utf8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
     main()
