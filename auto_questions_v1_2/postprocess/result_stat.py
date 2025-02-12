@@ -15,6 +15,23 @@ import proposition.config as config
 CORRECT_ANSWER = "correct_answer"
 EXTRACTED_ANSWER = "extracted_answer"
 
+MODEL_NAMES = [
+    "claude-3-5-sonnet-20241022", 
+    "deepseek-chat",
+    "deepseek-r1-distill-qwen-32b", 
+    "deepseek-reasoner", 
+    "glm-4-plus", 
+    "glm-zero-preview", 
+    "gpt-4o", 
+    "Llama-3.3-70B-Instruct", 
+    "o1-mini", 
+    "o1-preview", 
+    "o3-mini", 
+    "qwen-25-72B", 
+    "qwen-max", 
+    "qwq-32B", 
+]
+
 def answer_ignore(records: list[dict]) -> str:
     """统计忽略正确选项的情况
 
@@ -81,11 +98,12 @@ def extra_answer(records: list[dict]) -> str:
     多余答案的比例：{ratio}"""
     return report
 
-def info_analysis(records: list[dict]) -> str:
+def info_analysis(records: list[dict], standard_path: Path) -> str:
     """对试题的详细信息进行分析
 
     Args:
         records (list[dict]): 数据记录
+        standard_path (Path): 标准答案文件路径
 
     Returns:
         str: 分析报告
@@ -133,7 +151,7 @@ def info_analysis(records: list[dict]) -> str:
         report = "问题类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_qtype[k]}, 正确率{cor_qtype[k]/v}" for k, v in qtype.items()])
         return report
         
-    standard_path = Path(input("请输入标准答案文件路径："))
+    # standard_path = Path(input("请输入标准答案文件路径："))
     with standard_path.open(encoding="utf8") as f:
         standard_data: list[dict] = json.load(f)
 
@@ -143,10 +161,24 @@ def info_analysis(records: list[dict]) -> str:
     ]
     return "\n\n".join(reports)
 
-def main():
+def reports4single_model(dir: Path, model_name: str, field: str, lang: str, standard_path: Path) -> None:
+    """对单个模型的结果进行统计分析
+
+    Args:
+        dir (Path): 结果所在文件夹路径
+        model_name (str): 模型名称
+        field (str): 领域类型
+        lang (str): 语言参数
+        standard_path (Path): 标准答案文件路径
+    """
     # 输入json文件路径
-    file_path = input("请输入json文件路径：")
-    file_path = Path(file_path)
+    # file_path = input("请输入json文件路径：")
+    # file_path = Path(file_path)
+    # 构建文件路径
+    file_path = dir / f"{model_name}_{field}_{lang}.json"
+    if not file_path.exists():
+        print(f"文件{file_path}不存在，跳过")
+        return None
     # 读取json文件
     with open(file_path, encoding="utf8") as f:
         data: list[dict] = json.load(f)
@@ -155,14 +187,27 @@ def main():
         answer_ignore(data), 
         # 2-12新增：统计多余答案的情况和对试题的详细信息进行分析
         extra_answer(data),
-        info_analysis(data),
+        info_analysis(data, standard_path),
     ]
 
     # 输出报告
     print("\n\n".join(reports))
-    report_path = file_path.with_name(file_path.stem + "_report.txt")
+    report_path = file_path.parents[1] / (file_path.stem + "_report.txt")
     with open(report_path, "w", encoding="utf8") as f:
         f.write("\n\n".join(reports))
+
+def main():
+    # 输入包含json文件的文件夹的路径
+    dir_path = Path(input("请输入包含json文件的文件夹的路径："))
+    # 输入语言参数
+    lang = input("请输入语言参数：")
+    # 输入领域类型
+    field = input("请输入领域类型：")
+    # 输入标准答案文件路径
+    standard_path = Path(input("请输入标准答案文件路径："))
+    # 遍历模型类型
+    for model_name in MODEL_NAMES:
+        reports4single_model(dir_path, model_name, field, lang, standard_path)
 
 if __name__ == "__main__":
     main()
