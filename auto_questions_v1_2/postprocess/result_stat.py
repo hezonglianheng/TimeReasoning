@@ -6,8 +6,7 @@
 import json
 import sys
 from pathlib import Path
-from collections import Counter
-import statistics
+from collections import Counter, defaultdict
 from functools import reduce
 
 # 将上级目录加入到sys.path中
@@ -130,7 +129,7 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
 
         # report = "场景类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_scene[k]}, 正确率{cor_scene[k]/v}" for k, v in scene.items()])
         report = {k: cor_scene[k]/v for k, v in scene.items()}
-        return {"scene": report}
+        return {"knowledge_attribute": report}
 
     def question_type(records: list[dict]) -> dict[str, dict[str, float]]:
         """统计各个问题类型的数量和正确率
@@ -145,15 +144,41 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
         cor_qtype = Counter()
         for i, (r, s) in enumerate(zip(records, standard_data), start=1):
             assert r[config.ID] == s[config.ID], f"第{i}条数据记录与标准答案不匹配"
-            qtypes: list[str] = s[config.QUES_INFO][config.QUESTION_TYPE]
-            for q in qtypes:
-                qtype[q] += 1
-                if r["is_cor"]:
-                    cor_qtype[q] += 1
+            question: str = r[config.QUESTION]
+            curr_type = "single proposition"
+            if question == config.LANG_CONFIG["zh"][config.ASK_RIGHT] or question == config.LANG_CONFIG["en"][config.ASK_RIGHT]:
+                curr_type = "correct propositions"
+            elif question == config.LANG_CONFIG["zh"][config.ASK_WRONG] or question == config.LANG_CONFIG["en"][config.ASK_WRONG]:
+                curr_type = "incorrect propositions"
+            qtype[curr_type] += 1
+            if r["is_cor"]:
+                cor_qtype[curr_type] += 1
 
-        # report = "问题类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_qtype[k]}, 正确率{cor_qtype[k]/v}" for k, v in qtype.items()])
         report = {k: cor_qtype[k]/v for k, v in qtype.items()}
         return {"question_type": report}
+    
+    def question_tag(records: list[dict]) -> dict[str, dict[str, float]]:
+        """统计各个问题标签的数量和正确率
+
+        Args:
+            records (list[dict]): 数据记录
+
+        Returns:
+            dict[str, dict[str, float]]: 问题类型正确率
+        """
+        qtag = Counter()
+        cor_qtag = Counter()
+        for i, (r, s) in enumerate(zip(records, standard_data), start=1):
+            assert r[config.ID] == s[config.ID], f"第{i}条数据记录与标准答案不匹配"
+            qtags: list[str] = s[config.QUES_INFO][config.QUESTION_TYPE]
+            for q in qtags:
+                qtag[q] += 1
+                if r["is_cor"]:
+                    cor_qtag[q] += 1
+
+        # report = "问题类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_qtype[k]}, 正确率{cor_qtype[k]/v}" for k, v in qtype.items()])
+        report = {k: cor_qtag[k]/v for k, v in qtag.items()}
+        return {"question_tag": report}
         
     # standard_path = Path(input("请输入标准答案文件路径："))
     with standard_path.open(encoding="utf8") as f:
@@ -162,6 +187,7 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
     reports = [
         scene_type(records),
         question_type(records),
+        question_tag(records),
     ]
     # return "\n\n".join(reports)
     report = {}
@@ -195,9 +221,10 @@ def reports4single_model(dir: Path, model_name: str, field: str, lang: str, stan
         data: list[dict] = json.load(f)
 
     reports = [
-        answer_ignore(data), 
+        # 暂时不统计漏选、多选的情况
+        # answer_ignore(data), 
         # 2-12新增：统计多余答案的情况和对试题的详细信息进行分析
-        extra_answer(data),
+        # extra_answer(data),
         info_analysis(data, standard_path),
     ]
 
@@ -228,14 +255,14 @@ def lang_report(dir_path: Path, lang: str, field: str) -> dict[str, dict[str, fl
     # 输入标准答案文件路径
     standard_path = Path(input(f"请输入语言{lang}标准答案文件路径："))
     # 遍历模型类型
-    model_reports = [report for m in MODEL_NAMES if (report := reports4single_model(dir_path, m, field, lang, standard_path)) is not None]
-    # 总体报告
-    report = {}
-    for k1 in model_reports[0]:
-        report[k1] = {}
-        for k2 in model_reports[0][k1]:
-            report[k1][f"{k2}_{lang}"] = statistics.mean([i[k1][k2] for i in model_reports if i is not None])
-    return report
+    total_report = defaultdict(dict)
+    for m in MODEL_NAMES:
+        if (report := reports4single_model(dir_path, m, field, lang, standard_path)) is None:
+            continue
+        for k1 in report:
+            for k2 in report[k1]:
+                total_report[k1][f"{k2}-{lang}_{m}"] = report[k1][k2]
+    return total_report
 
 def main():
     # 输入包含json文件的文件夹的路径
