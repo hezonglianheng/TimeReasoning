@@ -1,0 +1,83 @@
+// date: 2025-02-19
+// 与时间单位相关的知识库文件
+
+{
+    // 基本时间单位，它们的值是整数
+    "basic_unit": ["year", "month", "day", "hour", "minute", "second"],
+    // 时间的种类
+    "time_kinds": {
+        // 年份
+        "year": {
+            // 时间单位中包含的基本单位
+            "units": ["year", ],
+            "translate": {
+                // 不同语言对于该时间类型的翻译
+                // method为template时，采用模板-替换进行翻译，模板中的变量用{}括起来
+                "cn": [
+                    {"attr": "year", "method": "template", "template": "{year}年", }, 
+                ], 
+                "en": [
+                    {"attr": "year", "method": "template", "template": "{year}", }, 
+                ],
+            }, 
+        }, 
+        // 每周日期
+        "week_day": {
+            "units": ["day", ], 
+            "translate": {
+                "cn": [
+                    {"attr": "day", "method": "list", "list": "week_day", },
+                ], 
+                "en": [
+                    {"attr": "day", "method": "list", "list": "week_day", }, 
+                ],
+            },
+        }, 
+    }, 
+    // 时间间隔的种类
+    "timedelta_kinds": {
+        // 时间间隔年数
+        "year": {
+            // 时间间隔单位中包含的基本单位（属性）
+            "units": ["year", ],
+            "translate": {
+                // 不同语言对于该时间类型的翻译情况，记录时间间隔的每个属性和它对应的单位
+                "cn": [
+                    {"attr": "year", "unit": "年", }, 
+                ], 
+                "en": [
+                    {"attr": "year", "unit": "year", }, 
+                ],
+            }, 
+        }, 
+        // 时间间隔天数
+        "day": {
+            "units": ["day", ], 
+            "translate": {
+                "cn": [
+                    {"attr": "day", "unit": "天", },
+                ], 
+                "en": [
+                    {"attr": "day", "unit": "day", }, 
+                ], 
+            },
+        }, 
+    }, 
+    // 时间单位的列表
+    "time_list": {
+        // 一周的日期列表
+        "week_day": {
+            "cn": ["周一", "周二", "周三", "周四", "周五", "周六", "周日", ], 
+            "en": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", ], 
+        },
+    },
+    // 时间单位的转换规则
+    "convert": [
+        {"from": "year", "to": "month", "rate": 12, "precise": true, }, 
+        {"from": "year", "to": "day", "rate": 365, "precise": false, }, 
+        {"from": "month", "to": "day", "rate": 30, "precise": false, }, 
+        {"from": "day", "to": "hour", "rate": 24, "precise": true, }, 
+        {"from": "hour", "to": "minute", "rate": 60, "precise": true, }, 
+        {"from": "minute", "to": "second", "rate": 60, "precise": true, },
+    ], 
+}
