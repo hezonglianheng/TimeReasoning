@@ -25,11 +25,12 @@
         "week_day": {
             "units": ["day", ], 
             "translate": {
+                // strategy为list时，根据时间值检索列表，找到对应的翻译
                 "cn": [
-                    {"attr": "day", "strategy": "list", "list": "week_day", },
+                    {"attr": "day", "strategy": "list", "list": ["周一", "周二", "周三", "周四", "周五", "周六", "周日", ], },
                 ], 
                 "en": [
-                    {"attr": "day", "strategy": "list", "list": "week_day", }, 
+                    {"attr": "day", "strategy": "list", "list": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", ], }, 
                 ],
             },
         }, 
@@ -63,14 +64,6 @@
             },
         }, 
     }, 
-    // 时间单位的列表
-    "time_list": {
-        // 一周的日期列表
-        "week_day": {
-            "cn": ["周一", "周二", "周三", "周四", "周五", "周六", "周日", ], 
-            "en": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", ], 
-        },
-    },
     // 时间单位的转换规则
     "convert": [
         {"from": "year", "to": "month", "rate": 12, "precise": true, }, 

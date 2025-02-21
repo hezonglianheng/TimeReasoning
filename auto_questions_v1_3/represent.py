@@ -69,8 +69,7 @@ class CustomTime(element.Element):
                 res += template.format(**self.attrs)
             elif g[STRATEGY] == "list":
                 # 通过读取列表的方法完成翻译
-                list_name: str = g["list"]
-                time_list: list[str] = TIME_UNIT["time_list"][list_name][lang]
+                time_list: list[str] = g["list"]
                 time_value: int = self[g["attr"]]
                 res += time_list[time_value - 1]
             else:
