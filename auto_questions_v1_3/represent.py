@@ -16,6 +16,10 @@ TIME_KINDS = "time_kinds"
 TIMEDELTA_KINDS = "timedelta_kinds"
 STRATEGY = "strategy" # 策略键
 TRANSLATE = "translate" # 翻译
+CONVERT = "convert" # 转换
+BASE = "base" # 基本单位
+FROM = "from" # 起始单位
+TO = "to" # 目标单位
 
 SEPARATE = {
     "cn": "", # 中文不需要分隔符
@@ -58,6 +62,30 @@ class CustomTime(element.Element):
                 self.kind = k
                 return
 
+    @property
+    def convert2base(self) -> dict[str, int]:
+        """将时间值转换为基本单位，供进一步比较和计算
+
+        Raises:
+            ValueError: 对时间类型的转换出现了未知的转换方法
+
+        Returns:
+            dict[str, int]: 转换后的时间值字典，键为单位名称，值为时间值
+        """
+        base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+        convert_result: dict[str, int] = {base: self[base]}
+        convert_guide: list[dict] = TIME_UNIT[TIME_KINDS][self.kind][CONVERT]
+        for g in convert_guide:
+            if g[STRATEGY] == "convert":
+                convert_result[base] += unit_convert(self[g[FROM]], g[FROM], base)
+            elif g[STRATEGY] == "list":
+                time_list: list[str] = g["list"]
+                time_value: int = self[g[FROM]]
+                convert_result[base] += time_list[time_value - 1]
+            else:
+                raise ValueError(f"对{self.kind}类型的转换出现了未知的转换方法: {g[STRATEGY]}")
+        return convert_result
+
     def translate(self, lang: str) -> str:
         # 获取翻译指南
         trans_guide: list[dict[str, str]] = TIME_UNIT[TIME_KINDS][self.kind][TRANSLATE][lang]
@@ -76,6 +104,17 @@ class CustomTime(element.Element):
                 raise ValueError(f"对{self.kind}类型的翻译出现了未知的翻译方法: {g[STRATEGY]}")
         return res
     
+    def __lt__(self, other: "CustomTime") -> bool:
+        assert type(self) == type(other), "两个时间对象的class不同不能比较"
+        assert self.kind == other.kind, "两个时间对象的kind不同不能比较"
+        base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+        self_base: int = self.convert2base[base]
+        other_base: int = other.convert2base[base]
+        return self_base < other_base
+
+    def __gt__(self, other: "CustomTime") -> bool:
+        return not (self < other)
+    
     def __sub__(self, other: "CustomTime") -> Optional["CustomTimeDelta"]:
         """时间相减的魔术方法
 
@@ -87,8 +126,16 @@ class CustomTime(element.Element):
         """
         assert type(self) == type(other), "两个时间对象的class不同不能相减"
         assert self.kind == other.kind, "两个时间对象的kind不同不能相减"
-        res = CustomTimeDelta()
-        # TODO: 计算时间间隔 比较时间先后
+        if self < other:
+            return None
+        else:
+            base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+            self_base: int = self.convert2base[base]
+            other_base: int = other.convert2base[base]
+            delta_base: int = self_base - other_base
+            delta_kind: str = TIME_UNIT[TIME_KINDS][self.kind]["sub_result_kind"]
+            delta = CustomTimeDelta(kind=delta_kind, **{base: delta_base})
+            return delta
 
 class CustomTimeDelta(element.Element):
     """自定义时间间隔的抽象基类
@@ -109,6 +156,15 @@ class CustomTimeDelta(element.Element):
             res += f"{time_value}{separate}{unit_name}"
         return res
 
+    def __lt__(self, other: "CustomTimeDelta") -> bool:
+        assert type(self) == type(other), "两个时间对象的class不同不能比较"
+        assert self.kind == other.kind, "两个时间对象的kind不同不能比较"
+        base: str = TIME_UNIT[TIMEDELTA_KINDS][self.kind][BASE]
+        return self[base] < other[base]
+
+    def __gt__(self, other: "CustomTimeDelta") -> bool:
+        return not (self < other)
+
     def __sub__(self, other: "CustomTimeDelta") -> Optional["CustomTimeDelta"]:
         """时间间隔相减的魔术方法
 
@@ -120,19 +176,19 @@ class CustomTimeDelta(element.Element):
         """
         assert type(self) == type(other), "两个时间对象的class不同不能相减"
         assert self.kind == other.kind, "两个时间对象的kind不同不能相减"
-        res = CustomTimeDelta()
-        # TODO: 计算时间间隔 比较时间长短
+        if self < other:
+            return None
+        else:
+            base: str = TIME_UNIT[TIMEDELTA_KINDS][self.kind][BASE]
+            delta_base: int = self[base] - other[base]
+            delta = CustomTimeDelta(kind=self.kind, **{base: delta_base})
+            return delta
 
 if __name__ == "__main__":
     time1 = CustomTime(kind="year", year=1949)
-    print(time1.translate(config.CHINESE))
-    print(time1.translate(config.ENGLISH))
-    time2 = CustomTime(kind="week_day", day=3)
-    print(time2.translate(config.CHINESE))
-    print(time2.translate(config.ENGLISH))
-    time3 = CustomTimeDelta(kind="day", day=3)
-    print(time3.translate(config.CHINESE))
-    print(time3.translate(config.ENGLISH))
-    time4 = CustomTimeDelta(kind="year", year=2)
-    print(time4.translate(config.CHINESE))
-    print(time4.translate(config.ENGLISH))
+    time2 = CustomTime(kind="year", year=2021)
+    time3 = CustomTime(kind="year", year=2030)
+    delta1 = time2 - time1
+    delta2 = time3 - time2
+    print(delta1 - delta2)
+    print(delta2 - delta1)
