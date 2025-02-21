@@ -96,3 +96,6 @@ class Element(metaclass = abc.ABCMeta):
             bool: 事件是否在元素集中的判定
         """
         return any([self == e for e in element_list])
+
+    def __str__(self) -> str:
+        return f"{{'name': '{self.name}', 'kind': '{self.kind}', 'attrs': {self.attrs}}}"
