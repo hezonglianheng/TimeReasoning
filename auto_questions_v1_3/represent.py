@@ -14,8 +14,8 @@ from typing import Any, Optional
 # 常量
 TIME_KINDS = "time_kinds"
 TIMEDELTA_KINDS = "timedelta_kinds"
-METHOD = "method" # 时间类型的翻译方法键
-TRANSLATE = "translate" # 时间类型的翻译键
+STRATEGY = "strategy" # 策略键
+TRANSLATE = "translate" # 翻译
 
 SEPARATE = {
     "cn": "", # 中文不需要分隔符
@@ -63,18 +63,18 @@ class CustomTime(element.Element):
         trans_guide: list[dict[str, str]] = TIME_UNIT[TIME_KINDS][self.kind][TRANSLATE][lang]
         res: str = ""
         for g in trans_guide:
-            if g[METHOD] == "template":
+            if g[STRATEGY] == "template":
                 # 通过模板替换的方法完成翻译
                 template: str = g["template"]
                 res += template.format(**self.attrs)
-            elif g[METHOD] == "list":
+            elif g[STRATEGY] == "list":
                 # 通过读取列表的方法完成翻译
                 list_name: str = g["list"]
                 time_list: list[str] = TIME_UNIT["time_list"][list_name][lang]
                 time_value: int = self[g["attr"]]
                 res += time_list[time_value - 1]
             else:
-                raise ValueError(f"对{self.kind}类型的翻译出现了未知的翻译方法: {g[METHOD]}")
+                raise ValueError(f"对{self.kind}类型的翻译出现了未知的翻译方法: {g[STRATEGY]}")
         return res
     
     def __sub__(self, other: "CustomTime") -> Optional["CustomTimeDelta"]:

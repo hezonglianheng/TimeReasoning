@@ -10,14 +10,14 @@
         "year": {
             // 时间单位中包含的基本单位
             "units": ["year", ],
+            // 不同语言对于时间类型的翻译
             "translate": {
-                // 不同语言对于该时间类型的翻译
-                // method为template时，采用模板-替换进行翻译，模板中的变量用{}括起来
+                // strategy为template时，采用模板-替换进行翻译，模板中的变量用{}括起来
                 "cn": [
-                    {"attr": "year", "method": "template", "template": "{year}年", }, 
+                    {"attr": "year", "strategy": "template", "template": "{year}年", }, 
                 ], 
                 "en": [
-                    {"attr": "year", "method": "template", "template": "{year}", }, 
+                    {"attr": "year", "strategy": "template", "template": "{year}", }, 
                 ],
             }, 
         }, 
@@ -26,10 +26,10 @@
             "units": ["day", ], 
             "translate": {
                 "cn": [
-                    {"attr": "day", "method": "list", "list": "week_day", },
+                    {"attr": "day", "strategy": "list", "list": "week_day", },
                 ], 
                 "en": [
-                    {"attr": "day", "method": "list", "list": "week_day", }, 
+                    {"attr": "day", "strategy": "list", "list": "week_day", }, 
                 ],
             },
         }, 
