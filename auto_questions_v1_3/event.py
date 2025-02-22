@@ -12,9 +12,12 @@ import config
 NAME_INFO = "name_info" # 名称信息
 NAME = "name" # 名称
 PRONOUN = "pronoun" # 代词
+USE_PRONOUN = "use_pronoun" # 使用代词
+# 事件的基本元素
 SUBJECT = "subject" # 主语
 PREDICATE = "predicate" # 谓语
 OBJECT = "object" # 宾语
+# 事件的时态和数
 TENSE = "tense" # 时态
 PAST = "past" # 过去时
 PRESENT = "present" # 现在时
@@ -27,7 +30,7 @@ class MyObject(element.Element):
 
     def __init__(self, name = "", kind = "", **kwargs):
         super().__init__(name, kind, **kwargs)
-        self.use_pronoun: bool = False # 是否使用代词
+        self[USE_PRONOUN] = False # 是否使用代词
 
     def translate(self, lang: str) -> str:
         """将事物元素翻译成指定语言的方法
@@ -39,7 +42,7 @@ class MyObject(element.Element):
             str: 翻译结果
         """
         curr_info: dict = self[NAME_INFO][lang]
-        if self.use_pronoun:
+        if self[USE_PRONOUN]:
             return curr_info[PRONOUN]
         else:
             return curr_info[NAME]
@@ -82,10 +85,10 @@ if __name__ == "__main__":
     subject = MyObject(name = "Tom", kind = "person", is_third_singular = True, name_info = nameinfo, )
     print(subject.translate(config.CHINESE))
     print(subject.translate(config.ENGLISH))
-    subject.use_pronoun = True
+    subject[USE_PRONOUN] = True
     print(subject.translate(config.CHINESE))
     print(subject.translate(config.ENGLISH))
-    subject.use_pronoun = False
+    subject[USE_PRONOUN] = False
     event = {"cn": "打", "en": "play"}
     obj = {"cn": "羽毛球", "en": "badminton"}
     e = Event(subject = subject, predicate = event, object = obj, tense = PRESENT)
