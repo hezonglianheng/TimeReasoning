@@ -98,4 +98,4 @@ class Element(metaclass = abc.ABCMeta):
         return any([self == e for e in element_list])
 
     def __str__(self) -> str:
-        return f"{{'name': '{self.name}', 'kind': '{self.kind}', 'attrs': {self.attrs}}}"
+        return str(vars(self))
