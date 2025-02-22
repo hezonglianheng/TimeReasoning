@@ -26,3 +26,4 @@ PLURAL_NOUN = "NNS"
 # 文件配置
 KNOWLEDGE_BASE_DIR = Path(__file__).parent / "knowledge_base"
 TIME_UNIT_FILE = KNOWLEDGE_BASE_DIR / "time_unit.json5"
+PROP_FILE = KNOWLEDGE_BASE_DIR / "proposition.json5"
