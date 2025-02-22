@@ -27,11 +27,6 @@ RATE = "rate" # 单位转换比率
 PRECISE = "precise" # 是否精确
 UNIT = "unit" # 单位
 
-SEPARATE = {
-    "cn": "", # 中文不需要分隔符
-    "en": " ", # 英文需要空格分隔
-}
-
 # 读取时间单位的配置文件
 with open(config.TIME_UNIT_FILE, "r", encoding = "utf8") as f:
     TIME_UNIT: dict[str, Any] = json5.load(f)
@@ -174,7 +169,7 @@ class CustomTimeDelta(element.Element):
             key: str = g["attr"] # 时间值的键
             unit_name: str = g[UNIT] # 时间的单位
             time_value: int = self[key] # 时间值，为整数值
-            separate = SEPARATE[lang] # 分隔符
+            separate = config.SEPARATE[lang] # 分隔符
             if lang == config.ENGLISH and time_value > 1:
                 # 英文需要将单位名转换为复数形式
                 unit_name: str = lemminflect.getInflection(unit_name, tag = config.PLURAL_NOUN)[0]

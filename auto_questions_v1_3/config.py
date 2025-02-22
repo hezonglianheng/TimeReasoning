@@ -10,6 +10,11 @@ from pathlib import Path
 CHINESE = "cn"
 ENGLISH = "en"
 
+SEPARATE = {
+    CHINESE: "", # 中文不需要分隔符
+    ENGLISH: " ", # 英文需要空格分隔
+}
+
 # Penn-Treebank 词性标签
 PAST_TENSE = "VBD"
 PAST_PARTICIPLE = "VBN"
