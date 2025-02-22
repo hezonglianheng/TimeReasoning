@@ -7,11 +7,14 @@
 
 import json5
 import lemminflect
+import networkx as nx
 import element
 import config
 from typing import Any, Optional
+import random
 
 # 常量
+BASIC_UNIT = "basic_unit"
 TIME_KINDS = "time_kinds"
 TIMEDELTA_KINDS = "timedelta_kinds"
 STRATEGY = "strategy" # 策略键
@@ -20,6 +23,9 @@ CONVERT = "convert" # 转换
 BASE = "base" # 基本单位
 FROM = "from" # 起始单位
 TO = "to" # 目标单位
+RATE = "rate" # 单位转换比率
+PRECISE = "precise" # 是否精确
+UNIT = "unit" # 单位
 
 SEPARATE = {
     "cn": "", # 中文不需要分隔符
@@ -30,18 +36,37 @@ SEPARATE = {
 with open(config.TIME_UNIT_FILE, "r", encoding = "utf8") as f:
     TIME_UNIT: dict[str, Any] = json5.load(f)
 
-def unit_convert(time_value: int, unit: str, target_unit: str | None = None) -> int:
+# 构建时间单位转换图
+CONVERT_GRAPH = nx.DiGraph()
+convert_rules: list[dict[str, Any]] = TIME_UNIT[CONVERT]
+for rule in convert_rules:
+    CONVERT_GRAPH.add_edge(rule[FROM], rule[TO], **rule)
+
+def unit_convert(time_value: int, from_unit: str, to_unit: str | None = None) -> dict[str, int | bool]:
     """时间单位转换函数
 
     Args:
         time_value (int): 起始时间值
-        unit (str): 起始时间值的单位
-        target_unit (str | None, optional): 目标时间值的单位，默认为None
+        from_unit (str): 起始时间值的单位
+        to_unit (str | None, optional): 目标时间值的单位，默认为None
 
     Returns:
-        int: 目标时间值，单位为target_unit
+        dict[str, int | bool]: 转换后的字典，value为转换后的时间值，unit为单位，precise为是否精确
     """
-    pass
+    if to_unit is None:
+        basic_units: list[str] = TIME_UNIT[BASIC_UNIT]
+        unit_index = basic_units.index(from_unit)
+        try: 
+            to_unit: str = random.choice(basic_units[unit_index + 1:])
+        except Exception as e:
+            return {"value": time_value, UNIT: from_unit, PRECISE: True}
+    convert_path = nx.shortest_path(CONVERT_GRAPH, from_unit, to_unit)
+    convert_value = time_value
+    convert_precise = True
+    for i in range(len(convert_path) - 1):
+        convert_value = convert_value * CONVERT_GRAPH[convert_path[i]][convert_path[i + 1]][RATE]
+        convert_precise = convert_precise and CONVERT_GRAPH[convert_path[i]][convert_path[i + 1]][PRECISE]
+    return {"value": convert_value, UNIT: to_unit, PRECISE: convert_precise}
 
 class CustomTime(element.Element):
     """自定义时间的抽象基类
@@ -77,7 +102,7 @@ class CustomTime(element.Element):
         convert_guide: list[dict] = TIME_UNIT[TIME_KINDS][self.kind][CONVERT]
         for g in convert_guide:
             if g[STRATEGY] == "convert":
-                convert_result[base] += unit_convert(self[g[FROM]], g[FROM], base)
+                convert_result[base] += unit_convert(self[g[FROM]], g[FROM], base)["value"]
             elif g[STRATEGY] == "list":
                 time_list: list[str] = g["list"]
                 time_value: int = self[g[FROM]]
@@ -147,7 +172,7 @@ class CustomTimeDelta(element.Element):
         res: str = ""
         for g in trans_guide:
             key: str = g["attr"] # 时间值的键
-            unit_name: str = g["unit"] # 时间的单位
+            unit_name: str = g[UNIT] # 时间的单位
             time_value: int = self[key] # 时间值，为整数值
             separate = SEPARATE[lang] # 分隔符
             if lang == config.ENGLISH and time_value > 1:
@@ -185,10 +210,5 @@ class CustomTimeDelta(element.Element):
             return delta
 
 if __name__ == "__main__":
-    time1 = CustomTime(kind="year", year=1949)
-    time2 = CustomTime(kind="year", year=2021)
-    time3 = CustomTime(kind="year", year=2030)
-    delta1 = time2 - time1
-    delta2 = time3 - time2
-    print(delta1 - delta2)
-    print(delta2 - delta1)
+    convert_result = unit_convert(1, "year")
+    print(convert_result)
