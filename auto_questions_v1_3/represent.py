@@ -37,8 +37,10 @@ convert_rules: list[dict[str, Any]] = TIME_UNIT[CONVERT]
 for rule in convert_rules:
     CONVERT_GRAPH.add_edge(rule[FROM], rule[TO], **rule)
 
-def unit_convert(time_value: int, from_unit: str, to_unit: str | None = None) -> dict[str, int | bool]:
-    """时间单位转换函数
+def convert2lower(time_value: int, from_unit: str, to_unit: str | None = None) -> dict[str, int | bool]:
+    """时间单位转换函数，将时间从高单位转换为低单位.\n
+    如果没有指定目标单位，则随机选择一个低单位.\n
+    如果目标高于起始单位，则返回原值.\n
 
     Args:
         time_value (int): 起始时间值
@@ -48,13 +50,18 @@ def unit_convert(time_value: int, from_unit: str, to_unit: str | None = None) ->
     Returns:
         dict[str, int | bool]: 转换后的字典，value为转换后的时间值，unit为单位，precise为是否精确
     """
+    basic_units: list[str] = TIME_UNIT[BASIC_UNIT]
     if to_unit is None:
-        basic_units: list[str] = TIME_UNIT[BASIC_UNIT]
         unit_index = basic_units.index(from_unit)
         try: 
             to_unit: str = random.choice(basic_units[unit_index + 1:])
         except Exception as e:
             return {"value": time_value, UNIT: from_unit, PRECISE: True}
+    # 如果目标高于起始单位，则返回原值.
+    from_index = basic_units.index(from_unit)
+    to_index = basic_units.index(to_unit)
+    if to_index <= from_index:
+        return {"value": time_value, UNIT: from_unit, PRECISE: True}
     convert_path = nx.shortest_path(CONVERT_GRAPH, from_unit, to_unit)
     convert_value = time_value
     convert_precise = True
@@ -62,6 +69,35 @@ def unit_convert(time_value: int, from_unit: str, to_unit: str | None = None) ->
         convert_value = convert_value * CONVERT_GRAPH[convert_path[i]][convert_path[i + 1]][RATE]
         convert_precise = convert_precise and CONVERT_GRAPH[convert_path[i]][convert_path[i + 1]][PRECISE]
     return {"value": convert_value, UNIT: to_unit, PRECISE: convert_precise}
+
+def convert2higher(time_value: int, from_unit: str, to_unit: str) -> dict[str, dict[str, int] | bool]:
+    """时间单位转换函数，将时间从低单位转换为高单位.\n
+    如果目标低于起始单位，则返回原值.\n
+
+    Args:
+        time_value (int): 起始时间值
+        from_unit (str): 起始时间值的单位
+        to_unit (str): 目标时间值的单位
+
+    Returns:
+        dict[str, dict[str, int] | bool]: 转换后的字典，value为转换后的时间值字典，键为单位名称，值为时间值，precise为是否精确
+    """
+    basic_units: list[str] = TIME_UNIT[BASIC_UNIT]
+    # 如果目标低于起始单位，则返回原值.
+    from_index = basic_units.index(from_unit)
+    to_index = basic_units.index(to_unit)
+    if to_index >= from_index:
+        return {"value": {from_unit: time_value}, PRECISE: True}
+    convert_path = nx.shortest_path(CONVERT_GRAPH, to_unit, from_unit)
+    convert_rate: int = 1
+    convert_precise: bool = True
+    for i in range(len(convert_path) - 1):
+        convert_rate *= CONVERT_GRAPH[convert_path[i]][convert_path[i + 1]][RATE]
+        convert_precise = convert_precise and CONVERT_GRAPH[convert_path[i]][convert_path[i + 1]][PRECISE]
+    convert_value = time_value // convert_rate
+    # 求余数
+    remainder = time_value % convert_rate
+    return {"value": {to_unit: convert_value, from_unit: remainder}, PRECISE: convert_precise}
 
 class CustomTime(element.Element):
     """自定义时间的抽象基类
@@ -181,7 +217,7 @@ class CustomTimeDelta(element.Element):
         assert self.kind == other.kind, "两个时间对象的kind不同不能比较"
         base: str = TIME_UNIT[TIMEDELTA_KINDS][self.kind][BASE]
         return self[base] < other[base]
-
+    convert_result = convert2lower(1, "year")
     def __gt__(self, other: "CustomTimeDelta") -> bool:
         return not (self < other)
 
@@ -205,5 +241,7 @@ class CustomTimeDelta(element.Element):
             return delta
 
 if __name__ == "__main__":
-    convert_result = unit_convert(1, "year")
+    convert_result = convert2lower(1, "year")
     print(convert_result)
+    higher_convert = convert2higher(13, "month", "year")
+    print(higher_convert)
