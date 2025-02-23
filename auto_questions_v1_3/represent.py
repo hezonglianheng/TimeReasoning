@@ -220,28 +220,48 @@ class CustomTime(element.Element):
 
     def __gt__(self, other: "CustomTime") -> bool:
         return not (self < other)
+
+    @overload
+    def __sub__(self, other: "CustomTime") -> Optional["CustomTimeDelta"]: ...
+
+    @overload
+    def __sub__(self, other: "CustomTimeDelta") -> "CustomTime": ...
     
-    def __sub__(self, other: "CustomTime") -> Optional["CustomTimeDelta"]:
+    def __sub__(self, other):
         """时间相减的魔术方法
 
         Args:
-            other (CustomTime): 减去的时间
+            other (CustomTime | CustomTimeDelta): 减去的时间或时间间隔
 
         Returns:
-            CustomTimeDelta | None: 时间间隔
+            CustomTimeDelta | CustomTime | None: 时间间隔、时间或None
         """
-        assert type(self) == type(other), "两个时间对象的class不同不能相减"
-        assert self.kind == other.kind, "两个时间对象的kind不同不能相减"
-        if self < other:
-            return None
+        if type(other) == CustomTime:
+            assert type(self) == type(other), "两个时间对象的class不同不能相减"
+            assert self.kind == other.kind, "两个时间对象的kind不同不能相减"
+            if self < other:
+                return None
+            else:
+                base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+                self_base: int = self.convert2base[base]
+                other_base: int = other.convert2base[base]
+                delta_base: int = self_base - other_base
+                delta_kind: str = TIME_UNIT[TIME_KINDS][self.kind][SUB_RESULT_KIND]
+                delta = CustomTimeDelta(kind=delta_kind, **{base: delta_base})
+                return delta
+        elif type(other) == CustomTimeDelta:
+            left_base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+            right_base: str = TIME_UNIT[TIMEDELTA_KINDS][other.kind][BASE]
+            assert left_base == right_base, f"时间{self}和时间间隔{other}的基本单位不同，不能相减"
+            self_base_value: int = self.convert2base[left_base]
+            delta_base_value: int = other[right_base]
+            result_base: int = self_base_value - delta_base_value
+            time_attr: dict[str, int] = {left_base: result_base}
+            time_attr = self._convert2standard(time_attr)
+            result = CustomTime(kind=self.kind, **time_attr)
+            return result
         else:
-            base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
-            self_base: int = self.convert2base[base]
-            other_base: int = other.convert2base[base]
-            delta_base: int = self_base - other_base
-            delta_kind: str = TIME_UNIT[TIME_KINDS][self.kind][SUB_RESULT_KIND]
-            delta = CustomTimeDelta(kind=delta_kind, **{base: delta_base})
-            return delta
+            raise ValueError(f"不支持的相减类型: {type(other)}")
 
     def __add__(self, other: "CustomTimeDelta") -> "CustomTime":
         """时间相加的魔术方法
@@ -333,6 +353,8 @@ class CustomTimeDelta(element.Element):
             delta_base: int = self[base] + other[base]
             delta = CustomTimeDelta(kind=self.kind, **{base: delta_base})
             return delta
+        else:
+            raise ValueError(f"不支持的相加类型: {type(other)}")
 
 if __name__ == "__main__":
     convert_result = convert2lower(1, "year")
