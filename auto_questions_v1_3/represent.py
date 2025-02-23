@@ -10,8 +10,9 @@ import lemminflect
 import networkx as nx
 import element
 import config
-from typing import Any, Optional
+from typing import Any, Optional, overload
 import random
+from bisect import bisect
 
 # 常量
 BASIC_UNIT = "basic_unit"
@@ -133,7 +134,7 @@ class CustomTime(element.Element):
         convert_guide: list[dict] = TIME_UNIT[TIME_KINDS][self.kind][CONVERT]
         for g in convert_guide:
             if g[STRATEGY] == "convert":
-                convert_result[base] += unit_convert(self[g[FROM]], g[FROM], base)["value"]
+                convert_result[base] += convert2lower(self[g[FROM]], g[FROM], base)["value"]
             elif g[STRATEGY] == "list":
                 time_list: list[str] = g["list"]
                 time_value: int = self[g[FROM]]
@@ -142,6 +143,32 @@ class CustomTime(element.Element):
                 raise ValueError(f"对{self.kind}类型的转换出现了未知的转换方法: {g[STRATEGY]}")
         return convert_result
 
+    def _convert2standard(self, base_time: dict[str, int]) -> dict[str, int]:
+        """将时间值转换为标准形式，供翻译
+
+        Args:
+            base_time (dict[str, int]): 基本单位的时间值
+
+        Return:
+            dict[str, int]: 转换后的时间值字典，键为单位名称，值为时间值
+        """
+        base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+        convert_guide: list[dict] = TIME_UNIT[TIME_KINDS][self.kind][CONVERT]
+        convert_result = base_time.copy()
+        for g in convert_guide:
+            if g[STRATEGY] == "convert":
+                curr_res = convert2higher(base_time[base], base, g[FROM])
+                convert_result.update(curr_res["value"])
+            elif g[STRATEGY] == "list":
+                time_list: list[str] = g["list"]
+                time_value: int = base_time[base]
+                curr_convert: int = bisect(time_list, time_value)
+                convert_result[g[FROM]] = curr_convert
+                convert_result[base] = time_value - time_list[curr_convert - 1]
+            else:
+                raise ValueError(f"对{self.kind}类型的转换出现了未知的转换方法: {g[STRATEGY]}")
+        return convert_result
+    
     def translate(self, lang: str) -> str:
         # 获取翻译指南
         trans_guide: list[dict[str, str]] = TIME_UNIT[TIME_KINDS][self.kind][TRANSLATE][lang]
@@ -193,6 +220,26 @@ class CustomTime(element.Element):
             delta = CustomTimeDelta(kind=delta_kind, **{base: delta_base})
             return delta
 
+    def __add__(self, other: "CustomTimeDelta") -> "CustomTime":
+        """时间相加的魔术方法
+
+        Args:
+            other (CustomTimeDelta): 加上的时间间隔
+
+        Returns:
+            CustomTime: 时间
+        """
+        left_base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+        right_base: str = TIME_UNIT[TIMEDELTA_KINDS][other.kind][BASE]
+        assert left_base == right_base, f"时间{self}和时间间隔{other}的基本单位不同，不能相加"
+        self_base_value: int = self.convert2base[left_base]
+        delta_base_value: int = other[right_base]
+        result_base: int = self_base_value + delta_base_value
+        time_attr: dict[str, int] = {left_base: result_base}
+        time_attr = self._convert2standard(time_attr)
+        result = CustomTime(kind=self.kind, **time_attr)
+        return result
+
 class CustomTimeDelta(element.Element):
     """自定义时间间隔的抽象基类
     """
@@ -217,7 +264,7 @@ class CustomTimeDelta(element.Element):
         assert self.kind == other.kind, "两个时间对象的kind不同不能比较"
         base: str = TIME_UNIT[TIMEDELTA_KINDS][self.kind][BASE]
         return self[base] < other[base]
-    convert_result = convert2lower(1, "year")
+
     def __gt__(self, other: "CustomTimeDelta") -> bool:
         return not (self < other)
 
@@ -240,8 +287,38 @@ class CustomTimeDelta(element.Element):
             delta = CustomTimeDelta(kind=self.kind, **{base: delta_base})
             return delta
 
+    @overload
+    def __add__(self, other: CustomTime) -> CustomTime: ...
+
+    @overload
+    def __add__(self, other: "CustomTimeDelta") -> "CustomTimeDelta": ...
+
+    def __add__(self, other):
+        """时间间隔相加的魔术方法
+
+        Args:
+            other (CustomTime | CustomTimeDelta): 加上的时间或时间间隔
+
+        Returns:
+            CustomTime | CustomTimeDelta: 计算得到的时间或时间间隔
+        """
+        if type(other) == CustomTime:
+            return other + self
+        elif type(other) == CustomTimeDelta:
+            assert self.kind == other.kind, "两个时间对象的kind不同不能相加"
+            base: str = TIME_UNIT[TIMEDELTA_KINDS][self.kind][BASE]
+            delta_base: int = self[base] + other[base]
+            delta = CustomTimeDelta(kind=self.kind, **{base: delta_base})
+            return delta
+
 if __name__ == "__main__":
     convert_result = convert2lower(1, "year")
     print(convert_result)
     higher_convert = convert2higher(13, "month", "year")
     print(higher_convert)
+    year = CustomTime(kind="year", year=2000)
+    year1 = CustomTimeDelta(kind="year", year=1)
+    year2 = CustomTimeDelta(kind="year", year=2)
+    print(year + year1)
+    print(year1 + year2)
+    print(year1 + year + year2)
