@@ -11,6 +11,7 @@ import networkx as nx
 import element
 import config
 from typing import Any, Optional, overload
+from collections.abc import Iterable
 import random
 from bisect import bisect
 
@@ -27,6 +28,7 @@ TO = "to" # 目标单位
 RATE = "rate" # 单位转换比率
 PRECISE = "precise" # 是否精确
 UNIT = "unit" # 单位
+SUB_RESULT_KIND = "sub_result_kind" # 时间间隔的结果类型
 
 # 读取时间单位的配置文件
 with open(config.TIME_UNIT_FILE, "r", encoding = "utf8") as f:
@@ -99,6 +101,27 @@ def convert2higher(time_value: int, from_unit: str, to_unit: str) -> dict[str, d
     # 求余数
     remainder = time_value % convert_rate
     return {"value": {to_unit: convert_value, from_unit: remainder}, PRECISE: convert_precise}
+
+def get_time_range(time1: "CustomTime", time2: "CustomTime") -> Iterable["CustomTime"]:
+    """获得两个时间之间的时间范围，包括上下界
+
+    Returns:
+        Iterable[CustomTime]: 两个时间之间的时间范围，包括上下界
+    """
+    if time1 < time2:
+        upper_bound: CustomTime = time2
+        lower_bound: CustomTime = time1
+    else:
+        upper_bound: CustomTime = time1
+        lower_bound: CustomTime = time2
+    delta: CustomTimeDelta = upper_bound - lower_bound
+    # 获得delta的基本单位
+    delta_unit: str = TIME_UNIT[TIMEDELTA_KINDS][delta.kind][BASE]
+    # 获得delta的值
+    delta_value: int = delta[delta_unit]
+    # 获得时间范围的上下界
+    time_range: Iterable[CustomTime] = (lower_bound + CustomTimeDelta(kind=delta.kind, **{delta_unit: i}) for i in range(delta_value + 1))
+    return time_range
 
 class CustomTime(element.Element):
     """自定义时间的抽象基类
@@ -216,7 +239,7 @@ class CustomTime(element.Element):
             self_base: int = self.convert2base[base]
             other_base: int = other.convert2base[base]
             delta_base: int = self_base - other_base
-            delta_kind: str = TIME_UNIT[TIME_KINDS][self.kind]["sub_result_kind"]
+            delta_kind: str = TIME_UNIT[TIME_KINDS][self.kind][SUB_RESULT_KIND]
             delta = CustomTimeDelta(kind=delta_kind, **{base: delta_base})
             return delta
 
@@ -317,8 +340,11 @@ if __name__ == "__main__":
     higher_convert = convert2higher(13, "month", "year")
     print(higher_convert)
     year = CustomTime(kind="year", year=2000)
+    year0 = CustomTime(kind="year", year=1900)
     year1 = CustomTimeDelta(kind="year", year=1)
     year2 = CustomTimeDelta(kind="year", year=2)
     print(year + year1)
     print(year1 + year2)
     print(year1 + year + year2)
+    for y in get_time_range(year, year0):
+        print(y)
