@@ -56,7 +56,7 @@
                     "Beginning in {time:}, {event:} for {duration:}",
                     "Starting from {time:}, {event:} for {duration:}"
                 ]
-            }
+            }, 
         },
         // 时频
         "freq": {
@@ -71,7 +71,7 @@
                     "Starting from {time:}, {event:} once every {frequency:} for {duration:}",
                     "In the {duration:} before {endtime:}, {event:} once every {frequency:}"
                 ]
-            }
+            }, 
         },
         // 事件先后关系
         "before": {
@@ -84,7 +84,7 @@
                 "en": [
                     "{event1:} before {event2:}"
                 ]
-            }
+            }, 
         },
         "before_time": {
             "templates": {
@@ -97,7 +97,7 @@
                 "en": [
                     "{event1:} {diff:} before {event2:}"
                 ]
-            }
+            }, 
         },
         "after": {
             "templates": {
@@ -109,7 +109,7 @@
                 "en": [
                     "{event1:} after {event2:}"
                 ]
-            }
+            }, 
         },
         "after_time": {
             "templates": {
@@ -122,7 +122,7 @@
                 "en": [
                     "{event1:} {diff:} after {event2:}"
                 ]
-            }
+            }, 
         },
         "simultaneous": {
             "templates": {
@@ -136,7 +136,7 @@
                     "In the same {unit:}, {event1:}, and {event2:}",
                     "In the same {unit:} as {event2:}, {event1:}"
                 ]
-            }
+            }, 
         },
         // 事件间隔的模板
         "gap_time": {
@@ -151,7 +151,7 @@
                     "The gap between the time {event1:} and the time {event2:} is {diff:}",
                     "There is a {diff:} gap between {event1:} and {event2:}"
                 ]
-            }
+            }, 
         },
         // 时长关系
         "long": {
@@ -164,7 +164,7 @@
                     "{event1:} for longer time than {event2:}",
                     "Compared to the duration that {event2:}, {event1:} for a longer time"
                 ]
-            }
+            }, 
         },
         "long_time": {
             "templates": {
@@ -175,7 +175,7 @@
                     "{event1:} {diff:} more than {event2:}",
                     "The total duration that {event1:} is {diff:} longer than {event2:}"
                 ]
-            }
+            }, 
         },
         "short": {
             "templates": {
@@ -187,7 +187,7 @@
                     "{event1:} for shorter time than {event2:}",
                     "Compared to the duration that {event2:}, {event1:} for a shorter time"
                 ]
-            }
+            }, 
         },
         "short_time": {
             "templates": {
@@ -198,7 +198,7 @@
                     "{event1:} {diff:} less than {event2:}",
                     "The total duration that {event1:} is {diff:} shorter than {event2:}"
                 ]
-            }
+            }, 
         },
         "same_len": {
             "templates": {
@@ -214,7 +214,7 @@
                     "The duration {event1:} is equal to the duration {event2:}",
                     "The duration {event1:} matches the duration {event2:}"
                 ]
-            }
+            }, 
         },
         "during": {
             "templates": {
@@ -227,7 +227,7 @@
                     "During the time that {event2:}, {event1:}",
                     "{event1:} during the time {event2:}"
                 ]
-            }
+            }, 
         },
     },
 }
