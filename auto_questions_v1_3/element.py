@@ -99,3 +99,14 @@ class Element(metaclass = abc.ABCMeta):
 
     def __str__(self) -> str:
         return str(vars(self))
+
+    def has_attr(self, key: str) -> bool:
+        """判断元素是否有某个属性
+
+        Args:
+            key (str): 属性名
+
+        Returns:
+            bool: 是否有该属性
+        """
+        return key in self.attrs
