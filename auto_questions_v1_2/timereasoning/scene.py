@@ -418,13 +418,13 @@ class DiffRelation(relation.DoubleEntailment):
         return cls
     
 class LoopRelation(relation.DoubleEntailment):
-    """循环关系，用于处理先后关系的循环性质"""
+    """循环关系，用于处理先后关系和时间差的循环性质"""
     loop = 0
-    _tp_tuples = [(timeprop.BeforeTimeP, timeprop.AfterTimeP), (timeprop.AfterTimeP, timeprop.BeforeTimeP)]
+    _tp_tuples = [(timeprop.BeforeTimeP, timeprop.AfterTimeP), (timeprop.AfterTimeP, timeprop.BeforeTimeP), (timeprop.GapTimeP, timeprop.GapTimeP)]
 
     @classmethod
-    def reason(cls, prop: timeprop.BeforeTimeP | timeprop.AfterTimeP) -> list[timeprop.BeforeTimeP | timeprop.AfterTimeP] | None:
-        if not isinstance(prop, (timeprop.BeforeTimeP, timeprop.AfterTimeP)):
+    def reason(cls, prop: timeprop.BeforeTimeP | timeprop.AfterTimeP | timeprop.GapTimeP) -> list[timeprop.BeforeTimeP | timeprop.AfterTimeP | timeprop.GapTimeP] | None:
+        if not isinstance(prop, (timeprop.BeforeTimeP, timeprop.AfterTimeP, timeprop.GapTimeP)):
             return None
         res = super().reason(prop)
         if res is None:
