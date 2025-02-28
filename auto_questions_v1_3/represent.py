@@ -219,7 +219,18 @@ class CustomTime(element.Element):
         return self_base < other_base
 
     def __gt__(self, other: "CustomTime") -> bool:
-        return not (self < other)
+        assert type(self) == type(other), "两个时间对象的class不同不能比较"
+        assert self.kind == other.kind, "两个时间对象的kind不同不能比较"
+        base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+        self_base: int = self.convert2base[base]
+        other_base: int = other.convert2base[base]
+        return self_base > other_base
+
+    def __le__(self, other: "CustomTime") -> bool:
+        return self < other or self == other
+
+    def __ge__(self, other: "CustomTime") -> bool:
+        return self > other or self == other
 
     @overload
     def __sub__(self, other: "CustomTime") -> Optional["CustomTimeDelta"]: ...
@@ -309,7 +320,16 @@ class CustomTimeDelta(element.Element):
         return self[base] < other[base]
 
     def __gt__(self, other: "CustomTimeDelta") -> bool:
-        return not (self < other)
+        assert type(self) == type(other), "两个时间对象的class不同不能比较"
+        assert self.kind == other.kind, "两个时间对象的kind不同不能比较"
+        base: str = TIME_UNIT[TIMEDELTA_KINDS][self.kind][BASE]
+        return self[base] > other[base]
+
+    def __le__(self, other: "CustomTimeDelta") -> bool:
+        return self < other or self == other
+    
+    def __ge__(self, other: "CustomTimeDelta") -> bool:
+        return self > other or self == other
 
     def __sub__(self, other: "CustomTimeDelta") -> Optional["CustomTimeDelta"]:
         """时间间隔相减的魔术方法
