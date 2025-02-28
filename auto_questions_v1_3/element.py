@@ -30,11 +30,13 @@ class Element(metaclass = abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def translate(self, lang: str) -> str:
+    def translate(self, lang: str, require: str|None = None, **kwargs) -> str:
         """将元素翻译成指定语言的方法
 
         Args:
             lang (str): 语言
+            require (str, optional): 翻译的要求，默认为None.
+            **kwargs: 翻译的其他参数
 
         Returns:
             str: 翻译结果

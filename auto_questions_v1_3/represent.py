@@ -192,7 +192,7 @@ class CustomTime(element.Element):
                 raise ValueError(f"对{self.kind}类型的转换出现了未知的转换方法: {g[STRATEGY]}")
         return convert_result
     
-    def translate(self, lang: str) -> str:
+    def translate(self, lang: str, require: str|None = None, **kwargs) -> str:
         # 获取翻译指南
         trans_guide: list[dict[str, str]] = TIME_UNIT[TIME_KINDS][self.kind][TRANSLATE][lang]
         res: str = ""
@@ -287,7 +287,7 @@ class CustomTimeDelta(element.Element):
     """自定义时间间隔的抽象基类
     """
 
-    def translate(self, lang: str) -> str:
+    def translate(self, lang: str, require: str|None = None, **kwargs) -> str:
         # 获取时间单位的翻译指南
         trans_guide: list[dict[str, str]] = TIME_UNIT[TIMEDELTA_KINDS][self.kind][TRANSLATE][lang]
         res: str = ""

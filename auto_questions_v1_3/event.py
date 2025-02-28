@@ -32,11 +32,13 @@ class MyObject(element.Element):
         super().__init__(name, kind, **kwargs)
         self[USE_PRONOUN] = False # 是否使用代词
 
-    def translate(self, lang: str) -> str:
+    def translate(self, lang: str, require: str|None = None, **kwargs) -> str:
         """将事物元素翻译成指定语言的方法
 
         Args:
             lang (str): 语言
+            require (str, optional): 翻译的要求，默认为None.
+            **kwargs: 翻译的其他参数
 
         Returns:
             str: 翻译结果
@@ -51,7 +53,7 @@ class Event(element.Element):
     """自定义的事件元素
     """
 
-    def translate(self, lang) -> str:
+    def translate(self, lang: str, require: str|None = None, **kwargs) -> str:
         subject_element: MyObject = self[SUBJECT]
         subject: str = subject_element.translate(lang)
         predicate: str = lemminflect.getInflection(self[PREDICATE][lang], tag = config.VERB_BASE_FORM)[0]
