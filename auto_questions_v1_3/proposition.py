@@ -15,9 +15,15 @@ ASKABLE = "askable" # 是否可询问
 PRECISE = "precise" # 是否精确
 TEMPLATES = "templates" # 模板
 REPLACE = re.compile(r"\{(\w*?):(\w*?)\}") # 替换模板中的内容
+PROP_DATA: dict = {} # 时间命题的数据
 
-with config.PROP_FILE.open("r", encoding = "utf8") as f:
-    PROP_DATA = json5.load(f)
+# 初始化时，读取时间命题的数据
+def init():
+    """初始化时间命题的数据
+    """
+    global PROP_DATA
+    with config.PROP_FILE.open("r", encoding = "utf8") as f:
+        PROP_DATA = json5.load(f)
 
 class Proposition(element.Element):
     """自定义的时间命题
