@@ -34,6 +34,10 @@ class Constraint(element.Element):
         constraint_dict = dict()
         floor_dict: Optional[dict] = kwargs.get(FLOOR)
         ceiling_dict: Optional[dict] = kwargs.get(CEILING)
+        time_dict: Optional[dict] = kwargs.get(TIME) # 如果约束的floor和ceiling相等，则允许一种简写方式
+        if time_dict:
+            constraint_dict[FLOOR] = represent.CustomTimeDelta(**time_dict)
+            constraint_dict[CEILING] = represent.CustomTimeDelta(**time_dict)
         if floor_dict:
             constraint_dict[FLOOR] = represent.CustomTimeDelta(**floor_dict)
         if ceiling_dict:
