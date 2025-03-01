@@ -29,6 +29,11 @@ class Proposition(element.Element):
     """自定义的时间命题
     """
 
+    def __init__(self, name = "", kind = "", **kwargs):
+        super().__init__(name, kind, **kwargs)
+        self[ASKABLE] = True # 设置命题是否可询问，默认为True
+        self[PRECISE] = True # 设置命题是否为精确命题，默认为True
+
     def translate(self, lang: str, require: str|None = None, **kwargs) -> str:
         """将时间命题翻译成指定语言的方法
 
