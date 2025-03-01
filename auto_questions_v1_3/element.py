@@ -43,7 +43,6 @@ class Element(metaclass = abc.ABCMeta):
         """
         pass
 
-    # @abc.abstractmethod
     def __eq__(self, other: "Element") -> bool:
         """判断两个元素是否相等的方法
 
@@ -54,13 +53,16 @@ class Element(metaclass = abc.ABCMeta):
             bool: 是否相等
         """
         if not type(self) == type(other):
-            return False
+            raise TypeError(f"元素{self}和元素{other}类型不同，无法比较")
         if self.kind != other.kind:
             return False
         for key in self.attrs:
             if self[key] != other[key]:
                 return False
         return True
+
+    def __ne__(self, other: "Element") -> bool:
+        return not self == other
 
     def __getitem__(self, key: str) -> Any:
         """获取元素的属性值，等价于attrs[key]
