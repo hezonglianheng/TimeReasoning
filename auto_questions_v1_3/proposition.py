@@ -56,6 +56,27 @@ class Proposition(element.Element):
         template = template[0].upper() + template[1:]
         return template
 
+    def __eq__(self, other: "Proposition") -> bool:
+        """判断两个时间命题是否相等的方法
+
+        Args:
+            other (Proposition): 另一个时间命题
+
+        Returns:
+            bool: 两个时间命题是否相等
+        """
+        if not type(self) == type(other):
+            raise TypeError(f"元素{self}和元素{other}类型不同，无法比较")
+        if self.kind != other.kind:
+            return False
+        for key in self.attrs:
+            # 忽略ASKABLE和PRECISE属性
+            if key == ASKABLE or key == PRECISE:
+                continue
+            if self[key] != other[key]:
+                return False
+        return True
+
 if __name__ == "__main__":
     import event
     import represent
