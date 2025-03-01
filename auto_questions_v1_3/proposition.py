@@ -51,7 +51,7 @@ class Proposition(element.Element):
             if strategy == "":
                 template = template.replace(match.group(0), curr_element.translate(lang))
             else:
-                pass
+                template = template.replace(match.group(0), curr_element.translate(lang, require=strategy))
         # 首字母大写
         template = template[0].upper() + template[1:]
         return template
