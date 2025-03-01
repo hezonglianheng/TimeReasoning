@@ -12,6 +12,7 @@ import networkx as nx
 from collections.abc import Sequence
 from typing import Optional
 import random
+import copy
 
 # constants.
 MAIN_EVENT = "main_event"
@@ -20,6 +21,7 @@ CONSTRAINT_TYPE = "constraint_type"
 FLOOR = "floor"
 CEILING = "ceiling"
 CONSTRAINT = "constraint"
+TIME = "time"
 # 约束类型
 BEFORE = "before"
 AFTER = "after"
@@ -65,7 +67,39 @@ class Constraint(element.Element):
         return {FLOOR: new_floor, CEILING: new_ceiling}
 
     def backward_update(self, main_time: represent.CustomTime, std_times: dict[str, represent.CustomTime]) -> dict[str, represent.CustomTime]:
-        pass
+        """后向传播时，根据约束关系获得新的事件时间值范围
+
+        Args:
+            main_time (represent.CustomTime): 主要事件的时间值
+            std_times (dict[str, represent.CustomTime]): 参考事件的时间范围
+
+        Raises:
+            ValueError: 约束类型不合法
+
+        Returns:
+            dict[str, represent.CustomTime]: 新的事件时间值范围
+        """
+        std_floor = std_times[FLOOR]
+        std_ceiling = std_times[CEILING]
+        if self.kind == BEFORE:
+            if self.has_attr(FLOOR):
+                std_floor: represent.CustomTime = main_time + self[FLOOR]
+            if self.has_attr(CEILING):
+                std_ceiling: represent.CustomTime = main_time + self[CEILING]
+        elif self.kind == AFTER:
+            if self.has_attr(FLOOR):
+                std_floor: represent.CustomTime = main_time - self[CEILING]
+            if self.has_attr(CEILING):
+                std_ceiling: represent.CustomTime = main_time - self[FLOOR]
+        elif self.kind == SIMULTANEOUS:
+            assert std_floor <= main_time <= std_ceiling, "参考事件时间范围不包含主要事件时间"
+            # 直接将参考时间设置为主要事件时间范围
+            std_floor = copy.deepcopy(main_time)
+            std_ceiling = copy.deepcopy(main_time)
+        else:
+            raise ValueError(f"不支持的约束类型{self.kind}")
+        assert std_floor <= std_ceiling, "时间范围不合法"
+        return {FLOOR: std_floor, CEILING: std_ceiling}
 
 class ConstraintMachine:
     def __init__(self, event_names: Sequence[str], constraint_rules: Sequence[dict], upper_bound: represent.CustomTime, lower_bound: represent.CustomTime):
@@ -76,6 +110,7 @@ class ConstraintMachine:
         self.lower_bound = lower_bound
         self.constraint_graph = nx.DiGraph()
         self._construct()
+        self._forward()
 
     def _construct(self):
         """根据输入构造约束图
@@ -96,6 +131,8 @@ class ConstraintMachine:
             print("根据输入构建约束图成功.")
     
     def _forward(self):
+        """前向传播，根据约束关系更新事件时间上下限
+        """
         print("前向传播，根据约束关系更新事件时间上下限.")
         for node in list(nx.topological_sort(self.constraint_graph)):
             in_edges = list(self.constraint_graph.in_edges(node, data = True))
@@ -116,4 +153,20 @@ class ConstraintMachine:
             self.constraint_graph.nodes[node][CEILING] = ceiling
 
     def _backward(self):
-        print("后向传播，根据约束关系获得事件时间值.")
+        """后向传播，根据约束关系随机获得事件时间值.
+        """
+        print("后向传播，根据约束关系随机获得事件时间值.")
+        nodes = list(nx.topological_sort(self.constraint_graph))
+        nodes.reverse()
+        for node in nodes:
+            out_edges = list(self.constraint_graph.out_edges(node, data = True))
+            if len(out_edges) > 0:
+                for _, next_node, info in out_edges:
+                    constraint: Constraint = info[CONSTRAINT]
+                    next_time = self.constraint_graph.nodes[next_node][TIME]
+                    curr_range = {FLOOR: self.constraint_graph.nodes[node][FLOOR], CEILING: self.constraint_graph.nodes[node][CEILING]}
+                    new_range = constraint.backward_update(next_time, curr_range)
+                    self.constraint_graph.nodes[node][FLOOR] = new_range[FLOOR]
+                    self.constraint_graph.nodes[node][CEILING] = new_range[CEILING]
+            time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
+            self.constraint_graph.nodes[node][TIME] = random.choice(time_range)
