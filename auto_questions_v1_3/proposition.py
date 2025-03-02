@@ -15,6 +15,7 @@ from enum import StrEnum
 ASKABLE = "askable" # 是否可询问
 PRECISE = "precise" # 是否精确
 TEMPLATES = "templates" # 模板
+PROP_KINDS = "prop_kinds" # 命题类型对应的键
 REPLACE = re.compile(r"\{(\w*?):(\w*?)\}") # 替换模板中的内容
 PROP_DATA: dict = {} # 时间命题的数据
 
@@ -42,6 +43,9 @@ class Proposition(element.Element):
 
     def __init__(self, name = "", kind = "", **kwargs):
         super().__init__(name, kind, **kwargs)
+        # 若kind不在PropKind中，则抛出异常
+        if kind not in PROP_DATA[PROP_KINDS]:
+            raise ValueError(f"时间命题的类型{kind}不在{config.PROP_FILE}中")
         self[ASKABLE] = True # 设置命题是否可询问，默认为True
         self[PRECISE] = True # 设置命题是否为精确命题，默认为True
 
@@ -57,7 +61,7 @@ class Proposition(element.Element):
             str: 翻译结果
         """
         # 选择模板
-        templates: list[str] = PROP_DATA["prop_kinds"][self.kind][TEMPLATES][lang]
+        templates: list[str] = PROP_DATA[PROP_KINDS][self.kind][TEMPLATES][lang]
         template = random.choice(templates)
         for match in REPLACE.finditer(template):
             curr_attr: str = match.group(1)
