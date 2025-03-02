@@ -4,13 +4,13 @@
 """根据输入文件中的约束关系，为事件获得满足约束的时间值
 """
 
-import config
 import element
 import represent
-import proposition
+import event
+import proposition as prop
 import networkx as nx
 from collections.abc import Sequence
-from typing import Optional
+from typing import Optional, Any
 import random
 import copy
 
@@ -174,3 +174,56 @@ class ConstraintMachine:
                     self.constraint_graph.nodes[node][CEILING] = new_range[CEILING]
             time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
             self.constraint_graph.nodes[node][TIME] = random.choice(time_range)
+
+    def _get_temporal_time(self, e: event.Event) -> represent.CustomTime:
+        """从约束图中，为时点事件获取时间值
+
+        Args:
+            e (event.Event): 事件
+
+        Raises:
+            ValueError: 事件不是时点事件
+
+        Returns:
+            represent.CustomTime: 事件的时间值
+        """
+        if e.kind == event.EventType.TEMPORAL:
+            if e.name in self.constraint_graph.nodes:
+                return self.constraint_graph.nodes[e.name][TIME]
+            else:
+                time_range = represent.get_time_range(self.lower_bound, self.upper_bound)
+                return random.choice(time_range)
+        else:
+            raise ValueError(f"函数_get_temporal_time()不支持的事件类型{e.kind}")
+    
+    def get_time_props(self, events: Sequence[event.Event]) -> list[prop.Proposition]:
+        # 后向传播，随机生成时间
+        self._backward()
+        time_props: list[prop.Proposition] = []
+        for e in events:
+            if e.kind == event.EventType.TEMPORAL:
+                # 如果事件在约束图中，则添加时间约束
+                e_time = self._get_temporal_time(e)
+                prop_dict: dict[str, Any] = {prop.PropField.TIME: e_time, prop.PropField.EVENT: e, prop.PropField.KIND: "temporal"}
+                time_props.append(prop.Proposition(**prop_dict))
+            elif e.kind == event.EventType.DURATIVE:
+                start_event: event.Event = e[event.SubEventType.START_EVENT]
+                end_event: event.Event = e[event.SubEventType.END_EVENT]
+                duration_event: event.Event = e[event.SubEventType.DURATION_EVENT]
+                start_time = self._get_temporal_time(start_event)
+                start_dict = {prop.PropField.TIME: start_time, prop.PropField.EVENT: start_event, prop.PropField.KIND: "temporal"}
+                time_props.append(prop.Proposition(**start_dict))
+                end_time = self._get_temporal_time(end_event)
+                end_dict = {prop.PropField.TIME: end_time, prop.PropField.EVENT: end_event, prop.PropField.KIND: "temporal"}
+                time_props.append(prop.Proposition(**end_dict))
+                duration_time = end_time - start_time
+                duration_dict = {prop.PropField.TIME: duration_time, prop.PropField.EVENT: duration_event, prop.PropField.KIND: "duration"}
+                time_props.append(prop.Proposition(**duration_dict))
+                durative_event = {prop.PropField.EVENT: e, prop.PropField.KIND: "durative", prop.PropField.TIME: start_time, prop.PropField.ENDTIME: end_time, prop.PropField.DURATION: duration_time}
+                time_props.append(prop.Proposition(**durative_event))
+            elif e.kind == event.EventType.FREQUENT:
+                # TODO: 频率事件的处理
+                pass
+            else:
+                raise ValueError(f"不支持的事件类型{e.kind}")
+        return time_props
