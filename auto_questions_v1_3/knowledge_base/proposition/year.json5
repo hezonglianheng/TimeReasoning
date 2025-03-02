@@ -30,8 +30,8 @@
                     "{event:}一共{time:}",
                 ],
                 "en": [
-                    "{event:} for {duration:}",
-                    "{event:} and spent {duration:} on it"
+                    "{event:} for {time:}",
+                    "{event:} and spent {time:} on it"
                 ]
             },
         },
