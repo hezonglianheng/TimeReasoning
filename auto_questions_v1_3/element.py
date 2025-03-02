@@ -114,3 +114,29 @@ class Element(metaclass = abc.ABCMeta):
             bool: 是否有该属性
         """
         return key in self.attrs
+
+    def __getattribute__(self, name: str) -> Any:
+        """允许使用self.name的方式获取属性值
+
+        Args:
+            name (str): 属性名
+
+        Returns:
+            Any: 属性值
+        """
+        if name in ["name", "kind", "attrs"]:
+            return super().__getattribute__(name)
+        else:
+            return self[name]
+
+    def __setattr__(self, name: str, value: Any):
+        """允许使用self.name的方式设置属性值
+
+        Args:
+            name (str): 属性名
+            value (Any): 属性值
+        """
+        if name in ["name", "kind", "attrs"]:
+            super().__setattr__(name, value)
+        else:
+            self[name] = value
