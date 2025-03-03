@@ -187,7 +187,7 @@ class ConstraintMachine:
         Returns:
             represent.CustomTime: 事件的时间值
         """
-        if e.kind == event.EventType.TEMPORAL:
+        if e.kind == event.EventType.Temporal:
             if e.name in self.constraint_graph.nodes:
                 return self.constraint_graph.nodes[e.name][TIME]
             else:
@@ -201,27 +201,27 @@ class ConstraintMachine:
         self._backward()
         time_props: list[prop.Proposition] = []
         for e in events:
-            if e.kind == event.EventType.TEMPORAL:
+            if e.kind == event.EventType.Temporal:
                 # 如果事件在约束图中，则添加时间约束
                 e_time = self._get_temporal_time(e)
-                prop_dict: dict[str, Any] = {prop.PropField.TIME: e_time, prop.PropField.EVENT: e, prop.PropField.KIND: "temporal"}
+                prop_dict: dict[str, Any] = {prop.PropField.Time: e_time, prop.PropField.Event: e, prop.PropField.Kind: "temporal"}
                 time_props.append(prop.Proposition(**prop_dict))
-            elif e.kind == event.EventType.DURATIVE:
-                start_event: event.Event = e[event.SubEventType.START_EVENT]
-                end_event: event.Event = e[event.SubEventType.END_EVENT]
-                duration_event: event.Event = e[event.SubEventType.DURATION_EVENT]
+            elif e.kind == event.EventType.Durative:
+                start_event: event.Event = e[event.SubEventType.StartEvent]
+                end_event: event.Event = e[event.SubEventType.EndEvent]
+                duration_event: event.Event = e[event.SubEventType.DurationEvent]
                 start_time = self._get_temporal_time(start_event)
-                start_dict = {prop.PropField.TIME: start_time, prop.PropField.EVENT: start_event, prop.PropField.KIND: "temporal"}
+                start_dict = {prop.PropField.Time: start_time, prop.PropField.Event: start_event, prop.PropField.Kind: "temporal"}
                 time_props.append(prop.Proposition(**start_dict))
                 end_time = self._get_temporal_time(end_event)
-                end_dict = {prop.PropField.TIME: end_time, prop.PropField.EVENT: end_event, prop.PropField.KIND: "temporal"}
+                end_dict = {prop.PropField.Time: end_time, prop.PropField.Event: end_event, prop.PropField.Kind: "temporal"}
                 time_props.append(prop.Proposition(**end_dict))
                 duration_time = end_time - start_time
-                duration_dict = {prop.PropField.TIME: duration_time, prop.PropField.EVENT: duration_event, prop.PropField.KIND: "duration"}
+                duration_dict = {prop.PropField.Time: duration_time, prop.PropField.Event: duration_event, prop.PropField.Kind: "duration"}
                 time_props.append(prop.Proposition(**duration_dict))
-                durative_event = {prop.PropField.EVENT: e, prop.PropField.KIND: "durative", prop.PropField.TIME: start_time, prop.PropField.ENDTIME: end_time, prop.PropField.DURATION: duration_time}
+                durative_event = {prop.PropField.Event: e, prop.PropField.Kind: "durative", prop.PropField.Time: start_time, prop.PropField.EndTime: end_time, prop.PropField.Duration: duration_time}
                 time_props.append(prop.Proposition(**durative_event))
-            elif e.kind == event.EventType.FREQUENT:
+            elif e.kind == event.EventType.Frequent:
                 # TODO: 频率事件的处理
                 pass
             else:

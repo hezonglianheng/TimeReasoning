@@ -23,11 +23,12 @@ PROP_DATA: dict = {} # 时间命题的数据
 class PropField(StrEnum):
     """时间命题中字段的枚举
     """
-    TIME = "time" # 时间
-    EVENT = "event" # 事件
-    KIND = "kind" # 类型
-    ENDTIME = "endtime" # 结束时间
-    DURATION = "duration" # 持续时间
+    Time = "time" # 时间
+    Event = "event" # 事件
+    Kind = "kind" # 类型
+    EndTime = "endtime" # 结束时间
+    Duration = "duration" # 持续时间
+    Diff = "diff" # 时间差
 
 # 初始化时，读取时间命题的数据
 def init():

@@ -19,17 +19,17 @@ USE_PRONOUN = "use_pronoun" # 使用代词
 class EventType(StrEnum):
     """事件的类型的枚举
     """
-    TEMPORAL = "temporal" # 时点事件
-    DURATIVE = "durative" # 持续事件
-    FREQUENT = "frequent" # 频率事件
+    Temporal = "temporal" # 时点事件
+    Durative = "durative" # 持续事件
+    Frequent = "frequent" # 频率事件
 
 # 持续事件的子事件类型枚举
 class SubEventType(StrEnum):
     """持续事件的子事件类型枚举
     """
-    START_EVENT = "start_event" # 开始事件
-    END_EVENT = "end_event" # 结束事件
-    DURATION_EVENT = "duration_event" # 持续时间事件
+    StartEvent = "start_event" # 开始事件
+    EndEvent = "end_event" # 结束事件
+    DurationEvent = "duration_event" # 持续时间事件
 
 # 事件的基本元素
 SUBJECT = "subject" # 主语
