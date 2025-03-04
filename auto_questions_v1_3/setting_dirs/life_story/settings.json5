@@ -1,0 +1,81 @@
+// date: 2025-03-04
+// 与“生活历史”情景相关的设置信息
+
+{
+    "scenario": "linear", // 情景类型, 分为linear和cyclic两种
+    // 试题引导语
+    "guide": {
+        "cn": "", 
+        "en": "", 
+    },
+    // 时间范围
+    "time_range": {
+        // 时间范围的上下界，写法为时间属性的标准写法，参照represent.py文件
+        "upper_bound": {"kind": "year", "year": 2000}, 
+        "lower_bound": {"kind": "year", "year": 1900}, 
+    }, 
+    // 试题中出现的事物
+    "object": [
+        {
+            "name": "Jack", // 事物名称，不能与同文件已有事物重名，用于后续在event中进行索引
+            "is_third_singular": true, // 是否为第三人称单数
+            // 用于翻译的事物名称属性
+            "name_info": {
+                "cn": {"name": "小明", "pronoun": "他", },
+                "en": {"name": "Jack", "pronoun": "he", }, 
+            }, 
+        }, 
+    ], 
+    // 事件信息，可以参照event.py文件中的写法
+    "event": [
+        {
+            "name": "jack_spend_life", // 事件名称，不能与同文件已有事件重名，用于constraint中的索引
+            // 事件种类
+            // 目前支持temporal(时点事件) durative(持续事件) duration(时长事件) 三种
+            "kind": "durative",
+            "subject": "Jack", // 事件主语，会索引到object中的事物
+            "predicate": {"cn": "度过", "en": "spend", }, // 事件谓语，只能是一个动词，需要给出中英文表达
+            "object": {"cn": "他的一生", "en": "his life", }, // 事件宾语，是表达中的其他部分，需要给出中英文表达
+            // 对于durative类型事件，需要定义start end duration子事件，遵照事件的写法
+            "start_event": {
+                "name": "jack_spend_life_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "出生", "en": "be", },
+                "object": {"cn": "", "en": "born", },
+            }, 
+            "end_event": {
+                "name": "jack_spend_life_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "去世", "en": "pass", },
+                "object": {"cn": "", "en": "away", },
+            }, 
+            "duration_event": {
+                "name": "jack_spend_life_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "生活", "en": "live", },
+                "object": {"cn": "", "en": "", },
+            }, 
+        }, 
+        {
+            "name": "jack_meet_his_future_wife", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "遇见", "en": "meet", },
+            "object": {"cn": "他未来的妻子", "en": "his future wife", },
+        },
+    ],
+    // 事件间关系约束信息
+    "constraint": [
+        {
+            "main_event": "jack_spend_life_end", // 主事件名称，用于索引到event中的事件
+            "std_event": "jack_spend_life_start", // 基准事件名称，用于索引到event中的事件
+            "constraint_type": "after", // 约束类型，分为before after simultaneous三种
+            // before after类约束需要提供时间间隔，写法为标准的时间间隔写法
+            "floor": {"kind": "year", "year": 70}, // 约束的时间间隔下界
+            "ceiling": {"kind": "year", "year": 100}, // 约束的时间间隔上界
+        }
+    ],
+}
