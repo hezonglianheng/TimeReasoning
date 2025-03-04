@@ -3,6 +3,7 @@
 
 {
     "scenario": "linear", // 情景类型, 分为linear和cyclic两种
+    "curr_unit": "year", // 当前情景下的时间单位，是time_unit.json5中time_kinds的键
     // 试题引导语
     "guide": {
         "cn": "", 
@@ -76,6 +77,6 @@
             // before after类约束需要提供时间间隔，写法为标准的时间间隔写法
             "floor": {"kind": "year", "year": 70}, // 约束的时间间隔下界
             "ceiling": {"kind": "year", "year": 100}, // 约束的时间间隔上界
-        }
+        }, 
     ],
 }
