@@ -22,6 +22,7 @@ class EventType(StrEnum):
     Temporal = "temporal" # 时点事件
     Durative = "durative" # 持续事件
     Frequent = "frequent" # 频率事件
+    Duration = "duration" # 时长事件，作为持续事件的子事件
 
 # 持续事件的子事件类型枚举
 class SubEventType(StrEnum):
