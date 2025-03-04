@@ -26,6 +26,8 @@ class RuleField(StrEnum):
     """
     Condition = "condition" # 条件
     Conclusion = "conclusion" # 结论
+    Symmetric = "symmetric" # 是否对称
+    Judge = "judge" # 判断条件
 
 class Rule(element.Element):
     """推理规则
@@ -49,7 +51,7 @@ class Rule(element.Element):
         conclusion_dict: dict = self[RuleField.Conclusion] if not symmetric_execute else self[RuleField.Condition]
         curr_prop = props[0]
         if curr_prop.kind != condition_dict['kind']:
-            if self["symmetric"] and not symmetric_execute:
+            if self[RuleField.Symmetric] and not symmetric_execute:
                 return self._get_relation_conclusion(props, symmetric_execute=True)
             return results
         attrs: list[str] = condition_dict['attrs']
