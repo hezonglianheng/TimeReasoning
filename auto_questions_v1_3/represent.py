@@ -132,6 +132,13 @@ class CustomTime(element.Element):
         # 如果没有指定时间类型，则自动推断
         if kind == "":
             self.kind_infer()
+        # 如果指定了时间类型，则检查属性是否完整
+        else:
+            kind_dict: dict[str, Any] = TIME_UNIT[TIME_KINDS][self.kind]
+            units: list[str] = kind_dict["units"]
+            for unit in units:
+                if unit not in kwargs:
+                    raise ValueError(f"时间{self}缺少必要属性{unit}")
 
     def kind_infer(self):
         kind_dict: dict[str, Any] = TIME_UNIT[TIME_KINDS]
