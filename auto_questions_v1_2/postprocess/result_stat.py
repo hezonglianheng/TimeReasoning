@@ -16,10 +16,6 @@ import proposition.config as config
 
 CORRECT_ANSWER = "correct_answer"
 EXTRACTED_ANSWER = "extracted_answer"
-ENGLISH_SCENARIO = {
-    "线性时间场景": "Linear Scenario",
-    "循环时间场景": "Cyclic Scenario", 
-}
 
 # 程序目前支持的语言
 LANGS = [config.LANG_CONFIG[n][config.LANG_NAME] for n in config.CURR_LANGS]
@@ -132,7 +128,7 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
                 cor_scene[s[config.QUES_INFO][config.SCENE_TYPE]] += 1
 
         # report = "场景类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_scene[k]}, 正确率{cor_scene[k]/v}" for k, v in scene.items()])
-        report = {ENGLISH_SCENARIO[k]: cor_scene[k]/v for k, v in scene.items()}
+        report = {k: cor_scene[k]/v for k, v in scene.items()}
         return {"knowledge_attribute": report}
 
     def question_type(records: list[dict]) -> dict[str, dict[str, float]]:
@@ -149,11 +145,11 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
         for i, (r, s) in enumerate(zip(records, standard_data), start=1):
             assert r[config.ID] == s[config.ID], f"第{i}条数据记录与标准答案不匹配"
             question: str = r[config.QUESTION]
-            curr_type = "Precise Event"
+            curr_type = "single proposition"
             if question == config.LANG_CONFIG["zh"][config.ASK_RIGHT] or question == config.LANG_CONFIG["en"][config.ASK_RIGHT]:
-                curr_type = "Correct Statements"
+                curr_type = "correct propositions"
             elif question == config.LANG_CONFIG["zh"][config.ASK_WRONG] or question == config.LANG_CONFIG["en"][config.ASK_WRONG]:
-                curr_type = "Incorrect Statements"
+                curr_type = "incorrect propositions"
             qtype[curr_type] += 1
             if r["is_cor"]:
                 cor_qtype[curr_type] += 1
