@@ -33,6 +33,13 @@ class Rule(element.Element):
     """推理规则
     """
 
+    def __init__(self, name = "", kind = "", **kwargs):
+        super().__init__(name, kind, **kwargs)
+        assert self.has_attr(RuleField.Condition), f"推理规则{name}缺少条件字段"
+        assert self.has_attr(RuleField.Judge), f"推理规则{name}缺少判断方式字段"
+        assert self.has_attr(RuleField.Conclusion), f"推理规则{name}缺少结论字段"
+        self[RuleField.Symmetric] = kwargs.get(RuleField.Symmetric, False)
+
     def translate(self, lang, require = None, **kwargs):
         return super().translate(lang, require, **kwargs)
 
@@ -50,6 +57,7 @@ class Rule(element.Element):
         condition_dict: dict = self[RuleField.Condition] if not symmetric_execute else self[RuleField.Conclusion]
         conclusion_dict: dict = self[RuleField.Conclusion] if not symmetric_execute else self[RuleField.Condition]
         curr_prop = props[0]
+        # 条件是否满足规则
         if curr_prop.kind != condition_dict['kind']:
             if self[RuleField.Symmetric] and not symmetric_execute:
                 return self._get_relation_conclusion(props, symmetric_execute=True)
@@ -58,6 +66,17 @@ class Rule(element.Element):
         for attr in attrs:
             if not curr_prop.has_attr(attr):
                 return results
+        # 判断规则是否可以使用
+        judge_dict: list[str] = self[RuleField.Judge]
+        for judge in judge_dict:
+            try:
+                judge_res: bool = eval(judge)
+            except Exception as e:
+                raise ValueError(f"执行判断语句'{judge}'时出现错误: {e}")
+            else:
+                if not judge_res:
+                    return results
+        # 获取结论
         res_prop = prop.Proposition(kind=conclusion_dict['kind'])
         condition_attrs: list[str] = condition_dict['attrs']
         conclusion_attrs: list[str] = conclusion_dict['attrs']
@@ -81,6 +100,7 @@ class Rule(element.Element):
         results: list[prop.Proposition] = []
         condition_dicts: list[dict] = self[RuleField.Condition]
         conclusion_dicts: list[dict] = self[RuleField.Conclusion]
+        # 条件是否符合规则
         for p, c in zip(props, condition_dicts):
             # 如果输入的类型不满足条件要求的类型，则返回空列表
             if p.kind != c['kind']:
@@ -96,6 +116,17 @@ class Rule(element.Element):
                 exec(sentence)
             except Exception as e:
                 raise ValueError(f"执行语句'{sentence}'时出现错误: {e}")
+        # 判断规则是否可以使用
+        judge_dict: list[str] = self[RuleField.Judge]
+        for judge in judge_dict:
+            try:
+                judge_res: bool = eval(judge)
+            except Exception as e:
+                raise ValueError(f"执行判断语句'{judge}'时出现错误: {e}")
+            else:
+                if not judge_res:
+                    return results
+        # 获取结论
         for c in conclusion_dicts:
             conclusion = prop.Proposition(kind=c['kind'])
             attrs: dict[str, str] = c['attrs']
