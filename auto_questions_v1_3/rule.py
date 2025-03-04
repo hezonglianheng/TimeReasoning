@@ -15,6 +15,10 @@ from enum import StrEnum
 from collections.abc import Sequence
 import math
 
+# constants.
+KIND = "kind"
+ATTRS = "attrs"
+
 class RuleType(StrEnum):
     """命题推理规则类型
     """
@@ -58,11 +62,11 @@ class Rule(element.Element):
         conclusion_dict: dict = self[RuleField.Conclusion] if not symmetric_execute else self[RuleField.Condition]
         curr_prop = props[0]
         # 条件是否满足规则
-        if curr_prop.kind != condition_dict['kind']:
+        if curr_prop.kind != condition_dict[KIND]:
             if self[RuleField.Symmetric] and not symmetric_execute:
                 return self._get_relation_conclusion(props, symmetric_execute=True)
             return results
-        attrs: list[str] = condition_dict['attrs']
+        attrs: list[str] = condition_dict[ATTRS]
         for attr in attrs:
             if not curr_prop.has_attr(attr):
                 return results
@@ -77,9 +81,9 @@ class Rule(element.Element):
                 if not judge_res:
                     return results
         # 获取结论
-        res_prop = prop.Proposition(kind=conclusion_dict['kind'])
-        condition_attrs: list[str] = condition_dict['attrs']
-        conclusion_attrs: list[str] = conclusion_dict['attrs']
+        res_prop = prop.Proposition(kind=conclusion_dict[KIND])
+        condition_attrs: list[str] = condition_dict[ATTRS]
+        conclusion_attrs: list[str] = conclusion_dict[ATTRS]
         for attr1, attr2 in zip(condition_attrs, conclusion_attrs):
             res_prop[attr2] = curr_prop[attr1]
         results.append(res_prop)
@@ -103,10 +107,10 @@ class Rule(element.Element):
         # 条件是否符合规则
         for p, c in zip(props, condition_dicts):
             # 如果输入的类型不满足条件要求的类型，则返回空列表
-            if p.kind != c['kind']:
+            if p.kind != c[KIND]:
                 return results
             # 如果输入的属性不满足条件要求的属性，则返回空列表
-            attrs: list[str] = c['attrs']
+            attrs: list[str] = c[ATTRS]
             for attr in attrs:
                 if not p.has_attr(attr):
                     return results
@@ -128,8 +132,8 @@ class Rule(element.Element):
                     return results
         # 获取结论
         for c in conclusion_dicts:
-            conclusion = prop.Proposition(kind=c['kind'])
-            attrs: dict[str, str] = c['attrs']
+            conclusion = prop.Proposition(kind=c[KIND])
+            attrs: dict[str, str] = c[ATTRS]
             for attr, code in attrs.items():
                 sentence = f"conclusion.{attr} = {code}"
                 try:
@@ -165,3 +169,32 @@ class Rule(element.Element):
                         node_dict = {graph.NodeField.Condition: list(curr_props), graph.NodeField.Conclusion: con, graph.NodeField.Rule: self}
                         results.append(graph.Node(node_dict))
         return results
+
+def get_reasoning_rules(rule_names: Sequence[str]) -> list[Rule]:
+    """根据选择的推理规则名称，获取推理规则
+
+    Args:
+        rule_names (Sequence[str]): 选择的推理规则名称
+
+    Returns:
+        list[Rule]: 推理规则
+
+    Raises:
+        ValueError: 当推理规则的名字重复时
+    """
+    with config.RULE_FILE.open("r", encoding="utf-8") as f:
+        data: dict = json5.load(f)
+    rule_dicts: list[dict] = data["rules"]
+    # 自检：推理规则的名字不能相同
+    rule_name_set = set()
+    for rule_dict in rule_dicts:
+        rule_name = rule_dict["name"]
+        if rule_name in rule_name_set:
+            raise ValueError(f"推理规则的名字'{rule_name}'重复")
+        rule_name_set.add(rule_name)
+    rules: list[Rule] = []
+    chosen_rule_dicts: list[dict] = [rule for rule in rule_dicts if rule["name"] in rule_names]
+    for rule_dict in chosen_rule_dicts:
+        rule = Rule(**rule_dict)
+        rules.append(rule)
+    return rules

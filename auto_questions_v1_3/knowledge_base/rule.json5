@@ -1,0 +1,49 @@
+// date: 2025-03-04
+// 与推理命题相关的文件
+
+{
+    // 推理规则(包含关系relation和rule两类)
+    "rules": [
+        {
+            // 含义：A在B之前 <=> B在A之后
+            "name": "before_equivalence_after", // 规则名称, 不能与已有的规则名称重复
+            "kind": "relation", // 规则种类，分为relation和rule两类
+            // 规则条件, rule类型的规则条件是一个字典
+            "condition": {"kind": "before", "attrs": ["event1", "event2", ]},
+            "judge": [], // 判断条件，是一组返回bool值的Python语句，用于判断规则能否使用
+             // 规则结论, rule类型的规则结论是一个字典
+            "conclusion": {"kind": "after", "attrs": ["event2", "event1", ]},
+            // 是否对称
+            "symmetric": true, 
+        }, 
+        {
+            // 含义：A发生于X && B发生于Y <=> A发生在B之前(Y-X)
+            "name": "get_before_time", // 规则名称, 不能与已有的规则名称重复
+            "kind": "rule", // 规则种类，分为relation和rule两类
+            // 规则条件, rule类型的规则条件是一个字典列表，每个字典表示一个条件
+            "condition": [
+                // name用于judge和conclusion中引用该条件，不能重复
+                // kind表示条件的命题种类
+                // attrs表示条件需要具有的属性
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
+                {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]}, 
+            ], 
+            // 判断条件，是一组返回bool值的Python语句，用于判断规则能否使用
+            "judge": [
+                "temporal1.time < temporal2.time",
+            ], 
+            // 规则结论, rule类型的规则结论是一个字典列表，每个字典表示一个结论
+            "conclusion": [
+                {
+                    "kind": "before_time", // 结论命题类型
+                    // 结论命题的属性，键是结论命题的属性，值是一个Python表达式，表示属性的计算方法
+                    "attrs": {
+                        "event1": "temporal1.event", 
+                        "event2": "temporal2.event", 
+                        "diff": "temporal2.time - temporal1.time",
+                    }, 
+                }, 
+            ], 
+        }, 
+    ], 
+}

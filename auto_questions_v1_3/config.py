@@ -36,7 +36,12 @@ def set_curr_unit(unit: str):
     CURR_UNIT = unit
 
 # 文件配置
+# 知识库文件夹
 KNOWLEDGE_BASE_DIR = Path(__file__).parent / "knowledge_base"
+# 与时间单位相关的文件
 TIME_UNIT_FILE = KNOWLEDGE_BASE_DIR / "time_unit.json5"
+# 与不同时间单位的命题相关的文件夹和文件
 PROP_DIR = KNOWLEDGE_BASE_DIR / "proposition"
 PROP_FILE = PROP_DIR / f"{CURR_UNIT}.json5"
+# 与推理规则相关的文件
+RULE_FILE = KNOWLEDGE_BASE_DIR / "rule.json5"
