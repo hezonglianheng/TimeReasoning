@@ -44,7 +44,25 @@ class Rule(element.Element):
         Returns:
             list[prop.Proposition]: 结论
         """
-        pass
+        results: list[prop.Proposition] = []
+        condition_dict: dict = self[RuleField.Condition] if not symmetric_execute else self[RuleField.Conclusion]
+        conclusion_dict: dict = self[RuleField.Conclusion] if not symmetric_execute else self[RuleField.Condition]
+        curr_prop = props[0]
+        if curr_prop.kind != condition_dict['kind']:
+            if self["symmetric"] and not symmetric_execute:
+                return self._get_relation_conclusion(props, symmetric_execute=True)
+            return results
+        attrs: list[str] = condition_dict['attrs']
+        for attr in attrs:
+            if not curr_prop.has_attr(attr):
+                return results
+        res_prop = prop.Proposition(kind=conclusion_dict['kind'])
+        condition_attrs: list[str] = condition_dict['attrs']
+        conclusion_attrs: list[str] = conclusion_dict['attrs']
+        for attr1, attr2 in zip(condition_attrs, conclusion_attrs):
+            res_prop[attr2] = curr_prop[attr1]
+        results.append(res_prop)
+        return results
 
     def _get_rule_conclusion(self, props: Sequence[prop.Proposition]) -> list[prop.Proposition]:
         """当推理规则的类型为rule时，根据条件推理结论
