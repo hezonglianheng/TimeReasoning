@@ -28,6 +28,7 @@
     ], 
     // 事件信息，可以参照event.py文件中的写法
     "event": [
+        // 度过一生
         {
             "name": "jack_spend_life", // 事件名称，不能与同文件已有事件重名，用于constraint中的索引
             // 事件种类
@@ -55,10 +56,127 @@
                 "name": "jack_spend_life_duration", 
                 "kind": "duration",
                 "subject": "Jack",
-                "predicate": {"cn": "生活", "en": "live", },
+                "predicate": {"cn": "在世", "en": "live", },
                 "object": {"cn": "", "en": "", },
             }, 
         }, 
+        // 上小学
+        {
+            "name": "jack_be_in_elementary_shool", 
+            "kind": "durative",
+            "subject": "Jack",
+            "predicate": {"cn": "上", "en": "be", },
+            "object": {"cn": "小学", "en": "in elementary school", },
+            "start_event": {
+                "name": "jack_be_in_elementary_shool_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "上小学", "en": "elementary school", },
+            }, 
+            "end_event": {
+                "name": "jack_be_in_elementary_shool_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "小学毕业", "en": "graduate", },
+                "object": {"cn": "", "en": "from elementary school", },
+            }, 
+            "duration_event": {
+                "name": "jack_be_in_elementary_shool_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "上", "en": "be", },
+                "object": {"cn": "小学", "en": "in elementary school", },
+            }, 
+        },
+        // 上初中
+        {
+            "name": "jack_be_in_junior_high", 
+            "kind": "durative",
+            "subject": "Jack",
+            "predicate": {"cn": "上", "en": "be", },
+            "object": {"cn": "初中", "en": "in junior high", },
+            "start_event": {
+                "name": "jack_be_in_junior_high_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "上初中", "en": "junior high", },
+            }, 
+            "end_event": {
+                "name": "jack_be_in_junior_high_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "初中毕业", "en": "graduate", },
+                "object": {"cn": "", "en": "from junior high", },
+            }, 
+            "duration_event": {
+                "name": "jack_be_in_junior_high_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "上", "en": "be", },
+                "object": {"cn": "初中", "en": "in junior high", },
+            }, 
+        },
+        // 上高中
+        {
+            "name": "jack_be_in_high_school", 
+            "kind": "durative",
+            "subject": "Jack",
+            "predicate": {"cn": "上", "en": "be", },
+            "object": {"cn": "高中", "en": "in high school", },
+            "start_event": {
+                "name": "jack_be_in_high_school_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "上高中", "en": "high school", },
+            }, 
+            "end_event": {
+                "name": "jack_be_in_high_school_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "高中毕业", "en": "graduate", },
+                "object": {"cn": "", "en": "from high school", },
+            }, 
+            "duration_event": {
+                "name": "jack_be_in_high_school_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "上", "en": "be", },
+                "object": {"cn": "高中", "en": "in high school", },
+            }, 
+        },
+        // 上大学
+        {
+            "name": "jack_be_in_university", 
+            "kind": "durative",
+            "subject": "Jack",
+            "predicate": {"cn": "上", "en": "be", },
+            "object": {"cn": "大学", "en": "in university", },
+            "start_event": {
+                "name": "jack_be_in_university_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "上大学", "en": "university", },
+            }, 
+            "end_event": {
+                "name": "jack_be_in_university_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "大学毕业", "en": "graduate", },
+                "object": {"cn": "", "en": "from university", },
+            }, 
+            "duration_event": {
+                "name": "jack_be_in_university_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "上", "en": "be", },
+                "object": {"cn": "大学", "en": "in university", },
+            }, 
+        },
+        // 遇见未来妻子
         {
             "name": "jack_meet_his_future_wife", 
             "kind": "temporal",
@@ -66,9 +184,92 @@
             "predicate": {"cn": "遇见", "en": "meet", },
             "object": {"cn": "他未来的妻子", "en": "his future wife", },
         },
+        // 恋爱关系
+        {
+            "name": "jack_have_a_romantic_relationship", 
+            "kind": "durative",
+            "subject": "Jack",
+            "predicate": {"cn": "谈", "en": "have", },
+            "object": {"cn": "恋爱", "en": "a romantic relationship", },
+            "start_event": {
+                "name": "jack_have_a_romantic_relationship_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "一段感情", "en": "a romantic relationship", },
+            }, 
+            "end_event": {
+                "name": "jack_have_a_romantic_relationship_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "结束", "en": "end", },
+                "object": {"cn": "恋爱关系", "en": "his romantic relationship", },
+            }, 
+            "duration_event": {
+                "name": "jack_have_a_romantic_relationship_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "拥有", "en": "be", },
+                "object": {"cn": "一段感情", "en": "in a romantic relationship", },
+            }, 
+        },
+        // 婚姻关系
+        {
+            "name": "jack_get_married", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "结婚", "en": "get", },
+            "object": {"cn": "", "en": "married", },
+        },
+        // 成为父亲
+        {
+            "name": "jack_become_a_father", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "成为", "en": "become", },
+            "object": {"cn": "一名父亲", "en": "a father", },
+        },
+        // 工作
+        {
+            "name": "jack_work_for_a_company", 
+            "kind": "durative",
+            "subject": "Jack",
+            "predicate": {"cn": "工作", "en": "work", },
+            "object": {"cn": "", "en": "for a company", },
+            "start_event": {
+                "name": "jack_work_for_a_company_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "join", },
+                "object": {"cn": "工作", "en": "a company", },
+            }, 
+            "end_event": {
+                "name": "jack_work_for_a_company_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "退休", "en": "retire", },
+                "object": {"cn": "", "en": "", },
+            }, 
+            "duration_event": {
+                "name": "jack_work_for_a_company_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "工作", "en": "work", },
+                "object": {"cn": "", "en": "for a company", },
+            }, 
+        },
+        // 成为公司领导
+        {
+            "name": "jack_become_a_company_leader", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "成为", "en": "become", },
+            "object": {"cn": "公司领导", "en": "a company leader", },
+        },
     ],
     // 事件间关系约束信息
     "constraint": [
+        // 寿命约束
         {
             "main_event": "jack_spend_life_end", // 主事件名称，用于索引到event中的事件
             "std_event": "jack_spend_life_start", // 基准事件名称，用于索引到event中的事件
@@ -76,6 +277,127 @@
             // before after类约束需要提供时间间隔，写法为标准的时间间隔写法
             "floor": {"kind": "year", "year": 70}, // 约束的时间间隔下界
             "ceiling": {"kind": "year", "year": 100}, // 约束的时间间隔上界
-        }
+        },
+        // 求学约束
+        {
+            "main_event": "jack_be_in_elementary_shool_start",
+            "std_event": "jack_spend_life_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 6},
+            "ceiling": {"kind": "year", "year": 7},
+        },
+        {
+            "main_event": "jack_be_in_elementary_shool_end",
+            "std_event": "jack_be_in_elementary_shool_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 5},
+            "ceiling": {"kind": "year", "year": 6},
+        },
+        {
+            "main_event": "jack_be_in_junior_high_start",
+            "std_event": "jack_be_in_elementary_shool_end",
+            "constraint_type": "simultaneous",
+        },
+        {
+            "main_event": "jack_be_in_junior_high_end",
+            "std_event": "jack_be_in_junior_high_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 3},
+            "ceiling": {"kind": "year", "year": 4},
+        },
+        {
+            "main_event": "jack_be_in_high_school_start",
+            "std_event": "jack_be_in_junior_high_end",
+            "constraint_type": "simultaneous",
+        },
+        {
+            "main_event": "jack_be_in_high_school_end",
+            "std_event": "jack_be_in_high_school_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 3},
+            "ceiling": {"kind": "year", "year": 3},
+        },
+        {
+            "main_event": "jack_be_in_university_start",
+            "std_event": "jack_be_in_high_school_end",
+            "constraint_type": "simultaneous",
+        },
+        {
+            "main_event": "jack_be_in_university_end",
+            "std_event": "jack_be_in_university_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 4},
+            "ceiling": {"kind": "year", "year": 5},
+        },
+        // 婚恋约束
+        {
+            "main_event": "jack_meet_his_future_wife",
+            "std_event": "jack_spend_life_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 15},
+            "ceiling": {"kind": "year", "year": 100},
+        },
+        {
+            "main_event": "jack_have_a_romantic_relationship_start",
+            "std_event": "jack_meet_his_future_wife",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 1},
+            "ceiling": {"kind": "year", "year": 5},
+        },
+        {
+            "main_event": "jack_have_a_romantic_relationship_start",
+            "std_event": "jack_spend_life_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 18},
+            "ceiling": {"kind": "year", "year": 25},
+        },
+        {
+            "main_event": "jack_have_a_romantic_relationship_end",
+            "std_event": "jack_have_a_romantic_relationship_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 2},
+            "ceiling": {"kind": "year", "year": 8},
+        },
+        {
+            "main_event": "jack_get_married",
+            "std_event": "jack_have_a_romantic_relationship_end",
+            "constraint_type": "simultaneous",
+        },
+        {
+            "main_event": "jack_become_a_father",
+            "std_event": "jack_get_married",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 1},
+            "ceiling": {"kind": "year", "year": 4},
+        },
+        // 职场约束
+        {
+            "main_event": "jack_work_for_a_company_start",
+            "std_event": "jack_spend_life_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 25},
+            "ceiling": {"kind": "year", "year": 35},
+        },
+        {
+            "main_event": "jack_become_a_company_leader",
+            "std_event": "jack_work_for_a_company_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 5},
+            "ceiling": {"kind": "year", "year": 10},
+        },
+        {
+            "main_event": "jack_become_a_company_leader",
+            "std_event": "jack_work_for_a_company_end",
+            "constraint_type": "before",
+            "floor": {"kind": "year", "year": 5},
+            "ceiling": {"kind": "year", "year": 100},
+        },
+        {
+            "main_event": "jack_work_for_a_company_end",
+            "std_event": "jack_spend_life_end",
+            "constraint_type": "before",
+            "floor": {"kind": "year", "year": 10},
+            "ceiling": {"kind": "year", "year": 100},
+        },
     ],
 }
