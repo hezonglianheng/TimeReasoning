@@ -276,6 +276,7 @@
             "std_event": "jack_spend_life_start", // 基准事件名称，用于索引到event中的事件
             "constraint_type": "after", // 约束类型，分为before after simultaneous三种
             // before after类约束需要提供时间间隔，写法为标准的时间间隔写法
+            // 03-05说明：floor ceiling可以只提供其中一个
             "floor": {"kind": "year", "year": 70}, // 约束的时间间隔下界
             "ceiling": {"kind": "year", "year": 100}, // 约束的时间间隔上界
         },
@@ -336,7 +337,7 @@
             "std_event": "jack_spend_life_start",
             "constraint_type": "after",
             "floor": {"kind": "year", "year": 15},
-            "ceiling": {"kind": "year", "year": 100},
+            // "ceiling": {"kind": "year", "year": 100},
         },
         {
             "main_event": "jack_have_a_romantic_relationship_start",
@@ -391,14 +392,14 @@
             "std_event": "jack_work_for_a_company_end",
             "constraint_type": "before",
             "floor": {"kind": "year", "year": 5},
-            "ceiling": {"kind": "year", "year": 100},
+            // "ceiling": {"kind": "year", "year": 100},
         },
         {
             "main_event": "jack_work_for_a_company_end",
             "std_event": "jack_spend_life_end",
             "constraint_type": "before",
             "floor": {"kind": "year", "year": 10},
-            "ceiling": {"kind": "year", "year": 100},
+            // "ceiling": {"kind": "year", "year": 100},
         },
     ],
 }
