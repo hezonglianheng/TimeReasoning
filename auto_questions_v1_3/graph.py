@@ -12,6 +12,7 @@ from enum import StrEnum
 import math
 from collections.abc import Sequence
 from typing import Optional
+from itertools import takewhile
 
 class NodeField(StrEnum):
     """推理图中节点的字段
@@ -20,17 +21,32 @@ class NodeField(StrEnum):
     Conclusion = "conclusion" # 结论
     Rule = "rule" # 规则
     Layer = "layer" # 层级
+    ConditionLayers = "condition_layers" # 条件的层级
 
 class Node(element.Element):
     """推理图中的节点
     """
     def __init__(self, name = "", kind = "", **kwargs):
         super().__init__(name, kind, **kwargs)
+        self[NodeField.ConditionLayers] = [math.inf] * len(self[NodeField.Condition]) # 条件的层级
         self[NodeField.Layer] = math.inf # 默认层级为无穷大
 
     def translate(self, lang, require = None, **kwargs):
         # TODO: 推理图上节点的翻译方法，用于生成CoT
         pass
+
+    def set_layer(self, curr_layer: int, curr_props: list[prop.Proposition]):
+        """设置节点的层级
+
+        Args:
+            curr_layer (int): 当前层级
+            curr_props (list[prop.Proposition]): 当前的命题
+        """
+        conditions: list[prop.Proposition] = self[NodeField.Condition]
+        for i, p in enumerate(conditions):
+            if p.is_contained(curr_props):
+                self[NodeField.ConditionLayers][i] = min(self[NodeField.ConditionLayers][i], curr_layer)
+        self[NodeField.Layer] = max(self[NodeField.ConditionLayers])
 
 class ReasoningGraph:
     def __init__(self, init_props: Sequence[prop.Proposition], rules: Sequence[rule.Rule]):
@@ -95,3 +111,19 @@ class ReasoningGraph:
                 break
             self.add_nodes(curr_nodes)
             curr_prop_list = self.get_conclusions()
+
+    def set_node_layers(self, chosen_props: list[prop.Proposition]):
+        """设置节点的层级，本质上是第二轮推理
+
+        Args:
+            chosen_props (list[prop.Proposition]): 选择的命题
+        """
+        curr_layer_props: list[prop.Proposition] = chosen_props
+        layer: int = 0
+        while any([i[NodeField.Layer] > layer for i in self.nodes]):
+            layer += 1
+            print(f"设置第{layer}层节点")
+            for node in takewhile(lambda x: x[NodeField.Layer] > layer, self.nodes):
+                node.set_layer(layer, curr_layer_props)
+        else:
+            print(f"设置层级结束，共设置{layer}层")
