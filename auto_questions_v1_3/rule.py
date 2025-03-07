@@ -186,15 +186,6 @@ def get_reasoning_rules(rule_names: Sequence[str]) -> list[Rule]:
         data: dict = json5.load(f)
     rule_dicts: list[dict] = data["rules"]
     # 自检：推理规则的名字不能相同
-    rule_name_set = set()
-    for rule_dict in rule_dicts:
-        rule_name = rule_dict["name"]
-        if rule_name in rule_name_set:
-            raise ValueError(f"推理规则的名字'{rule_name}'重复")
-        rule_name_set.add(rule_name)
-    rules: list[Rule] = []
-    chosen_rule_dicts: list[dict] = [rule for rule in rule_dicts if rule["name"] in rule_names]
-    for rule_dict in chosen_rule_dicts:
-        rule = Rule(**rule_dict)
-        rules.append(rule)
+    rules: list[Rule] = [Rule(**rule_dict) for rule_dict in rule_dicts]
+    assert element.name_is_unique(rules), "推理规则的名字不能相同"
     return rules

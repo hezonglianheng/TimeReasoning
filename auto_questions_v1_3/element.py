@@ -8,6 +8,7 @@
 import abc
 from typing import Any
 import warnings
+from collections.abc import Sequence
 
 class Element(metaclass = abc.ABCMeta):
     """内部数据结构中元素的抽象基类，包含名称、类型和属性
@@ -140,3 +141,19 @@ class Element(metaclass = abc.ABCMeta):
             super().__setattr__(name, value)
         else:
             self[name] = value
+
+def name_is_unique(elements: Sequence[Element]) -> bool:
+    """判断元素的名称是否唯一
+
+    Args:
+        elements (Sequence[Element]): 元素序列
+
+    Returns:
+        bool: 名称是否唯一
+    """
+    name_set = set()
+    for e in elements:
+        if e.name in name_set:
+            return False
+        name_set.add(e.name)
+    return True
