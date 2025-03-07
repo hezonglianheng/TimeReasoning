@@ -14,6 +14,7 @@ from itertools import permutations
 from enum import StrEnum
 from collections.abc import Sequence
 import math
+import warnings
 
 # constants.
 KIND = "kind"
@@ -191,4 +192,12 @@ def get_reasoning_rules(rule_names: Sequence[str]) -> list[Rule]:
     # 自检：推理规则的名字不能相同
     rules: list[Rule] = [Rule(**rule_dict) for rule_dict in rule_dicts]
     assert element.name_is_unique(rules), "推理规则的名字不能相同"
-    return rules
+    # 根据名称获取推理规则
+    res_rules: list[Rule] = []
+    for name in rule_names:
+        name_rules = [rule for rule in rules if rule.name == name]
+        if len(name_rules) == 0:
+            warnings.warn(f"要引用的推理规则{name}不存在", UserWarning)
+        else:
+            res_rules.extend(name_rules)
+    return res_rules
