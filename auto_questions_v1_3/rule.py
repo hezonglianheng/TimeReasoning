@@ -157,6 +157,9 @@ class Rule(element.Element):
         total = math.perm(len(props), num_of_conditions)
         results: list[graph.Node] = []
         for curr_props in tqdm(permutations(props, num_of_conditions), desc=desc, total=total):
+            # 03-07新增：若curr_props的所有命题的FIRST_USED都为True，则跳过
+            if all([p[prop.FIRST_USED] for p in curr_props]):
+                continue
             if self.kind == RuleType.Rule:
                 curr_conclusions = self._get_rule_conclusion(curr_props)
             elif self.kind == RuleType.Relation:

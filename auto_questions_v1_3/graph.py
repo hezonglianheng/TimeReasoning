@@ -122,6 +122,9 @@ class ReasoningGraph:
             if len(curr_nodes) == 0:
                 break
             self.add_nodes(curr_nodes)
+            # 将当前命题的FIRST_USED设置为True，表示已经被使用
+            for p in curr_prop_list:
+                p[prop.FIRST_USED] = True
             curr_prop_list = self.get_conclusions()
 
     def set_node_layers(self, chosen_props: list[prop.Proposition]):
