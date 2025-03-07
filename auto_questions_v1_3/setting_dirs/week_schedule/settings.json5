@@ -1,0 +1,18 @@
+// date: 2025-03-07
+// 与“一周日程”有关的配置文件
+
+{
+    "scenario": {
+        "kind": "cyclic", 
+        "period": {"kind": "day", "day": 7}, // 循环周期，此处为7天
+    }, 
+    "curr_unit": "week_day", 
+    "guide": {
+        "cn": "", 
+        "en": "", 
+    }, 
+    "time_range": {}, 
+    "object": [], 
+    "event": [],
+    "constraint": [], 
+}
