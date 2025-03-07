@@ -144,3 +144,12 @@ class ReasoningGraph:
         else:
             self.deepest_layer = layer
             print(f"设置层级结束，共设置{layer}层")
+
+    def get_deepest_conclusions(self) -> list[prop.Proposition]:
+        """获取最深层次推理图节点的结论命题
+
+        Returns:
+            list[prop.Proposition]: 最深层次推理图节点的结论命题
+        """
+        assert self.deepest_layer >= 0, "尚未进行二次推理"
+        return [i[NodeField.Conclusion] for i in self.nodes if i[NodeField.Layer] == self.deepest_layer]
