@@ -9,8 +9,8 @@
     "curr_unit": "year", // 时间单位，是time_unit.json5中time_kinds的键
     // 试题引导语
     "guide": {
-        "cn": "", 
-        "en": "", 
+        "cn": "在朋友聚会中，小明的女儿分享了父亲一生的经历", 
+        "en": "At a friends' gathering, Jack's daughter shared the life experience of her father", 
     },
     // 时间范围
     "time_range": {
