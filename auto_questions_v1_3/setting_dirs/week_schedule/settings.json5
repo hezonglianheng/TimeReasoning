@@ -11,7 +11,10 @@
         "cn": "为了高效利用时间，小明制定了详细的每周计划", 
         "en": "To make efficient use of time, Jack has made a detailed weekly plan", 
     }, 
-    "time_range": {}, 
+    "time_range": {
+        "upper_bound": {"kind": "week_day", "week_day": 7}, 
+        "lower_bound": {"kind": "week_day", "week_day": 1}, 
+    }, 
     "object": [
         {
             "name": "Jack",
