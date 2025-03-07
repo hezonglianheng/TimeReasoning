@@ -43,16 +43,28 @@ class Node(element.Element):
             curr_props (list[prop.Proposition]): 当前的命题
         """
         conditions: list[prop.Proposition] = self[NodeField.Condition]
-        for i, p in enumerate(conditions):
-            if p.is_contained(curr_props):
+        for i in takewhile(lambda x: self[NodeField.ConditionLayers][x] > curr_layer, range(len(conditions))):
+            if conditions[i].is_contained(curr_props):
                 self[NodeField.ConditionLayers][i] = min(self[NodeField.ConditionLayers][i], curr_layer)
         self[NodeField.Layer] = max(self[NodeField.ConditionLayers])
 
 class ReasoningGraph:
+    """推理图，内含全面的推理结果，是程序的核心组件之一\n
+    reason()方法执行一次推理\n
+    set_node_layers()方法设置节点的层级(执行二次推理)\n
+    """
+
     def __init__(self, init_props: Sequence[prop.Proposition], rules: Sequence[rule.Rule]):
+        """初始化推理图
+
+        Args:
+            init_props (Sequence[prop.Proposition]): 推理图中的初始命题
+            rules (Sequence[rule.Rule]): 推理图中可用的推理规则
+        """
         self.init_props: list[prop.Proposition] = list(init_props) # 推理图中的初始命题
         self.reasoning_rules: list[rule.Rule] = list(rules) # 推理图中可用的推理规则
         self.nodes: list[Node] = [] # 推理图中的节点
+        self.deepest_layer: int = -1 # 推理图中最深的层级
 
     def add_nodes(self, nodes: Sequence[Node]):
         """添加节点
@@ -118,6 +130,10 @@ class ReasoningGraph:
         Args:
             chosen_props (list[prop.Proposition]): 选择的命题
         """
+        # 重置节点的层级
+        for node in self.nodes:
+            node[NodeField.Layer] = math.inf
+            node[NodeField.ConditionLayers] = [math.inf] * len(node[NodeField.Condition])
         curr_layer_props: list[prop.Proposition] = chosen_props
         layer: int = 0
         while any([i[NodeField.Layer] > layer for i in self.nodes]):
@@ -126,4 +142,5 @@ class ReasoningGraph:
             for node in takewhile(lambda x: x[NodeField.Layer] > layer, self.nodes):
                 node.set_layer(layer, curr_layer_props)
         else:
+            self.deepest_layer = layer
             print(f"设置层级结束，共设置{layer}层")
