@@ -1,0 +1,5977 @@
+[
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q170584"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2053126"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "西班牙12國寶"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "12 Treasures of Spain"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q170584"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2421024"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1960-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "奧茲瑪計畫"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Project Ozma"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q170584"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4036598"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-05-24T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "宇宙的呼喚"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Cosmic Call"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q170584"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4036598"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-06-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "宇宙的呼喚"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Cosmic Call"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q170584"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q814018"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1960-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "比欽鐵路停運潮"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Beeching cuts"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q170584"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1443926"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-12-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "苏联成立条约"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Treaty on the Creation of the Union of Soviet Socialist Republics"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3330148"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1931-06-27T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "中村事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nakamura Incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3521932"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-12-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "所有演示之母"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "The Mother of All Demos"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3885257"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1943-07-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "格兰迪决议"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Fall of the Fascist regime in Italy"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3951527"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "紐奧良聖徒隊懸賞醜聞"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "New Orleans Saints bounty scandal"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3952688"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1988-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "阿斯克蘭衝突"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Askeran clash"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4250767"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1933-06-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "克孜尔大屠杀"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kizil massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4316915"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1943-05-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "卡廷委员会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Katyn Commission"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4368607"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-11-24T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2003年俄罗斯人民友谊大学火灾"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2003 Peoples' Friendship University of Russia fire"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4381720"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1968年芝加哥民主黨全國大會示威"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1968 Democratic National Convention protest activity"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4426783"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1979-11-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "美國駐巴基斯坦大使館縱火案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1979 U.S. embassy burning in Islamabad"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4462746"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1919-06-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "乌克兰死亡三角"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Ukrainian Death Triangle"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4527024"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1917-11-07T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "攻打冬宫"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Storming of the Winter Palace"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4527024"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1917-11-08T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "攻打冬宫"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Storming of the Winter Palace"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4564096"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1937-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1937年社会信用党后座议员叛乱"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1937 Social Credit backbenchers' revolt"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4566250"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1948-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "多诺拉事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1948 Donora smog"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4585105"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-07-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1989年加州地中海實蠅攻擊"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1989 California medfly attack"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4589465"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-11-23T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1994年戈瓦里踩踏事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1994 Gowari stampede"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4589796"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "爆發了騷亂"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1994 Vancouver Stanley Cup riot"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q35546"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1997-11-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "蒙特婁誤判事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Montreal Screwjob"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q55529"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1978-07-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "730"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "730"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q175113"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1939-09-03T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "血腥星期日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Bloody Sunday"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q244951"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-09-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "囊帕拉枪杀事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nangpa La shooting incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q251652"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1917-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "格林霍夫曼事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Grimm–Hoffmann affair"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q323886"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1944-02-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "胡塔皮耶尼亞茨卡大屠杀"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Huta Pieniacka massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q356551"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1986-11-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1986年莱茵河污染事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Sandoz chemical spill"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q359288"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "米糠油中毒"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Yushō disease"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q376921"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1967-09-03T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "右行交通日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dagen H"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q382299"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1981-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "银泉猕猴"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Silver Spring Monkeys"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q456135"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1927-06-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "施特格里茨学生悲剧"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Steglitz Student Tragedy"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q469733"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1952-08-12T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "犹太人反法西斯委员会案件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Night of the Murdered Poets"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q483257"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-07-19T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2007年塔利班挾持韓國人質事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2007 South Korean hostage crisis in Afghanistan"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q493587"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-12-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "趙斗順事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Cho Doo-soon case"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q514188"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1943-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "丹麦犹太人拯救运动"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Rescue of the Danish Jews"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q592810"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1979-04-02T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "斯維爾德洛夫斯克炭疽洩漏事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Sverdlovsk anthrax leak"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q635051"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1964-06-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "密西西比州民权工作者遭谋杀"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Murders of White, Goodman, and Schrader"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q636944"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1939-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "第二次世界大战时期波兰境内发生的战争罪行"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "World War II crimes in Poland"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q684762"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1927-07-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "暴亂"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "July Revolt of 1927"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q703911"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1970-12-07T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "华沙之跪"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Warschauer Kniefall"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q704361"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1942-09-12T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "拉科尼亞事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Laconia incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q712905"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "深圳富士康員工墜樓事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Foxconn suicides"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1090952"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-04-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "邁爾斯高中校園槍擊案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "W. R. Myers High School shooting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q764967"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-05-13T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "安集延事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Andijan massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q815525"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1990-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "比利時不明飛行物體事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Belgian UFO wave"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q855162"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-04-26T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "哈姆达尼耶村事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Hamdania incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q927194"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-04-04T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "波兰圆桌会议"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Polish Round Table Agreement"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1003569"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1925-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "偽造法郎事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Franc affair"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1051125"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1928-03-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "三一五事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "March 15 incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1250976"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1978-07-11T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1978年西班牙聖卡羅迪拉丙烯槽車爆炸事故"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Los Alfaques disaster"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1547540"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1956-10-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "波蘭十月"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Polish October"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1617125"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1974-04-22T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "音響店謀殺案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Hi-Fi murders"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1799880"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "邓小平南巡"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Deng Xiaoping's southern tour"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1893929"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1949-03-10T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "墨旗"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Ink Flag"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1899132"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1978-09-08T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "黑色星期五"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Black Friday"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1911862"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-09-16T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2006年合艾爆炸袭击"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2006 Hat Yai bombings"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1965863"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1901-08-10T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "莫伯利—乔丹事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Moberly–Jourdain incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4613918"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2009年古瓦哈提爆炸案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2009 Guwahati bombings"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4615375"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2009年朝鲜拘留美国记者事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2009 imprisonment of American journalists by North Korea"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1993476"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1945-04-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "阿道夫·希特勒之死"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "death of Adolf Hitler"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2096814"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1946-08-16T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "直接行动日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Direct Action Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4600511"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-01-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2002年国情咨文"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2002 State of the Union Address"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4604745"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-12-31T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2005帕卢市场爆炸案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2005 Palu market bombing"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4604747"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2005年中國國民黨和平之旅"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2005 Pan-Blue visits to mainland China"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4609691"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-02-14T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2007年伊朗扎黑丹爆炸"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2007 Zahedan bombings"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4610585"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-07-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2008年7月15日巴古拜爆炸事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2008 Baquba bombings"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2790522"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1913-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "癸丑報災"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kuichou report disaster"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2869956"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1954-03-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1954年美国国会大厦枪击事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1954 United States Capitol shooting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2893473"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1972-12-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1972年以色列駐泰國大使館人質危機"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1972 Israeli Bangkok Embassy hostage crisis"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2896625"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1940-04-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "三分之一的挪威國庫"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Flight of the Norwegian National Treasury"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3247927"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-02-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "英格兰银行金库大劫案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Securitas depot robbery"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4664717"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1942-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "派兵包围法鲁克一世所在宫殿"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Abdeen Palace Incident of 1942"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4774367"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "布拉格反全球化抗議"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Anti-globalization protests in Prague"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4810109"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1982-07-08T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "杜贾尔村屠杀"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dujail Massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4818002"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-04-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "雷金·奧利弗·丹尼"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "attack on Reginald Denny"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4837668"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1932-10-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1932年世界大賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Babe Ruth's called shot"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1139876"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1990-05-22T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "也門統一"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Yemeni unification"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1194400"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-04-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "4月9日悲劇"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "April 9 tragedy"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2421024"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1960-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "奧茲瑪計畫"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Project Ozma"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2526840"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1976-09-16T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "铅笔之夜"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Night of the Pencils"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2746536"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-09-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "穆罕默德·杜拉死亡事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Killing of Muhammad al-Durrah"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2752928"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1913-11-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "二次革命"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Second Revolution"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q170584"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7097727"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-06-04T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "黃雀行動"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Operation Yellowbird"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4901759"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-10-04T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Bhimajuli大屠殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Bhimajuli Massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4920802"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1910-11-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "黑色星期五"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Black Friday"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5036737"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1986-04-27T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "午夜队长干扰事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Captain Midnight broadcast signal intrusion"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5039287"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-10-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2010年货机炸弹阴谋"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2010 transatlantic aircraft bomb plot"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5042973"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-10-19T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "求頓俱樂部會面"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Carlton Club meeting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5061609"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-04-19T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "中央公园慢跑者案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Central Park jogger case"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5072114"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-07-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "長沙稅務分局大樓爆炸事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Changsha IRD Building bombing"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5088005"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1957-07-11T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "朱篤市屠殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Chau Doc massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5098208"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-06-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "女王的手提包"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Children's Party at the Palace"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5247270"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-07-17T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "金日成之死"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Death and funeral of Kim Il-sung"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5247470"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-03-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "卡雅·巴爾羅之死"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Death of Kaja Ballo"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5247479"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1974-06-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "凱文·蓋特利之死"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Death of Kevin Gately"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5281269"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2004-02-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "莫拉·穆雷失踪事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Disappearance of Maura Murray"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6310563"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-07-14T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2009年法国骚乱"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "July 2009 French riots"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5306924"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-06-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "德雷尼察屠杀"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Drenica massacres"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5322661"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-04-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "兩岸經濟協議電視辯論"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "ECFA Debate"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5333520"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-07-24T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "印度經濟自由化"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Economic liberalisation in India"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5432163"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-03-22T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "阿爾巴尼亞共產主義政權的垮台"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "fall of communism in Albania"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5510518"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1930-12-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "富田事变"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Futian incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5544194"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1943-08-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "乔治·巴顿掌掴事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "George S. Patton slapping incidents"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5639003"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1926-04-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "海德鲍尔事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Haidbauer incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5647565"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1986-05-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "全美手挽手"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Hands Across America"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5683600"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-03-02T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "哈夫洛克路爆炸"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Havelock Road Bombing"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5684272"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1954-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1954年民主革命"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Hawaii Democratic Revolution of 1954"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5895161"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-12-13T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "旺角高空投擲腐蝕性液體傷人案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Hong Kong acid attacks"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6103634"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1938-11-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "穆斯塔法·凯末尔·阿塔图尔克之死和葬禮"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "death and state funeral of Mustafa Kemal Atatürk"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q10868021"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1948-01-31T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "上海舞潮案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Shanghai Taxi Dancers' Riot"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q10892190"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-07-22T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "八掌溪事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Bazhang River incidence"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q10955575"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1927-04-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "寧漢分裂"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nanjing–Wuhan split"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11127665"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1976-09-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "毛澤東之死"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "death of Mao Zedong"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11621918"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1934-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "藏本英明失踪事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kuramoto Incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q12012727"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-09-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2008年印度拉賈斯坦邦踩踏事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2008 Jodhpur stampede"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q12586384"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-07-11T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "金剛山觀光客射殺事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Mt. Kumgang tourist shot and killed"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q12592355"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1919-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "大韓民國愛國婦人會事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Korean Patriotic Women's Association Incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q14934902"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1984-09-02T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "米爾費拉大屠殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Milperra massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15907916"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-04-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "葉永鋕事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Yeh Yung-chih Incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15911368"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-04-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "爷爷您回来了"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Grandpa, you are back"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15927105"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1972-06-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "寶珊道山泥傾瀉事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1972 Po Shan Road Landslide"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16075776"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1975-04-05T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "蔣介石逝世"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "death of Chiang Kai-shek"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16146924"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-07-12T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2002波索汽车袭击"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2002 Poso bus attacks"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16155921"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1913-02-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1913年大流星群"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1913 Great Meteor Procession"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16165653"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1949-12-07T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "中華民國政府遷臺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "retreat of the government of Republic of China to Taiwan"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16173877"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-10-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "聖水大橋倒塌事故"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Seongsu Bridge collapse"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16209646"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-04-05T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1993年重庆枪击案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Chongqing shooting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16211114"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1959-09-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "李興儒"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nantou shooting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6391964"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1984-11-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "肯特和多拉農場大屠殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kent and Dollar Farm massacres"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6398993"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1919-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "盖巴利肯德大屠杀"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Khaibalikend Massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6694023"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1983-07-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "地球表面溫度最低紀錄"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "lowest temperature recorded on Earth"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6784477"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1943-07-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "波羅為村屠殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Massacre of Borovë"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6797090"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-03-03T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "美亚霍普悲剧"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Mayerthorpe tragedy"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6954479"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1937-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "内务人民委员会第00485号命令"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "NKVD Order No. 00485"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7045496"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1946-11-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "諾阿卡利動亂"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Noakhali riots"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7076937"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-10-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2010年10月阿布賈襲擊"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "October 2010 Abuja attacks"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7293530"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1979-02-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "霍梅尼重返伊朗"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Ruhollah Khomeini's return to Iran"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7312198"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "匈奥边境栅栏撤除"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Removal of Hungary's border fence"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7414139"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "聖法蘭西斯加動物園虎擊事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "San Francisco Zoo tiger attacks"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7414139"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "聖法蘭西斯加動物園虎擊事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "San Francisco Zoo tiger attacks"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7452169"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-09-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2009年新疆武警扣押香港記者事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "September 2009 Xinjiang unrest"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7496509"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2001-03-16T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "靳如超爆炸案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Shijiazhuang bombings"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7582396"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1941-09-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "索博起義"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Srb uprising"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7855252"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2006年土耳其國務委員會槍擊案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Turkish Council of State shooting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7889924"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-06-10T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "詹姆斯·馮·布倫"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "United States Holocaust Memorial Museum shooting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7959702"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1983-02-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "華美大屠殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Wah Mee massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q8186827"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1970-07-03T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1970年丹航空彗星型墜毀事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dan-Air Flight 1903"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q10332838"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1955-11-11T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1955年巴西政变"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1955 Brazilian coup d'état"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q30940639"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1976-01-08T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "周恩來之死"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "death of Zhou Enlai"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q42916157"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "达丁家族凶杀案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dardeen family homicides"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q48586030"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "杞县钴-60事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Qi County Cobalt-60 Incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q48936782"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1966-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "《解放日报》事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "\"Liberation Daily\" incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q55099126"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1908-06-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "女性星期日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Women's Sunday"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q56653581"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1995-04-12T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "白俄羅斯最高蘇維埃大樓毆打議員事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "assault against the deputies in the Supreme Council of Belarus"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q60766604"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1937-10-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1937年溫莎公爵伉儷訪問德國"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1937 tour of Germany by the Duke and Duchess of Windsor"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q27627841"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2004-07-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2004年塔什干自殺式炸彈攻擊"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Tashkent embassy bombings"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16961306"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1998-06-23T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "杨明新杀人案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Chenggu axe massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q18112034"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-06-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "多佛惨案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2000 Dover incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q18377731"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1985-09-23T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1985年拿笃伏击事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1985 Lahad Datu ambush"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q28485502"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "委內瑞拉危機"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "crisis in Venezuela"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q28980421"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1967-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "耶路撒冷統一"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "reunification of Jerusalem"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q28980421"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1967-06-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "耶路撒冷統一"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "reunification of Jerusalem"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q28980421"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1980-07-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "耶路撒冷統一"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "reunification of Jerusalem"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q20687693"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-07-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1994年北一女中學生自殺事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Suicides of Two Girls of Taipei First Girls' High School in 1994"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q21175221"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1973-08-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "乔安妮与科斯蒂失踪案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Disappearance of Joanne Ratcliffe and Kirste Gordon"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q23580887"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1913-07-10T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "地球表面溫度最高紀錄"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "highest temperature recorded on Earth"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q24833534"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1982-06-03T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "元州邨安安幼稚園斬人案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Anne Anne Kindergarten stabbing"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q24898369"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-01-23T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "“普韦布洛”号事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Pueblo incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q99438631"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1988-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1988年舒沙及斯捷潘纳克特暴乱"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Stepanakert pogrom"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q102314393"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1957-08-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "斯特罗姆·瑟蒙德对1957年民权法案的冗长演说"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Strom Thurmond filibuster of the Civil Rights Act of 1957"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q105409675"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1919-12-24T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "阿古利斯屠殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Agulis Massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q106391503"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1952-02-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "乔治六世之死及葬礼"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "death and state funeral of George VI"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q109313008"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1923-10-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1923年愛爾蘭絕食"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1923 Irish Hunger Strikes"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q110128782"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1939-06-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "頹廢藝術拍賣會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1939 Degenerate Art auction"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q110517135"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1937-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "内务人民委员会爱沙尼亚行动"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Estonian Operation of the NKVD"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q111954714"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1916-01-13T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "尤卡坦州第一次女性主義大會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "First Feminist Congress of Yucatán"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q83780345"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1945-01-27T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "解放奧斯威辛集中營"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Liberation of Auschwitz concentration camp"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4589465"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-11-23T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1994年戈瓦里踩踏事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1994 Gowari stampede"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5162784"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1984-03-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "俄罗斯奉献"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "consecration of Russia to the Immaculate Heart of the Blessed Virgin Mary"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7165608"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-06-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "六四清场"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "crackdown on Tiananmen Square protests of 1989"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q8053742"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "银河号事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Yinhe incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q8771177"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-10-12T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "60亿人口日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Day of Six Billion"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5975039"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-09-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "ITV 50"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "ITV 50"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6015952"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "独立百年国际博览会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Independence Centenary International Exposition"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7097380"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-10-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "帕萬行動"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Operation Pawan"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q115822640"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1917-01-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1917年1月9日德国皇家委员会会议"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "9 January 1917 German Crown Council meeting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q117191018"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1953-03-31T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "瑪麗王后之死及葬禮"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Death and funeral of Queen Mary"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q117210139"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1925-11-27T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "亞歷山德拉王后之死及葬禮"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Death and funeral of Queen Alexandra"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q117688042"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1945-10-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "昆明事变"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kunming Incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q123501396"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1972-09-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1972年女皇镇枪击案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1972 Queenstown shooting"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q262096"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1917-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "西克斯圖斯事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Sixtus Affair"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q263078"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1920-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "灾难日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nakba Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q263078"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1948-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "灾难日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nakba Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q389884"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-10-22T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "欧洲歌唱大赛50周年庆典"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Congratulations: 50 Years of the Eurovision Song Contest"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q444159"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1973-10-20T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "周六夜大屠杀"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Saturday Night Massacre"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q492877"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1950-06-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "漢江大橋爆破事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Hangang Bridge bombing"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q838794"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1900-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "禧年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "jubilee"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q838794"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1925-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "禧年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "jubilee"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q838794"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1933-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "禧年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "jubilee"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q838794"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1950-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "禧年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "jubilee"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q838794"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1966-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "禧年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "jubilee"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q838794"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1975-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "禧年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "jubilee"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q838794"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1983-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "禧年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "jubilee"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q838794"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "禧年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "jubilee"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1190554"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q127685236"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1986-05-27T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "法鲁奇夫妇遇害"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Murder of the Faruqis"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1012810"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-10-14T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "史蒂夫·巴特曼事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Steve Bartman incident"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2280012"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2003年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2003 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2280017"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2004-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2004年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2004 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2895856"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1913-06-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1913年阿拉伯大会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Arab Congress of 1913"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4353456"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-10-20T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "完全終結2002"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "No Mercy"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3042513"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1947-02-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "彬龍會議"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Panglong Conference"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3315495"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1985-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "國際青年年"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Youth Year"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3315914"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-07-07T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "迈克尔·杰克逊的追思会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Michael Jackson memorial service"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3414229"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1906-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "导致的骚乱和冲突"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Querelle des inventaires"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3799677"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-06-11T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "国际诗歌化身之夜"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Poetry Incarnation"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16996084"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1909-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "哈德遜-富爾頓慶典"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Hudson-Fulton Celebration"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q25041243"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1967-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "新紀實"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "New Documents"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q28919130"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1909-02-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "美國全國婦女節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "National Woman's Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q30927046"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1971-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "成田機場強制徵地"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "expropriation of land for Narita airport"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q73914724"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2001-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2001年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2001 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q73914733"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2002年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2002 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q76969072"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1999年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1999 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q76969074"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2000年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2000 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q84769534"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1995-08-07T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "提拉·亨特之死"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "death of Tyra Hunter"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q97274535"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-07-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2009年世界運動會運動舞蹈比賽－拉丁舞"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dancesport at the 2009 World Games – Latin"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1656682"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q97274587"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-07-26T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2009年世界運動會原野射箭比賽－女子反曲弓"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Field archery at the 2009 World Games – Women's recurve"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15275719"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q668984"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-05-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Google I/O"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Google I/O"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15275719"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q668984"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-05-19T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Google I/O"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Google I/O"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15275719"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q937162"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1971-04-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "第43屆奧斯卡金像獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "43rd Academy Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15275719"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1187258"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "洛杉矶国际车展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "LA Auto Show"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15275719"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1363997"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-03-13T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "TNA X之旅"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Destination X"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2245405"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q122634606"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-10-31T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "台灣民主聖火長跑"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Run for Democracy on Taiwan"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15275719"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5310588"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "杜拜國際汽車展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dubai Motor Show"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15275719"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5567221"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1925-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "格拉斯顿伯里音乐节 (1914-1925)"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Glastonbury Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15275719"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q8426845"
+        },
+        "point_in_time": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "維園六四燭光晚會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Memorials for the Tiananmen Square protests of 1989"
+        }
+    }
+]
