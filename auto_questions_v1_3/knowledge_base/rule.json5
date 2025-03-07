@@ -717,7 +717,7 @@
         },
         {
             // 含义：A在B之前，A和B间隔为X => A在B之前X
-            "name": "Before_and_Gap1",
+            "name": "Before_and_Gap",
             "kind": "rule",
             "condition": [
                 {"name": "before1", "kind": "before", "attrs": ["event1", "event2", ]},
@@ -761,6 +761,7 @@
                 },
             ],
         },
+        /*
         {
             // 含义：A在B之前，A和B间隔为X => A在B之前X
             "name": "After_and_Gap1",
@@ -784,6 +785,7 @@
                 },
             ],
         },
+        */
         {
             // 含义：A发生在X，B起始于Y，终止于Z，Y<=X<=Z  => A发生在B期间
             "name": "Get_During",
