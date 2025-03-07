@@ -1,0 +1,3777 @@
+[
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q57293"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1949-09-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "法蘭克福書展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Frankfurt Book Fair"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7983"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1959-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "国际奥林匹克数学竞赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Mathematical Olympiad"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q39174"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1977-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "講談社漫畫賞"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kodansha Manga Award"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q195791"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2001-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "FOSS.IN"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "FOSS.IN"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q934357"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "巴黎海灘"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Paris-Plages"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q940946"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1953-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "全國祈禱早餐會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "National Prayer Breakfast"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q957459"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1998-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "超世代音乐节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Ultra Music Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q130871"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1951-06-06T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "柏林国际电影节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Berlin International Film Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q188374"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1962-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "阿爾巴尼亞歌曲節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Festivali i Këngës"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4960077"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1984-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "布雷肯爵士樂節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Brecon Jazz Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4960231"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "育馬者盃泥地一哩大賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Breeders' Cup Dirt Mile"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4960239"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "育馬者盃兩歲雌馬草地大賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Breeders' Cup Juvenile Fillies Turf"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4960246"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "育馬者兩歲馬草地大賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Breeders' Cup Juvenile Turf"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4960263"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "育馬者盃草地短途大賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Breeders' Cup Turf Sprint"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4985533"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1975-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "布宜诺斯艾利斯国际图书博览会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Buenos Aires International Book Fair"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5100410"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1984-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "全国高中学生化学竞赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Chinese Chemistry Olympiad"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5146306"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1985-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "大学节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "CollegeFest"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5243548"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "戴頓文學和平獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dayton Literary Peace Prize"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5310952"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1983-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "都柏林同志大遊行"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dublin Pride"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5329917"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1972-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "柏林复活节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Easter Berlin"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q259936"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1970-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "鲁伊斯摇滚音乐节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Ruisrock"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q286060"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1955-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "印度尼西亚电影节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Indonesian Film Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q299950"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1969-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "華盛頓網球公開賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Washington Open"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q336168"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1995-05-11T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "E3"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "E3"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3365263"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-10-27T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "巴黎遊戲週"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Paris Games Week"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3743878"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1930-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "葡萄节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Festa da Uva"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4037863"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Exxxotica成人展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Exxxotica Expo"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4045901"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "倫敦開放日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Open House London"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4047954"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "BBC Radio 1的大週末"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Radio 1's Big Weekend"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4349755"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "考斯蒂宁国际民间音乐节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kaustinen Folk Music Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1130941"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1998-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "世界田径全能巡回赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "World Athletics Challenge – Combined Events"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1146594"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1980-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "洛杉磯時報書卷獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Los Angeles Times Book Prize"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1151125"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1970-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "粉紅娃娃音樂節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Pinkpop Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1151919"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1947-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "愛丁堡國際藝術節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Edinburgh International Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1353202"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "維基愛古蹟"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Wiki Loves Monuments"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2991042"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "聲優獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Seiyu Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3070358"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "老犁音乐节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Vieilles Charrues Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3183530"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "瑞典体育奖"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Swedish Sports Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3346971"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1972-02-08T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "艾庫西書展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Ekushey Book Fair"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q606649"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "明日世界電子音樂節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Tomorrowland"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q630247"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1901-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "芝加哥车展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Chicago Auto Show"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q653038"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1974-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "國際當代藝術博覽會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Foire Internationale d'Art Contemporain"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q683877"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1996-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "东京电玩展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Tokyo Game Show"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q696379"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "阿諾大力士經典賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Arnold Strongman Classic"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q368176"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1947-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "愛丁堡藝穗節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Edinburgh Festival Fringe"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q429633"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1997-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "聖保羅同志大遊行"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "São Paulo LGBTQ Pride Parade"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q463568"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1997-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "美國黑人影展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "American Black Film Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q474265"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1995-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "加尔各答国际电影节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kolkata International Film Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q516804"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1984-12-27T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "騷亂交流大會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Chaos Communication Congress"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1359606"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1964-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "金甲虫奖"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Guldbagge Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1360957"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1996-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "国际天文奥林匹克"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Astronomy Olympiad"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1455210"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "飛夢夏至遊行"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Fremont Solstice Parade"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1473577"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "國際哲學奧林匹克"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Philosophy Olympiad"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2657439"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "國際地球科學奧林匹亞"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Earth Science Olympiad"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2744530"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1932-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "荷蘭圖書週"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Boekenweek"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2861656"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1981-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "雅靈頓百萬金大賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Arlington Million"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2895553"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1997-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "圣彼得堡国际经济论坛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "St. Petersburg International Economic Forum"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2916435"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1949-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "亞斯本音樂節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Aspen Music Festival and School"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2122065"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1996-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Quakecon"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "QuakeCon"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2300454"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "世界Cosplay高峰會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "World Cosplay Summit"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2343646"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1985-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "塞伊奈约基探戈音乐节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Seinäjoki Tango Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2373439"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "尼克頻道澳大利亚兒童票選獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nickelodeon Australian Kids' Choice Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2453200"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1974-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "为生命游行"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "March for Life"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1944134"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "國際天文和天體物理學奥林匹克競賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Olympiad on Astronomy and Astrophysics"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1947348"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1923-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "科努瓦耶狂欢节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Festival de Cornouaille"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1971029"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1974-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "球員錦標賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "The Players Championship"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1996996"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "東京動畫獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Tokyo Anime Award"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2062773"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "欧视旋律"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Evrovizijska Melodija"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q717312"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-10-31T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "国际反腐败日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Anti-Corruption Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q742584"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "国际信息学奥林匹克"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Olympiad in Informatics"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q339152"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1939-12-31T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "维也纳新年音乐会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Vienna New Year's Concert"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q535568"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1935-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "國家櫻花節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "National Cherry Blossom Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q543565"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1983-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "慕尼黑國際電影節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Munich International Film Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q564643"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1973-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "纽约万圣节游行"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Village Halloween Parade"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q565507"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1963-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "慕尼黑安全会议"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Munich Security Conference"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q824504"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1983-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Apple 全球開發者大會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Apple Worldwide Developers Conference"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q824540"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1984-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "成人影片新聞獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "AVN Award"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q986161"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "世界裸體騎行"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "World Naked Bike Ride"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1024507"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "CTM音樂節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "CTM Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1030987"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1977-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "国间歌曲大赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Intervision Song Contest"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1032211"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1981-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "加拿大音乐周"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Canadian Music Week"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1059021"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "進化冠軍系列賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Evolution Championship Series"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1122733"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1981-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "台北國際電腦展覽會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Computex Taipei"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4549363"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1998-10-19T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "萬聖節13夜"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "31 Nights of Halloween"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4789767"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1934-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "阿尔贡古国际钓鱼文化节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Argungu Fishing Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4819520"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-09-20T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "奥克兰艺术节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Auckland Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5338211"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "愛丁堡科學"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Edinburgh International Science Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5399458"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "精華音樂節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Essence Music Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5579213"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "金鐘獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Golden Bell Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5583720"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1998-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "古德伍德复活赛事"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Goodwood Revival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5643104"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "萬聖節恐怖之夜"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Halloween Horror Nights"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1506776"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Camerimage電影節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "The International Film Festival of the Art of Cinematography Camerimage"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1509860"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Kerrang!音樂獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kerrang! Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1543624"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "免費漫畫日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Free Comic Book Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1575381"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "JavaOne"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "JavaOne"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1592865"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1980-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "罗西尼歌剧节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Rossini Opera Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6202357"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "铃铛舞会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Jingle Bell Ball"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6336976"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "KROQ維尼羅斯特"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "KROQ Weenie Roast"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6457810"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1970-06-28T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "紐約市LGBT驕傲遊行"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "NYC Pride March"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6496834"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2006-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "緯度節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Latitude Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6669869"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1957-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "伦敦国际轮船展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "London Boat Show"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6669870"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1971-11-05T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "倫敦書展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "London Book Fair"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6970178"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "国家收养日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "National Adoption Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q584642"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1977-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "鐵男根祭"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Kanamara Matsuri"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q586220"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "諾丁山嘉年華會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Notting Hill Carnival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q594550"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "朗姆達文學獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Lambda Literary Award"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7015517"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "紐西蘭音樂獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Aotearoa Music Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7195990"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "粉紅點"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Pink Dot SG"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7242790"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1972-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "倫敦驕傲"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Pride London"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11081259"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "新加坡金曲獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Singapore Hit Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q836554"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "歐威爾獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Orwell Prize"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q836736"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1956-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "小學館漫畫奬"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Shogakukan Manga Award"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q864814"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1月4日东京巨蛋赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "January 4 Tokyo Dome Show"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q877257"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "G1 Climax"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "G1 Climax"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q884557"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2005-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "暴雪嘉年華"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "BlizzCon"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2924284"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "育馬者盃雌馬草地大賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Breeders' Cup Filly & Mare Turf"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2924287"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1984-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "育馬者盃短途大賽"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Breeders' Cup Sprint"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2947992"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "街头的沙隆"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Chalon dans la rue"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7445373"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1994-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "塞多纳國際電影節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Sedona International Film Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7489816"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1980-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "鯊魚週"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Shark Week"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7596846"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2007-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "驛馬節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Stagecoach Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7637698"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "夏季球音樂節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Summertime Ball"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7855559"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1960-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "图尔库音乐节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Turku Music Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7902401"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1961-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "犹他莎士比亚节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Utah Shakespearean Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q8036405"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1995-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "世界村文化节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "World Village Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q8037634"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1966-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Wratislavia Cantans國際音樂節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Wratislavia Cantans"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1153257"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1967-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "有色人种促进协会形象奖"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "NAACP Image Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1251529"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2004-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "美泉宫夏夜音樂會"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Summer Night Concert Schönbrunn"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1316544"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1925-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "古根海姆奖"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Guggenheim Fellowship"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1661095"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "独立游戏节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Independent Games Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1683527"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "奧斯陸自由論壇"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Oslo Freedom Forum"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1792734"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2001-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "全国图书节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "National Book Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q910796"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "独联体杯"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Commonwealth of Independent States Cup"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q917300"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1967-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "萨翁林纳歌剧节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Savonlinna Opera Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1862932"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "澳大利亞唱片業協會獎"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "ARIA Music Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11305286"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "薩拉索塔電影節"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Sarasota Film Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11456124"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1961-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "富士綜合火力演習"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Fuji Firepower Review"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q18356923"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "戈尔韦电影节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Galway Film Fleadh"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15227892"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1908-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "理想家居展览会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Ideal Home Show"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16254614"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "國際跨性別現身日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "International Transgender Day of Visibility"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16515422"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Goodreads读者选择奖"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Goodreads Choice Awards"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q17036134"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "Triple J100首大熱"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Triple J Hottest 100"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q17091325"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1996-04-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "全国诗歌日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "National Poetry Month"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q19724435"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2004-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "全听写"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Total Dictation"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q19951029"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1996-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "文艺复兴节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Festival RenaissanceS"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q20640774"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1981-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "山崎春之面包节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Yamazaki Haru no Pan Matsuri"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q21006833"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "EGX展会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "EGX Expo"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q25687413"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "埃尔齐亚语日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Erzya Language Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q94971990"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "南宁国际民歌艺术节"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nanning International Folk Song Arts Festival"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q109311971"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1995-10-25T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "世界意大利面日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "World Pasta Day"
+        }
+    },
+    {
+        "type": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11483816"
+        },
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q109311971"
+        },
+        "inception": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1998-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "世界意大利面日"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "World Pasta Day"
+        }
+    }
+]

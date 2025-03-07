@@ -1,0 +1,2238 @@
+[
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2984156"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1929-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1921-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "白俄羅斯化"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Belarusization"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q46611"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1972-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1961-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "阿波羅計劃"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Apollo space program"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1443926"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-12-08T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-12-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "苏联成立条约"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Treaty on the Creation of the Union of Soviet Socialist Republics"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1443926"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-12-10T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-12-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "苏联成立条约"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Treaty on the Creation of the Union of Soviet Socialist Republics"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1443926"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-12-12T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-12-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "苏联成立条约"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Treaty on the Creation of the Union of Soviet Socialist Republics"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1443926"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-12-08T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-12-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "苏联成立条约"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Treaty on the Creation of the Union of Soviet Socialist Republics"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1443926"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-12-10T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-12-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "苏联成立条约"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Treaty on the Creation of the Union of Soviet Socialist Republics"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1443926"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-12-12T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-12-30T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "苏联成立条约"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Treaty on the Creation of the Union of Soviet Socialist Republics"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1132493"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-08-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1996-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "網頁核心字型"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Core fonts for the Web"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1324160"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-09-15T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1996-05-16T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "夏商周斷代工程"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Xia–Shang–Zhou Chronology Project"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q154494"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1941-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1939-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "T-4行动"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Aktion T4"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q154494"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1941-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1940-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "T-4行动"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Aktion T4"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q740602"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1983-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "雅典娜工程"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Project Athena"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q202894"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1973-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1962-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "水手號計劃"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Mariner program"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q339963"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1966-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "測量員計畫"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Surveyor program"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q190108"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1958-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "先鋒計劃"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Pioneer program"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11639550"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1971-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "通勤五方面作戰"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Five-Direction Strategy"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q38721787"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1943-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1935-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "马驮图书馆"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Pack Horse Library Project"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q64828828"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-10-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-12-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2009–10年馬爾摩槍擊案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2009–2010 Malmö shootings"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q44423"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1972-12-20T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1970-06-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "五贼笔祸事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Five thieves' penal incident"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q56039"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1990-10-03T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-11-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "兩德統一"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "German reunification"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q190882"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1958-04-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1939-10-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "假戰"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Phoney War"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q328376"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1945-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1933-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "納粹戰利品"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nazi plunder"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q469733"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1952-07-18T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1952-05-08T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "犹太人反法西斯委员会案件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Night of the Murdered Poets"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q623859"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1908-07-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1907-02-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "國債報償運動"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "National Debt Repayment Movement"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q695052"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1923-11-15T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1914-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "魏瑪共和國惡性通貨膨脹"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "hyperinflation in the Weimar Republic"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q715450"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1980-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1970-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "朝鲜绑架日本人事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "North Korean abductions of Japanese citizens"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q815525"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1990-04-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-11-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "比利時不明飛行物體事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Belgian UFO wave"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q874209"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1983-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1975-11-20T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "西班牙民主转型"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Spanish transition to democracy"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q927194"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-04-05T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-02-06T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "波兰圆桌会议"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Polish Round Table Agreement"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1604442"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-08-31T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-08-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "红宝石山脊"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Ruby Ridge"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1799880"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-02-21T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-01-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "邓小平南巡"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Deng Xiaoping's southern tour"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2054700"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1918-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1914-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "比利时惨案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Rape of Belgium"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2296891"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1918-11-14T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1918-11-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "荷兰红色周"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Red Week"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2610662"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1977-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1976-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "红色恐怖"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Red Terror"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3927614"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1933-10-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1933-03-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "纳粹党焚书"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nazi book burnings"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4381720"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-08-29T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-08-23T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1968年芝加哥民主黨全國大會示威"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1968 Democratic National Convention protest activity"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4426137"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-06-28T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-06-17T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "新乌津骚乱 (1989年)"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1989 Novy Uzen riots"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4566899"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1950-06-12T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1950-04-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1950年红河洪水"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1950 Red River Flood"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4615375"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-08-05T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2009-03-17T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2009年朝鲜拘留美国记者事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2009 imprisonment of American journalists by North Korea"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7168624"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1991-05-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1948-05-10T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "動員戡亂"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Period of mobilization for the suppression of Communist rebellion"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q10259771"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1948-07-28T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1948-07-21T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "南斯拉夫共产党第五次代表大会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "5th congress of the Communist Party of Yugoslavia"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q14545580"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1990-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1949-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "兩德分裂"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Separation of Germany"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16932373"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1966-06-26T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1966-06-05T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "向恐懼進軍"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "March Against Fear"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q20062297"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1928-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1927-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "中國國民黨清黨"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Purging the KMT"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q24189107"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-11-26T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-10-23T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "波莱梅战役"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Pleiku Campaign"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q99438631"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1988-09-20T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1988-09-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1988年舒沙及斯捷潘纳克特暴乱"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Stepanakert pogrom"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6015952"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1923-03-23T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1922-09-07T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "独立百年国际博览会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Independence Centenary International Exposition"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7097380"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-10-25T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-10-11T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "帕萬行動"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Operation Pawan"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q7165608"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-06-04T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1989-06-03T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "六四清场"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "crackdown on Tiananmen Square protests of 1989"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q160721"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1947-08-20T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1946-12-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "醫師的審判"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Nuremberg Medical Trial"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q187604"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-01-22T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1992-01-20T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "南斯拉夫共产主义者联盟第十四次（非常）代表大会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "14th Congress of the League of Communists of Yugoslavia"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q324985"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1947-11-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1946-03-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "毛特豪森-古森集中营审判"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Mauthausen-Gusen camp trials"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q850529"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1961-09-20T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1961-09-19T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "希爾夫婦被外星人綁架事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Betty and Barney Hill incident"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112947353"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1988-06-21T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1988-05-20T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "華埠 大衆 藝術"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Public Art in Chinatown: Sculpture, Drawings, Models, Plans"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2280012"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-03-16T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2003-03-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2003年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2003 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2280017"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2004-03-14T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2004-03-13T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2004年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2004 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2309559"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-06-17T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2010-06-14T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2010年電子娛樂展"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Electronic Entertainment Expo 2010"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3042513"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1947-02-12T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1947-02-07T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "彬龍會議"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Panglong Conference"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11302559"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-08-30T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1987-07-18T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "通訊嘉年華 夢工場'87"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Yume Kōjō '87"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16086071"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1952-11-07T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1952-11-02T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "南斯拉夫共产党第六次代表大会"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "6th congress of the Communist Party of Yugoslavia"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q73914724"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2001-03-25T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2001-03-24T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2001年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2001 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q73914733"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-03-30T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2002-03-29T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2002年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2002 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q76969072"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-04-07T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1999-04-05T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1999年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "1999 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q76969074"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-03-05T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2000-03-04T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "2000年世界短道速滑团体锦标赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "2000 World Short Track Speed Skating Team Championships"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16468"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-10-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1963-07-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "沼澤凶殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Moors murders"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q44365"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1975-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1965-08-14T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "人民革命党事件"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "People's Revolutionary Party Incident"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q184928"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1907-06-16T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1905-01-22T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1905年俄国革命"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Russian Revolution of 1905"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2763"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1945-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1933-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "猶太人大屠殺"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "The Holocaust"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q8690"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1976-10-06T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1966-05-16T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "文化大革命"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Cultural Revolution"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q313329"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1919-01-12T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1919-01-05T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "斯巴达克同盟起义"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Spartacist uprising"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q512700"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1914-08-26T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1914-08-09T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "多哥蘭戰役"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Togoland campaign"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q623959"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1980-05-17T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1979-10-27T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "汉城之春"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Seoul Spring"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q704886"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1915-07-09T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1914-09-15T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "西南非戰役"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "South-West Africa campaign"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q705553"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1907-08-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1905-07-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "马及马及叛乱"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Maji Maji Rebellion"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q886691"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1929-05-03T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1929-05-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "血腥的五月"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Blutmai"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1723036"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1916-02-16T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1914-08-24T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "西非戰役 (第一次世界大戰)"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "West Africa Campaign"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q2628742"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1973-11-17T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1973-11-14T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "雅典理工学院起义"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Athens Polytechnic uprising"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q520388"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2008-02-02T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1993-02-20T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "歐洲樂曲"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Eurolaul"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3513409"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1960-05-16T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1960-01-20T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "比利时与刚果的圆桌会议"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Congolese Round Table Conference"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4301694"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1911-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1910-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "摩納哥革命"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Monegasque Revolution"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5149908"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-04-30T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1968-04-23T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "1968年哥倫比亞大學的抗議"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Columbia University protests of 1968"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q11060738"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1982-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1978-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "平反冤假错案"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Redressing unjust, false, and mishandled cases"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q77387404"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1938-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1936-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "远东华人强制流配"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Soviet deportations of Chinese people"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q91271784"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1976-01-01T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1911-01-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "中国红色旅游"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Chinese revolutions"
+        }
+    },
+    {
+        "item": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q95985798"
+        },
+        "endTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1971-12-12T00:00:00Z"
+        },
+        "startTime": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1961-12-01T00:00:00Z"
+        },
+        "itemLabelZh": {
+            "xml:lang": "zh",
+            "type": "literal",
+            "value": "米特罗普洛斯国际音乐比赛"
+        },
+        "itemLabelEn": {
+            "xml:lang": "en",
+            "type": "literal",
+            "value": "Dimitri Mitropoulos International Music Competition"
+        }
+    }
+]
