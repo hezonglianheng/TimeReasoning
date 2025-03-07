@@ -12,8 +12,8 @@
         "en": "To make efficient use of time, Jack has made a detailed weekly plan", 
     }, 
     "time_range": {
-        "upper_bound": {"kind": "week_day", "week_day": 7}, 
-        "lower_bound": {"kind": "week_day", "week_day": 1}, 
+        "upper_bound": {"kind": "week_day", "day": 7}, 
+        "lower_bound": {"kind": "week_day", "day": 1}, 
     }, 
     "object": [
         {
