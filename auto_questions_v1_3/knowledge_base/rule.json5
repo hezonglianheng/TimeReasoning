@@ -15,7 +15,115 @@
             "conclusion": {"kind": "after", "attrs": ["event2", "event1", ]},
             // 是否对称
             "symmetric": true, 
-        }, 
+        },
+        {
+            // 含义：A在B之前X <=> B在A之后X
+            "name": "beforetime_equivalence_aftertime",
+            "kind": "relation",
+            "condition": {"kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "after_time", "attrs": ["event2", "event1", "diff"]},
+            "symmetric": true,
+        },
+        {
+            // 含义：A比B长 <=> B比A短
+            "name": "long_equivalence_short",
+            "kind": "relation",
+            "condition": {"kind": "long", "attrs": ["event1", "event2"]},
+            "judge": [],
+            "conclusion": {"kind": "short", "attrs": ["event2", "event1"]},
+            "symmetric": true,
+        },
+        {
+            // 含义：A比B长X <=> B比A短X
+            "name": "longtime_equivalence_shorttime",
+            "kind": "relation",
+            "condition": {"kind": "long_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "short_time", "attrs": ["event2", "event1", "diff"]},
+            "symmetric": true,
+        },
+        {
+            // 含义：A和B同时 <=> B和A同时
+            "name": "simultaneous_equivalence_simultaneous",
+            "kind": "relation",
+            "condition": {"kind": "simultaneous", "attrs": ["event1", "event2"]},
+            "judge": [],
+            "conclusion": {"kind": "simultaneous", "attrs": ["event2", "event1"]},
+            "symmetric": true,
+        },
+        {
+            // 含义：A和B间隔X <=> B和A间隔X
+            "name": "gap_equivalence_gap",
+            "kind": "relation",
+            "condition": {"kind": "gap_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "gap_time", "attrs": ["event2", "event1", "diff"]},
+            "symmetric": true,
+        },
+        {
+            // 含义：A和B一样长 <=> B和A一样长
+            "name": "samelen_equivalence_samelen",
+            "kind": "relation",
+            "condition": {"kind": "same_len", "attrs": ["event1", "event2"]},
+            "judge": [],
+            "conclusion": {"kind": "same_len", "attrs": ["event2", "event1"]},
+            "symmetric": true,
+        },
+        {
+            // 含义：A在B之前X => A在B之前
+            "name": "beforetime_entail_before",
+            "kind": "relation",
+            "condition": {"kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "before", "attrs": ["event1", "event2"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A在B之后X => A在B之后
+            "name": "aftertime_entail_after",
+            "kind": "relation",
+            "condition": {"kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "after", "attrs": ["event1", "event2"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A比B长X => A比B长
+            "name": "longtime_entail_long",
+            "kind": "relation",
+            "condition": {"kind": "long_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "long", "attrs": ["event1", "event2"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A比B短X => A比B短
+            "name": "shorttime_entail_short",
+            "kind": "relation",
+            "condition": {"kind": "short_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "short", "attrs": ["event1", "event2"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A在B之前X => A和B间隔X
+            "name": "beforetime_entail_gap",
+            "kind": "relation",
+            "condition": {"kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "gap_time", "attrs": ["event1", "event2", "diff"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A在B之后X => A和B间隔X
+            "name": "aftertime_entail_gap",
+            "kind": "relation",
+            "condition": {"kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+            "judge": [],
+            "conclusion": {"kind": "gap_time", "attrs": ["event1", "event2", "diff"]},
+            "symmetric": false,
+        },
         {
             // 含义：A发生于X && B发生于Y <=> A发生在B之前(Y-X)
             "name": "get_before_time", // 规则名称, 不能与已有的规则名称重复
@@ -44,6 +152,681 @@
                     }, 
                 }, 
             ], 
-        }, 
-    ], 
+        },
+        {
+            // 含义：A发生于X && B发生于Y <=> A发生在B之后(X-Y)
+            "name": "get_after_time",
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "temporal1.time > temporal2.time",
+            ],
+            "conclusion": [
+                {
+                    "kind": "after_time",
+                    "attrs": {
+                        "event1": "temporal1.event",
+                        "event2": "temporal2.event",
+                        "diff": "temporal1.time - temporal2.time",
+                    },
+                },
+            ],
+        },
+        {
+            // 含义：A发生于X && B发生于X <=> A,B同时发生
+            "name": "get_simultaneous",
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "temporal1.time == temporal2.time",
+            ],
+            "conclusion": [
+                {
+                    "kind": "simultaneous",
+                    "attrs": {
+                        "event1": "temporal1.event",
+                        "event2": "temporal2.event",
+                    },
+                },
+            ],
+        },
+        {
+            // 含义：A的时长为X && B的时长为Y <=> A的时间比B的时间长（X-Y）
+            "name": "get_long_time",
+            "kind": "rule",
+            "condition": [
+                {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]},
+                {"name": "duration2", "kind": "duration", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "duration1.time > duration2.time",
+            ],
+            "conclusion": [
+                {
+                    "kind": "long_time",
+                    "attrs": {
+                        "event1": "duration1.event",
+                        "event2": "duration2.event",
+                        "diff": "duration1.time - duration2.time",
+                    },
+                },
+            ],
+        },
+        {
+            // 含义：A的时长为X && B的时长为Y <=> A的时间比B的时间短（Y-X）
+            "name": "get_short_time",
+            "kind": "rule",
+            "condition": [
+                {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]},
+                {"name": "duration2", "kind": "duration", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "duration1.time < duration2.time",
+            ],
+            "conclusion": [
+                {
+                    "kind": "short_time",
+                    "attrs": {
+                        "event1": "duration1.event",
+                        "event2": "duration2.event",
+                        "diff": "duration2.time - duration1.time",
+                    },
+                },
+            ],
+        },
+        {
+            // 含义：A的时长为X && B的时长为X <=> A的时间与B的时间一样长
+            "name": "get_same_len",
+            "kind": "rule",
+            "condition": [
+                {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]},
+                {"name": "duration2", "kind": "duration", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "duration1.time == duration2.time",
+            ],
+            "conclusion": [
+                {
+                    "kind": "same_len",
+                    "attrs": {
+                        "event1": "duration1.event",
+                        "event2": "duration2.event",
+                    },
+                },
+            ],
+        },
+        //传递性规则
+        {
+            // 含义：A在B之前,B在C之前 => A在C之前
+            "name": "BeforeTrans",
+            "kind": "rule",
+            "condition": [
+                {"name": "before1", "kind": "before", "attrs": ["event1", "event2", ]},
+                {"name": "before2", "kind": "before", "attrs": ["event1", "event2", ]},
+            ],
+            "judge": [
+                "before1.event2 == before2.event1",
+            ],
+            "conclusion":[
+                {
+                    "kind": "before",
+                    "attrs": {
+                        "event1": "before1.event1",
+                        "event2": "before2.event2",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A在B之前X,B在C之前Y => A在C之前(X+Y)
+            "name": "BeforeTimeTrans",
+            "kind": "rule",
+            "condition": [
+                {"name": "before_time1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "before_time2", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+            ],
+            "judge": [
+                "before_time1.event2 == before_time2.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "before_time",
+                    "attrs": {
+                        "event1": "before_time1.event1",
+                        "event2": "before_time2.event2",
+                        "diff": "before_time1.diff + before_time2.diff"
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A在B之后,B在C之后 => A在C之后
+            "name": "AfterTrans",
+            "kind": "rule",
+            "condition": [
+                {"name": "after1", "kind": "after", "attrs": ["event1", "event2", ]},
+                {"name": "after2", "kind": "after", "attrs": ["event1", "event2", ]},
+            ],
+            "judge": [
+                "after1.event2 == after2.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "after",
+                    "attrs": {
+                        "event1": "after1.event1",
+                        "event2": "after2.event2",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A在B之后X,B在C之后Y => A在C之后(X+Y)
+            "name": "AfterTimeTrans",
+            "kind": "rule",
+
+            "condition": [
+                {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "after_time2", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+            ],
+            "judge": [
+                "after_time1.event2 == after_time2.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "after_time",
+                    "attrs": {
+                        "event1": "after_time1.event1",
+                        "event2": "after_time2.event2",
+                        "diff": "after_time1.diff + after_time2.diff"
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A与B同时,B与C同时 => A与C同时
+            "name": "SimultaneousTrans",
+            "kind": "rule",
+
+            "condition": [
+                {"name": "simultaneous1", "kind": "simultaneous", "attrs": ["event1", "event2", ]},
+                {"name": "simultaneous2", "kind": "simultaneous", "attrs": ["event1", "event2", ]},
+            ],
+            "judge": [
+                "simultaneous1.event2 == simultaneous2.event1",
+                "simultaneous1.event1 != simultaneous2.event2"
+            ],
+            "conclusion":[
+                {
+                    "kind": "simultaneous",
+                    "attrs": {
+                        "event1": "simultaneous1.event1",
+                        "event2": "simultaneous2.event2",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B长，B比C长 => A比C长
+            "name": "LongTrans",
+            "kind": "rule",
+            "condition": [
+                {"name": "long1", "kind": "long", "attrs": ["event1", "event2", ]},
+                {"name": "long2", "kind": "long", "attrs": ["event1", "event2", ]},
+            ],
+            "judge": [
+                "long1.event2 == long2.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "long",
+                    "attrs": {
+                        "event1": "long1.event1",
+                        "event2": "long2.event2",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B长X,B比C长Y => A比C长(X+Y)
+            "name": "LongTimeTrans",
+            "kind": "rule",
+            "condition": [
+                {"name": "long_time1", "kind": "long_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "long_time2", "kind": "long_time", "attrs": ["event1", "event2", "diff"]},
+            ],
+            "judge": [
+                "long_time1.event2 == long_time2.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "long_time",
+                    "attrs": {
+                        "event1": "long_time1.event1",
+                        "event2": "long_time2.event2",
+                        "diff": "long_time1.diff + long_time2.diff"
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B短，B比C短 => A比C短
+            "name": "ShortTrans",
+            "kind": "rule",
+            "condition": [
+                {"name": "short1", "kind": "short", "attrs": ["event1", "event2", ]},
+                {"name": "short2", "kind": "short", "attrs": ["event1", "event2", ]},
+            ],
+            "judge": [
+                "short1.event2 == short2.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "short",
+                    "attrs": {
+                        "event1": "short1.event1",
+                        "event2": "short2.event2",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B短X,B比C短Y => A比C短(X+Y)
+            "name": "ShortTimeTrans",
+            "kind": "rule",
+            "condition": [
+                {"name": "short_time1", "kind": "short_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "short_time2", "kind": "short_time", "attrs": ["event1", "event2", "diff"]},
+            ],
+            "judge": [
+                "short_time1.event2 == short_time2.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "short_time",
+                    "attrs": {
+                        "event1": "short_time1.event1",
+                        "event2": "short_time2.event2",
+                        "diff": "short_time1.diff + short_time2.diff"
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A和B一样长，B和C一样长 => A和C一样长
+            "name": "SameLenTrans",
+            "kind": "rule",
+            "condition": [
+                {"name": "same_len1", "kind": "same_len", "attrs": ["event1", "event2", ]},
+                {"name": "same_len2", "kind": "same_len", "attrs": ["event1", "event2", ]},
+            ],
+            "judge": [
+                "same_len1.event2 == same_len2.event1",
+                "same_len1.event1 != same_len2.event2"
+            ],
+            "conclusion":[
+                {
+                    "kind": "same_len",
+                    "attrs": {
+                        "event1": "same_len1.event1",
+                        "event2": "same_len2.event2",
+                    }
+                },
+            ],
+        },
+        //单事件命题 + 双事件命题 => 单事件命题
+        {
+            // 含义：A比B早发生X，B在Y发生 => A在(Y-X)发生
+            "name": "FromBeforeTime1",
+            "kind": "rule",
+            "condition": [
+                {"name": "before_time1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
+            ],
+            "judge": [
+                "before_time1.event2 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "before_time1.event1",
+                        "time": "temporal1.time - before_time1.diff",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B早发生X，A在Y发生 => B在(Y+X)发生
+            "name": "FromBeforeTime2",
+            "kind": "rule",
+            "condition": [
+                {"name": "before_time1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
+            ],
+            "judge": [
+                "before_time1.event1 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "before_time1.event2",
+                        "time": "temporal1.time + before_time1.diff",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B晚发生X，B在Y发生 => A在(Y+X)发生
+            "name": "FromAfterTime1",
+            "kind": "rule",
+            "condition": [
+                {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
+            ],
+            "judge": [
+                "after_time1.event2 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "after_time1.event1",
+                        "time": "temporal1.time + after_time1.diff",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B晚发生X，A在Y发生 => B在(Y-X)发生
+            "name": "FromAfterTime2",
+            "kind": "rule",
+            "condition": [
+                {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
+            ],
+            "judge": [
+                "after_time1.event2 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "after_time1.event2",
+                        "time": "temporal1.time - after_time1.diff",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A和B同时发生，B在X发生 => A在X发生
+            "name": "FromSimultaneous",
+            "kind": "rule",
+            "condition": [
+                {"name": "simultaneous1", "kind": "simultaneous", "attrs": ["event1", "event2", ]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "simultaneous1.event2 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "simultaneous1.event2",
+                        "time": "temporal1.time",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B长X，B时长为Y => A时长为(X+Y)
+            "name": "FromLongTime1",
+            "kind": "rule",
+            "condition": [
+                {"name": "long_time1", "kind": "long_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]}
+            ],
+            "judge": [
+                "long_time1.event2 == duration1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "duration",
+                    "attrs": {
+                        "event": "long_time1.event1",
+                        "time": "duration1.time + long_time1.diff",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B长X，A时长为Y => B时长为(Y-X)
+            "name": "FromLongTime2",
+            "kind": "rule",
+            "condition": [
+                {"name": "long_time1", "kind": "long_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]}
+            ],
+            "judge": [
+                "long_time1.event1 == duration1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "duration",
+                    "attrs": {
+                        "event": "long_time1.event2",
+                        "time": "duration1.time - long_time1.diff",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B短X，B时长为Y => A时长为(Y-X)
+            "name": "FromShortTime1",
+            "kind": "rule",
+            "condition": [
+                {"name": "short_time1", "kind": "short_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]}
+            ],
+            "judge": [
+                "short_time1.event2 == duration1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "duration",
+                    "attrs": {
+                        "event": "short_time1.event1",
+                        "time": "duration1.time - short_time1.diff",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A比B短X，A时长为Y => B时长为(Y+X)
+            "name": "FromShortTime2",
+            "kind": "rule",
+            "condition": [
+                {"name": "short_time1", "kind": "short_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]}
+            ],
+            "judge": [
+                "short_time1.event1 == duration1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "duration",
+                    "attrs": {
+                        "event": "short_time1.event2",
+                        "time": "duration1.time + short_time1.diff",
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A和B一样长，B的时长为X => A的时长为X
+            "name": "FromSameLenTime",
+            "kind": "rule",
+            "condition": [
+                {"name": "same_len1", "kind": "same_len", "attrs": ["event1", "event2", ]},
+                {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "same_len1.event2 == duration.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "duration",
+                    "attrs": {
+                        "event": "same_len1.event2",
+                        "time": "duration1.time",
+                    }
+                },
+            ],
+        },
+        //间隔 + 前后
+        {
+            // 含义：A在B之前，A和B间隔为X => A在B之前X
+            "name": "Before_and_Gap",
+            "kind": "rule",
+            "condition": [
+                {"name": "before1", "kind": "before", "attrs": ["event1", "event2", ]},
+                {"name": "gap_time1", "kind": "gap_time", "attrs": ["event1", "event2", "diff",]},
+            ],
+            "judge": [
+                "before1.event1 == gap_time1.event1",
+                "before1.event2 == gap_time1.event2"
+            ],
+            "conclusion":[
+                {
+                    "kind": "before_time",
+                    "attrs": {
+                        "event1": "before1.event1",
+                        "event2": "before1.event2",
+                        "diff": "gap_time1.diff"
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A在B之前，A和B间隔为X => A在B之前X
+            "name": "Before_and_Gap1",
+            "kind": "rule",
+            "condition": [
+                {"name": "before1", "kind": "before", "attrs": ["event1", "event2", ]},
+                {"name": "gap_time1", "kind": "gap_time", "attrs": ["event1", "event2", "diff",]},
+            ],
+            "judge": [
+                "before1.event1 == gap_time1.event2",
+                "before1.event2 == gap_time1.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "before_time",
+                    "attrs": {
+                        "event1": "before1.event1",
+                        "event2": "before1.event2",
+                        "diff": "gap_time1.diff"
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A在B之后，A和B间隔为X => A在B之后X
+            "name": "After_and_Gap",
+            "kind": "rule",
+            "condition": [
+                {"name": "after1", "kind": "after", "attrs": ["event1", "event2", ]},
+                {"name": "gap_time1", "kind": "gap_time", "attrs": ["event1", "event2", "diff",]},
+            ],
+            "judge": [
+                "after1.event1 == gap_time1.event1",
+                "after1.event2 == gap_time1.event2"
+            ],
+            "conclusion":[
+                {
+                    "kind": "after_time",
+                    "attrs": {
+                        "event1": "after1.event1",
+                        "event2": "after1.event2",
+                        "diff": "gap_time1.diff"
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A在B之前，A和B间隔为X => A在B之前X
+            "name": "After_and_Gap1",
+            "kind": "rule",
+            "condition": [
+                {"name": "after1", "kind": "after", "attrs": ["event1", "event2", ]},
+                {"name": "gap_time1", "kind": "gap_time", "attrs": ["event1", "event2", "diff",]},
+            ],
+            "judge": [
+                "after1.event1 == gap_time1.event2",
+                "after1.event2 == gap_time1.event1"
+            ],
+            "conclusion":[
+                {
+                    "kind": "after_time",
+                    "attrs": {
+                        "event1": "after1.event1",
+                        "event2": "after1.event2",
+                        "diff": "gap_time1.diff"
+                    }
+                },
+            ],
+        },
+        {
+            // 含义：A发生在X，B起始于Y，终止于Z，Y<=X<=Z  => A发生在B期间
+            "name": "Get_During",
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "durative1", "kind": "durative", "attrs": ["event", "time", "endtime",]},
+            ],
+            "judge": [
+                "temporal1.time >= durative1.time",
+                "temporal1.time <= durative1.endtime",
+            ],
+            "conclusion":[
+                {
+                    "kind": "during",
+                    "attrs": {
+                        "event1": "temporal1.event",
+                        "event2": "durative1.event",
+                    }
+                },
+            ],
+        },
+//        {
+//            // 含义：A起始于X0，终止于Y0，B起始于X1，终止于Y1，X1<=X0<=Y0<=Y1  => A发生在B期间
+//            "name": "Get_During1",
+//            "kind": "rule",
+//            "condition": [
+//                {"name": "durative1", "kind": "durative", "attrs": ["event", "time", "endtime"]},
+//                {"name": "durative2", "kind": "durative", "attrs": ["event", "time", "endtime"]},
+//            ],
+//            "judge": [
+//                "durative1.time >= durative2.time",
+//                "durative1.endtime <= durative2.endtime",
+//            ],
+//            "conclusion":[
+//                {
+//                    "kind": "during",
+//                    "attrs": {
+//                        "event1": "durative1.event",
+//                        "event2": "durative2.event",
+//                    }
+//                },
+//            ],
+//        }
+    ],
 }
