@@ -36,7 +36,8 @@ def init():
     """初始化时间命题的数据
     """
     global PROP_DATA
-    with config.PROP_FILE.open("r", encoding = "utf8") as f:
+    prop_file = config.PROP_DIR / f"{config.CURR_UNIT}.json5"
+    with prop_file.open("r", encoding = "utf8") as f:
         PROP_DATA = json5.load(f)
 
 class Proposition(element.Element):

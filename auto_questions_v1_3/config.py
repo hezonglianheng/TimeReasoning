@@ -24,7 +24,7 @@ VERB_BASE_FORM = "VB"
 PLURAL_NOUN = "NNS"
 
 # 当前运行配置，需要在运行时修改
-CURR_UNIT = ""
+CURR_UNIT = "" # 当前时间单位
 
 def set_curr_unit(unit: str):
     """设置当前时间单位
@@ -42,6 +42,7 @@ KNOWLEDGE_BASE_DIR = Path(__file__).parent / "knowledge_base"
 TIME_UNIT_FILE = KNOWLEDGE_BASE_DIR / "time_unit.json5"
 # 与不同时间单位的命题相关的文件夹和文件
 PROP_DIR = KNOWLEDGE_BASE_DIR / "proposition"
-PROP_FILE = PROP_DIR / f"{CURR_UNIT}.json5"
 # 与推理规则相关的文件
 RULE_FILE = KNOWLEDGE_BASE_DIR / "rule.json5"
+# 与情景相关的文件夹
+SCENARIO_DIR = KNOWLEDGE_BASE_DIR / "scenario"
