@@ -60,19 +60,26 @@ class Constraint(element.Element):
         """
         std_floor = std_times[FLOOR]
         std_ceiling = std_times[CEILING]
+        main_floor = main_times[FLOOR]
+        main_ceiling = main_times[CEILING]
         if self.kind == BEFORE:
             if self.has_attr(FLOOR):
                 std_ceiling: represent.CustomTime = std_ceiling - self[FLOOR]
+                main_ceiling = min(main_ceiling, std_ceiling)
             if self.has_attr(CEILING):
                 std_floor: represent.CustomTime = std_floor - self[CEILING]
+                main_floor = max(main_floor, std_floor)
         elif self.kind == AFTER:
             if self.has_attr(FLOOR):
                 std_floor: represent.CustomTime = std_floor + self[FLOOR]
+                main_floor = max(main_floor, std_floor)
             if self.has_attr(CEILING):
                 std_ceiling: represent.CustomTime = std_ceiling + self[CEILING]
-        new_floor = max(std_floor, main_times[FLOOR])
-        new_ceiling = min(std_ceiling, main_times[CEILING])
-        return {FLOOR: new_floor, CEILING: new_ceiling}
+                main_ceiling = min(main_ceiling, std_ceiling)
+        elif self.kind == SIMULTANEOUS:
+            main_floor = max(std_floor, main_floor)
+            main_ceiling = min(std_ceiling, main_ceiling)
+        return {FLOOR: main_floor, CEILING: main_ceiling}
 
     def backward_update(self, main_time: represent.CustomTime, std_times: dict[str, represent.CustomTime]) -> dict[str, represent.CustomTime]:
         """后向传播时，根据约束关系获得新的事件时间值范围
