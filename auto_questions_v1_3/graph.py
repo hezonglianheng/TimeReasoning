@@ -94,7 +94,12 @@ class ReasoningGraph:
         Returns:
             list[prop.Proposition]: 结论命题列表
         """
-        return [i[NodeField.Conclusion] for i in self.nodes]
+        conclusions: list[prop.Proposition] = []
+        for node in self.nodes:
+            node_conclusion: prop.Proposition = node[NodeField.Conclusion]
+            if not node_conclusion.is_contained(conclusions):
+                conclusions.append(node_conclusion)
+        return conclusions
 
     def reason(self, new_props: Optional[list[prop.Proposition]] = None):
         """执行推理，得到完整的推理图
@@ -156,4 +161,9 @@ class ReasoningGraph:
             list[prop.Proposition]: 最深层次推理图节点的结论命题
         """
         assert self.deepest_layer >= 0, "尚未进行二次推理"
-        return [i[NodeField.Conclusion] for i in self.nodes if i[NodeField.Layer] == self.deepest_layer]
+        conclusion_list: list[prop.Proposition] = []
+        for node in takewhile(lambda x: x[NodeField.Layer] == self.deepest_layer, self.nodes):
+            node_conclusion: prop.Proposition = node[NodeField.Conclusion]
+            if not node_conclusion.is_contained(conclusion_list):
+                conclusion_list.append(node_conclusion)
+        return conclusion_list
