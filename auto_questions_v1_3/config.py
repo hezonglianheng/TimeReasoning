@@ -46,3 +46,5 @@ PROP_DIR = KNOWLEDGE_BASE_DIR / "proposition"
 RULE_FILE = KNOWLEDGE_BASE_DIR / "rule.json5"
 # 与情景相关的文件夹
 SCENARIO_DIR = KNOWLEDGE_BASE_DIR / "scenario"
+# 试题配置文件名称
+SETTINGS_FILE = "settings.json5"
