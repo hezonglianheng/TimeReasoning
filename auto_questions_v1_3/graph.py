@@ -54,15 +54,17 @@ class ReasoningGraph:
     set_node_layers()方法设置节点的层级(执行二次推理)\n
     """
 
-    def __init__(self, init_props: Sequence[prop.Proposition], rules: Sequence[rule.Rule]):
+    def __init__(self, init_props: Sequence[prop.Proposition], rules: Sequence[rule.Rule], knowledge_props: Optional[Sequence[prop.Proposition]] = None):
         """初始化推理图
 
         Args:
             init_props (Sequence[prop.Proposition]): 推理图中的初始命题
             rules (Sequence[rule.Rule]): 推理图中可用的推理规则
+            knowledge_props (Optional[Sequence[prop.Proposition]], optional): 知识命题. 默认为None.
         """
         self.init_props: list[prop.Proposition] = list(init_props) # 推理图中的初始命题
         self.reasoning_rules: list[rule.Rule] = list(rules) # 推理图中可用的推理规则
+        self.knowledge_props: list[prop.Proposition] = list(knowledge_props) if knowledge_props is not None else []
         self.nodes: list[Node] = [] # 推理图中的节点
         self.deepest_layer: int = -1 # 推理图中最深的层级
 
@@ -109,10 +111,10 @@ class ReasoningGraph:
         """
         reason_count: int = 0
         if new_props is None:
-            curr_prop_list: list[prop.Proposition] = self.init_props
+            curr_prop_list: list[prop.Proposition] = self.init_props + self.knowledge_props
         else:
             assert len(self.nodes) > 0, "没有节点，不适用增量推理"
-            curr_prop_list: list[prop.Proposition] = new_props + self.get_conclusions()
+            curr_prop_list: list[prop.Proposition] = new_props + self.get_conclusions() + self.knowledge_props
         assert len(curr_prop_list) > 0, "没有命题可以推理"
         assert len(self.reasoning_rules) > 0, "没有推理规则"
         curr_nodes: list[Node] = []
@@ -131,7 +133,7 @@ class ReasoningGraph:
             # 将当前命题的FIRST_USED设置为True，表示已经被使用
             for p in curr_prop_list:
                 p[prop.FIRST_USED] = True
-            curr_prop_list = self.get_conclusions()
+            curr_prop_list = self.get_conclusions() + self.knowledge_props
 
     def set_node_layers(self, chosen_props: list[prop.Proposition]):
         """设置节点的层级，本质上是第二轮推理
@@ -143,7 +145,7 @@ class ReasoningGraph:
         for node in self.nodes:
             node[NodeField.Layer] = math.inf
             node[NodeField.ConditionLayers] = [math.inf] * len(node[NodeField.Condition])
-        curr_layer_props: list[prop.Proposition] = chosen_props
+        curr_layer_props: list[prop.Proposition] = chosen_props + self.knowledge_props
         layer: int = 0
         while any([i[NodeField.Layer] > layer for i in self.nodes]):
             layer += 1
