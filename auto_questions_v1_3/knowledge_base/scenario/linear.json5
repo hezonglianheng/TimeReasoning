@@ -2,6 +2,8 @@
 // 线性时间情景的配置文件
 
 {
+    // 规定情景中需要有哪些属性名称及覆写方式
+    "attr_names": {}, 
     // 情景中引用rule.json5中的规则，按照rule.json5中的名称进行索引
     "ref_rules": [
         "before_equivalence_after", 
