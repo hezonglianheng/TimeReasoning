@@ -2,6 +2,10 @@
 // 与“一周日程”有关的配置文件
 
 {
+    "random_seed": 0, // 随机种子
+    "event_num": 6, // 事件数量，null表示不限制
+    "reset_time": 1, 
+    "ask_time": 1, 
     "scenario": {
         "kind": "cyclic", 
         "period": {"kind": "day", "day": 7}, // 循环周期，此处为7天
