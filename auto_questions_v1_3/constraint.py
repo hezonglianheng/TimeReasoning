@@ -13,46 +13,37 @@ from collections.abc import Sequence
 from typing import Optional, Any
 import random
 import copy
-from enum import StrEnum
 
 # constants.
 CONSTRAINT = "constraint"
 TIME = "time"
-
-class ConstraintField(StrEnum):
-    """约束中的字段
-    """
-    MainEvent = "main_event"
-    StdEvent = "std_event"
-    ConstraintType = "constraint_type"
-    Floor = "floor"
-    Ceiling = "ceiling"
-    Time = "time"
-
+# 约束中的字段
+MAIN_EVENT = "main_event"
+STD_EVENT = "std_event"
+CONSTRAINT_TYPE = "constraint_type"
+FLOOR = "floor"
+CEILING = "ceiling"
 # 约束类型
-class ConstraintType(StrEnum):
-    """约束类型
-    """
-    Before = "before"
-    After = "after"
-    Simultaneous = "simultaneous"
+BEFORE = "before"
+AFTER = "after"
+SIMULTANEOUS = "simultaneous"
 
 class Constraint(element.Element):
     """约束类
     """
     def __init__(self, name = "", kind = "", **kwargs):
         constraint_dict = dict()
-        floor_dict: Optional[dict] = kwargs.get(ConstraintField.Floor)
-        ceiling_dict: Optional[dict] = kwargs.get(ConstraintField.Ceiling)
-        time_dict: Optional[dict] = kwargs.get(ConstraintField.Time) # 如果约束的floor和ceiling相等，则允许一种简写方式
+        floor_dict: Optional[dict] = kwargs.get(FLOOR)
+        ceiling_dict: Optional[dict] = kwargs.get(CEILING)
+        time_dict: Optional[dict] = kwargs.get(TIME) # 如果约束的floor和ceiling相等，则允许一种简写方式
         if time_dict:
-            constraint_dict[ConstraintField.Floor] = represent.CustomTimeDelta(**time_dict)
-            constraint_dict[ConstraintField.Ceiling] = represent.CustomTimeDelta(**time_dict)
+            constraint_dict[FLOOR] = represent.CustomTimeDelta(**time_dict)
+            constraint_dict[CEILING] = represent.CustomTimeDelta(**time_dict)
         if floor_dict:
-            constraint_dict[ConstraintField.Floor] = represent.CustomTimeDelta(**floor_dict)
+            constraint_dict[FLOOR] = represent.CustomTimeDelta(**floor_dict)
         if ceiling_dict:
-            constraint_dict[ConstraintField.Ceiling] = represent.CustomTimeDelta(**ceiling_dict)
-        super().__init__(name, kwargs[ConstraintField.ConstraintType], **constraint_dict)
+            constraint_dict[CEILING] = represent.CustomTimeDelta(**ceiling_dict)
+        super().__init__(name, kwargs[CONSTRAINT_TYPE], **constraint_dict)
 
     def translate(self, lang, require = None, **kwargs):
         return super().translate(lang, require, **kwargs)
@@ -67,21 +58,21 @@ class Constraint(element.Element):
         Returns:
             dict[str, represent.CustomTime]: 更新后的事件时间范围
         """
-        std_floor = std_times[ConstraintField.Floor]
-        std_ceiling = std_times[ConstraintField.Ceiling]
-        if self.kind == ConstraintType.Before:
-            if self.has_attr(ConstraintField.Floor):
-                std_ceiling: represent.CustomTime = std_ceiling - self[ConstraintField.Floor]
-            if self.has_attr(ConstraintField.Ceiling):
-                std_floor: represent.CustomTime = std_floor - self[ConstraintField.Ceiling]
-        elif self.kind == ConstraintType.After:
-            if self.has_attr(ConstraintField.Floor):
-                std_floor: represent.CustomTime = std_floor + self[ConstraintField.Floor]
-            if self.has_attr(ConstraintField.Ceiling):
-                std_ceiling: represent.CustomTime = std_ceiling + self[ConstraintField.Ceiling]
-        new_floor = max(std_floor, main_times[ConstraintField.Floor])
-        new_ceiling = min(std_ceiling, main_times[ConstraintField.Ceiling])
-        return {ConstraintField.Floor: new_floor, ConstraintField.Ceiling: new_ceiling}
+        std_floor = std_times[FLOOR]
+        std_ceiling = std_times[CEILING]
+        if self.kind == BEFORE:
+            if self.has_attr(FLOOR):
+                std_ceiling: represent.CustomTime = std_ceiling - self[FLOOR]
+            if self.has_attr(CEILING):
+                std_floor: represent.CustomTime = std_floor - self[CEILING]
+        elif self.kind == AFTER:
+            if self.has_attr(FLOOR):
+                std_floor: represent.CustomTime = std_floor + self[FLOOR]
+            if self.has_attr(CEILING):
+                std_ceiling: represent.CustomTime = std_ceiling + self[CEILING]
+        new_floor = max(std_floor, main_times[FLOOR])
+        new_ceiling = min(std_ceiling, main_times[CEILING])
+        return {FLOOR: new_floor, CEILING: new_ceiling}
 
     def backward_update(self, main_time: represent.CustomTime, std_times: dict[str, represent.CustomTime]) -> dict[str, represent.CustomTime]:
         """后向传播时，根据约束关系获得新的事件时间值范围
@@ -96,19 +87,19 @@ class Constraint(element.Element):
         Returns:
             dict[str, represent.CustomTime]: 新的事件时间值范围
         """
-        std_floor = std_times[ConstraintField.Floor]
-        std_ceiling = std_times[ConstraintField.Ceiling]
-        if self.kind == ConstraintType.Before:
-            if self.has_attr(ConstraintField.Floor):
-                std_floor: represent.CustomTime = main_time + self[ConstraintField.Floor]
-            if self.has_attr(ConstraintField.Ceiling):
-                std_ceiling: represent.CustomTime = main_time + self[ConstraintField.Ceiling]
-        elif self.kind == ConstraintType.After:
-            if self.has_attr(ConstraintField.Floor):
-                std_floor: represent.CustomTime = main_time - self[ConstraintField.Ceiling]
-            if self.has_attr(ConstraintField.Ceiling):
-                std_ceiling: represent.CustomTime = main_time - self[ConstraintField.Floor]
-        elif self.kind == ConstraintType.Simultaneous:
+        std_floor = std_times[FLOOR]
+        std_ceiling = std_times[CEILING]
+        if self.kind == BEFORE:
+            if self.has_attr(FLOOR):
+                std_floor: represent.CustomTime = main_time + self[FLOOR]
+            if self.has_attr(CEILING):
+                std_ceiling: represent.CustomTime = main_time + self[CEILING]
+        elif self.kind == AFTER:
+            if self.has_attr(FLOOR):
+                std_floor: represent.CustomTime = main_time - self[CEILING]
+            if self.has_attr(CEILING):
+                std_ceiling: represent.CustomTime = main_time - self[FLOOR]
+        elif self.kind == SIMULTANEOUS:
             assert std_floor <= main_time <= std_ceiling, "参考事件时间范围不包含主要事件时间"
             # 直接将参考时间设置为主要事件时间范围
             std_floor = copy.deepcopy(main_time)
@@ -116,7 +107,7 @@ class Constraint(element.Element):
         else:
             raise ValueError(f"不支持的约束类型{self.kind}")
         assert std_floor <= std_ceiling, "时间范围不合法"
-        return {ConstraintField.Floor: std_floor, ConstraintField.Ceiling: std_ceiling}
+        return {FLOOR: std_floor, CEILING: std_ceiling}
 
 class ConstraintMachine:
     def __init__(self, event_names: Sequence[str], constraint_rules: Sequence[dict], upper_bound: represent.CustomTime, lower_bound: represent.CustomTime):
@@ -134,11 +125,11 @@ class ConstraintMachine:
         """
         # 设置约束图中的节点
         for name in self.event_names:
-            self.constraint_graph.add_node(name, **{ConstraintField.Floor: self.lower_bound, ConstraintField.Ceiling: self.upper_bound})
+            self.constraint_graph.add_node(name, **{FLOOR: self.lower_bound, CEILING: self.upper_bound})
         # 设置约束图中的边
         for rule in self.constraint_rules:
             constraint = Constraint(**rule)
-            self.constraint_graph.add_edge(rule[ConstraintField.StdEvent], rule[ConstraintField.MainEvent], CONSTRAINT = constraint)
+            self.constraint_graph.add_edge(rule[STD_EVENT], rule[MAIN_EVENT], CONSTRAINT = constraint)
         # 检查约束图是否有环
         if not nx.is_directed_acyclic_graph(self.constraint_graph):
             cycle = nx.find_cycle(self.constraint_graph, orientation = "original")
@@ -155,19 +146,19 @@ class ConstraintMachine:
             in_edges = list(self.constraint_graph.in_edges(node, data = True))
             if len(in_edges) == 0:
                 # 没有入边的情况，将上界设置为下界
-                self.constraint_graph.nodes[node][ConstraintField.Ceiling] = self.lower_bound
+                self.constraint_graph.nodes[node][CEILING] = self.lower_bound
                 continue
-            floor: represent.CustomTime = self.constraint_graph.nodes[node][ConstraintField.Floor]
-            ceiling: represent.CustomTime = self.constraint_graph.nodes[node][ConstraintField.Ceiling]
+            floor: represent.CustomTime = self.constraint_graph.nodes[node][FLOOR]
+            ceiling: represent.CustomTime = self.constraint_graph.nodes[node][CEILING]
             for pre_node, _, info in in_edges:
                 constraint: Constraint = info[CONSTRAINT]
-                curr_range = {ConstraintField.Floor: floor, ConstraintField.Ceiling: ceiling}
-                pre_node_range = {ConstraintField.Floor: self.constraint_graph.nodes[pre_node][ConstraintField.Floor], ConstraintField.Ceiling: self.constraint_graph.nodes[pre_node][ConstraintField.Ceiling]}
+                curr_range = {FLOOR: floor, CEILING: ceiling}
+                pre_node_range = {FLOOR: self.constraint_graph.nodes[pre_node][FLOOR], CEILING: self.constraint_graph.nodes[pre_node][CEILING]}
                 new_range = constraint.forward_update(curr_range, pre_node_range)
-                floor = new_range[ConstraintField.Floor]
-                ceiling = new_range[ConstraintField.Ceiling]
-            self.constraint_graph.nodes[node][ConstraintField.Floor] = floor
-            self.constraint_graph.nodes[node][ConstraintField.Ceiling] = ceiling
+                floor = new_range[FLOOR]
+                ceiling = new_range[CEILING]
+            self.constraint_graph.nodes[node][FLOOR] = floor
+            self.constraint_graph.nodes[node][CEILING] = ceiling
 
     def _backward(self):
         """后向传播，根据约束关系随机获得事件时间值.
@@ -181,11 +172,11 @@ class ConstraintMachine:
                 for _, next_node, info in out_edges:
                     constraint: Constraint = info[CONSTRAINT]
                     next_time = self.constraint_graph.nodes[next_node][TIME]
-                    curr_range = {ConstraintField.Floor: self.constraint_graph.nodes[node][ConstraintField.Floor], ConstraintField.Ceiling: self.constraint_graph.nodes[node][ConstraintField.Ceiling]}
+                    curr_range = {FLOOR: self.constraint_graph.nodes[node][FLOOR], CEILING: self.constraint_graph.nodes[node][CEILING]}
                     new_range = constraint.backward_update(next_time, curr_range)
-                    self.constraint_graph.nodes[node][ConstraintField.Floor] = new_range[ConstraintField.Floor]
-                    self.constraint_graph.nodes[node][ConstraintField.Ceiling] = new_range[ConstraintField.Ceiling]
-            time_range = represent.get_time_range(self.constraint_graph.nodes[node][ConstraintField.Floor], self.constraint_graph.nodes[node][ConstraintField.Ceiling])
+                    self.constraint_graph.nodes[node][FLOOR] = new_range[FLOOR]
+                    self.constraint_graph.nodes[node][CEILING] = new_range[CEILING]
+            time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
             self.constraint_graph.nodes[node][TIME] = random.choice(time_range)
 
     def _get_temporal_time(self, e: event.Event) -> represent.CustomTime:
@@ -200,7 +191,7 @@ class ConstraintMachine:
         Returns:
             represent.CustomTime: 事件的时间值
         """
-        if e.kind == event.EventType.Temporal:
+        if e.kind == event.TEMPORAL:
             if e.name in self.constraint_graph.nodes:
                 return self.constraint_graph.nodes[e.name][TIME]
             else:
@@ -214,27 +205,27 @@ class ConstraintMachine:
         self._backward()
         time_props: list[prop.Proposition] = []
         for e in events:
-            if e.kind == event.EventType.Temporal:
+            if e.kind == event.TEMPORAL:
                 # 如果事件在约束图中，则添加时间约束
                 e_time = self._get_temporal_time(e)
-                prop_dict: dict[str, Any] = {prop.PropField.Time: e_time, prop.PropField.Event: e, prop.PropField.Kind: "temporal"}
+                prop_dict: dict[str, Any] = {prop.TIME: e_time, prop.EVENT: e, prop.KIND: "temporal"}
                 time_props.append(prop.Proposition(**prop_dict))
-            elif e.kind == event.EventType.Durative:
-                start_event: event.Event = e[event.SubEventType.StartEvent]
-                end_event: event.Event = e[event.SubEventType.EndEvent]
-                duration_event: event.Event = e[event.SubEventType.DurationEvent]
+            elif e.kind == event.DURATIVE:
+                start_event: event.Event = e[event.START_EVENT]
+                end_event: event.Event = e[event.END_EVENT]
+                duration_event: event.Event = e[event.DURATION_EVENT]
                 start_time = self._get_temporal_time(start_event)
-                start_dict = {prop.PropField.Time: start_time, prop.PropField.Event: start_event, prop.PropField.Kind: "temporal"}
+                start_dict = {prop.TIME: start_time, prop.EVENT: start_event, prop.KIND: "temporal"}
                 time_props.append(prop.Proposition(**start_dict))
                 end_time = self._get_temporal_time(end_event)
-                end_dict = {prop.PropField.Time: end_time, prop.PropField.Event: end_event, prop.PropField.Kind: "temporal"}
+                end_dict = {prop.TIME: end_time, prop.EVENT: end_event, prop.KIND: "temporal"}
                 time_props.append(prop.Proposition(**end_dict))
                 duration_time = end_time - start_time
-                duration_dict = {prop.PropField.Time: duration_time, prop.PropField.Event: duration_event, prop.PropField.Kind: "duration"}
+                duration_dict = {prop.TIME: duration_time, prop.EVENT: duration_event, prop.KIND: "duration"}
                 time_props.append(prop.Proposition(**duration_dict))
-                durative_event = {prop.PropField.Event: e, prop.PropField.Kind: "durative", prop.PropField.Time: start_time, prop.PropField.EndTime: end_time, prop.PropField.Duration: duration_time}
+                durative_event = {prop.EVENT: e, prop.KIND: "durative", prop.TIME: start_time, prop.END_TIME: end_time, prop.DURATION: duration_time}
                 time_props.append(prop.Proposition(**durative_event))
-            elif e.kind == event.EventType.Frequent:
+            elif e.kind == event.FREQUENT:
                 # TODO: 频率事件的处理
                 pass
             else:

@@ -11,7 +11,6 @@ import mynode
 import json5
 from tqdm import tqdm
 from itertools import permutations
-from enum import StrEnum
 from collections.abc import Sequence
 import math
 import warnings
@@ -19,20 +18,14 @@ import warnings
 # constants.
 KIND = "kind"
 ATTRS = "attrs"
-
-class RuleType(StrEnum):
-    """命题推理规则类型
-    """
-    Rule = "rule" # 推理规则
-    Relation = "relation" # 命题间关系
-
-class RuleField(StrEnum):
-    """命题推理规则的字段
-    """
-    Condition = "condition" # 条件
-    Conclusion = "conclusion" # 结论
-    Symmetric = "symmetric" # 是否对称
-    Judge = "judge" # 判断条件
+# rule types.
+RULE = "rule"
+RELATION = "relation"
+# rule fields.
+CONDITION = "condition"
+CONCLUSION = "conclusion"
+SYMMETRIC = "symmetric"
+JUDGE = "judge"
 
 class Rule(element.Element):
     """推理规则
@@ -40,10 +33,10 @@ class Rule(element.Element):
 
     def __init__(self, name = "", kind = "", **kwargs):
         super().__init__(name, kind, **kwargs)
-        assert self.has_attr(RuleField.Condition), f"推理规则{name}缺少条件字段"
-        assert self.has_attr(RuleField.Judge), f"推理规则{name}缺少判断方式字段"
-        assert self.has_attr(RuleField.Conclusion), f"推理规则{name}缺少结论字段"
-        self[RuleField.Symmetric] = kwargs.get(RuleField.Symmetric, False)
+        assert self.has_attr(CONDITION), f"推理规则{name}缺少条件字段"
+        assert self.has_attr(JUDGE), f"推理规则{name}缺少判断方式字段"
+        assert self.has_attr(CONCLUSION), f"推理规则{name}缺少结论字段"
+        self[SYMMETRIC] = kwargs.get(SYMMETRIC, False)
 
     def translate(self, lang, require = None, **kwargs):
         return super().translate(lang, require, **kwargs)
@@ -59,12 +52,12 @@ class Rule(element.Element):
             list[prop.Proposition]: 结论
         """
         results: list[prop.Proposition] = []
-        condition_dict: dict = self[RuleField.Condition] if not symmetric_execute else self[RuleField.Conclusion]
-        conclusion_dict: dict = self[RuleField.Conclusion] if not symmetric_execute else self[RuleField.Condition]
+        condition_dict: dict = self[CONDITION] if not symmetric_execute else self[CONCLUSION]
+        conclusion_dict: dict = self[CONCLUSION] if not symmetric_execute else self[CONDITION]
         curr_prop = props[0]
         # 条件是否满足规则
         if curr_prop.kind != condition_dict[KIND]:
-            if self[RuleField.Symmetric] and not symmetric_execute:
+            if self[SYMMETRIC] and not symmetric_execute:
                 return self._get_relation_conclusion(props, symmetric_execute=True)
             return results
         attrs: list[str] = condition_dict[ATTRS]
@@ -72,7 +65,7 @@ class Rule(element.Element):
             if not curr_prop.has_attr(attr):
                 return results
         # 判断规则是否可以使用
-        judge_dict: list[str] = self[RuleField.Judge]
+        judge_dict: list[str] = self[JUDGE]
         for judge in judge_dict:
             try:
                 judge_res: bool = eval(judge)
@@ -103,8 +96,8 @@ class Rule(element.Element):
             ValueError: 当执行注入语句出现错误时
         """
         results: list[prop.Proposition] = []
-        condition_dicts: list[dict] = self[RuleField.Condition]
-        conclusion_dicts: list[dict] = self[RuleField.Conclusion]
+        condition_dicts: list[dict] = self[CONDITION]
+        conclusion_dicts: list[dict] = self[CONCLUSION]
         # 条件是否符合规则
         for p, c in zip(props, condition_dicts):
             # 如果输入的类型不满足条件要求的类型，则返回空列表
@@ -122,7 +115,7 @@ class Rule(element.Element):
             except Exception as e:
                 raise ValueError(f"执行语句'{sentence}'时出现错误: {e}")
         # 判断规则是否可以使用
-        judge_dict: list[str] = self[RuleField.Judge]
+        judge_dict: list[str] = self[JUDGE]
         for judge in judge_dict:
             try:
                 judge_res: bool = eval(judge)
@@ -153,7 +146,7 @@ class Rule(element.Element):
         Returns:
             list[mynode.Node]: 推理得到的新命题节点
         """
-        num_of_conditions = len(self[RuleField.Condition])
+        num_of_conditions = len(self[CONDITION])
         desc = f"使用推理规则{self.name}进行推理"
         total = math.perm(len(props), num_of_conditions)
         results: list[mynode.Node] = []
@@ -161,9 +154,9 @@ class Rule(element.Element):
             # 03-07新增：若curr_props的所有命题的FIRST_USED都为True，则跳过
             if all([p[prop.FIRST_USED] for p in curr_props]):
                 continue
-            if self.kind == RuleType.Rule:
+            if self.kind == RULE:
                 curr_conclusions = self._get_rule_conclusion(curr_props)
-            elif self.kind == RuleType.Relation:
+            elif self.kind == RELATION:
                 curr_conclusions = self._get_relation_conclusion(curr_props)
             else:
                 raise ValueError(f"不支持的规则类型{self.kind}")

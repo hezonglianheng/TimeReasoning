@@ -7,7 +7,6 @@
 import lemminflect
 import element
 import config
-from enum import StrEnum
 from typing import Any
 
 # 常量
@@ -18,21 +17,15 @@ USE_PRONOUN = "use_pronoun" # 使用代词
 PARENT_EVENT = "parent_event" # 父事件
 
 # 事件的类型的枚举
-class EventType(StrEnum):
-    """事件的类型的枚举
-    """
-    Temporal = "temporal" # 时点事件
-    Durative = "durative" # 持续事件
-    Frequent = "frequent" # 频率事件
-    Duration = "duration" # 时长事件，作为持续事件的子事件
+TEMPORAL = "temporal" # 时点事件
+DURATIVE = "durative" # 持续事件
+FREQUENT = "frequent" # 频率事件
+DURATION = "duration" # 时长事件，作为持续事件的子事件
 
 # 持续事件的子事件类型枚举
-class SubEventType(StrEnum):
-    """持续事件的子事件类型枚举
-    """
-    StartEvent = "start_event" # 开始事件
-    EndEvent = "end_event" # 结束事件
-    DurationEvent = "duration_event" # 持续时间事件
+START_EVENT = "start_event" # 开始事件
+END_EVENT = "end_event" # 结束事件
+DURATION_EVENT = "duration_event" # 持续时间事件
 
 # 事件的基本元素
 SUBJECT = "subject" # 主语
@@ -85,14 +78,14 @@ class Event(element.Element):
             list[Event]: 事件元素列表
         """
         kind: str = attr_dict["kind"]
-        if kind == EventType.Temporal:
+        if kind == TEMPORAL:
             subject_name: str = attr_dict[SUBJECT]
             subject: MyObject = next(filter(lambda x: x.name == subject_name, myobject_list))
             attr_dict[SUBJECT] = subject
             return [cls(**attr_dict)]
-        elif kind == EventType.Durative:
+        elif kind == DURATIVE:
             children_event: list["Event"] = []
-            for member in SubEventType:
+            for member in [START_EVENT, END_EVENT, DURATION_EVENT]:
                 child = cls.build(attr_dict[member], myobject_list)
                 children_event.extend(child)
                 attr_dict[member] = child[0]
@@ -100,9 +93,9 @@ class Event(element.Element):
             for child in children_event:
                 child[PARENT_EVENT] = curr_event
             return [curr_event]
-        elif kind == EventType.Frequent:
+        elif kind == FREQUENT:
             pass
-        elif kind == EventType.Duration:
+        elif kind == DURATION:
             subject_name: str = attr_dict[SUBJECT]
             subject: MyObject = next(filter(lambda x: x.name == subject_name, myobject_list))
             attr_dict[SUBJECT] = subject

@@ -62,7 +62,7 @@ class ReasoningGraph:
         """
         conclusions: list[prop.Proposition] = []
         for node in self.nodes:
-            node_conclusion: prop.Proposition = node[mynode.NodeField.Conclusion]
+            node_conclusion: prop.Proposition = node[mynode.CONCLUSION]
             if not node_conclusion.is_contained(conclusions):
                 conclusions.append(node_conclusion)
         return conclusions
@@ -91,7 +91,7 @@ class ReasoningGraph:
                 print(f"执行规则{rule.name}成功")
                 curr_nodes.extend(rule_result)
             self.add_nodes(curr_nodes)
-            curr_conclusions: list[prop.Proposition] = [i[mynode.NodeField.Conclusion] for i in curr_nodes]
+            curr_conclusions: list[prop.Proposition] = [i[mynode.CONCLUSION] for i in curr_nodes]
             if all([i.is_contained(curr_prop_list) for i in curr_conclusions]):
                 break
             # 将当前命题的FIRST_USED设置为True，表示已经被使用
@@ -107,15 +107,15 @@ class ReasoningGraph:
         """
         # 重置节点的层级
         for node in self.nodes:
-            node[mynode.NodeField.Layer] = math.inf
-            node[mynode.NodeField.ConditionLayers] = [math.inf] * len(node[mynode.NodeField.Condition])
+            node[mynode.LAYER] = math.inf
+            node[mynode.CONDITION_LAYERS] = [math.inf] * len(node[mynode.NodeField.Condition])
         curr_layer_props: list[prop.Proposition] = chosen_props + self.knowledge_props
         next_layer_props: list[prop.Proposition] = []
         layer: int = 0
-        while any([i[mynode.NodeField.Layer] > layer for i in self.nodes]):
+        while any([i[mynode.LAYER] > layer for i in self.nodes]):
             layer += 1
             print(f"设置第{layer}层节点")
-            for node in takewhile(lambda x: x[mynode.NodeField.Layer] > layer, self.nodes):
+            for node in takewhile(lambda x: x[mynode.LAYER] > layer, self.nodes):
                 conclusion = node.set_layer(layer, curr_layer_props)
                 if conclusion and conclusion.is_contained(next_layer_props):
                     next_layer_props.append(conclusion)
@@ -134,8 +134,8 @@ class ReasoningGraph:
         """
         assert self.deepest_layer >= 0, "尚未进行二次推理"
         conclusion_list: list[prop.Proposition] = []
-        for node in takewhile(lambda x: x[mynode.NodeField.Layer] == self.deepest_layer, self.nodes):
-            node_conclusion: prop.Proposition = node[mynode.NodeField.Conclusion]
+        for node in takewhile(lambda x: x[mynode.LAYER] == self.deepest_layer, self.nodes):
+            node_conclusion: prop.Proposition = node[mynode.CONCLUSION]
             if not node_conclusion.is_contained(conclusion_list):
                 conclusion_list.append(node_conclusion)
         return conclusion_list

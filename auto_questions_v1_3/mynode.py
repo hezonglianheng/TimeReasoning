@@ -6,24 +6,21 @@ import proposition as prop
 import math
 from itertools import takewhile
 from typing import Optional
-from enum import StrEnum
 
-class NodeField(StrEnum):
-    """推理图中节点的字段
-    """
-    Condition = "condition" # 条件
-    Conclusion = "conclusion" # 结论
-    Rule = "rule" # 规则
-    Layer = "layer" # 层级
-    ConditionLayers = "condition_layers" # 条件的层级
+# constants.
+CONDITION = "condition"
+CONCLUSION = "conclusion"
+RULE = "rule"
+LAYER = "layer"
+CONDITION_LAYERS = "condition_layers"
 
 class Node(element.Element):
     """推理图中的节点
     """
     def __init__(self, name = "", kind = "", **kwargs):
         super().__init__(name, kind, **kwargs)
-        self[NodeField.ConditionLayers] = [math.inf] * len(self[NodeField.Condition]) # 条件的层级
-        self[NodeField.Layer] = math.inf # 默认层级为无穷大
+        self[CONDITION_LAYERS] = [math.inf] * len(self[CONDITION]) # 条件的层级
+        self[LAYER] = math.inf # 默认层级为无穷大
 
     def translate(self, lang, require = None, **kwargs):
         # TODO: 推理图上节点的翻译方法，用于生成CoT
@@ -39,10 +36,10 @@ class Node(element.Element):
         Returns:
             Optional[prop.Proposition]: 如果节点层数小于当前层数，返回节点的结论命题，否则返回None
         """
-        conditions: list[prop.Proposition] = self[NodeField.Condition]
-        for i in takewhile(lambda x: self[NodeField.ConditionLayers][x] > curr_layer, range(len(conditions))):
+        conditions: list[prop.Proposition] = self[CONDITION]
+        for i in takewhile(lambda x: self[CONDITION_LAYERS][x] > curr_layer, range(len(conditions))):
             if conditions[i].is_contained(curr_props):
-                self[NodeField.ConditionLayers][i] = min(self[NodeField.ConditionLayers][i], curr_layer)
-        self[NodeField.Layer] = max(self[NodeField.ConditionLayers])
+                self[CONDITION_LAYERS][i] = min(self[CONDITION_LAYERS][i], curr_layer)
+        self[LAYER] = max(self[CONDITION_LAYERS])
         # 如果节点层数小于当前层数，返回结论命题，否则返回None
-        return self[NodeField.Conclusion] if self[NodeField.Layer] < curr_layer else None
+        return self[CONCLUSION] if self[LAYER] < curr_layer else None

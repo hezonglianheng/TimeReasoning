@@ -9,7 +9,6 @@ import config
 import json5
 import re
 import random
-from enum import StrEnum
 
 # 常量
 ASKABLE = "askable" # 是否可询问
@@ -20,16 +19,13 @@ PROP_KINDS = "prop_kinds" # 命题类型对应的键
 REPLACE = re.compile(r"\{(\w*?):(\w*?)\}") # 替换模板中的内容
 PROP_DATA: dict = {} # 时间命题的数据
 
-# 命题中字段的枚举
-class PropField(StrEnum):
-    """时间命题中字段的枚举
-    """
-    Time = "time" # 时间
-    Event = "event" # 事件
-    Kind = "kind" # 类型
-    EndTime = "endtime" # 结束时间
-    Duration = "duration" # 持续时间
-    Diff = "diff" # 时间差
+# constants.
+TIME = "time" # 时间
+EVENT = "event" # 事件
+KIND = "kind" # 类型
+END_TIME = "endtime" # 结束时间
+DURATION = "duration" # 持续时间
+DIFF = "diff" # 时间差
 
 # 初始化时，读取时间命题的数据
 def init():
