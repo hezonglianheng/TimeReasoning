@@ -149,7 +149,6 @@ class CustomTime(element.Element):
                 self.kind = k
                 return
 
-    @property
     def convert2base(self) -> dict[str, int]:
         """将时间值转换为基本单位，供进一步比较和计算
 
@@ -221,16 +220,16 @@ class CustomTime(element.Element):
         assert type(self) == type(other), "两个时间对象的class不同不能比较"
         assert self.kind == other.kind, "两个时间对象的kind不同不能比较"
         base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
-        self_base: int = self.convert2base[base]
-        other_base: int = other.convert2base[base]
+        self_base: int = self.convert2base()[base]
+        other_base: int = other.convert2base()[base]
         return self_base < other_base
 
     def __gt__(self, other: "CustomTime") -> bool:
         assert type(self) == type(other), "两个时间对象的class不同不能比较"
         assert self.kind == other.kind, "两个时间对象的kind不同不能比较"
         base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
-        self_base: int = self.convert2base[base]
-        other_base: int = other.convert2base[base]
+        self_base: int = self.convert2base()[base]
+        other_base: int = other.convert2base()[base]
         return self_base > other_base
 
     def __le__(self, other: "CustomTime") -> bool:
@@ -261,8 +260,8 @@ class CustomTime(element.Element):
                 return None
             else:
                 base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
-                self_base: int = self.convert2base[base]
-                other_base: int = other.convert2base[base]
+                self_base: int = self.convert2base()[base]
+                other_base: int = other.convert2base()[base]
                 delta_base: int = self_base - other_base
                 delta_kind: str = TIME_UNIT[TIME_KINDS][self.kind][SUB_RESULT_KIND]
                 delta = CustomTimeDelta(kind=delta_kind, **{base: delta_base})
@@ -271,7 +270,7 @@ class CustomTime(element.Element):
             left_base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
             right_base: str = TIME_UNIT[TIMEDELTA_KINDS][other.kind][BASE]
             assert left_base == right_base, f"时间{self}和时间间隔{other}的基本单位不同，不能相减"
-            self_base_value: int = self.convert2base[left_base]
+            self_base_value: int = self.convert2base()[left_base]
             delta_base_value: int = other[right_base]
             result_base: int = self_base_value - delta_base_value
             time_attr: dict[str, int] = {left_base: result_base}
@@ -293,7 +292,7 @@ class CustomTime(element.Element):
         left_base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
         right_base: str = TIME_UNIT[TIMEDELTA_KINDS][other.kind][BASE]
         assert left_base == right_base, f"时间{self}和时间间隔{other}的基本单位不同，不能相加"
-        self_base_value: int = self.convert2base[left_base]
+        self_base_value: int = self.convert2base()[left_base]
         delta_base_value: int = other[right_base]
         result_base: int = self_base_value + delta_base_value
         time_attr: dict[str, int] = {left_base: result_base}
@@ -389,6 +388,7 @@ if __name__ == "__main__":
     higher_convert = convert2higher(13, "month", "year")
     print(higher_convert)
     year = CustomTime(kind="year", year=2000)
+    print(year.kind_infer())
     year0 = CustomTime(kind="year", year=1900)
     year1 = CustomTimeDelta(kind="year", year=1)
     year2 = CustomTimeDelta(kind="year", year=2)
