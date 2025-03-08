@@ -7,7 +7,7 @@
 import element
 import config
 import proposition as prop
-import graph
+import mynode
 import json5
 from tqdm import tqdm
 from itertools import permutations
@@ -144,19 +144,19 @@ class Rule(element.Element):
             results.append(conclusion)
         return results
 
-    def reason(self, props: Sequence[prop.Proposition]) -> list[graph.Node]:
+    def reason(self, props: Sequence[prop.Proposition]) -> list[mynode.Node]:
         """根据规则推理新的命题
 
         Args:
             props (Sequence[prop.Proposition]): 命题序列
 
         Returns:
-            list[graph.Node]: 推理得到的新命题
+            list[mynode.Node]: 推理得到的新命题节点
         """
         num_of_conditions = len(self[RuleField.Condition])
         desc = f"使用推理规则{self.name}进行推理"
         total = math.perm(len(props), num_of_conditions)
-        results: list[graph.Node] = []
+        results: list[mynode.Node] = []
         for curr_props in tqdm(permutations(props, num_of_conditions), desc=desc, total=total):
             # 03-07新增：若curr_props的所有命题的FIRST_USED都为True，则跳过
             if all([p[prop.FIRST_USED] for p in curr_props]):
@@ -169,8 +169,8 @@ class Rule(element.Element):
                 raise ValueError(f"不支持的规则类型{self.kind}")
             if len(curr_conclusions) > 0:
                 for con in curr_conclusions:
-                    node_dict = {graph.NodeField.Condition: list(curr_props), graph.NodeField.Conclusion: con, graph.NodeField.Rule: self}
-                    results.append(graph.Node(node_dict))
+                    node_dict = {mynode.NodeField.Condition: list(curr_props), mynode.NodeField.Conclusion: con, mynode.NodeField.Rule: self}
+                    results.append(mynode.Node(node_dict))
         return results
 
 def get_reasoning_rules(rule_names: Sequence[str]) -> list[Rule]:
