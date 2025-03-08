@@ -54,6 +54,9 @@ class Constraint(element.Element):
             constraint_dict[ConstraintField.Ceiling] = represent.CustomTimeDelta(**ceiling_dict)
         super().__init__(name, kwargs[ConstraintField.ConstraintType], **constraint_dict)
 
+    def translate(self, lang, require = None, **kwargs):
+        return super().translate(lang, require, **kwargs)
+    
     def forward_update(self, main_times: dict[str, represent.CustomTime], std_times: dict[str, represent.CustomTime]) -> dict[str, represent.CustomTime]:
         """前向传播时，根据约束关系更新事件时间上下限
 
