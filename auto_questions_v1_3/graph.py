@@ -35,18 +35,23 @@ class Node(element.Element):
         # TODO: 推理图上节点的翻译方法，用于生成CoT
         pass
 
-    def set_layer(self, curr_layer: int, curr_props: list[prop.Proposition]):
+    def set_layer(self, curr_layer: int, curr_props: list[prop.Proposition]) -> Optional[prop.Proposition]:
         """设置节点的层级
 
         Args:
             curr_layer (int): 当前层级
             curr_props (list[prop.Proposition]): 当前的命题
+
+        Returns:
+            Optional[prop.Proposition]: 如果节点层数小于当前层数，返回节点的结论命题，否则返回None
         """
         conditions: list[prop.Proposition] = self[NodeField.Condition]
         for i in takewhile(lambda x: self[NodeField.ConditionLayers][x] > curr_layer, range(len(conditions))):
             if conditions[i].is_contained(curr_props):
                 self[NodeField.ConditionLayers][i] = min(self[NodeField.ConditionLayers][i], curr_layer)
         self[NodeField.Layer] = max(self[NodeField.ConditionLayers])
+        # 如果节点层数小于当前层数，返回结论命题，否则返回None
+        return self[NodeField.Conclusion] if self[NodeField.Layer] < curr_layer else None
 
 class ReasoningGraph:
     """推理图，内含全面的推理结果，是程序的核心组件之一\n
@@ -146,12 +151,18 @@ class ReasoningGraph:
             node[NodeField.Layer] = math.inf
             node[NodeField.ConditionLayers] = [math.inf] * len(node[NodeField.Condition])
         curr_layer_props: list[prop.Proposition] = chosen_props + self.knowledge_props
+        next_layer_props: list[prop.Proposition] = []
         layer: int = 0
         while any([i[NodeField.Layer] > layer for i in self.nodes]):
             layer += 1
             print(f"设置第{layer}层节点")
             for node in takewhile(lambda x: x[NodeField.Layer] > layer, self.nodes):
-                node.set_layer(layer, curr_layer_props)
+                conclusion = node.set_layer(layer, curr_layer_props)
+                if conclusion and conclusion.is_contained(next_layer_props):
+                    next_layer_props.append(conclusion)
+            print(f"第{layer}层节点设置完毕，已经设置{len(next_layer_props)}个结论命题")
+            curr_layer_props = next_layer_props + self.knowledge_props
+            next_layer_props = []
         else:
             self.deepest_layer = layer
             print(f"设置层级结束，共设置{layer}层")
