@@ -102,11 +102,11 @@ def convert2higher(time_value: int, from_unit: str, to_unit: str) -> dict[str, d
     remainder = time_value % convert_rate
     return {"value": {to_unit: convert_value, from_unit: remainder}, PRECISE: convert_precise}
 
-def get_time_range(time1: "CustomTime", time2: "CustomTime") -> Iterable["CustomTime"]:
+def get_time_range(time1: "CustomTime", time2: "CustomTime") -> list["CustomTime"]:
     """获得两个时间之间的时间范围，包括上下界
 
     Returns:
-        Iterable[CustomTime]: 两个时间之间的时间范围，包括上下界
+        list[CustomTime]: 两个时间之间的时间范围，包括上下界
     """
     if time1 < time2:
         upper_bound: CustomTime = time2
@@ -120,7 +120,7 @@ def get_time_range(time1: "CustomTime", time2: "CustomTime") -> Iterable["Custom
     # 获得delta的值
     delta_value: int = delta[delta_unit]
     # 获得时间范围的上下界
-    time_range: Iterable[CustomTime] = (lower_bound + CustomTimeDelta(kind=delta.kind, **{delta_unit: i}) for i in range(delta_value + 1))
+    time_range = [lower_bound + CustomTimeDelta(kind=delta.kind, **{delta_unit: i}) for i in range(delta_value + 1)]
     return time_range
 
 class CustomTime(element.Element):
