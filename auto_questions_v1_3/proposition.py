@@ -33,12 +33,22 @@ class PropField(StrEnum):
 
 # 初始化时，读取时间命题的数据
 def init():
-    """初始化时间命题的数据
+    """读取文件，初始化文件中命题的数据
     """
     global PROP_DATA
     prop_file = config.PROP_DIR / f"{config.CURR_UNIT}.json5"
     with prop_file.open("r", encoding = "utf8") as f:
         PROP_DATA = json5.load(f)
+
+def add_prop_data(data: dict[str, dict]) -> None:
+    """添加自定义命题的数据
+
+    Args:
+        data (dict[str, dict]): 自定义命题的数据
+    """
+    global PROP_DATA
+    assert PROP_KINDS in PROP_DATA, "时间命题的数据未初始化"
+    PROP_DATA[PROP_KINDS].update(data)
 
 class Proposition(element.Element):
     """自定义的时间命题
@@ -48,7 +58,7 @@ class Proposition(element.Element):
         super().__init__(name, kind, **kwargs)
         # 若kind不在PropKind中，则抛出异常
         if kind not in PROP_DATA[PROP_KINDS]:
-            raise ValueError(f"时间命题的类型{kind}不在{config.PROP_FILE}中")
+            raise ValueError(f"时间命题的类型{kind}未定义")
         self[ASKABLE] = self.attrs.get(ASKABLE, True) # 设置命题是否可询问，默认为True
         self[PRECISE] = self.attrs.get(PRECISE, True) # 设置命题是否为精确命题，默认为True
         self[FIRST_USED] = False # 设置命题是否在首次推理中被使用，默认为False
@@ -94,8 +104,8 @@ class Proposition(element.Element):
         if self.kind != other.kind:
             return False
         for key in self.attrs:
-            # 忽略ASKABLE和PRECISE属性
-            if key in [ASKABLE, PRECISE]:
+            # 忽略ASKABLE、PRECISE、FIRST_USED属性
+            if key in [ASKABLE, PRECISE, FIRST_USED]:
                 continue
             if self[key] != other[key]:
                 return False
