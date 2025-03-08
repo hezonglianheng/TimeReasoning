@@ -8,12 +8,14 @@ import lemminflect
 import element
 import config
 from enum import StrEnum
+from typing import Any
 
 # 常量
 NAME_INFO = "name_info" # 名称信息
 NAME = "name" # 名称
 PRONOUN = "pronoun" # 代词
 USE_PRONOUN = "use_pronoun" # 使用代词
+PARENT_EVENT = "parent_event" # 父事件
 
 # 事件的类型的枚举
 class EventType(StrEnum):
@@ -71,6 +73,42 @@ class MyObject(element.Element):
 class Event(element.Element):
     """自定义的事件元素
     """
+
+    @classmethod
+    def build(cls, attr_dict: dict[str, Any], myobject_list: list[MyObject]) -> list["Event"]:
+        """构建事件元素的工厂方法
+        
+        Raises:
+            ValueError: 不支持的事件类型
+
+        Returns:
+            list[Event]: 事件元素列表
+        """
+        kind: str = attr_dict["kind"]
+        if kind == EventType.Temporal:
+            subject_name: str = attr_dict[SUBJECT]
+            subject: MyObject = next(filter(lambda x: x.name == subject_name, myobject_list))
+            attr_dict[SUBJECT] = subject
+            return [cls(**attr_dict)]
+        elif kind == EventType.Durative:
+            children_event: list["Event"] = []
+            for member in SubEventType:
+                child = cls.build(attr_dict[member], myobject_list)
+                children_event.extend(child)
+                attr_dict[member] = child[0]
+            curr_event = cls(**attr_dict)
+            for child in children_event:
+                child[PARENT_EVENT] = curr_event
+            return [curr_event]
+        elif kind == EventType.Frequent:
+            pass
+        elif kind == EventType.Duration:
+            subject_name: str = attr_dict[SUBJECT]
+            subject: MyObject = next(filter(lambda x: x.name == subject_name, myobject_list))
+            attr_dict[SUBJECT] = subject
+            return [cls(**attr_dict)]
+        else:
+            raise ValueError(f"不支持的事件类型: {kind}")
 
     def translate(self, lang: str, require: str|None = None, **kwargs) -> str:
         subject_element: MyObject = self[SUBJECT]
