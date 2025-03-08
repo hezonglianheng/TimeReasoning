@@ -1,0 +1,243 @@
+// date: 2025-03-07
+// 循环时间情景的配置文件
+
+{
+    // 规定情景中需要有哪些属性名称及覆写方式
+    "attr_names": {
+        // 情景中的周期属性需要覆写为CustomTimeDelta类型
+        "period": "represent.CustomTimeDelta(**self.period)",
+    }, 
+    // 情景中引用rule.json5中的规则，按照rule.json5中的名称进行索引
+    "ref_rules": [
+        "beforetime_equivalence_aftertime", 
+        "longtime_equivalence_shorttime", 
+        "simultaneous_equivalence_simultaneous", 
+        "gap_equivalence_gap", 
+        "samelen_equivalence_samelen", 
+        "beforetime_entail_gap", 
+        "aftertime_entail_gap",
+        "get_before_time", 
+        "get_after_time", 
+        "get_simultaneous", 
+        "get_long_time", 
+        "get_short_time",
+        "get_same_len",
+        "SimultaneousTrans", 
+        "SameLenTrans", 
+        "FromSimultaneous",
+        "Get_During", 
+    ], 
+    // 情景中独有的命题
+    "scenario_props": {
+        "period": {
+            // 属于这一类的具体命题，需要有kind和其他属性的计算方法
+            "props": [
+                {
+                    // 命题的属性计算方法，键是命题的属性，值是一个Python表达式，表示如何计算这个属性
+                    "time": "self.period", // 引用情景的period属性
+                    "askable": "False", // 该命题不可被问及
+                    "precise": "True", 
+                }, 
+            ], 
+            // 该类命题使用的模板
+            "template": {
+                "cn": [], 
+                "en": [], 
+            }, 
+        }, 
+    }, 
+    // 情景中独有的规则，按照rule.json5中的方式书写
+    "scenario_rules": [
+        {
+            // 含义：A发生在B之前X => A发生在B之后(period - X)
+            "name": "before_cyclic_after", 
+            "kind": "rule", 
+            "condition": [
+                {"name": "gap", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ], 
+            "judge": [], 
+            "conclusion": [
+                {
+                    "kind": "after_time",
+                    "attrs": {
+                        "event1": "gap.event1",
+                        "event2": "gap.event2",
+                        "diff": "period.time - gap.diff",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            // 含义：A发生在B之后X => A发生在B之前(period - X)
+            "name": "after_cyclic_before", 
+            "kind": "rule", 
+            "condition": [
+                {"name": "gap", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ], 
+            "judge": [], 
+            "conclusion": [
+                {
+                    "kind": "before_time",
+                    "attrs": {
+                        "event1": "gap.event1",
+                        "event2": "gap.event2",
+                        "diff": "period.time - gap.diff",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            // 含义：A和B间隔X => A和B间隔(period - X)
+            "name": "gap_cyclic_gap", 
+            "kind": "rule", 
+            "condition": [
+                {"name": "gap", "kind": "gap_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ], 
+            "judge": [], 
+            "conclusion": [
+                {
+                    "kind": "gap_time",
+                    "attrs": {
+                        "event1": "gap.event1",
+                        "event2": "gap.event2",
+                        "diff": "period.time - gap.diff",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            // 含义：A发生在B之前X && B发生在C之前Y => A发生在C之前(X + Y) % period
+            "name": "before_time_trans_cyclic", 
+            "kind": "rule",
+            "condition": [
+                {"name": "before1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "before2", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ], 
+            "judge": [],
+            "conclusion": [
+                {
+                    "kind": "before_time",
+                    "attrs": {
+                        "event1": "before1.event1",
+                        "event2": "before2.event2",
+                        "diff": "(before1.diff + before2.diff) % period.time",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            // 含义：A发生在B之后X && B发生在C之后Y => A发生在C之后(X + Y) % period
+            "name": "after_time_trans_cyclic", 
+            "kind": "rule",
+            "condition": [
+                {"name": "after1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "after2", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ],
+            "judge": [],
+            "conclusion": [
+                {
+                    "kind": "after_time",
+                    "attrs": {
+                        "event1": "after1.event1",
+                        "event2": "after2.event2",
+                        "diff": "(after1.diff + after2.diff) % period.time",
+                    }, 
+                }, 
+            ],
+        }, 
+        //单事件命题 + 双事件命题 => 单事件命题
+        {
+            // 含义：A比B早发生X，B在Y发生 => A在(Y-X)发生
+            "name": "FromBeforeTime1_cyclic",
+            "kind": "rule",
+            "condition": [
+                {"name": "before_time1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ],
+            "judge": [
+                "before_time1.event2 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "before_time1.event1",
+                        "time": "period.time if (t := (temporal1.time - before_time1.diff) % period.time) == 0 else t",
+                    }, 
+                },
+            ],
+        },
+        {
+            // 含义：A比B早发生X，A在Y发生 => B在(Y+X)发生
+            "name": "FromBeforeTime2",
+            "kind": "rule",
+            "condition": [
+                {"name": "before_time1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ],
+            "judge": [
+                "before_time1.event1 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "before_time1.event2",
+                        "time": "period.time if (t := (temporal1.time + before_time1.diff) % period.time) == 0 else t",
+                    }, 
+                },
+            ],
+        },
+        {
+            // 含义：A比B晚发生X，B在Y发生 => A在(Y+X)发生
+            "name": "FromAfterTime1",
+            "kind": "rule",
+            "condition": [
+                {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ],
+            "judge": [
+                "after_time1.event2 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "after_time1.event1",
+                        "time": "period.time if (t := (temporal1.time + after_time1.diff) % period.time) == 0 else t",
+                    }, 
+                },
+            ],
+        },
+        {
+            // 含义：A比B晚发生X，A在Y发生 => B在(Y-X)发生
+            "name": "FromAfterTime2",
+            "kind": "rule",
+            "condition": [
+                {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ],
+            "judge": [
+                "after_time1.event2 == temporal1.event",
+            ],
+            "conclusion":[
+                {
+                    "kind": "temporal",
+                    "attrs": {
+                        "event": "after_time1.event2",
+                        "time": "period.time if (t := (temporal1.time - after_time1.diff) % period.time) == 0 else t",
+                    }, 
+                },
+            ],
+        },
+    ], 
+}
