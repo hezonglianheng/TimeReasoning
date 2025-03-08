@@ -119,9 +119,10 @@ class ReasoningGraph:
                 rule_result = rule.reason(curr_prop_list)
                 print(f"执行规则{rule.name}成功")
                 curr_nodes.extend(rule_result)
-            if len(curr_nodes) == 0:
-                break
             self.add_nodes(curr_nodes)
+            curr_conclusions: list[prop.Proposition] = [i[NodeField.Conclusion] for i in curr_nodes]
+            if all([i.is_contained(curr_prop_list) for i in curr_conclusions]):
+                break
             # 将当前命题的FIRST_USED设置为True，表示已经被使用
             for p in curr_prop_list:
                 p[prop.FIRST_USED] = True

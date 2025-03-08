@@ -169,9 +169,8 @@ class Rule(element.Element):
                 raise ValueError(f"不支持的规则类型{self.kind}")
             if len(curr_conclusions) > 0:
                 for con in curr_conclusions:
-                    if not con.is_contained(props):
-                        node_dict = {graph.NodeField.Condition: list(curr_props), graph.NodeField.Conclusion: con, graph.NodeField.Rule: self}
-                        results.append(graph.Node(node_dict))
+                    node_dict = {graph.NodeField.Condition: list(curr_props), graph.NodeField.Conclusion: con, graph.NodeField.Rule: self}
+                    results.append(graph.Node(node_dict))
         return results
 
 def get_reasoning_rules(rule_names: Sequence[str]) -> list[Rule]:
