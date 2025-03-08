@@ -98,16 +98,20 @@ class Constraint(element.Element):
         std_ceiling = std_times[CEILING]
         if self.kind == BEFORE:
             if self.has_attr(FLOOR):
-                std_floor: represent.CustomTime = main_time + self[FLOOR]
+                new_floor: represent.CustomTime = main_time + self[FLOOR]
+                std_floor = max(std_floor, new_floor)
             if self.has_attr(CEILING):
-                std_ceiling: represent.CustomTime = main_time + self[CEILING]
+                new_ceiling: represent.CustomTime = main_time + self[CEILING]
+                std_ceiling = min(std_ceiling, new_ceiling)
         elif self.kind == AFTER:
-            if self.has_attr(FLOOR):
-                std_floor: represent.CustomTime = main_time - self[CEILING]
             if self.has_attr(CEILING):
-                std_ceiling: represent.CustomTime = main_time - self[FLOOR]
+                new_floor: represent.CustomTime = main_time - self[CEILING]
+                std_floor = max(std_floor, new_floor)
+            if self.has_attr(FLOOR):
+                new_ceiling: represent.CustomTime = main_time - self[FLOOR]
+                std_ceiling = min(std_ceiling, new_ceiling)
         elif self.kind == SIMULTANEOUS:
-            assert std_floor <= main_time <= std_ceiling, "参考事件时间范围不包含主要事件时间"
+            assert std_floor <= main_time <= std_ceiling, f"参考事件时间范围({std_floor}-{std_ceiling})不包含主要事件时间{main_time}"
             # 直接将参考时间设置为主要事件时间范围
             std_floor = copy.deepcopy(main_time)
             std_ceiling = copy.deepcopy(main_time)
@@ -136,7 +140,7 @@ class ConstraintMachine:
         # 设置约束图中的边
         for rule in self.constraint_rules:
             constraint = Constraint(**rule)
-            self.constraint_graph.add_edge(rule[STD_EVENT], rule[MAIN_EVENT], CONSTRAINT = constraint)
+            self.constraint_graph.add_edge(rule[STD_EVENT], rule[MAIN_EVENT], **{CONSTRAINT: constraint})
         # 检查约束图是否有环
         if not nx.is_directed_acyclic_graph(self.constraint_graph):
             cycle = nx.find_cycle(self.constraint_graph, orientation = "original")
@@ -185,6 +189,7 @@ class ConstraintMachine:
                     self.constraint_graph.nodes[node][CEILING] = new_range[CEILING]
             time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
             self.constraint_graph.nodes[node][TIME] = random.choice(time_range)
+            print(f"{node}的时间为{self.constraint_graph.nodes[node][TIME]}")
 
     def _get_temporal_time(self, e: event.Event) -> represent.CustomTime:
         """从约束图中，为时点事件获取时间值
