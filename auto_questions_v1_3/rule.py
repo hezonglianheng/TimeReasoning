@@ -129,7 +129,7 @@ class Rule(element.Element):
             conclusion = prop.Proposition(kind=c[KIND])
             attrs: dict[str, str] = c[ATTRS]
             for attr, code in attrs.items():
-                sentence = f"conclusion.{attr} = {code}"
+                sentence = f"conclusion['{attr}'] = {code}"
                 try:
                     exec(sentence)
                 except Exception as e:
