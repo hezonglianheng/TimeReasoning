@@ -90,8 +90,6 @@ class Event(element.Element):
                 children_event.extend(child)
                 attr_dict[member] = child[0]
             curr_event = cls(**attr_dict)
-            for child in children_event:
-                child[PARENT_EVENT] = curr_event
             return [curr_event]
         elif kind == FREQUENT:
             pass
