@@ -14,7 +14,7 @@
              // 规则结论, rule类型的规则结论是一个字典
             "conclusion": {"kind": "after", "attrs": ["event2", "event1", ]},
             // 是否对称
-            "symmetric": true, 
+            "symmetric": true,
         },
         {
             // 含义：A在B之前X <=> B在A之后X
@@ -133,26 +133,26 @@
                 // name用于judge和conclusion中引用该条件，不能重复
                 // kind表示条件的命题种类
                 // attrs表示条件需要具有的属性
-                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
-                {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]}, 
-            ], 
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]},
+            ],
             // 判断条件，是一组返回bool值的Python语句，用于判断规则能否使用
             // 03-09修订：修改引用属性的方法，必须使用name['attr']的形式
             "judge": [
                 "temporal1['time'] < temporal2['time']",
-            ], 
+            ],
             // 规则结论, rule类型的规则结论是一个字典列表，每个字典表示一个结论
             "conclusion": [
                 {
                     "kind": "before_time", // 结论命题类型
                     // 结论命题的属性，键是结论命题的属性，值是一个Python表达式，表示属性的计算方法
                     "attrs": {
-                        "event1": "temporal1['event']", 
-                        "event2": "temporal2['event']", 
+                        "event1": "temporal1['event']",
+                        "event2": "temporal2['event']",
                         "diff": "temporal2['time'] - temporal1['time']",
-                    }, 
-                }, 
-            ], 
+                    },
+                },
+            ],
         },
         {
             // 含义：A发生于X && B发生于Y <=> A发生在B之后(X-Y)
@@ -163,15 +163,15 @@
                 {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]},
             ],
             "judge": [
-                "temporal1.time > temporal2.time",
+                "temporal1['time'] > temporal2['time']",
             ],
             "conclusion": [
                 {
                     "kind": "after_time",
                     "attrs": {
-                        "event1": "temporal1.event",
-                        "event2": "temporal2.event",
-                        "diff": "temporal1.time - temporal2.time",
+                        "event1": "temporal1['event']",
+                        "event2": "temporal2['event']",
+                        "diff": "temporal1['time'] - temporal2['time']",
                     },
                 },
             ],
@@ -185,14 +185,14 @@
                 {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]},
             ],
             "judge": [
-                "temporal1.time == temporal2.time",
+                "temporal1['time'] == temporal2['time']",
             ],
             "conclusion": [
                 {
                     "kind": "simultaneous",
                     "attrs": {
-                        "event1": "temporal1.event",
-                        "event2": "temporal2.event",
+                        "event1": "temporal1['event']",
+                        "event2": "temporal2['event']",
                     },
                 },
             ],
@@ -206,15 +206,15 @@
                 {"name": "duration2", "kind": "duration", "attrs": ["event", "time", ]},
             ],
             "judge": [
-                "duration1.time > duration2.time",
+                "duration1['time'] > duration2['time']",
             ],
             "conclusion": [
                 {
                     "kind": "long_time",
                     "attrs": {
-                        "event1": "duration1.event",
-                        "event2": "duration2.event",
-                        "diff": "duration1.time - duration2.time",
+                        "event1": "duration1['event']",
+                        "event2": "duration2['event']",
+                        "diff": "duration1['time'] - duration2['time']",
                     },
                 },
             ],
@@ -228,15 +228,15 @@
                 {"name": "duration2", "kind": "duration", "attrs": ["event", "time", ]},
             ],
             "judge": [
-                "duration1.time < duration2.time",
+                "duration1['time'] < duration2['time']",
             ],
             "conclusion": [
                 {
                     "kind": "short_time",
                     "attrs": {
-                        "event1": "duration1.event",
-                        "event2": "duration2.event",
-                        "diff": "duration2.time - duration1.time",
+                        "event1": "duration1['event']",
+                        "event2": "duration2['event']",
+                        "diff": "duration2['time'] - duration1['time']",
                     },
                 },
             ],
@@ -250,14 +250,14 @@
                 {"name": "duration2", "kind": "duration", "attrs": ["event", "time", ]},
             ],
             "judge": [
-                "duration1.time == duration2.time",
+                "duration1['time'] == duration2['time']",
             ],
             "conclusion": [
                 {
                     "kind": "same_len",
                     "attrs": {
-                        "event1": "duration1.event",
-                        "event2": "duration2.event",
+                        "event1": "duration1['event']",
+                        "event2": "duration2['event']",
                     },
                 },
             ],
@@ -272,14 +272,14 @@
                 {"name": "before2", "kind": "before", "attrs": ["event1", "event2", ]},
             ],
             "judge": [
-                "before1.event2 == before2.event1",
+                "before1['event2'] == before2['event1']",
             ],
             "conclusion":[
                 {
                     "kind": "before",
                     "attrs": {
-                        "event1": "before1.event1",
-                        "event2": "before2.event2",
+                        "event1": "before1['event1']",
+                        "event2": "before2['event2']",
                     }
                 },
             ],
@@ -293,15 +293,15 @@
                 {"name": "before_time2", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
             ],
             "judge": [
-                "before_time1.event2 == before_time2.event1"
+                "before_time1['event2'] == before_time2['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "before_time",
                     "attrs": {
-                        "event1": "before_time1.event1",
-                        "event2": "before_time2.event2",
-                        "diff": "before_time1.diff + before_time2.diff"
+                        "event1": "before_time1['event1']",
+                        "event2": "before_time2['event2']",
+                        "diff": "before_time1['diff'] + before_time2['diff']"
                     }
                 },
             ],
@@ -315,14 +315,14 @@
                 {"name": "after2", "kind": "after", "attrs": ["event1", "event2", ]},
             ],
             "judge": [
-                "after1.event2 == after2.event1"
+                "after1['event2'] == after2['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "after",
                     "attrs": {
-                        "event1": "after1.event1",
-                        "event2": "after2.event2",
+                        "event1": "after1['event1']",
+                        "event2": "after2['event2']",
                     }
                 },
             ],
@@ -337,15 +337,15 @@
                 {"name": "after_time2", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
             ],
             "judge": [
-                "after_time1.event2 == after_time2.event1"
+                "after_time1['event2'] == after_time2['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "after_time",
                     "attrs": {
-                        "event1": "after_time1.event1",
-                        "event2": "after_time2.event2",
-                        "diff": "after_time1.diff + after_time2.diff"
+                        "event1": "after_time1['event1']",
+                        "event2": "after_time2['event2']",
+                        "diff": "after_time1['diff'] + after_time2['diff']"
                     }
                 },
             ],
@@ -360,15 +360,15 @@
                 {"name": "simultaneous2", "kind": "simultaneous", "attrs": ["event1", "event2", ]},
             ],
             "judge": [
-                "simultaneous1.event2 == simultaneous2.event1",
-                "simultaneous1.event1 != simultaneous2.event2"
+                "simultaneous1['event2'] == simultaneous2['event1']",
+                "simultaneous1['event1'] != simultaneous2['event2']"
             ],
             "conclusion":[
                 {
                     "kind": "simultaneous",
                     "attrs": {
-                        "event1": "simultaneous1.event1",
-                        "event2": "simultaneous2.event2",
+                        "event1": "simultaneous1['event1']",
+                        "event2": "simultaneous2['event2']",
                     }
                 },
             ],
@@ -382,14 +382,14 @@
                 {"name": "long2", "kind": "long", "attrs": ["event1", "event2", ]},
             ],
             "judge": [
-                "long1.event2 == long2.event1"
+                "long1['event2'] == long2['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "long",
                     "attrs": {
-                        "event1": "long1.event1",
-                        "event2": "long2.event2",
+                        "event1": "long1['event1']",
+                        "event2": "long2['event2']",
                     }
                 },
             ],
@@ -403,15 +403,15 @@
                 {"name": "long_time2", "kind": "long_time", "attrs": ["event1", "event2", "diff"]},
             ],
             "judge": [
-                "long_time1.event2 == long_time2.event1"
+                "long_time1['event2'] == long_time2['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "long_time",
                     "attrs": {
-                        "event1": "long_time1.event1",
-                        "event2": "long_time2.event2",
-                        "diff": "long_time1.diff + long_time2.diff"
+                        "event1": "long_time1['event1']",
+                        "event2": "long_time2['event2']",
+                        "diff": "long_time1['diff'] + long_time2['diff']"
                     }
                 },
             ],
@@ -425,14 +425,14 @@
                 {"name": "short2", "kind": "short", "attrs": ["event1", "event2", ]},
             ],
             "judge": [
-                "short1.event2 == short2.event1"
+                "short1['event2'] == short2['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "short",
                     "attrs": {
-                        "event1": "short1.event1",
-                        "event2": "short2.event2",
+                        "event1": "short1['event1']",
+                        "event2": "short2['event2']",
                     }
                 },
             ],
@@ -446,15 +446,15 @@
                 {"name": "short_time2", "kind": "short_time", "attrs": ["event1", "event2", "diff"]},
             ],
             "judge": [
-                "short_time1.event2 == short_time2.event1"
+                "short_time1['event2'] == short_time2['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "short_time",
                     "attrs": {
-                        "event1": "short_time1.event1",
-                        "event2": "short_time2.event2",
-                        "diff": "short_time1.diff + short_time2.diff"
+                        "event1": "short_time1['event1']",
+                        "event2": "short_time2['event2']",
+                        "diff": "short_time1['diff'] + short_time2['diff']"
                     }
                 },
             ],
@@ -468,15 +468,15 @@
                 {"name": "same_len2", "kind": "same_len", "attrs": ["event1", "event2", ]},
             ],
             "judge": [
-                "same_len1.event2 == same_len2.event1",
-                "same_len1.event1 != same_len2.event2"
+                "same_len1['event2'] == same_len2['event1']",
+                "same_len1['event1'] != same_len2['event2']"
             ],
             "conclusion":[
                 {
                     "kind": "same_len",
                     "attrs": {
-                        "event1": "same_len1.event1",
-                        "event2": "same_len2.event2",
+                        "event1": "same_len1['event1']",
+                        "event2": "same_len2['event2']",
                     }
                 },
             ],
@@ -491,14 +491,14 @@
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "before_time1.event2 == temporal1.event",
+                "before_time1['event2'] == temporal1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "temporal",
                     "attrs": {
-                        "event": "before_time1.event1",
-                        "time": "temporal1.time - before_time1.diff",
+                        "event": "before_time1['event1']",
+                        "time": "temporal1['time'] - before_time1['diff']",
                     }
                 },
             ],
@@ -512,14 +512,14 @@
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "before_time1.event1 == temporal1.event",
+                "before_time1['event1'] == temporal1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "temporal",
                     "attrs": {
-                        "event": "before_time1.event2",
-                        "time": "temporal1.time + before_time1.diff",
+                        "event": "before_time1['event2']",
+                        "time": "temporal1['time'] + before_time1['diff']",
                     }
                 },
             ],
@@ -533,14 +533,14 @@
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "after_time1.event2 == temporal1.event",
+                "after_time1['event2'] == temporal1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "temporal",
                     "attrs": {
-                        "event": "after_time1.event1",
-                        "time": "temporal1.time + after_time1.diff",
+                        "event": "after_time1['event1']",
+                        "time": "temporal1['time'] + after_time1['diff']",
                     }
                 },
             ],
@@ -554,14 +554,14 @@
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "after_time1.event2 == temporal1.event",
+                "after_time1['event2'] == temporal1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "temporal",
                     "attrs": {
-                        "event": "after_time1.event2",
-                        "time": "temporal1.time - after_time1.diff",
+                        "event": "after_time1['event2']",
+                        "time": "temporal1['time'] - after_time1['diff']",
                     }
                 },
             ],
@@ -575,14 +575,14 @@
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]},
             ],
             "judge": [
-                "simultaneous1.event2 == temporal1.event",
+                "simultaneous1['event2'] == temporal1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "temporal",
                     "attrs": {
-                        "event": "simultaneous1.event2",
-                        "time": "temporal1.time",
+                        "event": "simultaneous1['event2']",
+                        "time": "temporal1['time']",
                     }
                 },
             ],
@@ -596,14 +596,14 @@
                 {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "long_time1.event2 == duration1.event",
+                "long_time1['event2'] == duration1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "duration",
                     "attrs": {
-                        "event": "long_time1.event1",
-                        "time": "duration1.time + long_time1.diff",
+                        "event": "long_time1['event1']",
+                        "time": "duration1['time'] + long_time1['diff']",
                     }
                 },
             ],
@@ -617,14 +617,14 @@
                 {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "long_time1.event1 == duration1.event",
+                "long_time1['event1'] == duration1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "duration",
                     "attrs": {
-                        "event": "long_time1.event2",
-                        "time": "duration1.time - long_time1.diff",
+                        "event": "long_time1['event2']",
+                        "time": "duration1['time'] - long_time1['diff']",
                     }
                 },
             ],
@@ -638,14 +638,14 @@
                 {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "short_time1.event2 == duration1.event",
+                "short_time1['event2'] == duration1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "duration",
                     "attrs": {
-                        "event": "short_time1.event1",
-                        "time": "duration1.time - short_time1.diff",
+                        "event": "short_time1['event1']",
+                        "time": "duration1['time'] - short_time1['diff']",
                     }
                 },
             ],
@@ -659,14 +659,14 @@
                 {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "short_time1.event1 == duration1.event",
+                "short_time1['event1'] == duration1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "duration",
                     "attrs": {
-                        "event": "short_time1.event2",
-                        "time": "duration1.time + short_time1.diff",
+                        "event": "short_time1['event2']",
+                        "time": "duration1['time'] + short_time1['diff']",
                     }
                 },
             ],
@@ -680,14 +680,14 @@
                 {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]},
             ],
             "judge": [
-                "same_len1.event2 == duration.event",
+                "same_len1['event2'] == duration['event']",
             ],
             "conclusion":[
                 {
                     "kind": "duration",
                     "attrs": {
-                        "event": "same_len1.event2",
-                        "time": "duration1.time",
+                        "event": "same_len1['event2']",
+                        "time": "duration1['time']",
                     }
                 },
             ],
@@ -702,16 +702,16 @@
                 {"name": "gap_time1", "kind": "gap_time", "attrs": ["event1", "event2", "diff",]},
             ],
             "judge": [
-                "before1.event1 == gap_time1.event1",
-                "before1.event2 == gap_time1.event2"
+                "before1['event1'] == gap_time1['event1']",
+                "before1['event2'] == gap_time1['event2']"
             ],
             "conclusion":[
                 {
                     "kind": "before_time",
                     "attrs": {
-                        "event1": "before1.event1",
-                        "event2": "before1.event2",
-                        "diff": "gap_time1.diff"
+                        "event1": "before1['event1']",
+                        "event2": "before1['event2']",
+                        "diff": "gap_time1['diff']"
                     }
                 },
             ],
@@ -726,16 +726,16 @@
                 {"name": "gap_time1", "kind": "gap_time", "attrs": ["event1", "event2", "diff",]},
             ],
             "judge": [
-                "before1.event1 == gap_time1.event2",
-                "before1.event2 == gap_time1.event1"
+                "before1['event1'] == gap_time1['event2']",
+                "before1['event2'] == gap_time1['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "before_time",
                     "attrs": {
-                        "event1": "before1.event1",
-                        "event2": "before1.event2",
-                        "diff": "gap_time1.diff"
+                        "event1": "before1['event1']",
+                        "event2": "before1['event2']",
+                        "diff": "gap_time1['diff']"
                     }
                 },
             ],
@@ -750,16 +750,16 @@
                 {"name": "gap_time1", "kind": "gap_time", "attrs": ["event1", "event2", "diff",]},
             ],
             "judge": [
-                "after1.event1 == gap_time1.event1",
-                "after1.event2 == gap_time1.event2"
+                "after1['event1'] == gap_time1['event1']",
+                "after1['event2'] == gap_time1['event2']"
             ],
             "conclusion":[
                 {
                     "kind": "after_time",
                     "attrs": {
-                        "event1": "after1.event1",
-                        "event2": "after1.event2",
-                        "diff": "gap_time1.diff"
+                        "event1": "after1['event1']",
+                        "event2": "after1['event2']",
+                        "diff": "gap_time1['diff']"
                     }
                 },
             ],
@@ -774,16 +774,16 @@
                 {"name": "gap_time1", "kind": "gap_time", "attrs": ["event1", "event2", "diff",]},
             ],
             "judge": [
-                "after1.event1 == gap_time1.event2",
-                "after1.event2 == gap_time1.event1"
+                "after1['event1'] == gap_time1['event2']",
+                "after1['event2'] == gap_time1['event1']"
             ],
             "conclusion":[
                 {
                     "kind": "after_time",
                     "attrs": {
-                        "event1": "after1.event1",
-                        "event2": "after1.event2",
-                        "diff": "gap_time1.diff"
+                        "event1": "after1['event1']",
+                        "event2": "after1['event2']",
+                        "diff": "gap_time1['diff']"
                     }
                 },
             ],
@@ -798,15 +798,15 @@
                 {"name": "durative1", "kind": "durative", "attrs": ["event", "time", "endtime",]},
             ],
             "judge": [
-                "temporal1.time >= durative1.time",
-                "temporal1.time <= durative1.endtime",
+                "temporal1['time'] >= durative1['time']",
+                "temporal1['time'] <= durative1['endtime']",
             ],
             "conclusion":[
                 {
                     "kind": "during",
                     "attrs": {
-                        "event1": "temporal1.event",
-                        "event2": "durative1.event",
+                        "event1": "temporal1['event']",
+                        "event2": "durative1['event']",
                     }
                 },
             ],
@@ -820,15 +820,15 @@
 //                {"name": "durative2", "kind": "durative", "attrs": ["event", "time", "endtime"]},
 //            ],
 //            "judge": [
-//                "durative1.time >= durative2.time",
-//                "durative1.endtime <= durative2.endtime",
+//                "durative1['time'] >= durative2['time']",
+//                "durative1['endtime'] <= durative2['endtime']",
 //            ],
 //            "conclusion":[
 //                {
 //                    "kind": "during",
 //                    "attrs": {
-//                        "event1": "durative1.event",
-//                        "event2": "durative2.event",
+//                        "event1": "durative1['event']",
+//                        "event2": "durative2['event']",
 //                    }
 //                },
 //            ],
