@@ -154,6 +154,7 @@ def name_is_unique(elements: Sequence[Element]) -> bool:
     name_set = set()
     for e in elements:
         if e.name in name_set:
+            print(f"元素{e}的名称{e.name}不唯一")
             return False
         name_set.add(e.name)
     return True
