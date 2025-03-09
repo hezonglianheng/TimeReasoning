@@ -715,8 +715,9 @@
                 },
             ],
         },
+        /*
         {
-            // 含义：A在B之前，A和B间隔为X => A在B之前X
+            // 含义：A在B之前，B和A间隔为X => A在B之前X
             "name": "Before_and_Gap",
             "kind": "rule",
             "condition": [
@@ -738,6 +739,7 @@
                 },
             ],
         },
+        */
         {
             // 含义：A在B之后，A和B间隔为X => A在B之后X
             "name": "After_and_Gap",
