@@ -115,7 +115,7 @@ class Element(metaclass = abc.ABCMeta):
             bool: 是否有该属性
         """
         return key in self.attrs
-
+    '''
     def __getattribute__(self, name: str) -> Any:
         """允许使用self.name的方式获取属性值
 
@@ -141,7 +141,7 @@ class Element(metaclass = abc.ABCMeta):
             super().__setattr__(name, value)
         else:
             self[name] = value
-
+    '''
 def name_is_unique(elements: Sequence[Element]) -> bool:
     """判断元素的名称是否唯一
 
