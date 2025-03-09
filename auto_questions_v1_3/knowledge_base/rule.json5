@@ -680,7 +680,7 @@
                 {"name": "duration1", "kind": "duration", "attrs": ["event", "time", ]},
             ],
             "judge": [
-                "same_len1['event2'] == duration['event']",
+                "same_len1['event2'] == duration1['event']",
             ],
             "conclusion":[
                 {
