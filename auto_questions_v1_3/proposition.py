@@ -13,7 +13,6 @@ import random
 # 常量
 ASKABLE = "askable" # 是否可询问
 PRECISE = "precise" # 是否精确
-FIRST_USED = "first_used" # 是否在首次推理中被使用
 TEMPLATES = "templates" # 模板
 PROP_KINDS = "prop_kinds" # 命题类型对应的键
 REPLACE = re.compile(r"\{(\w*?):(\w*?)\}") # 替换模板中的内容
@@ -57,7 +56,6 @@ class Proposition(element.Element):
             raise ValueError(f"时间命题的类型{kind}未定义")
         self[ASKABLE] = self.attrs.get(ASKABLE, True) # 设置命题是否可询问，默认为True
         self[PRECISE] = self.attrs.get(PRECISE, True) # 设置命题是否为精确命题，默认为True
-        self[FIRST_USED] = False # 设置命题是否在首次推理中被使用，默认为False
 
     def translate(self, lang: str, require: str|None = None, **kwargs) -> str:
         """将时间命题翻译成指定语言的方法
@@ -100,8 +98,8 @@ class Proposition(element.Element):
         if self.kind != other.kind:
             return False
         for key in self.attrs:
-            # 忽略ASKABLE、PRECISE、FIRST_USED属性
-            if key in [ASKABLE, PRECISE, FIRST_USED]:
+            # 忽略ASKABLE、PRECISE属性
+            if key in [ASKABLE, PRECISE]:
                 continue
             if self[key] != other[key]:
                 return False
