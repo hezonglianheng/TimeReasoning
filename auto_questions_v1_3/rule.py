@@ -146,7 +146,13 @@ class Rule(element.Element):
         Returns:
             list[mynode.Node]: 推理得到的新命题节点
         """
-        num_of_conditions = len(self[CONDITION])
+        if self.kind == RULE:
+            num_of_conditions = len(self[CONDITION])
+        elif self.kind == RELATION:
+            num_of_conditions = 1
+        else:
+            raise ValueError(f"不支持的规则类型{self.kind}")
+        # num_of_conditions = len(self[CONDITION])
         desc = f"使用推理规则{self.name}进行推理"
         total = math.perm(len(props), num_of_conditions)
         results: list[mynode.Node] = []
