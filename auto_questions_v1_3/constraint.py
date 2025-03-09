@@ -157,7 +157,14 @@ class ConstraintMachine:
         for node in list(nx.topological_sort(self.constraint_graph)):
             in_edges = list(self.constraint_graph.in_edges(node, data = True))
             if len(in_edges) == 0:
-                # 没有入边的情况，将上界设置为下界
+                # 没有入边的情况考虑出边的数量
+                out_edges = list(self.constraint_graph.out_edges(node, data = True))
+                # 没有出边的情况，时间范围为全局范围
+                if len(out_edges) == 0:
+                    self.constraint_graph.nodes[node][FLOOR] = self.lower_bound
+                    self.constraint_graph.nodes[node][CEILING] = self.upper_bound
+                    continue
+                # 有出边的情况，将下界设为上界
                 self.constraint_graph.nodes[node][CEILING] = self.lower_bound
                 continue
             floor: represent.CustomTime = self.constraint_graph.nodes[node][FLOOR]
