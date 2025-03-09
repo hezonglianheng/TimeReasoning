@@ -162,8 +162,8 @@ class Rule(element.Element):
                 raise ValueError(f"不支持的规则类型{self.kind}")
             if len(curr_conclusions) > 0:
                 for con in curr_conclusions:
-                    node_dict = {mynode.NodeField.Condition: list(curr_props), mynode.NodeField.Conclusion: con, mynode.NodeField.Rule: self}
-                    results.append(mynode.Node(node_dict))
+                    node_dict = {mynode.CONDITION: list(curr_props), mynode.CONCLUSION: con, mynode.RULE: self}
+                    results.append(mynode.Node(**node_dict))
         return results
 
 def get_reasoning_rules(rule_names: Sequence[str]) -> list[Rule]:
