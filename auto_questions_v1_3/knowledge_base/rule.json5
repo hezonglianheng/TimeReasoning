@@ -554,7 +554,7 @@
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}
             ],
             "judge": [
-                "after_time1['event2'] == temporal1['event']",
+                "after_time1['event1'] == temporal1['event']",
             ],
             "conclusion":[
                 {
@@ -581,7 +581,7 @@
                 {
                     "kind": "temporal",
                     "attrs": {
-                        "event": "simultaneous1['event2']",
+                        "event": "simultaneous1['event1']",
                         "time": "temporal1['time']",
                     }
                 },
@@ -798,8 +798,8 @@
                 {"name": "durative1", "kind": "durative", "attrs": ["event", "time", "endtime",]},
             ],
             "judge": [
-                "temporal1['time'] >= durative1['time']",
-                "temporal1['time'] <= durative1['endtime']",
+                "temporal1['time'] > durative1['time']",
+                "temporal1['time'] < durative1['endtime']",
             ],
             "conclusion":[
                 {
