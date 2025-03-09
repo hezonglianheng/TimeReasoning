@@ -104,13 +104,13 @@ class ReasoningGraph:
         while True:
             reason_count += 1
             curr_nodes: list[mynode.Node] = []
-            for rule in tqdm(self.reasoning_rules, desc=f"执行第{reason_count}次推理"):
-                rule_result = rule.reason(old_prop_list, curr_prop_list)
+            for rule in self.reasoning_rules:
+                rule_result = rule.reason(old_prop_list, curr_prop_list, reason_count)
                 curr_nodes.extend(rule_result)
             curr_conclusions: list[prop.Proposition] = [i[mynode.CONCLUSION] for i in curr_nodes]
             new_prop_list: list[prop.Proposition] = []
             for p in tqdm(curr_conclusions, desc="检查新结论命题是否已存在"):
-                if not p.is_contained(old_prop_list):
+                if not p.is_contained(old_prop_list) and not p.is_contained(curr_prop_list) and not p.is_contained(new_prop_list):
                     new_prop_list.append(p)
             if len(new_prop_list) == 0:
                 self.add_nodes(curr_nodes)

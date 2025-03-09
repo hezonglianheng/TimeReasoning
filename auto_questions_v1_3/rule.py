@@ -9,10 +9,12 @@ import config
 import proposition as prop
 import mynode
 import json5
-from itertools import permutations
-from itertools import product
-from collections.abc import Sequence, Iterator
+from tqdm import tqdm
+from itertools import product, permutations
+from collections.abc import Sequence
 import warnings
+from functools import reduce
+from copy import deepcopy
 
 # constants.
 KIND = "kind"
@@ -25,21 +27,6 @@ CONDITION = "condition"
 CONCLUSION = "conclusion"
 SYMMETRIC = "symmetric"
 JUDGE = "judge"
-
-def iter_props(old_props: list[prop.Proposition], new_props: list[prop.Proposition], repeat: int) -> Iterator[tuple[prop.Proposition, ...]]:
-    """迭代器，用于迭代新旧命题的组合
-
-    Args:
-        old_props (list[prop.Proposition]): 旧命题
-        new_props (list[prop.Proposition]): 新命题
-        repeat (int): 重复次数
-
-    Returns:
-        Iterator[prop.Proposition]: 命题迭代器
-    """
-    for props in permutations(old_props + new_props, repeat):
-        if any(p in new_props for p in props):
-            yield props
 
 class Rule(element.Element):
     """推理规则
@@ -151,32 +138,37 @@ class Rule(element.Element):
             results.append(conclusion)
         return results
 
-    def reason(self, old_props: list[prop.Proposition], new_props: list[prop.Proposition]) -> list[mynode.Node]:
+    def reason(self, old_props: list[prop.Proposition], new_props: list[prop.Proposition], reason_round: int) -> list[mynode.Node]:
         """根据规则推理新的命题
 
         Args:
             old_props (list[prop.Proposition]): 旧命题列表
             new_props (list[prop.Proposition]): 新命题列表
+            reason_round (int): 推理的轮次
 
         Returns:
             list[mynode.Node]: 推理得到的新命题节点
         """
+        used_props = deepcopy(old_props)
         all_prop: list[prop.Proposition] = [p for p in old_props] + [p for p in new_props]
         con_prop_lists: list[list[prop.Proposition]] = []
         if self.kind == RULE:
-            num_of_conditions = len(self[CONDITION])
             con_kinds: list[str] = [c[KIND] for c in self[CONDITION]]
             con_props = [[p for p in all_prop if p.kind == kind] for kind in con_kinds]
             con_prop_lists.extend(con_props)
         elif self.kind == RELATION:
-            num_of_conditions = 1
             con_kind: str = self[CONDITION][KIND]
             con_props = [p for p in all_prop if p.kind == con_kind]
             con_prop_lists.append(con_props)
         else:
             raise ValueError(f"推理规则{self.name}具有不支持的规则类型{self.kind}")
         results: list[mynode.Node] = []
-        for curr_props in product(*con_prop_lists):
+        total = reduce(lambda x, y: x*y, [len(i) for i in con_prop_lists])
+        for curr_props in tqdm(product(*con_prop_lists), total=total, desc=f"第{reason_round}轮推理使用推理规则{self.name}"):
+            if all([p in used_props for p in curr_props]):
+                continue
+            if len(curr_props) > 1 and any(p1 == p2 for p1, p2 in permutations(curr_props, r=2)):
+                continue
             if self.kind == RULE:
                 curr_conclusions = self._get_rule_conclusion(curr_props)
             elif self.kind == RELATION:
