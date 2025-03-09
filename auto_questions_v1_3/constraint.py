@@ -4,6 +4,7 @@
 """根据输入文件中的约束关系，为事件获得满足约束的时间值
 """
 
+import config
 import element
 import represent
 import event
@@ -188,8 +189,9 @@ class ConstraintMachine:
                     self.constraint_graph.nodes[node][FLOOR] = new_range[FLOOR]
                     self.constraint_graph.nodes[node][CEILING] = new_range[CEILING]
             time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
-            self.constraint_graph.nodes[node][TIME] = random.choice(time_range)
-            print(f"{node}的时间为{self.constraint_graph.nodes[node][TIME]}")
+            chosen_time = random.choice(time_range)
+            self.constraint_graph.nodes[node][TIME] = chosen_time
+            print(f"{node}的时间为{chosen_time.translate(config.CHINESE)}")
 
     def _get_temporal_time(self, e: event.Event) -> represent.CustomTime:
         """从约束图中，为时点事件获取时间值

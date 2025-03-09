@@ -86,9 +86,8 @@ class ReasoningGraph:
             reason_count += 1
             print(f"执行第{reason_count}次推理")
             for rule in self.reasoning_rules:
-                print(f"开始执行规则{rule.name}")
                 rule_result = rule.reason(curr_prop_list)
-                print(f"执行规则{rule.name}成功")
+                print(f"执行规则{rule.name}成功，得到{len(rule_result)}个新节点")
                 curr_nodes.extend(rule_result)
             self.add_nodes(curr_nodes)
             curr_conclusions: list[prop.Proposition] = [i[mynode.CONCLUSION] for i in curr_nodes]
@@ -98,6 +97,8 @@ class ReasoningGraph:
             for p in curr_prop_list:
                 p[prop.FIRST_USED] = True
             curr_prop_list = self.get_conclusions() + self.knowledge_props
+            curr_nodes = []
+        print(f"推理结束，共执行{reason_count}次推理，得到{len(self.nodes)}个节点")
 
     def set_node_layers(self, chosen_props: list[prop.Proposition]):
         """设置节点的层级，本质上是第二轮推理
