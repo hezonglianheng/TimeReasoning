@@ -22,7 +22,7 @@ class Scenario(element.Element):
     """
     def __init__(self, name = "", kind = "", **kwargs):
         super().__init__(name, kind, **kwargs)
-        self.path = config.SCENARIO_DIR / f"{name}.json5"
+        self.path = config.SCENARIO_DIR / f"{kind}.json5"
         with self.path.open("r", encoding = "utf8") as f:
             data: dict = json5.load(f)
             self[ATTR_NAMES] = data.get(ATTR_NAMES, {})
