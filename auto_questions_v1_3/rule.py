@@ -10,7 +10,8 @@ import proposition as prop
 import mynode
 import json5
 from itertools import permutations
-from collections.abc import Sequence
+from itertools import product
+from collections.abc import Sequence, Iterator
 import warnings
 
 # constants.
@@ -24,6 +25,21 @@ CONDITION = "condition"
 CONCLUSION = "conclusion"
 SYMMETRIC = "symmetric"
 JUDGE = "judge"
+
+def iter_props(old_props: list[prop.Proposition], new_props: list[prop.Proposition], repeat: int) -> Iterator[tuple[prop.Proposition, ...]]:
+    """迭代器，用于迭代新旧命题的组合
+
+    Args:
+        old_props (list[prop.Proposition]): 旧命题
+        new_props (list[prop.Proposition]): 新命题
+        repeat (int): 重复次数
+
+    Returns:
+        Iterator[prop.Proposition]: 命题迭代器
+    """
+    for props in permutations(old_props + new_props, repeat):
+        if any(p in new_props for p in props):
+            yield props
 
 class Rule(element.Element):
     """推理规则
@@ -135,26 +151,32 @@ class Rule(element.Element):
             results.append(conclusion)
         return results
 
-    def reason(self, props: Sequence[prop.Proposition]) -> list[mynode.Node]:
+    def reason(self, old_props: list[prop.Proposition], new_props: list[prop.Proposition]) -> list[mynode.Node]:
         """根据规则推理新的命题
 
         Args:
-            props (Sequence[prop.Proposition]): 命题序列
+            old_props (list[prop.Proposition]): 旧命题列表
+            new_props (list[prop.Proposition]): 新命题列表
 
         Returns:
             list[mynode.Node]: 推理得到的新命题节点
         """
+        all_prop: list[prop.Proposition] = [p for p in old_props] + [p for p in new_props]
+        con_prop_lists: list[list[prop.Proposition]] = []
         if self.kind == RULE:
             num_of_conditions = len(self[CONDITION])
+            con_kinds: list[str] = [c[KIND] for c in self[CONDITION]]
+            con_props = [[p for p in all_prop if p.kind == kind] for kind in con_kinds]
+            con_prop_lists.extend(con_props)
         elif self.kind == RELATION:
             num_of_conditions = 1
+            con_kind: str = self[CONDITION][KIND]
+            con_props = [p for p in all_prop if p.kind == con_kind]
+            con_prop_lists.append(con_props)
         else:
             raise ValueError(f"推理规则{self.name}具有不支持的规则类型{self.kind}")
         results: list[mynode.Node] = []
-        for curr_props in permutations(props, num_of_conditions):
-            # 03-07新增：若curr_props的所有命题的FIRST_USED都为True，则跳过
-            if all([p[prop.FIRST_USED] for p in curr_props]):
-                continue
+        for curr_props in product(*con_prop_lists):
             if self.kind == RULE:
                 curr_conclusions = self._get_rule_conclusion(curr_props)
             elif self.kind == RELATION:

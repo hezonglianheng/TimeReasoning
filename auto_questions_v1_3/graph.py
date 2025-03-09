@@ -93,36 +93,32 @@ class ReasoningGraph:
         """
         reason_count: int = 0
         if new_props is None:
+            old_prop_list: list[prop.Proposition] = []
             curr_prop_list: list[prop.Proposition] = self.init_props + self.knowledge_props
         else:
             assert len(self.nodes) > 0, "没有节点，不适用增量推理"
-            curr_prop_list: list[prop.Proposition] = new_props + self.get_conclusions() + self.knowledge_props
+            old_prop_list: list[prop.Proposition] = self.get_all_props()
+            curr_prop_list: list[prop.Proposition] = new_props
         assert len(curr_prop_list) > 0, "没有命题可以推理"
         assert len(self.reasoning_rules) > 0, "没有推理规则"
-        curr_nodes: list[mynode.Node] = []
         while True:
             reason_count += 1
+            curr_nodes: list[mynode.Node] = []
             for rule in tqdm(self.reasoning_rules, desc=f"执行第{reason_count}次推理"):
-                rule_result = rule.reason(curr_prop_list)
-                # print(f"执行规则{rule.name}成功，得到{len(rule_result)}个新节点")
+                rule_result = rule.reason(old_prop_list, curr_prop_list)
                 curr_nodes.extend(rule_result)
             curr_conclusions: list[prop.Proposition] = [i[mynode.CONCLUSION] for i in curr_nodes]
-            all_props = self.get_all_props()
-            flag = 1 # 用于判断是否有新的结论命题
+            new_prop_list: list[prop.Proposition] = []
             for p in tqdm(curr_conclusions, desc="检查新结论命题是否已存在"):
-                if not p.is_contained(all_props):
-                    flag = 0
-                    break
-            if flag:
+                if not p.is_contained(old_prop_list):
+                    new_prop_list.append(p)
+            if len(new_prop_list) == 0:
                 self.add_nodes(curr_nodes)
                 print("所有新结论命题都已存在，推理结束")
                 break
             self.add_nodes(curr_nodes)
-            # 将当前命题的FIRST_USED设置为True，表示已经被使用
-            for p in curr_prop_list:
-                p[prop.FIRST_USED] = True
-            curr_prop_list = self.get_all_props() + self.knowledge_props
-            curr_nodes = []
+            old_prop_list.extend(curr_prop_list)
+            curr_prop_list = new_prop_list
         print(f"推理结束，共执行{reason_count}次推理，得到{len(self.nodes)}个节点")
 
     def set_node_layers(self, chosen_props: list[prop.Proposition]):
