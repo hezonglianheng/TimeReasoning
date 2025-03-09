@@ -137,8 +137,9 @@
                 {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]}, 
             ], 
             // 判断条件，是一组返回bool值的Python语句，用于判断规则能否使用
+            // 03-09修订：修改引用属性的方法，必须使用name['attr']的形式
             "judge": [
-                "temporal1.time < temporal2.time",
+                "temporal1['time'] < temporal2['time']",
             ], 
             // 规则结论, rule类型的规则结论是一个字典列表，每个字典表示一个结论
             "conclusion": [
@@ -146,9 +147,9 @@
                     "kind": "before_time", // 结论命题类型
                     // 结论命题的属性，键是结论命题的属性，值是一个Python表达式，表示属性的计算方法
                     "attrs": {
-                        "event1": "temporal1.event", 
-                        "event2": "temporal2.event", 
-                        "diff": "temporal2.time - temporal1.time",
+                        "event1": "temporal1['event']", 
+                        "event2": "temporal2['event']", 
+                        "diff": "temporal2['time'] - temporal1['time']",
                     }, 
                 }, 
             ], 
