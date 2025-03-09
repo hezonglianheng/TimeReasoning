@@ -9,10 +9,8 @@ import config
 import proposition as prop
 import mynode
 import json5
-from tqdm import tqdm
 from itertools import permutations
 from collections.abc import Sequence
-import math
 import warnings
 
 # constants.
@@ -70,7 +68,7 @@ class Rule(element.Element):
             try:
                 judge_res: bool = eval(judge)
             except Exception as e:
-                raise ValueError(f"执行判断语句'{judge}'时出现错误: {e}")
+                raise ValueError(f"推理规则{self.name}执行判断语句'{judge}'时出现错误: {e}")
             else:
                 if not judge_res:
                     return results
@@ -113,14 +111,14 @@ class Rule(element.Element):
             try:
                 exec(sentence)
             except Exception as e:
-                raise ValueError(f"执行语句'{sentence}'时出现错误: {e}")
+                raise ValueError(f"推理规则{self.name}执行定义语句'{sentence}'时出现错误: {e}")
         # 判断规则是否可以使用
         judge_dict: list[str] = self[JUDGE]
         for judge in judge_dict:
             try:
                 judge_res: bool = eval(judge)
             except Exception as e:
-                raise ValueError(f"执行判断语句'{judge}'时出现错误: {e}")
+                raise ValueError(f"推理规则{self.name}执行判断语句'{judge}'时出现错误: {e}")
             else:
                 if not judge_res:
                     return results
@@ -133,7 +131,7 @@ class Rule(element.Element):
                 try:
                     exec(sentence)
                 except Exception as e:
-                    raise ValueError(f"执行语句'{sentence}'时出现错误: {e}")
+                    raise ValueError(f"推理规则{self.name}执行生成语句'{sentence}'时出现错误: {e}")
             results.append(conclusion)
         return results
 
@@ -151,12 +149,9 @@ class Rule(element.Element):
         elif self.kind == RELATION:
             num_of_conditions = 1
         else:
-            raise ValueError(f"不支持的规则类型{self.kind}")
-        # num_of_conditions = len(self[CONDITION])
-        desc = f"使用推理规则{self.name}进行推理"
-        total = math.perm(len(props), num_of_conditions)
+            raise ValueError(f"推理规则{self.name}具有不支持的规则类型{self.kind}")
         results: list[mynode.Node] = []
-        for curr_props in tqdm(permutations(props, num_of_conditions), desc=desc, total=total):
+        for curr_props in permutations(props, num_of_conditions):
             # 03-07新增：若curr_props的所有命题的FIRST_USED都为True，则跳过
             if all([p[prop.FIRST_USED] for p in curr_props]):
                 continue
@@ -165,7 +160,7 @@ class Rule(element.Element):
             elif self.kind == RELATION:
                 curr_conclusions = self._get_relation_conclusion(curr_props)
             else:
-                raise ValueError(f"不支持的规则类型{self.kind}")
+                raise ValueError(f"推理规则{self.name}具有不支持的规则类型{self.kind}")
             if len(curr_conclusions) > 0:
                 for con in curr_conclusions:
                     node_dict = {mynode.CONDITION: list(curr_props), mynode.CONCLUSION: con, mynode.RULE: self}

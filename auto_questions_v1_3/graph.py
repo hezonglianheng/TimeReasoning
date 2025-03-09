@@ -7,6 +7,7 @@
 import proposition as prop
 import mynode
 import rule
+from tqdm import tqdm
 import math
 from collections.abc import Sequence
 from typing import Optional
@@ -67,6 +68,23 @@ class ReasoningGraph:
                 conclusions.append(node_conclusion)
         return conclusions
 
+    def get_all_props(self) -> list[prop.Proposition]:
+        """获取推理图中的所有命题
+
+        Returns:
+            list[prop.Proposition]: 命题列表
+        """
+        all_props: list[prop.Proposition] = []
+        for node in tqdm(self.nodes, desc="获取所有命题"):
+            condition: list[prop.Proposition] = node[mynode.CONDITION]
+            conclusion: prop.Proposition = node[mynode.CONCLUSION]
+            for p in condition:
+                if not p.is_contained(all_props):
+                    all_props.append(p)
+            if not conclusion.is_contained(all_props):
+                all_props.append(conclusion)
+        return all_props
+
     def reason(self, new_props: Optional[list[prop.Proposition]] = None):
         """执行推理，得到完整的推理图
 
@@ -84,19 +102,26 @@ class ReasoningGraph:
         curr_nodes: list[mynode.Node] = []
         while True:
             reason_count += 1
-            print(f"执行第{reason_count}次推理")
-            for rule in self.reasoning_rules:
+            for rule in tqdm(self.reasoning_rules, desc=f"执行第{reason_count}次推理"):
                 rule_result = rule.reason(curr_prop_list)
-                print(f"执行规则{rule.name}成功，得到{len(rule_result)}个新节点")
+                # print(f"执行规则{rule.name}成功，得到{len(rule_result)}个新节点")
                 curr_nodes.extend(rule_result)
-            self.add_nodes(curr_nodes)
             curr_conclusions: list[prop.Proposition] = [i[mynode.CONCLUSION] for i in curr_nodes]
-            if all([i.is_contained(curr_prop_list) for i in curr_conclusions]):
+            all_props = self.get_all_props()
+            flag = 1 # 用于判断是否有新的结论命题
+            for p in tqdm(curr_conclusions, desc="检查新结论命题是否已存在"):
+                if not p.is_contained(all_props):
+                    flag = 0
+                    break
+            if flag:
+                self.add_nodes(curr_nodes)
+                print("所有新结论命题都已存在，推理结束")
                 break
+            self.add_nodes(curr_nodes)
             # 将当前命题的FIRST_USED设置为True，表示已经被使用
             for p in curr_prop_list:
                 p[prop.FIRST_USED] = True
-            curr_prop_list = self.get_conclusions() + self.knowledge_props
+            curr_prop_list = self.get_all_props() + self.knowledge_props
             curr_nodes = []
         print(f"推理结束，共执行{reason_count}次推理，得到{len(self.nodes)}个节点")
 
