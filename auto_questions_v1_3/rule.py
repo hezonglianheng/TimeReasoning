@@ -6,6 +6,8 @@
 
 import element
 import config
+import represent # 为保证exec()函数的执行，需要引入represent模块
+import event # 为保证exec()函数的执行，需要引入event模块
 import proposition as prop
 import mynode
 import json5
@@ -68,13 +70,9 @@ class Rule(element.Element):
         # 判断规则是否可以使用
         judge_dict: list[str] = self[JUDGE]
         for judge in judge_dict:
-            try:
-                judge_res: bool = eval(judge)
-            except Exception as e:
-                raise ValueError(f"推理规则{self.name}执行判断语句'{judge}'时出现错误: {e}")
-            else:
-                if not judge_res:
-                    return results
+            judge_res: bool = eval(judge)
+            if not judge_res:
+                return results
         # 获取结论
         res_prop = prop.Proposition(kind=conclusion_dict[KIND])
         condition_attrs: list[str] = condition_dict[ATTRS]
@@ -111,30 +109,20 @@ class Rule(element.Element):
                     return results
             # 利用exec()函数执行定义语句
             sentence = f"{c['name']} = p"
-            try:
-                exec(sentence)
-            except Exception as e:
-                raise ValueError(f"推理规则{self.name}执行定义语句'{sentence}'时出现错误: {e}")
+            exec(sentence)
         # 判断规则是否可以使用
         judge_dict: list[str] = self[JUDGE]
         for judge in judge_dict:
-            try:
-                judge_res: bool = eval(judge)
-            except Exception as e:
-                raise ValueError(f"推理规则{self.name}执行判断语句'{judge}'时出现错误: {e}")
-            else:
-                if not judge_res:
-                    return results
+            judge_res: bool = eval(judge)
+            if not judge_res:
+                return results
         # 获取结论
         for c in conclusion_dicts:
             conclusion = prop.Proposition(kind=c[KIND])
             attrs: dict[str, str] = c[ATTRS]
             for attr, code in attrs.items():
                 sentence = f"conclusion['{attr}'] = {code}"
-                try:
-                    exec(sentence)
-                except Exception as e:
-                    raise ValueError(f"推理规则{self.name}执行生成语句'{sentence}'时出现错误: {e}")
+                exec(sentence)
             results.append(conclusion)
         return results
 
