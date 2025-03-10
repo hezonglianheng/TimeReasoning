@@ -25,6 +25,7 @@ PLURAL_NOUN = "NNS"
 
 # 当前运行配置，需要在运行时修改
 CURR_UNIT = "" # 当前时间单位
+CURR_SETTING_DIR = "" # 当前试题配置文件夹
 
 def set_curr_unit(unit: str):
     """设置当前时间单位
@@ -34,6 +35,15 @@ def set_curr_unit(unit: str):
     """
     global CURR_UNIT
     CURR_UNIT = unit
+
+def set_curr_setting_dir(setting_dir: str):
+    """设置当前试题配置文件夹
+
+    Args:
+        setting_dir (str): 试题配置文件夹
+    """
+    global CURR_SETTING_DIR
+    CURR_SETTING_DIR = setting_dir
 
 # 文件配置
 # 知识库文件夹
@@ -48,3 +58,5 @@ RULE_FILE = KNOWLEDGE_BASE_DIR / "rule.json5"
 SCENARIO_DIR = KNOWLEDGE_BASE_DIR / "scenario"
 # 试题配置文件名称
 SETTINGS_FILE = "settings.json5"
+# 推理节点的文本文件
+GRAPH_FILE = "graph.txt"

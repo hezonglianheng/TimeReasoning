@@ -140,6 +140,8 @@ def graph_setup(events: Sequence[event.Event]):
 def main(dir_path: str):
     # 读取settings.json5文件
     setting_path = Path(dir_path) / config.SETTINGS_FILE
+    # 设置当前配置文件夹
+    config.set_curr_setting_dir(dir_path)
     with open(setting_path, "r", encoding="utf8") as f:
         settings: dict[str, Any] = json5.load(f)
     # 设置随机种子

@@ -4,6 +4,7 @@
 """命题推理使用的推理图
 """
 
+import config
 import proposition as prop
 import mynode
 import rule
@@ -12,6 +13,7 @@ import math
 from collections.abc import Sequence
 from typing import Optional
 from itertools import takewhile
+from pathlib import Path
 
 class ReasoningGraph:
     """推理图，内含全面的推理结果，是程序的核心组件之一\n
@@ -91,6 +93,11 @@ class ReasoningGraph:
         Args:
             new_props (Optional[list[prop.Proposition]], optional): 新的命题. 用于增量式推理. 默认为None.
         """
+        # 删除graph.txt文件
+        if Path(config.CURR_SETTING_DIR).exists():
+            graph_file_path = Path(config.CURR_SETTING_DIR) / config.GRAPH_FILE
+            if graph_file_path.exists():
+                graph_file_path.unlink()
         reason_count: int = 0
         if new_props is None:
             old_prop_list: list[prop.Proposition] = []
@@ -116,6 +123,11 @@ class ReasoningGraph:
                 self.add_nodes(curr_nodes)
                 print("所有新结论命题都已存在，推理结束")
                 break
+            with open(Path(config.CURR_SETTING_DIR) / config.GRAPH_FILE, "a", encoding="utf8") as f:
+                for node in curr_nodes:
+                    conditions: str = " && ".join([p.translate(config.CHINESE) for p in node[mynode.CONDITION]])
+                    conclusion: str = node[mynode.CONCLUSION].translate(config.CHINESE)
+                    f.write(f"{conditions} => {conclusion}\n")
             self.add_nodes(curr_nodes)
             old_prop_list.extend(curr_prop_list)
             curr_prop_list = new_prop_list
