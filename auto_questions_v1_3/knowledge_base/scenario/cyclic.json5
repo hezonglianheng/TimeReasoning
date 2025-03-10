@@ -40,9 +40,9 @@
                 }, 
             ], 
             // 该类命题使用的模板
-            "template": {
-                "cn": [], 
-                "en": [], 
+            "templates": {
+                "cn": ["情景的周期为{time:}"], 
+                "en": ["the period of the scenario is {time:}"], 
             }, 
         }, 
     }, 
@@ -117,7 +117,10 @@
                 {"name": "before2", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "period", "kind": "period", "attrs": ["time"]},
             ], 
-            "judge": [],
+            "judge": [
+                "before1['event2'] == before2['event1']", 
+                "before1['diff'] + before2['diff'] != period['time']",
+            ],
             "conclusion": [
                 {
                     "kind": "before_time",
@@ -138,7 +141,10 @@
                 {"name": "after2", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "period", "kind": "period", "attrs": ["time"]},
             ],
-            "judge": [],
+            "judge": [
+                "after1['event2'] == after2['event1']", 
+                "after1['diff'] + after2['diff'] != period['time']",
+            ],
             "conclusion": [
                 {
                     "kind": "after_time",
@@ -168,14 +174,14 @@
                     "kind": "temporal",
                     "attrs": {
                         "event": "before_time1['event1']",
-                        "time": "period['time'] if (t := (temporal1['time'] - before_time1['diff']) % period['time']) == 0 else t",
+                        "time": "represent.get_zero_time() + period['time'] if (t := (temporal1['time'] - before_time1['diff']) % period['time']) == represent.get_zero_time() else t",
                     }, 
                 },
             ],
         },
         {
             // 含义：A比B早发生X，A在Y发生 => B在(Y+X)发生
-            "name": "FromBeforeTime2",
+            "name": "FromBeforeTime2_cyclic",
             "kind": "rule",
             "condition": [
                 {"name": "before_time1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
@@ -190,14 +196,14 @@
                     "kind": "temporal",
                     "attrs": {
                         "event": "before_time1['event2']",
-                        "time": "period['time'] if (t := (temporal1['time'] + before_time1['diff']) % period['time']) == 0 else t",
+                        "time": "represent.get_zero_time() + period['time'] if (t := (temporal1['time'] + before_time1['diff']) % period['time']) == represent.get_zero_time() else t",
                     }, 
                 },
             ],
         },
         {
             // 含义：A比B晚发生X，B在Y发生 => A在(Y+X)发生
-            "name": "FromAfterTime1",
+            "name": "FromAfterTime1_cyclic",
             "kind": "rule",
             "condition": [
                 {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
@@ -212,14 +218,14 @@
                     "kind": "temporal",
                     "attrs": {
                         "event": "after_time1['event1']",
-                        "time": "period['time'] if (t := (temporal1['time'] + after_time1['diff']) % period['time']) == 0 else t",
+                        "time": "represent.get_zero_time() + period['time'] if (t := (temporal1['time'] + after_time1['diff']) % period['time']) == represent.get_zero_time() else t",
                     }, 
                 },
             ],
         },
         {
             // 含义：A比B晚发生X，A在Y发生 => B在(Y-X)发生
-            "name": "FromAfterTime2",
+            "name": "FromAfterTime2_cyclic",
             "kind": "rule",
             "condition": [
                 {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
@@ -227,14 +233,14 @@
                 {"name": "period", "kind": "period", "attrs": ["time"]},
             ],
             "judge": [
-                "after_time1['event2'] == temporal1['event']",
+                "after_time1['event1'] == temporal1['event']",
             ],
             "conclusion":[
                 {
                     "kind": "temporal",
                     "attrs": {
                         "event": "after_time1['event2']",
-                        "time": "period['time'] if (t := (temporal1['time'] - after_time1['diff']) % period['time']) == 0 else t",
+                        "time": "represent.get_zero_time() + period['time'] if (t := (temporal1['time'] - after_time1['diff']) % period['time']) == represent.get_zero_time() else t",
                     }, 
                 },
             ],
