@@ -810,28 +810,62 @@
                     }
                 },
             ],
-        },
-//        {
-//            // 含义：A起始于X0，终止于Y0，B起始于X1，终止于Y1，X1<=X0<=Y0<=Y1  => A发生在B期间
-//            "name": "Get_During1",
-//            "kind": "rule",
-//            "condition": [
-//                {"name": "durative1", "kind": "durative", "attrs": ["event", "time", "endtime"]},
-//                {"name": "durative2", "kind": "durative", "attrs": ["event", "time", "endtime"]},
-//            ],
-//            "judge": [
-//                "durative1['time'] >= durative2['time']",
-//                "durative1['endtime'] <= durative2['endtime']",
-//            ],
-//            "conclusion":[
-//                {
-//                    "kind": "during",
-//                    "attrs": {
-//                        "event1": "durative1['event']",
-//                        "event2": "durative2['event']",
-//                    }
-//                },
-//            ],
-//        }
+        }, 
+        {
+            // 从持续时间命题推出子事件对应的命题
+            "name": "durative_to_single", 
+            "kind": "rule", 
+            "condition": [
+                {"name": "durative", "kind": "durative", "attrs": ["event", "time", "endtime", "duration", ]}, 
+            ], 
+            "judge": [], 
+            "conclusion": [
+                {
+                    "kind": "temporal", 
+                    "attrs": {
+                        "event": "durative['event']['start_event']",
+                        "time": "durative['time']",
+                    }, 
+                }, 
+                {
+                    "kind": "temporal", 
+                    "attrs": {
+                        "event": "durative['event']['end_event']",
+                        "time": "durative['endtime']",
+                    }, 
+                }, 
+                {
+                    "kind": "duration", 
+                    "attrs": {
+                        "event": "durative['event']['duration_event']",
+                        "time": "durative['duration']",
+                    }, 
+                }, 
+            ], 
+        }, 
+        /*
+        {
+            // 含义：A起始于X0，终止于Y0，B起始于X1，终止于Y1，X1<=X0<=Y0<=Y1  => A发生在B期间
+            "name": "Get_During1",
+            "kind": "rule",
+            "condition": [
+                {"name": "durative1", "kind": "durative", "attrs": ["event", "time", "endtime"]},
+                {"name": "durative2", "kind": "durative", "attrs": ["event", "time", "endtime"]},
+            ],
+            "judge": [
+                "durative1['time'] >= durative2['time']",
+                "durative1['endtime'] <= durative2['endtime']",
+            ],
+            "conclusion":[
+                {
+                    "kind": "during",
+                    "attrs": {
+                        "event1": "durative1['event']",
+                        "event2": "durative2['event']",
+                    }
+                },
+            ],
+        }, 
+        */
     ],
 }

@@ -26,6 +26,7 @@
         "SameLenTrans", 
         "FromSimultaneous",
         "Get_During", 
+        "durative_to_single", 
     ], 
     // 情景中独有的命题
     "scenario_props": {
@@ -109,7 +110,7 @@
             ],
         }, 
         {
-            // 含义：A发生在B之前X && B发生在C之前Y => A发生在C之前(X + Y) % period
+            // 含义：A发生在B之前X && B发生在C之前Y && (X+Y) != period => A发生在C之前(X + Y) % period
             "name": "before_time_trans_cyclic", 
             "kind": "rule",
             "condition": [
@@ -133,7 +134,7 @@
             ],
         }, 
         {
-            // 含义：A发生在B之后X && B发生在C之后Y => A发生在C之后(X + Y) % period
+            // 含义：A发生在B之后X && B发生在C之后Y && (X+Y) != period => A发生在C之后(X + Y) % period
             "name": "after_time_trans_cyclic", 
             "kind": "rule",
             "condition": [
@@ -152,6 +153,52 @@
                         "event1": "after1['event1']",
                         "event2": "after2['event2']",
                         "diff": "(after1['diff'] + after2['diff']) % period['time']",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            // 含义：A发生在B之前X && B发生在C之前Y && (X+Y) == period => A发生在C之前(X + Y) % period
+            "name": "before_time_to_simultaneous_cyclic", 
+            "kind": "rule",
+            "condition": [
+                {"name": "before1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "before2", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ], 
+            "judge": [
+                "before1['event2'] == before2['event1']", 
+                "before1['diff'] + before2['diff'] == period['time']",
+            ],
+            "conclusion": [
+                {
+                    "kind": "simultaneous",
+                    "attrs": {
+                        "event1": "before1['event1']",
+                        "event2": "before2['event2']",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            // 含义：A发生在B之后X && B发生在C之后Y && (X+Y) == period => A发生在C之后(X + Y) % period
+            "name": "after_time_to_simultaneous_cyclic", 
+            "kind": "rule",
+            "condition": [
+                {"name": "after1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "after2", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
+                {"name": "period", "kind": "period", "attrs": ["time"]},
+            ],
+            "judge": [
+                "after1['event2'] == after2['event1']", 
+                "after1['diff'] + after2['diff'] == period['time']",
+            ],
+            "conclusion": [
+                {
+                    "kind": "simultaneous",
+                    "attrs": {
+                        "event1": "after1['event1']",
+                        "event2": "after2['event2']",
                     }, 
                 }, 
             ],

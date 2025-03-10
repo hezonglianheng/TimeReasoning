@@ -48,6 +48,7 @@
         "Before_and_Gap", 
         "After_and_Gap",
         "Get_During", 
+        "durative_to_single", 
     ], 
     // 情景中独有的命题
     "scenario_props": {}, 
