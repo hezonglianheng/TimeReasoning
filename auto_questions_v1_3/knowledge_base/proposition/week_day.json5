@@ -1,0 +1,204 @@
+// date: 2025-02-28
+// 与时间命题相关的知识库文件，单位为“星期”
+
+{
+    // 命题种类
+    "prop_kinds": {
+        // 时点事件命题
+        "temporal": {
+            "templates": {
+                "cn": [
+                    "在{time:}，{event:}",
+                    "{time:}，{event:}",
+                ],
+                "en": [
+                    "On {time:}, {event:}",
+                    "{event:} on {time:}",
+                    "When it's {time:}, {event:}"
+                ],
+            },
+        },
+        // 时长
+        "duration": {
+            "templates": {
+                "cn": [
+                ],
+                "en": [
+                    "{event:} for {duration:}",
+                    "{event:}, and spent {duration:} on it",
+                    "For {duration:}, {event:}"
+                ]
+            },
+        },
+        // 持续事件
+        "durative": {
+            "templates": {
+                "cn": [
+                ],
+                "en": [
+                    // 描述起点和终点
+                    "From {time:} to {time:}, {event:}",
+                    "On {time:} {event:}, until {time:}",
+                    "{event:} on {time:}, and ended on {endtime:}",
+                    "{event:} from {time:} to {endtime:}",
+                    // 描述起点和持续时间
+                    "From {time:} on, {event:} for {duration:}",
+                    "Starting from {time:}, {event:} for {duration:}",
+                    // 描述终点和持续时间
+                    "{event:} for {duration:}, and ends on {endtime:}",
+                    "Before ending on {endtime:}, {event:} for {duration:}"
+                ]
+            },
+        },
+        // 时频
+        "freq": {
+            "templates": {
+                "cn": [
+                ],
+                "en": [
+                ]
+            },
+        },
+        // 事件先后关系
+        "before": {
+            "templates": {
+                "cn": [
+                    "在以周一起始的一周范围内，{event1:}是在{event2:}那天之前",
+                ],
+                "en": [
+                    "Within a week's range starting from Monday, {event1:} before {event2:}"
+                ]
+            },
+        },
+        "before_time": {
+            "templates": {
+                "cn": [
+                    "在{event2:}之前{diff:}，{event1:}",
+                    "在{event2:}的{diff:}之前，{event1:}",
+                ],
+                "en": [
+                    "{event1:} {diff:} before {event2:}",
+                    "{diff:} before {event2:}, {event1:}"
+                ]
+            },
+        },
+        "after": {
+            "templates": {
+                "cn": [
+                    "在以周一起始的一周范围内，{event1:}是在{event2:}那天之后",
+                ],
+                "en": [
+                    "Within a week's range starting from Monday, {event1:} after {event2:}"
+                ]
+            },
+        },
+        "after_time": {
+            "templates": {
+                "cn": [
+                    "在{event2:}之后{diff:}，{event1:}",
+                    "在{event2:}的{diff:}之后，{event1:}",
+                ],
+                "en": [
+                    "{event1:} {diff:} after {event2:}",
+                    "{diff:} after {event2:}, {event1:}"
+                ]
+            },
+        },
+        "simultaneous": {
+            "templates": {
+                "cn": [
+                    "在{event2:}的那一天，{event1:}",
+                    "某一天，{event2:}，而且{event1:}",
+                    "在{event2:}的同一天，{event1:}"
+                ],
+                "en": [
+                    "On the day that {event2:}, {event1:}",
+                    "On the same day, {event1:}, and {event2:}",
+                    "On the same day that {event2:}, {event1:}"
+                ]
+            },
+        },
+        // 事件间隔的模板
+        "gap_time": {
+            "templates": {
+                "cn": [
+                    "{event2:}和{event1:}之间相差{diff:}",
+                    "{event2:}和{event1:}中间差了{diff:}",
+                ],
+                "en": [
+                    "The gap between the time {event1:} and the time {event2:} is {diff:}",
+                    "There is a {diff:} gap between {event1:} and {event2:}"
+                ]
+            },
+        },
+        // 时长关系
+        "long": {
+            "templates": {
+                "cn": [
+                ],
+                "en": [
+                    "The time that {event1:} takes a longer time than {event2:}",
+                    "{event1:} for longer time than {event2:}",
+                    "Compared to the duration that {event2:}, {event1:} for a longer time"
+                ]
+            },
+        },
+        "long_time": {
+            "templates": {
+                "cn": [
+                ],
+                "en": [
+                    "{event1:} {diff:} more than {event2:}",
+                    "The total duration that {event1:} is {diff:} longer than {event2:}"
+                ]
+            },
+        },
+        "short": {
+            "templates": {
+                "cn": [
+                ],
+                "en": [
+                    "The time that {event1:} takes a shorter time than {event2:}",
+                    "{event1:} for shorter time than {event2:}",
+                    "Compared to the duration that {event2:}, {event1:} for a shorter time"
+                ]
+            },
+        },
+        "short_time": {
+            "templates": {
+                "cn": [
+                ],
+                "en": [
+                    "{event1:} {diff:} less than {event2:}",
+                    "The total duration that {event1:} is {diff:} shorter than {event2:}"
+                ]
+            },
+        },
+        "same_len": {
+            "templates": {
+                "cn": [
+                ],
+                "en": [
+                    "The time that {event1:} takes the same amount of time that {event2:}",
+                    "The time {event1:} is the same length as {event2:}",
+                    "The duration that {event1:} is the same as the duration that {event2:}",
+                    "The duration {event1:} is equal to the duration {event2:}",
+                    "The duration {event1:} matches the duration {event2:}"
+                ]
+            },
+        },
+        "during": {
+            "templates": {
+                "cn": [
+                    "在{event2:}期间，{event1:}",
+                    "{event1:}是在{event2:}期间",
+                    "在{event2:}的那段时间里，{event1:}"
+                ],
+                "en": [
+                    "During the time that {event2:}, {event1:}",
+                    "{event1:} during the time {event2:}"
+                ]
+            },
+        },
+    },
+}

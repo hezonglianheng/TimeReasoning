@@ -1,0 +1,233 @@
+// date: 2025-02-22
+// 与时间命题相关的知识库文件，单位为“年”
+
+{
+    // 命题种类
+    "prop_kinds": {
+        // 时点事件命题
+        "temporal": {
+            // 提供模板供命题生成
+            // 占位符格式为"{属性名称:翻译方法}"，如"{event:}"、"{time:}"等
+            // 翻译方法为空时，直接使用命题中的属性值的translate()方法进行翻译
+            // 其他翻译方法待补充
+            "templates": {
+                "cn": [
+                    "在{time:}，{event:}",
+                    "{time:}，{event:}",
+                    "{event:}是在{time:}",
+                ],
+                "en": [
+                    "In {time:}, {event:}",
+                    "{event:} in {time:}"
+                ],
+            }, 
+        },
+        // 时长
+        "duration": {
+            "templates": {
+                "cn": [
+                    "{event:}的时长为{time:}",
+                    "{event:}一共{time:}",
+                ],
+                "en": [
+                    "{event:} for {time:}",
+                    "{event:} and spent {time:} on it"
+                ]
+            },
+        },
+        // 持续事件
+        "durative": {
+            "templates": {
+                "cn": [
+                    //描述起点和终点
+                    "从{time:}到{endtime:}，{event:}",
+                    "自{time:}起{event:}，直到{endtime:}结束",
+                    "从{time:}开始{event:}，一直到{endtime:}",
+                    "自{time:}起到{endtime:}止，{event:}",
+                    "{time:}至{endtime:}，{event:}",
+                    // 描述起点和持续时间
+                    "从{time:}开始的{duration:}间，{event:}",
+                    "自{time:}起，{event:}，直到{duration:}后",
+                    "从{time:}开始，{event:}，持续了{duration:}"
+                ],
+                "en": [
+                    // 描述起点和终点
+                    "{event:} from {time:} to {endtime:}",
+                    // 描述起点和持续时间
+                    "Beginning in {time:}, {event:} for {duration:}",
+                    "Starting from {time:}, {event:} for {duration:}"
+                ]
+            }, 
+        },
+        // 时频
+        "freq": {
+            "templates": {
+                "cn": [
+                    "从{time:}到{endtime:}，每{frequency:}{event:}一次",
+                    "从{time:}开始的{duration:}间，每{frequency:}{event:}一次",
+                    "在{endtime:}之前的{duration:}里，每{frequency:}{event:}一次",
+                ],
+                "en": [
+                    "From {time:} to {endtime:}, {event:} once every {frequency:}",
+                    "Starting from {time:}, {event:} once every {frequency:} for {duration:}",
+                    "In the {duration:} before {endtime:}, {event:} once every {frequency:}"
+                ]
+            }, 
+        },
+        // 事件先后关系
+        "before": {
+            "templates": {
+                "cn": [
+                    "{event1:}的年份比{event2:}早",
+                    "{event1:}是在{event2:}之前",
+                    "在{event2:}之前，{event1:}"
+                ],
+                "en": [
+                    "{event1:} before {event2:}"
+                ]
+            }, 
+        },
+        "before_time": {
+            "templates": {
+                "cn": [
+                    "{event1:}的时间比{event2:}早{diff:}",
+                    "在{event2:}之前{diff:}，{event1:}",
+                    "在{event2:}的{diff:}之前，{event1:}",
+                    "{event1:}是在{event2:}的{diff:}前"
+                ],
+                "en": [
+                    "{event1:} {diff:} before {event2:}"
+                ]
+            }, 
+        },
+        "after": {
+            "templates": {
+                "cn": [
+                    "{event1:}的年份比{event2:}晚",
+                    "{event1:}是在{event2:}之后",
+                    "在{event2:}之后，{event1:}"
+                ],
+                "en": [
+                    "{event1:} after {event2:}"
+                ]
+            }, 
+        },
+        "after_time": {
+            "templates": {
+                "cn": [
+                    "{event1:}的时间比{event2:}晚{diff:}",
+                    "在{event2:}之后{diff:}，{event1:}",
+                    "在{event2:}的{diff:}之后，{event1:}",
+                    "{event1:}是在{event2:}的{diff:}后"
+                ],
+                "en": [
+                    "{event1:} {diff:} after {event2:}"
+                ]
+            }, 
+        },
+        "simultaneous": {
+            "templates": {
+                "cn": [
+                    "在{event2:}的那一年，{event1:}",
+                    "某一年，{event2:}，而且{event1:}",
+                    "在{event2:}的同一年，{event1:}"
+                ],
+                "en": [
+                    "In the year that {event2:}, {event1:}",
+                    "In the same year, {event1:}, and {event2:}",
+                    "In the same year as {event2:}, {event1:}"
+                ]
+            }, 
+        },
+        // 事件间隔的模板
+        "gap_time": {
+            "templates": {
+                "cn": [
+                    "{event2:}和{event1:}之间相隔{diff:}",
+                    "{event2:}和{event1:}之间的时间间隔是{diff:}",
+                    "{event2:}和{event1:}中间差了{diff:}",
+                ],
+                "en": [
+                    "The gap between the time {event1:} and the time {event2:} is {diff:}",
+                    "There is a {diff:} gap between {event1:} and {event2:}"
+                ]
+            }, 
+        },
+        // 时长关系
+        "long": {
+            "templates": {
+                "cn": [
+                    "{event1:}的时间比{event2:}的时间长"
+                ],
+                "en": [
+                    "The time that {event1:} takes a longer time than {event2:}",
+                    "{event1:} for longer time than {event2:}",
+                    "Compared to the duration that {event2:}, {event1:} for a longer time"
+                ]
+            }, 
+        },
+        "long_time": {
+            "templates": {
+                "cn": [
+                    "{event1:}的时间比{event2:}的时间长{diff:}"
+                ],
+                "en": [
+                    "{event1:} {diff:} more than {event2:}",
+                    "The total duration that {event1:} is {diff:} longer than {event2:}"
+                ]
+            }, 
+        },
+        "short": {
+            "templates": {
+                "cn": [
+                    "{event1:}的时间比{event2:}的时间短"
+                ],
+                "en": [
+                    "The time that {event1:} takes a shorter time than {event2:}",
+                    "{event1:} for shorter time than {event2:}",
+                    "Compared to the duration that {event2:}, {event1:} for a shorter time"
+                ]
+            }, 
+        },
+        "short_time": {
+            "templates": {
+                "cn": [
+                    "{event1:}的时间比{event2:}的时间短{diff:}"
+                ],
+                "en": [
+                    "{event1:} {diff:} less than {event2:}",
+                    "The total duration that {event1:} is {diff:} shorter than {event2:}"
+                ]
+            }, 
+        },
+        "same_len": {
+            "templates": {
+                "cn": [
+                    "{event1:}持续的年数和{event2:}一样",
+                    "{event1:}的时长和{event2:}的时长相同",
+                    "{event1:}持续了和{event2:}一致的时长"
+                ],
+                "en": [
+                    "The time that {event1:} takes the same amount of time that {event2:}",
+                    "The time {event1:} is the same length as {event2:}",
+                    "The duration that {event1:} is the same as the duration that {event2:}",
+                    "The duration {event1:} is equal to the duration {event2:}",
+                    "The duration {event1:} matches the duration {event2:}"
+                ]
+            }, 
+        },
+        "during": {
+            "templates": {
+                "cn": [
+                    "在{event2:}期间，{event1:}",
+                    "{event1:}是在{event2:}期间",
+                    "在{event2:}的那段时间里，{event1:}"
+                ],
+                "en": [
+                    "During the time that {event2:}, {event1:}",
+                    "{event1:} during the time {event2:}"
+                ]
+            }, 
+        },
+    },
+}

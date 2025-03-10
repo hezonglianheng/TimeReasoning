@@ -1,0 +1,105 @@
+// date: 2025-03-07
+// 与“一周日程”有关的配置文件
+
+{
+    "random_seed": 0, // 随机种子
+    "event_num": 6, // 事件数量，null表示不限制
+    "reset_time": 1, 
+    "ask_time": 1, 
+    "scenario": {
+        "kind": "cyclic", 
+        "period": {"kind": "day", "day": 7}, // 循环周期，此处为7天
+    }, 
+    "curr_unit": "week_day", 
+    "guide": {
+        "cn": "为了高效利用时间，小明制定了详细的每周计划", 
+        "en": "To make efficient use of time, Jack has made a detailed weekly plan", 
+    }, 
+    "time_range": {
+        "upper_bound": {"kind": "week_day", "day": 7}, 
+        "lower_bound": {"kind": "week_day", "day": 1}, 
+    }, 
+    "object": [
+        {
+            "name": "Jack",
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "小明", "pronoun": "他", },
+                "en": {"name": "Jack", "pronoun": "he", }, 
+            }, 
+        },
+    ], 
+    "event": [
+        {
+            "name": "jack_learn_japanese", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "学习", "en": "learn", },
+            "object": {"cn": "日语", "en": "Japanese", },
+        },
+        {
+            "name": "jack_meet_friends", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "会见", "en": "meet", },
+            "object": {"cn": "朋友", "en": "with his friends", },
+        },
+        {
+            "name": "jack_play_badminton", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "打", "en": "play", },
+            "object": {"cn": "羽毛球", "en": "badminton", },
+        },
+        {
+            "name": "jack_tidy_up_dormitory", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "整理", "en": "tidy", },
+            "object": {"cn": "宿舍", "en": "up his dormitory room", },
+        },
+        {
+            "name": "jack_read_research_papers", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "读", "en": "read", },
+            "object": {"cn": "论文", "en": "research papers", },
+        },
+        {
+            "name": "jack_have_group_meeting", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "开", "en": "have", },
+            "object": {"cn": "组会", "en": "a group meeting", },
+        },
+        {
+            "name": "jack_go_jogging", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "跑步", "en": "go", },
+            "object": {"cn": "", "en": "jogging", },
+        },
+        {
+            "name": "jack_watch_movie", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "看", "en": "watch", },
+            "object": {"cn": "电影", "en": "a movie", },
+        },
+        {
+            "name": "jack_read_scifi_novels", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "阅读", "en": "read", },
+            "object": {"cn": "科幻小说", "en": "sci-fi novels", },
+        },
+        {
+            "name": "jack_practice_guitar", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "练习", "en": "practice", },
+            "object": {"cn": "吉他", "en": "the guitar", },
+        },
+    ],
+    "constraint": [], 
+}

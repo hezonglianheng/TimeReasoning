@@ -1,0 +1,57 @@
+// date: 2025-03-07
+// 线性时间情景的配置文件
+
+{
+    // 规定情景中需要有哪些属性名称及覆写方式
+    "attr_names": {}, 
+    // 情景中引用rule.json5中的规则，按照rule.json5中的名称进行索引
+    "ref_rules": [
+        "before_equivalence_after", 
+        "beforetime_equivalence_aftertime", 
+        "long_equivalence_short", 
+        "longtime_equivalence_shorttime", 
+        "simultaneous_equivalence_simultaneous", 
+        "gap_equivalence_gap", 
+        "samelen_equivalence_samelen", 
+        "beforetime_entail_before", 
+        "aftertime_entail_after", 
+        "longtime_entail_long", 
+        "shorttime_entail_short",
+        "beforetime_entail_gap", 
+        "aftertime_entail_gap",
+        "get_before_time", 
+        "get_after_time", 
+        "get_simultaneous", 
+        "get_long_time", 
+        "get_short_time",
+        "get_same_len",
+        "BeforeTrans", 
+        "BeforeTimeTrans", 
+        "AfterTrans",
+        "AfterTimeTrans",
+        "SimultaneousTrans", 
+        "LongTrans",
+        "LongTimeTrans", 
+        "ShortTrans",
+        "ShortTimeTrans", 
+        "SameLenTrans",
+        "FromBeforeTime1", 
+        "FromBeforeTime2",
+        "FromAfterTime1",
+        "FromAfterTime2",
+        "FromSimultaneous", 
+        "FromLongTime1",
+        "FromLongTime2",
+        "FromShortTime1",
+        "FromShortTime2",
+        "FromSameLenTime", 
+        "Before_and_Gap", 
+        "After_and_Gap",
+        "Get_During", 
+        "durative_to_single", 
+    ], 
+    // 情景中独有的命题
+    "scenario_props": {}, 
+    // 情景中独有的规则，按照rule.json5中的方式书写
+    "scenario_rules": [], 
+}
