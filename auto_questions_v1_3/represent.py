@@ -11,7 +11,6 @@ import networkx as nx
 import element
 import config
 from typing import Any, Optional, overload
-from collections.abc import Iterable
 import random
 from bisect import bisect
 
@@ -122,6 +121,16 @@ def get_time_range(time1: "CustomTime", time2: "CustomTime") -> list["CustomTime
     # 获得时间范围的上下界
     time_range = [lower_bound + CustomTimeDelta(kind=delta.kind, **{delta_unit: i}) for i in range(delta_value + 1)]
     return time_range
+
+def get_zero_time() -> "CustomTime":
+    """根据配置文件中的当前时间单位，获得零时间
+
+    Returns:
+        CustomTime: 零时间
+    """
+    units: list[str] = TIME_UNIT[TIME_KINDS][config.CURR_UNIT]["units"]
+    zero_time: dict[str, int] = {unit: 0 for unit in units}
+    return CustomTime(kind=config.CURR_UNIT, **zero_time)
 
 class CustomTime(element.Element):
     """自定义时间的抽象基类
@@ -300,6 +309,25 @@ class CustomTime(element.Element):
         result = CustomTime(kind=self.kind, **time_attr)
         return result
 
+    def __mod__(self, other: "CustomTimeDelta") -> "CustomTime":
+        """时间取模的魔术方法
+
+        Args:
+            other (CustomTimeDelta): 取模的时间间隔
+
+        Returns:
+            CustomTime: 新的时间
+        """
+        left_base: str = TIME_UNIT[TIME_KINDS][self.kind][BASE]
+        right_base: str = TIME_UNIT[TIMEDELTA_KINDS][other.kind][BASE]
+        assert left_base == right_base, f"时间{self}和时间间隔{other}的基本单位不同，不能取模"
+        self_base_value: int = self.convert2base()[left_base]
+        delta_base_value: int = other[right_base]
+        result_base: int = self_base_value % delta_base_value
+        time_attr: dict[str, int] = {left_base: result_base}
+        result = CustomTime(kind=self.kind, **time_attr)
+        return result
+
 class CustomTimeDelta(element.Element):
     """自定义时间间隔的抽象基类
     """
@@ -381,6 +409,22 @@ class CustomTimeDelta(element.Element):
             return delta
         else:
             raise ValueError(f"不支持的相加类型: {type(other)}")
+
+    def __mod__(self, other: "CustomTimeDelta") -> "CustomTimeDelta":
+        """时间间隔取模的魔术方法
+
+        Args:
+            other (CustomTimeDelta): 取模的时间间隔
+
+        Returns:
+            CustomTimeDelta: 时间间隔
+        """
+        assert type(self) == type(other), "两个对象的class不同不能取模"
+        assert self.kind == other.kind, "两个CustomTimeDelta时间对象的kind不同不能取模"
+        base: str = TIME_UNIT[TIMEDELTA_KINDS][self.kind][BASE]
+        delta_base: int = self[base] % other[base]
+        delta = CustomTimeDelta(kind=self.kind, **{base: delta_base})
+        return delta
 
 if __name__ == "__main__":
     convert_result = convert2lower(1, "year")
