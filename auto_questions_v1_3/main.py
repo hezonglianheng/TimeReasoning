@@ -132,6 +132,8 @@ def scenario_setup(scenario_attr_dict: dict):
 def graph_setup(events: Sequence[event.Event]):
     global GRAPH
     initial_props = CONSTRAINT_MACHINE.get_time_props(events)
+    for t, e in CONSTRAINT_MACHINE.event_order:
+        print(f"{e.translate(config.CHINESE)}: {t.translate(config.CHINESE)}")
     scenario_rules = SCENARIO.get_rules()
     knowledge_props = SCENARIO.get_props()
     GRAPH = graph.ReasoningGraph(initial_props, scenario_rules, knowledge_props)

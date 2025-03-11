@@ -129,6 +129,8 @@ class ConstraintMachine:
         self.upper_bound = upper_bound
         self.lower_bound = lower_bound
         self.constraint_graph = nx.DiGraph()
+        # 03-11新增：增加对于事件顺序的记录
+        self.event_order: list[tuple[represent.CustomTime, event.Event]] = []
         self._construct()
         self._forward()
 
@@ -198,7 +200,6 @@ class ConstraintMachine:
             time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
             chosen_time = random.choice(time_range)
             self.constraint_graph.nodes[node][TIME] = chosen_time
-            print(f"{node}的时间为{chosen_time.translate(config.CHINESE)}")
 
     def _get_temporal_time(self, e: event.Event) -> represent.CustomTime:
         """从约束图中，为时点事件获取时间值
@@ -224,6 +225,8 @@ class ConstraintMachine:
     def get_time_props(self, events: Sequence[event.Event]) -> list[prop.Proposition]:
         # 后向传播，随机生成时间
         self._backward()
+        # 03-11新增：清空event_order
+        self.event_order.clear()
         time_props: list[prop.Proposition] = []
         for e in events:
             if e.kind == event.TEMPORAL:
@@ -231,6 +234,8 @@ class ConstraintMachine:
                 e_time = self._get_temporal_time(e)
                 prop_dict: dict[str, Any] = {prop.TIME: e_time, prop.EVENT: e, prop.KIND: "temporal"}
                 time_props.append(prop.Proposition(**prop_dict))
+                # 03-11新增：将事件添加到event_order中
+                self.event_order.append((e_time, e))
             elif e.kind == event.DURATIVE:
                 start_event: event.Event = e[event.START_EVENT]
                 end_event: event.Event = e[event.END_EVENT]
@@ -246,9 +251,13 @@ class ConstraintMachine:
                 time_props.append(prop.Proposition(**duration_dict))
                 durative_event = {prop.EVENT: e, prop.KIND: "durative", prop.TIME: start_time, prop.END_TIME: end_time, prop.DURATION: duration_time}
                 time_props.append(prop.Proposition(**durative_event))
+                # 03-11新增：将事件添加到event_order中
+                self.event_order.append((start_time, e))
             elif e.kind == event.FREQUENT:
                 # TODO: 频率事件的处理
                 pass
             else:
                 raise ValueError(f"不支持的事件类型{e.kind}")
+        # 03-11新增：对event_order进行排序
+        self.event_order.sort(key = lambda x: x[0])
         return time_props
