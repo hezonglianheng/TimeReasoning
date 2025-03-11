@@ -78,10 +78,10 @@ class Event(element.Element):
             list[Event]: 事件元素列表
         """
         kind: str = attr_dict["kind"]
+        subject_name: str = attr_dict[SUBJECT]
+        subject: MyObject = next(filter(lambda x: x.name == subject_name, myobject_list))
+        attr_dict[SUBJECT] = subject
         if kind == TEMPORAL:
-            subject_name: str = attr_dict[SUBJECT]
-            subject: MyObject = next(filter(lambda x: x.name == subject_name, myobject_list))
-            attr_dict[SUBJECT] = subject
             return [cls(**attr_dict)]
         elif kind == DURATIVE:
             children_event: list["Event"] = []
@@ -94,9 +94,6 @@ class Event(element.Element):
         elif kind == FREQUENT:
             pass
         elif kind == DURATION:
-            subject_name: str = attr_dict[SUBJECT]
-            subject: MyObject = next(filter(lambda x: x.name == subject_name, myobject_list))
-            attr_dict[SUBJECT] = subject
             return [cls(**attr_dict)]
         else:
             raise ValueError(f"不支持的事件类型: {kind}")
