@@ -60,3 +60,5 @@ SCENARIO_DIR = KNOWLEDGE_BASE_DIR / "scenario"
 SETTINGS_FILE = "settings.json5"
 # 推理节点的文本文件
 GRAPH_FILE = "graph.txt"
+# 从命题库中选择命题的规则
+PROP_CHOOSE_RULE_FILE = KNOWLEDGE_BASE_DIR / "prop_choose_rule.json5"

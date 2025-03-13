@@ -12,6 +12,7 @@ import proposition as prop
 import constraint
 import graph
 import scenario
+import machine
 import json5
 import json
 import random
@@ -26,6 +27,8 @@ from functools import reduce
 CONSTRAINT_MACHINE: constraint.ConstraintMachine
 SCENARIO: scenario.Scenario
 GRAPH: graph.ReasoningGraph
+PROP_CHOOSE_MACHINE: machine.PropChooseMachine
+
 # settings.json5文件中的键
 SCENARIO_KEY = "scenario"
 RANDOM_SEED_KEY = "random_seed"
@@ -130,6 +133,11 @@ def scenario_setup(scenario_attr_dict: dict):
     SCENARIO = scenario.Scenario(**scenario_attr_dict)
 
 def graph_setup(events: Sequence[event.Event]):
+    """初始化推理图
+
+    Args:
+        events (Sequence[event.Event]): 事件序列
+    """
     global GRAPH
     initial_props = CONSTRAINT_MACHINE.get_time_props(events)
     for t, e in CONSTRAINT_MACHINE.event_order:
@@ -138,6 +146,17 @@ def graph_setup(events: Sequence[event.Event]):
     knowledge_props = SCENARIO.get_props()
     GRAPH = graph.ReasoningGraph(initial_props, scenario_rules, knowledge_props)
     GRAPH.reason()
+
+def prop_choose() -> list[prop.Proposition]:
+    """选择试题中作为已知信息出现的命题
+
+    Returns:
+        list[prop.Proposition]: 已知信息命题列表
+    """
+    global GRAPH, PROP_CHOOSE_MACHINE, CONSTRAINT_MACHINE
+    events = [i[1] for i in CONSTRAINT_MACHINE.event_order]
+    PROP_CHOOSE_MACHINE = machine.PropChooseMachine(events, GRAPH)
+    return PROP_CHOOSE_MACHINE.run()
 
 def main(dir_path: str):
     # 读取settings.json5文件
@@ -164,6 +183,8 @@ def main(dir_path: str):
         print(f"第{i+1}次重置")
         curr_events: tuple[event.Event] = next(event_iter)
         graph_setup(curr_events)
+        # 选择命题
+        chosen_props = prop_choose()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="时间领域自动出题程序")

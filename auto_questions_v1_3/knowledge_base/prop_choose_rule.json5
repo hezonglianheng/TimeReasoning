@@ -1,0 +1,23 @@
+// date: 2025-03-11
+// 决定如何从命题库中选择事件对应的命题的规则
+
+{
+    // 从命题库中选择事件对应的命题的规则
+    "choose_rule": {
+        // choose_rule的键是事件的类型，值包含了选择命题的规则
+        "temporal": [
+            // 规则为字典，kind表示规则的类型，attr指定了事件是规则的哪一个属性
+            {"kind": "temporal", "attr": "event"}, 
+            {"kind": "after_time", "attr": "event1"}, 
+        ], 
+        "durative": [
+            {"kind": "durative", "attr": "event"}, 
+        ], 
+        "duration": [
+            {"kind": "duration", "attr": "event"}, 
+            {"kind": "long_time", "attr": "event1"},
+            {"kind": "short_time", "attr": "event1"},
+        ], 
+        "frequent": [], 
+    }, 
+}
