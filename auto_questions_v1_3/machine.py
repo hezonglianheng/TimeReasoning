@@ -9,6 +9,7 @@ import event
 import graph
 import proposition as prop
 import json5
+from tqdm import tqdm
 import random
 from typing import Literal
 
@@ -30,7 +31,7 @@ class PropChooseMachine:
         self.all_props = self.graph.get_all_props()
         self.choose_rule: dict[str, list[dict[str, str]]] = {}
         with open(config.PROP_CHOOSE_RULE_FILE, "r", encoding = "utf8") as f:
-            self.choose_rule = json5.load(f)["choose_rule"]
+            self.choose_rule = json5.load(f)[CHOOSE_RULE]
 
     def _choose_prop(self, e: event.Event) -> prop.Proposition:
         """根据输入的事件选择命题
@@ -65,7 +66,7 @@ class PropChooseMachine:
             list[prop.Proposition]: 选择的命题
         """
         chosen_props: list[prop.Proposition] = []
-        for e in self.sorted_events:
+        for e in tqdm(self.sorted_events, desc=f"根据事件选择命题"):
             if e.kind == event.TEMPORAL:
                 chosen_prop = self._choose_prop(e)
                 chosen_props.append(chosen_prop)
@@ -88,4 +89,5 @@ class PropChooseMachine:
                     raise ValueError(f"未知的命题选择策略：{strategy}")
             else:
                 raise ValueError(f"未知事件类型：{e.kind}")
+        print(f"根据事件选择了{len(chosen_props)}个命题作为已知命题")
         return chosen_props
