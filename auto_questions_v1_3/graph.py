@@ -12,7 +12,6 @@ from tqdm import tqdm
 import math
 from collections.abc import Sequence
 from typing import Optional
-from itertools import takewhile
 from pathlib import Path
 
 class ReasoningGraph:
@@ -77,7 +76,7 @@ class ReasoningGraph:
             list[prop.Proposition]: 命题列表
         """
         all_props: list[prop.Proposition] = []
-        for node in tqdm(self.nodes, desc="获取所有命题"):
+        for node in self.nodes:
             condition: list[prop.Proposition] = node[mynode.CONDITION]
             conclusion: prop.Proposition = node[mynode.CONCLUSION]
             for p in condition:
@@ -131,7 +130,7 @@ class ReasoningGraph:
             self.add_nodes(curr_nodes)
             old_prop_list.extend(curr_prop_list)
             curr_prop_list = new_prop_list
-        print(f"推理结束，共执行{reason_count}次推理，得到{len(self.nodes)}个节点")
+        print(f"推理结束，共执行{reason_count}次推理，得到{len(self.get_all_props())}个命题，{len(self.nodes)}个节点")
 
     def set_node_layers(self, chosen_props: list[prop.Proposition]):
         """设置节点的层级，本质上是第二轮推理
@@ -142,23 +141,25 @@ class ReasoningGraph:
         # 重置节点的层级
         for node in self.nodes:
             node[mynode.LAYER] = math.inf
-            node[mynode.CONDITION_LAYERS] = [math.inf] * len(node[mynode.NodeField.Condition])
+            node[mynode.CONDITION_LAYERS] = [math.inf] * len(node[mynode.CONDITION])
+        post_layer_props: list[prop.Proposition] = []
         curr_layer_props: list[prop.Proposition] = chosen_props + self.knowledge_props
         next_layer_props: list[prop.Proposition] = []
         layer: int = 0
-        while any([i[mynode.LAYER] > layer for i in self.nodes]):
+        while True:
             layer += 1
-            print(f"设置第{layer}层节点")
-            for node in takewhile(lambda x: x[mynode.LAYER] > layer, self.nodes):
+            for node in tqdm([x for x in self.nodes if x[mynode.LAYER] > layer], desc=f"设置第{layer}层节点"):
                 conclusion = node.set_layer(layer, curr_layer_props)
-                if conclusion and conclusion.is_contained(next_layer_props):
+                if conclusion and (not conclusion.is_contained(post_layer_props)) and (not conclusion.is_contained(curr_layer_props)) and (not conclusion.is_contained(next_layer_props)):
                     next_layer_props.append(conclusion)
             print(f"第{layer}层节点设置完毕，已经设置{len(next_layer_props)}个结论命题")
-            curr_layer_props = next_layer_props + self.knowledge_props
+            if len(next_layer_props) == 0:
+                self.deepest_layer = layer if any([n for n in self.nodes if n[mynode.LAYER] == layer]) else layer - 1
+                print(f"设置层级结束，共设置{self.deepest_layer}层")
+                break
+            post_layer_props = curr_layer_props
+            curr_layer_props = next_layer_props
             next_layer_props = []
-        else:
-            self.deepest_layer = layer
-            print(f"设置层级结束，共设置{layer}层")
 
     def get_deepest_conclusions(self) -> list[prop.Proposition]:
         """获取最深层次推理图节点的结论命题
@@ -168,7 +169,7 @@ class ReasoningGraph:
         """
         assert self.deepest_layer >= 0, "尚未进行二次推理"
         conclusion_list: list[prop.Proposition] = []
-        for node in takewhile(lambda x: x[mynode.LAYER] == self.deepest_layer, self.nodes):
+        for node in (n for n in self.nodes if n[mynode.LAYER] == self.deepest_layer):
             node_conclusion: prop.Proposition = node[mynode.CONCLUSION]
             if not node_conclusion.is_contained(conclusion_list):
                 conclusion_list.append(node_conclusion)

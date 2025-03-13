@@ -4,7 +4,6 @@
 import element
 import proposition as prop
 import math
-from itertools import takewhile
 from typing import Optional
 
 # constants.
@@ -37,9 +36,9 @@ class Node(element.Element):
             Optional[prop.Proposition]: 如果节点层数小于当前层数，返回节点的结论命题，否则返回None
         """
         conditions: list[prop.Proposition] = self[CONDITION]
-        for i in takewhile(lambda x: self[CONDITION_LAYERS][x] > curr_layer, range(len(conditions))):
-            if conditions[i].is_contained(curr_props):
+        for i, p in enumerate(conditions):
+            if p.is_contained(curr_props):
                 self[CONDITION_LAYERS][i] = min(self[CONDITION_LAYERS][i], curr_layer)
         self[LAYER] = max(self[CONDITION_LAYERS])
         # 如果节点层数小于当前层数，返回结论命题，否则返回None
-        return self[CONCLUSION] if self[LAYER] < curr_layer else None
+        return self[CONCLUSION] if self[LAYER] <= curr_layer else None

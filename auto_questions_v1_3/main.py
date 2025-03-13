@@ -158,6 +158,15 @@ def prop_choose() -> list[prop.Proposition]:
     PROP_CHOOSE_MACHINE = machine.PropChooseMachine(events, GRAPH)
     return PROP_CHOOSE_MACHINE.run()
 
+def second_reason(temp_props: list[prop.Proposition]):
+    """执行二次推理，设置推理图上节点的层级
+
+    Args:
+        temp_props (list[prop.Proposition]): 二次推理的初始命题列表
+    """
+    global GRAPH
+    GRAPH.set_node_layers(temp_props)
+
 def main(dir_path: str):
     # 读取settings.json5文件
     setting_path = Path(dir_path) / config.SETTINGS_FILE
@@ -183,8 +192,11 @@ def main(dir_path: str):
         print(f"第{i+1}次重置")
         curr_events: tuple[event.Event] = next(event_iter)
         graph_setup(curr_events)
-        # 选择命题
-        chosen_props = prop_choose()
+        for j in range(settings[ASK_TIME_KEY]):
+            print(f"第{j+1}次提问")
+            # 选择命题
+            chosen_props = prop_choose()
+            second_reason(chosen_props)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="时间领域自动出题程序")
