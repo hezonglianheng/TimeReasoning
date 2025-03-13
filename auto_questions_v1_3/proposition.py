@@ -18,9 +18,11 @@ PROP_KINDS = "prop_kinds" # 命题类型对应的键
 REPLACE = re.compile(r"\{(\w*?):(\w*?)\}") # 替换模板中的内容
 PROP_DATA: dict = {} # 时间命题的数据
 
-# constants.
+# 命题的字段
 TIME = "time" # 时间
 EVENT = "event" # 事件
+EVENT1 = "event1" # 事件1
+EVENT2 = "event2" # 事件2
 KIND = "kind" # 类型
 END_TIME = "endtime" # 结束时间
 DURATION = "duration" # 持续时间
