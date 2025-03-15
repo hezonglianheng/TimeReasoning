@@ -132,6 +132,16 @@ def get_zero_time() -> "CustomTime":
     zero_time: dict[str, int] = {unit: 0 for unit in units}
     return CustomTime(kind=config.CURR_UNIT, **zero_time)
 
+def get_time_delta_range(time1: "CustomTime", time2: "CustomTime") -> list["CustomTimeDelta"]:
+    """获得两个时间之间的时间间隔范围，包括上下界
+
+    Returns:
+        list[CustomTimeDelta]: 两个时间之间的时间间隔范围，包括上下界
+    """
+    time_range = get_time_range(time1, time2)
+    time_delta_range = [t for i in range(1, len(time_range)) if (t := (time_range[i] - time_range[0]))]
+    return time_delta_range
+
 class CustomTime(element.Element):
     """自定义时间的抽象基类
     """
