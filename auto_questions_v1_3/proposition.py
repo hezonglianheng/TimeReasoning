@@ -13,6 +13,7 @@ import random
 # 常量
 ASKABLE = "askable" # 是否可询问
 PRECISE = "precise" # 是否精确
+NO_MAIN_ATTR = [ASKABLE, PRECISE, ] # 非主要属性
 TEMPLATES = "templates" # 模板
 PROP_KINDS = "prop_kinds" # 命题类型对应的键
 REPLACE = re.compile(r"\{(\w*?):(\w*?)\}") # 替换模板中的内容
@@ -48,7 +49,7 @@ def add_prop_data(data: dict[str, dict]) -> None:
     PROP_DATA[PROP_KINDS].update(data)
 
 class Proposition(element.Element):
-    """自定义的时间命题
+    """自定义的命题
     """
 
     def __init__(self, name = "", kind = "", **kwargs):
@@ -87,7 +88,7 @@ class Proposition(element.Element):
         return template
 
     def __eq__(self, other: "Proposition") -> bool:
-        """判断两个时间命题是否相等的方法
+        """判断两个命题是否相等的方法
 
         Args:
             other (Proposition): 另一个时间命题
@@ -101,11 +102,27 @@ class Proposition(element.Element):
             return False
         for key in self.attrs:
             # 忽略ASKABLE、PRECISE属性
-            if key in [ASKABLE, PRECISE]:
+            if key in NO_MAIN_ATTR:
                 continue
             if self[key] != other[key]:
                 return False
         return True
+
+    def main_attrs(self) -> list[str]:
+        """返回命题的主要属性
+
+        Returns:
+            list[str]: 主要属性列表
+        """
+        return [key for key in self.attrs if key not in NO_MAIN_ATTR]
+    
+    def ask_attr(self) -> str:
+        """随机选取命题的一个主要属性，用于提问
+
+        Returns:
+            str: 选取的属性
+        """
+        return random.choice(self.main_attrs())
 
 if __name__ == "__main__":
     import event
