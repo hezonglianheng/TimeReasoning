@@ -174,3 +174,20 @@ class ReasoningGraph:
             if not node_conclusion.is_contained(conclusion_list):
                 conclusion_list.append(node_conclusion)
         return conclusion_list
+
+    def get_reachable_props(self) -> list[prop.Proposition]:
+        """获取推理图中经过第二次推理后所有可达的命题
+
+        Returns:
+            list[prop.Proposition]: 可达的命题
+        """
+        all_props: list[prop.Proposition] = []
+        for node in filter(lambda x: x[mynode.LAYER] <= self.deepest_layer, self.nodes):
+            condition: list[prop.Proposition] = node[mynode.CONDITION]
+            conclusion: prop.Proposition = node[mynode.CONCLUSION]
+            for p in condition:
+                if not p.is_contained(all_props):
+                    all_props.append(p)
+            if not conclusion.is_contained(all_props):
+                all_props.append(conclusion)
+        return all_props
