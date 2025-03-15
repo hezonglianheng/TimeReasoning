@@ -69,8 +69,11 @@ class ReasoningGraph:
                 conclusions.append(node_conclusion)
         return conclusions
 
-    def get_all_props(self) -> list[prop.Proposition]:
+    def get_all_props(self, use_askable: bool = False) -> list[prop.Proposition]:
         """获取推理图中的所有命题
+
+        Args:
+            use_askable (bool, optional): 是否只获取可询问的命题. 默认为False.
 
         Returns:
             list[prop.Proposition]: 命题列表
@@ -84,6 +87,8 @@ class ReasoningGraph:
                     all_props.append(p)
             if not conclusion.is_contained(all_props):
                 all_props.append(conclusion)
+        if use_askable:
+            all_props = [p for p in all_props if p[prop.ASKABLE]]
         return all_props
 
     def reason(self, new_props: Optional[list[prop.Proposition]] = None):
@@ -161,8 +166,11 @@ class ReasoningGraph:
             curr_layer_props = next_layer_props
             next_layer_props = []
 
-    def get_deepest_conclusions(self) -> list[prop.Proposition]:
+    def get_deepest_conclusions(self, use_askable: bool = False) -> list[prop.Proposition]:
         """获取最深层次推理图节点的结论命题
+
+        Args:
+            use_askable (bool, optional): 是否只获取可询问的命题. 默认为False.
 
         Returns:
             list[prop.Proposition]: 最深层次推理图节点的结论命题
@@ -173,10 +181,15 @@ class ReasoningGraph:
             node_conclusion: prop.Proposition = node[mynode.CONCLUSION]
             if not node_conclusion.is_contained(conclusion_list):
                 conclusion_list.append(node_conclusion)
+        if use_askable:
+            conclusion_list = [p for p in conclusion_list if p[prop.ASKABLE]]
         return conclusion_list
 
-    def get_reachable_props(self) -> list[prop.Proposition]:
+    def get_reachable_props(self, use_askable: bool = False) -> list[prop.Proposition]:
         """获取推理图中经过第二次推理后所有可达的命题
+
+        Args:
+            use_askable (bool, optional): 是否只获取可询问的命题. 默认为False
 
         Returns:
             list[prop.Proposition]: 可达的命题
@@ -190,4 +203,6 @@ class ReasoningGraph:
                     all_props.append(p)
             if not conclusion.is_contained(all_props):
                 all_props.append(conclusion)
+        if use_askable:
+            all_props = [p for p in all_props if p[prop.ASKABLE]]
         return all_props
