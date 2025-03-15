@@ -62,3 +62,20 @@ SETTINGS_FILE = "settings.json5"
 GRAPH_FILE = "graph.txt"
 # 从命题库中选择命题的规则
 PROP_CHOOSE_RULE_FILE = KNOWLEDGE_BASE_DIR / "prop_choose_rule.json5"
+
+# 问题配置
+ASK_POINT = "____" # 询问点
+LANG_CONFIG = {
+    "cn": {
+        "ask_right": f"以下选项中正确的是{ASK_POINT}",
+        "ask_wrong": f"以下选项中不正确的是{ASK_POINT}",
+        "full_stop": "。",
+        "all_wrong": "以上选项均不符合题目要求",
+    }, 
+    "en": {
+        "ask_right": f"Select the correct statement(s): {ASK_POINT}",
+        "ask_wrong": f"Select the incorrect statement(s): {ASK_POINT}",
+        "full_stop": ".",
+        "all_wrong": "None of the options above meet the requirements of the question",
+    }, 
+}

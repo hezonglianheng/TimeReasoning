@@ -18,7 +18,7 @@ import json
 import random
 import argparse
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 from itertools import combinations
 from collections.abc import Iterator, Sequence
 from functools import reduce
@@ -28,6 +28,7 @@ CONSTRAINT_MACHINE: constraint.ConstraintMachine
 SCENARIO: scenario.Scenario
 GRAPH: graph.ReasoningGraph
 PROP_CHOOSE_MACHINE: machine.PropChooseMachine
+OPTION_GENERATOR: machine.OptionGenerator
 
 # settings.json5文件中的键
 SCENARIO_KEY = "scenario"
@@ -167,7 +168,28 @@ def second_reason(temp_props: list[prop.Proposition]):
     global GRAPH
     GRAPH.set_node_layers(temp_props)
 
-def main(dir_path: str):
+def set_option_generator():
+    print("初始化选项生成器...")
+    global OPTION_GENERATOR, GRAPH, CONSTRAINT_MACHINE
+    OPTION_GENERATOR = machine.OptionGenerator(GRAPH)
+    upper_time, lower_time = CONSTRAINT_MACHINE.upper_bound, CONSTRAINT_MACHINE.lower_bound
+    time_range = represent.get_time_range(upper_time, lower_time)
+    time_delta_range = represent.get_time_delta_range(upper_time, lower_time)
+    for p in GRAPH.get_reachable_props():
+        for attr in p.main_attrs():
+            if type(p[attr]) == represent.CustomTime:
+                OPTION_GENERATOR.set_attr_range(p.kind, attr, time_range)
+            elif type(p[attr]) == represent.CustomTimeDelta:
+                OPTION_GENERATOR.set_attr_range(p.kind, attr, time_delta_range)
+    print("选项生成器初始化完成")
+
+def question_generate(prop_type: Literal["random", "deepest", "certain"] = "random", question_type: Literal["precise", "correct", "incorrect"] = "precise", **kwargs) -> dict[str, Any]:
+    global GRAPH, OPTION_GENERATOR
+    ask_machine = machine.AskMachine(GRAPH, OPTION_GENERATOR)
+    question_info = ask_machine.run(prop_type, question_type, **kwargs)
+    return question_info
+
+def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"] = "precise"):
     # 读取settings.json5文件
     setting_path = Path(dir_path) / config.SETTINGS_FILE
     # 设置当前配置文件夹
@@ -197,9 +219,12 @@ def main(dir_path: str):
             # 选择命题
             chosen_props = prop_choose()
             second_reason(chosen_props)
+            set_option_generator()
+            question_info = question_generate(question_type=question_type)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="时间领域自动出题程序")
     parser.add_argument("dir_path", type=str, help="settings.json5文件所在目录路径")
+    parser.add_argument("-q", "--question_type", type=str, help="问题类型", default="precise")
     args = parser.parse_args()
-    main(args.dir_path)
+    main(args.dir_path, args.question_type)
