@@ -5,7 +5,7 @@
     "random_seed": 0, // 随机种子
     "event_num": 6, // 试题中涉及的事件数量，null表示不限制
     "reset_time": 1, // 重置次数
-    "ask_time": 1, // 提问次数，最终的提问结果数量为reset_time * ask_time
+    "ask_time": 10, // 提问次数，最终的提问结果数量为reset_time * ask_time
     // 情景信息
     "scenario": {
         "kind": "linear", // 情景类型, 分为linear和cyclic两种
@@ -52,6 +52,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "出生", "en": "be", },
                 "object": {"cn": "", "en": "born", },
+                "tense": "past", 
             }, 
             "end_event": {
                 "name": "jack_spend_life_end", 
@@ -59,6 +60,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "去世", "en": "pass", },
                 "object": {"cn": "", "en": "away", },
+                "tense": "past",
             }, 
             "duration_event": {
                 "name": "jack_spend_life_duration", 
@@ -66,7 +68,10 @@
                 "subject": "Jack",
                 "predicate": {"cn": "在世", "en": "live", },
                 "object": {"cn": "", "en": "", },
+                "tense": "past",
             }, 
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "past", // 事件时态
         }, 
         // 上小学
         {

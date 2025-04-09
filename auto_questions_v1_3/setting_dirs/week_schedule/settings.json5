@@ -5,7 +5,7 @@
     "random_seed": 0, // 随机种子
     "event_num": 6, // 事件数量，null表示不限制
     "reset_time": 1, 
-    "ask_time": 1, 
+    "ask_time": 10, 
     "scenario": {
         "kind": "cyclic", 
         "period": {"kind": "day", "day": 7}, // 循环周期，此处为7天
@@ -36,6 +36,8 @@
             "subject": "Jack",
             "predicate": {"cn": "学习", "en": "learn", },
             "object": {"cn": "日语", "en": "Japanese", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
         },
         {
             "name": "jack_meet_friends", 
