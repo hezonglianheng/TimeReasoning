@@ -86,6 +86,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "开始", "en": "start", },
                 "object": {"cn": "上小学", "en": "elementary school", },
+                "tense": "past",
             }, 
             "end_event": {
                 "name": "jack_be_in_elementary_shool_end", 
@@ -93,6 +94,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "小学毕业", "en": "graduate", },
                 "object": {"cn": "", "en": "from elementary school", },
+                "tense": "past",
             }, 
             "duration_event": {
                 "name": "jack_be_in_elementary_shool_duration", 
@@ -100,7 +102,9 @@
                 "subject": "Jack",
                 "predicate": {"cn": "上", "en": "be", },
                 "object": {"cn": "小学", "en": "in elementary school", },
+                "tense": "past",
             }, 
+            "tense": "past",
         },
         // 上初中
         {
@@ -115,6 +119,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "开始", "en": "start", },
                 "object": {"cn": "上初中", "en": "junior high", },
+                "tense": "past",
             }, 
             "end_event": {
                 "name": "jack_be_in_junior_high_end", 
@@ -122,6 +127,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "初中毕业", "en": "graduate", },
                 "object": {"cn": "", "en": "from junior high", },
+                "tense": "past",
             }, 
             "duration_event": {
                 "name": "jack_be_in_junior_high_duration", 
@@ -129,7 +135,9 @@
                 "subject": "Jack",
                 "predicate": {"cn": "上", "en": "be", },
                 "object": {"cn": "初中", "en": "in junior high", },
+                "tense": "past",
             }, 
+            "tense": "past",
         },
         // 上高中
         {
@@ -144,6 +152,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "开始", "en": "start", },
                 "object": {"cn": "上高中", "en": "high school", },
+                "tense": "past",
             }, 
             "end_event": {
                 "name": "jack_be_in_high_school_end", 
@@ -151,6 +160,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "高中毕业", "en": "graduate", },
                 "object": {"cn": "", "en": "from high school", },
+                "tense": "past",
             }, 
             "duration_event": {
                 "name": "jack_be_in_high_school_duration", 
@@ -158,7 +168,9 @@
                 "subject": "Jack",
                 "predicate": {"cn": "上", "en": "be", },
                 "object": {"cn": "高中", "en": "in high school", },
+                "tense": "past",
             }, 
+            "tense": "past",
         },
         // 上大学
         {
@@ -173,6 +185,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "开始", "en": "start", },
                 "object": {"cn": "上大学", "en": "university", },
+                "tense": "past",
             }, 
             "end_event": {
                 "name": "jack_be_in_university_end", 
@@ -180,6 +193,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "大学毕业", "en": "graduate", },
                 "object": {"cn": "", "en": "from university", },
+                "tense": "past",
             }, 
             "duration_event": {
                 "name": "jack_be_in_university_duration", 
@@ -187,7 +201,9 @@
                 "subject": "Jack",
                 "predicate": {"cn": "上", "en": "be", },
                 "object": {"cn": "大学", "en": "in university", },
+                "tense": "past",
             }, 
+            "tense": "past",
         },
         // 遇见未来妻子
         {
@@ -196,6 +212,7 @@
             "subject": "Jack",
             "predicate": {"cn": "遇见", "en": "meet", },
             "object": {"cn": "他未来的妻子", "en": "his future wife", },
+            "tense": "past",
         },
         // 恋爱关系
         {
@@ -210,6 +227,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "开始", "en": "start", },
                 "object": {"cn": "一段感情", "en": "a romantic relationship", },
+                "tense": "past",
             }, 
             "end_event": {
                 "name": "jack_have_a_romantic_relationship_end", 
@@ -217,6 +235,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "结束", "en": "end", },
                 "object": {"cn": "恋爱关系", "en": "his romantic relationship", },
+                "tense": "past",
             }, 
             "duration_event": {
                 "name": "jack_have_a_romantic_relationship_duration", 
@@ -224,7 +243,9 @@
                 "subject": "Jack",
                 "predicate": {"cn": "拥有", "en": "be", },
                 "object": {"cn": "一段感情", "en": "in a romantic relationship", },
+                "tense": "past",
             }, 
+            "tense": "past",
         },
         // 婚姻关系
         {
@@ -233,6 +254,7 @@
             "subject": "Jack",
             "predicate": {"cn": "结婚", "en": "get", },
             "object": {"cn": "", "en": "married", },
+            "tense": "past",
         },
         // 成为父亲
         {
@@ -241,6 +263,7 @@
             "subject": "Jack",
             "predicate": {"cn": "成为", "en": "become", },
             "object": {"cn": "一名父亲", "en": "a father", },
+            "tense": "past",
         },
         // 工作
         {
@@ -255,6 +278,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "开始", "en": "join", },
                 "object": {"cn": "工作", "en": "a company", },
+                "tense": "past",
             }, 
             "end_event": {
                 "name": "jack_work_for_a_company_end", 
@@ -262,6 +286,7 @@
                 "subject": "Jack",
                 "predicate": {"cn": "退休", "en": "retire", },
                 "object": {"cn": "", "en": "", },
+                "tense": "past",
             }, 
             "duration_event": {
                 "name": "jack_work_for_a_company_duration", 
@@ -269,7 +294,9 @@
                 "subject": "Jack",
                 "predicate": {"cn": "工作", "en": "work", },
                 "object": {"cn": "", "en": "for a company", },
+                "tense": "past",
             }, 
+            "tense": "past",
         },
         // 成为公司领导
         {
@@ -278,6 +305,7 @@
             "subject": "Jack",
             "predicate": {"cn": "成为", "en": "become", },
             "object": {"cn": "公司领导", "en": "a company leader", },
+            "tense": "past",
         },
     ],
     // 事件间关系约束信息

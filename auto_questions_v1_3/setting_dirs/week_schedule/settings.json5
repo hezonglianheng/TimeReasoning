@@ -45,6 +45,7 @@
             "subject": "Jack",
             "predicate": {"cn": "会见", "en": "meet", },
             "object": {"cn": "朋友", "en": "with his friends", },
+            "tense": "present",
         },
         {
             "name": "jack_play_badminton", 
@@ -52,6 +53,7 @@
             "subject": "Jack",
             "predicate": {"cn": "打", "en": "play", },
             "object": {"cn": "羽毛球", "en": "badminton", },
+            "tense": "present",
         },
         {
             "name": "jack_tidy_up_dormitory", 
@@ -59,6 +61,7 @@
             "subject": "Jack",
             "predicate": {"cn": "整理", "en": "tidy", },
             "object": {"cn": "宿舍", "en": "up his dormitory room", },
+            "tense": "present",
         },
         {
             "name": "jack_read_research_papers", 
@@ -66,6 +69,7 @@
             "subject": "Jack",
             "predicate": {"cn": "读", "en": "read", },
             "object": {"cn": "论文", "en": "research papers", },
+            "tense": "present",
         },
         {
             "name": "jack_have_group_meeting", 
@@ -73,6 +77,7 @@
             "subject": "Jack",
             "predicate": {"cn": "开", "en": "have", },
             "object": {"cn": "组会", "en": "a group meeting", },
+            "tense": "present",
         },
         {
             "name": "jack_go_jogging", 
@@ -80,6 +85,7 @@
             "subject": "Jack",
             "predicate": {"cn": "跑步", "en": "go", },
             "object": {"cn": "", "en": "jogging", },
+            "tense": "present",
         },
         {
             "name": "jack_watch_movie", 
@@ -87,6 +93,7 @@
             "subject": "Jack",
             "predicate": {"cn": "看", "en": "watch", },
             "object": {"cn": "电影", "en": "a movie", },
+            "tense": "present",
         },
         {
             "name": "jack_read_scifi_novels", 
@@ -94,6 +101,7 @@
             "subject": "Jack",
             "predicate": {"cn": "阅读", "en": "read", },
             "object": {"cn": "科幻小说", "en": "sci-fi novels", },
+            "tense": "present",
         },
         {
             "name": "jack_practice_guitar", 
@@ -101,6 +109,7 @@
             "subject": "Jack",
             "predicate": {"cn": "练习", "en": "practice", },
             "object": {"cn": "吉他", "en": "the guitar", },
+            "tense": "present",
         },
     ],
     "constraint": [], 
