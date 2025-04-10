@@ -31,6 +31,7 @@ PROP_CHOOSE_MACHINE: machine.PropChooseMachine
 OPTION_GENERATOR: machine.OptionGenerator
 
 # settings.json5文件中的键
+GUIDE_KEY = "guide"
 SCENARIO_KEY = "scenario"
 RANDOM_SEED_KEY = "random_seed"
 EVENT_NUM_KEY = "event_num"
@@ -169,6 +170,9 @@ def second_reason(temp_props: list[prop.Proposition]):
     GRAPH.set_node_layers(temp_props)
 
 def set_option_generator():
+    """初始化选项生成器，设置选项可以随机的范围
+    提问器会根据选项生成器随机生成选项
+    """
     print("初始化选项生成器...")
     global OPTION_GENERATOR, GRAPH, CONSTRAINT_MACHINE
     OPTION_GENERATOR = machine.OptionGenerator(GRAPH)
@@ -184,12 +188,59 @@ def set_option_generator():
     print("选项生成器初始化完成")
 
 def question_generate(prop_type: Literal["random", "deepest", "certain"] = "random", question_type: Literal["precise", "correct", "incorrect"] = "precise", **kwargs) -> dict[str, Any]:
+    """根据指定的参数生成问题
+
+    Args:
+        prop_type (Literal[&quot;random&quot;, &quot;deepest&quot;, &quot;certain&quot;], optional): 需要选择的命题类型，默认为"random"。
+        question_type (Literal[&quot;precise&quot;, &quot;correct&quot;, &quot;incorrect&quot;], optional): 问题类型，默认为"precise"。
+        **kwargs: 其他参数
+    
+    Returns:
+        dict[str, Any]: 问题信息字典，包含问题的命题、选项和答案等信息
+    """
     global GRAPH, OPTION_GENERATOR
     ask_machine = machine.AskMachine(GRAPH, OPTION_GENERATOR)
     question_info = ask_machine.run(prop_type, question_type, **kwargs)
     return question_info
 
+def question_translate(guide: dict[str, str], chosen_props: list[prop.Proposition], question_info: dict[str, Any]) -> list[dict[str, Any]]:
+    """将问题信息翻译成不同语言的版本\n
+    该函数会根据配置文件中的语言设置，将问题信息翻译成不同语言的版本，并返回一个包含所有语言版本的列表
+
+    Args:
+        guide (dict[str, str]): 问题的引导语
+        chosen_props (list[prop.Proposition]): 选择的命题列表
+        question_info (dict[str, Any]): 问题信息字典，包含问题的命题、选项和答案等信息
+
+    Returns:
+        list[dict[str, Any]]: 包含所有语言版本的列表，每个元素是一个字典，包含问题、选项和答案等信息
+    """
+    translate_result: list[dict[str, Any]] = []
+    question: element.Element = question_info[machine.QUESTION]
+    options: dict[str, element.Element] = question_info[machine.OPTIONS]
+    for lang in config.LANG_CONFIG:
+        chosen_prop_translation = '\n'.join([f"({i})" + p.translate(lang) for i, p in enumerate(chosen_props, start=1)])
+        lang_guide = guide[lang]
+        text = f"{lang_guide}:\n{chosen_prop_translation}"
+        question_str = question.translate(lang, require='ask', ask_attr=question_info[machine.ASK_ATTR])
+        options_str = {k: v.translate(lang) for k, v in options.items()}
+        str_info = {
+            config.TEXT: text,
+            config.QUESTION: question_str,
+            config.OPTIONS: options_str,
+            config.ANSWER: question_info[machine.ANSWER],
+            config.LANGUAGE: lang,
+        }
+        translate_result.append(str_info)
+    return translate_result
+
 def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"] = "precise"):
+    """程序主函数，负责读取配置文件，初始化各个模块，并执行自动出题的流程
+
+    Args:
+        dir_path (str): 配置文件所在目录路径。该目录下应包含settings.json5文件
+        question_type (Literal[&quot;precise&quot;, &quot;correct&quot;, &quot;incorrect&quot;], optional): 问题类型，默认为"precise"。
+    """
     # 读取settings.json5文件
     setting_path = Path(dir_path) / config.SETTINGS_FILE
     # 设置当前配置文件夹
@@ -207,13 +258,15 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
     constraint_setup(event_names, settings[CONSTRAINT_KEY], settings[TIME_RANGE_KEY]["upper_bound"], settings[TIME_RANGE_KEY]["lower_bound"])
     # 命题文件的初始化
     config.set_curr_unit(settings[CURR_UNIT_KEY])
-    prop.init()
+    prop.init() # 初始化命题库，加载命题文件。必须初始化！
     # 初始化场景
     scenario_setup(settings[SCENARIO_KEY])
+    result = []
     for i in range(settings[RESET_TIME_KEY]):
         print(f"第{i+1}次重置")
         curr_events: tuple[event.Event] = next(event_iter)
         graph_setup(curr_events)
+        group_result = []
         for j in range(settings[ASK_TIME_KEY]):
             print(f"第{j+1}次提问")
             # 选择命题
@@ -221,6 +274,17 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
             second_reason(chosen_props)
             set_option_generator()
             question_info = question_generate(question_type=question_type)
+            translated_questions = question_translate(settings[GUIDE_KEY], chosen_props, question_info)
+            # 将问题信息添加到结果列表中
+            group_result.extend(translated_questions)
+        # 将同一组问题给出group属性名称
+        group_result = [n | {config.GROUP: f"{Path(dir_path).stem}-{question_type}-{i}"} for n in group_result]
+        result.extend(group_result)
+    # 将结果写入文件
+    res_file: Path = Path(dir_path) / f"{question_type}.json"
+    with open(res_file, "w", encoding="utf8") as f:
+        json.dump(result, f, indent=4, ensure_ascii=False)
+    print(f"问题生成完成，共生成{len(result)}道题目，已保存至{res_file}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="时间领域自动出题程序")

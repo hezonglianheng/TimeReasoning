@@ -79,3 +79,11 @@ LANG_CONFIG = {
         "all_wrong": "None of the options above meet the requirements of the question",
     }, 
 }
+
+# 结果字典字段
+TEXT = "text"
+QUESTION = "question"
+ANSWER = "answer"
+OPTIONS = "options"
+LANGUAGE = "language"
+GROUP = "group" # 问题按照命题集合是否相同分组

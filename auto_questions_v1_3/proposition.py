@@ -65,7 +65,8 @@ class Proposition(element.Element):
 
         Args:
             lang (str): 语言
-            require (str, optional): 翻译的要求，默认为None.
+            require (str, optional): 翻译的要求，默认为None.可选值有：
+                - "ask": 提问，此时需要提供ask_attr参数，表示提问的属性
             **kwargs: 翻译的其他参数
 
         Returns:
@@ -74,10 +75,19 @@ class Proposition(element.Element):
         # 选择模板
         templates: list[str] = PROP_DATA[PROP_KINDS][self.kind][TEMPLATES][lang]
         template = random.choice(templates)
+        # 如果翻译要求是ask(提问), 则需要从输入中查找提问属性
+        if require == "ask":
+            ask_attr = kwargs.get("ask_attr", None)
+        else:
+            ask_attr = None
         for match in REPLACE.finditer(template):
             curr_attr: str = match.group(1)
             curr_element: element.Element = self[curr_attr]
             strategy: str = match.group(2)
+            if curr_attr == ask_attr:
+                # 当当前属性就是提问属性时，提问点用____替换
+                template = template.replace(match.group(0), config.ASK_POINT)
+                continue
             # 根据策略选择翻译方法
             if strategy == "":
                 template = template.replace(match.group(0), curr_element.translate(lang))

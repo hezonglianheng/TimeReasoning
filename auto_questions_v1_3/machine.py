@@ -288,9 +288,15 @@ class AskMachine:
             dict[str, Any]: 问题、提问属性、选项、答案
         """
         candidate_props = self._get_candidate_props(prop_type, **kwargs)
-        asked_prop = random.choice(candidate_props)
-        ask_attr = asked_prop.ask_attr()
-        other_options = self.option_generator.get_element_options(asked_prop, ask_attr, option_num - 1, correct_num, **kwargs)
+        while True:
+            try:
+                asked_prop = random.choice(candidate_props)
+                ask_attr = asked_prop.ask_attr()
+                other_options = self.option_generator.get_element_options(asked_prop, ask_attr, option_num - 1, correct_num, **kwargs)
+            except Exception as e:
+                print(f"获取选项失败：{e}")
+                continue
+            break
         origin_element: element.Element = asked_prop[ask_attr]
         all_options = [(origin_element, True)] + other_options
         options_dict, answer_list = self._get_options_and_answer(all_options)
@@ -315,7 +321,13 @@ class AskMachine:
         random.shuffle(temp_judge)
         option_props: list[prop.Proposition] = []
         for i in range(option_num):
-            option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], temp_judge[i], **kwargs))
+            while True:
+                try:
+                    option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], temp_judge[i], **kwargs))
+                except Exception as e:
+                    print(f"获取选项失败：{e}")
+                    continue
+                break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         return {QUESTION: CorStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list}
 
@@ -338,7 +350,13 @@ class AskMachine:
         random.shuffle(temp_judge)
         option_props: list[prop.Proposition] = []
         for i in range(option_num):
-            option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], (not temp_judge[i]), **kwargs))
+            while True:
+                try:
+                    option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], (not temp_judge[i]), **kwargs))
+                except Exception as e:
+                    print(f"获取选项失败：{e}")
+                    continue
+                break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         return {QUESTION: IncStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list}
 
