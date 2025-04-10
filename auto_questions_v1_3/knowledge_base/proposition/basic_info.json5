@@ -7,5 +7,50 @@
             // 写明每种命题的命题类型
             "typetag": "时刻-具体值",
         }, 
+        "duration": {
+            "typetag": "时长-具体值",
+        }, 
+        "durative": {
+            "typetag": "时段-具体值",
+        }, 
+        "freq": {
+            "typetag": "时频-具体值",
+        }, 
+        "before": {
+            "typetag": "时刻-定性比较",
+        }, 
+        "before_time": {
+            "typetag": "时刻-定量比较",
+        }, 
+        "after": {
+            "typetag": "时刻-定性比较",
+        }, 
+        "after_time": {
+            "typetag": "时刻-定量比较",
+        }, 
+        "simultaneous": {
+            "typetag": "时刻-定性比较",
+        }, 
+        "gap_time": {
+            "typetag": "时刻-定量间隔",
+        }, 
+        "long": {
+            "typetag": "时长-定性比较",
+        }, 
+        "long_time": {
+            "typetag": "时长-定量比较",
+        }, 
+        "short": {
+            "typetag": "时长-定性比较",
+        }, 
+        "short_time": {
+            "typetag": "时长-定量比较",
+        }, 
+        "same_len": {
+            "typetag": "时长-定性比较",
+        }, 
+        "during": {
+            "typetag": "时刻-定性比较",
+        }, 
     }, 
 }
