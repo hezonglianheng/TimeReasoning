@@ -9,3 +9,4 @@
 - [stat.py](stat.py): 生成试题的简要统计报告
 - [result_stat.py](result_stat.py): 生成模型测试结果的简要统计报告
 - [template_stat.py](template_stat.py): 生成与模板情况相关的简要统计报告
+- [aligned_data.py](aligned_data.py): 根据基准文件中的试题ID，搜索另一文件中ID与其相关的其他语言试题，以获得抽取的语言对应试题
