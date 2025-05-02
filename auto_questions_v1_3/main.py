@@ -13,6 +13,8 @@ import constraint
 import graph
 import scenario
 import machine
+# 05-02新增：引入level文件计算试题难度等级
+import level
 import json5
 import json
 import random
@@ -22,6 +24,8 @@ from typing import Any, Literal
 from itertools import combinations
 from collections.abc import Iterator, Sequence
 from functools import reduce
+# 05-02新增：引入statistics库计算平均值
+import statistics
 
 # constants.
 CONSTRAINT_MACHINE: constraint.ConstraintMachine
@@ -203,7 +207,39 @@ def question_generate(prop_type: Literal["random", "deepest", "certain"] = "rand
     question_info = ask_machine.run(prop_type, question_type, **kwargs)
     return question_info
 
-def question_translate(guide: dict[str, str], chosen_props: list[prop.Proposition], question_info: dict[str, Any]) -> list[dict[str, Any]]:
+def get_level(chosen_props: list[prop.Proposition], question_info: dict[str, Any], question_type: Literal["precise", "correct", "incorrect"] = "precise", lang: str = "cn") -> int:
+    """根据问题信息计算问题的难度等级
+    
+    Args:
+        chosen_props (list[prop.Proposition]): 选择的命题列表
+        question_info (dict[str, Any]): 问题信息字典，包含问题的命题、选项和答案等信息
+        question_type (Literal[&quot;precise&quot;, &quot;correct&quot;, &quot;incorrect&quot;], optional): 问题类型，默认为"precise"。
+        lang (str, optional): 语言，默认为"cn"。
+
+    Returns:
+        int: 问题的难度等级
+    
+    Raises:
+        ValueError: 问题类型不合法
+    """
+    global SCENARIO
+    step_len: int = question_info[machine.COT_LENGTH]
+    average_statements_difficulty = statistics.fmean([p.get_prop_difficulty() for p in chosen_props])
+    option_num = len(question_info[machine.OPTIONS])
+    knowledge_diff = 0 # TODO: 需要补充知识的难度等级
+    scenario_diff = SCENARIO.get_level()
+    if question_type == "precise":
+        question_difficulty = question_info[machine.QUESTION].get_question_difficulty(lang)
+    elif question_type == "correct" or question_type == "incorrect":
+        options: dict[str, prop.Proposition] = question_info[machine.OPTIONS]
+        option_props: list[prop.Proposition] = list(options.values())
+        question_difficulty = max([p.get_prop_difficulty() for p in option_props])
+    else:
+        raise ValueError(f"问题类型{question_type}不合法")
+    curr_level = level.ask_level(step_len, average_statements_difficulty, option_num, knowledge_diff, scenario_diff, question_difficulty)
+    return curr_level
+
+def question_translate(guide: dict[str, str], chosen_props: list[prop.Proposition], question_info: dict[str, Any], question_type: Literal["precise", "correct", "incorrect"] = "precise") -> list[dict[str, Any]]:
     """将问题信息翻译成不同语言的版本\n
     该函数会根据配置文件中的语言设置，将问题信息翻译成不同语言的版本，并返回一个包含所有语言版本的列表
 
@@ -211,6 +247,7 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
         guide (dict[str, str]): 问题的引导语
         chosen_props (list[prop.Proposition]): 选择的命题列表
         question_info (dict[str, Any]): 问题信息字典，包含问题的命题、选项和答案等信息
+        question_type (Literal[&quot;precise&quot;, &quot;correct&quot;, &quot;incorrect&quot;], optional): 问题类型，默认为"precise"。
 
     Returns:
         list[dict[str, Any]]: 包含所有语言版本的列表，每个元素是一个字典，包含问题、选项和答案等信息
@@ -224,13 +261,27 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
         text = f"{lang_guide}:\n{chosen_prop_translation}"
         question_str = question.translate(lang, require='ask', ask_attr=question_info[machine.ASK_ATTR])
         options_str = {k: v.translate(lang) for k, v in options.items()}
+        # 05-02新增：计算问题的难度等级
+        question_level = get_level(chosen_props, question_info, question_type=question_type, lang=lang)
+        # 05-02新增：获得问题相关的tags
+        if question_type == "precise":
+            question_tags: list[str] = [question.get_prop_tag()]
+        elif question_type == "correct" or question_type == "incorrect":
+            question_tags: list[str] = [p.get_prop_tag() for p in options.values()]
+        else:
+            raise ValueError(f"问题类型{question_type}不合法")
         str_info = {
             config.TEXT: text,
             config.QUESTION: question_str,
             config.OPTIONS: options_str,
             config.ANSWER: question_info[machine.ANSWER],
             config.LANGUAGE: lang,
-            config.STEP: question_info[machine.COT_LENGTH], 
+            config.LEVEL: question_level, # 问题的难度等级
+            config.QUESTION_INFO: {
+                config.STEP: question_info[machine.COT_LENGTH], # 推理步骤数
+                config.STATEMENT_TYPE: [p.get_prop_tag() for p in chosen_props], # 命题类型
+                config.QUESTION_TYPE: question_tags, # 问题类型
+            }, 
         }
         translate_result.append(str_info)
     return translate_result
@@ -275,7 +326,7 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
             second_reason(chosen_props)
             set_option_generator()
             question_info = question_generate(question_type=question_type)
-            translated_questions = question_translate(settings[GUIDE_KEY], chosen_props, question_info)
+            translated_questions = question_translate(settings[GUIDE_KEY], chosen_props, question_info, question_type=question_type)
             # 将问题信息添加到结果列表中
             group_result.extend(translated_questions)
         # 将同一组问题给出group属性名称

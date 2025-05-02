@@ -52,6 +52,9 @@ KNOWLEDGE_BASE_DIR = Path(__file__).parent / "knowledge_base"
 TIME_UNIT_FILE = KNOWLEDGE_BASE_DIR / "time_unit.json5"
 # 与不同时间单位的命题相关的文件夹和文件
 PROP_DIR = KNOWLEDGE_BASE_DIR / "proposition"
+# 时间命题基础信息文件
+BASIC_INFO_FILE = PROP_DIR / "basic_info.json5"
+"""时间命题基础信息文件"""
 # 与推理规则相关的文件
 RULE_FILE = KNOWLEDGE_BASE_DIR / "rule.json5"
 # 与情景相关的文件夹
@@ -88,4 +91,13 @@ OPTIONS = "options"
 LANGUAGE = "language"
 GROUP = "group" # 问题按照命题集合是否相同分组
 # 05-02新增：问题中的一些其他统计信息
+LEVEL = "level" # 问题的难度等级
+"""问题的难度等级"""
+QUESTION_INFO = "question_info" # 问题的其他信息
+"""问题的其他信息"""
 STEP = "step" # 推理步骤数
+"""推理步骤数"""
+STATEMENT_TYPE = "statement_type" # 命题类型
+"""命题类型"""
+QUESTION_TYPE = "question_type" # 问题类型
+"""问题类型"""

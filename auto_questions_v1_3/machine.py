@@ -27,7 +27,9 @@ QUESTION = "question"
 ASK_ATTR = "ask_attr"
 OPTIONS = "options"
 ANSWER = "answer"
+# 05-02新增：增加获得提问命题的推理链长度
 COT_LENGTH = "cot_length"
+"""获得提问命题的推理链长度"""
 
 class PropChooseMachine:
     """时间推理题已知命题选择器
@@ -201,11 +203,21 @@ class OptionGenerator:
             new_prop[ask_attr] = new_element
             return new_prop
 
-class AllWrongOption(element.Element):
+# 05-02修订：将AllWrongOption类改为命题类的子类，设置其难度等级为1.0
+class AllWrongOption(prop.Proposition):
     """表示所有选项均不符合要求的选项
     """
     def translate(self, lang, require = None, **kwargs):
         return config.LANG_CONFIG[lang]["all_wrong"]
+
+    def get_prop_difficulty(self):
+        return 1.0
+
+    def get_question_difficulty(self, lang):
+        return 1.0
+
+    def get_prop_tag(self):
+        return ""
 
 class CorStatQuestion(element.Element):
     """表示问题“以下选项中正确的是”
