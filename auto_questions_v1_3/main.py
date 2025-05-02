@@ -230,6 +230,7 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
             config.OPTIONS: options_str,
             config.ANSWER: question_info[machine.ANSWER],
             config.LANGUAGE: lang,
+            config.STEP: question_info[machine.COT_LENGTH], 
         }
         translate_result.append(str_info)
     return translate_result

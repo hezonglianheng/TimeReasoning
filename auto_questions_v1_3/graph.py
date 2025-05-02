@@ -206,3 +206,31 @@ class ReasoningGraph:
         if use_askable:
             all_props = [p for p in all_props if p[prop.ASKABLE]]
         return all_props
+
+    def backtrace(self, curr_prop: prop.Proposition) -> list[mynode.Node]:
+        """回溯推理图，获取命题的推理路径
+
+        Args:
+            curr_prop (prop.Proposition): 当前命题
+
+        Returns:
+            list[mynode.Node]: 推理路径
+        """
+        assert self.deepest_layer >= 0, "尚未进行二次推理"
+        # 获得以curr_prop为结论的节点
+        curr_nodes: list[mynode.Node] = [n for n in self.nodes if n[mynode.CONCLUSION] == curr_prop]
+        # 如果没有找到节点，返回空列表
+        if len(curr_nodes) == 0:
+            return []
+        # 对curr_nodes按照节点层级进行排序，同层节点按照条件数量排序
+        curr_nodes.sort(key=lambda x: (x[mynode.LAYER], len(x[mynode.CONDITION])))
+        pre_step = curr_nodes[0] # 选择第一个节点作为前一步
+        # 递归回溯
+        pre_trace: list[mynode.Node] = [] # 前一步的推理路径
+        for condition, clayer in zip(pre_step[mynode.CONDITION], pre_step[mynode.CONDITION_LAYERS]):
+            # 如果条件的层级为1，不再回溯
+            if clayer == 1:
+                continue
+            pre_trace.extend(self.backtrace(condition))
+        pre_trace.append(pre_step)
+        return pre_trace

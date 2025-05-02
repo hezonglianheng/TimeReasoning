@@ -87,3 +87,5 @@ ANSWER = "answer"
 OPTIONS = "options"
 LANGUAGE = "language"
 GROUP = "group" # 问题按照命题集合是否相同分组
+# 05-02新增：问题中的一些其他统计信息
+STEP = "step" # 推理步骤数

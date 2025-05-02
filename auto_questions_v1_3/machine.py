@@ -16,6 +16,7 @@ from typing import Literal, Optional, Any
 import copy
 from string import ascii_uppercase
 from collections import defaultdict
+from functools import reduce
 
 # constants.
 CHOOSE_RULE = "choose_rule"
@@ -26,6 +27,7 @@ QUESTION = "question"
 ASK_ATTR = "ask_attr"
 OPTIONS = "options"
 ANSWER = "answer"
+COT_LENGTH = "cot_length"
 
 class PropChooseMachine:
     """时间推理题已知命题选择器
@@ -300,7 +302,9 @@ class AskMachine:
         origin_element: element.Element = asked_prop[ask_attr]
         all_options = [(origin_element, True)] + other_options
         options_dict, answer_list = self._get_options_and_answer(all_options)
-        return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list}
+        # 05-02新增：增加获得提问命题的推理链
+        cot = self.graph.backtrace(asked_prop)
+        return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: len(cot)}
 
     def correct_statements(self, prop_type: Literal["random", "deepest", "certain"] = "random", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """生成“以上选项正确的是”问题
@@ -329,7 +333,10 @@ class AskMachine:
                     continue
                 break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
-        return {QUESTION: CorStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list}
+        # 05-02新增：增加获得提问命题的推理链
+        cots = [self.graph.backtrace(i) for i in option_props]
+        cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
+        return {QUESTION: CorStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length}
 
     def incorrect_statements(self, prop_type: Literal["random", "deepest", "certain"] = "random", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """生成“以上选项不正确的是”问题
@@ -358,7 +365,10 @@ class AskMachine:
                     continue
                 break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
-        return {QUESTION: IncStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list}
+        # 05-02新增：增加获得提问命题的推理链
+        cots = [self.graph.backtrace(i) for i in option_props]
+        cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
+        return {QUESTION: IncStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length}
 
     def run(self, prop_type: Literal["random", "deepest", "certain"] = "random", question_type: Literal["precise", "correct", "incorrect"] = "precise", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """运行提问机，提问
