@@ -248,7 +248,7 @@ def get_level(chosen_props: list[prop.Proposition], question_info: dict[str, Any
     """
     global SCENARIO, KNOWLEDGE_BASE
     step_len: int = question_info[machine.COT_LENGTH]
-    average_statements_difficulty = statistics.fmean([p.get_prop_difficulty() for p in chosen_props])
+    statements_difficulty = max([p.get_prop_difficulty() for p in chosen_props])
     option_num = len(question_info[machine.ANSWER])
     # 05-03新增：增加知识的难度等级
     knowledge_diff = sum([k[knowledge.DIFFICULTY] for k in KNOWLEDGE_BASE]) if KNOWLEDGE_BASE else 0
@@ -256,14 +256,11 @@ def get_level(chosen_props: list[prop.Proposition], question_info: dict[str, Any
     if question_type == "precise":
         question_prop: prop.Proposition = question_info[machine.QUESTION]
         question_difficulty = question_prop.get_question_difficulty(lang)
-        print(f"问题的难度为{question_difficulty}")
     elif question_type == "correct" or question_type == "incorrect":
-        options: dict[str, prop.Proposition] = question_info[machine.OPTIONS]
-        option_props: list[prop.Proposition] = list(options.values())
-        question_difficulty = max([p.get_prop_difficulty() for p in option_props])
+        question_difficulty = 4.0
     else:
         raise ValueError(f"问题类型{question_type}不合法")
-    curr_level = level.ask_level(step_len, average_statements_difficulty, option_num, knowledge_diff, scenario_diff, question_difficulty)
+    curr_level = level.ask_level(step_len, statements_difficulty, option_num, knowledge_diff, scenario_diff, question_difficulty)
     return curr_level
 
 def question_translate(guide: dict[str, str], chosen_props: list[prop.Proposition], question_info: dict[str, Any], question_type: Literal["precise", "correct", "incorrect"] = "precise") -> list[dict[str, Any]]:

@@ -162,6 +162,7 @@ class Proposition(element.Element):
             float: 问题的难度参数
         """
         basic_diff = self.get_prop_difficulty()
+        """
         lang_question = self._translated_questions.get(lang, None)
         if lang_question is None or config.ASK_POINT not in lang_question:
             # 如果没有提问，或者提问点不在问题中，则返回基本难度
@@ -169,6 +170,9 @@ class Proposition(element.Element):
         else:
             question_diff = basic_diff + 2 * (1 - (lang_question.index(config.ASK_POINT) + 2) / len(lang_question))
             return question_diff
+        """
+        # 05-03新增：直接返回命题的难度参数
+        return basic_diff
 
     def get_prop_tag(self) -> str:
         """获取命题的标签
