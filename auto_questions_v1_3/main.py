@@ -26,8 +26,8 @@ from typing import Any, Literal
 from itertools import combinations
 from collections.abc import Iterator, Sequence
 from functools import reduce
-# 05-02新增：引入statistics库计算平均值
-import statistics
+# 05-03新增：引入time库计算程序运行时间
+import time
 
 # constants.
 CONSTRAINT_MACHINE: constraint.ConstraintMachine
@@ -369,4 +369,7 @@ if __name__ == "__main__":
     parser.add_argument("dir_path", type=str, help="settings.json5文件所在目录路径")
     parser.add_argument("-q", "--question_type", type=str, help="问题类型", default="precise")
     args = parser.parse_args()
+    time1 = time.time()
     main(args.dir_path, args.question_type)
+    time2 = time.time()
+    print(f"程序运行完成，用时{time2 - time1}s")

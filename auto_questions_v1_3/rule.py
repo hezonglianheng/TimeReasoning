@@ -58,6 +58,9 @@ class Rule(element.Element):
         condition_dict: dict = self[CONDITION] if not symmetric_execute else self[CONCLUSION]
         conclusion_dict: dict = self[CONCLUSION] if not symmetric_execute else self[CONDITION]
         curr_prop = props[0]
+        # 05-03增加：如果curr_prop不可被提问，则不进行推理
+        if not curr_prop[prop.ASKABLE]:
+            return results
         # 条件是否满足规则
         if curr_prop.kind != condition_dict[KIND]:
             if self[SYMMETRIC] and not symmetric_execute:
@@ -79,6 +82,8 @@ class Rule(element.Element):
         conclusion_attrs: list[str] = conclusion_dict[ATTRS]
         for attr1, attr2 in zip(condition_attrs, conclusion_attrs):
             res_prop[attr2] = curr_prop[attr1]
+        # 05-03增加：结论命题继承条件命题的askable属性
+        res_prop[prop.ASKABLE] = curr_prop[prop.ASKABLE]
         results.append(res_prop)
         return results
 
@@ -95,6 +100,10 @@ class Rule(element.Element):
             ValueError: 当执行注入语句出现错误时
         """
         results: list[prop.Proposition] = []
+        # 05-03增加：计算可提问性，如果props都不可被提问，则不进行推理
+        askable = any([p[prop.ASKABLE] for p in props])
+        if not askable:
+            return results
         condition_dicts: list[dict] = self[CONDITION]
         conclusion_dicts: list[dict] = self[CONCLUSION]
         # 条件是否符合规则
@@ -123,6 +132,8 @@ class Rule(element.Element):
             for attr, code in attrs.items():
                 sentence = f"conclusion['{attr}'] = {code}"
                 exec(sentence)
+            # 05-03增加：结论命题继承条件命题的askable属性
+            conclusion[prop.ASKABLE] = askable
             results.append(conclusion)
         return results
 
