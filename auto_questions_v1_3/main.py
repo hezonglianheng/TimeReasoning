@@ -28,6 +28,8 @@ from collections.abc import Iterator, Sequence
 from functools import reduce
 # 05-03新增：引入time库计算程序运行时间
 import time
+# 05-03新增：引入defaultdict类记录选项设置情况
+from collections import defaultdict
 
 # constants.
 CONSTRAINT_MACHINE: constraint.ConstraintMachine
@@ -207,8 +209,14 @@ def set_option_generator():
     upper_time, lower_time = CONSTRAINT_MACHINE.upper_bound, CONSTRAINT_MACHINE.lower_bound
     time_range = represent.get_time_range(upper_time, lower_time)
     time_delta_range = represent.get_time_delta_range(upper_time, lower_time)
+    # 05-03新增：记录已经查找过的项，避免重复设置
+    # TODO：这个位置可以做进一步优化
+    be_set_attrs = defaultdict(list)
     for p in GRAPH.get_reachable_props():
         for attr in p.main_attrs():
+            if attr in be_set_attrs[p.kind]:
+                continue
+            be_set_attrs[p.kind].append(attr)
             if type(p[attr]) == represent.CustomTime:
                 OPTION_GENERATOR.set_attr_range(p.kind, attr, time_range)
             elif type(p[attr]) == represent.CustomTimeDelta:
