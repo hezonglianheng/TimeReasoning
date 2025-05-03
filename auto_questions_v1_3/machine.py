@@ -203,20 +203,38 @@ class OptionGenerator:
             new_prop[ask_attr] = new_element
             return new_prop
 
-# 05-02修订：将AllWrongOption类改为命题类的子类，设置其难度等级为1.0
-class AllWrongOption(prop.Proposition):
+class AllWrongOption(element.Element):
     """表示所有选项均不符合要求的选项
     """
     def translate(self, lang, require = None, **kwargs):
         return config.LANG_CONFIG[lang]["all_wrong"]
 
-    def get_prop_difficulty(self):
+    def get_prop_difficulty(self) -> float:
+        """获取命题的难度，值设为1.0
+
+        Returns:
+            float: 命题的难度
+        """
         return 1.0
 
-    def get_question_difficulty(self, lang):
+    def get_question_difficulty(self, lang: str) -> float:
+        """获取问题的难度，值设为1.0
+
+        Args:
+            lang (str): 语言
+
+        Returns:
+            float: 问题的难度
+        """
+
         return 1.0
 
-    def get_prop_tag(self):
+    def get_prop_tag(self) -> str:
+        """获取命题的标签
+
+        Returns:
+            str: 命题的标签
+        """
         return ""
 
 class CorStatQuestion(element.Element):

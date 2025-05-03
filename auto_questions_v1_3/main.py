@@ -15,6 +15,8 @@ import scenario
 import machine
 # 05-02新增：引入level文件计算试题难度等级
 import level
+# 05-03新增：引入外部知识
+import knowledge
 import json5
 import json
 import random
@@ -33,6 +35,8 @@ SCENARIO: scenario.Scenario
 GRAPH: graph.ReasoningGraph
 PROP_CHOOSE_MACHINE: machine.PropChooseMachine
 OPTION_GENERATOR: machine.OptionGenerator
+KNOWLEDGE_BASE: list[knowledge.Knowledge]
+"""外部知识列表"""
 
 # settings.json5文件中的键
 GUIDE_KEY = "guide"
@@ -46,6 +50,9 @@ RESET_TIME_KEY = "reset_time"
 ASK_TIME_KEY = "ask_time"
 TIME_RANGE_KEY = "time_range"
 CURR_UNIT_KEY = "curr_unit" # 当前需要引用的单位
+# 05-03新增：外部知识数量的键
+KNOWLEDGE_NUM_KEY = "knowledge_num"
+"""设置知识数量的键"""
 
 def set_random_seed(seed: int | float | None):
     """设置随机种子
@@ -138,18 +145,35 @@ def scenario_setup(scenario_attr_dict: dict):
     global SCENARIO
     SCENARIO = scenario.Scenario(**scenario_attr_dict)
 
+# 05-03新增：外部知识的初始化
+# 该函数会根据配置文件中的外部知识设置，初始化外部知识
+def external_knowledge_setup(time_unit: str, num: int = 5):
+    """初始化外部知识，更新程序的知识库
+
+    Args:
+        time_unit (str): 当前的时间单位，决定调用的知识库类型
+        num (int, optional): 调用外部知识的数量，默认为5.
+    """
+    global KNOWLEDGE_BASE
+    knowledge_list = knowledge.get_selected_knowledge(time_unit, num)
+    KNOWLEDGE_BASE = knowledge_list
+
 def graph_setup(events: Sequence[event.Event]):
     """初始化推理图
 
     Args:
         events (Sequence[event.Event]): 事件序列
     """
-    global GRAPH
+    global GRAPH, KNOWLEDGE_BASE, CONSTRAINT_MACHINE
     initial_props = CONSTRAINT_MACHINE.get_time_props(events)
     for t, e in CONSTRAINT_MACHINE.event_order:
         print(f"{e.translate(config.CHINESE)}: {t.translate(config.CHINESE)}")
     scenario_rules = SCENARIO.get_rules()
     knowledge_props = SCENARIO.get_props()
+    # 05-03新增：将外部知识添加到推理图中
+    if KNOWLEDGE_BASE:
+        for k in KNOWLEDGE_BASE:
+            knowledge_props.extend(k[knowledge.PROPOSITIONS])
     GRAPH = graph.ReasoningGraph(initial_props, scenario_rules, knowledge_props)
     GRAPH.reason()
 
@@ -222,14 +246,17 @@ def get_level(chosen_props: list[prop.Proposition], question_info: dict[str, Any
     Raises:
         ValueError: 问题类型不合法
     """
-    global SCENARIO
+    global SCENARIO, KNOWLEDGE_BASE
     step_len: int = question_info[machine.COT_LENGTH]
     average_statements_difficulty = statistics.fmean([p.get_prop_difficulty() for p in chosen_props])
-    option_num = len(question_info[machine.OPTIONS])
-    knowledge_diff = 0 # TODO: 需要补充知识的难度等级
+    option_num = len(question_info[machine.ANSWER])
+    # 05-03新增：增加知识的难度等级
+    knowledge_diff = sum([k[knowledge.DIFFICULTY] for k in KNOWLEDGE_BASE]) if KNOWLEDGE_BASE else 0
     scenario_diff = SCENARIO.get_level()
     if question_type == "precise":
-        question_difficulty = question_info[machine.QUESTION].get_question_difficulty(lang)
+        question_prop: prop.Proposition = question_info[machine.QUESTION]
+        question_difficulty = question_prop.get_question_difficulty(lang)
+        print(f"问题的难度为{question_difficulty}")
     elif question_type == "correct" or question_type == "incorrect":
         options: dict[str, prop.Proposition] = question_info[machine.OPTIONS]
         option_props: list[prop.Proposition] = list(options.values())
@@ -317,6 +344,8 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
     for i in range(settings[RESET_TIME_KEY]):
         print(f"第{i+1}次重置")
         curr_events: tuple[event.Event] = next(event_iter)
+        # 05-03新增：外部知识的初始化
+        external_knowledge_setup(settings[CURR_UNIT_KEY], settings[KNOWLEDGE_NUM_KEY])
         graph_setup(curr_events)
         group_result = []
         for j in range(settings[ASK_TIME_KEY]):

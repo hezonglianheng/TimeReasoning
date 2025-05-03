@@ -223,6 +223,17 @@ class ConstraintMachine:
             raise ValueError(f"函数_get_temporal_time()不支持的事件类型{e.kind}")
     
     def get_time_props(self, events: Sequence[event.Event]) -> list[prop.Proposition]:
+        """根据事件生成时间命题
+
+        Args:
+            events (Sequence[event.Event]): 事件列表
+
+        Raises:
+            ValueError: 事件类型不合法
+
+        Returns:
+            list[prop.Proposition]: 时间命题列表
+        """
         # 后向传播，随机生成时间
         self._backward()
         # 03-11新增：清空event_order

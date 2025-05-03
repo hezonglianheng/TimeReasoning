@@ -4,6 +4,7 @@
 {
     "random_seed": 0, // 随机种子
     "event_num": 6, // 试题中涉及的事件数量，null表示不限制
+    "knowledge_num": 5, // 05-03新增：试题中涉及的知识数量
     "reset_time": 1, // 重置次数
     "ask_time": 10, // 提问次数，最终的提问结果数量为reset_time * ask_time
     // 情景信息

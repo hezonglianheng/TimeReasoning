@@ -70,6 +70,10 @@ class Event(element.Element):
     @classmethod
     def build(cls, attr_dict: dict[str, Any], myobject_list: list[MyObject]) -> list["Event"]:
         """构建事件元素的工厂方法
+
+        Args: 
+            attr_dict (dict[str, Any]): 事件元素的元素字典
+            myobject_list (list[MyObject]): 事物元素的列表，用于选择合适的主体生成事件
         
         Raises:
             ValueError: 不支持的事件类型

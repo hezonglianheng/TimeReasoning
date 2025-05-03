@@ -65,6 +65,9 @@ SETTINGS_FILE = "settings.json5"
 GRAPH_FILE = "graph.txt"
 # 从命题库中选择命题的规则
 PROP_CHOOSE_RULE_FILE = KNOWLEDGE_BASE_DIR / "prop_choose_rule.json5"
+# 05-02新增：外部知识库文件夹
+EXTERNAL_KNOWLEDGE_DIR = KNOWLEDGE_BASE_DIR / "external_knowledge"
+"""外部知识库文件夹"""
 
 # 问题配置
 ASK_POINT = "____" # 询问点

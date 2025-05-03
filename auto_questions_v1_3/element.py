@@ -76,7 +76,7 @@ class Element(metaclass = abc.ABCMeta):
         """
         value = self.attrs.get(key)
         if value is None:
-            raise KeyError(f"元素没有属性'{key}'")
+            raise KeyError(f"元素{self}没有属性'{key}'")
         return value
     
     def __setitem__(self, key: str, value: Any):
