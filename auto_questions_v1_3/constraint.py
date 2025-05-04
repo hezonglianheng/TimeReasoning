@@ -33,7 +33,8 @@ class Constraint(element.Element):
     """约束类
     """
     def __init__(self, name = "", kind = "", **kwargs):
-        constraint_dict = dict()
+        # 05-03修订：增加对std_event和main_event的记录
+        constraint_dict = {STD_EVENT: kwargs[STD_EVENT], MAIN_EVENT: kwargs[MAIN_EVENT]}
         floor_dict: Optional[dict] = kwargs.get(FLOOR)
         ceiling_dict: Optional[dict] = kwargs.get(CEILING)
         time_dict: Optional[dict] = kwargs.get(TIME) # 如果约束的floor和ceiling相等，则允许一种简写方式
@@ -112,7 +113,7 @@ class Constraint(element.Element):
                 new_ceiling: represent.CustomTime = main_time - self[FLOOR]
                 std_ceiling = min(std_ceiling, new_ceiling)
         elif self.kind == SIMULTANEOUS:
-            assert std_floor <= main_time <= std_ceiling, f"参考事件时间范围({std_floor}-{std_ceiling})不包含主要事件时间{main_time}"
+            assert std_floor <= main_time <= std_ceiling, f"约束中参考事件{self[STD_EVENT]}时间范围({std_floor}-{std_ceiling})不包含主要事件{self[MAIN_EVENT]}时间{main_time}"
             # 直接将参考时间设置为主要事件时间范围
             std_floor = copy.deepcopy(main_time)
             std_ceiling = copy.deepcopy(main_time)
@@ -132,7 +133,8 @@ class ConstraintMachine:
         # 03-11新增：增加对于事件顺序的记录
         self.event_order: list[tuple[represent.CustomTime, event.Event]] = []
         self._construct()
-        self._forward()
+        # 05-04移除：不在初始化时进行前向传播，而是每次求取事件的时间时再进行
+        # self._forward()
 
     def _construct(self):
         """根据输入构造约束图
@@ -234,6 +236,7 @@ class ConstraintMachine:
         Returns:
             list[prop.Proposition]: 时间命题列表
         """
+        self._forward()
         # 后向传播，随机生成时间
         self._backward()
         # 03-11新增：清空event_order
