@@ -30,6 +30,8 @@ from functools import reduce
 import time
 # 05-03新增：引入defaultdict类记录选项设置情况
 from collections import defaultdict
+# 05-04新增：引入statistics库以计算平均值
+import statistics
 
 # constants.
 CONSTRAINT_MACHINE: constraint.ConstraintMachine
@@ -265,7 +267,8 @@ def get_level(chosen_props: list[prop.Proposition], question_info: dict[str, Any
         question_prop: prop.Proposition = question_info[machine.QUESTION]
         question_difficulty = question_prop.get_question_difficulty(lang)
     elif question_type == "correct" or question_type == "incorrect":
-        question_difficulty = 4.0
+        option_props: list[prop.Proposition] = list(question_info[machine.OPTIONS].values())
+        question_difficulty = 2.0 * statistics.fmean([p.get_prop_difficulty() for p in option_props])
     else:
         raise ValueError(f"问题类型{question_type}不合法")
     curr_level = level.ask_level(step_len, statements_difficulty, option_num, knowledge_diff, scenario_diff, question_difficulty)
