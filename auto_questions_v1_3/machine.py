@@ -365,9 +365,9 @@ class AskMachine:
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         # 05-04新增：判断最后一个选项是否为all_wrong，如果是，需要backtrace的命题移除最后一个；否则需要backtrace的命题为所有选项
         if isinstance(option_props[option_num - 1], AllWrongOption):
-            backtrace_props = option_props[:-1]
+            backtrace_props = ask_props[:-1]
         else:
-            backtrace_props = option_props
+            backtrace_props = ask_props
         # 05-02新增：增加获得提问命题的推理链
         cots = [self.graph.backtrace(i) for i in backtrace_props]
         cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
@@ -402,9 +402,9 @@ class AskMachine:
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         # 05-04新增：判断最后一个选项是否为all_wrong，如果是，需要backtrace的命题移除最后一个；否则需要backtrace的命题为所有选项
         if isinstance(option_props[option_num - 1], AllWrongOption):
-            backtrace_props = option_props[:-1]
+            backtrace_props = ask_props[:-1]
         else:
-            backtrace_props = option_props
+            backtrace_props = ask_props
         # 05-02新增：增加获得提问命题的推理链
         cots = [self.graph.backtrace(i) for i in backtrace_props]
         cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
