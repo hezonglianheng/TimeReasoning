@@ -31,6 +31,12 @@ if __name__ == "__main__":
         
         # 使用subprocess.run()执行命令
         for typ in question_type:
+            # 05-04新增：检查旧的log文件，若存在，则删除
+            log_file = full_path / f"{typ}.log"
+            if log_file.exists():
+                print(f"Deleting old log file: {log_file}")
+                log_file.unlink()
+            # 构建命令
             command = f"nohup python3 {main_script_path} {full_path} -q {typ} > {full_path}/{typ}.log 2>&1 &"
             print(f"Executing command: {command}")
             subprocess.run(command, shell=True, check=True)
