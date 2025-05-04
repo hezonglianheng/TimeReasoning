@@ -97,11 +97,13 @@ class ReasoningGraph:
         Args:
             new_props (Optional[list[prop.Proposition]], optional): 新的命题. 用于增量式推理. 默认为None.
         """
+        """
         # 删除graph.txt文件
         if Path(config.CURR_SETTING_DIR).exists():
             graph_file_path = Path(config.CURR_SETTING_DIR) / config.GRAPH_FILE
             if graph_file_path.exists():
                 graph_file_path.unlink()
+        """
         reason_count: int = 0
         if new_props is None:
             old_prop_list: list[prop.Proposition] = []
@@ -123,11 +125,13 @@ class ReasoningGraph:
             for p in tqdm(curr_conclusions, desc="检查新结论命题是否已存在"):
                 if not p.is_contained(old_prop_list) and not p.is_contained(curr_prop_list) and not p.is_contained(new_prop_list):
                     new_prop_list.append(p)
+            """
             with open(Path(config.CURR_SETTING_DIR) / config.GRAPH_FILE, "a", encoding="utf8") as f:
                 for node in curr_nodes:
                     conditions: str = " && ".join([p.translate(config.CHINESE) for p in node[mynode.CONDITION]])
                     conclusion: str = node[mynode.CONCLUSION].translate(config.CHINESE)
                     f.write(f"{conditions} => {conclusion}\n")
+            """
             if len(new_prop_list) == 0:
                 self.add_nodes(curr_nodes)
                 print("所有新结论命题都已存在，推理结束")
