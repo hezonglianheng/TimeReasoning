@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 from collections import Counter, defaultdict
 from functools import reduce
+from string import ascii_uppercase
 
 # 将上级目录加入到sys.path中
 sys.path.append(str(Path(__file__).absolute().parents[1].as_posix()))
@@ -183,6 +184,49 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
         # report = "问题类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_qtype[k]}, 正确率{cor_qtype[k]/v}" for k, v in qtype.items()])
         report = {k: cor_qtag[k]/v for k, v in qtag.items()}
         return {"question_tag": report}
+
+    def statement_tag(records: list[dict]) -> dict[str, dict[str, str]]:
+        """统计问题中涉及的命题，其各类型标签的数量和正确率
+
+        Args:
+            records (list[dict]): 数据记录
+
+        Returns:
+            dict[str, dict[str, str]]: 各类型的数量和正确率
+        """
+        stag = Counter()
+        cor_stag = Counter()
+        for i, (r, s) in enumerate(zip(records, standard_data), start=1):
+            assert r[config.ID] == s[config.ID], f"第{i}条数据记录与标准答案不匹配"
+            question: str = r[config.QUESTION]
+            curr_type = "Precise Event"
+            if question == config.LANG_CONFIG["zh"][config.ASK_RIGHT] or question == config.LANG_CONFIG["en"][config.ASK_RIGHT]:
+                curr_type = "Correct Statements"
+            elif question == config.LANG_CONFIG["zh"][config.ASK_WRONG] or question == config.LANG_CONFIG["en"][config.ASK_WRONG]:
+                curr_type = "Incorrect Statements"
+            tags: list[str] = s[config.QUES_INFO][config.QUESTION_TYPE]
+            r_answer: list[str] = r[EXTRACTED_ANSWER]
+            s_answer: list[str] = s["answer"]
+            option_num: int = len(r[config.OPTIONS])
+            if curr_type == "Precise Event":
+                curr_t = tags[0]
+                for i in range(option_num):
+                    letter = ascii_uppercase[i]
+                    stag[curr_t] += 1
+                    if not ((letter in r_answer) ^ (letter in s_answer)):
+                        cor_stag[curr_t] += 1
+            else:
+                for i in range(option_num):
+                    if i >= len(tags):
+                        break
+                    letter = ascii_uppercase[i]
+                    curr_t = tags[i]
+                    stag[curr_t] += 1
+                    if not ((letter in r_answer) ^ (letter in s_answer)):
+                        cor_stag[curr_t] += 1
+        
+        report = {k: f"{cor_stag[k]/v}({v})" for k, v in stag.items()}
+        return {"statement_tag": report}
         
     # standard_path = Path(input("请输入标准答案文件路径："))
     with standard_path.open(encoding="utf8") as f:
@@ -192,6 +236,7 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
         scene_type(records),
         question_type(records),
         question_tag(records),
+        statement_tag(records),
     ]
     # return "\n\n".join(reports)
     report = {}

@@ -33,8 +33,8 @@ if __name__ == "__main__":
     filtered_data = []
     # 读取语言种类
     lang_type: set[str] = set([i[config.LANGUAGE] for i in data])
-    # 按照列表中两个一组为data中元素分组
-    groups = [data[i:i + len(lang_type)] for i in range(0, len(data), 2)]
+    # 按照列表中len(lang_type)个一组为data中元素分组
+    groups = [data[i:i + len(lang_type)] for i in range(0, len(data), len(lang_type))]
     # 读取场景类型
     scene_type: set[str] = set([i[config.QUES_INFO][config.SCENE_TYPE] for i in data])
     # 根据等级对命题进行筛选
