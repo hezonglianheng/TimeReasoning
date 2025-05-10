@@ -54,4 +54,6 @@
     "scenario_props": {}, 
     // 情景中独有的规则，按照rule.json5中的方式书写
     "scenario_rules": [], 
+    // 情景的难度系数
+    "level": 0.0, 
 }

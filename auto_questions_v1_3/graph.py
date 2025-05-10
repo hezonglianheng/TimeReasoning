@@ -12,7 +12,6 @@ from tqdm import tqdm
 import math
 from collections.abc import Sequence
 from typing import Optional
-from itertools import takewhile
 from pathlib import Path
 
 class ReasoningGraph:
@@ -70,14 +69,17 @@ class ReasoningGraph:
                 conclusions.append(node_conclusion)
         return conclusions
 
-    def get_all_props(self) -> list[prop.Proposition]:
+    def get_all_props(self, use_askable: bool = False) -> list[prop.Proposition]:
         """获取推理图中的所有命题
+
+        Args:
+            use_askable (bool, optional): 是否只获取可询问的命题. 默认为False.
 
         Returns:
             list[prop.Proposition]: 命题列表
         """
         all_props: list[prop.Proposition] = []
-        for node in tqdm(self.nodes, desc="获取所有命题"):
+        for node in self.nodes:
             condition: list[prop.Proposition] = node[mynode.CONDITION]
             conclusion: prop.Proposition = node[mynode.CONCLUSION]
             for p in condition:
@@ -85,6 +87,8 @@ class ReasoningGraph:
                     all_props.append(p)
             if not conclusion.is_contained(all_props):
                 all_props.append(conclusion)
+        if use_askable:
+            all_props = [p for p in all_props if p[prop.ASKABLE]]
         return all_props
 
     def reason(self, new_props: Optional[list[prop.Proposition]] = None):
@@ -93,11 +97,13 @@ class ReasoningGraph:
         Args:
             new_props (Optional[list[prop.Proposition]], optional): 新的命题. 用于增量式推理. 默认为None.
         """
+        """
         # 删除graph.txt文件
         if Path(config.CURR_SETTING_DIR).exists():
             graph_file_path = Path(config.CURR_SETTING_DIR) / config.GRAPH_FILE
             if graph_file_path.exists():
                 graph_file_path.unlink()
+        """
         reason_count: int = 0
         if new_props is None:
             old_prop_list: list[prop.Proposition] = []
@@ -119,11 +125,13 @@ class ReasoningGraph:
             for p in tqdm(curr_conclusions, desc="检查新结论命题是否已存在"):
                 if not p.is_contained(old_prop_list) and not p.is_contained(curr_prop_list) and not p.is_contained(new_prop_list):
                     new_prop_list.append(p)
+            """
             with open(Path(config.CURR_SETTING_DIR) / config.GRAPH_FILE, "a", encoding="utf8") as f:
                 for node in curr_nodes:
                     conditions: str = " && ".join([p.translate(config.CHINESE) for p in node[mynode.CONDITION]])
                     conclusion: str = node[mynode.CONCLUSION].translate(config.CHINESE)
                     f.write(f"{conditions} => {conclusion}\n")
+            """
             if len(new_prop_list) == 0:
                 self.add_nodes(curr_nodes)
                 print("所有新结论命题都已存在，推理结束")
@@ -131,7 +139,7 @@ class ReasoningGraph:
             self.add_nodes(curr_nodes)
             old_prop_list.extend(curr_prop_list)
             curr_prop_list = new_prop_list
-        print(f"推理结束，共执行{reason_count}次推理，得到{len(self.nodes)}个节点")
+        print(f"推理结束，共执行{reason_count}次推理，得到{len(self.get_all_props())}个命题，{len(self.nodes)}个节点")
 
     def set_node_layers(self, chosen_props: list[prop.Proposition]):
         """设置节点的层级，本质上是第二轮推理
@@ -142,34 +150,91 @@ class ReasoningGraph:
         # 重置节点的层级
         for node in self.nodes:
             node[mynode.LAYER] = math.inf
-            node[mynode.CONDITION_LAYERS] = [math.inf] * len(node[mynode.NodeField.Condition])
+            node[mynode.CONDITION_LAYERS] = [math.inf] * len(node[mynode.CONDITION])
+        post_layer_props: list[prop.Proposition] = []
         curr_layer_props: list[prop.Proposition] = chosen_props + self.knowledge_props
         next_layer_props: list[prop.Proposition] = []
         layer: int = 0
-        while any([i[mynode.LAYER] > layer for i in self.nodes]):
+        while True:
             layer += 1
-            print(f"设置第{layer}层节点")
-            for node in takewhile(lambda x: x[mynode.LAYER] > layer, self.nodes):
+            for node in tqdm([x for x in self.nodes if x[mynode.LAYER] > layer], desc=f"设置第{layer}层节点"):
                 conclusion = node.set_layer(layer, curr_layer_props)
-                if conclusion and conclusion.is_contained(next_layer_props):
+                if conclusion and (not conclusion.is_contained(post_layer_props)) and (not conclusion.is_contained(curr_layer_props)) and (not conclusion.is_contained(next_layer_props)):
                     next_layer_props.append(conclusion)
             print(f"第{layer}层节点设置完毕，已经设置{len(next_layer_props)}个结论命题")
-            curr_layer_props = next_layer_props + self.knowledge_props
+            if len(next_layer_props) == 0:
+                self.deepest_layer = layer if any([n for n in self.nodes if n[mynode.LAYER] == layer]) else layer - 1
+                print(f"设置层级结束，共设置{self.deepest_layer}层")
+                break
+            post_layer_props = curr_layer_props
+            curr_layer_props = next_layer_props
             next_layer_props = []
-        else:
-            self.deepest_layer = layer
-            print(f"设置层级结束，共设置{layer}层")
 
-    def get_deepest_conclusions(self) -> list[prop.Proposition]:
+    def get_deepest_conclusions(self, use_askable: bool = False) -> list[prop.Proposition]:
         """获取最深层次推理图节点的结论命题
+
+        Args:
+            use_askable (bool, optional): 是否只获取可询问的命题. 默认为False.
 
         Returns:
             list[prop.Proposition]: 最深层次推理图节点的结论命题
         """
         assert self.deepest_layer >= 0, "尚未进行二次推理"
         conclusion_list: list[prop.Proposition] = []
-        for node in takewhile(lambda x: x[mynode.LAYER] == self.deepest_layer, self.nodes):
+        for node in (n for n in self.nodes if n[mynode.LAYER] == self.deepest_layer):
             node_conclusion: prop.Proposition = node[mynode.CONCLUSION]
             if not node_conclusion.is_contained(conclusion_list):
                 conclusion_list.append(node_conclusion)
+        if use_askable:
+            conclusion_list = [p for p in conclusion_list if p[prop.ASKABLE]]
         return conclusion_list
+
+    def get_reachable_props(self, use_askable: bool = False) -> list[prop.Proposition]:
+        """获取推理图中经过第二次推理后所有可达的命题
+
+        Args:
+            use_askable (bool, optional): 是否只获取可询问的命题. 默认为False
+
+        Returns:
+            list[prop.Proposition]: 可达的命题
+        """
+        all_props: list[prop.Proposition] = []
+        for node in filter(lambda x: x[mynode.LAYER] <= self.deepest_layer, self.nodes):
+            condition: list[prop.Proposition] = node[mynode.CONDITION]
+            conclusion: prop.Proposition = node[mynode.CONCLUSION]
+            for p in condition:
+                if not p.is_contained(all_props):
+                    all_props.append(p)
+            if not conclusion.is_contained(all_props):
+                all_props.append(conclusion)
+        if use_askable:
+            all_props = [p for p in all_props if p[prop.ASKABLE]]
+        return all_props
+
+    def backtrace(self, curr_prop: prop.Proposition) -> list[mynode.Node]:
+        """回溯推理图，获取命题的推理路径
+
+        Args:
+            curr_prop (prop.Proposition): 当前命题
+
+        Returns:
+            list[mynode.Node]: 推理路径
+        """
+        assert self.deepest_layer >= 0, "尚未进行二次推理"
+        # 获得以curr_prop为结论的节点
+        curr_nodes: list[mynode.Node] = [n for n in self.nodes if n[mynode.CONCLUSION] == curr_prop]
+        # 如果没有找到节点，返回空列表
+        if len(curr_nodes) == 0:
+            return []
+        # 对curr_nodes按照节点层级进行排序，同层节点按照条件数量排序
+        curr_nodes.sort(key=lambda x: (x[mynode.LAYER], len(x[mynode.CONDITION])))
+        pre_step = curr_nodes[0] # 选择第一个节点作为前一步
+        # 递归回溯
+        pre_trace: list[mynode.Node] = [] # 前一步的推理路径
+        for condition, clayer in zip(pre_step[mynode.CONDITION], pre_step[mynode.CONDITION_LAYERS]):
+            # 如果条件的层级为1，不再回溯
+            if clayer == 1:
+                continue
+            pre_trace.extend(self.backtrace(condition))
+        pre_trace.append(pre_step)
+        return pre_trace

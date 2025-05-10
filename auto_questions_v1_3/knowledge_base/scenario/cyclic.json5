@@ -35,15 +35,15 @@
             "props": [
                 {
                     // 命题的属性计算方法，键是命题的属性，值是一个Python表达式，表示如何计算这个属性
-                    "time": "self['period']", // 引用情景的period属性
+                    "duration": "self['period']", // 引用情景的period属性
                     "askable": "False", // 该命题不可被问及
                     "precise": "True", 
                 }, 
             ], 
             // 该类命题使用的模板
             "templates": {
-                "cn": ["情景的周期为{time:}"], 
-                "en": ["the period of the scenario is {time:}"], 
+                "cn": ["情景的周期为{duration:}"], 
+                "en": ["the period of the scenario is {duration:}"], 
             }, 
         }, 
     }, 
@@ -55,7 +55,7 @@
             "kind": "rule", 
             "condition": [
                 {"name": "gap", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ], 
             "judge": [], 
             "conclusion": [
@@ -64,7 +64,7 @@
                     "attrs": {
                         "event1": "gap['event1']",
                         "event2": "gap['event2']",
-                        "diff": "period['time'] - gap['diff']",
+                        "diff": "period['duration'] - gap['diff']",
                     }, 
                 }, 
             ],
@@ -75,7 +75,7 @@
             "kind": "rule", 
             "condition": [
                 {"name": "gap", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ], 
             "judge": [], 
             "conclusion": [
@@ -84,7 +84,7 @@
                     "attrs": {
                         "event1": "gap['event1']",
                         "event2": "gap['event2']",
-                        "diff": "period['time'] - gap['diff']",
+                        "diff": "period['duration'] - gap['diff']",
                     }, 
                 }, 
             ],
@@ -95,7 +95,7 @@
             "kind": "rule", 
             "condition": [
                 {"name": "gap", "kind": "gap_time", "attrs": ["event1", "event2", "diff"]},
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ], 
             "judge": [], 
             "conclusion": [
@@ -104,7 +104,7 @@
                     "attrs": {
                         "event1": "gap['event1']",
                         "event2": "gap['event2']",
-                        "diff": "period['time'] - gap['diff']",
+                        "diff": "period['duration'] - gap['diff']",
                     }, 
                 }, 
             ],
@@ -116,11 +116,11 @@
             "condition": [
                 {"name": "before1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "before2", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ], 
             "judge": [
                 "before1['event2'] == before2['event1']", 
-                "before1['diff'] + before2['diff'] != period['time']",
+                "before1['diff'] + before2['diff'] != period['duration']",
             ],
             "conclusion": [
                 {
@@ -128,7 +128,7 @@
                     "attrs": {
                         "event1": "before1['event1']",
                         "event2": "before2['event2']",
-                        "diff": "(before1['diff'] + before2['diff']) % period['time']",
+                        "diff": "(before1['diff'] + before2['diff']) % period['duration']",
                     }, 
                 }, 
             ],
@@ -140,11 +140,11 @@
             "condition": [
                 {"name": "after1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "after2", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ],
             "judge": [
                 "after1['event2'] == after2['event1']", 
-                "after1['diff'] + after2['diff'] != period['time']",
+                "after1['diff'] + after2['diff'] != period['duration']",
             ],
             "conclusion": [
                 {
@@ -152,7 +152,7 @@
                     "attrs": {
                         "event1": "after1['event1']",
                         "event2": "after2['event2']",
-                        "diff": "(after1['diff'] + after2['diff']) % period['time']",
+                        "diff": "(after1['diff'] + after2['diff']) % period['duration']",
                     }, 
                 }, 
             ],
@@ -164,11 +164,11 @@
             "condition": [
                 {"name": "before1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "before2", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ], 
             "judge": [
                 "before1['event2'] == before2['event1']", 
-                "before1['diff'] + before2['diff'] == period['time']",
+                "before1['diff'] + before2['diff'] == period['duration']",
             ],
             "conclusion": [
                 {
@@ -187,11 +187,11 @@
             "condition": [
                 {"name": "after1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "after2", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ],
             "judge": [
                 "after1['event2'] == after2['event1']", 
-                "after1['diff'] + after2['diff'] == period['time']",
+                "after1['diff'] + after2['diff'] == period['duration']",
             ],
             "conclusion": [
                 {
@@ -211,7 +211,7 @@
             "condition": [
                 {"name": "before_time1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ],
             "judge": [
                 "before_time1['event2'] == temporal1['event']",
@@ -221,7 +221,7 @@
                     "kind": "temporal",
                     "attrs": {
                         "event": "before_time1['event1']",
-                        "time": "represent.get_zero_time() + period['time'] if (t := (temporal1['time'] - before_time1['diff']) % period['time']) == represent.get_zero_time() else t",
+                        "time": "represent.get_zero_time() + period['duration'] if (t := (temporal1['time'] - before_time1['diff']) % period['duration']) == represent.get_zero_time() else t",
                     }, 
                 },
             ],
@@ -233,7 +233,7 @@
             "condition": [
                 {"name": "before_time1", "kind": "before_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ],
             "judge": [
                 "before_time1['event1'] == temporal1['event']",
@@ -243,7 +243,7 @@
                     "kind": "temporal",
                     "attrs": {
                         "event": "before_time1['event2']",
-                        "time": "represent.get_zero_time() + period['time'] if (t := (temporal1['time'] + before_time1['diff']) % period['time']) == represent.get_zero_time() else t",
+                        "time": "represent.get_zero_time() + period['duration'] if (t := (temporal1['time'] + before_time1['diff']) % period['duration']) == represent.get_zero_time() else t",
                     }, 
                 },
             ],
@@ -255,7 +255,7 @@
             "condition": [
                 {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ],
             "judge": [
                 "after_time1['event2'] == temporal1['event']",
@@ -265,7 +265,7 @@
                     "kind": "temporal",
                     "attrs": {
                         "event": "after_time1['event1']",
-                        "time": "represent.get_zero_time() + period['time'] if (t := (temporal1['time'] + after_time1['diff']) % period['time']) == represent.get_zero_time() else t",
+                        "time": "represent.get_zero_time() + period['duration'] if (t := (temporal1['time'] + after_time1['diff']) % period['duration']) == represent.get_zero_time() else t",
                     }, 
                 },
             ],
@@ -277,7 +277,7 @@
             "condition": [
                 {"name": "after_time1", "kind": "after_time", "attrs": ["event1", "event2", "diff"]},
                 {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]}, 
-                {"name": "period", "kind": "period", "attrs": ["time"]},
+                {"name": "period", "kind": "period", "attrs": ["duration"]},
             ],
             "judge": [
                 "after_time1['event1'] == temporal1['event']",
@@ -287,10 +287,12 @@
                     "kind": "temporal",
                     "attrs": {
                         "event": "after_time1['event2']",
-                        "time": "represent.get_zero_time() + period['time'] if (t := (temporal1['time'] - after_time1['diff']) % period['time']) == represent.get_zero_time() else t",
+                        "time": "represent.get_zero_time() + period['duration'] if (t := (temporal1['time'] - after_time1['diff']) % period['duration']) == represent.get_zero_time() else t",
                     }, 
                 },
             ],
         },
     ], 
+    // 情景的难度系数
+    "level": 0.5, 
 }

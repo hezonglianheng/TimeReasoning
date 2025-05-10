@@ -16,6 +16,9 @@ ATTR_NAMES = "attr_names"
 REF_RULES = "ref_rules"
 SCENARIO_PROPS = "scenario_props"
 SCENARIO_RULES = "scenario_rules"
+# 05-02新增：情景的难度系数
+LEVEL = "level"
+"""情景的难度系数"""
 
 class Scenario(element.Element):
     """自定义的时间情景
@@ -70,3 +73,11 @@ class Scenario(element.Element):
         for rule_data in new_rules:
             rules.append(rule.Rule(**rule_data))
         return rules
+
+    def get_level(self) -> float:
+        """获取情景的难度系数
+
+        Returns:
+            float: 情景的难度系数
+        """
+        return self[LEVEL] if self.has_attr(LEVEL) else 0.0

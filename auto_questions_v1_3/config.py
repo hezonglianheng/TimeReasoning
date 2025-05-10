@@ -52,6 +52,9 @@ KNOWLEDGE_BASE_DIR = Path(__file__).parent / "knowledge_base"
 TIME_UNIT_FILE = KNOWLEDGE_BASE_DIR / "time_unit.json5"
 # 与不同时间单位的命题相关的文件夹和文件
 PROP_DIR = KNOWLEDGE_BASE_DIR / "proposition"
+# 时间命题基础信息文件
+BASIC_INFO_FILE = PROP_DIR / "basic_info.json5"
+"""时间命题基础信息文件"""
 # 与推理规则相关的文件
 RULE_FILE = KNOWLEDGE_BASE_DIR / "rule.json5"
 # 与情景相关的文件夹
@@ -60,3 +63,44 @@ SCENARIO_DIR = KNOWLEDGE_BASE_DIR / "scenario"
 SETTINGS_FILE = "settings.json5"
 # 推理节点的文本文件
 GRAPH_FILE = "graph.txt"
+# 从命题库中选择命题的规则
+PROP_CHOOSE_RULE_FILE = KNOWLEDGE_BASE_DIR / "prop_choose_rule.json5"
+# 05-02新增：外部知识库文件夹
+EXTERNAL_KNOWLEDGE_DIR = KNOWLEDGE_BASE_DIR / "external_knowledge"
+"""外部知识库文件夹"""
+
+# 问题配置
+ASK_POINT = "____" # 询问点
+LANG_CONFIG = {
+    "cn": {
+        "ask_right": f"以下选项中正确的是{ASK_POINT}",
+        "ask_wrong": f"以下选项中不正确的是{ASK_POINT}",
+        "full_stop": "。",
+        "all_wrong": "以上选项均不符合题目要求",
+    }, 
+    "en": {
+        "ask_right": f"Select the correct statement(s): {ASK_POINT}",
+        "ask_wrong": f"Select the incorrect statement(s): {ASK_POINT}",
+        "full_stop": ".",
+        "all_wrong": "None of the options above meet the requirements of the question",
+    }, 
+}
+
+# 结果字典字段
+TEXT = "text"
+QUESTION = "question"
+ANSWER = "answer"
+OPTIONS = "options"
+LANGUAGE = "language"
+GROUP = "group" # 问题按照命题集合是否相同分组
+# 05-02新增：问题中的一些其他统计信息
+LEVEL = "level" # 问题的难度等级
+"""问题的难度等级"""
+QUESTION_INFO = "question_info" # 问题的其他信息
+"""问题的其他信息"""
+STEP = "step" # 推理步骤数
+"""推理步骤数"""
+STATEMENT_TYPE = "statement_type" # 命题类型
+"""命题类型"""
+QUESTION_TYPE = "question_type" # 问题类型
+"""问题类型"""

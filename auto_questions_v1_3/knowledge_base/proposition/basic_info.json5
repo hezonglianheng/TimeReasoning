@@ -1,0 +1,72 @@
+// date: 2025-04-10
+// 用于记录基础信息的知识库文件
+
+{
+    "prop_kinds": {
+        "temporal": {
+            // 写明每种命题的命题类型
+            "typetag": "时刻-具体值",
+            "difficulty": 1.0,
+        }, 
+        "duration": {
+            "typetag": "时长-具体值",
+            "difficulty": 1.0,
+        }, 
+        "durative": {
+            "typetag": "时段-具体值",
+            "difficulty": 1.0,
+        }, 
+        "freq": {
+            "typetag": "时频-具体值",
+            "difficulty": 1.0,
+        }, 
+        "before": {
+            "typetag": "时刻-定性比较",
+            "difficulty": 1.0,
+        }, 
+        "before_time": {
+            "typetag": "时刻-定量比较",
+            "difficulty": 1.0,
+        }, 
+        "after": {
+            "typetag": "时刻-定性比较",
+            "difficulty": 1.0,
+        }, 
+        "after_time": {
+            "typetag": "时刻-定量比较",
+            "difficulty": 1.0,
+        }, 
+        "simultaneous": {
+            "typetag": "时刻-定性比较",
+            "difficulty": 1.0,
+        }, 
+        "gap_time": {
+            "typetag": "时刻-定量间隔",
+            "difficulty": 2.0,
+        }, 
+        "long": {
+            "typetag": "时长-定性比较",
+            "difficulty": 3.0,
+        }, 
+        "long_time": {
+            "typetag": "时长-定量比较",
+            "difficulty": 3.0,
+        }, 
+        "short": {
+            "typetag": "时长-定性比较",
+            "difficulty": 3.0,
+        }, 
+        "short_time": {
+            "typetag": "时长-定量比较",
+            "difficulty": 3.0,
+        }, 
+        "same_len": {
+            "typetag": "时长-定性比较",
+            "difficulty": 3.0,
+        }, 
+        "during": {
+            "typetag": "时刻-定性比较",
+            "difficulty": 2.0,
+        }, 
+    }, 
+}

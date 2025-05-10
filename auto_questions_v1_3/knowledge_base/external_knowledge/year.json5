@@ -1,0 +1,224 @@
+// date: 2025-05-02
+// 该文件用于存储与“年”相关的外部知识库中的事件信息
+
+{
+    // 事件信息
+"event": [
+    // 诺贝尔奖颁发
+    {
+        "name": "nobel_prize_first_awarded",
+        "kind": "temporal",
+        "subject": {
+            "name": "Nobel_Prize", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "第一届诺贝尔奖", "pronoun": "它", },
+                "en": {"name": "the first Nobel Prize", "pronoun": "it", },
+            }
+        },
+        "predicate": {"cn": "颁发", "en": "be", },
+        "object": {"cn": "", "en": "awarded", },
+        "tense": "past",
+        "time": {"kind": "year", "year": 1901},
+        "difficulty": 1,  // 事件难度，1-3，1为简单，3为困难
+    },
+    
+    // 普利策奖颁发
+    {
+        "name": "pulitzer_prize_first_awarded",
+        "kind": "temporal",
+        "subject": {
+            "name": "Pulitzer_Prize", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "第一届普利策奖", "pronoun": "它", },
+                "en": {"name": "the first Pulitzer Prize", "pronoun": "it", },
+            }
+        },
+        "predicate": {"cn": "颁发", "en": "be", },
+        "object": {"cn": "", "en": "announced", },
+        "tense": "past",
+        "time": {"kind": "year", "year": 1917},
+        "difficulty": 1,  // 事件难度，1-3，1为简单，3为困难
+    },
+    
+    // 第一次世界大战
+    {
+        "name": "world_war_I",
+        "kind": "durative",
+        "subject": {
+            "name": "World_War_I", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "第一次世界大战", "pronoun": "它", },
+                "en": {"name": "World War I", "pronoun": "it", },
+            }
+        },
+        "predicate": {"cn": "进行", "en": "take", },
+        "object": {"cn": "", "en": "place", },
+        "start_event": {
+            "name": "world_war_I_start",
+            "kind": "temporal",
+            "subject": {
+                "name": "World_War_I", 
+                "is_third_singular": true,
+                "name_info": {
+                    "cn": {"name": "第一次世界大战", "pronoun": "它", },
+                    "en": {"name": "World War I", "pronoun": "it", },
+                }
+            },
+            "predicate": {"cn": "开始", "en": "start", },
+            "object": {"cn": "", "en": "", },
+            "tense": "past",
+            "time": {"kind": "year", "year": 1914}
+        },
+        "end_event": {
+            "name": "world_war_I_end",
+            "kind": "temporal",
+            "subject": {
+                "name": "World_War_I", 
+                "is_third_singular": true,
+                "name_info": {
+                    "cn": {"name": "第一次世界大战", "pronoun": "它", },
+                    "en": {"name": "World War I", "pronoun": "it", },
+                }
+            },
+            "predicate": {"cn": "结束", "en": "end", },
+            "object": {"cn": "", "en": "", },
+            "tense": "past",
+            "time": {"kind": "year", "year": 1918}
+        },
+        "duration_event": {
+            "name": "world_war_I_duration",
+            "kind": "duration",
+            "subject": {
+                "name": "World_War_I", 
+                "is_third_singular": true,
+                "name_info": {
+                    "cn": {"name": "第一次世界大战", "pronoun": "它", },
+                    "en": {"name": "World War I", "pronoun": "it", },
+                }
+            },
+            "predicate": {"cn": "持续", "en": "continue", },
+            "object": {"cn": "", "en": "", },
+            "tense": "past"
+        },
+        "tense": "past",
+        "difficulty": 1,  // 事件难度，1-3，1为简单，3为困难
+    },
+    
+    // IBM发布第一款个人电脑
+    {
+        "name": "ibm_release_first_pc",
+        "kind": "temporal",
+        "subject": {
+            "name": "IBM", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "IBM", "pronoun": "它", },
+                "en": {"name": "IBM", "pronoun": "it", },
+            }
+        },
+        "predicate": {"cn": "发布", "en": "release", },
+        "object": {"cn": "第一款个人电脑", "en": "the first personal computer", },
+        "tense": "past",
+        "time": {"kind": "year", "year": 1981},
+        "difficulty": 2,  // 事件难度，1-3，1为简单，3为困难
+    },
+    
+    // 泡泡糖被发明
+    {
+        "name": "bubble_gum_invented",
+        "kind": "temporal",
+        "subject": {
+            "name": "Bubble_Gum", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "泡泡糖", "pronoun": "它", },
+                "en": {"name": "Bubble Gum", "pronoun": "it", },
+            }
+        },
+        "predicate": {"cn": "被发明", "en": "be", },
+        "object": {"cn": "", "en": " invented", },
+        "tense": "past",
+        "time": {"kind": "year", "year": 1928},
+        "difficulty": 3,  // 事件难度，1-3，1为简单，3为困难
+    },
+    
+    // 联合国成立
+    {
+        "name": "united_nations_founded",
+        "kind": "temporal",
+        "subject": {
+            "name": "United_Nations", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "联合国", "pronoun": "它", },
+                "en": {"name": "United Nations", "pronoun": "it", },
+            }
+        },
+        "predicate": {"cn": "成立", "en": "be", },
+        "object": {"cn": "", "en": "founded", },
+        "tense": "past",
+        "time": {"kind": "year", "year": 1945},
+        "difficulty": 1,  // 事件难度，1-3，1为简单，3为困难
+    },
+    
+    // 迈克尔·杰克逊出生
+    {
+        "name": "michael_jackson_born",
+        "kind": "temporal",
+        "subject": {
+            "name": "Michael_Jackson", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "迈克尔·杰克逊", "pronoun": "他", },
+                "en": {"name": "Michael Jackson", "pronoun": "he", },
+            }
+        },
+        "predicate": {"cn": "出生", "en": "be", },
+        "object": {"cn": "", "en": "born", },
+        "tense": "past",
+        "time": {"kind": "year", "year": 1958},
+        "difficulty": 1,  // 事件难度，1-3，1为简单，3为困难
+    },
+    
+    // 阿波罗11号登月
+    {
+        "name": "apollo_11_moon_landing",
+        "kind": "temporal",
+        "subject": {
+            "name": "Apollo_11", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "阿波罗11号", "pronoun": "它", },
+                "en": {"name": "Apollo 11", "pronoun": "it", },
+            }
+        },
+        "predicate": {"cn": "在月球着陆", "en": "land", },
+        "object": {"cn": "", "en": "on the moon", },
+        "tense": "past",
+        "time": {"kind": "year", "year": 1969},
+        "difficulty": 1,  // 事件难度，1-3，1为简单，3为困难
+    },
+    
+    // 谷歌创立
+    {
+        "name": "google_founded",
+        "kind": "temporal",
+        "subject": {
+            "name": "Google", 
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "谷歌", "pronoun": "它", },
+                "en": {"name": "Google", "pronoun": "it", },
+            }
+        },
+        "predicate": {"cn": "创立", "en": "be", },
+        "object": {"cn": "", "en": "founded", },
+        "tense": "past",
+        "time": {"kind": "year", "year": 1998},
+        "difficulty": 2,  // 事件难度，1-3，1为简单，3为困难
+    },
+], 
+}

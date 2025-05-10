@@ -33,7 +33,8 @@ class Constraint(element.Element):
     """约束类
     """
     def __init__(self, name = "", kind = "", **kwargs):
-        constraint_dict = dict()
+        # 05-03修订：增加对std_event和main_event的记录
+        constraint_dict = {STD_EVENT: kwargs[STD_EVENT], MAIN_EVENT: kwargs[MAIN_EVENT]}
         floor_dict: Optional[dict] = kwargs.get(FLOOR)
         ceiling_dict: Optional[dict] = kwargs.get(CEILING)
         time_dict: Optional[dict] = kwargs.get(TIME) # 如果约束的floor和ceiling相等，则允许一种简写方式
@@ -112,7 +113,7 @@ class Constraint(element.Element):
                 new_ceiling: represent.CustomTime = main_time - self[FLOOR]
                 std_ceiling = min(std_ceiling, new_ceiling)
         elif self.kind == SIMULTANEOUS:
-            assert std_floor <= main_time <= std_ceiling, f"参考事件时间范围({std_floor}-{std_ceiling})不包含主要事件时间{main_time}"
+            assert std_floor <= main_time <= std_ceiling, f"约束中参考事件{self[STD_EVENT]}时间范围({std_floor}-{std_ceiling})不包含主要事件{self[MAIN_EVENT]}时间{main_time}"
             # 直接将参考时间设置为主要事件时间范围
             std_floor = copy.deepcopy(main_time)
             std_ceiling = copy.deepcopy(main_time)
@@ -129,8 +130,11 @@ class ConstraintMachine:
         self.upper_bound = upper_bound
         self.lower_bound = lower_bound
         self.constraint_graph = nx.DiGraph()
+        # 03-11新增：增加对于事件顺序的记录
+        self.event_order: list[tuple[represent.CustomTime, event.Event]] = []
         self._construct()
-        self._forward()
+        # 05-04移除：不在初始化时进行前向传播，而是每次求取事件的时间时再进行
+        # self._forward()
 
     def _construct(self):
         """根据输入构造约束图
@@ -198,7 +202,6 @@ class ConstraintMachine:
             time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
             chosen_time = random.choice(time_range)
             self.constraint_graph.nodes[node][TIME] = chosen_time
-            print(f"{node}的时间为{chosen_time.translate(config.CHINESE)}")
 
     def _get_temporal_time(self, e: event.Event) -> represent.CustomTime:
         """从约束图中，为时点事件获取时间值
@@ -222,8 +225,22 @@ class ConstraintMachine:
             raise ValueError(f"函数_get_temporal_time()不支持的事件类型{e.kind}")
     
     def get_time_props(self, events: Sequence[event.Event]) -> list[prop.Proposition]:
+        """根据事件生成时间命题
+
+        Args:
+            events (Sequence[event.Event]): 事件列表
+
+        Raises:
+            ValueError: 事件类型不合法
+
+        Returns:
+            list[prop.Proposition]: 时间命题列表
+        """
+        self._forward()
         # 后向传播，随机生成时间
         self._backward()
+        # 03-11新增：清空event_order
+        self.event_order.clear()
         time_props: list[prop.Proposition] = []
         for e in events:
             if e.kind == event.TEMPORAL:
@@ -231,6 +248,8 @@ class ConstraintMachine:
                 e_time = self._get_temporal_time(e)
                 prop_dict: dict[str, Any] = {prop.TIME: e_time, prop.EVENT: e, prop.KIND: "temporal"}
                 time_props.append(prop.Proposition(**prop_dict))
+                # 03-11新增：将事件添加到event_order中
+                self.event_order.append((e_time, e))
             elif e.kind == event.DURATIVE:
                 start_event: event.Event = e[event.START_EVENT]
                 end_event: event.Event = e[event.END_EVENT]
@@ -246,9 +265,13 @@ class ConstraintMachine:
                 time_props.append(prop.Proposition(**duration_dict))
                 durative_event = {prop.EVENT: e, prop.KIND: "durative", prop.TIME: start_time, prop.END_TIME: end_time, prop.DURATION: duration_time}
                 time_props.append(prop.Proposition(**durative_event))
+                # 03-11新增：将事件添加到event_order中
+                self.event_order.append((start_time, e))
             elif e.kind == event.FREQUENT:
                 # TODO: 频率事件的处理
                 pass
             else:
                 raise ValueError(f"不支持的事件类型{e.kind}")
+        # 03-11新增：对event_order进行排序
+        self.event_order.sort(key = lambda x: x[0])
         return time_props
