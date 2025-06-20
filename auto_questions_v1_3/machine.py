@@ -157,7 +157,8 @@ class OptionGenerator:
                 temp_element: element.Element = p[ask_attr]
                 if not temp_element.is_contained(temp_range):
                     temp_range.append(temp_element)
-        temp_range = [i for i in temp_range if i != asked_prop[ask_attr]] # 需要排除被提问的命题中已有的属性值
+        # 06-20修改：需要排除的是命题中所有已经出现过的属性值
+        temp_range = [i for i in temp_range if not i.is_contained(asked_prop.all_attr_elements())] # 需要排除被提问的命题中已有的属性值
         if len(temp_range) < num:
             raise ValueError(f"可选值域范围不足，只有{len(temp_range)}个元素，少于{num}个")
         res_list: list[tuple[element.Element, bool]] = []
