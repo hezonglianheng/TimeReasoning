@@ -37,6 +37,6 @@ if __name__ == "__main__":
                 print(f"Deleting old log file: {log_file}")
                 log_file.unlink()
             # 构建命令
-            command = f"nohup python3 {main_script_path} {full_path} -q {typ} > {full_path}/{typ}.log 2>&1 &"
+            command = f"nohup python3 {main_script_path} {full_path} -q {typ} > /dev/null 2>&1 &"
             print(f"Executing command: {command}")
             subprocess.run(command, shell=True, check=True)
