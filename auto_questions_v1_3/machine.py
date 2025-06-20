@@ -162,7 +162,7 @@ class OptionGenerator:
         if len(temp_range) < num:
             raise ValueError(f"可选值域范围不足，只有{len(temp_range)}个元素，少于{num}个")
         res_list: list[tuple[element.Element, bool]] = []
-        if not correct_num:
+        if correct_num is None:
             samples = random.sample(temp_range, num)
             new_prop = copy.deepcopy(asked_prop)
             for s in samples:
