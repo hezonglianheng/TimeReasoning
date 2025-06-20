@@ -178,10 +178,17 @@ class OptionGenerator:
                 element_judge[i] = new_prop.is_contained(self.reachable_props)
             assert sum(element_judge) >= correct_num, f"正确元素数量{sum(element_judge)}小于要求的数量{correct_num}"
             assert sum([not i for i in element_judge]) >= num - correct_num, f"错误元素数量{sum([not i for i in element_judge])}小于要求的数量{num - correct_num}"
-            true_elements = [temp_range[i] for i in range(num) if element_judge[i]]
-            false_elements = [temp_range[i] for i in range(num) if not element_judge[i]]
-            true_samples = random.sample(true_elements, correct_num)
-            false_samples = random.sample(false_elements, num - correct_num)
+            true_elements = [i for i, j in zip(temp_range, element_judge) if j]
+            false_elements = [i for i, j in zip(temp_range, element_judge) if not j]
+            # 06-20修订：如果正确元素或错误元素数量为0或要求为0，则不进行采样
+            if len(true_elements) == 0 or correct_num == 0:
+                true_samples = []
+            else:
+                true_samples = random.sample(true_elements, correct_num)
+            if len(false_elements) == 0 or (num - correct_num) == 0:
+                false_samples = []
+            else:
+                false_samples = random.sample(false_elements, num - correct_num)
             res_list.extend([(s, True) for s in true_samples])
             res_list.extend([(s, False) for s in false_samples])
         return res_list
