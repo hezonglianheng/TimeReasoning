@@ -170,8 +170,8 @@ class OptionGenerator:
                 res_list.append((s, new_prop.is_contained(self.reachable_props)))
         else:
             assert correct_num <= num, f"正确元素数量{correct_num}大于总元素数量{num}"
-            new_prop = copy.deepcopy(asked_prop)
-            element_judge = [False] * num
+            # 06-20修改: element_judge的长度改为与temp_range的长度相同
+            element_judge = [False] * len(temp_range)
             for i, t in enumerate(temp_range):
                 new_prop = copy.deepcopy(asked_prop)
                 new_prop[ask_attr] = t
