@@ -291,7 +291,8 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
     question: element.Element = question_info[machine.QUESTION]
     options: dict[str, element.Element] = question_info[machine.OPTIONS]
     for lang in config.LANG_CONFIG:
-        chosen_prop_translation = '\n'.join([f"({i})" + p.translate(lang) for i, p in enumerate(chosen_props, start=1)])
+        # 06-19新增：翻译命题时的分隔字符串
+        chosen_prop_translation = ';\n'.join([f"({i})" + p.translate(lang) for i, p in enumerate(chosen_props, start=1)])
         lang_guide = guide[lang]
         text = f"{lang_guide}:\n{chosen_prop_translation}"
         question_str = question.translate(lang, require='ask', ask_attr=question_info[machine.ASK_ATTR])

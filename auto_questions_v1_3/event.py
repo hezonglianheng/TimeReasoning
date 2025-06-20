@@ -108,7 +108,8 @@ class Event(element.Element):
         predicate: str = lemminflect.getInflection(self[PREDICATE][lang], tag = config.VERB_BASE_FORM)[0]
         obj: str = self[OBJECT][lang]
         if lang == config.CHINESE:
-            return config.SEPARATE[lang].join([subject, predicate, obj])
+            # 06-19新增：处理前后的空格
+            return config.SEPARATE[lang].join([subject, predicate, obj]).strip()
         elif lang == config.ENGLISH:
             if self[TENSE] == PAST:
                 predicate = lemminflect.getInflection(predicate, tag = config.PAST_TENSE)[0]
@@ -117,7 +118,8 @@ class Event(element.Element):
             else:
                 if subject_element[IS_THIRD_SINGULAR]:
                     predicate = lemminflect.getInflection(predicate, tag = config.THIRD_PERSON_SINGULAR_PRESENT)[0]
-            return config.SEPARATE[lang].join([subject, predicate, obj])
+            # 06-19新增：处理前后的空格
+            return config.SEPARATE[lang].join([subject, predicate, obj]).strip()
         else:
             raise ValueError(f"不支持的翻译语言: {lang}")
 
