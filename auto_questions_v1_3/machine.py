@@ -356,21 +356,21 @@ class AskMachine:
         Returns:
             dict[str, Any]: 问题、提问属性、选项、答案
         """
-        candidate_props = self._get_candidate_props(prop_type, **kwargs)
-        ask_props = random.sample(candidate_props, option_num)
-        ask_attrs = [i.ask_attr() for i in ask_props]
         temp_correct = correct_num if correct_num else random.randint(1, option_num)
         temp_judge = [True] * temp_correct + [False] * (option_num - temp_correct)
         random.shuffle(temp_judge)
         option_props: list[prop.Proposition] = []
-        for i in range(option_num):
-            while True:
-                try:
+        while True:
+            try:
+                candidate_props = self._get_candidate_props(prop_type, **kwargs)
+                ask_props = random.sample(candidate_props, option_num)
+                ask_attrs = [i.ask_attr() for i in ask_props]
+                for i in range(option_num):
                     option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], temp_judge[i], **kwargs))
-                except Exception as e:
-                    print(f"获取选项失败：{e}")
-                    continue
-                break
+            except Exception as e:
+                print(f"获取选项失败：{e}")
+                continue
+            break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         # 05-04新增：判断最后一个选项是否为all_wrong，如果是，需要backtrace的命题移除最后一个；否则需要backtrace的命题为所有选项
         if isinstance(option_props[option_num - 1], AllWrongOption):
@@ -393,21 +393,21 @@ class AskMachine:
         Returns:
             dict[str, Any]: 问题、提问属性、选项、答案
         """
-        candidate_props = self._get_candidate_props(prop_type, **kwargs)
-        ask_props = random.sample(candidate_props, option_num)
-        ask_attrs = [i.ask_attr() for i in ask_props]
         temp_correct = correct_num if correct_num else random.randint(1, option_num)
         temp_judge = [True] * temp_correct + [False] * (option_num - temp_correct)
         random.shuffle(temp_judge)
         option_props: list[prop.Proposition] = []
-        for i in range(option_num):
-            while True:
-                try:
+        while True:
+            try:
+                candidate_props = self._get_candidate_props(prop_type, **kwargs)
+                ask_props = random.sample(candidate_props, option_num)
+                ask_attrs = [i.ask_attr() for i in ask_props]
+                for i in range(option_num):
                     option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], (not temp_judge[i]), **kwargs))
-                except Exception as e:
-                    print(f"获取选项失败：{e}")
-                    continue
-                break
+            except Exception as e:
+                print(f"获取选项失败：{e}")
+                continue
+            break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         # 05-04新增：判断最后一个选项是否为all_wrong，如果是，需要backtrace的命题移除最后一个；否则需要backtrace的命题为所有选项
         if isinstance(option_props[option_num - 1], AllWrongOption):
