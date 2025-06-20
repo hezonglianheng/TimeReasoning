@@ -164,8 +164,8 @@ class OptionGenerator:
         res_list: list[tuple[element.Element, bool]] = []
         if correct_num is None:
             samples = random.sample(temp_range, num)
-            new_prop = copy.deepcopy(asked_prop)
             for s in samples:
+                new_prop = copy.deepcopy(asked_prop)
                 new_prop[ask_attr] = s
                 res_list.append((s, new_prop.is_contained(self.reachable_props)))
         else:
@@ -173,6 +173,7 @@ class OptionGenerator:
             new_prop = copy.deepcopy(asked_prop)
             element_judge = [False] * num
             for i, t in enumerate(temp_range):
+                new_prop = copy.deepcopy(asked_prop)
                 new_prop[ask_attr] = t
                 element_judge[i] = new_prop.is_contained(self.reachable_props)
             assert sum(element_judge) >= correct_num, f"正确元素数量{sum(element_judge)}小于要求的数量{correct_num}"
