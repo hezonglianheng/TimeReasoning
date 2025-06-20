@@ -54,7 +54,9 @@ class Element(metaclass = abc.ABCMeta):
             bool: 是否相等
         """
         if not type(self) == type(other):
-            raise TypeError(f"元素{self}和元素{other}类型不同，无法比较")
+            # 06-20新增；如果类型不同，直接返回False
+            return False
+            # raise TypeError(f"元素{self}和元素{other}类型不同，无法比较")
         if self.kind != other.kind:
             return False
         for key in self.attrs:
