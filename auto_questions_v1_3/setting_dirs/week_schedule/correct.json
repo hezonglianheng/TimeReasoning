@@ -15,6 +15,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -49,6 +50,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -84,6 +86,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -119,6 +122,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -154,6 +158,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-定量比较",
@@ -189,6 +194,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-定量比较",
@@ -225,6 +231,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -261,6 +268,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -296,6 +304,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -331,6 +340,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -364,6 +374,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -397,6 +408,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -431,6 +443,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -465,6 +478,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -500,6 +514,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -535,6 +550,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -568,6 +584,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -601,6 +618,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -637,6 +655,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -673,6 +692,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -707,6 +727,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -741,6 +762,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -774,6 +796,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -807,6 +830,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -842,6 +866,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -877,6 +902,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -911,6 +937,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -945,6 +972,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -979,6 +1007,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -1013,6 +1042,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -1046,6 +1076,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -1079,6 +1110,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -1115,6 +1147,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -1151,6 +1184,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -1186,6 +1220,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -1221,6 +1256,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -1255,6 +1291,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -1289,6 +1326,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -1325,6 +1363,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -1361,6 +1400,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -1395,6 +1435,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -1429,6 +1470,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -1464,6 +1506,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -1499,6 +1542,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -1533,6 +1577,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -1567,6 +1612,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -1601,6 +1647,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -1635,6 +1682,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -1669,6 +1717,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -1703,6 +1752,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -1738,6 +1788,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -1773,6 +1824,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -1806,6 +1858,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -1839,6 +1892,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -1873,6 +1927,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -1907,6 +1962,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -1942,6 +1998,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -1977,6 +2034,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -2010,6 +2068,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -2043,6 +2102,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -2078,6 +2138,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -2113,6 +2174,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -2146,6 +2208,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -2179,6 +2242,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -2213,6 +2277,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -2247,6 +2312,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -2281,6 +2347,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -2315,6 +2382,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -2350,6 +2418,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -2385,6 +2454,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -2420,6 +2490,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -2455,6 +2526,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -2490,6 +2562,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -2525,6 +2598,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -2561,6 +2635,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -2597,6 +2672,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -2630,6 +2706,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -2663,6 +2740,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -2699,6 +2777,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -2735,6 +2814,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -2769,6 +2849,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -2803,6 +2884,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -2837,6 +2919,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -2871,6 +2954,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -2907,6 +2991,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -2943,6 +3028,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -2977,6 +3063,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-具体值",
@@ -3011,6 +3098,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-具体值",
@@ -3044,6 +3132,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -3077,6 +3166,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -3113,6 +3203,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -3149,6 +3240,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -3183,6 +3275,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -3217,6 +3310,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -3252,6 +3346,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -3287,6 +3382,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -3320,6 +3416,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -3353,6 +3450,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -3387,6 +3485,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 4,
             "statement_type": [
                 "时刻-具体值",
@@ -3421,6 +3520,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 4,
             "statement_type": [
                 "时刻-具体值",
@@ -3455,6 +3555,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -3489,6 +3590,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -3522,6 +3624,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -3555,6 +3658,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -3589,6 +3693,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -3623,6 +3728,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -3657,6 +3763,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -3691,6 +3798,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -3725,6 +3833,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -3759,6 +3868,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -3795,6 +3905,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -3831,6 +3942,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -3864,6 +3976,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -3897,6 +4010,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -3932,6 +4046,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -3967,6 +4082,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -4003,6 +4119,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -4039,6 +4156,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -4073,6 +4191,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -4107,6 +4226,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -4140,6 +4260,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -4173,6 +4294,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -4209,6 +4331,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -4245,6 +4368,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -4279,6 +4403,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -4313,6 +4438,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -4346,6 +4472,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -4379,6 +4506,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -4413,6 +4541,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -4447,6 +4576,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -4481,6 +4611,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -4515,6 +4646,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -4551,6 +4683,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -4587,6 +4720,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -4622,6 +4756,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -4657,6 +4792,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -4692,6 +4828,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -4727,6 +4864,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -4762,6 +4900,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -4797,6 +4936,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -4832,6 +4972,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -4867,6 +5008,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -4901,6 +5043,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -4935,6 +5078,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -4968,6 +5112,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -5001,6 +5146,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -5035,6 +5181,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -5069,6 +5216,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -5102,6 +5250,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -5135,6 +5284,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -5170,6 +5320,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -5205,6 +5356,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -5239,6 +5391,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -5273,6 +5426,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -5309,6 +5463,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -5345,6 +5500,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -5381,6 +5537,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -5417,6 +5574,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -5450,6 +5608,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -5483,6 +5642,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -5518,6 +5678,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -5553,6 +5714,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -5589,6 +5751,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -5625,6 +5788,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -5659,6 +5823,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -5693,6 +5858,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -5726,6 +5892,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-具体值",
@@ -5759,6 +5926,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-具体值",
@@ -5793,6 +5961,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -5827,6 +5996,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -5863,6 +6033,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -5899,6 +6070,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -5934,6 +6106,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -5969,6 +6142,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -6003,6 +6177,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -6037,6 +6212,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -6070,6 +6246,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -6103,6 +6280,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -6138,6 +6316,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -6173,6 +6352,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -6206,6 +6386,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -6239,6 +6420,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -6274,6 +6456,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -6309,6 +6492,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -6344,6 +6528,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -6379,6 +6564,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -6412,6 +6598,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-定量比较",
@@ -6445,6 +6632,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-定量比较",
@@ -6479,6 +6667,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -6513,6 +6702,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -6546,6 +6736,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -6579,6 +6770,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -6613,6 +6805,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -6647,6 +6840,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -6683,6 +6877,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -6719,6 +6914,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -6752,6 +6948,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 5,
             "statement_type": [
                 "时刻-定量比较",
@@ -6785,6 +6982,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 5,
             "statement_type": [
                 "时刻-定量比较",
@@ -6820,6 +7018,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -6855,6 +7054,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -6891,6 +7091,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -6927,6 +7128,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -6962,6 +7164,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -6997,6 +7200,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -7032,6 +7236,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -7067,6 +7272,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -7101,6 +7307,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -7135,6 +7342,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -7168,6 +7376,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -7201,6 +7410,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -7235,6 +7445,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -7269,6 +7480,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -7304,6 +7516,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -7339,6 +7552,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -7375,6 +7589,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -7411,6 +7626,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -7445,6 +7661,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -7479,6 +7696,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -7513,6 +7731,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -7547,6 +7766,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -7580,6 +7800,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -7613,6 +7834,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -7646,6 +7868,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -7679,6 +7902,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -7715,6 +7939,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -7751,6 +7976,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -7785,6 +8011,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -7819,6 +8046,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -7854,6 +8082,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -7889,6 +8118,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -7924,6 +8154,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-具体值",
@@ -7959,6 +8190,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-具体值",
@@ -7994,6 +8226,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -8029,6 +8262,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -8062,6 +8296,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -8095,6 +8330,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -8131,6 +8367,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -8167,6 +8404,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -8200,6 +8438,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -8233,6 +8472,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -8267,6 +8507,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -8301,6 +8542,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -8336,6 +8578,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -8371,6 +8614,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -8407,6 +8651,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -8443,6 +8688,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -8478,6 +8724,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -8513,6 +8760,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -8548,6 +8796,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -8583,6 +8832,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -8617,6 +8867,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -8651,6 +8902,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -8684,6 +8936,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 22,
             "statement_type": [
                 "时刻-定量比较",
@@ -8717,6 +8970,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 22,
             "statement_type": [
                 "时刻-定量比较",
@@ -8752,6 +9006,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -8787,6 +9042,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -8822,6 +9078,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -8857,6 +9114,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -8890,6 +9148,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -8923,6 +9182,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -8957,6 +9217,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -8991,6 +9252,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -9027,6 +9289,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -9063,6 +9326,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -9098,6 +9362,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -9133,6 +9398,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -9168,6 +9434,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -9203,6 +9470,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -9237,6 +9505,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -9271,6 +9540,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -9305,6 +9575,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -9339,6 +9610,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -9374,6 +9646,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -9409,6 +9682,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -9445,6 +9719,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -9481,6 +9756,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -9516,6 +9792,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -9551,6 +9828,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -9586,6 +9864,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -9621,6 +9900,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -9655,6 +9935,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -9689,6 +9970,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -9722,6 +10004,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -9755,6 +10038,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -9789,6 +10073,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -9823,6 +10108,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -9858,6 +10144,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -9893,6 +10180,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -9926,6 +10214,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -9959,6 +10248,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -9994,6 +10284,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -10029,6 +10320,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -10064,6 +10356,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -10099,6 +10392,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -10133,6 +10427,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -10167,6 +10462,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -10201,6 +10497,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -10235,6 +10532,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -10268,6 +10566,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -10301,6 +10600,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -10335,6 +10635,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -10369,6 +10670,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -10405,6 +10707,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -10441,6 +10744,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -10475,6 +10779,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -10509,6 +10814,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -10543,6 +10849,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -10577,6 +10884,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -10612,6 +10920,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -10647,6 +10956,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -10682,6 +10992,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -10717,6 +11028,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -10750,6 +11062,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -10783,6 +11096,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -10818,6 +11132,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -10853,6 +11168,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -10886,6 +11202,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -10919,6 +11236,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -10952,6 +11270,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -10985,6 +11304,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -11019,6 +11339,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -11053,6 +11374,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -11086,6 +11408,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -11119,6 +11442,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -11152,6 +11476,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -11185,6 +11510,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -11218,6 +11544,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -11251,6 +11578,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -11287,6 +11615,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -11323,6 +11652,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -11356,6 +11686,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -11389,6 +11720,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -11425,6 +11757,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -11461,6 +11794,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -11495,6 +11829,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -11529,6 +11864,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -11562,6 +11898,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -11595,6 +11932,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -11628,6 +11966,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -11661,6 +12000,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -11696,6 +12036,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -11731,6 +12072,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -11767,6 +12109,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -11803,6 +12146,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -11839,6 +12183,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -11875,6 +12220,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -11910,6 +12256,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -11945,6 +12292,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -11978,6 +12326,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -12011,6 +12360,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -12046,6 +12396,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -12081,6 +12432,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -12116,6 +12468,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -12151,6 +12504,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -12185,6 +12539,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -12219,6 +12574,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -12255,6 +12611,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -12291,6 +12648,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -12326,6 +12684,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -12361,6 +12720,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -12396,6 +12756,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -12431,6 +12792,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -12465,6 +12827,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -12499,6 +12862,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -12534,6 +12898,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -12569,6 +12934,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -12602,6 +12968,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -12635,6 +13002,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -12668,6 +13036,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -12701,6 +13070,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -12737,6 +13107,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -12773,6 +13144,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -12808,6 +13180,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -12843,6 +13216,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -12879,6 +13253,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -12915,6 +13290,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -12948,6 +13324,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -12981,6 +13358,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -13016,6 +13394,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -13051,6 +13430,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -13087,6 +13467,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -13123,6 +13504,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -13159,6 +13541,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -13195,6 +13578,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -13228,6 +13612,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -13261,6 +13646,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -13294,6 +13680,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -13327,6 +13714,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -13363,6 +13751,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -13399,6 +13788,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -13432,6 +13822,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -13465,6 +13856,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -13499,6 +13891,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-具体值",
@@ -13533,6 +13926,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-具体值",
@@ -13568,6 +13962,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -13603,6 +13998,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -13639,6 +14035,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -13675,6 +14072,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -13710,6 +14108,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -13745,6 +14144,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -13779,6 +14179,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -13813,6 +14214,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -13848,6 +14250,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -13883,6 +14286,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -13918,6 +14322,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -13953,6 +14358,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -13989,6 +14395,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -14025,6 +14432,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -14061,6 +14469,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -14097,6 +14506,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -14130,6 +14540,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -14163,6 +14574,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -14196,6 +14608,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -14229,6 +14642,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -14265,6 +14679,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -14301,6 +14716,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -14334,6 +14750,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -14367,6 +14784,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -14400,6 +14818,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -14433,6 +14852,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -14468,6 +14888,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -14503,6 +14924,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -14538,6 +14960,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -14573,6 +14996,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -14608,6 +15032,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -14643,6 +15068,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -14679,6 +15105,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -14715,6 +15142,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -14748,6 +15176,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -14781,6 +15210,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -14817,6 +15247,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -14853,6 +15284,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -14886,6 +15318,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -14919,6 +15352,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -14954,6 +15388,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -14989,6 +15424,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -15022,6 +15458,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -15055,6 +15492,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -15088,6 +15526,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -15121,6 +15560,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -15155,6 +15595,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -15189,6 +15630,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -15224,6 +15666,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-具体值",
@@ -15259,6 +15702,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-具体值",
@@ -15295,6 +15739,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -15331,6 +15776,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -15366,6 +15812,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -15401,6 +15848,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -15436,6 +15884,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -15471,6 +15920,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -15506,6 +15956,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -15541,6 +15992,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -15576,6 +16028,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -15611,6 +16064,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -15646,6 +16100,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -15681,6 +16136,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -15716,6 +16172,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -15751,6 +16208,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -15784,6 +16242,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -15817,6 +16276,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -15852,6 +16312,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -15887,6 +16348,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -15923,6 +16385,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -15959,6 +16422,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -15992,6 +16456,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -16025,6 +16490,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -16061,6 +16527,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -16097,6 +16564,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -16131,6 +16599,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -16165,6 +16634,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -16198,6 +16668,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -16231,6 +16702,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -16265,6 +16737,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -16299,6 +16772,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -16332,6 +16806,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -16365,6 +16840,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -16399,6 +16875,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -16433,6 +16910,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -16469,6 +16947,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -16505,6 +16984,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -16540,6 +17020,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -16575,6 +17056,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -16609,6 +17091,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -16643,6 +17126,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -16677,6 +17161,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -16711,6 +17196,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -16747,6 +17233,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -16783,6 +17270,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -16819,6 +17307,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -16855,6 +17344,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -16891,6 +17381,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -16927,6 +17418,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -16962,6 +17454,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 24,
             "statement_type": [
                 "时刻-定量比较",
@@ -16997,6 +17490,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 24,
             "statement_type": [
                 "时刻-定量比较",
@@ -17030,6 +17524,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -17063,6 +17558,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -17096,6 +17592,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 22,
             "statement_type": [
                 "时刻-定量比较",
@@ -17129,6 +17626,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 22,
             "statement_type": [
                 "时刻-定量比较",
@@ -17163,6 +17661,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -17197,6 +17696,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -17232,6 +17732,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -17267,6 +17768,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -17301,6 +17803,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -17335,6 +17838,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -17368,6 +17872,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -17401,6 +17906,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -17437,6 +17943,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -17473,6 +17980,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -17508,6 +18016,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -17543,6 +18052,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -17579,6 +18089,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -17615,6 +18126,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -17650,6 +18162,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -17685,6 +18198,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -17719,6 +18233,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -17753,6 +18268,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -17787,6 +18303,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -17821,6 +18338,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-具体值",
@@ -17854,6 +18372,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -17887,6 +18406,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 17,
             "statement_type": [
                 "时刻-定量比较",
@@ -17923,6 +18443,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -17959,6 +18480,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -17992,6 +18514,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -18025,6 +18548,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -18059,6 +18583,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -18093,6 +18618,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -18126,6 +18652,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -18159,6 +18686,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -18193,6 +18721,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -18227,6 +18756,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -18261,6 +18791,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -18295,6 +18826,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -18331,6 +18863,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -18367,6 +18900,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -18402,6 +18936,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -18437,6 +18972,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -18470,6 +19006,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -18503,6 +19040,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -18539,6 +19077,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 5,
             "statement_type": [
                 "时刻-定量比较",
@@ -18575,6 +19114,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 5,
             "statement_type": [
                 "时刻-定量比较",
@@ -18609,6 +19149,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -18643,6 +19184,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -18676,6 +19218,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -18709,6 +19252,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -18743,6 +19287,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -18777,6 +19322,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -18811,6 +19357,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -18845,6 +19392,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -18881,6 +19429,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -18917,6 +19466,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -18950,6 +19500,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -18983,6 +19534,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -19018,6 +19570,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -19053,6 +19606,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -19087,6 +19641,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -19121,6 +19676,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -19155,6 +19711,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -19189,6 +19746,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -19224,6 +19782,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -19259,6 +19818,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -19292,6 +19852,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -19325,6 +19886,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -19358,6 +19920,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -19391,6 +19954,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -19425,6 +19989,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-具体值",
@@ -19459,6 +20024,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-具体值",
@@ -19492,6 +20058,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -19525,6 +20092,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -19559,6 +20127,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -19593,6 +20162,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -19629,6 +20199,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -19665,6 +20236,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -19699,6 +20271,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -19733,6 +20306,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -19767,6 +20341,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -19801,6 +20376,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -19835,6 +20411,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -19869,6 +20446,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -19905,6 +20483,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 21,
             "statement_type": [
                 "时刻-定量比较",
@@ -19941,6 +20520,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 21,
             "statement_type": [
                 "时刻-定量比较",
@@ -19976,6 +20556,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -20011,6 +20592,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -20047,6 +20629,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -20083,6 +20666,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -20117,6 +20701,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -20151,6 +20736,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -20186,6 +20772,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -20221,6 +20808,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -20254,6 +20842,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -20287,6 +20876,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -20320,6 +20910,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -20353,6 +20944,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -20387,6 +20979,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -20421,6 +21014,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -20454,6 +21048,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -20487,6 +21082,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -20520,6 +21116,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -20553,6 +21150,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -20588,6 +21186,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 21,
             "statement_type": [
                 "时刻-定量比较",
@@ -20623,6 +21222,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 21,
             "statement_type": [
                 "时刻-定量比较",
@@ -20658,6 +21258,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -20693,6 +21294,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -20726,6 +21328,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 23,
             "statement_type": [
                 "时刻-定量比较",
@@ -20759,6 +21362,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 23,
             "statement_type": [
                 "时刻-定量比较",
@@ -20792,6 +21396,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -20825,6 +21430,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -20860,6 +21466,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -20895,6 +21502,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -20929,6 +21537,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -20963,6 +21572,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -20997,6 +21607,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -21031,6 +21642,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -21064,6 +21676,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -21097,6 +21710,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -21132,6 +21746,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -21167,6 +21782,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 16,
             "statement_type": [
                 "时刻-定量比较",
@@ -21200,6 +21816,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -21233,6 +21850,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-具体值",
@@ -21266,6 +21884,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -21299,6 +21918,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -21333,6 +21953,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -21367,6 +21988,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -21403,6 +22025,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -21439,6 +22062,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -21474,6 +22098,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -21509,6 +22134,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -21542,6 +22168,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -21575,6 +22202,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -21608,6 +22236,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -21641,6 +22270,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -21674,6 +22304,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -21707,6 +22338,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -21742,6 +22374,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -21777,6 +22410,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -21812,6 +22446,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -21847,6 +22482,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -21883,6 +22519,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -21919,6 +22556,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -21954,6 +22592,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -21989,6 +22628,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -22025,6 +22665,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-定量比较",
@@ -22061,6 +22702,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-定量比较",
@@ -22095,6 +22737,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 21,
             "statement_type": [
                 "时刻-具体值",
@@ -22129,6 +22772,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 21,
             "statement_type": [
                 "时刻-具体值",
@@ -22163,6 +22807,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -22197,6 +22842,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -22230,6 +22876,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -22263,6 +22910,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-具体值",
@@ -22298,6 +22946,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -22333,6 +22982,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -22367,6 +23017,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -22401,6 +23052,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-具体值",
@@ -22434,6 +23086,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -22467,6 +23120,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -22500,6 +23154,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -22533,6 +23188,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -22566,6 +23222,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -22599,6 +23256,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -22632,6 +23290,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -22665,6 +23324,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -22700,6 +23360,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -22735,6 +23396,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -22769,6 +23431,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -22803,6 +23466,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -22838,6 +23502,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -22873,6 +23538,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -22909,6 +23575,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -22945,6 +23612,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -22981,6 +23649,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -23017,6 +23686,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -23051,6 +23721,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -23085,6 +23756,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -23121,6 +23793,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -23157,6 +23830,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -23190,6 +23864,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -23223,6 +23898,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -23257,6 +23933,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -23291,6 +23968,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -23327,6 +24005,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -23363,6 +24042,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -23399,6 +24079,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -23435,6 +24116,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -23471,6 +24153,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -23507,6 +24190,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -23541,6 +24225,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -23575,6 +24260,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -23609,6 +24295,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -23643,6 +24330,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -23676,6 +24364,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -23709,6 +24398,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -23744,6 +24434,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 20,
             "statement_type": [
                 "时刻-具体值",
@@ -23779,6 +24470,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 20,
             "statement_type": [
                 "时刻-具体值",
@@ -23812,6 +24504,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -23845,6 +24538,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -23881,6 +24575,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -23917,6 +24612,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -23952,6 +24648,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -23987,6 +24684,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -24022,6 +24720,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -24057,6 +24756,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -24091,6 +24791,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -24125,6 +24826,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -24161,6 +24863,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -24197,6 +24900,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -24231,6 +24935,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -24265,6 +24970,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -24299,6 +25005,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -24333,6 +25040,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -24366,6 +25074,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -24399,6 +25108,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-具体值",
@@ -24433,6 +25143,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -24467,6 +25178,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -24502,6 +25214,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -24537,6 +25250,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -24572,6 +25286,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -24607,6 +25322,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -24640,6 +25356,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -24673,6 +25390,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -24706,6 +25424,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -24739,6 +25458,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -24772,6 +25492,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -24805,6 +25526,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -24838,6 +25560,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -24871,6 +25594,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 13,
             "statement_type": [
                 "时刻-定量比较",
@@ -24906,6 +25630,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 5,
             "statement_type": [
                 "时刻-定量比较",
@@ -24941,6 +25666,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 5,
             "statement_type": [
                 "时刻-定量比较",
@@ -24977,6 +25703,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -25013,6 +25740,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -25046,6 +25774,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -25079,6 +25808,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -25114,6 +25844,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -25149,6 +25880,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -25182,6 +25914,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -25215,6 +25948,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -25250,6 +25984,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -25285,6 +26020,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -25318,6 +26054,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -25351,6 +26088,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 19,
             "statement_type": [
                 "时刻-定量比较",
@@ -25386,6 +26124,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -25421,6 +26160,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -25456,6 +26196,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -25491,6 +26232,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -25526,6 +26268,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -25561,6 +26304,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -25595,6 +26339,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -25629,6 +26374,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -25662,6 +26408,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -25695,6 +26442,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-具体值",
@@ -25730,6 +26478,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -25765,6 +26514,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -25799,6 +26549,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 5,
             "statement_type": [
                 "时刻-定量比较",
@@ -25833,6 +26584,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 5,
             "statement_type": [
                 "时刻-定量比较",
@@ -25869,6 +26621,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -25905,6 +26658,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-定量比较",
@@ -25939,6 +26693,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -25973,6 +26728,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-具体值",
@@ -26009,6 +26765,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -26045,6 +26802,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -26078,6 +26836,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -26111,6 +26870,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -26145,6 +26905,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-定量比较",
@@ -26179,6 +26940,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 18,
             "statement_type": [
                 "时刻-定量比较",
@@ -26213,6 +26975,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -26247,6 +27010,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -26281,6 +27045,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -26315,6 +27080,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -26349,6 +27115,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -26383,6 +27150,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-定量比较",
@@ -26419,6 +27187,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -26455,6 +27224,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -26488,6 +27258,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -26521,6 +27292,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -26555,6 +27327,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -26589,6 +27362,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 10,
             "statement_type": [
                 "时刻-定量比较",
@@ -26624,6 +27398,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -26659,6 +27434,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 8,
             "statement_type": [
                 "时刻-定量比较",
@@ -26694,6 +27470,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -26729,6 +27506,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -26763,6 +27541,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -26797,6 +27576,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -26830,6 +27610,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -26863,6 +27644,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -26898,6 +27680,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -26933,6 +27716,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 11,
             "statement_type": [
                 "时刻-定量比较",
@@ -26968,6 +27752,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -27003,6 +27788,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 14,
             "statement_type": [
                 "时刻-定量比较",
@@ -27036,6 +27822,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -27069,6 +27856,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -27104,6 +27892,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -27139,6 +27928,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 12,
             "statement_type": [
                 "时刻-具体值",
@@ -27174,6 +27964,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -27209,6 +28000,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -27243,6 +28035,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -27277,6 +28070,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 9,
             "statement_type": [
                 "时刻-定量比较",
@@ -27312,6 +28106,7 @@
         "language": "cn",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -27347,6 +28142,7 @@
         "language": "en",
         "level": 3,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 7,
             "statement_type": [
                 "时刻-定量比较",
@@ -27380,6 +28176,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -27413,6 +28210,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 6,
             "statement_type": [
                 "时刻-定量比较",
@@ -27446,6 +28244,7 @@
         "language": "cn",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
@@ -27479,6 +28278,7 @@
         "language": "en",
         "level": 2,
         "question_info": {
+            "scene_type": "循环时间情景",
             "step": 15,
             "statement_type": [
                 "时刻-具体值",
