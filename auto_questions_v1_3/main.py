@@ -287,6 +287,7 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
     Returns:
         list[dict[str, Any]]: 包含所有语言版本的列表，每个元素是一个字典，包含问题、选项和答案等信息
     """
+    global SCENARIO
     translate_result: list[dict[str, Any]] = []
     question: element.Element = question_info[machine.QUESTION]
     options: dict[str, element.Element] = question_info[machine.OPTIONS]
@@ -314,6 +315,7 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
             config.LANGUAGE: lang,
             config.LEVEL: question_level, # 问题的难度等级
             config.QUESTION_INFO: {
+                config.SCENE_TYPE: SCENARIO[scenario.TYPE_NAME], 
                 config.STEP: question_info[machine.COT_LENGTH], # 推理步骤数
                 config.STATEMENT_TYPE: [p.get_prop_tag() for p in chosen_props], # 命题类型
                 config.QUESTION_TYPE: question_tags, # 问题类型

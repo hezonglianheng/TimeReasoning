@@ -98,6 +98,8 @@ LEVEL = "level" # 问题的难度等级
 """问题的难度等级"""
 QUESTION_INFO = "question_info" # 问题的其他信息
 """问题的其他信息"""
+SCENE_TYPE = "scene_type"
+"""情景类型"""
 STEP = "step" # 推理步骤数
 """推理步骤数"""
 STATEMENT_TYPE = "statement_type" # 命题类型
