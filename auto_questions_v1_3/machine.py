@@ -157,29 +157,38 @@ class OptionGenerator:
                 temp_element: element.Element = p[ask_attr]
                 if not temp_element.is_contained(temp_range):
                     temp_range.append(temp_element)
-        temp_range = [i for i in temp_range if i != asked_prop[ask_attr]] # 需要排除被提问的命题中已有的属性值
+        # 06-20修改：需要排除的是命题中所有已经出现过的属性值
+        temp_range = [i for i in temp_range if not i.is_contained(asked_prop.all_attr_elements())] # 需要排除被提问的命题中已有的属性值
         if len(temp_range) < num:
             raise ValueError(f"可选值域范围不足，只有{len(temp_range)}个元素，少于{num}个")
         res_list: list[tuple[element.Element, bool]] = []
-        if not correct_num:
+        if correct_num is None:
             samples = random.sample(temp_range, num)
-            new_prop = copy.deepcopy(asked_prop)
             for s in samples:
+                new_prop = copy.deepcopy(asked_prop)
                 new_prop[ask_attr] = s
                 res_list.append((s, new_prop.is_contained(self.reachable_props)))
         else:
             assert correct_num <= num, f"正确元素数量{correct_num}大于总元素数量{num}"
-            new_prop = copy.deepcopy(asked_prop)
-            element_judge = [False] * num
+            # 06-20修改: element_judge的长度改为与temp_range的长度相同
+            element_judge = [False] * len(temp_range)
             for i, t in enumerate(temp_range):
+                new_prop = copy.deepcopy(asked_prop)
                 new_prop[ask_attr] = t
                 element_judge[i] = new_prop.is_contained(self.reachable_props)
             assert sum(element_judge) >= correct_num, f"正确元素数量{sum(element_judge)}小于要求的数量{correct_num}"
             assert sum([not i for i in element_judge]) >= num - correct_num, f"错误元素数量{sum([not i for i in element_judge])}小于要求的数量{num - correct_num}"
-            true_elements = [temp_range[i] for i in range(num) if element_judge[i]]
-            false_elements = [temp_range[i] for i in range(num) if not element_judge[i]]
-            true_samples = random.sample(true_elements, correct_num)
-            false_samples = random.sample(false_elements, num - correct_num)
+            true_elements = [i for i, j in zip(temp_range, element_judge) if j]
+            false_elements = [i for i, j in zip(temp_range, element_judge) if not j]
+            # 06-20修订：如果正确元素或错误元素数量为0或要求为0，则不进行采样
+            if len(true_elements) == 0 or correct_num == 0:
+                true_samples = []
+            else:
+                true_samples = random.sample(true_elements, correct_num)
+            if len(false_elements) == 0 or (num - correct_num) == 0:
+                false_samples = []
+            else:
+                false_samples = random.sample(false_elements, num - correct_num)
             res_list.extend([(s, True) for s in true_samples])
             res_list.extend([(s, False) for s in false_samples])
         return res_list
@@ -347,21 +356,21 @@ class AskMachine:
         Returns:
             dict[str, Any]: 问题、提问属性、选项、答案
         """
-        candidate_props = self._get_candidate_props(prop_type, **kwargs)
-        ask_props = random.sample(candidate_props, option_num)
-        ask_attrs = [i.ask_attr() for i in ask_props]
         temp_correct = correct_num if correct_num else random.randint(1, option_num)
         temp_judge = [True] * temp_correct + [False] * (option_num - temp_correct)
         random.shuffle(temp_judge)
         option_props: list[prop.Proposition] = []
-        for i in range(option_num):
-            while True:
-                try:
+        while True:
+            try:
+                candidate_props = self._get_candidate_props(prop_type, **kwargs)
+                ask_props = random.sample(candidate_props, option_num)
+                ask_attrs = [i.ask_attr() for i in ask_props]
+                for i in range(option_num):
                     option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], temp_judge[i], **kwargs))
-                except Exception as e:
-                    print(f"获取选项失败：{e}")
-                    continue
-                break
+            except Exception as e:
+                print(f"获取选项失败：{e}")
+                continue
+            break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         # 05-04新增：判断最后一个选项是否为all_wrong，如果是，需要backtrace的命题移除最后一个；否则需要backtrace的命题为所有选项
         if isinstance(option_props[option_num - 1], AllWrongOption):
@@ -384,21 +393,21 @@ class AskMachine:
         Returns:
             dict[str, Any]: 问题、提问属性、选项、答案
         """
-        candidate_props = self._get_candidate_props(prop_type, **kwargs)
-        ask_props = random.sample(candidate_props, option_num)
-        ask_attrs = [i.ask_attr() for i in ask_props]
         temp_correct = correct_num if correct_num else random.randint(1, option_num)
         temp_judge = [True] * temp_correct + [False] * (option_num - temp_correct)
         random.shuffle(temp_judge)
         option_props: list[prop.Proposition] = []
-        for i in range(option_num):
-            while True:
-                try:
+        while True:
+            try:
+                candidate_props = self._get_candidate_props(prop_type, **kwargs)
+                ask_props = random.sample(candidate_props, option_num)
+                ask_attrs = [i.ask_attr() for i in ask_props]
+                for i in range(option_num):
                     option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], (not temp_judge[i]), **kwargs))
-                except Exception as e:
-                    print(f"获取选项失败：{e}")
-                    continue
-                break
+            except Exception as e:
+                print(f"获取选项失败：{e}")
+                continue
+            break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         # 05-04新增：判断最后一个选项是否为all_wrong，如果是，需要backtrace的命题移除最后一个；否则需要backtrace的命题为所有选项
         if isinstance(option_props[option_num - 1], AllWrongOption):

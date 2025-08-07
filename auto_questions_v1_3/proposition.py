@@ -117,7 +117,9 @@ class Proposition(element.Element):
             bool: 两个时间命题是否相等
         """
         if not type(self) == type(other):
-            raise TypeError(f"元素{self}和元素{other}类型不同，无法比较")
+            # 06-20新增：如果类型不同，则返回False
+            return False
+            # raise TypeError(f"元素{self}和元素{other}类型不同，无法比较")
         if self.kind != other.kind:
             return False
         for key in self.attrs:
@@ -135,6 +137,15 @@ class Proposition(element.Element):
             list[str]: 主要属性列表
         """
         return [key for key in self.attrs if key not in NO_MAIN_ATTR]
+    
+    # 06-20新增：返回命题的所有主要属性元素
+    def all_attr_elements(self) -> list[element.Element]:
+        """返回命题的所有属性元素
+
+        Returns:
+            list[element.Element]: 属性元素列表
+        """
+        return [self[key] for key in self.attrs if key not in NO_MAIN_ATTR]
     
     def ask_attr(self) -> str:
         """随机选取命题的一个主要属性，用于提问

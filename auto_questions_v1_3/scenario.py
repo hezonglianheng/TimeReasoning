@@ -16,6 +16,7 @@ ATTR_NAMES = "attr_names"
 REF_RULES = "ref_rules"
 SCENARIO_PROPS = "scenario_props"
 SCENARIO_RULES = "scenario_rules"
+TYPE_NAME = "type_name"
 # 05-02新增：情景的难度系数
 LEVEL = "level"
 """情景的难度系数"""
@@ -32,6 +33,7 @@ class Scenario(element.Element):
             self[REF_RULES] = data.get(REF_RULES, [])
             self[SCENARIO_PROPS] = data.get(SCENARIO_PROPS, {})
             self[SCENARIO_RULES] = data.get(SCENARIO_RULES, [])
+            self[TYPE_NAME] = data.get(TYPE_NAME, "")
         self._attr_rewrite()
 
     def _attr_rewrite(self):
