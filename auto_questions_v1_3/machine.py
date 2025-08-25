@@ -345,6 +345,8 @@ class AskMachine:
         options_dict, answer_list = self._get_options_and_answer(all_options)
         # 08-23新增：增加对被提问命题的输出
         print(asked_prop.translate(lang=config.CHINESE), f"提问属性：{ask_attr}，属性值：{origin_element.translate(lang=config.CHINESE)}")
+        print("选项：", [f"{k}: {v.translate(lang=config.CHINESE)}" for k, v in options_dict.items()])
+        print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
         cot = self.graph.backtrace(asked_prop)
         return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: len(cot)}
@@ -382,7 +384,8 @@ class AskMachine:
         else:
             backtrace_props = ask_props
         # 08-23新增：增加对被选择命题的输出
-        print("被选择命题：", [i.translate(lang=config.CHINESE) for i in backtrace_props])
+        print("被选择命题：", [i.translate(lang=config.CHINESE) for i in options_dict.values()])
+        print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
         cots = [self.graph.backtrace(i) for i in backtrace_props]
         cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
@@ -421,7 +424,8 @@ class AskMachine:
         else:
             backtrace_props = ask_props
         # 08-23新增：增加对被选择命题的输出
-        print("被选择命题：", [i.translate(lang=config.CHINESE) for i in backtrace_props])
+        print("被选择命题：", [i.translate(lang=config.CHINESE) for i in options_dict.values()])
+        print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
         cots = [self.graph.backtrace(i) for i in backtrace_props]
         cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])

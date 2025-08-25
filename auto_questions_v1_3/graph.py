@@ -29,8 +29,11 @@ class ReasoningGraph:
             knowledge_props (Optional[Sequence[prop.Proposition]], optional): 知识命题. 默认为None.
         """
         self.init_props: list[prop.Proposition] = list(init_props) # 推理图中的初始命题
+        print("初始命题：", *[p.translate(lang=config.CHINESE) for p in self.init_props])
         self.reasoning_rules: list[rule.Rule] = list(rules) # 推理图中可用的推理规则
+        # print("可用规则", *[r.name for r in self.reasoning_rules])
         self.knowledge_props: list[prop.Proposition] = list(knowledge_props) if knowledge_props is not None else []
+        print("知识命题：", *[p.translate(lang=config.CHINESE) for p in self.knowledge_props])
         self.nodes: list[mynode.Node] = [] # 推理图中的节点
         self.deepest_layer: int = -1 # 推理图中最深的层级
 
