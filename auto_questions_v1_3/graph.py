@@ -154,22 +154,32 @@ class ReasoningGraph:
         for node in self.nodes:
             node[mynode.LAYER] = math.inf
             node[mynode.CONDITION_LAYERS] = [math.inf] * len(node[mynode.CONDITION])
-        post_layer_props: list[prop.Proposition] = []
+        # 08-25修改：不再保存与上一层节点相关的命题，不再对两层节点的命题作比较
+        # post_layer_props: list[prop.Proposition] = []
         curr_layer_props: list[prop.Proposition] = chosen_props + self.knowledge_props
         next_layer_props: list[prop.Proposition] = []
         layer: int = 0
         while True:
             layer += 1
             for node in tqdm([x for x in self.nodes if x[mynode.LAYER] > layer], desc=f"设置第{layer}层节点"):
-                conclusion = node.set_layer(layer, curr_layer_props)
+                # 08-25修改：set_layer函数不再提供返回
+                # conclusion = node.set_layer(layer, curr_layer_props)
+                node.set_layer(layer, curr_layer_props)
+                # 08-25修改：不再对两层节点的命题作比较，以提高运行效率
+                '''
                 if conclusion and (not conclusion.is_contained(post_layer_props)) and (not conclusion.is_contained(curr_layer_props)) and (not conclusion.is_contained(next_layer_props)):
                     next_layer_props.append(conclusion)
+                '''
+                # 08-25修改：改为直接取当前层节点的结论命题进入下一步
+                if node[mynode.LAYER] == layer:
+                    next_layer_props.append(node[mynode.CONCLUSION])
             print(f"第{layer}层节点设置完毕，已经设置{len(next_layer_props)}个结论命题")
             if len(next_layer_props) == 0:
                 self.deepest_layer = layer if any([n for n in self.nodes if n[mynode.LAYER] == layer]) else layer - 1
                 print(f"设置层级结束，共设置{self.deepest_layer}层")
                 break
-            post_layer_props = curr_layer_props
+            # 08-25修改：不再保存与上一层节点相关的命题
+            # post_layer_props = curr_layer_props
             curr_layer_props = next_layer_props
             next_layer_props = []
 
