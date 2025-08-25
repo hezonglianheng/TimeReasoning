@@ -221,7 +221,8 @@ class Rule(element.Element):
         all_prop: list[prop.Proposition] = [p for p in old_props] + [p for p in new_props]
         
         # 优化1: 预先过滤可提问的命题
-        askable_props = [p for p in all_prop if p[prop.ASKABLE]]
+        # 08-25修改：取消这个优化
+        # askable_props = [p for p in all_prop if p[prop.ASKABLE]]
         
         con_prop_lists: list[list[prop.Proposition]] = []
         if self.kind == RULE:
@@ -230,7 +231,7 @@ class Rule(element.Element):
             for i, kind in enumerate(con_kinds):
                 condition_attrs = self[CONDITION][i][ATTRS]
                 filtered_props = [
-                    p for p in askable_props 
+                    p for p in all_prop
                     if p.kind == kind and all(p.has_attr(attr) for attr in condition_attrs)
                 ]
                 con_prop_lists.append(filtered_props)
@@ -238,7 +239,7 @@ class Rule(element.Element):
             con_kind: str = self[CONDITION][KIND]
             condition_attrs = self[CONDITION][ATTRS]
             filtered_props = [
-                p for p in askable_props 
+                p for p in all_prop
                 if p.kind == con_kind and all(p.has_attr(attr) for attr in condition_attrs)
             ]
             con_prop_lists.append(filtered_props)

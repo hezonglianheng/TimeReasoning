@@ -173,7 +173,8 @@ def graph_setup(events: Sequence[event.Event]):
     for t, e in CONSTRAINT_MACHINE.event_order:
         print(f"{e.translate(config.CHINESE)}: {t.translate(config.CHINESE)}")
     scenario_rules = SCENARIO.get_rules()
-    knowledge_props = SCENARIO.get_props()
+    knowledge_props = []
+    knowledge_props.extend(SCENARIO.get_props()) # 将情景中的独有命题加入知识命题中
     # 05-03新增：将外部知识添加到推理图中
     if KNOWLEDGE_BASE:
         for k in KNOWLEDGE_BASE:
