@@ -104,7 +104,9 @@ class PropChooseMachine:
                     raise ValueError(f"未知的命题选择策略：{strategy}")
             else:
                 raise ValueError(f"未知事件类型：{e.kind}")
-        print(f"根据事件选择了{len(chosen_props)}个命题作为已知命题")
+        # 08-23增加：增加对被选择命题的输出
+        chosen_props_trans = [i.translate(lang=config.CHINESE) for i in chosen_props]
+        print(f"根据事件选择了{len(chosen_props)}个命题作为已知命题", *chosen_props_trans, sep="\n")
         return chosen_props
 
 class OptionGenerator:
@@ -341,6 +343,8 @@ class AskMachine:
         origin_element: element.Element = asked_prop[ask_attr]
         all_options = [(origin_element, True)] + other_options
         options_dict, answer_list = self._get_options_and_answer(all_options)
+        # 08-23新增：增加对被提问命题的输出
+        print(asked_prop.translate(lang=config.CHINESE), f"提问属性：{ask_attr}，属性值：{origin_element.translate(lang=config.CHINESE)}")
         # 05-02新增：增加获得提问命题的推理链
         cot = self.graph.backtrace(asked_prop)
         return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: len(cot)}
@@ -377,6 +381,8 @@ class AskMachine:
             backtrace_props = ask_props[:-1]
         else:
             backtrace_props = ask_props
+        # 08-23新增：增加对被选择命题的输出
+        print("被选择命题：", [i.translate(lang=config.CHINESE) for i in backtrace_props])
         # 05-02新增：增加获得提问命题的推理链
         cots = [self.graph.backtrace(i) for i in backtrace_props]
         cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
@@ -414,6 +420,8 @@ class AskMachine:
             backtrace_props = ask_props[:-1]
         else:
             backtrace_props = ask_props
+        # 08-23新增：增加对被选择命题的输出
+        print("被选择命题：", [i.translate(lang=config.CHINESE) for i in backtrace_props])
         # 05-02新增：增加获得提问命题的推理链
         cots = [self.graph.backtrace(i) for i in backtrace_props]
         cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
