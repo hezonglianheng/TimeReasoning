@@ -25,20 +25,20 @@ class Node(element.Element):
         # TODO: 推理图上节点的翻译方法，用于生成CoT
         pass
 
-    def set_layer(self, curr_layer: int, curr_props: list[prop.Proposition]) -> Optional[prop.Proposition]:
+    # 08-25修改：函数不再提供返回
+    # def set_layer(self, curr_layer: int, curr_props: list[prop.Proposition]) -> Optional[prop.Proposition]:
+    def set_layer(self, curr_layer: int, curr_props: list[prop.Proposition]) -> None:
         """设置节点的层级
 
         Args:
             curr_layer (int): 当前层级
             curr_props (list[prop.Proposition]): 当前的命题
-
-        Returns:
-            Optional[prop.Proposition]: 如果节点层数小于当前层数，返回节点的结论命题，否则返回None
         """
         conditions: list[prop.Proposition] = self[CONDITION]
         for i, p in enumerate(conditions):
             if p.is_contained(curr_props):
                 self[CONDITION_LAYERS][i] = min(self[CONDITION_LAYERS][i], curr_layer)
         self[LAYER] = max(self[CONDITION_LAYERS])
+        # 函数不再提供返回
         # 如果节点层数小于当前层数，返回结论命题，否则返回None
-        return self[CONCLUSION] if self[LAYER] <= curr_layer else None
+        # return self[CONCLUSION] if self[LAYER] <= curr_layer else None
