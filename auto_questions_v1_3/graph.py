@@ -231,6 +231,9 @@ class ReasoningGraph:
         pre_step = curr_nodes[0] # 选择第一个节点作为前一步
         # 递归回溯
         pre_trace: list[mynode.Node] = [] # 前一步的推理路径
+        # 08-23新增：如果pre_step的层数为inf, 则直接返回推理路径
+        if pre_step[mynode.LAYER] == math.inf:
+            return [pre_step]
         for condition, clayer in zip(pre_step[mynode.CONDITION], pre_step[mynode.CONDITION_LAYERS]):
             # 如果条件的层级为1，不再回溯
             if clayer == 1:
