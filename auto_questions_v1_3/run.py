@@ -1,9 +1,10 @@
 # encoding: utf8
 # date: 2025-05-03
-# 在Linux上多进程运行脚本的脚本
+# 在Windows/Linux上多进程运行脚本的脚本
 
 import subprocess
 from pathlib import Path
+import platform
 
 setting_dirs = [
     r"setting_dirs/life_story", 
@@ -36,7 +37,15 @@ if __name__ == "__main__":
             if log_file.exists():
                 print(f"Deleting old log file: {log_file}")
                 log_file.unlink()
-            # 构建命令
-            command = f"nohup python3 {main_script_path} {full_path} -q {typ} > /dev/null 2>&1 &"
-            print(f"Executing command: {command}")
-            subprocess.run(command, shell=True, check=True)
+            
+            # 根据操作系统选择不同的命令
+            if platform.system() == "Windows":
+                # Windows版本：使用start命令后台运行
+                command = f'start /B python "{main_script_path}" "{full_path}" -q {typ}'
+                print(f"Executing command: {command}")
+                subprocess.run(command, shell=True)
+            else:
+                # Linux版本：使用nohup后台运行
+                command = f"nohup python3 {main_script_path} {full_path} -q {typ} > /dev/null 2>&1 &"
+                print(f"Executing command: {command}")
+                subprocess.run(command, shell=True, check=True)

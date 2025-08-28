@@ -17,6 +17,8 @@ from collections.abc import Sequence
 import warnings
 from functools import reduce
 from copy import deepcopy
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import multiprocessing as mp
 
 # constants.
 KIND = "kind"
@@ -40,9 +42,20 @@ class Rule(element.Element):
         assert self.has_attr(JUDGE), f"推理规则{name}缺少判断方式字段"
         assert self.has_attr(CONCLUSION), f"推理规则{name}缺少结论字段"
         self[SYMMETRIC] = kwargs.get(SYMMETRIC, False)
+        # 添加缓存（限制大小防止内存过度使用）
+        self._judge_cache = {}
+        self._conclusion_cache = {}
+        self._compiled_judges = None
+        self._max_cache_size = 10000  # 缓存大小限制
 
     def translate(self, lang, require = None, **kwargs):
         return super().translate(lang, require, **kwargs)
+
+    def clear_cache(self):
+        """清理缓存以释放内存"""
+        self._judge_cache.clear()
+        self._conclusion_cache.clear()
+        print(f"推理规则 {self.name} 的缓存已清理")
 
     def _get_relation_conclusion(self, props: Sequence[prop.Proposition], symmetric_execute: bool = False) -> list[prop.Proposition]:
         """当推理规则的类型为relation时，根据条件推理结论
@@ -99,10 +112,16 @@ class Rule(element.Element):
         Raises:
             ValueError: 当执行注入语句出现错误时
         """
+        # 优化：缓存判断结果
+        prop_hash = tuple(id(p) for p in props)
+        if prop_hash in self._conclusion_cache:
+            return self._conclusion_cache[prop_hash]
+            
         results: list[prop.Proposition] = []
         # 05-03增加：计算可提问性，如果props都不可被提问，则不进行推理
         askable = any([p[prop.ASKABLE] for p in props])
         if not askable:
+            self._conclusion_cache[prop_hash] = results
             return results
         condition_dicts: list[dict] = self[CONDITION]
         conclusion_dicts: list[dict] = self[CONCLUSION]
@@ -110,20 +129,27 @@ class Rule(element.Element):
         for p, c in zip(props, condition_dicts):
             # 如果输入的类型不满足条件要求的类型，则返回空列表
             if p.kind != c[KIND]:
+                self._conclusion_cache[prop_hash] = results
                 return results
             # 如果输入的属性不满足条件要求的属性，则返回空列表
             attrs: list[str] = c[ATTRS]
             for attr in attrs:
                 if not p.has_attr(attr):
+                    self._conclusion_cache[prop_hash] = results
                     return results
             # 利用exec()函数执行定义语句
             sentence = f"{c['name']} = p"
             exec(sentence)
+        
+        # 优化：预编译判断条件
+        if self._compiled_judges is None:
+            self._compiled_judges = [compile(judge, '<string>', 'eval') for judge in self[JUDGE]]
+        
         # 判断规则是否可以使用
-        judge_dict: list[str] = self[JUDGE]
-        for judge in judge_dict:
-            judge_res: bool = eval(judge)
+        for compiled_judge in self._compiled_judges:
+            judge_res: bool = eval(compiled_judge)
             if not judge_res:
+                self._conclusion_cache[prop_hash] = results
                 return results
         # 获取结论
         for c in conclusion_dicts:
@@ -135,7 +161,50 @@ class Rule(element.Element):
             # 05-03增加：结论命题继承条件命题的askable属性
             conclusion[prop.ASKABLE] = askable
             results.append(conclusion)
+        
+        # 缓存结果，并检查缓存大小
+        if len(self._conclusion_cache) >= self._max_cache_size:
+            # 清理一半的缓存
+            keys_to_remove = list(self._conclusion_cache.keys())[:self._max_cache_size // 2]
+            for key in keys_to_remove:
+                del self._conclusion_cache[key]
+        
+        self._conclusion_cache[prop_hash] = results
         return results
+
+    def _get_filtered_props(self, props: list[prop.Proposition]) -> list[list[prop.Proposition]]:
+        """根据规则类型过滤和预处理命题
+        
+        Args:
+            props (list[prop.Proposition]): 输入命题列表
+            
+        Returns:
+            list[list[prop.Proposition]]: 按条件类型分组的过滤后命题列表
+        """
+        # 预先过滤可提问的命题
+        askable_props = [p for p in props if p[prop.ASKABLE]]
+        
+        con_prop_lists: list[list[prop.Proposition]] = []
+        if self.kind == RULE:
+            con_kinds: list[str] = [c[KIND] for c in self[CONDITION]]
+            # 预先过滤符合类型和属性要求的命题
+            for i, kind in enumerate(con_kinds):
+                condition_attrs = self[CONDITION][i][ATTRS]
+                filtered_props = [
+                    p for p in askable_props 
+                    if p.kind == kind and all(p.has_attr(attr) for attr in condition_attrs)
+                ]
+                con_prop_lists.append(filtered_props)
+        elif self.kind == RELATION:
+            con_kind: str = self[CONDITION][KIND]
+            condition_attrs = self[CONDITION][ATTRS]
+            filtered_props = [
+                p for p in askable_props 
+                if p.kind == con_kind and all(p.has_attr(attr) for attr in condition_attrs)
+            ]
+            con_prop_lists.append(filtered_props)
+        
+        return con_prop_lists
 
     def reason(self, old_props: list[prop.Proposition], new_props: list[prop.Proposition], reason_round: int) -> list[mynode.Node]:
         """根据规则推理新的命题
@@ -150,24 +219,54 @@ class Rule(element.Element):
         """
         used_props = deepcopy(old_props)
         all_prop: list[prop.Proposition] = [p for p in old_props] + [p for p in new_props]
+        
+        # 优化1: 预先过滤可提问的命题
+        # 08-25修改：取消这个优化
+        # askable_props = [p for p in all_prop if p[prop.ASKABLE]]
+        
         con_prop_lists: list[list[prop.Proposition]] = []
         if self.kind == RULE:
             con_kinds: list[str] = [c[KIND] for c in self[CONDITION]]
-            con_props = [[p for p in all_prop if p.kind == kind] for kind in con_kinds]
-            con_prop_lists.extend(con_props)
+            # 优化2: 预先过滤符合类型和属性要求的命题
+            for i, kind in enumerate(con_kinds):
+                condition_attrs = self[CONDITION][i][ATTRS]
+                filtered_props = [
+                    p for p in all_prop
+                    if p.kind == kind and all(p.has_attr(attr) for attr in condition_attrs)
+                ]
+                con_prop_lists.append(filtered_props)
         elif self.kind == RELATION:
             con_kind: str = self[CONDITION][KIND]
-            con_props = [p for p in all_prop if p.kind == con_kind]
-            con_prop_lists.append(con_props)
+            condition_attrs = self[CONDITION][ATTRS]
+            filtered_props = [
+                p for p in all_prop
+                if p.kind == con_kind and all(p.has_attr(attr) for attr in condition_attrs)
+            ]
+            con_prop_lists.append(filtered_props)
         else:
             raise ValueError(f"推理规则{self.name}具有不支持的规则类型{self.kind}")
+        
+        # 优化3: 早期退出检查
+        if any(len(prop_list) == 0 for prop_list in con_prop_lists):
+            return []
+        
         results: list[mynode.Node] = []
         total = reduce(lambda x, y: x*y, [len(i) for i in con_prop_lists])
+        
+        # 优化4: 使用集合来加速成员检查
+        used_props_set = set(id(p) for p in used_props)
+        
         for curr_props in tqdm(product(*con_prop_lists), total=total, desc=f"第{reason_round}轮推理使用推理规则{self.name}"):
-            if all([p in used_props for p in curr_props]):
+            # 优化5: 使用集合查找代替列表查找
+            if all(id(p) in used_props_set for p in curr_props):
                 continue
-            if len(curr_props) > 1 and any(p1 == p2 for p1, p2 in permutations(curr_props, r=2)):
-                continue
+            
+            # 优化6: 使用集合检查重复
+            if len(curr_props) > 1:
+                prop_ids = set(id(p) for p in curr_props)
+                if len(prop_ids) != len(curr_props):
+                    continue
+            
             if self.kind == RULE:
                 curr_conclusions = self._get_rule_conclusion(curr_props)
             elif self.kind == RELATION:
