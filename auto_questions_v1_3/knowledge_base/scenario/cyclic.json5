@@ -194,8 +194,8 @@
             "judge": [
                 "after1['event2'] == after2['event1']", 
                 "after1['diff'] + after2['diff'] == period['duration']",
-                // 08-30规则修订：before1的event1不等于before2的事件2
-                "before1['event1'] != before2['event2']",
+                // 08-30规则修订：after1的event1不等于after2的事件2
+                "after1['event1'] != after2['event2']",
             ],
             "conclusion": [
                 {
