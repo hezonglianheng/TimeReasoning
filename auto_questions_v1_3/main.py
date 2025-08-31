@@ -104,9 +104,13 @@ def event_setup(event_attr_list: list[dict], myobject_list: list[event.MyObject]
     if not element.name_is_unique(event_list):
         raise ValueError("Event对象的名称不唯一")
     print(f"Event对象列表初始化完成，共{len(event_list)}个对象")
-    random.shuffle(event_list)
-    for chosen_list in combinations(event_list, event_num):
-        yield chosen_list
+    # 08-31修改：event的yield顺序改为每次调用时都重新采样，放弃使用combinations，以避免迭代耗尽的问题
+    # random.shuffle(event_list)
+    # for chosen_list in combinations(event_list, event_num):
+        # yield chosen_list
+    while True:
+        sampled_events = random.sample(event_list, event_num)
+        yield tuple(sampled_events)
 
 def event_name_setup(event_attr_list: list[dict]) -> list[str]:
     """初始化事件名称列表
