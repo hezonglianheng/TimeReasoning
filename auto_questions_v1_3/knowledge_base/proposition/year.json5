@@ -148,7 +148,7 @@
                     "{event2:}和{event1:}中间差了{diff:}",
                 ],
                 "en": [
-                    "The gap between the time {event1:} and the time {event2:} is {diff:}",
+                    "The gap between {event1:} and {event2:} is {diff:}",
                     "There is a {diff:} gap between {event1:} and {event2:}"
                 ]
             }, 
