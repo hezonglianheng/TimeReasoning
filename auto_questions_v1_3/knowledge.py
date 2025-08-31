@@ -134,7 +134,8 @@ def get_selected_knowledge(time_unit: str, num: int = 5) -> list[Knowledge]:
     Returns:
         list[Knowledge]: 知识列表
     """
-    assert num > 0, "需要获取的知识数量必须大于0"
+    # 08-31修改：现在需要获取的知识数量可以等于0
+    assert num >= 0, "需要获取的知识数量必须大于等于0"
     knowledge_file = config.EXTERNAL_KNOWLEDGE_DIR / f"{time_unit}.json5"
     if not knowledge_file.exists():
         print(f"知识文件 {knowledge_file} 不存在")
