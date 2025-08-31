@@ -206,7 +206,6 @@
                     "{event1:}持续了和{event2:}一致的时长"
                 ],
                 "en": [
-                    "The time that {event1:} takes the same amount of time that {event2:}",
                     "The time {event1:} is the same length as {event2:}",
                     "The duration that {event1:} is the same as the duration that {event2:}",
                     "The duration {event1:} is equal to the duration {event2:}",
