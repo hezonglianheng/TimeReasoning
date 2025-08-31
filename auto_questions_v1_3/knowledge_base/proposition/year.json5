@@ -79,11 +79,11 @@
             "templates": {
                 "cn": [
                     "{event1:}的年份比{event2:}早",
-                    "{event1:}是在{event2:}之前",
-                    "在{event2:}之前，{event1:}"
+                    "{event1:}是在{event2:}那年之前",
+                    "在{event2:}那年之前，{event1:}"
                 ],
                 "en": [
-                    "{event1:} before {event2:}"
+                    "The year {event1:} predates the year {event2:}"
                 ]
             }, 
         },
@@ -104,11 +104,11 @@
             "templates": {
                 "cn": [
                     "{event1:}的年份比{event2:}晚",
-                    "{event1:}是在{event2:}之后",
-                    "在{event2:}之后，{event1:}"
+                    "{event1:}是在{event2:}那年之后",
+                    "在{event2:}那年之后，{event1:}"
                 ],
                 "en": [
-                    "{event1:} after {event2:}"
+                    "The year {event1:} postdates the year {event2:}"
                 ]
             }, 
         },
@@ -148,7 +148,7 @@
                     "{event2:}和{event1:}中间差了{diff:}",
                 ],
                 "en": [
-                    "The gap between the time {event1:} and the time {event2:} is {diff:}",
+                    "The gap between {event1:} and {event2:} is {diff:}",
                     "There is a {diff:} gap between {event1:} and {event2:}"
                 ]
             }, 
@@ -160,9 +160,8 @@
                     "{event1:}的时间比{event2:}的时间长"
                 ],
                 "en": [
-                    "The time that {event1:} takes a longer time than {event2:}",
-                    "{event1:} for longer time than {event2:}",
-                    "Compared to the duration that {event2:}, {event1:} for a longer time"
+                    "{event1:} for more years than {event2:}",
+                    "Compared to how long {event2:}, {event1:} for more years"
                 ]
             }, 
         },
@@ -183,9 +182,8 @@
                     "{event1:}的时间比{event2:}的时间短"
                 ],
                 "en": [
-                    "The time that {event1:} takes a shorter time than {event2:}",
-                    "{event1:} for shorter time than {event2:}",
-                    "Compared to the duration that {event2:}, {event1:} for a shorter time"
+                    "{event1:} for less years than {event2:}",
+                    "Compared to how long {event2:}, {event1:} for less years"
                 ]
             }, 
         },
@@ -208,7 +206,6 @@
                     "{event1:}持续了和{event2:}一致的时长"
                 ],
                 "en": [
-                    "The time that {event1:} takes the same amount of time that {event2:}",
                     "The time {event1:} is the same length as {event2:}",
                     "The duration that {event1:} is the same as the duration that {event2:}",
                     "The duration {event1:} is equal to the duration {event2:}",
