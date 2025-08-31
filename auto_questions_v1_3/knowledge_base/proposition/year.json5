@@ -79,11 +79,11 @@
             "templates": {
                 "cn": [
                     "{event1:}的年份比{event2:}早",
-                    "{event1:}是在{event2:}之前",
-                    "在{event2:}之前，{event1:}"
+                    "{event1:}是在{event2:}那年之前",
+                    "在{event2:}那年之前，{event1:}"
                 ],
                 "en": [
-                    "{event1:} before {event2:}"
+                    "The year {event1:} predates the year {event2:}"
                 ]
             }, 
         },
@@ -104,11 +104,11 @@
             "templates": {
                 "cn": [
                     "{event1:}的年份比{event2:}晚",
-                    "{event1:}是在{event2:}之后",
-                    "在{event2:}之后，{event1:}"
+                    "{event1:}是在{event2:}那年之后",
+                    "在{event2:}那年之后，{event1:}"
                 ],
                 "en": [
-                    "{event1:} after {event2:}"
+                    "The year {event1:} postdates the year {event2:}"
                 ]
             }, 
         },
