@@ -119,7 +119,7 @@ class Constraint(element.Element):
             std_ceiling = copy.deepcopy(main_time)
         else:
             raise ValueError(f"不支持的约束类型{self.kind}")
-        assert std_floor <= std_ceiling, "时间范围不合法"
+        assert std_floor <= std_ceiling, f"时间范围不合法: {std_floor} - {std_ceiling}"
         return {FLOOR: std_floor, CEILING: std_ceiling}
 
 class ConstraintMachine:
@@ -182,6 +182,10 @@ class ConstraintMachine:
                 ceiling = new_range[CEILING]
             self.constraint_graph.nodes[node][FLOOR] = floor
             self.constraint_graph.nodes[node][CEILING] = ceiling
+        
+        for node in self.constraint_graph.nodes:
+            print(f"事件{node}的时间范围: {self.constraint_graph.nodes[node][FLOOR]} - {self.constraint_graph.nodes[node][CEILING]}")
+            # assert floor <= ceiling, f"事件{node}的时间范围不合法: {floor} - {ceiling}"
 
     def _backward(self):
         """后向传播，根据约束关系随机获得事件时间值.
@@ -202,6 +206,7 @@ class ConstraintMachine:
             time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
             chosen_time = random.choice(time_range)
             self.constraint_graph.nodes[node][TIME] = chosen_time
+            print(f"事件{node}的时间值设置为: {chosen_time}")
 
     def _get_temporal_time(self, e: event.Event) -> represent.CustomTime:
         """从约束图中，为时点事件获取时间值

@@ -338,6 +338,14 @@ class CustomTime(element.Element):
         result = CustomTime(kind=self.kind, **time_attr)
         return result
 
+    def __str__(self) -> str:
+        """时间对象的字符串表示，只输出属性值信息
+
+        Returns:
+            str: 时间的字符串表示
+        """
+        return str(self.attrs)
+
 class CustomTimeDelta(element.Element):
     """自定义时间间隔的抽象基类
     """
@@ -435,6 +443,14 @@ class CustomTimeDelta(element.Element):
         delta_base: int = self[base] % other[base]
         delta = CustomTimeDelta(kind=self.kind, **{base: delta_base})
         return delta
+
+    def __str__(self) -> str:
+        """时间间隔对象的字符串表示，只输出属性值信息
+
+        Returns:
+            str: 时间间隔的字符串表示
+        """
+        return str(self.attrs)
 
 if __name__ == "__main__":
     convert_result = convert2lower(1, "year")
