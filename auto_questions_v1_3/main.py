@@ -57,6 +57,8 @@ CURR_UNIT_KEY = "curr_unit" # 当前需要引用的单位
 # 05-03新增：外部知识数量的键
 KNOWLEDGE_NUM_KEY = "knowledge_num"
 """设置知识数量的键"""
+# 09-02新增：设置事件时间分配方式的键
+DISTRIBUTION_MODE_KEY = "distribution_mode"
 
 def set_random_seed(seed: int | float | None):
     """设置随机种子
@@ -130,7 +132,7 @@ def event_name_setup(event_attr_list: list[dict]) -> list[str]:
                 names.append(event_attr[member]["name"])
     return names
 
-def constraint_setup(event_names: list[str], constraint_rules: list[dict], upper_bound: dict, lower_bound: dict):
+def constraint_setup(event_names: list[str], constraint_rules: list[dict], upper_bound: dict, lower_bound: dict, distribution_mode: str = "random"):
     """初始化约束机器
 
     Args:
@@ -138,11 +140,14 @@ def constraint_setup(event_names: list[str], constraint_rules: list[dict], upper
         constraint_rules (list[dict]): 约束规则字典列表
         upper_bound (dict): 约束上界字典
         lower_bound (dict): 约束下界字典
+        distribution_mode (str): 事件时间分配方式，默认为"random". 目前可用的策略有：
+            - random: 为每个事件随机选择时间
+            - individual: 每个事件选择的时间互不相同
     """
     global CONSTRAINT_MACHINE
     upper_bound = represent.CustomTime(**upper_bound)
     lower_bound = represent.CustomTime(**lower_bound)
-    CONSTRAINT_MACHINE = constraint.ConstraintMachine(event_names, constraint_rules, upper_bound, lower_bound)
+    CONSTRAINT_MACHINE = constraint.ConstraintMachine(event_names, constraint_rules, upper_bound, lower_bound, distribution_mode)
 
 def scenario_setup(scenario_attr_dict: dict):
     """初始化情景
@@ -350,7 +355,8 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
     event_names = event_name_setup(settings[EVENT_KEY])
     event_iter = event_setup(settings[EVENT_KEY], myobject_list, settings[EVENT_NUM_KEY])
     # 初始化约束机器
-    constraint_setup(event_names, settings[CONSTRAINT_KEY], settings[TIME_RANGE_KEY]["upper_bound"], settings[TIME_RANGE_KEY]["lower_bound"])
+    curr_distribution_mode: str = settings.get(DISTRIBUTION_MODE_KEY, "random")
+    constraint_setup(event_names, settings[CONSTRAINT_KEY], settings[TIME_RANGE_KEY]["upper_bound"], settings[TIME_RANGE_KEY]["lower_bound"], curr_distribution_mode)
     # 命题文件的初始化
     config.set_curr_unit(settings[CURR_UNIT_KEY])
     prop.init() # 初始化命题库，加载命题文件。必须初始化！

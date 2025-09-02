@@ -123,7 +123,19 @@ class Constraint(element.Element):
         return {FLOOR: std_floor, CEILING: std_ceiling}
 
 class ConstraintMachine:
-    def __init__(self, event_names: Sequence[str], constraint_rules: Sequence[dict], upper_bound: represent.CustomTime, lower_bound: represent.CustomTime):
+    def __init__(self, event_names: Sequence[str], constraint_rules: Sequence[dict], upper_bound: represent.CustomTime, lower_bound: represent.CustomTime, distribution_mode: str = "random"):
+        """
+        初始化约束机
+
+        Args:
+            event_names (Sequence[str]): 事件名称列表
+            constraint_rules (Sequence[dict]): 约束规则列表
+            upper_bound (represent.CustomTime): 上界时间
+            lower_bound (represent.CustomTime): 下界时间
+            distribution_mode (str): 事件时间分配方式，默认为"random". 目前可用的策略有：
+                - random: 为每个事件随机选择时间
+                - individual: 每个事件选择的时间互不相同
+        """
         self.event_names = event_names
         self.constraint_rules = constraint_rules
         assert upper_bound > lower_bound, "约束机类中上界应大于下界"
@@ -132,6 +144,11 @@ class ConstraintMachine:
         self.constraint_graph = nx.DiGraph()
         # 03-11新增：增加对于事件顺序的记录
         self.event_order: list[tuple[represent.CustomTime, event.Event]] = []
+        # 09-02新增：增加对于事件时间分配方式的记录
+        self.distribution_mode = distribution_mode
+        """事件时间的分配方式"""
+        self.had_chosen_time: list[represent.CustomTime] = []
+        """记录已经被选择过的时间"""
         self._construct()
         # 05-04移除：不在初始化时进行前向传播，而是每次求取事件的时间时再进行
         # self._forward()
@@ -231,7 +248,14 @@ class ConstraintMachine:
                 self.constraint_graph.nodes[node][CEILING] = new_range[CEILING]
             # 随机得到一个时间值
             time_range = represent.get_time_range(self.constraint_graph.nodes[node][FLOOR], self.constraint_graph.nodes[node][CEILING])
-            chosen_time = random.choice(time_range)
+            # 09-02修改：根据不同的时间分配方式执行不同的策略
+            if self.distribution_mode == "random":
+                chosen_time = random.choice(time_range)
+            elif self.distribution_mode == "individual":
+                candidate_times = [i for i in time_range if not i.is_contained(self.had_chosen_time)]
+                assert len(candidate_times) > 0, f"事件范围内的每个时间点都被耗尽，事件{node}没有可用的时间"
+                chosen_time = random.choice(candidate_times)
+                self.had_chosen_time.append(chosen_time)
             # 将时间值、上下限都设置为chosen_time
             self.constraint_graph.nodes[node][TIME] = chosen_time
             self.constraint_graph.nodes[node][FLOOR] = chosen_time
