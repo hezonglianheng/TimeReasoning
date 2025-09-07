@@ -354,9 +354,6 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
     # 初始化Event对象
     event_names = event_name_setup(settings[EVENT_KEY])
     event_iter = event_setup(settings[EVENT_KEY], myobject_list, settings[EVENT_NUM_KEY])
-    # 初始化约束机器
-    curr_distribution_mode: str = settings.get(DISTRIBUTION_MODE_KEY, "random")
-    constraint_setup(event_names, settings[CONSTRAINT_KEY], settings[TIME_RANGE_KEY]["upper_bound"], settings[TIME_RANGE_KEY]["lower_bound"], curr_distribution_mode)
     # 命题文件的初始化
     config.set_curr_unit(settings[CURR_UNIT_KEY])
     prop.init() # 初始化命题库，加载命题文件。必须初始化！
@@ -365,6 +362,9 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
     result = []
     for i in range(settings[RESET_TIME_KEY]):
         print(f"第{i+1}次重置")
+        # 初始化约束机器
+        curr_distribution_mode: str = settings.get(DISTRIBUTION_MODE_KEY, "random")
+        constraint_setup(event_names, settings[CONSTRAINT_KEY], settings[TIME_RANGE_KEY]["upper_bound"], settings[TIME_RANGE_KEY]["lower_bound"], curr_distribution_mode)
         curr_events: tuple[event.Event] = next(event_iter)
         # 05-03新增：外部知识的初始化
         external_knowledge_setup(settings[CURR_UNIT_KEY], settings[KNOWLEDGE_NUM_KEY])
