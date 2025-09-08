@@ -178,6 +178,21 @@ def convert_number_to_time(unit: str, num: int, lang: str) -> str:
     else:
         raise NotImplementedError(f"单位{unit}不受支持")
 
+def time_is_neighbor(time1: "CustomTime", time2: "CustomTime") -> bool:
+    """判断两个时间是否相邻
+
+    Args:
+        time1 (CustomTime): 时间1
+        time2 (CustomTime): 时间2
+
+    Returns:
+        bool: 如果两个时间相邻则返回True，否则返回False
+    """
+    if time1.kind != time2.kind:
+        return False
+    delta_list = get_time_delta_range(time1, time2)
+    return len(delta_list) == 1 and delta_list[0].is_one()
+
 class CustomTime(element.Element):
     """自定义时间的抽象基类
     """
@@ -500,6 +515,16 @@ class CustomTimeDelta(element.Element):
             str: 时间间隔的字符串表示
         """
         return str(self.attrs)
+
+    # 09-07新增：判断时间间隔是否为一的函数
+    def is_one(self) -> bool:
+        """判断时间间隔是否为1
+
+        Returns:
+            bool: 如果时间间隔为1则返回True，否则返回False
+        """
+        base: str = TIME_UNIT[TIMEDELTA_KINDS][self.kind][BASE]
+        return self[base] == 1
 
 if __name__ == "__main__":
     convert_result = convert2lower(1, "year")
