@@ -37,11 +37,25 @@
             "units": ["day", ], 
             "translate": {
                 // strategy为list时，根据时间值检索列表，找到对应的翻译
+                // 09-07新增：增加对多个检索列表的支持
                 "cn": [
-                    {"attr": "day", "strategy": "list", "list": ["周一", "周二", "周三", "周四", "周五", "周六", "周日", ], },
+                        {
+                            "attr": "day", 
+                            "strategy": "list", 
+                            "list": [
+                                ["周一", "周二", "周三", "周四", "周五", "周六", "周日", ], 
+                                ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天",], 
+                            ], 
+                        },
                 ], 
                 "en": [
-                    {"attr": "day", "strategy": "list", "list": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", ], }, 
+                        {
+                            "attr": "day", 
+                            "strategy": "list", 
+                            "list": [
+                                ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", ],
+                            ], 
+                        }, 
                 ],
             }, 
             "base": "day", 

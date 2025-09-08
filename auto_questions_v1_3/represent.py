@@ -287,7 +287,13 @@ class CustomTime(element.Element):
                 res += template.format(**self.attrs)
             elif g[STRATEGY] == "list":
                 # 通过读取列表的方法完成翻译
-                time_list: list[str] = g["list"]
+                # 09-08修改：支持多个列表的情况
+                # time_list: list[str] = g["list"]
+                time_lists: list[list[str]] = g["list"]
+                if len(time_lists) == 1:
+                    time_list: list[str] = time_lists[0]
+                else:
+                    time_list: list[str] = random.choice(time_lists)
                 time_value: int = self[g["attr"]]
                 res += time_list[time_value - 1]
             elif g[STRATEGY] == "function":
