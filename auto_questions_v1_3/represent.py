@@ -5,6 +5,7 @@
 时间表示的基本类定义，包括自定义时间和自定义时间间隔
 """
 
+from pycnnum import num2cn # 用于中文数字转换
 import json5
 import lemminflect
 import networkx as nx
@@ -142,11 +143,54 @@ def get_time_delta_range(time1: "CustomTime", time2: "CustomTime") -> list["Cust
     time_delta_range = [t for i in range(1, len(time_range)) if (t := (time_range[i] - time_range[0]))]
     return time_delta_range
 
+def convert_number_to_time(unit: str, num: int, lang: str) -> str:
+    """将数字转换为时间，用于翻译
+
+    Args:
+        unit (str): 时间单位
+        num (int): 要转换的数字
+        lang (str): 目标语言
+
+    Raises:
+        NotImplementedError: 不支持的语言
+
+    Returns:
+        str: 转换后的序数词
+    """
+    assert num >= 0, "数字必须是非负整数"
+    if unit == "order":
+        if lang == config.CHINESE:
+            return "第" + num2cn(num)
+        elif lang == config.ENGLISH:
+            if (last_two_digit := num % 100) == 11 or last_two_digit == 12:
+                suffix = "th"
+            elif (last_one_digit := num % 10) == 1:
+                suffix = "st"
+            elif last_one_digit == 2:
+                suffix = "nd"
+            elif last_one_digit == 3:
+                suffix = "rd"
+            else:
+                suffix = "th"
+            return f"the {num}{suffix}"
+        else:
+            raise NotImplementedError(f"语言{lang}不受支持")
+    else:
+        raise NotImplementedError(f"单位{unit}不受支持")
+
 class CustomTime(element.Element):
     """自定义时间的抽象基类
     """
 
     def __init__(self, name = "", kind = "", **kwargs):
+        """
+        自定义时间的构造函数
+
+        Args:
+            name (str, optional): 元素的名称，默认为"".
+            kind (str, optional): 元素的类型，默认为"".
+            **kwargs: 元素的其他属性
+        """
         super().__init__(name, kind, **kwargs)
         # 如果没有指定时间类型，则自动推断
         if kind == "":
@@ -231,6 +275,11 @@ class CustomTime(element.Element):
                 time_list: list[str] = g["list"]
                 time_value: int = self[g["attr"]]
                 res += time_list[time_value - 1]
+            elif g[STRATEGY] == "function":
+                # 通过调用函数的方法完成翻译
+                # 目前仅支持utils模块中的函数，函数名必须是convert_number_to_{kind}的格式
+                time_value: int = self[g["attr"]]
+                res += convert_number_to_time(self.kind, time_value, lang)
             else:
                 raise ValueError(f"对{self.kind}类型的翻译出现了未知的翻译方法: {g[STRATEGY]}")
         return res
