@@ -34,25 +34,5 @@
                 ],
             },
         },
-        "before_1": {
-            "templates": {
-                "cn": [
-                    "{event1:}之前的上一件事是{event2:}",
-                ],
-                "en": [
-                    "{event1:} is immediately after {event2:}",
-                ],
-            },
-        },
-        "after_1": {
-            "templates": {
-                "cn": [
-                    "{event1:}之后的下一件事是{event2:}",
-                ],
-                "en": [
-                    "{event1:} is immediately before {event2:}",
-                ],
-            },
-        },
     },
 }

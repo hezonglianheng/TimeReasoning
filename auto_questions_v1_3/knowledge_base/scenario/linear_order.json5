@@ -11,7 +11,29 @@
         "AfterTrans", 
     ], 
     // 情景中独有的命题
-    "scenario_props": {}, 
+    "scenario_props": {
+        // 将before_1和after_1两种独有命题的模板放置在此处
+        "before_1": {
+            "templates": {
+                "cn": [
+                    "{event1:}之前的上一件事是{event2:}",
+                ],
+                "en": [
+                    "{event1:} is immediately after {event2:}",
+                ],
+            },
+        },
+        "after_1": {
+            "templates": {
+                "cn": [
+                    "{event1:}之后的下一件事是{event2:}",
+                ],
+                "en": [
+                    "{event1:} is immediately before {event2:}",
+                ],
+            },
+        },
+    }, 
     // 情景中独有的规则，按照rule.json5中的方式书写
     "scenario_rules": [
         {
