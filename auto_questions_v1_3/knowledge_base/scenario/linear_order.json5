@@ -9,9 +9,6 @@
         "before_equivalence_after", 
         "BeforeTrans", 
         "AfterTrans", 
-        "beforetime_entail_before", 
-        "aftertime_entail_after", 
-        "beforetime_equivalence_aftertime", 
     ], 
     // 情景中独有的命题
     "scenario_props": {}, 
@@ -31,11 +28,11 @@
             ],
             "conclusion": [
                 {
-                    "kind": "before_time", 
+                    "kind": "before_1", 
                     "attrs": {
                         "event1": "temporal1['event']", 
                         "event2": "temporal2['event']",
-                        "diff": "temporal2['time'] - temporal1['time']",
+                        // "diff": "temporal2['time'] - temporal1['time']",
                     }, 
                 }, 
             ],
@@ -54,15 +51,42 @@
             ],
             "conclusion": [
                 {
-                    "kind": "after_time", 
+                    "kind": "after_1", 
                     "attrs": {
                         "event1": "temporal1['event']", 
                         "event2": "temporal2['event']",
-                        "diff": "temporal1['time'] - temporal2['time']",
+                        // "diff": "temporal1['time'] - temporal2['time']",
                     }, 
                 }, 
             ],
         }, 
+        {
+            // 含义：A在B之前1个 => A在B之前
+            "name": "before_1_entail_before",
+            "kind": "relation",
+            "condition": {"kind": "before_1", "attrs": ["event1", "event2",]},
+            "judge": [],
+            "conclusion": {"kind": "before", "attrs": ["event1", "event2"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A在B之后1个 => A在B之后
+            "name": "after_1_entail_after",
+            "kind": "relation",
+            "condition": {"kind": "after_1", "attrs": ["event1", "event2",]},
+            "judge": [],
+            "conclusion": {"kind": "after", "attrs": ["event1", "event2"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A在B之前1个 <=> B在A之后1个
+            "name": "before_1_equivalence_after_1",
+            "kind": "relation",
+            "condition": {"kind": "before_1", "attrs": ["event1", "event2",]},
+            "judge": [],
+            "conclusion": {"kind": "after_1", "attrs": ["event2", "event1"]},
+            "symmetric": true,
+        },
     ], 
     // 情景的难度系数
     "level": 0.0, 

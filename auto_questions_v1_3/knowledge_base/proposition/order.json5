@@ -34,7 +34,7 @@
                 ],
             },
         },
-        "before_time": {
+        "before_1": {
             "templates": {
                 "cn": [
                     "{event1:}之前的上一件事是{event2:}",
@@ -44,7 +44,7 @@
                 ],
             },
         },
-        "after_time": {
+        "after_1": {
             "templates": {
                 "cn": [
                     "{event1:}之后的下一件事是{event2:}",
