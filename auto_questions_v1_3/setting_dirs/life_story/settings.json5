@@ -443,4 +443,6 @@
             // "ceiling": {"kind": "year", "year": 100},
         },
     ],
+    // 09-02新增：增加设置事件时间分配方式的可选参数distribution_mode
+    // "distribution_mode": "random",
 }

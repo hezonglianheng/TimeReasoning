@@ -10,6 +10,9 @@
                 "cn": [
                     "在{time:}，{event:}",
                     "{time:}，{event:}",
+                    "{event:}的日子是{time:}",
+                    "{event:}的日期是{time:}",
+                    "{event:}是在{time:}",
                 ],
                 "en": [
                     "On {time:}, {event:}",
@@ -74,7 +77,9 @@
             "templates": {
                 "cn": [
                     "在{event2:}之前{diff:}，{event1:}",
+                    "在{event2:}以前{diff:}，{event1:}",
                     "在{event2:}的{diff:}之前，{event1:}",
+                    "在{event2:}的{diff:}以前，{event1:}",
                 ],
                 "en": [
                     "{event1:} {diff:} before {event2:}",
@@ -96,7 +101,9 @@
             "templates": {
                 "cn": [
                     "在{event2:}之后{diff:}，{event1:}",
+                    "在{event2:}以后{diff:}，{event1:}",
                     "在{event2:}的{diff:}之后，{event1:}",
+                    "在{event2:}的{diff:}以后，{event1:}",
                 ],
                 "en": [
                     "{event1:} {diff:} after {event2:}",
@@ -109,7 +116,8 @@
                 "cn": [
                     "在{event2:}的那一天，{event1:}",
                     "某一天，{event2:}，而且{event1:}",
-                    "在{event2:}的同一天，{event1:}"
+                    "在{event2:}的同一天，{event1:}", 
+                    "在{event2:}的那天，{event1:}",
                 ],
                 "en": [
                     "On the day that {event2:}, {event1:}",
@@ -124,6 +132,8 @@
                 "cn": [
                     "{event2:}和{event1:}之间相差{diff:}",
                     "{event2:}和{event1:}中间差了{diff:}",
+                    "{event2:}和{event1:}之间隔着{diff:}",
+                    "{event2:}和{event1:}中间隔了{diff:}", 
                 ],
                 "en": [
                     "The gap between the time {event1:} and the time {event2:} is {diff:}",

@@ -1,0 +1,58 @@
+// date: 2025-09-08
+// 与时间命题相关的知识库文件，表示事件的次序
+
+{
+    "prop_kinds": {
+        // 时点事件命题
+        "temporal": {
+            "templates": {
+                "cn": [
+                    "{event:}是{time:}个发生的事件",
+                ],
+                "en": [
+                    "{event:} is {time:} event that happened",
+                ],
+            },
+        },
+        "before": {
+            "templates": {
+                "cn": [
+                    "{event1:}早于{event2:}",
+                ],
+                "en": [
+                    "{event1:} is before {event2:}",
+                ],
+            },
+        }, 
+        "after": {
+            "templates": {
+                "cn": [
+                    "{event1:}晚于{event2:}",
+                ],
+                "en": [
+                    "{event1:} is after {event2:}",
+                ],
+            },
+        },
+        "before_time": {
+            "templates": {
+                "cn": [
+                    "{event1:}之前的上一件事是{event2:}",
+                ],
+                "en": [
+                    "{event1:} is immediately after {event2:}",
+                ],
+            },
+        },
+        "after_time": {
+            "templates": {
+                "cn": [
+                    "{event1:}之后的下一件事是{event2:}",
+                ],
+                "en": [
+                    "{event1:} is immediately before {event2:}",
+                ],
+            },
+        },
+    },
+}

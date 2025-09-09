@@ -3,7 +3,8 @@
 
 {
     // 基本时间单位，它们的值是整数
-    "basic_unit": ["year", "month", "day", "hour", "minute", "second"],
+    // 09-07新增：增加表示顺序的时间单位order
+    "basic_unit": ["year", "month", "day", "hour", "minute", "second", "order", ],
     // 时间的种类
     "time_kinds": {
         // 年份
@@ -36,17 +37,47 @@
             "units": ["day", ], 
             "translate": {
                 // strategy为list时，根据时间值检索列表，找到对应的翻译
+                // 09-07新增：增加对多个检索列表的支持
                 "cn": [
-                    {"attr": "day", "strategy": "list", "list": ["周一", "周二", "周三", "周四", "周五", "周六", "周日", ], },
+                        {
+                            "attr": "day", 
+                            "strategy": "list", 
+                            "list": [
+                                ["周一", "周二", "周三", "周四", "周五", "周六", "周日", ], 
+                                ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天",], 
+                            ], 
+                        },
                 ], 
                 "en": [
-                    {"attr": "day", "strategy": "list", "list": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", ], }, 
+                        {
+                            "attr": "day", 
+                            "strategy": "list", 
+                            "list": [
+                                ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", ],
+                            ], 
+                        }, 
                 ],
             }, 
             "base": "day", 
             "convert": [], 
             "sub_result_kind": "day", 
         }, 
+        // 时间次序
+        "order": {
+            "units": ["order", ],
+            "translate": {
+                // strategy为function时，调用程序中的函数进行翻译，详情参见represent.py文件和utils.py文件
+                "cn": [
+                    {"attr": "order", "strategy": "function", }, 
+                ], 
+                "en": [
+                    {"attr": "order", "strategy": "function", }, 
+                ],
+            }, 
+            "base": "order", 
+            "convert": [], 
+            "sub_result_kind": "order", 
+        },
     }, 
     // 时间间隔的种类
     // 当前假定：时间间隔只有1个基本单位，后续若有两个基本单位的时间间隔需要修改代码
@@ -79,6 +110,19 @@
             }, 
             "base": "day", 
         }, 
+        // 次序时间间隔
+        "order": {
+            "units": ["order", ],
+            "translate": {
+                "cn": [
+                    {"attr": "order", "unit": "", }, 
+                ], 
+                "en": [
+                    {"attr": "order", "unit": "", }, 
+                ],
+            }, 
+            "base": "order", 
+        },
     }, 
     // 时间单位的转换规则
     "convert": [
