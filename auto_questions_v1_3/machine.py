@@ -375,6 +375,8 @@ class AskMachine:
                     option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], temp_judge[i], **kwargs))
             except Exception as e:
                 print(f"获取选项失败：{e}")
+                # 09-10新增：清除option_props，避免重复添加
+                option_props.clear()
                 continue
             break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
@@ -415,6 +417,8 @@ class AskMachine:
                     option_props.append(self.option_generator.get_prop_option(ask_props[i], ask_attrs[i], (not temp_judge[i]), **kwargs))
             except Exception as e:
                 print(f"获取选项失败：{e}")
+                # 09-10新增：清除option_props，避免重复添加
+                option_props.clear()
                 continue
             break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
