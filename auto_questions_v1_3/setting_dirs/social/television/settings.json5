@@ -1,0 +1,98 @@
+// date: 2025-03-07
+// 与“一周日程”有关的配置文件
+
+{
+    "random_seed": 0, // 随机种子
+    "event_num": 4, // 事件数量，null表示不限制
+    "knowledge_num": 0, // 05-03新增：试题中涉及的知识数量
+    "reset_time": 20, 
+    "ask_time": 20, 
+    "scenario": {
+        "kind": "cyclic", 
+        "period": {"kind": "day", "day": 7}, // 循环周期，此处为7天
+    }, 
+    "curr_unit": "week_day", 
+    "guide": {
+        "cn": "一家中有#A#、#B#、#C#和#D#四个成员，他们喜欢每星期定时播放的不同电视节目", 
+        "en": "There are four members in a family: #A#, #B#, #C#, and #D#. They like different TV shows that are broadcasted at fixed times every week.", 
+    }, 
+    "time_range": {
+        "upper_bound": {"kind": "week_day", "day": 7}, 
+        "lower_bound": {"kind": "week_day", "day": 1}, 
+    }, 
+    "object": [
+        {
+            "name": "A",
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "#A#", "pronoun": "他", },
+                "en": {"name": "#A#", "pronoun": "they", }, 
+            }, 
+        },
+        {
+            "name": "B",
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "#B#", "pronoun": "他", },
+                "en": {"name": "#B#", "pronoun": "they", }, 
+            }, 
+        },
+        {
+            "name": "C",
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "#C#", "pronoun": "他", },
+                "en": {"name": "#C#", "pronoun": "they", }, 
+            }, 
+        },
+        {
+            "name": "D",
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "#D#", "pronoun": "他", },
+                "en": {"name": "#D#", "pronoun": "they", }, 
+            }, 
+        },
+    ], 
+    "event": [
+        {
+            "name": "A_watch_news", 
+            "kind": "temporal",
+            "subject": "A",
+            "predicate": {"cn": "收看", "en": "watch", },
+            "object": {"cn": "《热点直播间》", "en": "NBC Nightly News", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
+        },
+        {
+            "name": "B_watch_talk_show", 
+            "kind": "temporal",
+            "subject": "B",
+            "predicate": {"cn": "收看", "en": "watch", },
+            "object": {"cn": "《脱口秀大会》", "en": "The Late Show with Stephen Colbert", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
+        },
+        {
+            "name": "C_watch_reality_show", 
+            "kind": "temporal",
+            "subject": "C",
+            "predicate": {"cn": "收看", "en": "watch", },
+            "object": {"cn": "《越战越勇》", "en": "Jeopardy!", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
+        },
+        {
+            "name": "D_watch_sports_news", 
+            "kind": "temporal",
+            "subject": "D",
+            "predicate": {"cn": "收看", "en": "watch", },
+            "object": {"cn": "《体育新闻》", "en": "SportsCenter", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
+        },
+    ],
+    "constraint": [], 
+    // 09-02新增：增加设置事件时间分配方式的可选参数distribution_mode
+    "distribution_mode": "individual", 
+}

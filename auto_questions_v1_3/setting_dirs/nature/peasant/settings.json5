@@ -1,0 +1,257 @@
+// date: 2025-08-31
+// 与自然领域结合的配置文件1：老农种地
+
+{
+    "random_seed": 0, // 随机种子
+    "event_num": 4, // 试题中涉及的事件数量，null表示不限制
+    "knowledge_num": 0, // 05-03新增：试题中涉及的知识数量
+    "reset_time": 20, // 重置次数
+    "ask_time": 30, // 提问次数，最终的提问结果数量为reset_time * ask_time
+    // 情景信息
+    "scenario": {
+        "kind": "linear", // 情景类型, 分为linear和cyclic两种
+    }, 
+    "curr_unit": "year", // 时间单位，是time_unit.json5中time_kinds的键
+    // 试题引导语
+    "guide": {
+        "cn": "老农老赵，在1980到2000年之间一共种植过四种植物：#A#、#B#、#C#、#D#。每年他最多只种一种植物，且每种植物的种植时间都是连续的。已知：", 
+        "en": "Old farmer Jack has planted four kinds of crops between 1980 and 2000: #A#, #B#, #C#, and #D#. He can plant at most one crop each year, and the planting periods of each crop are continuous. It is known that:",
+    },
+    // 时间范围
+    "time_range": {
+        // 时间范围的上下界，写法为时间属性的标准写法，参照represent.py文件
+        "upper_bound": {"kind": "year", "year": 2000}, 
+        "lower_bound": {"kind": "year", "year": 1980}, 
+    }, 
+    // 试题中出现的事物
+    "object": [
+        {
+            "name": "Jack", // 事物名称，不能与同文件已有事物重名，用于后续在event中进行索引
+            "is_third_singular": true, // 是否为第三人称单数
+            // 用于翻译的事物名称属性
+            "name_info": {
+                "cn": {"name": "老赵", "pronoun": "他", },
+                "en": {"name": "Jack", "pronoun": "he", }, 
+            }, 
+        }, 
+    ], 
+    // 事件信息，可以参照event.py文件中的写法
+    "event": [
+        // 种植作物A
+        {
+            "name": "jack_plant_crop_a", // 事件名称，不能与同文件已有事件重名，用于constraint中的索引
+            // 事件种类
+            // 目前支持temporal(时点事件) durative(持续事件) duration(时长事件) 三种
+            "kind": "durative",
+            "subject": "Jack", // 事件主语，会索引到object中的事物
+            "predicate": {"cn": "种植", "en": "plant", }, // 事件谓语，只能是一个动词，需要给出中英文表达
+            // 注意：为了方便后续替换等，需要使用占位符
+            "object": {"cn": "#A#", "en": "#A#", }, // 事件宾语，是表达中的其他部分，需要给出中英文表达
+            // 对于durative类型事件，需要定义start end duration子事件，遵照事件的写法
+            "start_event": {
+                "name": "jack_plant_crop_a_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "种植#A#", "en": "planting #A#", },
+                "tense": "past", 
+            }, 
+            "end_event": {
+                "name": "jack_plant_crop_a_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "不再", "en": "end", },
+                "object": {"cn": "种植#A#", "en": "planting #A#", },
+                "tense": "past",
+            }, 
+            "duration_event": {
+                "name": "jack_plant_crop_a_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "种植", "en": "plant", },
+                "object": {"cn": "#A#", "en": "#A#", },
+                "tense": "past",
+            }, 
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "past", // 事件时态
+        }, 
+        // 种植作物B
+        {
+            "name": "jack_plant_crop_b", // 事件名称，不能与同文件已有事件重名，用于constraint中的索引
+            // 事件种类
+            // 目前支持temporal(时点事件) durative(持续事件) duration(时长事件) 三种
+            "kind": "durative",
+            "subject": "Jack", // 事件主语，会索引到object中的事物
+            "predicate": {"cn": "种植", "en": "plant", }, // 事件谓语，只能是一个动词，需要给出中英文表达
+            // 注意：为了方便后续替换等，需要使用占位符
+            "object": {"cn": "#B#", "en": "#B#", }, // 事件宾语，是表达中的其他部分，需要给出中英文表达
+            // 对于durative类型事件，需要定义start end duration子事件，遵照事件的写法
+            "start_event": {
+                "name": "jack_plant_crop_b_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "种植#B#", "en": "planting #B#", },
+                "tense": "past", 
+            }, 
+            "end_event": {
+                "name": "jack_plant_crop_b_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "不再", "en": "end", },
+                "object": {"cn": "种植#B#", "en": "planting #B#", },
+                "tense": "past",
+            }, 
+            "duration_event": {
+                "name": "jack_plant_crop_b_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "种植", "en": "plant", },
+                "object": {"cn": "#B#", "en": "#B#", },
+                "tense": "past",
+            }, 
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "past", // 事件时态
+        }, 
+        // 种植作物C
+        {
+            "name": "jack_plant_crop_c", // 事件名称，不能与同文件已有事件重名，用于constraint中的索引
+            // 事件种类
+            // 目前支持temporal(时点事件) durative(持续事件) duration(时长事件) 三种
+            "kind": "durative",
+            "subject": "Jack", // 事件主语，会索引到object中的事物
+            "predicate": {"cn": "种植", "en": "plant", }, // 事件谓语，只能是一个动词，需要给出中英文表达
+            // 注意：为了方便后续替换等，需要使用占位符
+            "object": {"cn": "#C#", "en": "#C#", }, // 事件宾语，是表达中的其他部分，需要给出中英文表达
+            // 对于durative类型事件，需要定义start end duration子事件，遵照事件的写法
+            "start_event": {
+                "name": "jack_plant_crop_c_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "种植#C#", "en": "planting #C#", },
+                "tense": "past", 
+            }, 
+            "end_event": {
+                "name": "jack_plant_crop_c_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "不再", "en": "end", },
+                "object": {"cn": "种植#C#", "en": "planting #C#", },
+                "tense": "past",
+            }, 
+            "duration_event": {
+                "name": "jack_plant_crop_c_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "种植", "en": "plant", },
+                "object": {"cn": "#C#", "en": "#C#", },
+                "tense": "past",
+            }, 
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "past", // 事件时态
+        }, 
+        // 种植作物D
+        {
+            "name": "jack_plant_crop_d", // 事件名称，不能与同文件已有事件重名，用于constraint中的索引
+            // 事件种类
+            // 目前支持temporal(时点事件) durative(持续事件) duration(时长事件) 三种
+            "kind": "durative",
+            "subject": "Jack", // 事件主语，会索引到object中的事物
+            "predicate": {"cn": "种植", "en": "plant", }, // 事件谓语，只能是一个动词，需要给出中英文表达
+            // 注意：为了方便后续替换等，需要使用占位符
+            "object": {"cn": "#D#", "en": "#D#", }, // 事件宾语，是表达中的其他部分，需要给出中英文表达
+            // 对于durative类型事件，需要定义start end duration子事件，遵照事件的写法
+            "start_event": {
+                "name": "jack_plant_crop_d_start", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "开始", "en": "start", },
+                "object": {"cn": "种植#D#", "en": "planting #D#", },
+                "tense": "past", 
+            }, 
+            "end_event": {
+                "name": "jack_plant_crop_d_end", 
+                "kind": "temporal",
+                "subject": "Jack",
+                "predicate": {"cn": "不再", "en": "end", },
+                "object": {"cn": "种植#D#", "en": "planting #D#", },
+                "tense": "past",
+            }, 
+            "duration_event": {
+                "name": "jack_plant_crop_d_duration", 
+                "kind": "duration",
+                "subject": "Jack",
+                "predicate": {"cn": "种植", "en": "plant", },
+                "object": {"cn": "#D#", "en": "#D#", },
+                "tense": "past",
+            }, 
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "past", // 事件时态
+        }, 
+    ],
+    // 事件间关系约束信息
+    "constraint": [
+        // 保证上述事件首尾衔接的约束，上一事件的结束就是下一事件的开始
+        {
+            "main_event": "jack_plant_crop_b_start",
+            "std_event": "jack_plant_crop_a_end",
+            "constraint_type": "simultaneous",
+        },
+        {
+            "main_event": "jack_plant_crop_c_start",
+            "std_event": "jack_plant_crop_b_end",
+            "constraint_type": "simultaneous",
+        },
+        {
+            "main_event": "jack_plant_crop_d_start",
+            "std_event": "jack_plant_crop_c_end",
+            "constraint_type": "simultaneous",
+        },
+        // 保证事件发生顺序的约束
+        {
+            "main_event": "jack_plant_crop_a_end",
+            "std_event": "jack_plant_crop_a_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 2},
+        },
+        {
+            "main_event": "jack_plant_crop_b_end",
+            "std_event": "jack_plant_crop_b_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 2},
+        },
+        {
+            "main_event": "jack_plant_crop_c_end",
+            "std_event": "jack_plant_crop_c_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 2},
+        },
+        {
+            "main_event": "jack_plant_crop_d_end",
+            "std_event": "jack_plant_crop_d_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 2},
+        },
+        /*
+        {
+            "main_event": "jack_plant_crop_b_start",
+            "std_event": "jack_plant_crop_a_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 2},
+        },
+        {
+            "main_event": "jack_plant_crop_c_start",
+            "std_event": "jack_plant_crop_b_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 2},
+        },
+        {
+            "main_event": "jack_plant_crop_d_start",
+            "std_event": "jack_plant_crop_c_start",
+            "constraint_type": "after",
+            "floor": {"kind": "year", "year": 2},
+        },
+        */
+    ],
+}
