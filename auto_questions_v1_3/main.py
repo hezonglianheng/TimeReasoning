@@ -59,6 +59,10 @@ KNOWLEDGE_NUM_KEY = "knowledge_num"
 """设置知识数量的键"""
 # 09-02新增：设置事件时间分配方式的键
 DISTRIBUTION_MODE_KEY = "distribution_mode"
+"""设置事件时间分配方式的键"""
+# 11-28新增：读取用户设置模板的键
+USER_TEMPLATE_KEY = "user_template"
+"""读取用户设置模板的键"""
 
 def set_random_seed(seed: int | float | None):
     """设置随机种子
@@ -356,7 +360,8 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
     event_iter = event_setup(settings[EVENT_KEY], myobject_list, settings[EVENT_NUM_KEY])
     # 命题文件的初始化
     config.set_curr_unit(settings[CURR_UNIT_KEY])
-    prop.init() # 初始化命题库，加载命题文件。必须初始化！
+    # 11-28修改：支持用户在settings.json5文件中自定义命题模板用于命题翻译
+    prop.init(settings.get(USER_TEMPLATE_KEY)) # 初始化命题库，加载命题文件。必须初始化！
     # 初始化场景
     scenario_setup(settings[SCENARIO_KEY])
     result = []

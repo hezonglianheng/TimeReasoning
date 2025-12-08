@@ -6,7 +6,7 @@
     "event_num": 4, // 试题中涉及的事件数量，null表示不限制
     "knowledge_num": 0, // 05-03新增：试题中涉及的知识数量
     "reset_time": 20, // 重置次数
-    "ask_time": 30, // 提问次数，最终的提问结果数量为reset_time * ask_time
+    "ask_time": 20, // 提问次数，最终的提问结果数量为reset_time * ask_time
     // 情景信息
     "scenario": {
         "kind": "linear", // 情景类型, 分为linear和cyclic两种
@@ -254,4 +254,48 @@
         },
         */
     ],
+    // 11-29新增：用户自定义的命题模板
+    "user_template": {
+        "temporal": {
+            // 提供模板供命题生成
+            // 占位符格式为"{属性名称:翻译方法}"，如"{event:}"、"{time:}"等
+            // 翻译方法为空时，直接使用命题中的属性值的translate()方法进行翻译
+            // 其他翻译方法待补充
+            "templates": {
+                "cn": [
+                    "自{time:}年初，{event:}",
+                    "从{time:}年初，{event:}",
+                    // "{event:}是从{time:}年初",
+                ],
+                "en": [
+                    "From the beginning of {time:}, {event:}",
+                    "{event:} from the beginning of {time:}"
+                ],
+            }, 
+        },
+        // 持续事件
+        "durative": {
+            "templates": {
+                "cn": [
+                    //描述起点和终点
+                    "从{time:}年初到{endtime:}年初，{event:}",
+                    // "自{time:}年初起{event:}，直到{endtime:}年初结束",
+                    "从{time:}年初开始{event:}，一直到{endtime:}年初",
+                    "自{time:}年初起到{endtime:}年初止，{event:}",
+                    "{time:}年初至{endtime:}年初，{event:}",
+                    // 描述起点和持续时间
+                    "从{time:}年初开始的{duration:}间，{event:}",
+                    "自{time:}年初起，{event:}，直到{duration:}后",
+                    "从{time:}年初开始，{event:}，持续了{duration:}"
+                ],
+                "en": [
+                    // 描述起点和终点
+                    "{event:} from the beginning of {time:} to the beginning of {endtime:}",
+                    // 描述起点和持续时间
+                    // "Beginning in {time:}, {event:} for {duration:}",
+                    "Starting from the beginning of {time:}, {event:} for {duration:}"
+                ], 
+            }, 
+        }, 
+    }, 
 }
