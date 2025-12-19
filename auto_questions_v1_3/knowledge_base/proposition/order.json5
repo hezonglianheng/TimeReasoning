@@ -8,6 +8,8 @@
             "templates": {
                 "cn": [
                     "{event:}是{time:}个发生的事件",
+                    "{event:}是发生在{time:}的事件",
+                    "{event:}{time:}个发生",
                 ],
                 "en": [
                     "{event:} is {time:} event that happened",
@@ -18,9 +20,10 @@
             "templates": {
                 "cn": [
                     "{event1:}早于{event2:}",
+                    "{event1:}的时间比{event2:}早",
                 ],
                 "en": [
-                    "{event1:} is before {event2:}",
+                    "{event1:} is earlier than {event2:}",
                 ],
             },
         }, 
@@ -28,29 +31,10 @@
             "templates": {
                 "cn": [
                     "{event1:}晚于{event2:}",
+                    "{event1:}的时间比{event2:}晚",
                 ],
                 "en": [
-                    "{event1:} is after {event2:}",
-                ],
-            },
-        },
-        "before_time": {
-            "templates": {
-                "cn": [
-                    "{event1:}之前的上一件事是{event2:}",
-                ],
-                "en": [
-                    "{event1:} is immediately after {event2:}",
-                ],
-            },
-        },
-        "after_time": {
-            "templates": {
-                "cn": [
-                    "{event1:}之后的下一件事是{event2:}",
-                ],
-                "en": [
-                    "{event1:} is immediately before {event2:}",
+                    "{event1:} is later than {event2:}",
                 ],
             },
         },

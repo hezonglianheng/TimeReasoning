@@ -1,0 +1,123 @@
+// date: 2025-09-08
+// 与自然领域结合的配置文件3：参观动物园
+
+{
+    "random_seed": 0, // 随机种子
+    "event_num": 6, // 试题中涉及的事件数量，null表示不限制
+    "knowledge_num": 0, // 05-03新增：试题中涉及的知识数量
+    "reset_time": 20, // 重置次数
+    "ask_time": 20, // 提问次数，最终的提问结果数量为reset_time * ask_time
+    "scenario": {
+        "kind": "linear_order", // 情景类型，此处为线性时间情景
+    },
+    "curr_unit": "order", // 当前时间单位
+    "guide": {
+        "cn": "小明去动物园参观了6种不同的动物：#A#、#B#、#C#、#D#、#E#、#F#。已知", 
+        "en": "Jack visited a zoo and saw six different animals: #A#, #B#, #C#, #D#, #E#, and #F#. It is known that", 
+    },
+    "time_range": {
+        "upper_bound": {"kind": "order", "order": 6}, // 时间上界
+        "lower_bound": {"kind": "order", "order": 1}, // 时间下界
+    },
+    // 试题中出现的事物
+    "object": [
+        {
+            "name": "Jack", // 事物名称，不能与同文件已有事物重名，用于后续在event中进行索引
+            "is_third_singular": true, // 是否为第三人称单数
+            // 用于翻译的事物名称属性
+            "name_info": {
+                "cn": {"name": "小明", "pronoun": "他", },
+                "en": {"name": "Jack", "pronoun": "he", }, 
+            }, 
+        }, 
+    ], 
+    // 试题中出现的事件
+    "event": [
+        {
+            "name": "jack_visit_a", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "参观", "en": "visit", },
+            "object": {"cn": "#A#", "en": "#A#", },
+            "tense": "past",
+        },
+        {
+            "name": "jack_visit_b", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "参观", "en": "visit", },
+            "object": {"cn": "#B#", "en": "#B#", },
+            "tense": "past",
+        },
+        {
+            "name": "jack_visit_c", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "参观", "en": "visit", },
+            "object": {"cn": "#C#", "en": "#C#", },
+            "tense": "past",
+        },
+        {
+            "name": "jack_visit_d", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "参观", "en": "visit", },
+            "object": {"cn": "#D#", "en": "#D#", },
+            "tense": "past",
+        },
+        {
+            "name": "jack_visit_e", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "参观", "en": "visit", },
+            "object": {"cn": "#E#", "en": "#E#", },
+            "tense": "past",
+        },
+        {
+            "name": "jack_visit_f", 
+            "kind": "temporal",
+            "subject": "Jack",
+            "predicate": {"cn": "参观", "en": "visit", },
+            "object": {"cn": "#F#", "en": "#F#", },
+            "tense": "past",
+        },
+    ], 
+    "constraint": [
+        {
+            "main_event": "jack_visit_a",
+            "std_event": "jack_visit_b",
+            "constraint_type": "before",
+            "floor": {"kind": "order", "order": 1},
+            "ceiling": {"kind": "order", "order": 1},
+        },
+        {
+            "main_event": "jack_visit_b",
+            "std_event": "jack_visit_c",
+            "constraint_type": "before",
+            "floor": {"kind": "order", "order": 1},
+            "ceiling": {"kind": "order", "order": 1},
+        },
+        {
+            "main_event": "jack_visit_c",
+            "std_event": "jack_visit_d",
+            "constraint_type": "before",
+            "floor": {"kind": "order", "order": 1},
+            "ceiling": {"kind": "order", "order": 1},
+        },
+        {
+            "main_event": "jack_visit_d",
+            "std_event": "jack_visit_e",
+            "constraint_type": "before",
+            "floor": {"kind": "order", "order": 1},
+            "ceiling": {"kind": "order", "order": 1},
+        },
+        {
+            "main_event": "jack_visit_e",
+            "std_event": "jack_visit_f",
+            "constraint_type": "before",
+            "floor": {"kind": "order", "order": 1},
+            "ceiling": {"kind": "order", "order": 1},
+        },
+    ],
+    "distribution_mode": "individual", 
+}

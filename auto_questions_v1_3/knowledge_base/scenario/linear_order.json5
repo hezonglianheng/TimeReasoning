@@ -9,16 +9,35 @@
         "before_equivalence_after", 
         "BeforeTrans", 
         "AfterTrans", 
-        "beforetime_entail_before", 
-        "aftertime_entail_after", 
-        "beforetime_equivalence_aftertime", 
     ], 
     // 情景中独有的命题
-    "scenario_props": {}, 
+    "scenario_props": {
+        // 将before_time和after_time两种独有命题的模板放置在此处
+        "before_time": {
+            "templates": {
+                "cn": [
+                    "{event2:}之前的上一件事是{event1:}",
+                ],
+                "en": [
+                    "{event2:} is immediately after {event1:}",
+                ],
+            },
+        },
+        "after_time": {
+            "templates": {
+                "cn": [
+                    "{event2:}之后的下一件事是{event1:}",
+                ],
+                "en": [
+                    "{event2:} is immediately before {event1:}",
+                ],
+            },
+        },
+    }, 
     // 情景中独有的规则，按照rule.json5中的方式书写
     "scenario_rules": [
         {
-            "name": "get_before_1", // 规则名称, 不能与已有的规则名称重复
+            "name": "get_before_time", // 规则名称, 不能与已有的规则名称重复
             "kind": "rule", // 规则种类，分为relation和rule两类
             // 规则条件, rule类型的规则条件是一个字典列表，每个字
             "condition": [
@@ -35,13 +54,13 @@
                     "attrs": {
                         "event1": "temporal1['event']", 
                         "event2": "temporal2['event']",
-                        "diff": "temporal2['time'] - temporal1['time']",
+                        // "diff": "temporal2['time'] - temporal1['time']",
                     }, 
                 }, 
             ],
         }, 
         {
-            "name": "get_after_1", // 规则名称, 不能与已有的规则名称重复
+            "name": "get_after_time", // 规则名称, 不能与已有的规则名称重复
             "kind": "rule", // 规则种类，分为relation和rule两类
             // 规则条件, rule类型的规则条件是一个字典列表，每个字
             "condition": [
@@ -58,7 +77,154 @@
                     "attrs": {
                         "event1": "temporal1['event']", 
                         "event2": "temporal2['event']",
-                        "diff": "temporal1['time'] - temporal2['time']",
+                        // "diff": "temporal1['time'] - temporal2['time']",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            // 含义：A在B之前1个 => A在B之前
+            "name": "before_time_entail_before",
+            "kind": "relation",
+            "condition": {"kind": "before_time", "attrs": ["event1", "event2",]},
+            "judge": [],
+            "conclusion": {"kind": "before", "attrs": ["event1", "event2"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A在B之后1个 => A在B之后
+            "name": "after_time_entail_after",
+            "kind": "relation",
+            "condition": {"kind": "after_time", "attrs": ["event1", "event2",]},
+            "judge": [],
+            "conclusion": {"kind": "after", "attrs": ["event1", "event2"]},
+            "symmetric": false,
+        },
+        {
+            // 含义：A在B之前1个 <=> B在A之后1个
+            "name": "before_time_equivalence_after_time",
+            "kind": "relation",
+            "condition": {"kind": "before_time", "attrs": ["event1", "event2",]},
+            "judge": [],
+            "conclusion": {"kind": "after_time", "attrs": ["event2", "event1"]},
+            "symmetric": true,
+        },
+        {
+            "name": "get_before", 
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "temporal1['time'] < temporal2['time']", 
+            ],
+            "conclusion": [
+                {
+                    "kind": "before", 
+                    "attrs": {
+                        "event1": "temporal1['event']", 
+                        "event2": "temporal2['event']",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            "name": "get_after", 
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal1", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "temporal2", "kind": "temporal", "attrs": ["event", "time", ]},
+            ],
+            "judge": [
+                "temporal1['time'] > temporal2['time']", 
+            ],
+            "conclusion": [
+                {
+                    "kind": "after", 
+                    "attrs": {
+                        "event1": "temporal1['event']", 
+                        "event2": "temporal2['event']",
+                    }, 
+                }, 
+            ],
+        },
+        {
+            "name": "get_time_from_before_time1", 
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "before_time", "kind": "before_time", "attrs": ["event1", "event2",]},
+            ],
+            "judge": [
+                "temporal['event'] == before_time['event2']", 
+            ],
+            "conclusion": [
+                {
+                    "kind": "temporal", 
+                    "attrs": {
+                        "event": "before_time['event1']", 
+                        "time": "temporal['time'] - represent.CustomTimeDelta(kind='order', order=1)",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            "name": "get_time_from_before_time2", 
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "before_time", "kind": "before_time", "attrs": ["event1", "event2",]},
+            ],
+            "judge": [
+                "temporal['event'] == before_time['event1']", 
+            ],
+            "conclusion": [
+                {
+                    "kind": "temporal", 
+                    "attrs": {
+                        "event": "before_time['event2']", 
+                        "time": "temporal['time'] + represent.CustomTimeDelta(kind='order', order=1)",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            "name": "get_time_from_after_time1",
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "after_time", "kind": "after_time", "attrs": ["event1", "event2",]},
+            ],
+            "judge": [
+                "temporal['event'] == after_time['event2']",
+            ],
+            "conclusion": [
+                {
+                    "kind": "temporal", 
+                    "attrs": {
+                        "event": "after_time['event1']",
+                        "time": "temporal['time'] + represent.CustomTimeDelta(kind='order', order=1)",
+                    }, 
+                }, 
+            ],
+        }, 
+        {
+            "name": "get_time_from_after_time2",
+            "kind": "rule",
+            "condition": [
+                {"name": "temporal", "kind": "temporal", "attrs": ["event", "time", ]},
+                {"name": "after_time", "kind": "after_time", "attrs": ["event1", "event2",]},
+            ],
+            "judge": [
+                "temporal['event'] == after_time['event1']",
+            ],
+            "conclusion": [
+                {
+                    "kind": "temporal", 
+                    "attrs": {
+                        "event": "after_time['event2']",
+                        "time": "temporal['time'] - represent.CustomTimeDelta(kind='order', order=1)",
                     }, 
                 }, 
             ],

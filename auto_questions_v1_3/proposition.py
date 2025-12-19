@@ -9,6 +9,7 @@ import config
 import json5
 import re
 import random
+from typing import Optional
 
 # 常量
 ASKABLE = "askable" # 是否可询问
@@ -18,6 +19,7 @@ TEMPLATES = "templates" # 模板
 PROP_KINDS = "prop_kinds" # 命题类型对应的键
 REPLACE = re.compile(r"\{(\w*?):(\w*?)\}") # 替换模板中的内容
 PROP_DATA: dict = {} # 时间命题的数据
+"""时间命题的数据，键为命题类型，值为命题数据字典"""
 # 05-02新增：与时间命题相关的通用基础信息
 BASIC_INFO: dict = {}
 """与时间命题相关的通用基础信息"""
@@ -33,8 +35,11 @@ DURATION = "duration" # 持续时间
 DIFF = "diff" # 时间差
 
 # 初始化时，读取时间命题的数据
-def init():
+def init(user_prop_data: Optional[dict[str, dict]] = None) -> None:
     """读取文件，初始化文件中命题的数据
+
+    Args:
+        user_prop_data (Optional[dict[str, dict]], optional): 用户自定义的命题数据，默认为None
     """
     global PROP_DATA, BASIC_INFO
     prop_file = config.PROP_DIR / f"{config.CURR_UNIT}.json5"
@@ -42,6 +47,15 @@ def init():
         PROP_DATA = json5.load(f)
     with config.BASIC_INFO_FILE.open("r", encoding = "utf8") as f:
         BASIC_INFO = json5.load(f)
+
+    # 11-28新增：如果用户提供了自定义命题数据，则对原来导入的数据做覆写。需要注意键的一致性
+    if user_prop_data is not None:
+        for kind, data in user_prop_data.items():
+            assert TEMPLATES in data, f"用户自定义命题数据中，命题类型{kind}缺少模板信息"
+            if kind in PROP_DATA[PROP_KINDS]:
+                PROP_DATA[PROP_KINDS][kind].update(data)
+            else:
+                PROP_DATA[PROP_KINDS][kind] = data
 
 def add_prop_data(data: dict[str, dict]) -> None:
     """添加自定义命题的数据

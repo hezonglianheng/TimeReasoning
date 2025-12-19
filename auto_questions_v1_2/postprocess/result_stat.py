@@ -27,19 +27,19 @@ LANGS = [config.LANG_CONFIG[n][config.LANG_NAME] for n in config.CURR_LANGS]
 
 MODEL_NAMES = [
     "claude-3-5-sonnet-20241022", 
-    # "deepseek-chat",
-    # "deepseek-r1-distill-qwen-32b", 
+    "deepseek-chat",
+    "deepseek-r1-distill-qwen-32b", 
     "deepseek-reasoner", 
-    # "glm-4-plus", 
-    # "glm-zero-preview", 
+    "glm-4-plus", 
+    "glm-zero-preview", 
     "gpt-4o", 
-    # "Llama-3.3-70B-Instruct", 
+    "Llama-3.3-70B-Instruct", 
     "o1-mini", 
     "o1-preview", 
-    # "o3-mini", 
+    "o3-mini", 
     "qwen-25-72B", 
     "qwen-max", 
-    # "qwq-32B", 
+    "qwq-32B", 
 ]
 
 def answer_ignore(records: list[dict]) -> dict[str, dict[str, float]]:
@@ -104,6 +104,19 @@ def extra_answer(records: list[dict]) -> dict[str, dict[str, float]]:
     report: dict = {"extra": {"ratio": ratio, "num": sum(extra_judges)}}
     return report
 
+def model_accuracy(records: list[dict]) -> dict[str, dict[str, float]]:
+    """计算模型的准确率
+
+    Args:
+        records (list[dict]): 数据记录
+
+    Returns:
+        float: 模型准确率
+    """
+    correct_count = sum(1 for r in records if r["is_cor"])
+    accuracy = correct_count / len(records)
+    return {"acc": {"acc": accuracy}}
+
 def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[str, float]]:
     """对试题的详细信息进行分析
 
@@ -114,6 +127,26 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
     Returns:
         dict[str, dict[str, float]]: 试题详细信息分析报告
     """
+
+    def level(records: list[dict]) -> dict[str, dict[str, float]]:
+        """统计各个难度等级的数量和正确率
+
+        Args:
+            records (list[dict]): 数据记录
+
+        Returns:
+            dict[str, dict[str, float]]: 难度等级正确率
+        """
+        level = Counter()
+        cor_level = Counter()
+        for i, (r, s) in enumerate(zip(records, standard_data), start=1):
+            assert r[config.ID] == s[config.ID], f"第{i}条数据记录与标准答案不匹配"
+            level[s[config.LEVEL]] += 1
+            if r["is_cor"]:
+                cor_level[s[config.LEVEL]] += 1
+
+        report = {k: cor_level[k]/v for k, v in level.items()}
+        return {"difficulty_level": report}
 
     def scene_type(records: list[dict]) -> dict[str, dict[str, float]]:
         """统计各个场景类型的数量和正确率
@@ -134,7 +167,7 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
 
         # report = "场景类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_scene[k]}, 正确率{cor_scene[k]/v}" for k, v in scene.items()])
         report = {ENGLISH_SCENARIO[k]: cor_scene[k]/v for k, v in scene.items()}
-        return {"knowledge_attribute": report}
+        return {"scene_type": report}
 
     def question_type(records: list[dict]) -> dict[str, dict[str, float]]:
         """统计各个问题类型的数量和正确率
@@ -182,7 +215,7 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
                     cor_qtag[q] += 1
 
         # report = "问题类型正确数量及正确率统计：\n\t" + "\n\t".join([f"{k}: 数量{v}, 正确数量{cor_qtype[k]}, 正确率{cor_qtype[k]/v}" for k, v in qtype.items()])
-        report = {k: cor_qtag[k]/v for k, v in qtag.items()}
+        report = {k: f'{cor_qtag[k]/v}({v})' for k, v in qtag.items()}
         return {"question_tag": report}
 
     def statement_tag(records: list[dict]) -> dict[str, dict[str, str]]:
@@ -227,16 +260,55 @@ def info_analysis(records: list[dict], standard_path: Path) -> dict[str, dict[st
         
         report = {k: f"{cor_stag[k]/v}({v})" for k, v in stag.items()}
         return {"statement_tag": report}
+
+    def chain_length_stat(records: list[dict]) -> dict[str, dict[str, float]]:
+        """统计推理链长度的正确率
+
+        Args:
+            records (list[dict]): 数据记录
+
+        Returns:
+            dict[str, dict[str, float]]: 推理链长度正确率
+        """
+        length_counter = Counter()
+        correct_counter = Counter()
+        for i, (r, s) in enumerate(zip(records, standard_data), start=1):
+            assert r[config.ID] == s[config.ID], f"第{i}条数据记录与标准答案不匹配"
+            length = s[config.QUES_INFO][config.CHAIN_LENGTH]
+            length_counter[length] += 1
+            if r["is_cor"]:
+                correct_counter[length] += 1
+
+        report = {}
+        # 将推理链长度分段
+        sorted_lengths = sorted(length_counter.keys())
+        length4part = len(sorted_lengths) // 3
+        short_lengths = sorted_lengths[:length4part]
+        medium_lengths = sorted_lengths[length4part:2*length4part]
+        long_lengths = sorted_lengths[2*length4part:]
+        
+        # 分别计算各段的正确率
+        def compute_ratio(lengths: list[int]) -> float:
+            total = sum([length_counter[l] for l in lengths])
+            correct = sum([correct_counter[l] for l in lengths])
+            return correct / total if total > 0 else 0.0
+        
+        report[f"short({short_lengths[0]}-{short_lengths[-1]})({sum([length_counter[l] for l in short_lengths])})"] = compute_ratio(short_lengths)
+        report[f"medium({medium_lengths[0]}-{medium_lengths[-1]})({sum([length_counter[l] for l in medium_lengths])})"] = compute_ratio(medium_lengths)
+        report[f"long({long_lengths[0]}-{long_lengths[-1]})({sum([length_counter[l] for l in long_lengths])})"] = compute_ratio(long_lengths)
+        return {"chain_length": report}
         
     # standard_path = Path(input("请输入标准答案文件路径："))
     with standard_path.open(encoding="utf8") as f:
         standard_data: list[dict] = json.load(f)
 
     reports = [
+        level(records),
         scene_type(records),
         question_type(records),
         question_tag(records),
         statement_tag(records),
+        chain_length_stat(records), 
     ]
     # return "\n\n".join(reports)
     report = {}
@@ -274,6 +346,7 @@ def reports4single_model(dir: Path, model_name: str, field: str, lang: str, stan
         # answer_ignore(data), 
         # 2-12新增：统计多余答案的情况和对试题的详细信息进行分析
         # extra_answer(data),
+        model_accuracy(data),
         info_analysis(data, standard_path),
     ]
 

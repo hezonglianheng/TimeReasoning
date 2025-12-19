@@ -1,0 +1,74 @@
+// date: 2025-08-31
+// 与自然领域结合的配置文件2：厨师做饭
+
+{
+    "random_seed": 0, // 随机种子
+    "event_num": 4, // 事件数量，null表示不限制
+    "knowledge_num": 0, // 05-03新增：试题中涉及的知识数量
+    "reset_time": 20, 
+    "ask_time": 20, 
+    "scenario": {
+        "kind": "cyclic", 
+        "period": {"kind": "day", "day": 7}, // 循环周期，此处为7天
+    }, 
+    "curr_unit": "week_day", 
+    "guide": {
+        "cn": "刘阿姨是某个食堂的主厨，在一周的某一天，她会做这4种菜中的一种：#A#、#B#、#C#、#D#，一周的每一天她都会做一种不同的菜。以下是她每周的做菜安排，已知：", 
+        "en": "Aunt Jenny is the chef of a canteen, and she will cook one of these four dishes on a specific day of the week: #A#, #B#, #C#, #D#. Each day of the week, she will cook a different dish. Here is her weekly cooking schedule:", 
+    }, 
+    "time_range": {
+        "upper_bound": {"kind": "week_day", "day": 7}, 
+        "lower_bound": {"kind": "week_day", "day": 1}, 
+    }, 
+    "object": [
+        {
+            "name": "Jenny",
+            "is_third_singular": true,
+            "name_info": {
+                "cn": {"name": "刘阿姨", "pronoun": "她", },
+                "en": {"name": "Jenny", "pronoun": "she", }, 
+            }, 
+        },
+    ], 
+    "event": [
+        {
+            "name": "jenny_cook_a_dish", 
+            "kind": "temporal",
+            "subject": "Jenny",
+            "predicate": {"cn": "做", "en": "cook", },
+            "object": {"cn": "#A#", "en": "#A#", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
+        },
+        {
+            "name": "jenny_cook_b_dish", 
+            "kind": "temporal",
+            "subject": "Jenny",
+            "predicate": {"cn": "做", "en": "cook", },
+            "object": {"cn": "#B#", "en": "#B#", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
+        },
+        {
+            "name": "jenny_cook_c_dish", 
+            "kind": "temporal",
+            "subject": "Jenny",
+            "predicate": {"cn": "做", "en": "cook", },
+            "object": {"cn": "#C#", "en": "#C#", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
+        },
+        {
+            "name": "jenny_cook_d_dish", 
+            "kind": "temporal",
+            "subject": "Jenny",
+            "predicate": {"cn": "做", "en": "cook", },
+            "object": {"cn": "#D#", "en": "#D#", },
+            // 04-09新增：每个事件都需要标注tense信息，tense有past, present, future三种
+            "tense": "present", // 时态，循环事件的时态为present
+        },
+    ],
+    "constraint": [], 
+    // 09-02新增：设置事件时间分配方式为“为每个事件分配互不相同的时间”
+    "distribution_mode": "individual", 
+}

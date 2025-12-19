@@ -54,7 +54,9 @@ class Scenario(element.Element):
         prop_res: list[prop.Proposition] = []
         prop_kinds: dict[str, dict] = self[SCENARIO_PROPS]
         for k in prop_kinds:
-            props_definitions: list[dict[str, str]] = prop_kinds[k]['props']
+            # 09-09修改：使用get方法获取props，避免KeyError
+            prop_info: dict = prop_kinds[k]
+            props_definitions: list[dict[str, str]] = prop_info.get("props", [])
             for d in props_definitions:
                 prop_dic: dict = {"kind": k} | {key: eval(value) for key, value in d.items()}
                 prop_res.append(prop.Proposition(**prop_dic))
