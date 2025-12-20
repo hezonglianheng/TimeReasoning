@@ -81,6 +81,8 @@ LANG_CONFIG = {
         "because": ['因为', '由于',],
         "and": ['并且', '且', '同时',],
         "so": ['所以', '因此', '故',],
+        "all_wrong_is_right": "上述分析表明，其余选项均不符合题目要求。",
+        "all_wrong_is_wrong": "上述分析表明，至少存在1个选项符合题目要求。",
     }, 
     "en": {
         "ask_right": f"Select the correct statement(s): {ASK_POINT}",
@@ -91,6 +93,8 @@ LANG_CONFIG = {
         "because": ['because', 'as', 'since',],
         "and": ['and', 'also', 'moreover',],
         "so": ['so', 'therefore', 'thus',],
+        "all_wrong_is_right": "The above analysis shows that none of the other options meet the requirements of the question.",
+        "all_wrong_is_wrong": "The above analysis shows that at least one option meets the requirements of the question.",
     }, 
 }
 

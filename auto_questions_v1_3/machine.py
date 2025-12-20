@@ -9,6 +9,7 @@ import element
 import event
 import graph
 import proposition as prop
+import mynode
 import json5
 from tqdm import tqdm
 import random
@@ -33,6 +34,8 @@ COT_LENGTH = "cot_length"
 # 12-19新增：增加获得推理链本身
 COT = "cot"
 """推理链"""
+
+# 试题生成辅助工具类
 
 class PropChooseMachine:
     """时间推理题已知命题选择器
@@ -217,6 +220,51 @@ class OptionGenerator:
             new_prop[ask_attr] = new_element
             return new_prop
 
+class PropSearchMachine:
+    """命题搜索器，根据属性值搜索命题
+    """
+
+    def __init__(self, g: graph.ReasoningGraph):
+        """初始化命题搜索器
+
+        Args:
+            g (graph.ReasoningGraph): 推理图
+        """
+        self.graph = g
+        """推理图"""
+        self.all_props = g.get_all_props(use_askable=True)
+        """推理图中的所有可及命题"""
+
+    def search(self, std_prop: prop.Proposition) -> prop.Proposition:
+        """根据属性值搜索最接近的正确命题，用于推理链的生成
+
+        Args:
+            std_prop (prop.Proposition): 作为搜索条件的命题
+
+        Returns:
+            prop.Proposition: 搜索到的命题
+        """
+        candidate_props: list[prop.Proposition] = []
+        std_prop_kind = std_prop.kind
+        searchable_kinds = prop.BASIC_INFO[prop.SEARCHABLE_MAP].get(std_prop_kind, [std_prop_kind])
+        std_event_elements = std_prop.get_event_elements()
+        for p in self.all_props:
+            if p.kind in searchable_kinds:
+                p_event_elements = p.get_event_elements()
+                match = True
+                for se in std_event_elements:
+                    if not se.is_contained(p_event_elements):
+                        match = False
+                        break
+                if match:
+                    candidate_props.append(p)
+        if len(candidate_props) == 0:
+            raise ValueError(f"未能根据命题“{std_prop.translate(lang=config.CHINESE)}”搜索到合适的命题")
+        sorted_candidates = sorted(candidate_props, key=lambda x: self.graph.get_cot_length(x), reverse=True)
+        return sorted_candidates[0]
+
+# 一些特殊的选项和推理节点
+
 class AllWrongOption(element.Element):
     """表示所有选项均不符合要求的选项
     """
@@ -262,6 +310,26 @@ class IncStatQuestion(element.Element):
     """
     def translate(self, lang, require = None, **kwargs):
         return config.LANG_CONFIG[lang]["ask_wrong"]
+
+class AllWrongOptionIsRight(mynode.Node):
+    """表示“所有选项均不符合要求”选项为正确选项的节点
+    """
+    def __init__(self, name = "", kind = "", **kwargs):
+        pass
+
+    def translate(self, lang, require=None, **kwargs):
+        return config.LANG_CONFIG[lang]["all_wrong_is_right"]
+
+class AllWrongOptionIsWrong(mynode.Node):
+    """表示“所有选项均不符合要求”选项为错误选项的节点
+    """
+    def __init__(self, name = "", kind = "", **kwargs):
+        pass
+
+    def translate(self, lang, require=None, **kwargs):
+        return config.LANG_CONFIG[lang]["all_wrong_is_wrong"]
+
+# 提问机
 
 class AskMachine:
     """提问机，根据推理图和选项生成器生成问题、选项、答案
@@ -351,11 +419,18 @@ class AskMachine:
         print("选项：", [f"{k}: {v.translate(lang=config.CHINESE)}" for k, v in options_dict.items()])
         print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
-        # 12-19修改：改为使用get_cot和get_cot_length函数获得推理链和长度
-        # cot = self.graph.backtrace(asked_prop)
-        cot = self.graph.get_cot(asked_prop)
-        cot_length = self.graph.get_cot_length(asked_prop)
-        # return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: len(cot)}
+        # 12-20修改：修复计算推理链和推理长度的bug，需要获得所有正确命题的推理链和长度
+        # 根据正确选项，获取所有的正确命题
+        correct_props = []
+        for option_key in answer_list:
+            option_element = options_dict[option_key]
+            if isinstance(option_element, AllWrongOption):
+                continue
+            new_prop = copy.deepcopy(asked_prop)
+            new_prop[ask_attr] = option_element
+            correct_props.append(new_prop)
+        cot = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in correct_props])
+        cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in correct_props])
         return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cot}
 
     def correct_statements(self, prop_type: Literal["random", "deepest", "certain"] = "random", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
@@ -388,19 +463,38 @@ class AskMachine:
             break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         # 05-04新增：判断最后一个选项是否为all_wrong，如果是，需要backtrace的命题移除最后一个；否则需要backtrace的命题为所有选项
-        if isinstance(option_props[option_num - 1], AllWrongOption):
-            backtrace_props = ask_props[:-1]
+        props_in_options = list(options_dict.values())
+        if isinstance(props_in_options[-1], AllWrongOption):
+            backtrace_props = props_in_options[:-1]
         else:
-            backtrace_props = ask_props
+            backtrace_props = props_in_options
         # 08-23新增：增加对被选择命题的输出
         print("被选择命题：", [i.translate(lang=config.CHINESE) for i in options_dict.values()])
         print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
-        # 12-19修改：改为使用get_cot和get_cot_length函数获得推理链和长度
-        # cots = [self.graph.backtrace(i) for i in backtrace_props]
-        cots = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in backtrace_props])
-        # cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
-        cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in backtrace_props])
+        # 12-20修改：对于backtrace_props中的每个命题，搜索相关命题后，获得推理链和长度
+        search_machine = PropSearchMachine(self.graph)
+        searched_props = []
+        for p, a in zip(backtrace_props, ascii_uppercase):
+            if isinstance(p, AllWrongOption):
+                continue
+            if a in answer_list:
+                # 正确选项，直接加入searched_props
+                searched_props.append(p)
+            else:
+                # 错误选项，搜索相关命题后加入searched_props
+                searched_props.append(search_machine.search(p))
+            
+        cots = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in searched_props])
+        cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in searched_props])
+        if isinstance(props_in_options[-1], AllWrongOption):
+            cot_length += 1
+            if ascii_uppercase[len(options_dict) - 1] in answer_list:
+                # “所有选项均不符合要求”选项为正确选项
+                cots.append(AllWrongOptionIsRight())
+            else:
+                # “所有选项均不符合要求”选项为错误选项
+                cots.append(AllWrongOptionIsWrong())
         return {QUESTION: CorStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cots}
 
     def incorrect_statements(self, prop_type: Literal["random", "deepest", "certain"] = "random", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
@@ -433,19 +527,38 @@ class AskMachine:
             break
         options_dict, answer_list = self._get_options_and_answer([(i, j) for i, j in zip(option_props, temp_judge)])
         # 05-04新增：判断最后一个选项是否为all_wrong，如果是，需要backtrace的命题移除最后一个；否则需要backtrace的命题为所有选项
-        if isinstance(option_props[option_num - 1], AllWrongOption):
-            backtrace_props = ask_props[:-1]
+        props_in_options = list(options_dict.values())
+        if isinstance(props_in_options[-1], AllWrongOption):
+            backtrace_props = props_in_options[:-1]
         else:
-            backtrace_props = ask_props
+            backtrace_props = props_in_options
         # 08-23新增：增加对被选择命题的输出
         print("被选择命题：", [i.translate(lang=config.CHINESE) for i in options_dict.values()])
         print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
-        # 12-19修改：改为使用get_cot和get_cot_length函数获得推理链和长度
-        # cots = [self.graph.backtrace(i) for i in backtrace_props]
-        cots = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in backtrace_props])
-        # cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
-        cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in backtrace_props])
+        # 12-20修改：对于backtrace_props中的每个命题，搜索相关命题后，获得推理链和长度
+        search_machine = PropSearchMachine(self.graph)
+        searched_props = []
+        for p, a in zip(backtrace_props, ascii_uppercase):
+            if isinstance(p, AllWrongOption):
+                continue
+            if a in answer_list:
+                # 正确选项，搜索相关命题后加入searched_props
+                searched_props.append(search_machine.search(p))
+            else:
+                # 错误选项，直接加入searched_props
+                searched_props.append(p)
+            
+        cots = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in searched_props])
+        cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in searched_props])
+        if isinstance(props_in_options[-1], AllWrongOption):
+            cot_length += 1
+            if ascii_uppercase[len(options_dict) - 1] in answer_list:
+                # “所有选项均不符合要求”选项为正确选项
+                cots.append(AllWrongOptionIsRight())
+            else:
+                # “所有选项均不符合要求”选项为错误选项
+                cots.append(AllWrongOptionIsWrong())
         return {QUESTION: IncStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cots}
 
     def run(self, prop_type: Literal["random", "deepest", "certain"] = "random", question_type: Literal["precise", "correct", "incorrect"] = "precise", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:

@@ -17,6 +17,7 @@ PRECISE = "precise" # 是否精确
 NO_MAIN_ATTR = [ASKABLE, PRECISE, ] # 非主要属性
 TEMPLATES = "templates" # 模板
 PROP_KINDS = "prop_kinds" # 命题类型对应的键
+SEARCHABLE_MAP = "searchable_map" # 可搜索的命题类型映射
 REPLACE = re.compile(r"\{(\w*?):(\w*?)\}") # 替换模板中的内容
 PROP_DATA: dict = {} # 时间命题的数据
 """时间命题的数据，键为命题类型，值为命题数据字典"""
@@ -206,6 +207,21 @@ class Proposition(element.Element):
             str: 命题的标签
         """
         return BASIC_INFO[PROP_KINDS][self.kind]["typetag"]
+
+    # 12-20新增：获取命题中涉及的所有事件元素
+    def get_event_elements(self) -> list[element.Element]:
+        """获取命题中涉及的所有事件元素
+
+        Returns:
+            list[element.Element]: 事件元素列表
+        """
+        event_elements: list[element.Element] = []
+        for attr in self.main_attrs():
+            if "event" in attr:
+                event_element = self[attr]
+                if isinstance(event_element, element.Element):
+                    event_elements.append(event_element)
+        return event_elements
 
 if __name__ == "__main__":
     import event
