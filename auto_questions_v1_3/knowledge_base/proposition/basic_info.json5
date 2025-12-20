@@ -69,4 +69,18 @@
             "difficulty": 2.0,
         }, 
     }, 
+    "searchable_map": {
+        "before": ["before", "after", "simultaneous", "during"],
+        "after": ["before", "after", "simultaneous", "during"],
+        "simultaneous": ["before_time", "after_time", "simultaneous"],
+        "during": ["before", "after", "simultaneous", "during"],
+        "before_time": ["before_time", "after_time", "simultaneous"],
+        "after_time": ["before_time", "after_time", "simultaneous"],
+        "gap_time": ["gap_time", "simultaneous"],
+        "long": ["long", "short", "same_len"],
+        "short": ["long", "short", "same_len"],
+        "long_time": ["long_time", "short_time", "same_len"],
+        "short_time": ["long_time", "short_time", "same_len"], 
+        "same_len": ["same_len", "long_time", "short_time"],
+    }
 }
