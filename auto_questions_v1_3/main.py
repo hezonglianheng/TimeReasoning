@@ -19,6 +19,8 @@ import level
 import knowledge
 # 12-19新增：引入mynode文件
 import mynode
+# 12-20新增：引入rule文件
+import rule
 
 import json5
 import json
@@ -313,6 +315,9 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
     options: dict[str, element.Element] = question_info[machine.OPTIONS]
     # 12-19新增：获得question_info中的推理链信息
     cot: list[mynode.Node] = question_info.get(machine.COT, [])
+    # 12-20新增：获取cot中的所有推理规则
+    rules_in_cot: list[rule.Rule] = [i[mynode.RULE] for i in cot]
+    rule_descriptions: list[str] = [i[rule.DESCRIPTION] if i.has_attr(rule.DESCRIPTION) else i.name for i in rules_in_cot]
     for lang in config.LANG_CONFIG:
         # 06-19新增：翻译命题时的分隔字符串
         chosen_prop_translation = ';\n'.join([f"({i})" + p.translate(lang) for i, p in enumerate(chosen_props, start=1)])
@@ -345,6 +350,7 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
                 config.STATEMENT_TYPE: [p.get_prop_tag() for p in chosen_props], # 命题类型
                 config.QUESTION_TYPE: question_tags, # 问题类型
                 config.COT: cot_str, # 12-19新增：推理链
+                config.RULE: rule_descriptions, # 12-20新增：推理中使用的推理规则
             }, 
         }
         translate_result.append(str_info)

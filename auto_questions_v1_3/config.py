@@ -121,3 +121,5 @@ QUESTION_TYPE = "question_type" # 问题类型
 # 12-19新增：推理链相关的信息
 COT = "cot"
 """推理链"""
+RULE = "rule"
+"""推理规则"""

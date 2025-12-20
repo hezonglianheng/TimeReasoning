@@ -23,6 +23,7 @@ import multiprocessing as mp
 # constants.
 KIND = "kind"
 ATTRS = "attrs"
+DESCRIPTION = "description" # 12-20新增：规则描述
 # rule types.
 RULE = "rule"
 RELATION = "relation"
