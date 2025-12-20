@@ -14,6 +14,7 @@ from collections.abc import Sequence
 from typing import Optional
 from pathlib import Path
 from warnings import warn
+import time
 
 class ReasoningGraph:
     """推理图，内含全面的推理结果，是程序的核心组件之一\n
@@ -95,19 +96,14 @@ class ReasoningGraph:
             all_props = [p for p in all_props if p[prop.ASKABLE]]
         return all_props
 
-    def reason(self, new_props: Optional[list[prop.Proposition]] = None):
+    def reason(self, new_props: Optional[list[prop.Proposition]] = None, print_graph: bool = False):
         """执行推理，得到完整的推理图
 
         Args:
             new_props (Optional[list[prop.Proposition]], optional): 新的命题. 用于增量式推理. 默认为None.
+            print_graph (bool, optional): 是否打印推理图到文件. 默认为False.
         """
-        """
-        # 删除graph.txt文件
-        if Path(config.CURR_SETTING_DIR).exists():
-            graph_file_path = Path(config.CURR_SETTING_DIR) / config.GRAPH_FILE
-            if graph_file_path.exists():
-                graph_file_path.unlink()
-        """
+
         reason_count: int = 0
         if new_props is None:
             old_prop_list: list[prop.Proposition] = []
@@ -129,13 +125,6 @@ class ReasoningGraph:
             for p in tqdm(curr_conclusions, desc="检查新结论命题是否已存在"):
                 if not p.is_contained(old_prop_list) and not p.is_contained(curr_prop_list) and not p.is_contained(new_prop_list):
                     new_prop_list.append(p)
-            """
-            with open(Path(config.CURR_SETTING_DIR) / config.GRAPH_FILE, "a", encoding="utf8") as f:
-                for node in curr_nodes:
-                    conditions: str = " && ".join([p.translate(config.CHINESE) for p in node[mynode.CONDITION]])
-                    conclusion: str = node[mynode.CONCLUSION].translate(config.CHINESE)
-                    f.write(f"{conditions} => {conclusion}\n")
-            """
             if len(new_prop_list) == 0:
                 self.add_nodes(curr_nodes)
                 print("所有新结论命题都已存在，推理结束")
@@ -143,6 +132,13 @@ class ReasoningGraph:
             self.add_nodes(curr_nodes)
             old_prop_list.extend(curr_prop_list)
             curr_prop_list = new_prop_list
+        # 12-20新增：将推理图打印到文件
+        if print_graph:
+            with open(Path(config.CURR_SETTING_DIR) / f"graph_{int(time.time())}.txt", "a", encoding="utf8") as f:
+                for node in self.nodes:
+                    conditions: str = " && ".join([p.translate(config.CHINESE) for p in node[mynode.CONDITION]])
+                    conclusion: str = node[mynode.CONCLUSION].translate(config.CHINESE)
+                    f.write(f"{conditions} => {conclusion}\n")
         print(f"推理结束，共执行{reason_count}次推理，得到{len(self.get_all_props())}个命题，{len(self.nodes)}个节点")
 
     def set_node_layers(self, chosen_props: list[prop.Proposition]):

@@ -178,11 +178,12 @@ def external_knowledge_setup(time_unit: str, num: int = 5):
     knowledge_list = knowledge.get_selected_knowledge(time_unit, num)
     KNOWLEDGE_BASE = knowledge_list
 
-def graph_setup(events: Sequence[event.Event]):
+def graph_setup(events: Sequence[event.Event], print_graph: bool = False):
     """初始化推理图
 
     Args:
         events (Sequence[event.Event]): 事件序列
+        print_graph (bool, optional): 是否打印推理图到文件。默认为False。
     """
     global GRAPH, KNOWLEDGE_BASE, CONSTRAINT_MACHINE
     initial_props = CONSTRAINT_MACHINE.get_time_props(events)
@@ -196,7 +197,7 @@ def graph_setup(events: Sequence[event.Event]):
         for k in KNOWLEDGE_BASE:
             knowledge_props.extend(k[knowledge.PROPOSITIONS])
     GRAPH = graph.ReasoningGraph(initial_props, scenario_rules, knowledge_props)
-    GRAPH.reason()
+    GRAPH.reason(print_graph=print_graph)
 
 def prop_choose() -> list[prop.Proposition]:
     """选择试题中作为已知信息出现的命题
@@ -349,12 +350,13 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
         translate_result.append(str_info)
     return translate_result
 
-def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"] = "precise"):
+def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"] = "precise", print_graph: bool = False):
     """程序主函数，负责读取配置文件，初始化各个模块，并执行自动出题的流程
 
     Args:
         dir_path (str): 配置文件所在目录路径。该目录下应包含settings.json5文件
         question_type (Literal[&quot;precise&quot;, &quot;correct&quot;, &quot;incorrect&quot;], optional): 问题类型，默认为"precise"。
+        print_graph (bool, optional): 是否打印推理图到文件。默认为False。
     """
     # 读取settings.json5文件
     setting_path = Path(dir_path) / config.SETTINGS_FILE
@@ -384,7 +386,7 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
         curr_events: tuple[event.Event] = next(event_iter)
         # 05-03新增：外部知识的初始化
         external_knowledge_setup(settings[CURR_UNIT_KEY], settings[KNOWLEDGE_NUM_KEY])
-        graph_setup(curr_events)
+        graph_setup(curr_events, print_graph=print_graph)
         group_result = []
         for j in range(settings[ASK_TIME_KEY]):
             print(f"第{j+1}次提问")
@@ -409,8 +411,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="时间领域自动出题程序")
     parser.add_argument("dir_path", type=str, help="settings.json5文件所在目录路径")
     parser.add_argument("-q", "--question_type", type=str, help="问题类型", default="precise")
+    parser.add_argument("-p", "--print_graph", action="store_true", help="是否打印推理图到文件，默认为False")
     args = parser.parse_args()
     time1 = time.time()
-    main(args.dir_path, args.question_type)
+    main(args.dir_path, args.question_type, args.print_graph)
     time2 = time.time()
     print(f"程序运行完成，用时{time2 - time1}s")
