@@ -50,7 +50,8 @@
     // 情景中独有的规则，按照rule.json5中的方式书写
     "scenario_rules": [
         {
-            // 含义：A发生在B之前X => A发生在B之后(period - X)
+            // 含义：A发生在B之前X && 情景的周期为period => A发生在B之后(period - X)
+            "description": "A发生在B之前X && 情景的周期为period => A发生在B之后(period - X)",
             "name": "before_cyclic_after", 
             "kind": "rule", 
             "condition": [
@@ -70,7 +71,8 @@
             ],
         }, 
         {
-            // 含义：A发生在B之后X => A发生在B之前(period - X)
+            // 含义：A发生在B之后X && 情景的周期为period => A发生在B之前(period - X)
+            "description": "A发生在B之后X && 情景的周期为period => A发生在B之前(period - X)",
             "name": "after_cyclic_before", 
             "kind": "rule", 
             "condition": [
@@ -90,7 +92,8 @@
             ],
         }, 
         {
-            // 含义：A和B间隔X => A和B间隔(period - X)
+            // 含义：A和B间隔X && 情景的周期为period => A和B间隔(period - X)
+            "description": "A和B间隔X && 情景的周期为period => A和B间隔(period - X)",
             "name": "gap_cyclic_gap", 
             "kind": "rule", 
             "condition": [
@@ -110,7 +113,8 @@
             ],
         }, 
         {
-            // 含义：A发生在B之前X && B发生在C之前Y && (X+Y) != period => A发生在C之前(X + Y) % period
+            // 含义：A发生在B之前X && B发生在C之前Y && 情景的周期为period && X+Y != period => A发生在C之前(X + Y) % period
+            "description": "A发生在B之前X && B发生在C之前Y && 情景的周期为period && X+Y != period => A发生在C之前(X + Y) % period",
             "name": "before_time_trans_cyclic", 
             "kind": "rule",
             "condition": [
@@ -134,7 +138,8 @@
             ],
         }, 
         {
-            // 含义：A发生在B之后X && B发生在C之后Y && (X+Y) != period => A发生在C之后(X + Y) % period
+            // 含义：A发生在B之后X && B发生在C之后Y && 情景的周期为period && X+Y != period => A发生在C之后(X + Y) % period
+            "description": "A发生在B之后X && B发生在C之后Y && 情景的周期为period && X+Y != period => A发生在C之后(X + Y) % period",
             "name": "after_time_trans_cyclic", 
             "kind": "rule",
             "condition": [
@@ -158,7 +163,8 @@
             ],
         }, 
         {
-            // 含义：A发生在B之前X && B发生在C之前Y && (X+Y) == period => A发生在C之前(X + Y) % period
+            // 含义：A发生在B之前X && B发生在C之前Y && 情景的周期为period && X+Y == period => A发生在C之前(X + Y) % period
+            "description": "A发生在B之前X && B发生在C之前Y && 情景的周期为period && X+Y == period => A发生在C之前(X + Y) % period",
             "name": "before_time_to_simultaneous_cyclic", 
             "kind": "rule",
             "condition": [
@@ -183,7 +189,8 @@
             ],
         }, 
         {
-            // 含义：A发生在B之后X && B发生在C之后Y && (X+Y) == period => A发生在C之后(X + Y) % period
+            // 含义：A发生在B之后X && B发生在C之后Y && 情景的周期为period && X+Y == period => A发生在C之后(X + Y) % period
+            "description": "A发生在B之后X && B发生在C之后Y && 情景的周期为period && X+Y == period => A发生在C之后(X + Y) % period",
             "name": "after_time_to_simultaneous_cyclic", 
             "kind": "rule",
             "condition": [
@@ -209,7 +216,8 @@
         }, 
         //单事件命题 + 双事件命题 => 单事件命题
         {
-            // 含义：A比B早发生X，B在Y发生 => A在(Y-X)发生
+            // 含义：A比B早发生X，B在Y发生 && 情景的周期为period => A在(Y-X)发生
+            "description": "A比B早发生X，B在Y发生 && 情景的周期为period => A在(Y-X)发生",
             "name": "FromBeforeTime1_cyclic",
             "kind": "rule",
             "condition": [
@@ -231,7 +239,8 @@
             ],
         },
         {
-            // 含义：A比B早发生X，A在Y发生 => B在(Y+X)发生
+            // 含义：A比B早发生X，A在Y发生 && 情景的周期为period => B在(Y+X)发生
+            "description": "A比B早发生X，A在Y发生 && 情景的周期为period => B在(Y+X)发生",
             "name": "FromBeforeTime2_cyclic",
             "kind": "rule",
             "condition": [
@@ -253,7 +262,8 @@
             ],
         },
         {
-            // 含义：A比B晚发生X，B在Y发生 => A在(Y+X)发生
+            // 含义：A比B晚发生X，B在Y发生 && 情景的周期为period => A在(Y+X)发生
+            "description": "A比B晚发生X，B在Y发生 && 情景的周期为period => A在(Y+X)发生",
             "name": "FromAfterTime1_cyclic",
             "kind": "rule",
             "condition": [
@@ -275,7 +285,8 @@
             ],
         },
         {
-            // 含义：A比B晚发生X，A在Y发生 => B在(Y-X)发生
+            // 含义：A比B晚发生X，A在Y发生 && 情景的周期为period => B在(Y-X)发生
+            "description": "A比B晚发生X，A在Y发生 && 情景的周期为period => B在(Y-X)发生",
             "name": "FromAfterTime2_cyclic",
             "kind": "rule",
             "condition": [

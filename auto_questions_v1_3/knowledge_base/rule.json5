@@ -6,6 +6,7 @@
     "rules": [
         {
             // 含义：A在B之前 <=> B在A之后
+            "description": "A在B之前 <=> B在A之后",
             "name": "before_equivalence_after", // 规则名称, 不能与已有的规则名称重复
             "kind": "relation", // 规则种类，分为relation和rule两类
             // 规则条件, rule类型的规则条件是一个字典
@@ -18,6 +19,7 @@
         },
         {
             // 含义：A在B之前X <=> B在A之后X
+            "description": "A在B之前X <=> B在A之后X",
             "name": "beforetime_equivalence_aftertime",
             "kind": "relation",
             "condition": {"kind": "before_time", "attrs": ["event1", "event2", "diff"]},
@@ -27,6 +29,7 @@
         },
         {
             // 含义：A比B长 <=> B比A短
+            "description": "A比B长 <=> B比A短",
             "name": "long_equivalence_short",
             "kind": "relation",
             "condition": {"kind": "long", "attrs": ["event1", "event2"]},
@@ -36,6 +39,7 @@
         },
         {
             // 含义：A比B长X <=> B比A短X
+            "description": "A比B长X <=> B比A短X",
             "name": "longtime_equivalence_shorttime",
             "kind": "relation",
             "condition": {"kind": "long_time", "attrs": ["event1", "event2", "diff"]},
@@ -45,6 +49,7 @@
         },
         {
             // 含义：A和B同时 <=> B和A同时
+            "description": "A和B同时 <=> B和A同时",
             "name": "simultaneous_equivalence_simultaneous",
             "kind": "relation",
             "condition": {"kind": "simultaneous", "attrs": ["event1", "event2"]},
@@ -54,6 +59,7 @@
         },
         {
             // 含义：A和B间隔X <=> B和A间隔X
+            "description": "A和B间隔X <=> B和A间隔X",
             "name": "gap_equivalence_gap",
             "kind": "relation",
             "condition": {"kind": "gap_time", "attrs": ["event1", "event2", "diff"]},
@@ -63,6 +69,7 @@
         },
         {
             // 含义：A和B一样长 <=> B和A一样长
+            "description": "A和B一样长 <=> B和A一样长",
             "name": "samelen_equivalence_samelen",
             "kind": "relation",
             "condition": {"kind": "same_len", "attrs": ["event1", "event2"]},
@@ -72,6 +79,7 @@
         },
         {
             // 含义：A在B之前X => A在B之前
+            "description": "A在B之前X => A在B之前",
             "name": "beforetime_entail_before",
             "kind": "relation",
             "condition": {"kind": "before_time", "attrs": ["event1", "event2", "diff"]},
@@ -81,6 +89,7 @@
         },
         {
             // 含义：A在B之后X => A在B之后
+            "description": "A在B之后X => A在B之后",
             "name": "aftertime_entail_after",
             "kind": "relation",
             "condition": {"kind": "after_time", "attrs": ["event1", "event2", "diff"]},
@@ -90,6 +99,7 @@
         },
         {
             // 含义：A比B长X => A比B长
+            "description": "A比B长X => A比B长",
             "name": "longtime_entail_long",
             "kind": "relation",
             "condition": {"kind": "long_time", "attrs": ["event1", "event2", "diff"]},
@@ -99,6 +109,7 @@
         },
         {
             // 含义：A比B短X => A比B短
+            "description": "A比B短X => A比B短",
             "name": "shorttime_entail_short",
             "kind": "relation",
             "condition": {"kind": "short_time", "attrs": ["event1", "event2", "diff"]},
@@ -108,6 +119,7 @@
         },
         {
             // 含义：A在B之前X => A和B间隔X
+            "description": "A在B之前X => A和B间隔X",
             "name": "beforetime_entail_gap",
             "kind": "relation",
             "condition": {"kind": "before_time", "attrs": ["event1", "event2", "diff"]},
@@ -117,6 +129,7 @@
         },
         {
             // 含义：A在B之后X => A和B间隔X
+            "description": "A在B之后X => A和B间隔X",
             "name": "aftertime_entail_gap",
             "kind": "relation",
             "condition": {"kind": "after_time", "attrs": ["event1", "event2", "diff"]},
@@ -126,6 +139,7 @@
         },
         {
             // 含义：A发生于X && B发生于Y <=> A发生在B之前(Y-X)
+            "description": "A发生于X && B发生于Y <=> A发生在B之前(Y-X)",
             "name": "get_before_time", // 规则名称, 不能与已有的规则名称重复
             "kind": "rule", // 规则种类，分为relation和rule两类
             // 规则条件, rule类型的规则条件是一个字典列表，每个字典表示一个条件
@@ -156,6 +170,7 @@
         },
         {
             // 含义：A发生于X && B发生于Y <=> A发生在B之后(X-Y)
+            "description": "A发生于X && B发生于Y <=> A发生在B之后(X-Y)",
             "name": "get_after_time",
             "kind": "rule",
             "condition": [
@@ -178,6 +193,7 @@
         },
         {
             // 含义：A发生于X && B发生于X <=> A,B同时发生
+            "description": "A发生于X && B发生于X <=> A,B同时发生",
             "name": "get_simultaneous",
             "kind": "rule",
             "condition": [
@@ -199,6 +215,7 @@
         },
         {
             // 含义：A的时长为X && B的时长为Y <=> A的时间比B的时间长（X-Y）
+            "description": "A的时长为X && B的时长为Y <=> A的时间比B的时间长（X-Y）",
             "name": "get_long_time",
             "kind": "rule",
             "condition": [
@@ -221,6 +238,7 @@
         },
         {
             // 含义：A的时长为X && B的时长为Y <=> A的时间比B的时间短（Y-X）
+            "description": "A的时长为X && B的时长为Y <=> A的时间比B的时间短（Y-X）",
             "name": "get_short_time",
             "kind": "rule",
             "condition": [
@@ -243,6 +261,7 @@
         },
         {
             // 含义：A的时长为X && B的时长为X <=> A的时间与B的时间一样长
+            "description": "A的时长为X && B的时长为X <=> A的时间与B的时间一样长",
             "name": "get_same_len",
             "kind": "rule",
             "condition": [
@@ -265,6 +284,7 @@
         //传递性规则
         {
             // 含义：A在B之前,B在C之前 => A在C之前
+            "description": "A在B之前,B在C之前 => A在C之前",
             "name": "BeforeTrans",
             "kind": "rule",
             "condition": [
@@ -286,6 +306,7 @@
         },
         {
             // 含义：A在B之前X,B在C之前Y => A在C之前(X+Y)
+            "description": "A在B之前X,B在C之前Y => A在C之前(X+Y)",
             "name": "BeforeTimeTrans",
             "kind": "rule",
             "condition": [
@@ -308,6 +329,7 @@
         },
         {
             // 含义：A在B之后,B在C之后 => A在C之后
+            "description": "A在B之后,B在C之后 => A在C之后",
             "name": "AfterTrans",
             "kind": "rule",
             "condition": [
@@ -329,6 +351,7 @@
         },
         {
             // 含义：A在B之后X,B在C之后Y => A在C之后(X+Y)
+            "description": "A在B之后X,B在C之后Y => A在C之后(X+Y)",
             "name": "AfterTimeTrans",
             "kind": "rule",
 
@@ -352,6 +375,7 @@
         },
         {
             // 含义：A与B同时,B与C同时 => A与C同时
+            "description": "A与B同时,B与C同时 => A与C同时",
             "name": "SimultaneousTrans",
             "kind": "rule",
 
@@ -375,6 +399,7 @@
         },
         {
             // 含义：A比B长，B比C长 => A比C长
+            "description": "A比B长，B比C长 => A比C长",
             "name": "LongTrans",
             "kind": "rule",
             "condition": [
@@ -396,6 +421,7 @@
         },
         {
             // 含义：A比B长X,B比C长Y => A比C长(X+Y)
+            "description": "A比B长X,B比C长Y => A比C长(X+Y)",
             "name": "LongTimeTrans",
             "kind": "rule",
             "condition": [
@@ -418,6 +444,7 @@
         },
         {
             // 含义：A比B短，B比C短 => A比C短
+            "description": "A比B短，B比C短 => A比C短",
             "name": "ShortTrans",
             "kind": "rule",
             "condition": [
@@ -439,6 +466,7 @@
         },
         {
             // 含义：A比B短X,B比C短Y => A比C短(X+Y)
+            "description": "A比B短X,B比C短Y => A比C短(X+Y)",
             "name": "ShortTimeTrans",
             "kind": "rule",
             "condition": [
@@ -461,6 +489,7 @@
         },
         {
             // 含义：A和B一样长，B和C一样长 => A和C一样长
+            "description": "A和B一样长，B和C一样长 => A和C一样长",
             "name": "SameLenTrans",
             "kind": "rule",
             "condition": [
@@ -484,6 +513,7 @@
         //单事件命题 + 双事件命题 => 单事件命题
         {
             // 含义：A比B早发生X，B在Y发生 => A在(Y-X)发生
+            "description": "A比B早发生X，B在Y发生 => A在(Y-X)发生",
             "name": "FromBeforeTime1",
             "kind": "rule",
             "condition": [
@@ -505,6 +535,7 @@
         },
         {
             // 含义：A比B早发生X，A在Y发生 => B在(Y+X)发生
+            "description": "A比B早发生X，A在Y发生 => B在(Y+X)发生",
             "name": "FromBeforeTime2",
             "kind": "rule",
             "condition": [
@@ -526,6 +557,7 @@
         },
         {
             // 含义：A比B晚发生X，B在Y发生 => A在(Y+X)发生
+            "description": "A比B晚发生X，B在Y发生 => A在(Y+X)发生",
             "name": "FromAfterTime1",
             "kind": "rule",
             "condition": [
@@ -547,6 +579,7 @@
         },
         {
             // 含义：A比B晚发生X，A在Y发生 => B在(Y-X)发生
+            "description": "A比B晚发生X，A在Y发生 => B在(Y-X)发生",
             "name": "FromAfterTime2",
             "kind": "rule",
             "condition": [
@@ -568,6 +601,7 @@
         },
         {
             // 含义：A和B同时发生，B在X发生 => A在X发生
+            "description": "A和B同时发生，B在X发生 => A在X发生",
             "name": "FromSimultaneous",
             "kind": "rule",
             "condition": [
@@ -589,6 +623,7 @@
         },
         {
             // 含义：A比B长X，B时长为Y => A时长为(X+Y)
+            "description": "A比B长X，B时长为Y => A时长为(X+Y)",
             "name": "FromLongTime1",
             "kind": "rule",
             "condition": [
@@ -610,6 +645,7 @@
         },
         {
             // 含义：A比B长X，A时长为Y => B时长为(Y-X)
+            "description": "A比B长X，A时长为Y => B时长为(Y-X)",
             "name": "FromLongTime2",
             "kind": "rule",
             "condition": [
@@ -631,6 +667,7 @@
         },
         {
             // 含义：A比B短X，B时长为Y => A时长为(Y-X)
+            "description": "A比B短X，B时长为Y => A时长为(Y-X)",
             "name": "FromShortTime1",
             "kind": "rule",
             "condition": [
@@ -652,6 +689,7 @@
         },
         {
             // 含义：A比B短X，A时长为Y => B时长为(Y+X)
+            "description": "A比B短X，A时长为Y => B时长为(Y+X)",
             "name": "FromShortTime2",
             "kind": "rule",
             "condition": [
@@ -673,6 +711,7 @@
         },
         {
             // 含义：A和B一样长，B的时长为X => A的时长为X
+            "description": "A和B一样长，B的时长为X => A的时长为X",
             "name": "FromSameLenTime",
             "kind": "rule",
             "condition": [
@@ -695,6 +734,7 @@
         //间隔 + 前后
         {
             // 含义：A在B之前，A和B间隔为X => A在B之前X
+            "description": "A在B之前，A和B间隔为X => A在B之前X",
             "name": "Before_and_Gap",
             "kind": "rule",
             "condition": [
@@ -743,6 +783,7 @@
         */
         {
             // 含义：A在B之后，A和B间隔为X => A在B之后X
+            "description": "A在B之后，A和B间隔为X => A在B之后X",
             "name": "After_and_Gap",
             "kind": "rule",
             "condition": [
@@ -791,6 +832,7 @@
         */
         {
             // 含义：A发生在X，B起始于Y，终止于Z，Y<=X<=Z  => A发生在B期间
+            "description": "A发生在X，B起始于Y，终止于Z，Y<=X<=Z  => A发生在B期间",
             "name": "Get_During",
             "kind": "rule",
             "condition": [
@@ -813,6 +855,7 @@
         }, 
         {
             // 从持续时间命题推出子事件对应的命题
+            "description": "从持续时间命题推出子事件对应的命题",
             "name": "durative_to_single", 
             "kind": "rule", 
             "condition": [
