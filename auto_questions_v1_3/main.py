@@ -17,6 +17,9 @@ import machine
 import level
 # 05-03新增：引入外部知识
 import knowledge
+# 12-19新增：引入mynode文件
+import mynode
+
 import json5
 import json
 import random
@@ -213,7 +216,9 @@ def second_reason(temp_props: list[prop.Proposition]):
         temp_props (list[prop.Proposition]): 二次推理的初始命题列表
     """
     global GRAPH
-    GRAPH.set_node_layers(temp_props)
+    # 12-19修改：改为使用set_node_info设置更多的节点信息
+    # GRAPH.set_node_layers(temp_props)
+    GRAPH.set_node_info(temp_props)
 
 def set_option_generator():
     """初始化选项生成器，设置选项可以随机的范围
@@ -305,6 +310,8 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
     translate_result: list[dict[str, Any]] = []
     question: element.Element = question_info[machine.QUESTION]
     options: dict[str, element.Element] = question_info[machine.OPTIONS]
+    # 12-19新增：获得question_info中的推理链信息
+    cot: list[mynode.Node] = question_info.get(machine.COT, [])
     for lang in config.LANG_CONFIG:
         # 06-19新增：翻译命题时的分隔字符串
         chosen_prop_translation = ';\n'.join([f"({i})" + p.translate(lang) for i, p in enumerate(chosen_props, start=1)])
@@ -312,6 +319,9 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
         text = f"{lang_guide}:\n{chosen_prop_translation}"
         question_str = question.translate(lang, require='ask', ask_attr=question_info[machine.ASK_ATTR])
         options_str = {k: v.translate(lang) for k, v in options.items()}
+        # 12-19新增：翻译推理链
+        cot_str = '\n'.join([node.translate(lang) for node in cot])
+        cot_str = cot_str[0].capitalize() + cot_str[1:] if cot_str else cot_str # 处理首字母大写
         # 05-02新增：计算问题的难度等级
         question_level = get_level(chosen_props, question_info, question_type=question_type, lang=lang)
         # 05-02新增：获得问题相关的tags
@@ -333,6 +343,7 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
                 config.STEP: question_info[machine.COT_LENGTH], # 推理步骤数
                 config.STATEMENT_TYPE: [p.get_prop_tag() for p in chosen_props], # 命题类型
                 config.QUESTION_TYPE: question_tags, # 问题类型
+                config.COT: cot_str, # 12-19新增：推理链
             }, 
         }
         translate_result.append(str_info)

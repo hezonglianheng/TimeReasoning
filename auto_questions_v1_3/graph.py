@@ -13,6 +13,7 @@ import math
 from collections.abc import Sequence
 from typing import Optional
 from pathlib import Path
+from warnings import warn
 
 class ReasoningGraph:
     """推理图，内含全面的推理结果，是程序的核心组件之一\n
@@ -150,6 +151,7 @@ class ReasoningGraph:
         Args:
             chosen_props (list[prop.Proposition]): 选择的命题
         """
+        warn("set_node_layers方法已废弃，请使用set_node_info方法代替", DeprecationWarning)
         # 重置节点的层级
         for node in self.nodes:
             node[mynode.LAYER] = math.inf
@@ -182,6 +184,47 @@ class ReasoningGraph:
             # post_layer_props = curr_layer_props
             curr_layer_props = next_layer_props
             next_layer_props = []
+
+    def set_node_info(self, chosen_props: list[prop.Proposition]):
+        """设置节点的层级，本质上是第二轮推理
+
+        Args:
+            chosen_props (list[prop.Proposition]): 选择的命题
+        """
+        # 重置节点的信息
+        for node in self.nodes:
+            node.reset()
+        curr_layer_props: list[prop.Proposition] = chosen_props + self.knowledge_props
+        next_layer_props: list[prop.Proposition] = []
+        # 12-19新增：增加对命题相关的推理节点的记录
+        curr_layer_nodes: list[mynode.Node] = [None] * len(curr_layer_props)
+        next_layer_nodes: list[mynode.Node] = []
+        layer: int = 0
+        while True:
+            layer += 1
+            for node in tqdm([x for x in self.nodes if x[mynode.LAYER] > layer], desc=f"设置第{layer}层节点"):
+                node.set_node_info(layer, curr_layer_props, curr_layer_nodes)
+                if node[mynode.LAYER] == layer:
+                    curr_conclusion: prop.Proposition = node[mynode.CONCLUSION]
+                    for x in range(len(next_layer_props)):
+                        if next_layer_props[x] == curr_conclusion:
+                            # 如果curr_conclusion已经在next_layer_props中，比较推理链长度，保留较短的一个
+                            if next_layer_nodes[x][mynode.CHAIN_LENGTH] > node[mynode.CHAIN_LENGTH]:
+                                next_layer_nodes[x] = node
+                            break
+                    else:
+                        # 如果curr_conclusion不在next_layer_props中，则添加相关的命题和节点
+                        next_layer_props.append(curr_conclusion)
+                        next_layer_nodes.append(node)
+            print(f"第{layer}层节点设置完毕，已经设置{len(next_layer_props)}个结论命题")
+            if len(next_layer_props) == 0:
+                self.deepest_layer = layer if any([n for n in self.nodes if n[mynode.LAYER] == layer]) else layer - 1
+                print(f"设置层级结束，共设置{self.deepest_layer}层")
+                break
+            curr_layer_props = next_layer_props
+            curr_layer_nodes = next_layer_nodes
+            next_layer_props = []
+            next_layer_nodes = []
 
     def get_deepest_conclusions(self, use_askable: bool = False) -> list[prop.Proposition]:
         """获取最深层次推理图节点的结论命题
@@ -233,6 +276,7 @@ class ReasoningGraph:
         Returns:
             list[mynode.Node]: 推理路径
         """
+        warn("backtrace方法已废弃，请使用get_cot和get_cot_length方法代替", DeprecationWarning)
         assert self.deepest_layer >= 0, "尚未进行二次推理"
         # 获得以curr_prop为结论的节点
         curr_nodes: list[mynode.Node] = [n for n in self.nodes if n[mynode.CONCLUSION] == curr_prop]
@@ -254,3 +298,47 @@ class ReasoningGraph:
             pre_trace.extend(self.backtrace(condition))
         pre_trace.append(pre_step)
         return pre_trace
+
+    def get_cot(self, curr_prop: prop.Proposition) -> list[mynode.Node]:
+        """获取命题的推理链
+
+        Args:
+            curr_prop (prop.Proposition): 当前命题
+
+        Returns:
+            int | list[mynode.Node]: 推理链长度或推理链中的节点信息，由need_node决定
+        """
+        assert self.deepest_layer >= 0, "尚未进行二次推理"
+        # 获得以curr_prop为结论的节点
+        curr_nodes: list[mynode.Node] = [n for n in self.nodes if n[mynode.CONCLUSION] == curr_prop]
+        # 如果没有找到节点，返回空列表
+        if len(curr_nodes) == 0:
+            return []
+        # 对curr_nodes按照推理链长度做排序
+        curr_nodes.sort(key=lambda x: x[mynode.CHAIN_LENGTH])
+        # 选择推理链长度最短的节点
+        chosen_node: mynode.Node = curr_nodes[0]
+        # 获取推理链
+        cot_nodes: list[mynode.Node] = chosen_node.get_precede_nodes()
+        return cot_nodes + [chosen_node]
+
+    def get_cot_length(self, curr_prop: prop.Proposition) -> int:
+        """获取命题的推理链长度
+
+        Args:
+            curr_prop (prop.Proposition): 当前命题
+
+        Returns:
+            int: 推理链长度
+        """
+        assert self.deepest_layer >= 0, "尚未进行二次推理"
+        # 获得以curr_prop为结论的节点
+        curr_nodes: list[mynode.Node] = [n for n in self.nodes if n[mynode.CONCLUSION] == curr_prop]
+        # 如果没有找到节点，返回inf
+        if len(curr_nodes) == 0:
+            return math.inf
+        # 对curr_nodes按照推理链长度做排序
+        curr_nodes.sort(key=lambda x: x[mynode.CHAIN_LENGTH])
+        # 选择推理链长度最短的节点
+        chosen_node: mynode.Node = curr_nodes[0]
+        return chosen_node[mynode.CHAIN_LENGTH]

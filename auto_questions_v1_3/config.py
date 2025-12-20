@@ -76,13 +76,21 @@ LANG_CONFIG = {
         "ask_right": f"以下选项中正确的是{ASK_POINT}",
         "ask_wrong": f"以下选项中不正确的是{ASK_POINT}",
         "full_stop": "。",
+        "comma": "，",
         "all_wrong": "以上选项均不符合题目要求",
+        "because": ['因为', '由于',],
+        "and": ['并且', '且', '同时',],
+        "so": ['所以', '因此', '故',],
     }, 
     "en": {
         "ask_right": f"Select the correct statement(s): {ASK_POINT}",
         "ask_wrong": f"Select the incorrect statement(s): {ASK_POINT}",
         "full_stop": ".",
+        "comma": ",",
         "all_wrong": "None of the options above meet the requirements of the question",
+        "because": ['because', 'as', 'since',],
+        "and": ['and', 'also', 'moreover',],
+        "so": ['so', 'therefore', 'thus',],
     }, 
 }
 
@@ -106,3 +114,6 @@ STATEMENT_TYPE = "statement_type" # 命题类型
 """命题类型"""
 QUESTION_TYPE = "question_type" # 问题类型
 """问题类型"""
+# 12-19新增：推理链相关的信息
+COT = "cot"
+"""推理链"""

@@ -30,6 +30,9 @@ ANSWER = "answer"
 # 05-02新增：增加获得提问命题的推理链长度
 COT_LENGTH = "cot_length"
 """获得提问命题的推理链长度"""
+# 12-19新增：增加获得推理链本身
+COT = "cot"
+"""推理链"""
 
 class PropChooseMachine:
     """时间推理题已知命题选择器
@@ -348,8 +351,12 @@ class AskMachine:
         print("选项：", [f"{k}: {v.translate(lang=config.CHINESE)}" for k, v in options_dict.items()])
         print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
-        cot = self.graph.backtrace(asked_prop)
-        return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: len(cot)}
+        # 12-19修改：改为使用get_cot和get_cot_length函数获得推理链和长度
+        # cot = self.graph.backtrace(asked_prop)
+        cot = self.graph.get_cot(asked_prop)
+        cot_length = self.graph.get_cot_length(asked_prop)
+        # return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: len(cot)}
+        return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cot}
 
     def correct_statements(self, prop_type: Literal["random", "deepest", "certain"] = "random", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """生成“以上选项正确的是”问题
@@ -389,9 +396,12 @@ class AskMachine:
         print("被选择命题：", [i.translate(lang=config.CHINESE) for i in options_dict.values()])
         print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
-        cots = [self.graph.backtrace(i) for i in backtrace_props]
-        cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
-        return {QUESTION: CorStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length}
+        # 12-19修改：改为使用get_cot和get_cot_length函数获得推理链和长度
+        # cots = [self.graph.backtrace(i) for i in backtrace_props]
+        cots = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in backtrace_props])
+        # cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
+        cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in backtrace_props])
+        return {QUESTION: CorStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cots}
 
     def incorrect_statements(self, prop_type: Literal["random", "deepest", "certain"] = "random", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """生成“以上选项不正确的是”问题
@@ -431,9 +441,12 @@ class AskMachine:
         print("被选择命题：", [i.translate(lang=config.CHINESE) for i in options_dict.values()])
         print("答案：", answer_list)
         # 05-02新增：增加获得提问命题的推理链
-        cots = [self.graph.backtrace(i) for i in backtrace_props]
-        cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
-        return {QUESTION: IncStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length}
+        # 12-19修改：改为使用get_cot和get_cot_length函数获得推理链和长度
+        # cots = [self.graph.backtrace(i) for i in backtrace_props]
+        cots = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in backtrace_props])
+        # cot_length = reduce(lambda x, y: x + y, [len(i) for i in cots])
+        cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in backtrace_props])
+        return {QUESTION: IncStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cots}
 
     def run(self, prop_type: Literal["random", "deepest", "certain"] = "random", question_type: Literal["precise", "correct", "incorrect"] = "precise", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """运行提问机，提问
