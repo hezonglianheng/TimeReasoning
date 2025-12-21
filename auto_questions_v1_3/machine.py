@@ -34,6 +34,9 @@ COT_LENGTH = "cot_length"
 # 12-19新增：增加获得推理链本身
 COT = "cot"
 """推理链"""
+# 12-21新增：获得所有的有用命题
+USEFUL_PROPS = "useful_props"
+"""所有的有用命题"""
 
 # 试题生成辅助工具类
 
@@ -53,6 +56,7 @@ class PropChooseMachine:
         self.choose_rule: dict[str, list[dict[str, str]]] = {}
         with open(config.PROP_CHOOSE_RULE_FILE, "r", encoding = "utf8") as f:
             self.choose_rule = json5.load(f)[CHOOSE_RULE]
+        self.choose_results: list[prop.Proposition] = []
 
     def _choose_prop(self, e: event.Event) -> prop.Proposition:
         """根据输入的事件选择命题
@@ -113,7 +117,27 @@ class PropChooseMachine:
         # 08-23增加：增加对被选择命题的输出
         chosen_props_trans = [i.translate(lang=config.CHINESE) for i in chosen_props]
         print(f"根据事件选择了{len(chosen_props)}个命题作为已知命题", *chosen_props_trans, sep="\n")
+        # 保存选择结果
+        self.choose_results = copy.deepcopy(chosen_props)
         return chosen_props
+
+    def get_useful_props(self, props: list[prop.Proposition]) -> list[prop.Proposition]:
+        """获得对于推理有用的全部初始命题（不包含知识命题）
+
+        Args:
+            props (list[prop.Proposition]): 输入的命题列表
+
+        Returns:
+            list[prop.Proposition]: 有用命题列表
+        """
+        useful_props: list[prop.Proposition] = []
+        for p in props:
+            cot = self.graph.get_cot(p)
+            conditions: list[prop.Proposition] = reduce(lambda x, y: x + y, [n[mynode.CONDITION] for n in cot], [])
+            for c in conditions:
+                if c.is_contained(self.choose_results) and not c.is_contained(useful_props):
+                    useful_props.append(c)
+        return useful_props
 
 class OptionGenerator:
     """选项生成器
@@ -332,12 +356,14 @@ class AllWrongOptionIsWrong(mynode.Node):
 # 提问机
 
 class AskMachine:
-    """提问机，根据推理图和选项生成器生成问题、选项、答案
+    """提问机，根据推理图、初始命题选择器、选项生成器生成问题、选项、答案及试题信息
     """
-    def __init__(self, g: graph.ReasoningGraph, gen: OptionGenerator):
-        self.graph = g
+    def __init__(self, graph: graph.ReasoningGraph, prop_choose_machine: PropChooseMachine, option_generator: OptionGenerator):
+        self.graph = graph
         """推理图"""
-        self.option_generator = gen
+        self.prop_choose_machine = prop_choose_machine
+        """初始命题选择器"""
+        self.option_generator = option_generator
         """选项生成器"""
 
     def _get_candidate_props(self, prop_type: Literal["random", "deepest", "certain"], **kwargs) -> list[prop.Proposition]:
@@ -431,7 +457,9 @@ class AskMachine:
             correct_props.append(new_prop)
         cot = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in correct_props])
         cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in correct_props])
-        return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cot}
+        # 12-21新增：获得所有的有用命题
+        useful_props: list[prop.Proposition] = self.prop_choose_machine.get_useful_props(correct_props)
+        return {QUESTION: asked_prop, ASK_ATTR: ask_attr, OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cot, USEFUL_PROPS: useful_props}
 
     def correct_statements(self, prop_type: Literal["random", "deepest", "certain"] = "random", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """生成“以上选项正确的是”问题
@@ -487,6 +515,7 @@ class AskMachine:
             
         cots = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in searched_props])
         cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in searched_props])
+        useful_props: list[prop.Proposition] = self.prop_choose_machine.get_useful_props(searched_props)
         if isinstance(props_in_options[-1], AllWrongOption):
             cot_length += 1
             if ascii_uppercase[len(options_dict) - 1] in answer_list:
@@ -495,7 +524,7 @@ class AskMachine:
             else:
                 # “所有选项均不符合要求”选项为错误选项
                 cots.append(AllWrongOptionIsWrong())
-        return {QUESTION: CorStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cots}
+        return {QUESTION: CorStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cots, USEFUL_PROPS: useful_props}
 
     def incorrect_statements(self, prop_type: Literal["random", "deepest", "certain"] = "random", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """生成“以上选项不正确的是”问题
@@ -551,6 +580,7 @@ class AskMachine:
             
         cots = reduce(lambda x, y: x + y, [self.graph.get_cot(i) for i in searched_props])
         cot_length = reduce(lambda x, y: x + y, [self.graph.get_cot_length(i) for i in searched_props])
+        useful_props: list[prop.Proposition] = self.prop_choose_machine.get_useful_props(searched_props)
         if isinstance(props_in_options[-1], AllWrongOption):
             cot_length += 1
             if ascii_uppercase[len(options_dict) - 1] in answer_list:
@@ -559,7 +589,7 @@ class AskMachine:
             else:
                 # “所有选项均不符合要求”选项为错误选项
                 cots.append(AllWrongOptionIsWrong())
-        return {QUESTION: IncStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cots}
+        return {QUESTION: IncStatQuestion(), ASK_ATTR: "", OPTIONS: options_dict, ANSWER: answer_list, COT_LENGTH: cot_length, COT: cots, USEFUL_PROPS: useful_props}
 
     def run(self, prop_type: Literal["random", "deepest", "certain"] = "random", question_type: Literal["precise", "correct", "incorrect"] = "precise", option_num: int = 4, correct_num: Optional[int] = None, **kwargs) -> dict[str, Any]:
         """运行提问机，提问

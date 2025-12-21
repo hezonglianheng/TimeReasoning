@@ -258,8 +258,8 @@ def question_generate(prop_type: Literal["random", "deepest", "certain"] = "rand
     Returns:
         dict[str, Any]: 问题信息字典，包含问题的命题、选项和答案等信息
     """
-    global GRAPH, OPTION_GENERATOR
-    ask_machine = machine.AskMachine(GRAPH, OPTION_GENERATOR)
+    global GRAPH, OPTION_GENERATOR, PROP_CHOOSE_MACHINE
+    ask_machine = machine.AskMachine(GRAPH, PROP_CHOOSE_MACHINE, OPTION_GENERATOR)
     question_info = ask_machine.run(prop_type, question_type, **kwargs)
     return question_info
 
@@ -351,6 +351,8 @@ def question_translate(guide: dict[str, str], chosen_props: list[prop.Propositio
                 config.QUESTION_TYPE: question_tags, # 问题类型
                 config.COT: cot_str, # 12-19新增：推理链
                 config.RULE: rule_descriptions, # 12-20新增：推理中使用的推理规则
+                config.USEFUL_PROPS: [p.translate(lang=lang) for p in question_info.get(machine.USEFUL_PROPS, [])], # 12-21新增：有用的命题
+                config.USEFUL_PROP_NUM: len(question_info.get(machine.USEFUL_PROPS, [])), # 12-21新增：有用的命题数量
             }, 
         }
         translate_result.append(str_info)
