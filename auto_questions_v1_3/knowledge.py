@@ -16,6 +16,8 @@ from typing import Any
 # 外部知识的字段
 PROPOSITIONS = "propositions" # 知识对应的命题
 DIFFICULTY = "difficulty" # 知识的难度
+# 对知识来源的元素做标记
+FROM_KNOWLEDGE = "from_knowledge" # 来自外部知识
 
 class Knowledge(element.Element):
     """外部知识的定义和方法
@@ -56,6 +58,7 @@ class Knowledge(element.Element):
                 event.PREDICATE: attr_dict[event.PREDICATE],
                 event.OBJECT: attr_dict[event.OBJECT],
                 event.TENSE: attr_dict[event.TENSE],
+                FROM_KNOWLEDGE: True,
             }
             return event.Event(**event_dict)
         elif kind == event.DURATIVE:
@@ -73,6 +76,7 @@ class Knowledge(element.Element):
                 event.START_EVENT: attr_dict[event.START_EVENT],
                 event.END_EVENT: attr_dict[event.END_EVENT],
                 event.DURATION_EVENT: attr_dict[event.DURATION_EVENT],
+                FROM_KNOWLEDGE: True,
             }
             return event.Event(**event_dict)
         elif kind == event.FREQUENT:

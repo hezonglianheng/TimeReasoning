@@ -223,7 +223,7 @@ def second_reason(temp_props: list[prop.Proposition]):
     # GRAPH.set_node_layers(temp_props)
     GRAPH.set_node_info(temp_props)
 
-def set_option_generator():
+def set_option_generator(event_list: Sequence[event.Event]):
     """初始化选项生成器，设置选项可以随机的范围
     提问器会根据选项生成器随机生成选项
     """
@@ -233,18 +233,26 @@ def set_option_generator():
     upper_time, lower_time = CONSTRAINT_MACHINE.upper_bound, CONSTRAINT_MACHINE.lower_bound
     time_range = represent.get_time_range(upper_time, lower_time)
     time_delta_range = represent.get_time_delta_range(upper_time, lower_time)
-    # 05-03新增：记录已经查找过的项，避免重复设置
-    # TODO：这个位置可以做进一步优化
-    be_set_attrs = defaultdict(list)
+    related_events: list[event.Event] = reduce(lambda x, y: x + y, [e.get_related_events() for e in event_list])
+    kind_attr_range: dict[str, dict[str, list[element.Element]]] = defaultdict(dict)
+    # 12-20修改：根据可及命题，设置属性范围，此时需要跳过来自外部知识的元素
     for p in GRAPH.get_reachable_props():
         for attr in p.main_attrs():
-            if attr in be_set_attrs[p.kind]:
-                continue
-            be_set_attrs[p.kind].append(attr)
             if type(p[attr]) == represent.CustomTime:
-                OPTION_GENERATOR.set_attr_range(p.kind, attr, time_range)
+                kind_attr_range[p.kind][attr] = time_range
             elif type(p[attr]) == represent.CustomTimeDelta:
-                OPTION_GENERATOR.set_attr_range(p.kind, attr, time_delta_range)
+                kind_attr_range[p.kind][attr] = time_delta_range
+            else:
+                if attr not in kind_attr_range[p.kind]:
+                    kind_attr_range[p.kind][attr] = []
+                if type(p[attr]) == event.Event and p[attr] not in related_events:
+                    continue
+                if p[attr].has_attr(knowledge.FROM_KNOWLEDGE) and p[attr][knowledge.FROM_KNOWLEDGE]:
+                    continue
+                kind_attr_range[p.kind][attr].append(p[attr])
+    for k, v in kind_attr_range.items():
+        for attr, range_list in v.items():
+            OPTION_GENERATOR.set_attr_range(k, attr, range_list)
     print("选项生成器初始化完成")
 
 def question_generate(prop_type: Literal["random", "deepest", "certain"] = "random", question_type: Literal["precise", "correct", "incorrect"] = "precise", **kwargs) -> dict[str, Any]:
@@ -401,7 +409,7 @@ def main(dir_path: str, question_type: Literal["precise", "correct", "incorrect"
             # 选择命题
             chosen_props = prop_choose()
             second_reason(chosen_props)
-            set_option_generator()
+            set_option_generator(curr_events)
             question_info = question_generate(question_type=question_type)
             translated_questions = question_translate(settings[GUIDE_KEY], chosen_props, question_info, question_type=question_type)
             # 将问题信息添加到结果列表中

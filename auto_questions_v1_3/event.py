@@ -123,6 +123,20 @@ class Event(element.Element):
         else:
             raise ValueError(f"不支持的翻译语言: {lang}")
 
+    def get_related_events(self) -> list["Event"]:
+        """获取与当前事件相关的事件的方法
+
+        Returns:
+            list[Event]: 相关事件列表
+        """
+        related_events: list[Event] = [self]
+        if self.kind == DURATIVE:
+            for member in [START_EVENT, END_EVENT, DURATION_EVENT]:
+                child_event: Event = self[member]
+                if not child_event.is_contained(related_events):
+                    related_events.append(child_event)
+        return related_events
+
 if __name__ == "__main__":
     # 测试
     nameinfo = {

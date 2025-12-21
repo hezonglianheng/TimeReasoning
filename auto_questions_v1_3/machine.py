@@ -10,6 +10,8 @@ import event
 import graph
 import proposition as prop
 import mynode
+import knowledge
+
 import json5
 from tqdm import tqdm
 import random
@@ -187,8 +189,13 @@ class OptionGenerator:
             temp_range: list[element.Element] = []
             for p in filter(lambda x: x.kind == ask_kind, self.reachable_props):
                 temp_element: element.Element = p[ask_attr]
+                # 如果元素来源于外部知识，则跳过
+                if temp_element.has_attr(knowledge.FROM_KNOWLEDGE) and temp_element[knowledge.FROM_KNOWLEDGE]:
+                    continue
                 if not temp_element.is_contained(temp_range):
                     temp_range.append(temp_element)
+            # 尝试将当前得到的结果缓存下来，减少计算量
+            self.attr_range[ask_kind][ask_attr] = temp_range
         # 06-20修改：需要排除的是命题中所有已经出现过的属性值
         temp_range = [i for i in temp_range if not i.is_contained(asked_prop.all_attr_elements())] # 需要排除被提问的命题中已有的属性值
         if len(temp_range) < num:
